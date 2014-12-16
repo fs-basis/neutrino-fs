@@ -248,8 +248,8 @@ void CDBoxInfoWidget::paint()
 					memstat[MEMINFO_RAM][MEMINFO_TOTAL] += v;
 				else if (!strcasecmp(a, "MemFree"))
 					memstat[MEMINFO_RAM][MEMINFO_FREE] += v;
-				else if (!strcasecmp(a, "Inactive"))
-					memstat[MEMINFO_RAM][MEMINFO_FREE] += v;
+//				else if (!strcasecmp(a, "Inactive"))
+//					memstat[MEMINFO_RAM][MEMINFO_FREE] += v;
 				else if (!strcasecmp(a, "SwapTotal"))
 					memstat[MEMINFO_SWAP][MEMINFO_TOTAL] = v;
 				else if (!strcasecmp(a, "SwapFree"))

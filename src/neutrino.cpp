@@ -89,7 +89,6 @@
 #include "gui/rc_lock.h"
 #include "gui/scan_setup.h"
 #include "gui/sleeptimer.h"
-#include "gui/start_wizard.h"
 #include "gui/update_ext.h"
 #include "gui/update.h"
 #include "gui/videosettings.h"
@@ -2066,13 +2065,11 @@ TIMER_START();
 
 	initialize_iso639_map();
 
-	bool show_startwizard = false;
 	CLocaleManager::loadLocale_ret_t loadLocale_ret = g_Locale->loadLocale(g_settings.language.c_str());
 	if (loadLocale_ret == CLocaleManager::NO_SUCH_LOCALE)
 	{
 		g_settings.language = "deutsch";
 		loadLocale_ret = g_Locale->loadLocale(g_settings.language.c_str());
-		show_startwizard = true;
 	}
 
 	// default usermenu titles correspond to gui/user_menue_setup.h:struct usermenu_props_t usermenu
@@ -2263,12 +2260,6 @@ TIMER_START();
 	CZapit::getInstance()->SetVolumePercent(g_settings.audio_volume_percent_ac3, g_settings.audio_volume_percent_pcm);
 	CVFD::getInstance()->showVolume(g_settings.current_volume);
 	CVFD::getInstance()->setMuted(current_muted);
-
-	if (show_startwizard) {
-		hintBox->hide();
-		CStartUpWizard startwizard;
-		startwizard.exec(NULL, "");
-	}
 
 	InitZapper();
 	if(loadSettingsErg) {

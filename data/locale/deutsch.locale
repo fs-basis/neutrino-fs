@@ -1196,8 +1196,6 @@ menu.hint_net_xupnpd Freigabe von Live Channels über UPNP
 menu.hint_network IP-Adresse, Gateway, DNS, Zeit-Sync, Netzwerk-Freigaben, Dienste und mehr
 menu.hint_new_zap_mode Aktiviert Quickzap in der Kanalliste. Nach Betätigen der Mute-Taste wird mit den Hoch/Runter-Tasten direkt umgeschalten
 menu.hint_numeric_adjust Bei numerischer Programmwahl die Kanalliste am neu gewählten Programm ausrichten
-menu.hint_opkg Hier können Sie neue Software-Pakete installieren oder vorhandene aktualisieren
-menu.hint_opkg_upgrade Aktualisiert alle installierten Pakete auf die neueste verfügbare Version
 menu.hint_osd Farben, Schriftarten, Anzeigegröße, Ansichtsoptionen der Menüs und mehr
 menu.hint_osd_language Wählen Sie ihre Menü-Sprache
 menu.hint_osd_preset Wählen Sie zwischen Röhren-TV (CRT) oder Flachbildschirm (LCD)
@@ -1817,19 +1815,6 @@ nvod.starting (Beginn in %d min)
 nvodselector.directormode Bildregie-Modus
 nvodselector.head Anfangszeit auswählen
 nvodselector.subservice Perspektiven
-opkg.button.expert_off Standard-Modus
-opkg.button.expert_on Experten-Modus
-opkg.button.info Paket-Informationen
-opkg.button.install Paket installieren
-opkg.button.uninstall Paket entfernen
-opkg.failure.install Installation fehlgeschlagen (%d)
-opkg.failure.update Update fehlgeschlagen (%d)
-opkg.failure.upgrade Upgrade fehlgeschlagen (%d)
-opkg.messagebox.reinstall %s erneut installieren?
-opkg.messagebox.remove %s entfernen?
-opkg.success.install Installation erfolgreich, Neustart von Neutrino kann erforderlich sein.
-opkg.title Paketverwaltung
-opkg.upgrade Installierte Pakete aktualisieren
 options.default Voreinstellungen benutzen
 options.fb framebuffer
 options.hint_default Setzen Sie die Werte auf die Voreinstellung zurück.

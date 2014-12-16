@@ -164,7 +164,7 @@ install_DATA += \
 	info_blue.png \
 	info_green.png \
 	info_red.png \
-	info_yellow-png \
+	info_yellow.png \
 	info_small.png \
 	information.png \
 	ird_green.png \

@@ -5,7 +5,11 @@ rcsim.h: $(srcdir)/driver/rcinput.h $(srcdir)/create_rcsim_h.sh
 
 AM_CXXFLAGS = -fno-rtti -fno-exceptions -D__STDC_FORMAT_MACROS
 
-SUBDIRS = zapit gui daemonc driver system eitd timerd nhttpd
+SUBDIRS = zapit gui daemonc driver system eitd timerd
+
+if ENABLE_WEBIF
+SUBDIRS += nhttpd
+endif
 
 AM_CPPFLAGS = \
 	-I$(srcdir) \
@@ -82,10 +86,6 @@ neutrino_LDADD = \
 	driver/libneutrino_driver_netfile.a \
 	timerd/libtimerd.a \
 	zapit/src/libzapit.a \
-	nhttpd/libnhttpd.a \
-	nhttpd/tuxboxapi/coolstream/libnhttpd_tuxboxapi.a \
-	nhttpd/yhttpd_mods/libyhttpdmods.a \
-	nhttpd/yhttpd_core/libyhttpd.a \
 	$(top_builddir)/lib/sectionsdclient/libsectionsdclient.a \
 	$(top_builddir)/lib/timerdclient/libtimerdclient.a \
 	$(top_builddir)/src/zapit/lib/libzapitclient.a \
@@ -109,6 +109,14 @@ neutrino_LDADD = \
 	-lOpenThreads \
 	-lrt -lpthread \
 	-ldl -lblkid
+
+if ENABLE_WEBIF
+neutrino_LDADD += \
+	nhttpd/libnhttpd.a \
+	nhttpd/tuxboxapi/coolstream/libnhttpd_tuxboxapi.a \
+	nhttpd/yhttpd_mods/libyhttpdmods.a \
+	nhttpd/yhttpd_core/libyhttpd.a
+endif
 
 if ENABLE_GRAPHLCD
 neutrino_LDADD += -lglcddrivers -lglcdgraphics -lusb-1.0

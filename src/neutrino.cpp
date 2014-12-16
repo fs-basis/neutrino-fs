@@ -161,7 +161,9 @@ static pthread_t timer_thread;
 void * timerd_main_thread(void *data);
 static bool timerd_thread_started = false;
 
+#if ENABLE_WEBIF
 void * nhttpd_main_thread(void *data);
+#endif
 
 //#define DISABLE_SECTIONSD
 
@@ -2201,10 +2203,11 @@ TIMER_START();
 
 	dvbsub_init();
 
+#if ENABLE_WEBIF
 	pthread_t nhttpd_thread;
 	if (!pthread_create (&nhttpd_thread, NULL, nhttpd_main_thread, (void *) NULL))
 		pthread_detach (nhttpd_thread);
-
+#endif
 	CStreamManager::getInstance()->Start();
 
 #ifndef DISABLE_SECTIONSD

@@ -284,7 +284,6 @@ lib/libcoolstream/Makefile
 lib/libtuxtxt/Makefile
 lib/libdvbsub/Makefile
 lib/libupnpclient/Makefile
-lib/libiw/Makefile
 lib/luaclient/Makefile
 src/lcddisplay/Makefile
 src/nhttpd/Makefile

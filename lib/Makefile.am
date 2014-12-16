@@ -8,7 +8,6 @@ SUBDIRS = \
 	libnet \
 	xmltree \
 	libtuxtxt \
-	libiw \
 	libdvbsub \
 	luaclient
 
@@ -21,3 +20,4 @@ if BOXTYPE_COOL
 SUBDIRS += \
 	libcoolstream
 endif
+

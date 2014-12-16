@@ -226,6 +226,7 @@ class CRecordManager : public CMenuTarget /*, public CChangeObserver*/
 		int  handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data);
 		// mimic old behavior for start/stop menu option chooser, still actual ?
 		int GetRecordCount() { return recmap.size(); };
+		recmap_t GetRecordMap() { return recmap; };
 		void StartTimeshift();
 		int GetRecordMode(const t_channel_id channel_id=0);
 		CRecordInstance* getRecordInstance(std::string file);

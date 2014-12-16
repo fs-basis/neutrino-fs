@@ -66,6 +66,7 @@ class CInfoViewer
 	int            BoxStartX;
 	int            BoxStartY;
 	int            ButtonWidth;
+	int            spacer;
 
         // dimensions of radiotext window
         int             rt_dx;
@@ -78,7 +79,7 @@ class CInfoViewer
 	std::string ChannelName;
 
 	int            ChanNameX;
-	int            ChanNameY;
+	int            ChanNumWidth;
 	int            ChanWidth;
 	int            ChanHeight;
 
@@ -91,7 +92,6 @@ class CInfoViewer
 
 	int time_left_width;
 	int time_dot_width;
-	int time_width;
 	int time_height;
 	int info_time_width;
 
@@ -154,6 +154,8 @@ class CInfoViewer
 	int      ChanInfoX;
 	bool     showButtonBar;
 	bool     isVolscale;
+	int      ChanNameY;
+	int      time_width;
 
 	CInfoViewer();
 	~CInfoViewer();

@@ -161,6 +161,10 @@ install_DATA += \
 	icon_ytplay.png \
 	important.png \
 	info.png \
+	info_blue.png \
+	info_green.png \
+	info_red.png \
+	info_yellow-png \
 	info_small.png \
 	information.png \
 	ird_green.png \

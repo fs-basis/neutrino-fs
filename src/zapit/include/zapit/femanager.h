@@ -33,7 +33,7 @@
 
 #define MAX_FE          4
 #define MAX_ADAPTERS    1
-//#define DYNAMIC_DEMUX
+#define DYNAMIC_DEMUX
 //#define MAKE_FE_KEY(adapter, number) ((adapter << 8) | (number & 0xFF))
 
 #define FECONFIGFILE      CONFIGDIR "/zapit/frontend.conf"
@@ -134,7 +134,7 @@ class CFEManager
 		bool		haveFreeFrontend();
 		void		linkFrontends(bool init = true);
 		void		copySettings(CFrontend * fe);
-		int		getDemux(transponder_id_t id);
+		int		getDemux(transponder_id_t id, int feNum);
 		bool		lockDemux(int i, transponder_id_t id);
 		void		unlockDemux(int i);
 		bool		haveFreeDemux();

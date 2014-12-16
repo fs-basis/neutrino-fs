@@ -2227,13 +2227,6 @@ TIMER_START();
 	g_CamHandler->init();
 #endif
 
-#ifndef ASSUME_MDEV
-	mkdir("/media/sda1", 0755);
-	mkdir("/media/sdb1", 0755);
-	my_system(3, "mount", "/dev/sda1", "/media/sda1");
-	my_system(3, "mount", "/dev/sdb1", "/media/sdb1");
-#endif
-
 	CFSMounter::automount();
 	g_PluginList = new CPlugins;
 	g_PluginList->setPluginDir(PLUGINDIR);

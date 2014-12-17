@@ -2378,6 +2378,7 @@ webtv.xml WebTV XML files
 webtv.xml.add Add XML file
 webtv.xml.del Remove XML file
 window_size Window size in %
+word.from from
 word.in in
 zapit.scantype scan for services
 zapit.scantype.all all services

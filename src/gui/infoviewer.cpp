@@ -135,6 +135,7 @@ CInfoViewer::~CInfoViewer()
 
 void CInfoViewer::Init()
 {
+	initClock();
 	BoxStartX = BoxStartY = BoxEndX = BoxEndY = 0;
 	recordModeActive = false;
 	is_visible = false;
@@ -243,13 +244,9 @@ void CInfoViewer::start ()
 	ChanNameY = BoxStartY + (ChanHeight / 2) + SHADOW_OFFSET;	//oberkante schatten?
 	ChanInfoX = BoxStartX;
 
-	time_height = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getHeight();
-	time_width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth("88:88");
-
-	if (clock) {
-		delete clock;
-		clock = NULL;
-	}
+	initClock();
+	time_height = clock->getHeight();
+	time_width = clock->getWidth();
 }
 
 void CInfoViewer::changePB()
@@ -268,6 +265,22 @@ void CInfoViewer::changePB()
 	timescale->setType(CProgressBar::PB_TIMESCALE);
 }
 
+void CInfoViewer::initClock()
+{
+	if (clock == NULL){
+		clock = new CComponentsFrmClock();
+		clock->doPaintBg(false);
+	}
+
+	clock->setColorBody(COL_INFOBAR_PLUS_0);
+	clock->setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
+	clock->setClockFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
+	clock->setClockAlignment(CC_ALIGN_RIGHT | CC_ALIGN_HOR_CENTER);
+	clock->refresh();
+	clock->setPos(BoxEndX - 10 - clock->getWidth(), ChanNameY);
+	clock->setTextColor(COL_INFOBAR_TEXT);
+}
+
 void CInfoViewer::paintTime (bool show_dot)
 {
 	if (!gotTime)
@@ -276,23 +289,7 @@ void CInfoViewer::paintTime (bool show_dot)
 	if (!gotTime)
 		return;
 
-	int clock_x = BoxEndX - time_width - 2*LEFT_OFFSET;
-	int clock_y = ChanNameY;
-	int clock_w = time_width;
-	int clock_h = time_height;
-
-	if (clock == NULL){
-		clock = new CComponentsFrmClock();
-		clock->doPaintBg(false);
-	}
-
-	clock->setColorBody(COL_INFOBAR_PLUS_0);
-	clock->setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
-	clock->setDimensionsAll(clock_x, clock_y, clock_w, clock_h);
-	clock->setClockFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
 	clock->setClockFormat(show_dot ? "%H:%M" : "%H.%M");
-	clock->setTextColor(COL_INFOBAR_TEXT);
-
 	clock->paint(CC_SAVE_SCREEN_NO);
 }
 
@@ -342,24 +339,24 @@ void CInfoViewer::showRecordIcon (const bool show)
 			std::string show_icon = Icon_Rec;
 			int icon_width = rec_icon_w;
 			if (inst->Timeshift())
-		{
+			{
 				icon_width = ts_icon_w;
 				show_icon = Icon_Ts;
-		}
+			}
 			std::string records_msg = inst->GetEpgTitle();
 			int TextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(records_msg) 
 					* (g_settings.screen_xres / 100);
 			box_len = icon_width + TextWidth + icon_space*5;
 			spacer = i*(chanH + 10);
-		if (show)
-		{
+			if (show)
+			{
 				frameBuffer->paintBoxRel(box_posX + SHADOW_OFFSET, BoxStartY + box_posY - spacer + SHADOW_OFFSET, box_len, chanH, COL_INFOBAR_SHADOW_PLUS_0, radius);
 				frameBuffer->paintBoxRel(box_posX, BoxStartY + box_posY - spacer, box_len, chanH, COL_INFOBAR_PLUS_0, radius);
 				frameBuffer->paintIcon(show_icon, box_posX + icon_space*2, BoxStartY + box_posY + (chanH - rec_icon_h)/2 - spacer);
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString (box_posX + icon_width + icon_space*3, BoxStartY + box_posY + chanH - spacer, box_len, records_msg.c_str(), COL_INFOBAR_TEXT);
 			} else {
 				frameBuffer->paintBoxRel(box_posX + icon_space*2, BoxStartY + box_posY + (chanH - rec_icon_h)/2 - spacer, icon_width, chanH, COL_INFOBAR_PLUS_0);
-		}
+			}
 			i++;
 		}
 	}

@@ -150,7 +150,7 @@ void CInfoViewerBB::getBBIconInfo()
 	showBBIcons_width = 0;
 	BBarY 			= g_InfoViewer->BoxEndY + bottom_bar_offset;
 	BBarFontY 		= BBarY + InfoHeightY_Info - (InfoHeightY_Info - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight()) / 2; /* center in buttonbar */
-	bbIconMinX 		= g_InfoViewer->BoxEndX - 20; //should be 10px, but 2px will be reduced for each icon
+	bbIconMinX 		= g_InfoViewer->BoxEndX - 8; //should be 10px, but 2px will be reduced for each icon
 	CNeutrinoApp* neutrino	= CNeutrinoApp::getInstance();
 
 	for (int i = 0; i < CInfoViewerBB::ICON_MAX; i++) {
@@ -362,7 +362,7 @@ void CInfoViewerBB::showBBButtons(const int modus)
 			if ((bbButtonInfo[i].x <= g_InfoViewer->ChanInfoX) || (bbButtonInfo[i].x + bbButtonInfo[i].w >= g_InfoViewer->BoxEndX) || (!bbButtonInfo[i].paint))
 				continue;
 			if (bbButtonInfo[i].x > 0) {
-					frameBuffer->paintIcon(bbButtonInfo[i].icon, bbButtonInfo[i].x, BBarY, InfoHeightY_Info);
+				frameBuffer->paintIcon(bbButtonInfo[i].icon, bbButtonInfo[i].x, BBarY, InfoHeightY_Info);
 
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(bbButtonInfo[i].x + (bbButtonInfo[i].w /2 - bbButtonInfo[i].cx /2), BBarFontY, 
 				       bbButtonInfo[i].w, bbButtonInfo[i].text, COL_INFOBAR_TEXT);

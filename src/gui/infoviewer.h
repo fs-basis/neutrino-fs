@@ -63,8 +63,6 @@ class CInfoViewer
 	int            InfoHeightY;
 	bool	       fileplay;
 
-	int            BoxStartX;
-	int            BoxStartY;
 	int            ButtonWidth;
 	int            spacer;
 
@@ -81,7 +79,6 @@ class CInfoViewer
 	int            ChanNameX;
 	int            ChanNumWidth;
 	int            ChanWidth;
-	int            ChanHeight;
 
 	CSectionsdClient::CurrentNextInfo info_CurrentNext;
 	CSectionsdClient::CurrentNextInfo oldinfo;
@@ -115,8 +112,8 @@ class CInfoViewer
 			  const char *runningStart = NULL, const char *runningRest = NULL,
 			  const char *nextStart = NULL, const char *nextDuration = NULL,
 			  bool update_current = true, bool update_next = true);
+	void initClock();
 	void paintTime( bool show_dot );
-	
 	void showRecordIcon(const bool show);
 	void showIcon_Tuner() const;
 
@@ -147,6 +144,9 @@ class CInfoViewer
 	char     aspectRatio;
 	uint32_t sec_timer_id;
 
+	int      BoxStartX;
+	int      BoxStartY;
+	int      ChanHeight;
 	int      BoxEndX;
 	int      BoxEndY;
 	int      ChanInfoX;

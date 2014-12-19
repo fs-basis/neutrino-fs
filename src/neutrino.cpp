@@ -509,8 +509,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.shutdown_min = configfile.getInt32("shutdown_min", 0);
 	g_settings.sleeptimer_min = configfile.getInt32("sleeptimer_min", 0);
 
-    g_settings.infobar_sat_display   = false; //configfile.getBool("infobar_sat_display"  , false );
-    g_settings.infobar_show_channeldesc   = false; //configfile.getBool("infobar_show_channeldesc"  , false );
+	g_settings.infobar_sat_display   = false; //configfile.getBool("infobar_sat_display"  , false );
+	g_settings.infobar_show_channeldesc   = false; //configfile.getBool("infobar_show_channeldesc"  , false );
 	g_settings.infobar_subchan_disp_pos = configfile.getInt32("infobar_subchan_disp_pos"  , 0 );
 	g_settings.progressbar_gradient = configfile.getBool("progressbar_gradient", true );
 	g_settings.progressbar_design =  configfile.getInt32("progressbar_design", CProgressBar::PB_COLOR);
@@ -522,8 +522,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.progressbar_timescale_yellow = configfile.getInt32("progressbar_timescale_yellow", 70);
 	g_settings.progressbar_timescale_invert = configfile.getBool("progressbar_timescale_invert", false);
 	g_settings.infobar_show = configfile.getInt32("infobar_show", configfile.getInt32("infobar_cn", 1));
-    g_settings.infobar_show_channellogo   = 2; //configfile.getInt32("infobar_show_channellogo"  , 2 );
-    g_settings.infobar_progressbar   = 3; //configfile.getInt32("infobar_progressbar"  , 3 ); // between epg
+	g_settings.infobar_show_channellogo   = 2; //configfile.getInt32("infobar_show_channellogo"  , 2 );
+	g_settings.infobar_progressbar   = 3; //configfile.getInt32("infobar_progressbar"  , 3 ); // between epg
 	g_settings.casystem_display = configfile.getInt32("casystem_display", 1 );//discreet ca mode default
 
 	g_settings.scrambled_message = configfile.getBool("scrambled_message", false );
@@ -532,10 +532,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.volume_size = configfile.getInt32("volume_size", 26 );
 	g_settings.menu_pos = configfile.getInt32("menu_pos", CMenuWidget::MENU_POS_CENTER);
 	g_settings.show_menu_hints = configfile.getBool("show_menu_hints", false);
-    g_settings.infobar_show_sysfs_hdd   = 0; //configfile.getBool("infobar_show_sysfs_hdd"  , false );
+	g_settings.infobar_show_sysfs_hdd   = 0; //configfile.getBool("infobar_show_sysfs_hdd"  , false );
 	g_settings.show_mute_icon = configfile.getInt32("show_mute_icon" ,0);
 	g_settings.infobar_show_res = configfile.getInt32("infobar_show_res", 0 );
-    g_settings.infobar_show_dd_available = 1; //configfile.getInt32("infobar_show_dd_available", 1 );
+	g_settings.infobar_show_dd_available = 1; //configfile.getInt32("infobar_show_dd_available", 1 );
 	g_settings.wzap_time = configfile.getInt32("wzap_time", 3 );
 
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );

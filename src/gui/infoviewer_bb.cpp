@@ -233,7 +233,7 @@ void CInfoViewerBB::getBBButtonInfo()
 			if (text == g_Locale->getText(LOCALE_AUDIOSELECTMENUE_HEAD))
 				text = "";
 			mode = CNeutrinoApp::getInstance()->getMode();
-			if ((mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv) && !CMoviePlayerGui::getInstance().timeshift) {
+			if ((mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) && !CMoviePlayerGui::getInstance().timeshift) {
 				text = CMoviePlayerGui::getInstance().CurrentAudioName();
 			} else if (!g_RemoteControl->current_PIDs.APIDs.empty()) {
 				int selected = g_RemoteControl->current_PIDs.PIDs.selected_apid;

@@ -108,8 +108,6 @@ CInfoViewer::CInfoViewer ()
 	ChanNameY = 0;
 	ChanWidth = 0;
 	ChanHeight = 0;
-	time_left_width = 0;
-	time_dot_width = 0;
 	time_width = 0;
 	time_height = 0;
 	lastsnr = 0;

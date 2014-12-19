@@ -90,8 +90,6 @@ class CInfoViewer
 	//uint32_t           fadeTimer;
 	COSDFader	fader;
 
-	int time_left_width;
-	int time_dot_width;
 	int time_height;
 	int info_time_width;
 

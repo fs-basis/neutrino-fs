@@ -453,6 +453,11 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.enabled_video_modes[4] = 1; // 1080i 50Hz
 #endif
 
+	for(int i = 0; i < VIDEOMENU_VIDEOMODE_OPTION_COUNT; i++) {
+		sprintf(cfg_key, "enabled_auto_mode_%d", i);
+		g_settings.enabled_auto_modes[i] = configfile.getInt32(cfg_key, 1);
+	}
+
 	g_settings.cpufreq = configfile.getInt32("cpufreq", 0);
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 	g_settings.standby_cpufreq = configfile.getInt32("standby_cpufreq", 0);
@@ -1076,6 +1081,10 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	for(int i = 0; i < VIDEOMENU_VIDEOMODE_OPTION_COUNT; i++) {
 		sprintf(cfg_key, "enabled_video_mode_%d", i);
 		configfile.setInt32(cfg_key, g_settings.enabled_video_modes[i]);
+	}
+	for(int i = 0; i < VIDEOMENU_VIDEOMODE_OPTION_COUNT; i++) {
+		sprintf(cfg_key, "enabled_auto_mode_%d", i);
+		configfile.setInt32(cfg_key, g_settings.enabled_auto_modes[i]);
 	}
 	configfile.setInt32( "cpufreq", g_settings.cpufreq);
 	configfile.setInt32( "standby_cpufreq", g_settings.standby_cpufreq);

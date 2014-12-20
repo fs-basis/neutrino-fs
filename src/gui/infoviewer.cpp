@@ -246,7 +246,7 @@ void CInfoViewer::start ()
 
 	initClock();
 	time_height = clock->getHeight();
-	time_width = clock->getWidth();
+	time_width = min(g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth("88:88"), clock->getWidth());
 }
 
 void CInfoViewer::changePB()

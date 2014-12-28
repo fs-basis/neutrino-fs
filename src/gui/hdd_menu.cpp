@@ -69,6 +69,9 @@
 #define MDEV_MOUNT	"/lib/mdev/fs/mount"
 #define MOUNT_BASE	"/media/"
 
+std::string fmt_label = "RECORD";
+std::string fmt_mpoint = "/hdd";
+
 #define HDD_NOISE_OPTION_COUNT 4
 const CMenuOptionChooser::keyval HDD_NOISE_OPTIONS[HDD_NOISE_OPTION_COUNT] =
 {
@@ -162,78 +165,85 @@ bool CHDDMenuHandler::is_mounted(const char *dev)
 void CHDDMenuHandler::getBlkIds()
 {
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-		FILE *          mountFile;
-		struct mntent * mnt;
-		struct dirent **namelist;
-		blkid_cache c;
+	FILE *          mountFile;
+	struct mntent * mnt;
+	struct dirent **namelist;
+	blkid_cache c;
 
-		blkid_get_cache(&c, "/dev/null");
+	blkid_get_cache(&c, "/dev/null");
 
-		hdd_list.clear();
+	hdd_list.clear();
 
-		if ((mountFile = setmntent("/proc/mounts", "r")) == NULL)
+	if ((mountFile = setmntent("/proc/mounts", "r")) == NULL)
+	{
+		perror("/proc/mounts");
+	}
+	else
+	{
+		while ((mnt = getmntent(mountFile)) != NULL)
 		{
-			perror("/proc/mounts");
+			if (strncmp(mnt->mnt_fsname, "/dev/sd", 7) && strncmp(mnt->mnt_fsname, "/dev/hd", 7))
+				continue;
+			hdd_s hdd;
+			hdd.devname = std::string(mnt->mnt_fsname +5 );
+			hdd.label = blkid_get_tag_value(c,"LABEL",mnt->mnt_fsname);
+			if (hdd.label == NULL)
+				hdd.label = "unknown";
+			hdd.fmt = std::string(blkid_get_tag_value(c,"TYPE",mnt->mnt_fsname));
+			if (hdd.fmt == "")
+				hdd.fmt = "unknown";
+			hdd.mounted = true;
+			hdd.mountpoint = mnt->mnt_dir;
+			hdd.desc = hdd.devname + " ("+std::string(hdd.label)+"," + hdd.fmt + ") " + hdd.mountpoint;
+			hdd_list.push_back(hdd);
 		}
-		else {
-			while ((mnt = getmntent(mountFile)) != NULL)
-			{
-				if (strncmp(mnt->mnt_fsname, "/dev/sd", 7) && strncmp(mnt->mnt_fsname, "/dev/hd", 7))
-					continue;
-				hdd_s hdd;
-				hdd.devname = std::string(mnt->mnt_fsname +5 );
-				hdd.label = blkid_get_tag_value(c,"LABEL",mnt->mnt_fsname);
-				if (hdd.label == NULL) hdd.label = "unknown";
-				hdd.fmt = std::string(blkid_get_tag_value(c,"TYPE",mnt->mnt_fsname));
-				if (hdd.fmt == "") hdd.fmt = "unknown";
-				hdd.mounted = true;
-				hdd.mountpoint = mnt->mnt_dir;
-				hdd.desc = hdd.devname + " ("+std::string(hdd.label)+"," + hdd.fmt + ") " + hdd.mountpoint;
-				hdd_list.push_back(hdd);
-			}
-			endmntent(mountFile);
-		}
+		endmntent(mountFile);
+	}
 
-		int n = scandir("/sys/block", &namelist, my_filter, alphasort);
-		for(int i = 0; i < n; i++)
+	int n = scandir("/sys/block", &namelist, my_filter, alphasort);
+	for(int i = 0; i < n; i++)
+	{
+		struct dirent **namelist_part;
+		char blockdir[256];
+		sprintf(blockdir, "/sys/block/%s", namelist[i]->d_name);
+		int p = scandir(blockdir, &namelist_part, my_filter, alphasort);
+
+		for (int j = 0; j < p; j++)
 		{
-			struct dirent **namelist_part;
-			char blockdir[256];
-			sprintf(blockdir, "/sys/block/%s", namelist[i]->d_name);
-			int p = scandir(blockdir, &namelist_part, my_filter, alphasort);
+			char buf[255];
+			sprintf(buf, "/dev/%s", namelist_part[j]->d_name);
+			if (is_mounted(buf))
+				continue;
+			const char *label;
+			const char *type;
 
-			for (int j = 0; j < p; j++)
-			{
-				char buf[255];
-				sprintf(buf, "/dev/%s", namelist_part[j]->d_name);
-				if (is_mounted(buf)) continue;
-				const char *label;
-				const char *type;
+			label = blkid_get_tag_value(c,"LABEL",buf);
+			if (label == NULL)
+				label = "unknown";
 
-				label = blkid_get_tag_value(c,"LABEL",buf);
-				if (label == NULL) label = "unknown";
+			type = blkid_get_tag_value(c,"TYPE",buf);
+			if (type == NULL)
+				type = "unknown";
 
-				type = blkid_get_tag_value(c,"TYPE",buf);
-				if (type == NULL) type = "unknown";
-
-				//do not show logical partition or swap partition
-				if (((!strncmp(label, "unknown", 7)) && (!strncmp(type, "unknown", 7))) || (!strncmp(type, "swap", 4))) continue;
-				hdd_s hdd;
-				hdd.devname = std::string(buf +5 );
-				hdd.fmt = type;
-				hdd.label = label;
-				hdd.mounted = is_mounted(buf + 5 );
-				hdd.mountpoint = "no mountpoint";
-				hdd.desc = hdd.devname + " ("+std::string(hdd.label)+"," + hdd.fmt + ") " + hdd.mountpoint;
-				hdd_list.push_back(hdd);
-			}
-			if (p >= 0)
+			//do not show logical partition or swap partition
+			if (((!strncmp(label, "unknown", 7)) && (!strncmp(type, "unknown", 7))) || (!strncmp(type, "swap", 4)))
+				continue;
+			hdd_s hdd;
+			hdd.devname = std::string(buf + 5);
+			hdd.fmt = type;
+			hdd.label = label;
+			hdd.mounted = is_mounted(buf + 5);
+			hdd.mountpoint = "no mountpoint";
+			hdd.desc = hdd.devname + " ("+ std::string(hdd.label)+"," + hdd.fmt + ") " + hdd.mountpoint;
+			hdd_list.push_back(hdd);
+		}
+		if (p >= 0)
 			free(namelist_part);
-		}
-		if (n >= 0)
+	}
+	if (n >= 0)
 		free(namelist);
 
-		blkid_put_cache(c);
+	blkid_put_cache(c);
 #else
 	pid_t pid;
 	std::string pcmd = BLKID_BIN + (std::string)" -s TYPE";
@@ -399,7 +409,11 @@ bool CHDDMenuHandler::umount_all(std::string dev)
 		std::string mdev = it->devname.substr(0, dev.size());
 		if (mdev == dev) {
 			if (is_mounted(it->devname.c_str()))
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+				ret &= umount_dev(it->mountpoint);
+#else
 				ret &= umount_dev(it->devname);
+#endif
 		}
 	}
 	return ret;
@@ -682,6 +696,12 @@ int CHDDMenuHandler::showDeviceMenu(std::string dev)
 	mc->setHint("", LOCALE_MENU_HINT_HDD_FMT);
 	hddmenu->addItem(mc);
 
+	CMenuForwarder * lmf = new CMenuForwarder(LOCALE_HDD_FMT_LABEL, true, fmt_label.c_str(), this, "choseLabel");
+	hddmenu->addItem(lmf);
+
+	CMenuForwarder * mpmf = new CMenuForwarder(LOCALE_HDD_FMT_MOUNTPOINT, true, fmt_mpoint.c_str(), this, "choseMpoint");
+	hddmenu->addItem(mpmf);
+
 	std::string key = "f" + dev;
 	mf = new CMenuForwarder(LOCALE_HDD_FORMAT, true, "", this, key.c_str());
 	mf->setHint("", LOCALE_MENU_HINT_HDD_FORMAT);
@@ -913,7 +933,7 @@ int CHDDMenuHandler::formatDevice(std::string dev)
 	std::string devpart = dev + part;
 	std::string partname = devname + part;
 
-	std::string mkfscmd = devtool->mkfs + " " + devtool->mkfs_options + " " + partname;
+	std::string mkfscmd = devtool->mkfs + " " + "-L " + fmt_label + " " + devtool->mkfs_options + " " + partname;
 	printf("mkfs cmd: [%s]\n", mkfscmd.c_str());
 
 	res = ShowMsg(LOCALE_HDD_FORMAT, g_Locale->getText(LOCALE_HDD_FORMAT_WARN), CMessageBox::mbrNo, CMessageBox::mbYes | CMessageBox::mbNo );
@@ -1081,10 +1101,27 @@ _remount:
 	}
 #endif
 	if (!res) {
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+		for (std::vector<hdd_s>::iterator it = hdd_list.begin(); it != hdd_list.end(); ++it) {
+			if (it->devname == devpart) {
+				it->fmt = devtool->fmt;
+				it->mountpoint = fmt_mpoint;
+			}
+		}
+#endif
 		res = mount_dev(devpart);
 
 		if(res) {
-			std::string dst = MOUNT_BASE + devpart;
+			std::string dst;
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+			for (std::vector<hdd_s>::iterator it = hdd_list.begin(); it != hdd_list.end(); ++it) {
+				if (it->devname == devpart) {
+					dst = it->mountpoint;
+				}
+			}
+#else
+			dst = MOUNT_BASE + devpart;
+#endif
 			snprintf(cmd, sizeof(cmd), "%s/movie", dst.c_str());
 			safe_mkdir(cmd);
 			snprintf(cmd, sizeof(cmd), "%s/pictures", dst.c_str());

@@ -46,7 +46,6 @@
 #include <gui/widget/hintbox.h>
 #include <gui/widget/messagebox.h>
 #include <gui/osd_setup.h>
-#include <gui/psisetup.h>
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 #include <gui/widget/colorchooser.h>
 #endif
@@ -494,33 +493,6 @@ int CVideoSettings::showVideoSetup()
 
 	CMenuForwarder *mf;
 	CMenuOptionNumberChooser *mc;
-
-	CPSISetup *psiSetup = CPSISetup::getInstance();
-
-	videosetup->addItem(GenericMenuSeparatorLine);
-	mf = new CMenuForwarder(LOCALE_VIDEOMENU_PSI, true, NULL, psiSetup, NULL, CRCInput::RC_red);
-	mf->setHint("", LOCALE_MENU_HINT_VIDEO_PSI);
-	videosetup->addItem(mf);
-
-	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_STEP, (int *)&g_settings.psi_step, true, 1, 100, NULL);
-	mc->setHint("", LOCALE_MENU_HINT_VIDEO_PSI_STEP);
-	videosetup->addItem(mc);
-
-	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_CONTRAST, (int *)&g_settings.psi_contrast, true, 0, 255, psiSetup);
-	mc->setHint("", LOCALE_MENU_HINT_VIDEO_CONTRAST);
-	videosetup->addItem(mc);
-
-	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_SATURATION, (int *)&g_settings.psi_saturation, true, 0, 255, psiSetup);
-	mc->setHint("", LOCALE_MENU_HINT_VIDEO_SATURATION);
-	videosetup->addItem(mc);
-
-	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_BRIGHTNESS, (int *)&g_settings.psi_brightness, true, 0, 255, psiSetup);
-	mc->setHint("", LOCALE_MENU_HINT_VIDEO_BRIGHTNESS);
-	videosetup->addItem(mc);
-
-	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_TINT, (int *)&g_settings.psi_tint, true, 0, 255, psiSetup);
-	mc->setHint("", LOCALE_MENU_HINT_VIDEO_TINT);
-	videosetup->addItem(mc);
 
 	videosetup->addItem(GenericMenuSeparatorLine);
 

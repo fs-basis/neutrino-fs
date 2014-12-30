@@ -124,11 +124,6 @@ struct SNeutrinoSettings
 
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 	int hdmi_mode;
-	int psi_contrast;
-	int psi_saturation;
-	int psi_brightness;
-	int psi_tint;
-	int psi_step;
 	uint32_t video_mixer_color;
 #endif
 

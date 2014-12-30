@@ -1418,9 +1418,6 @@ menu.hint_video_mixer_color Wenn kein Signal vorhanden ist, wird die gewählte F
 menu.hint_video_mode Wählen Sie den Modus des Ausgangssignals für den HDMI-Anschluss
 menu.hint_video_modes Definiert, welche Videosysteme mit der VF-Taste der Fernbedienung ausgewählt werden können
 menu.hint_video_pip Bild in Bild Größe und Position
-menu.hint_video_psi On-Screen-Menü zur Änderung von Farbe, Kontrast und mehr
-menu.hint_video_psi_step Setzt die Schrittweite für das On-Screen-Menü
-menu.hint_video_saturation Ändert die Farbsättigung
 menu.hint_video_scart_mode Wählen Sie den Modus des Ausgangssignals für den SCART-Anschluss
 menu.hint_video_sdosd Aktivieren/Deaktivieren der OSD Anzeige am Analogausgang (Scart, Cinch)
 menu.hint_video_three_d Ändert die kanalspezifischen 3D-Einstellungen
@@ -2376,14 +2373,6 @@ videomenu.panscan Pan & Scan
 videomenu.panscan2 14:9 Pan & Scan
 videomenu.pip PiP Setup
 videomenu.pip_error PiP Startfehler
-videomenu.psi Farbeinstellungen
-videomenu.psi.brightness Helligkeit
-videomenu.psi.contrast Kontrast
-videomenu.psi.reset Standard-Einstellungen
-videomenu.psi.saturation Sättigung
-videomenu.psi.step Videoregler-Schrittweite
-videomenu.psi.tint Farbton
-videomenu.saturation Sättigung
 videomenu.scart Scart
 videomenu.screensetup Bildbereich
 videomenu.sdosd SD OSD

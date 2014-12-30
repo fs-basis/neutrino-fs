@@ -37,7 +37,6 @@
 #include <driver/framebuffer.h>
 #include <driver/audiofile.h>
 #include <gui/filebrowser.h>
-#include <gui/screensaver.h>
 #include <gui/components/cc.h>
 #include <gui/widget/menue.h>
 
@@ -164,7 +163,7 @@ class CAudioPlayerGui : public CMenuTarget
 	void rev(unsigned int seconds=0);
 	int getNext();
 	void GetMetaData(CAudiofileExt &File);
-	void updateMetaData(bool screen_saver = false);
+	void updateMetaData();
 	void updateTimes(const bool force = false);
 	void showMetaData();
 	void screensaver(bool on);
@@ -248,7 +247,6 @@ class CAudioPlayerGui : public CMenuTarget
 	bool shufflePlaylist(void);
 
 	bool pictureviewer;
-	CScreensaver * screenSaver;
 
  public:
 	CAudioPlayerGui(bool inetmode = false);

@@ -19,8 +19,7 @@
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+	along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 
@@ -33,155 +32,209 @@
 #include <global.h>
 #include <neutrino.h>
 #include <pthread.h>
-
+#include <algorithm>    // sort
+#include <ctype.h>
+#include "audiomute.h"
 #include "screensaver.h"
+
+#include <gui/infoclock.h>
+extern CInfoClock *InfoClock;
 
 #include <video.h>
 extern cVideo * videoDecoder;
 
+using namespace std;
 
-CScreensaver::CScreensaver()
+CScreenSaver::CScreenSaver()
 {
-	thrScreenSaver = 0;
-	m_frameBuffer = CFrameBuffer::getInstance();
-#if HAVE_DUCKBOX_HARDWARE
-	m_viewer = new CPictureViewer();
-#endif
-	last_pic = 0;
+	thrScreenSaver 	= 0;
+	m_frameBuffer 	= CFrameBuffer::getInstance();
+	m_viewer	= new CPictureViewer();
+	index 		= 0;
 }
 
-CScreensaver::~CScreensaver()
+CScreenSaver::~CScreenSaver()
 {
 	if(thrScreenSaver)
 		pthread_cancel(thrScreenSaver);
 	thrScreenSaver = 0;
+
+	delete m_viewer;
 }
 
-void CScreensaver::start()
+
+CScreenSaver* CScreenSaver::getInstance()
 {
-	firstRun = true;
-	
+	static CScreenSaver * screenSaver = NULL;
+	if (!screenSaver)
+		screenSaver = new CScreenSaver();
+
+	return screenSaver;
+}
+
+
+void CScreenSaver::Start()
+{
+	CAudioMute::getInstance()->enableMuteIcon(false);
+	InfoClock->enableInfoClock(false);
+
+	m_viewer->SetScaling((CPictureViewer::ScalingMode)g_settings.picviewer_scaling);
+	m_viewer->SetVisible(g_settings.screen_StartX, g_settings.screen_EndX, g_settings.screen_StartY, g_settings.screen_EndY);
+
+	if (g_settings.video_Format == 3)
+		m_viewer->SetAspectRatio(16.0/9);
+	else
+		m_viewer->SetAspectRatio(4.0/3);
+
+	m_viewer->Cleanup();
+
+	videoDecoder->StopPicture();
+
 	if(!thrScreenSaver)
 	{
 		//printf("[%s] %s: starting thread\n", __FILE__, __FUNCTION__);
 		pthread_create(&thrScreenSaver, NULL, ScreenSaverPrg, (void*) this);
-		pthread_detach(thrScreenSaver);	
-	}	
+		pthread_detach(thrScreenSaver);
+	}
 
 }
 
-void CScreensaver::stop()
+void CScreenSaver::Stop()
 {
 	if(thrScreenSaver)
 	{
 		pthread_cancel(thrScreenSaver);
 		thrScreenSaver = 0;
-#if HAVE_DUCKBOX_HARDWARE
-		m_frameBuffer->paintBackgroundBoxRel(0,0,m_frameBuffer->getScreenWidth(true),m_frameBuffer->getScreenHeight(true));
-#endif
 	}
+
+	if(thrScreenSaver)
+		pthread_cancel(thrScreenSaver);
+	thrScreenSaver = 0;
+
+	m_frameBuffer->paintBackground(); //clear entire screen
+	InfoClock->enableInfoClock(true);
+	CAudioMute::getInstance()->enableMuteIcon(true);
 }
 
-void* CScreensaver::ScreenSaverPrg(void* arg)
+void* CScreenSaver::ScreenSaverPrg(void* arg)
 {
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, 0);
 	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, 0);
-	
-	CScreensaver * PScreenSaver = static_cast<CScreensaver*>(arg);
-	
-	while(1)
+
+	CScreenSaver * PScreenSaver = static_cast<CScreenSaver*>(arg);
+
+	PScreenSaver->ReadDir(); //TODO kill Screensaver if false
+	PScreenSaver->m_frameBuffer->Clear();
+
+	if (g_settings.screensaver_timeout)
 	{
-		PScreenSaver->read_dir();
-		sleep(10);
+		while(1)
+		{
+			PScreenSaver->PaintPicture();
+			sleep(g_settings.screensaver_timeout);
+		}
 	}
-	return 0;	
+	else
+		PScreenSaver->PaintPicture(); //just paint first found picture
+
+	return 0;
 }
 
-void CScreensaver::read_dir()
+bool CScreenSaver::ReadDir()
 {
-	char* dir_name = (char *) g_settings.audioplayer_screensaver_dir.c_str();
+	string d = g_settings.screensaver_dir;
+	if (d.length() > 1)
+	{
+		//remove trailing slash
+		string::iterator it = d.end() - 1;
+		if (*it == '/')
+			d.erase(it);
+	}
+
+	char *dir_name = (char *) d.c_str();
 	struct dirent *dirpointer;
 	DIR *dir;
 	char curr_ext[5];
-	char first_pic[255];
-	char fname[255];
 	int curr_lenght;
-	char* p;
-	int pic_cnt;
-	bool first_pic_found = false;
+	char *p;
+	bool ret = false;
 
+	v_bg_files.clear();
 
 	/* open dir */
 	if((dir=opendir(dir_name)) == NULL) {
-		fprintf(stderr,"[CScreensaver] Error opendir ...\n");
-		return;
+		fprintf(stderr,"[CScreenSaver] Error opendir ...\n");
+		return ret;
 	}
 
-	pic_cnt = 0;
 	/* read complete dir */
 	while((dirpointer=readdir(dir)) != NULL)
 	{
 		curr_lenght = strlen((*dirpointer).d_name);
-//		printf("%d\n",curr_lenght);
+		string str = dir_name;
+		//printf("%d\n",curr_lenght);
 		if(curr_lenght > 4)
 		{
 			strncpy(curr_ext,(*dirpointer).d_name+(curr_lenght-4),5);
-			for (p = curr_ext; *p; ++p) *p = tolower(*p);
-//			printf("%s\n",curr_ext);
-			if(
-				   (!strcmp(".jpg",curr_ext))
-//				|| (!strcmp(".png",curr_ext))
-//				|| (!strcmp(".bmp",curr_ext))
+
+			for (p = curr_ext; *p; ++p)
+				*p = (char)tolower(*p);
+			//printf("%s\n",curr_ext);
+			if((strcmp(".jpg",curr_ext))
+				//|| (strcmp(".png",curr_ext))
+				//|| (strcmp(".bmp",curr_ext))
 			)
+			continue;
+
+			str += "/";
+			str += (*dirpointer).d_name;
+
+			if ((string) dir_name == DATADIR "/neutrino/icons")
 			{
-				if(!first_pic_found)
-				{
-					strncpy(first_pic,(*dirpointer).d_name,sizeof(first_pic));
-					first_pic_found = true;
-					if(firstRun)
-					{
-						m_frameBuffer->Clear();
-						firstRun = false;
-					}
-				}
-//				printf("-->%s\n",curr_ext);
-				if(last_pic == pic_cnt)
-				{
-					printf("[CScreensaver] ShowPicture: %s/%s\n", dir_name, (*dirpointer).d_name);
-					sprintf(fname, "%s/%s", dir_name, (*dirpointer).d_name);
-#if HAVE_DUCKBOX_HARDWARE
-					m_viewer->DisplayImage(fname,0,0,m_frameBuffer->getScreenWidth(true),m_frameBuffer->getScreenHeight(true),CFrameBuffer::TM_NONE);
-#else
-					videoDecoder->StopPicture();
-					videoDecoder->ShowPicture(fname);
-#endif
-					last_pic ++;
-					if(closedir(dir) == -1)
-						printf("[CScreensaver] Error no closed %s\n", dir_name);
-					return;
-				}
-				pic_cnt++;
+				/*
+				  backward compatiblity:
+				  just add the standard mp3-?.jpg pictures
+				  to get the same behavior as usual
+				*/
+				if (str.find("/mp3-") == string::npos)
+					continue;
 			}
+
+			v_bg_files.push_back(str);
 		}
 	}
-	
-	last_pic = 1;
-	
-	if(first_pic_found)
-	{
-		printf("[CScreensaver] ShowPicture: %s/%s\n", dir_name, first_pic);
-		sprintf(fname, "%s/%s", dir_name, first_pic);
-#if HAVE_DUCKBOX_HARDWARE
-		m_viewer->DisplayImage(fname,0,0,m_frameBuffer->getScreenWidth(true),m_frameBuffer->getScreenHeight(true),CFrameBuffer::TM_NONE);
-#else
-		videoDecoder->StopPicture();
-		videoDecoder->ShowPicture(fname);
-#endif
-	}
-	else
-		printf("[CScreensaver] Error, no picture found\n");
+
+	sort(v_bg_files.begin(), v_bg_files.end());
 
 	/* close pointer */
 	if(closedir(dir) == -1)
-		printf("[CScreensaver] Error no closed %s\n", dir_name);	
+		printf("[CScreenSaver] Error no closed %s\n", dir_name);
+
+	if(!v_bg_files.empty())
+		ret = true;
+	else
+		printf("[CScreenSaver] no picture found\n");
+
+	return ret;
+}
+
+
+void CScreenSaver::PaintPicture()
+{
+	if(v_bg_files.empty())
+		return;
+
+	if( (index >= v_bg_files.size()) || (access(v_bg_files.at(index).c_str(), F_OK)) )
+	{
+		ReadDir();
+		index = 0;
+		return;
+	}
+
+	printf("[CScreenSaver] PaintPicture: %s\n", v_bg_files.at(index).c_str());
+	m_viewer->ShowImage(v_bg_files.at(index).c_str(), false /*unscaled*/);
+
+	index++;
+	if(index ==  v_bg_files.size())
+		index = 0;
 }

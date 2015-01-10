@@ -73,7 +73,7 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 	{
 		fileFilter.addFilter("conf");
 		fileBrowser.Filter = &fileFilter;
-		if (fileBrowser.exec(CONFIGDIR) == true)
+		if (fileBrowser.exec("/swap") == true)
 		{
 			CNeutrinoApp::getInstance()->loadSetup(fileBrowser.getSelectedFile()->Name.c_str());
 			CColorSetupNotifier *colorSetupNotifier = new CColorSetupNotifier;
@@ -88,7 +88,7 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 	else if(actionKey == "saveconfig")
 	{
 		fileBrowser.Dir_Mode = true;
-		if (fileBrowser.exec("/var/tuxbox") == true)
+		if (fileBrowser.exec("/swap") == true)
 		{
 			std::string fname = "neutrino.conf";
 			CKeyboardInput * sms = new CKeyboardInput(LOCALE_EXTRA_SAVECONFIG, &fname);
@@ -104,11 +104,11 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 	else if(actionKey == "backup")
 	{
 		fileBrowser.Dir_Mode = true;
-		if (fileBrowser.exec("/media") == true)
+		if (fileBrowser.exec("/swap") == true)
 		{
 			struct statfs s;
 			int ret = ::statfs(fileBrowser.getSelectedFile()->Name.c_str(), &s);
-			if(ret == 0 && s.f_type != 0x72b6L) /*jffs2*/
+			if(ret == 0 /*&& s.f_type != 0x72b6L*/) /*jffs2*/ 
 			{
 				const char backup_sh[] = "/bin/backup.sh";
 				printf("backup: executing [%s %s]\n",backup_sh, fileBrowser.getSelectedFile()->Name.c_str());
@@ -123,7 +123,7 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 	{
 		fileFilter.addFilter("tar");
 		fileBrowser.Filter = &fileFilter;
-		if (fileBrowser.exec("/media") == true)
+		if (fileBrowser.exec("/swap") == true)
 		{
 			int result = ShowMsg(LOCALE_SETTINGS_RESTORE, g_Locale->getText(LOCALE_SETTINGS_RESTORE_WARN), CMessageBox::mbrNo, CMessageBox::mbYes | CMessageBox::mbNo);
 			if(result == CMessageBox::mbrYes)

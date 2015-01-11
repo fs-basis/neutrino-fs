@@ -73,7 +73,7 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 	{
 		fileFilter.addFilter("conf");
 		fileBrowser.Filter = &fileFilter;
-		if (fileBrowser.exec("/swap") == true)
+		if (fileBrowser.exec("/swap/backup") == true)
 		{
 			CNeutrinoApp::getInstance()->loadSetup(fileBrowser.getSelectedFile()->Name.c_str());
 			CColorSetupNotifier *colorSetupNotifier = new CColorSetupNotifier;
@@ -103,27 +103,33 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 	}
 	else if(actionKey == "backup")
 	{
-		fileBrowser.Dir_Mode = true;
-		if (fileBrowser.exec("/swap") == true)
+		struct statfs s;
+		std::string backup_path = "/swap/backup";
+		int result = ShowMsg(LOCALE_SETTINGS_BACKUP, (std::string)g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_PATH) + " : " + backup_path, CMessageBox::mbrYes, CMessageBox::mbYes | CMessageBox::mbNo);
+		if(result == CMessageBox::mbrNo)
 		{
-			struct statfs s;
-			int ret = ::statfs(fileBrowser.getSelectedFile()->Name.c_str(), &s);
-			if(ret == 0 /*&& s.f_type != 0x72b6L*/) /*jffs2*/ 
-			{
-				const char backup_sh[] = "/bin/backup.sh";
-				printf("backup: executing [%s %s]\n",backup_sh, fileBrowser.getSelectedFile()->Name.c_str());
-				my_system(2, backup_sh, fileBrowser.getSelectedFile()->Name.c_str());
-			}
+			fileBrowser.Dir_Mode = true;
+			if (fileBrowser.exec("/swap") == true)
+				backup_path = fileBrowser.getSelectedFile()->Name; 
 			else
-				ShowMsg(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_SETTINGS_BACKUP_FAILED),CMessageBox::mbrBack, CMessageBox::mbBack, NEUTRINO_ICON_ERROR);
+				return res;
 		}
+		int ret = ::statfs(backup_path.c_str(), &s);
+		if(ret == 0 /*&& s.f_type != 0x72b6L*/) /*jffs2*/
+		{
+			const char backup_sh[] = "/bin/backup.sh";
+			printf("backup: executing [%s %s]\n",backup_sh, backup_path.c_str());
+			my_system(2, backup_sh, backup_path.c_str());
+		}
+		else
+			ShowMsg(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_SETTINGS_BACKUP_FAILED),CMessageBox::mbrBack, CMessageBox::mbBack, NEUTRINO_ICON_ERROR);
 		return res;
 	}
 	else if(actionKey == "restore")
 	{
 		fileFilter.addFilter("tar");
 		fileBrowser.Filter = &fileFilter;
-		if (fileBrowser.exec("/swap") == true)
+		if (fileBrowser.exec("/swap/backup") == true)
 		{
 			int result = ShowMsg(LOCALE_SETTINGS_RESTORE, g_Locale->getText(LOCALE_SETTINGS_RESTORE_WARN), CMessageBox::mbrNo, CMessageBox::mbYes | CMessageBox::mbNo);
 			if(result == CMessageBox::mbrYes)

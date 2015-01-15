@@ -164,6 +164,7 @@ CRCInput::CRCInput(bool &_timer_wakeup)
 	repeat_block = repeat_block_generic = 0;
 	open();
 	rc_last_key =  KEY_MAX;
+	firstKey = true;
 	longPressEnd = 0;
 
 	//select and setup remote control hardware
@@ -1261,6 +1262,10 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 				if (ev.type == EV_SYN)
 					continue; /* ignore... */
 				SHTDCNT::getInstance()->resetSleepTimer();
+				if (ev.value && firstKey) {
+					firstKey = false;
+					CTimerManager::getInstance()->cancelShutdownOnWakeup();
+				}
 				uint32_t trkey = translate(ev.code);
 #ifdef _DEBUG
 				printf("%d key: %04x value %d, translate: %04x -%s-\n", ev.value, ev.code, ev.value, trkey, getKeyName(trkey).c_str());
@@ -1641,9 +1646,9 @@ int CRCInput::translate(int code)
 {
 	switch(code)
 	{
-		case 0x100:
+		case 0x100: // FIXME -- needed?
 			return RC_up;
-		case 0x101:
+		case 0x101: // FIXME -- needed?
 			return RC_down;
 #ifdef HAVE_AZBOX_HARDWARE
 		case KEY_HOME:

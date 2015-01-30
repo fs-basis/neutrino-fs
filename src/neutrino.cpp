@@ -2451,7 +2451,7 @@ void CNeutrinoApp::RealRun(CMenuWidget &mainMenu)
 				m_idletime = time(NULL);
 				if (m_screensaver)
 				{
-					printf("[neutrino] CSreenSaver stop; msg: %X\n", msg);
+					printf("[neutrino] CSreenSaver stop; msg: %lX\n", msg);
 					screensaver(false);
 
 					videoDecoder->StopPicture();
@@ -2843,8 +2843,11 @@ _repeat:
 		CHintBox* hintBox= new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(loc));
 		hintBox->paint();
 
-		if (favorites_changed)
+		if (favorites_changed) {
 			g_bouquetManager->saveUBouquets();
+			if (!channels_init)
+				CEpgScan::getInstance()->ConfigureEIT();
+		}
 
 		if (channels_changed)
 			CServiceManager::getInstance()->SaveServices(true);
@@ -2946,7 +2949,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 
 	if(msg == NeutrinoMessages::EVT_WEBTV_ZAP_COMPLETE) {
 		t_channel_id chid = *(t_channel_id *) data;
-		printf("EVT_WEBTV_ZAP_COMPLETE: %llx\n", chid);
+		printf("EVT_WEBTV_ZAP_COMPLETE: %" PRIx64 "\n", chid);
 		if (mode == mode_standby) {
 			delete [] (unsigned char*) data;
 		} else {
@@ -3526,7 +3529,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		return messages_return::handled;
 	}
 	else if( msg == NeutrinoMessages::CHANGEMODE ) {
-		printf("CNeutrinoApp::handleMsg: CHANGEMODE to %ld rezap %d\n", data & mode_mask, (data & norezap) != norezap);
+		printf("CNeutrinoApp::handleMsg: CHANGEMODE to %d rezap %d\n", (int)(data & mode_mask), (data & norezap) != norezap);
 		if((data & mode_mask)== mode_radio) {
 			if( mode != mode_radio ) {
 				radioMode((data & norezap) != norezap);

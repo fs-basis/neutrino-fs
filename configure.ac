@@ -88,8 +88,16 @@ fi
 AM_CONDITIONAL(USE_TREMOR, test "$TREMOR" = "yes")
 
 # TUXBOX_APPS_LIB_PKGCONFIG(OPENSSL,openssl)
-TUXBOX_APPS_LIB_CONFIG(CURL,curl-config)
-TUXBOX_APPS_LIB_CONFIG(FREETYPE,freetype-config)
+TUXBOX_APPS_LIB_PKGCONFIG(CURL,libcurl)
+TUXBOX_APPS_LIB_PKGCONFIG(FREETYPE,freetype2)
+# fallback to curl-config (which is ugly for cross-compilation)
+if test -z "$CURL_LIBS" -a -z "$CURL_CFLAGS"; then
+	TUXBOX_APPS_LIB_CONFIG(CURL,curl-config)
+fi
+# fallback to freetype-config (which is ugly for cross-compilation)
+if test -z "$FREETYPE_LIBS" -a -z "$FREETYPE_CFLAGS"; then
+	TUXBOX_APPS_LIB_CONFIG(FREETYPE,freetype-config)
+fi
 
 TUXBOX_APPS_LIB_PKGCONFIG(PNG,libpng)
 TUXBOX_APPS_LIB_PKGCONFIG(AVFORMAT,libavformat)
@@ -239,10 +247,10 @@ if test "$BOXTYPE" = "coolstream"; then
 if test -e ${srcdir}/lib/libcoolstream/nevis_ir.h; then
 	AC_DEFINE(HAVE_COOLSTREAM_NEVIS_IR_H,1,[Define to 1 if you have the <nevis_ir.h> header file.])
 fi
-HWLIB_CFLAGS='-I$(top_srcdir)/lib/libcoolstream'
+HWLIB_CFLAGS='-I$(top_srcdir)/lib/libcoolstream -I$(top_srcdir)/src/zapit/include'
 
 if test "$BOXMODEL" = "apollo"; then
-HWLIB_CFLAGS='-I$(top_srcdir)/lib/libcoolstream2'
+HWLIB_CFLAGS='-I$(top_srcdir)/lib/libcoolstream2 -I$(top_srcdir)/src/zapit/include'
 if test -e ${srcdir}/lib/libcoolstream2/cs_ir_generic.h; then
 	AC_DEFINE(HAVE_COOLSTREAM_CS_IR_GENERIC_H,1,[Define to 1 if you have the <cs_ir_generic.h> header file.])
 fi

@@ -104,6 +104,7 @@
 #include "gui/pipsetup.h"
 #endif
 #include "gui/themes.h"
+#include "gui/timerlist.h"
 
 #include <system/set_threadname.h>
 #include <system/ytcache.h>
@@ -116,6 +117,7 @@
 
 #include <system/debug.h>
 #include <system/fsmounter.h>
+#include <system/hddstat.h>
 #include <system/setting_helpers.h>
 #include <system/settings.h>
 #include <system/helpers.h>

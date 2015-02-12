@@ -40,7 +40,6 @@
 #include <driver/fontrenderer.h>
 #include <driver/fade.h>
 #include <system/settings.h>
-#include <system/hddstat.h>
 #include "widget/menue.h"
 #include <gui/components/cc.h>
 #include <string>
@@ -115,7 +114,7 @@ class CInfoViewerBB
 		bool checkBBIcon(const char * const icon, int *w, int *h);
 		void showIcon_DD(void);
 
-		void paint_ca_icons(int, char*, int&);
+		void paint_ca_icons(int, const char*, int&);
 		void paintCA_bar(int,int);
 		void showOne_CAIcon();
 		void changePB(void);

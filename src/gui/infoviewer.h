@@ -36,16 +36,15 @@
 #include <sectionsdclient/sectionsdclient.h>
 
 #include <driver/rcinput.h>
-#include <driver/framebuffer.h>
 #include <driver/fontrenderer.h>
-#include <driver/fade.h>
 #include <system/settings.h>
-#include "widget/menue.h"
-#include <gui/infoviewer_bb.h>
 #include <string>
 #include <zapit/channel.h>
 #include <gui/components/cc.h>
 
+class CFrameBuffer;
+class COSDFader;
+class CInfoViewerBB;
 class CInfoViewer
 {
  private:

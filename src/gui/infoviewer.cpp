@@ -762,10 +762,13 @@ void CInfoViewer::showTitle (const int ChanNum, const std::string & Channel, con
 		if ((!logo_ok && g_settings.infobar_show_channellogo < 2) || g_settings.infobar_show_channellogo == 2 || g_settings.infobar_show_channellogo == 4) // no logo in numberbox
 		{
 			// show number in numberbox
+			if (g_settings.channellist_show_numbers) {
 			ChanNumWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->getRenderWidth(strChanNum) + 5;
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->RenderString(
 				ChanInfoX + 10, ChanNumYPos,
 				ChanNumWidth, strChanNum, col_NumBoxText);
+			} else
+			ChanNumWidth = 5;
 		}
 		if (ChannelLogoMode == 1 || ( g_settings.infobar_show_channellogo == 3 && !logo_ok) || g_settings.infobar_show_channellogo == 6 ) /* channel number besides channel name */
 		{

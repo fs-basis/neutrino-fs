@@ -2226,7 +2226,6 @@ const char * locale_real_names[] =
 	"stringinput.caps",
 	"stringinput.clear",
 	"stringinput.insert",
-	"stringinput.layout",
 	"stringinput.save",
 	"subtitles.charset",
 	"subtitles.head",

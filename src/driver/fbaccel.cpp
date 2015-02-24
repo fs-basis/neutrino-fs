@@ -213,7 +213,7 @@ CFbAccel::CFbAccel(CFrameBuffer *_fb)
 		lbb_off = 0;
 	}
 	lbb = fb->lfb + lbb_sz;
-	bpafd = open("/dev/bpamem0", O_RDWR);
+	bpafd = open("/dev/bpamem0", O_RDWR | O_CLOEXEC);
 	if (bpafd < 0)
 	{
 		fprintf(stderr, "[neutrino] FB: cannot open /dev/bpamem0: %m\n");
@@ -241,7 +241,7 @@ CFbAccel::CFbAccel(CFrameBuffer *_fb)
 
 	char bpa_mem_device[30];
 	sprintf(bpa_mem_device, "/dev/bpamem%d", bpa_data.device_num);
-	bpafd = open(bpa_mem_device, O_RDWR);
+	bpafd = open(bpa_mem_device, O_RDWR | O_CLOEXEC);
 	if (bpafd < 0)
 	{
 		fprintf(stderr, "[neutrino] FB: cannot open secondary %s: %m\n", bpa_mem_device);
@@ -266,7 +266,7 @@ CFbAccel::CFbAccel(CFrameBuffer *_fb)
 
 #ifdef USE_NEVIS_GXA
 	/* Open /dev/mem for HW-register access */
-	devmem_fd = open("/dev/mem", O_RDWR | O_SYNC);
+	devmem_fd = open("/dev/mem", O_RDWR | O_SYNC | O_CLOEXEC);
 	if (devmem_fd < 0) {
 		perror("CFbAccel open /dev/mem");
 		goto error;
@@ -448,7 +448,6 @@ void CFbAccel::paintRect(const int x, const int y, const int dx, const int dy, c
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
 	if (ioctl(fb->fd, STMFBIO_BLT, &bltData ) < 0)
 		fprintf(stderr, "blitRect FBIO_BLIT: %m x:%d y:%d w:%d h:%d s:%d\n", xx,yy,width,height,fb->stride);
-	// update_dirty(xx, yy, bltData.dst_right, bltData.dst_bottom);
 #else
 	int line = 0;
 	int swidth = fb->stride / sizeof(fb_pixel_t);
@@ -663,7 +662,6 @@ void CFbAccel::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t x
 
 	if (ioctl(fb->fd, STMFBIO_BLT_EXTERN, &blt_data) < 0)
 		perror("CFbAccel blit2FB STMFBIO_BLT_EXTERN");
-	//update_dirty(x, y, blt_data.dst_right, blt_data.dst_bottom);
 	return;
 #else
 	fb_pixel_t *data = (fb_pixel_t *) fbbuff;
@@ -693,11 +691,6 @@ void CFbAccel::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t x
 		}
 		d += fb->stride;
 	}
-#if 0
-	for(int i = 0; i < yc; i++){
-		memmove(clfb + (i + yoff)*stride + xoff*4, ip + (i + yp)*width + xp, xc*4);
-	}
-#endif
 #endif
 }
 #else

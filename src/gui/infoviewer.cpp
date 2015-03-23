@@ -248,6 +248,7 @@ void CInfoViewer::start ()
 	initClock();
 	time_height = clock->getHeight();
 	time_width = min(g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth("88:88"), clock->getWidth());
+	clock->setWidth(time_width);
 }
 
 void CInfoViewer::changePB()
@@ -270,6 +271,8 @@ void CInfoViewer::initClock()
 {
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
+		clock->setClockBlink("%H.%M");
+		clock->setClockIntervall(1);
 		clock->doPaintBg(false);
 	}
 
@@ -290,7 +293,7 @@ void CInfoViewer::paintTime (bool show_dot)
 	if (!gotTime)
 		return;
 
-	clock->setClockFormat(show_dot ? "%H:%M" : "%H.%M");
+//	clock->setClockFormat(show_dot ? "%H:%M" : "%H.%M");
 	clock->paint(CC_SAVE_SCREEN_NO);
 }
 

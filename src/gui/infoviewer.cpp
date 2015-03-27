@@ -284,20 +284,7 @@ void CInfoViewer::initClock()
 	clock->refresh();
 	clock->setPos(BoxEndX - 10 - clock->getWidth(), ChanNameY);
 	clock->setTextColor(COL_INFOBAR_TEXT);
-#if 0
-}
 
-void CInfoViewer::paintTime (bool show_dot)
-{
-	if (!gotTime)
-		gotTime = timeset;
-
-	if (!gotTime)
-		return;
-
-	clock->setClockFormat(show_dot ? "%H:%M" : "%H.%M");
-	clock->paint(CC_SAVE_SCREEN_NO);
-#endif
 	clock->setClockFormat("%H:%M");
 	clock->setClockBlink("%H %M");
 

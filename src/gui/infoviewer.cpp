@@ -218,7 +218,7 @@ void CInfoViewer::start ()
 	info_time_width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("22:22") + 10;
 
 	InfoHeightY = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getHeight() * 9/8 +
-		      2 * g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight() + 25;
+		      2 * g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight() + 30;
 	infoViewerBB->Init();
 
 	if ( g_settings.infobar_show_channellogo != 3 && g_settings.infobar_show_channellogo != 5  && g_settings.infobar_show_channellogo != 6) /* 3 & 5 & 6 is "default" with sigscales etc. */
@@ -274,7 +274,7 @@ void CInfoViewer::initClock()
 {
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
-		clock->doPaintBg(false);
+		clock->doPaintBg(true);
 	}
 
 	clock->setColorBody(COL_INFOBAR_PLUS_0);

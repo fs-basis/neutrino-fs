@@ -286,6 +286,7 @@ void CInfoViewer::initClock()
 	clock->setTextColor(COL_INFOBAR_TEXT);
 
 	clock->setClockFormat("%H:%M");
+	clock->setClockIntervall(1);
 	clock->setClockBlink("%H %M");
 
 }

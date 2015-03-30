@@ -217,21 +217,22 @@ void CInfoViewerBB::getBBButtonInfo()
 	int mode;
 	for (int i = 0; i < CInfoViewerBB::BUTTON_MAX; i++) {
 		int w = 0, h = 0;
+		bool active;
 		std::string text, icon;
 		switch (i) {
 		case CInfoViewerBB::BUTTON_EPG:
 			icon = NEUTRINO_ICON_INFO_RED;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
-			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_RED]->title;
+			text = CUserMenu::getUserMenuButtonName(0, active);
 			if (text.empty())
 				text = g_Locale->getText(LOCALE_INFOVIEWER_EVENTLIST);
 			break;
 		case CInfoViewerBB::BUTTON_AUDIO:
 			icon = NEUTRINO_ICON_INFO_GREEN;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
-			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_GREEN]->title;
-			if (text == g_Locale->getText(LOCALE_AUDIOSELECTMENUE_HEAD))
-				text = "";
+			text = CUserMenu::getUserMenuButtonName(1, active);
+			if (text.empty())
+				text = g_Locale->getText(LOCALE_AUDIOSELECTMENUE_HEAD);
 			mode = CNeutrinoApp::getInstance()->getMode();
 			if ((mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) && !CMoviePlayerGui::getInstance().timeshift) {
 				text = CMoviePlayerGui::getInstance().CurrentAudioName();
@@ -245,14 +246,14 @@ void CInfoViewerBB::getBBButtonInfo()
 		case CInfoViewerBB::BUTTON_SUBS:
 			icon = NEUTRINO_ICON_INFO_YELLOW;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
-			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_YELLOW]->title;
+			text = CUserMenu::getUserMenuButtonName(2, active);
 			if (text.empty())
 				text = g_Locale->getText((g_RemoteControl->are_subchannels) ? LOCALE_INFOVIEWER_SUBSERVICE : LOCALE_INFOVIEWER_SELECTTIME);
 			break;
 		case CInfoViewerBB::BUTTON_FEAT:
 			icon = NEUTRINO_ICON_INFO_BLUE;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
-			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_BLUE]->title;
+			text = CUserMenu::getUserMenuButtonName(3, active);
 			if (text.empty())
 				text = g_Locale->getText(LOCALE_INFOVIEWER_STREAMINFO);
 			break;

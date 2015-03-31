@@ -1677,6 +1677,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		//printf("paintProgressBar(%d, %d, %d, %d)\n", BoxEndX - pb_w - SHADOW_OFFSET, ChanNameY - (pb_h + 10) , pb_w, pb_h);
 	}
 
+	if (!g_settings.gradiant)
 	if (showButtonBar) {
 		frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, CurrInfoY - height - 2, COL_INFOBAR_PLUS_3);
 		frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, NextInfoY + 2, COL_INFOBAR_PLUS_3);

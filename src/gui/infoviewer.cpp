@@ -275,6 +275,9 @@ void CInfoViewer::initClock()
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
 		clock->doPaintBg(true);
+		clock->setClockFormat("%H:%M");
+		clock->setClockIntervall(1);
+		clock->setClockBlink("%H %M");
 	}
 
 	clock->setColorBody(COL_INFOBAR_PLUS_0);
@@ -284,11 +287,6 @@ void CInfoViewer::initClock()
 	clock->refresh();
 	clock->setPos(BoxEndX - 10 - clock->getWidth(), ChanNameY);
 	clock->setTextColor(COL_INFOBAR_TEXT);
-
-	clock->setClockFormat("%H:%M");
-	clock->setClockIntervall(1);
-	clock->setClockBlink("%H %M");
-
 }
 
 void CInfoViewer::showRecordIcon (const bool show)

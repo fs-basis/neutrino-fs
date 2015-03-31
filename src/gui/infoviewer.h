@@ -105,6 +105,7 @@ class CInfoViewer
 	uint32_t lcdUpdateTimer;
 
 	void paintBackground(int col_Numbox);
+	void paintHead();
 	void show_Data( bool calledFromEvent = false );
 	void display_Info(const char *current, const char *next, bool UTF8 = true,
 			  bool starttimes = true, const int pb_pos = -1,

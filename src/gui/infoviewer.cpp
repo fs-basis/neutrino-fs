@@ -272,18 +272,30 @@ void CInfoViewer::changePB()
 
 void CInfoViewer::initClock()
 {
+	static int gradient = g_settings.gradiant;
+
+	if (gradient != g_settings.gradiant && clock != NULL) {
+		gradient = g_settings.gradiant;
+		clock->clearSavedScreen();
+		delete clock;
+		clock = NULL;
+	}
+
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
-		clock->doPaintBg(true);
 		clock->setClockFormat("%H:%M");
-		clock->setClockIntervall(1);
 		clock->setClockBlink("%H %M");
+		clock->setClockIntervall(1);
+		clock->doPaintBg(!gradient);
+		clock->enableTboxSaveScreen(gradient);
+		if (time_width)
+			clock->setWidth(time_width);
 	}
 
 	clock->setColorBody(COL_INFOBAR_PLUS_0);
 	clock->setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
 	clock->setClockFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
-	clock->setClockAlignment(CC_ALIGN_RIGHT | CC_ALIGN_HOR_CENTER);
+	clock->setClockAlignment(CC_ALIGN_HOR_CENTER | CC_ALIGN_VER_CENTER);
 	clock->refresh();
 	clock->setPos(BoxEndX - 10 - clock->getWidth(), ChanNameY);
 	clock->setTextColor(COL_INFOBAR_TEXT);
@@ -399,6 +411,22 @@ void CInfoViewer::paintBackground(int col_NumBox)
 				 ChanWidth, ChanHeight,
 				 col_NumBox, c_rad_mid);
 	*/
+
+	if (g_settings.gradiant)
+		paintHead();
+}
+
+void CInfoViewer::paintHead()
+{
+	CComponentsHeader header(BoxStartX, ChanNameY, BoxEndX-BoxStartX, time_height, "");
+
+	header.setCaption("");
+
+	clock->setTextColor(header.getTextObject()->getTextColor());
+	clock->setColorBody(header.getColorBody());
+
+	header.paint(CC_SAVE_SCREEN_NO);
+
 }
 
 void CInfoViewer::show_current_next(bool new_chan, int  epgpos)
@@ -780,7 +808,7 @@ void CInfoViewer::showTitle (const int ChanNum, const std::string & Channel, con
 		if (ChannelLogoMode != 2) {
 			//FIXME good color to display inactive for zap ?
 			//fb_pixel_t color = CNeutrinoApp::getInstance ()->channelList->SameTP(new_channel_id) ? COL_INFOBAR_TEXT : COL_INFOBAR_SHADOW_TEXT;
-			fb_pixel_t color = COL_INFOBAR_TEXT;
+			fb_pixel_t color = g_settings.gradiant ? COL_MENUHEAD_TEXT : COL_INFOBAR_TEXT;
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(
 				ChanInfoX + 10, ChanNameY + time_height,
 				BoxEndX - (ChanInfoX + 10) - time_width - LEFT_OFFSET - 5 - infoViewerBB->showBBIcons_width,

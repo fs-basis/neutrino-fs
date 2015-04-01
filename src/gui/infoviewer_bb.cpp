@@ -357,11 +357,7 @@ void CInfoViewerBB::showBBButtons(const int modus)
 
 	if (paint) {
 		int last_x = minX;
-		if (g_settings.gradiant)
-			paintFoot();
-		else
-			frameBuffer->paintBoxRel(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX, InfoHeightY_Info, COL_INFOBAR_BUTTONS_BACKGROUND, RADIUS_LARGE, CORNER_BOTTOM); //round
-
+		frameBuffer->paintBoxRel(g_InfoViewer->ChanInfoX, BBarY, minX - g_InfoViewer->ChanInfoX, InfoHeightY_Info, COL_INFOBAR_BUTTONS_BACKGROUND, RADIUS_LARGE, CORNER_BOTTOM); //round
 		for (i = BUTTON_MAX; i > 0;) {
 			--i;
 			if ((bbButtonInfo[i].x <= g_InfoViewer->ChanInfoX) || (bbButtonInfo[i].x + bbButtonInfo[i].w >= g_InfoViewer->BoxEndX) || (!bbButtonInfo[i].paint))
@@ -408,7 +404,7 @@ void CInfoViewerBB::paintshowButtonBar()
 	if (g_settings.casystem_display < 2)
 		paintCA_bar(0,0);
 
-	//frameBuffer->paintBoxRel(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX, InfoHeightY_Info, COL_INFOBAR_BUTTONS_BACKGROUND, RADIUS_LARGE, CORNER_BOTTOM); //round
+	frameBuffer->paintBoxRel(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX, InfoHeightY_Info, COL_INFOBAR_BUTTONS_BACKGROUND, RADIUS_LARGE, CORNER_BOTTOM); //round
 
 	g_InfoViewer->showSNR();
 
@@ -427,23 +423,6 @@ void CInfoViewerBB::paintshowButtonBar()
 	showIcon_Resolution();
 	showIcon_Tuner();
 	//showSysfsHdd();
-}
-
-void CInfoViewerBB::paintFoot()
-{
-  
-	CComponentsHeader foot(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX, InfoHeightY_Info, "");
-
-	foot.setSizeMode(CComponentsHeader::CC_HEADER_SIZE_SMALL);
-
-	foot.setHeight(InfoHeightY_Info);
-
-	foot.setUpsideDown(true);
-
-	foot.setCaption("");
-
-	foot.paint(CC_SAVE_SCREEN_NO);
-
 }
 
 void CInfoViewerBB::showIcon_SubT()

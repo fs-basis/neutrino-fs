@@ -158,7 +158,8 @@ class CComponentsHeader : public CComponentsForm
 		virtual CComponentsIconForm* getContextBtnObject() { return cch_btn_obj;};
 
 		virtual void setUpsideDown(bool upsidedown) { 	cc_body_gradient_mode = upsidedown ? CColorGradient::gradientDark2Light : CColorGradient::gradientLight2Dark;corner_type	= upsidedown ? CORNER_BOTTOM : CORNER_TOP;};
-		virtual void setLDL(bool ldl) { 	cc_body_gradient_mode = ldl ? CColorGradient::gradientLight2Dark2Light : CColorGradient::gradientLight2Dark;};
+		virtual void setGradientLDL(bool ldl) { 	cc_body_gradient_mode = ldl ? CColorGradient::gradientLight2Dark2Light : CColorGradient::gradientLight2Dark;};
+		virtual void setGradient(bool grad) { col_body_gradient = grad;};
 
 		enum
 		{

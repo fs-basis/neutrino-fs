@@ -357,7 +357,7 @@ void CInfoViewerBB::showBBButtons(const int modus)
 
 	if (paint) {
 		int last_x = minX;
-		if (g_settings.gradiant)
+		if (g_settings.info_bottom_gradiant)
 			paintFoot();
 		else
 			frameBuffer->paintBoxRel(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX, InfoHeightY_Info, COL_INFOBAR_BUTTONS_BACKGROUND, RADIUS_LARGE, CORNER_BOTTOM); //round
@@ -433,6 +433,8 @@ void CInfoViewerBB::paintFoot()
 {
   
 	CComponentsHeader foot(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX, InfoHeightY_Info, "");
+
+	foot.setGradient(true);
 
 	foot.setSizeMode(CComponentsHeader::CC_HEADER_SIZE_SMALL);
 

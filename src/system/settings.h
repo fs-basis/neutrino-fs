@@ -407,6 +407,8 @@ struct SNeutrinoSettings
 	int colored_events_infobar;
 	int contrast_fonts;
 	int gradiant;
+	int info_top_gradiant;
+	int info_bottom_gradiant;
 
 	//network
 #define NETWORK_NFS_NR_OF_ENTRIES 8

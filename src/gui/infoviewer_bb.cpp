@@ -65,6 +65,8 @@ extern cVideo * videoDecoder;
 
 #define COL_INFOBAR_BUTTONS_BACKGROUND (COL_INFOBAR_SHADOW_PLUS_1)
 
+#define NEUTRINO_ICON_LOGO "/logos/logo.png"
+
 CInfoViewerBB::CInfoViewerBB()
 {
 	frameBuffer = CFrameBuffer::getInstance();
@@ -188,6 +190,10 @@ void CInfoViewerBB::getBBIconInfo()
 		case CInfoViewerBB::ICON_TUNER:
 			if (CFEManager::getInstance()->getEnabledCount() > 1 && g_settings.infobar_show_tuner == 1)
 				iconView = checkBBIcon(NEUTRINO_ICON_TUNER_1, &w, &h);
+			break;
+		case CInfoViewerBB::ICON_LOGO:
+			if ((access(NEUTRINO_ICON_LOGO, F_OK) == 0))
+				iconView = checkBBIcon(NEUTRINO_ICON_LOGO, &w, &h);
 			break;
 		default:
 			break;
@@ -426,6 +432,7 @@ void CInfoViewerBB::paintshowButtonBar()
 	showIcon_CA_Status(0);
 	showIcon_Resolution();
 	showIcon_Tuner();
+	showIcon_Logo();
 	//showSysfsHdd();
 }
 
@@ -446,6 +453,11 @@ void CInfoViewerBB::paintFoot()
 
 	foot.paint(CC_SAVE_SCREEN_NO);
 
+}
+
+void CInfoViewerBB::showIcon_Logo()
+{
+	showBBIcons(CInfoViewerBB::ICON_LOGO, NEUTRINO_ICON_LOGO);
 }
 
 void CInfoViewerBB::showIcon_SubT()

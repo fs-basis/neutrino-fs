@@ -1680,7 +1680,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	if (showButtonBar) {
 		if (!g_settings.gradiant)
 			frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, CurrInfoY - height - 2, COL_INFOBAR_PLUS_3);
-			frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, NextInfoY + 2, COL_INFOBAR_PLUS_3);
+		frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, NextInfoY + 2, COL_INFOBAR_PLUS_3);
 	}
 
 

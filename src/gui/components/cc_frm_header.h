@@ -157,6 +157,9 @@ class CComponentsHeader : public CComponentsForm
 		///gets the embedded context button object, so it's possible to get access directly to its methods and properties
 		virtual CComponentsIconForm* getContextBtnObject() { return cch_btn_obj;};
 
+		virtual void setUpsideDown(bool upsidedown) { 	cc_body_gradient_mode = upsidedown ? CColorGradient::gradientDark2Light : CColorGradient::gradientLight2Dark;corner_type	= upsidedown ? CORNER_BOTTOM : CORNER_TOP;};
+		virtual void setLDL(bool ldl) { 	cc_body_gradient_mode = ldl ? CColorGradient::gradientLight2Dark2Light : CColorGradient::gradientLight2Dark;};
+
 		enum
 		{
 			CC_BTN_HELP 			= 0x02,

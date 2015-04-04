@@ -4726,7 +4726,7 @@ void CNeutrinoApp::saveKeys(const char * fname)
 
 void CNeutrinoApp::StopSubtitles(bool enable_glcd_mirroring)
 {
-	printf("[neutrino] %s\n", __FUNCTION__);
+	//printf("[neutrino] %s\n", __FUNCTION__);
 	if (CMoviePlayerGui::getInstance().Playing()) {
 		CMoviePlayerGui::getInstance().StopSubtitles(enable_glcd_mirroring);
 		return;
@@ -4751,7 +4751,7 @@ void CNeutrinoApp::StopSubtitles(bool enable_glcd_mirroring)
 
 void CNeutrinoApp::StartSubtitles(bool show)
 {
-	printf("%s: %s\n", __FUNCTION__, show ? "Show" : "Not show");
+	//printf("%s: %s\n", __FUNCTION__, show ? "Show" : "Not show");
 
 	if (CMoviePlayerGui::getInstance().Playing()) {
 		CMoviePlayerGui::getInstance().StartSubtitles(show);

@@ -261,7 +261,7 @@ void CInfoViewerBB::getBBButtonInfo()
 			break;
 		}
 		bbButtonInfo[i].w = w;
-		bbButtonInfo[i].cx = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(text);
+		bbButtonInfo[i].cx = std::min(g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(text),w);
 		bbButtonInfo[i].h = h;
 		bbButtonInfo[i].text = text;
 		bbButtonInfo[i].icon = icon;

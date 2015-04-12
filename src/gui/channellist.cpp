@@ -479,9 +479,12 @@ void CChannelList::calcSize()
 
 	// calculate height (the infobox below mainbox is handled outside height)
 	info_height = 2*fheight + fdescrheight + 10;
-	if (g_settings.channellist_additional != 0)
-		if (g_settings.channellist_foot != 0)
-			info_height = 2*fheight + 10; 
+	if (g_settings.channellist_additional != 0) {
+		if (g_settings.channellist_foot == 2) //j00zek, disabled footer fix
+			info_height = 0; 
+		 else if (g_settings.channellist_foot != 0)
+			info_height = 2*fheight + 10;
+	}
 	height = pig_on_win ?  frameBuffer->getScreenHeight(): frameBuffer->getScreenHeightRel();
 	height = height - info_height;
 
@@ -1552,6 +1555,21 @@ void CChannelList::paintDetails(int index)
 	if (g_settings.colored_events_channellist == 2)
 		colored_event_N = true;
 
+	if (g_settings.channellist_foot == 2) { //j00zek disabled footer fix
+		if (displayNext)
+			p_event = &(*chanlist)[index]->nextEvent;
+		else
+			p_event = &(*chanlist)[index]->currentEvent;
+		if ((g_settings.channellist_additional) && (p_event != NULL))
+		{
+			if (displayList)
+				paint_events(index);
+			else
+			      showdescription(selected);
+		}
+		return;
+	}
+	
 	frameBuffer->paintBoxRel(x+1, y + height + 1, full_width-2, info_height - 2, COL_MENUCONTENTDARK_PLUS_0, RADIUS_LARGE);//round
 	frameBuffer->paintBoxFrame(x, y + height, full_width, info_height, 2, COL_MENUCONTENT_PLUS_6, RADIUS_LARGE);
 
@@ -1863,7 +1881,8 @@ void CChannelList::paintItem(int pos, const bool firstpaint)
 	if (curr == selected) {
 		color   = COL_MENUCONTENTSELECTED_TEXT;
 		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
-		paintItem2DetailsLine (pos);
+		if (g_settings.channellist_foot != 2) //j00zek disabled footer fix
+			paintItem2DetailsLine (pos);
 		paintDetails(curr);
 		c_rad_small = RADIUS_LARGE;
 		paintbuttons = true;

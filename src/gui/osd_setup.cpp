@@ -1076,6 +1076,7 @@ void COsdSetup::showOsdChanlistSetup(CMenuWidget *menu_chanlist)
 	// hd-icon
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_HDICON, &g_settings.channellist_hdicon, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_CHANNELLIST_HDICON);
+	menu_chanlist->addItem(mc);
 
 	// show infobox
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_SHOW_INFOBOX, &g_settings.channellist_show_infobox, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, channellistNotifier);

@@ -74,6 +74,7 @@
 bool glcd_play = false;
 #endif
 #include <gui/widget/stringinput_ext.h>
+#include <gui/screensetup.h>
 #include <gui/widget/messagebox.h>
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 #include <libavcodec/avcodec.h>
@@ -853,6 +854,7 @@ bool CMoviePlayerGui::PlayFileStart(void)
 #if 0
 	clearSubtitle();
 #endif
+	playback->SetTeletextPid(-1);
 
 	printf("IS FILE PLAYER: %s\n", is_file_player ?  "true": "false" );
 	playback->Open(is_file_player ? PLAYMODE_FILE : PLAYMODE_TS);
@@ -867,6 +869,15 @@ bool CMoviePlayerGui::PlayFileStart(void)
 		duration = p_movie_info->length * 60 * 1000;
 		int percent = CZapit::getInstance()->GetPidVolume(p_movie_info->epgId, currentapid, currentac3 == 1);
 		CZapit::getInstance()->SetVolumePercent(percent);
+#if HAVE_SPARK_HARDWARE
+		CScreenSetup cSS;
+		cSS.showBorder(p_movie_info->epgId);
+#endif
+	} else {
+#if HAVE_SPARK_HARDWARE
+		CScreenSetup cSS;
+		cSS.showBorder(0);
+#endif
 	}
 
 	file_prozent = 0;
@@ -1403,6 +1414,8 @@ void CMoviePlayerGui::PlayFileEnd(bool restore)
 	playback->Close();
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 	frameBuffer->set3DMode(old3dmode);
+	CScreenSetup cSS;
+	cSS.showBorder(CZapit::getInstance()->GetCurrentChannelID());
 #endif
 #ifdef ENABLE_GRAPHLCD
 	if (p_movie_info || glcd_play == true) {

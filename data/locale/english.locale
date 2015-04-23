@@ -1812,7 +1812,7 @@ networkmenu.setupnow Apply network settings now
 networkmenu.setuponstartup Setup interface on startup
 networkmenu.show Show active Network settings
 networkmenu.test Test network now
-neutrino_starting Neutrino starting...
+neutrino_starting *Neutrino Start*
 nfs.alreadymounted directory already mounted
 nfs.automount Mount on startup
 nfs.dir directory/share

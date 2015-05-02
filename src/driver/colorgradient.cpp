@@ -171,7 +171,7 @@ fb_pixel_t* CColorGradient::gradientOneColor(fb_pixel_t col, fb_pixel_t *gradien
 	return gradientBuf;
 }
 
-fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t end_col, fb_pixel_t *gradientBuf, int bSize, int /*mode*/, int /*intensity*/)
+fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t end_col, fb_pixel_t *gradientBuf, int bSize, int mode, int /*intensity*/)
 {
 	if (gradientBuf == NULL) {
 		gradientBuf = (fb_pixel_t*) malloc(bSize * sizeof(fb_pixel_t));
@@ -184,6 +184,12 @@ fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t
 
 	int start_box = 0;
 	int end_box = bSize;
+
+	if (mode == gradientDark2Light) {
+		fb_pixel_t temp_col = start_col;
+		start_col = end_col;
+		end_col = temp_col;
+		}
 
 	uint8_t start_tr = (uint8_t)((start_col & 0xFF000000) >> 24);
 	uint8_t start_r  = (uint8_t)((start_col & 0x00FF0000) >> 16);

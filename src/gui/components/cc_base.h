@@ -96,6 +96,10 @@ class CComponents : public CComponentsSignals, public COSDFader
 		uint8_t cc_body_gradient_saturation;
 		///property: background gradient direction
 		int cc_body_gradient_direction;
+		///property: background gradient mode
+		bool cc_body_gradient_c2c;
+		///property: background gradient 2nd color
+		fb_pixel_t cc_body_gradient_2nd_col;
 
 		///property: true=component has shadow
 		bool shadow;

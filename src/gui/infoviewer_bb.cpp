@@ -451,6 +451,8 @@ void CInfoViewerBB::paintFoot()
 
 	foot.setCaption("");
 
+	foot.set2ndColor(COL_INFOBAR_PLUS_0);
+
 	foot.paint(CC_SAVE_SCREEN_NO);
 
 }

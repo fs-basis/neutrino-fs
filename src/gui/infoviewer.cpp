@@ -422,6 +422,7 @@ void CInfoViewer::paintHead()
 	CComponentsHeader header(BoxStartX, ChanNameY, BoxEndX-BoxStartX, time_height, "");
 
 	header.setGradient(true);
+	header.set2ndColor(COL_INFOBAR_PLUS_0);
 
 	header.setCaption("");
 

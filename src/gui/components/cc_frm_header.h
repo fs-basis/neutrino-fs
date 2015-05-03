@@ -160,7 +160,6 @@ class CComponentsHeader : public CComponentsForm
 		virtual void setUpsideDown(bool upsidedown) { 	cc_body_gradient_mode = upsidedown ? CColorGradient::gradientDark2Light : CColorGradient::gradientLight2Dark;corner_type	= upsidedown ? CORNER_BOTTOM : CORNER_TOP;};
 		virtual void setGradientLDL(bool ldl) { 	cc_body_gradient_mode = ldl ? CColorGradient::gradientLight2Dark2Light : CColorGradient::gradientLight2Dark;};
 		virtual void setGradient(bool grad) { col_body_gradient = grad;};
-		virtual void set2ndColor(fb_pixel_t col_2nd) { cc_body_gradient_c2c = true; cc_body_gradient_2nd_col = col_2nd;};
 
 		enum
 		{

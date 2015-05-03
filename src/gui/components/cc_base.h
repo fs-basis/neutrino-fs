@@ -214,6 +214,8 @@ class CComponents : public CComponentsSignals, public COSDFader
 						  cc_body_gradient_intensity_v_max=v_max;
 						  cc_body_gradient_saturation=s; };
 
+		virtual void set2ndColor(fb_pixel_t col_2nd) { cc_body_gradient_c2c = true; cc_body_gradient_2nd_col = col_2nd;};
+
 		///get frame color
 		inline virtual fb_pixel_t getColorFrame(){return col_frame;};
 		///get body color

@@ -1135,6 +1135,7 @@ void CMenuWidget::paint()
 	CComponentsHeader header(x, y, width + sb_width, hheight, getName(), iconfile);
 	header.setShadowOnOff(CC_SHADOW_ON);
 	header.setOffset(10);
+	header.set2ndColor(COL_MENUCONTENT_PLUS_0);
 	header.paint(CC_SAVE_SCREEN_NO);
 
 	// paint body shadow
@@ -1304,6 +1305,7 @@ void CMenuWidget::paintHint(int pos)
 		return;
 
 	info_box->enableGradient(g_settings.theme.menu_Hint_gradient  != 0);
+	info_box->set2ndColor(COL_INFOBAR_SHADOW_PLUS_1); // COL_INFOBAR_SHADOW_PLUS_1 is default footer color
 	info_box->setColorBody(COL_MENUCONTENT_PLUS_0);
 	
 	if (hint_painted) {
@@ -2174,7 +2176,7 @@ int CMenuSeparator::paint(bool selected)
 	if ((type & SUB_HEAD))
 	{
 		item_color = COL_MENUHEAD_TEXT;
-		item_bgcolor = COL_MENUHEAD_PLUS_0;
+		item_bgcolor = g_settings.theme.menu_Head_gradient ? COL_MENUCONTENT_PLUS_0 : COL_MENUHEAD_PLUS_0;
 	}
 	else
 	{

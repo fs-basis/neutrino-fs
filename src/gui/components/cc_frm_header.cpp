@@ -100,8 +100,8 @@ void CComponentsHeader::initVarHeader(	const int& x_pos, const int& y_pos, const
 	col_body 	= COL_MENUHEAD_PLUS_0;
 	col_body_gradient	= g_settings.theme.menu_Head_gradient;
 	cc_body_gradient_direction = CFrameBuffer::gradientVertical;
-	cc_body_gradient_c2c = false;
-	cc_body_gradient_2nd_col = color_body;
+	cc_body_gradient_c2c = true;
+	cc_body_gradient_2nd_col = COL_MENUCONTENT_PLUS_0;
 	cch_text	= caption;
 	cch_icon_name	= icon_name;
 

@@ -7,7 +7,7 @@ install_DATA = \
 	DarkBlue.theme \
 	DarkBrown.theme \
 	Gray.theme \
-	Gray-Black.theme
+	Gray-Black.theme \
 	Gray-Blue.theme \
 	MonoChrom.theme \
 	Olive.theme \

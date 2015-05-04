@@ -848,7 +848,8 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 void CInfoViewerBB::paintCA_bar(int left, int right)
 {
 	int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.casystem_frame ? 24 : 0)) / 4;
-//	int ycnt = (bottom_bar_offset - (g_settings.casystem_frame ? 14 : 0)) / 4;
+	int ycnt = (bottom_bar_offset - (g_settings.casystem_frame ? 14 : 0)) / 4;
+
 	if (right)
 		right = xcnt - ((right/4)+1);
 	if (left)
@@ -870,6 +871,7 @@ void CInfoViewerBB::paintCA_bar(int left, int right)
 	}
 	else
 		frameBuffer->paintBox(g_InfoViewer->ChanInfoX + (right*4), g_InfoViewer->BoxEndY, g_InfoViewer->BoxEndX - (left*4), g_InfoViewer->BoxEndY + bottom_bar_offset, COL_INFOBAR_PLUS_0);
+
 }
 
 void CInfoViewerBB::changePB()

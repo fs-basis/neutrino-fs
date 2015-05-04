@@ -414,30 +414,11 @@ void CInfoViewer::paintBackground(int col_NumBox)
 				 ChanWidth, ChanHeight,
 				 col_NumBox, c_rad_mid);
 	*/
-
-	if (g_settings.info_top_gradiant)
-		paintHead();
 }
 
 void CInfoViewer::paintHead()
 {
-	CComponentsHeader header(BoxStartX, ChanNameY, BoxEndX-BoxStartX, time_height, "");
-
-	header.setGradient(true);
-	header.set2ndColor(COL_INFOBAR_PLUS_0);
-
-	header.setCaption("");
-
-	clock->setTextColor(header.getTextObject()->getTextColor());
-	clock->setColorBody(header.getColorBody());
-
-	header.paint(CC_SAVE_SCREEN_NO);
-
-}
-
-void CInfoViewer::paintHead()
-{
-	CComponentsShapeSquare header(ChanInfoX, ChanNameY, BoxEndX-ChanInfoX, time_height);
+	CComponentsShapeSquare header(BoxStartX, ChanNameY, BoxEndX-BoxStartX, time_height);
 
 	header.setColorBody(g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_PLUS_0);
 	header.enableColBodyGradient(g_settings.theme.infobar_gradient_top);
@@ -1695,7 +1676,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	if (showButtonBar) {
 		if (!g_settings.theme.infobar_gradient_top)
 			frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, CurrInfoY - height - 2, COL_INFOBAR_PLUS_3);
-		if (g_settings.casystem_display < 2)
+		if ((g_settings.casystem_display < 2) && (!g_settings.casystem_frame))
 			frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, NextInfoY + 2, COL_INFOBAR_PLUS_3);
 	}
 

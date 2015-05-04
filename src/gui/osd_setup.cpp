@@ -1076,15 +1076,6 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_RADIOTEXT);
 	menu_infobar->addItem(mc);
 
-	// gradient top
-	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_GRADIENT_TOP, &g_settings.info_top_gradiant, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
-	//mc->setHint("", LOCALE_MENU_HINT_INFOBAR_GRADIENT_TOP);
-	menu_infobar->addItem(mc);
-
-	// gradient bottom
-	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_GRADIENT_BOTTOM, &g_settings.info_bottom_gradiant, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
-	//mc->setHint("", LOCALE_MENU_HINT_INFOBAR_GRADIENT_BOTTOM);
-	menu_infobar->addItem(mc);
 }
 
 //channellist

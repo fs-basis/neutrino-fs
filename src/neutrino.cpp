@@ -543,8 +543,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
 	g_settings.radiotext_enable = configfile.getBool("radiotext_enable"          , false);
 	g_settings.radiotext_rass_dir = configfile.getString("radiotext_rass_dir", "/tmp/cache");
-	g_settings.info_top_gradiant = configfile.getInt32("infobar_gradient_top", 0 );
-	g_settings.info_bottom_gradiant = configfile.getInt32("infobar_gradient_bottom", 0 );
 	//audio
 	g_settings.audio_AnalogMode = configfile.getInt32( "audio_AnalogMode", 0 );
 	g_settings.audio_DolbyDigital    = configfile.getBool("audio_DolbyDigital"   , false);
@@ -1161,8 +1159,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_show_tuner"  , g_settings.infobar_show_tuner  );
 	configfile.setBool("radiotext_enable"          , g_settings.radiotext_enable);
 	configfile.setString("radiotext_rass_dir", g_settings.radiotext_rass_dir);
-	configfile.setInt32("infobar_gradient_top", g_settings.info_top_gradiant );
-	configfile.setInt32("infobar_gradient_bottom", g_settings.info_bottom_gradiant );
 	//audio
 	configfile.setInt32( "audio_AnalogMode", g_settings.audio_AnalogMode );
 	configfile.setBool("audio_DolbyDigital"   , g_settings.audio_DolbyDigital   );

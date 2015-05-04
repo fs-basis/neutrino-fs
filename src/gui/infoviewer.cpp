@@ -442,7 +442,8 @@ void CInfoViewer::paintHead()
 	header.setColorBody(g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_PLUS_0);
 	header.enableColBodyGradient(g_settings.theme.infobar_gradient_top);
 	header.set2ndColor(COL_INFOBAR_PLUS_0);
-	header.setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
+	header.setCorner(RADIUS_LARGE, CORNER_TOP);
+	clock->setTextColor(g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_TEXT : COL_INFOBAR_TEXT);
 	clock->setColorBody(header.getColorBody());
 
 	header.paint(CC_SAVE_SCREEN_NO);
@@ -826,7 +827,7 @@ void CInfoViewer::showTitle (const int ChanNum, const std::string & Channel, con
 		if (ChannelLogoMode != 2) {
 			//FIXME good color to display inactive for zap ?
 			//fb_pixel_t color = CNeutrinoApp::getInstance ()->channelList->SameTP(new_channel_id) ? COL_INFOBAR_TEXT : COL_INFOBAR_SHADOW_TEXT;
-			fb_pixel_t color = g_settings.info_top_gradiant ? COL_MENUHEAD_TEXT : COL_INFOBAR_TEXT;
+			fb_pixel_t color = g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_TEXT : COL_INFOBAR_TEXT;
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(
 				ChanInfoX + 10, ChanNameY + time_height,
 				BoxEndX - (ChanInfoX + 10) - time_width - LEFT_OFFSET - 5 - infoViewerBB->showBBIcons_width,
@@ -1692,7 +1693,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	}
 
 	if (showButtonBar) {
-		if (!g_settings.info_top_gradiant)
+		if (!g_settings.theme.infobar_gradient_top)
 			frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, CurrInfoY - height - 2, COL_INFOBAR_PLUS_3);
 		if (g_settings.casystem_display < 2)
 			frameBuffer->paintHLine(ChanInfoX + 10, BoxEndX - 10, NextInfoY + 2, COL_INFOBAR_PLUS_3);

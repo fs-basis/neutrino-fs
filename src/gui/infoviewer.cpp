@@ -273,10 +273,10 @@ void CInfoViewer::changePB()
 void CInfoViewer::initClock()
 {
 
-	static int gradient = g_settings.info_top_gradiant;
+	static int gradient_top = g_settings.theme.infobar_gradient_top;
 
-	if (gradient != g_settings.info_top_gradiant && clock != NULL) {
-		gradient = g_settings.info_top_gradiant;
+	if (gradient_top != g_settings.theme.infobar_gradient_top && clock != NULL) {
+		gradient_top = g_settings.theme.infobar_gradient_top;
 		clock->clearSavedScreen();
 		delete clock;
 		clock = NULL;
@@ -284,11 +284,10 @@ void CInfoViewer::initClock()
 
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
-		clock->setClockFormat("%H:%M");
-		clock->setClockBlink("%H %M");
+		clock->setClockBlink("%H.%M");
 		clock->setClockIntervall(1);
-		clock->doPaintBg(!gradient);
-		clock->enableTboxSaveScreen(gradient);
+		clock->doPaintBg(!gradient_top);
+		clock->enableTboxSaveScreen(gradient_top);
 		if (time_width)
 			clock->setWidth(time_width);
 	}
@@ -403,6 +402,9 @@ void CInfoViewer::paintBackground(int col_NumBox)
 			      COL_INFOBAR_PLUS_0, c_rad_large,
 			      CORNER_TOP | (showButtonBar ? 0 : CORNER_BOTTOM));
 
+	// background for channel name/logo and clock
+	paintHead();
+
 	// number box
 	/*
 	frameBuffer->paintBoxRel(BoxStartX + SHADOW_OFFSET, BoxStartY + SHADOW_OFFSET,
@@ -431,6 +433,19 @@ void CInfoViewer::paintHead()
 
 	header.paint(CC_SAVE_SCREEN_NO);
 
+}
+
+void CInfoViewer::paintHead()
+{
+	CComponentsShapeSquare header(ChanInfoX, ChanNameY, BoxEndX-ChanInfoX, time_height);
+
+	header.setColorBody(g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_PLUS_0);
+	header.enableColBodyGradient(g_settings.theme.infobar_gradient_top);
+	header.set2ndColor(COL_INFOBAR_PLUS_0);
+	header.setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
+	clock->setColorBody(header.getColorBody());
+
+	header.paint(CC_SAVE_SCREEN_NO);
 }
 
 void CInfoViewer::show_current_next(bool new_chan, int  epgpos)
@@ -514,7 +529,6 @@ void CInfoViewer::showMovieTitle(const int playState, const t_channel_id &Channe
 	aspectRatio = 0;
 	last_curr_id = last_next_id = 0;
 	showButtonBar = true;
-
 
 	fileplay = true;
 	reset_allScala();

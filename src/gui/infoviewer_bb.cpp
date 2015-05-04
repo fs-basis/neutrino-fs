@@ -89,8 +89,6 @@ CInfoViewerBB::CInfoViewerBB()
 	bbIconInfo[0].h = 0;
 	BBarY = 0;
 	BBarFontY = 0;
-	hddscale 		= NULL;
-	sysscale 		= NULL;
 
 	Init();
 }
@@ -362,11 +360,8 @@ void CInfoViewerBB::showBBButtons(const int modus)
 	}
 
 	if (paint) {
+		paintFoot(minX - g_InfoViewer->ChanInfoX);
 		int last_x = minX;
-		if (g_settings.info_bottom_gradiant)
-			paintFoot();
-		else
-			frameBuffer->paintBoxRel(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX, InfoHeightY_Info, COL_INFOBAR_BUTTONS_BACKGROUND, RADIUS_LARGE, CORNER_BOTTOM); //round
 
 		for (i = BUTTON_MAX; i > 0;) {
 			--i;
@@ -397,7 +392,7 @@ void CInfoViewerBB::showBBIcons(const int modus, const std::string & icon)
 		return;
 	if ((modus >= CInfoViewerBB::ICON_SUBT) && (modus < CInfoViewerBB::ICON_MAX) && (bbIconInfo[modus].x != -1) && (is_visible)) {
 		frameBuffer->paintIcon(icon, bbIconInfo[modus].x - g_InfoViewer->time_width, g_InfoViewer->ChanNameY + 8, 
-				       InfoHeightY_Info, 1, true, !g_settings.info_top_gradiant, COL_INFOBAR_BUTTONS_BACKGROUND);
+				       InfoHeightY_Info, 1, true, !g_settings.theme.infobar_gradient_top, COL_INFOBAR_BUTTONS_BACKGROUND);
 	}
 }
 
@@ -414,7 +409,7 @@ void CInfoViewerBB::paintshowButtonBar()
 	if (g_settings.casystem_display < 2)
 		paintCA_bar(0,0);
 
-	//frameBuffer->paintBoxRel(g_InfoViewer->ChanInfoX, BBarY, g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX, InfoHeightY_Info, COL_INFOBAR_BUTTONS_BACKGROUND, RADIUS_LARGE, CORNER_BOTTOM); //round
+	paintFoot();
 
 	g_InfoViewer->showSNR();
 
@@ -460,6 +455,21 @@ void CInfoViewerBB::paintFoot()
 void CInfoViewerBB::showIcon_Logo()
 {
 	showBBIcons(CInfoViewerBB::ICON_LOGO, NEUTRINO_ICON_LOGO);
+}
+
+void CInfoViewerBB::paintFoot(int w)
+{
+	int width = (w == 0) ? g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX : w;
+
+	CComponentsShapeSquare foot(g_InfoViewer->ChanInfoX, BBarY, width, InfoHeightY_Info);
+
+	foot.setColorBody(COL_INFOBAR_BUTTONS_BACKGROUND);
+	foot.enableColBodyGradient(g_settings.theme.infobar_gradient_bottom);
+	foot.setColBodyGradient(CColorGradient::gradientDark2Light, CFrameBuffer::gradientVertical);
+	foot.setCorner(RADIUS_LARGE, CORNER_BOTTOM);
+	foot.set2ndColor(COL_INFOBAR_PLUS_0);
+
+	foot.paint(CC_SAVE_SCREEN_NO);
 }
 
 void CInfoViewerBB::showIcon_SubT()
@@ -695,8 +705,8 @@ void CInfoViewerBB::showBarHdd(int percent)
 void CInfoViewerBB::paint_ca_icons(int caid, const char *icon, int &icon_space_offset)
 {
 	char buf[20];
-	int endx = g_InfoViewer->BoxEndX - 10;
-	int py = g_InfoViewer->BoxEndY + 2; /* hand-crafted, should be automatic */
+	int endx = g_InfoViewer->BoxEndX - (g_settings.casystem_frame ? 20 : 10);
+	int py = g_InfoViewer->BoxEndY + (g_settings.casystem_frame ? 4 : 2); /* hand-crafted, should be automatic */
 	int px = 0;
 	static map<int, std::pair<int,const char*> > icon_map;
 	const int icon_space = 10, icon_number = 10;
@@ -858,15 +868,29 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 
 void CInfoViewerBB::paintCA_bar(int left, int right)
 {
-	int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX) / 4;
-	int ycnt = bottom_bar_offset / 4;
+	int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.casystem_frame ? 24 : 0)) / 4;
+//	int ycnt = (bottom_bar_offset - (g_settings.casystem_frame ? 14 : 0)) / 4;
 	if (right)
 		right = xcnt - ((right/4)+1);
 	if (left)
 		left =  xcnt - ((left/4)-1);
 
-	frameBuffer->paintBox(g_InfoViewer->ChanInfoX + (right*4), g_InfoViewer->BoxEndY, g_InfoViewer->BoxEndX - (left*4), g_InfoViewer->BoxEndY + bottom_bar_offset, COL_INFOBAR_PLUS_0);
-
+	if (g_settings.casystem_frame) { // with highlighted frame
+		if (!right || !left) { // paint full bar
+			// background
+			frameBuffer->paintBox(g_InfoViewer->ChanInfoX     , g_InfoViewer->BoxEndY    , g_InfoViewer->BoxEndX     , g_InfoViewer->BoxEndY + bottom_bar_offset     , COL_INFOBAR_PLUS_0);
+			// shadow
+			frameBuffer->paintBox(g_InfoViewer->ChanInfoX + 14, g_InfoViewer->BoxEndY + 4, g_InfoViewer->BoxEndX - 6 , g_InfoViewer->BoxEndY + bottom_bar_offset - 6 , COL_INFOBAR_SHADOW_PLUS_0 , RADIUS_SMALL, CORNER_ALL);
+			// ca bar
+			frameBuffer->paintBox(g_InfoViewer->ChanInfoX + 11, g_InfoViewer->BoxEndY + 1, g_InfoViewer->BoxEndX - 11, g_InfoViewer->BoxEndY + bottom_bar_offset - 11, COL_INFOBAR_PLUS_0        , RADIUS_SMALL, CORNER_ALL);
+			// highlighed frame
+			frameBuffer->paintBoxFrame(g_InfoViewer->ChanInfoX + 10, g_InfoViewer->BoxEndY, g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - 2*10, bottom_bar_offset - 10, 1, COL_INFOBAR_PLUS_3, RADIUS_SMALL, CORNER_ALL);
+		}
+		else
+			frameBuffer->paintBox(g_InfoViewer->ChanInfoX + 12 + (right*4), g_InfoViewer->BoxEndY + 2, g_InfoViewer->BoxEndX - 12 - (left*4), g_InfoViewer->BoxEndY + bottom_bar_offset - 12, COL_INFOBAR_PLUS_0);
+	}
+	else
+		frameBuffer->paintBox(g_InfoViewer->ChanInfoX + (right*4), g_InfoViewer->BoxEndY, g_InfoViewer->BoxEndX - (left*4), g_InfoViewer->BoxEndY + bottom_bar_offset, COL_INFOBAR_PLUS_0);
 }
 
 void CInfoViewerBB::changePB()
@@ -892,7 +916,7 @@ void CInfoViewerBB::reset_allScala()
 
 void CInfoViewerBB::setBBOffset()
 {
-	bottom_bar_offset = (g_settings.casystem_display < 2) ? 22 : 0;
+	bottom_bar_offset = (g_settings.casystem_display < 2) ? (g_settings.casystem_frame ? 36 : 22) : 0;
 }
 
 void* CInfoViewerBB::scrambledThread(void *arg)

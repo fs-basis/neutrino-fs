@@ -61,6 +61,7 @@
 #include <zapit/femanager.h>
 #include <system/debug.h>
 #include <system/helpers.h>
+#include "cs_api.h"
 
 extern CRemoteControl * g_RemoteControl;
 
@@ -613,9 +614,12 @@ int COsdSetup::showOsdSetup()
 	osd_menu->addItem(GenericMenuSeparatorLine);
 
 	//monitor
-	CMenuOptionChooser * mc = new CMenuOptionChooser(LOCALE_COLORMENU_OSD_PRESET, &g_settings.screen_preset, OSD_PRESET_OPTIONS, OSD_PRESET_OPTIONS_COUNT, true, this);
-	mc->setHint("", LOCALE_MENU_HINT_OSD_PRESET);
-	osd_menu->addItem(mc);
+	CMenuOptionChooser * mc;
+	if (cs_get_revision() != 1) { /* 1 == Tripledragon */
+		mc = new CMenuOptionChooser(LOCALE_COLORMENU_OSD_PRESET, &g_settings.screen_preset, OSD_PRESET_OPTIONS, OSD_PRESET_OPTIONS_COUNT, true, this);
+		mc->setHint("", LOCALE_MENU_HINT_OSD_PRESET);
+		osd_menu->addItem(mc);
+	}
 
 	// round corners
 	int rounded_corners = g_settings.rounded_corners;
@@ -758,6 +762,7 @@ void COsdSetup::showOsdMenueColorSetup(CMenuWidget *menu_colors)
 	oj->setHint("", LOCALE_MENU_HINT_COLOR_GRADIENT);
 	menu_colors->addItem(oj);
 
+	// infoviewer color
 	CColorChooser* chInfobarcolor = new CColorChooser(LOCALE_COLORMENU_BACKGROUND, &t.infobar_red,
 			&t.infobar_green, &t.infobar_blue, &t.infobar_alpha, colorSetupNotifier);
 	CColorChooser* chInfobarTextcolor = new CColorChooser(LOCALE_COLORMENU_TEXTCOLOR, &t.infobar_Text_red,
@@ -772,6 +777,17 @@ void COsdSetup::showOsdMenueColorSetup(CMenuWidget *menu_colors)
 	mf->setHint("", LOCALE_MENU_HINT_INFOBAR_TEXTCOLOR);
 	menu_colors->addItem(mf);
 
+	// infoviewer gradient top
+	oj = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_GRADIENT_TOP, &t.infobar_gradient_top, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	oj->setHint("", LOCALE_MENU_HINT_COLOR_GRADIENT);
+	menu_colors->addItem(oj);
+
+	// infoviewer gradient bottom
+	oj = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_GRADIENT_BOTTOM, &t.infobar_gradient_bottom, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	oj->setHint("", LOCALE_MENU_HINT_COLOR_GRADIENT);
+	menu_colors->addItem(oj);
+
+	// colored events
 	CColorChooser* chColored_Events = new CColorChooser(LOCALE_COLORMENU_TEXTCOLOR,	&t.colored_events_red,
 			&t.colored_events_green, &t.colored_events_blue, NULL, colorSetupNotifier);
 
@@ -975,7 +991,18 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS);
 	menu_infobar->addItem(mc);
 
+	// CA system frame
+	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_CASYSTEM_FRAME, &g_settings.casystem_frame, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.casystem_display < 2);
+	//mc->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS);
+	menu_infobar->addItem(mc);
+
 #if 0
+	// Dotmatrix
+	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_DOTMATRIX_DISPLAY, &g_settings.dotmatrix, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_DOTMATRIX);
+	menu_infobar->addItem(mc);
+#endif
+
 	// logo
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_DISP_LOG, &g_settings.infobar_show_channellogo, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_LOGO);

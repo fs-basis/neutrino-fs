@@ -106,6 +106,9 @@ struct SNeutrinoTheme
 	unsigned char infobar_Text_green;
 	unsigned char infobar_Text_blue;
 
+	int infobar_gradient_top;
+	int infobar_gradient_bottom;
+
 	unsigned char colored_events_alpha;
 	unsigned char colored_events_red;
 	unsigned char colored_events_green;
@@ -168,6 +171,7 @@ struct SNeutrinoSettings
 	int progressbar_timescale_yellow;
 	int progressbar_timescale_invert;
 	int casystem_display;
+	int casystem_frame;
 	int scrambled_message;
 	int volume_pos;
 	int volume_digits;
@@ -410,6 +414,8 @@ struct SNeutrinoSettings
 	int colored_events_channellist;
 	int colored_events_infobar;
 	int contrast_fonts;
+	int infobar_gradient_top;
+	int infobar_gradient_bottom;
 
 	int info_top_gradiant;
 	int info_bottom_gradiant;

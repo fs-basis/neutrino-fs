@@ -1490,6 +1490,7 @@ miscsettings.general General
 miscsettings.head Extended settings
 miscsettings.infobar Infobar
 miscsettings.infobar_casystem_display CA-System Display
+miscsettings.infobar_casystem_frame CA-Display with frame
 miscsettings.infobar_casystem_mini mini
 miscsettings.infobar_casystem_mode discreet
 miscsettings.infobar_colored_events Program colored
@@ -1502,6 +1503,8 @@ miscsettings.infobar_disp_5 Logo+signal
 miscsettings.infobar_disp_6 Logo+channel number+signal
 miscsettings.infobar_disp_log Logo
 miscsettings.infobar_dotmatrix_display Dotmatrix show
+miscsettings.infobar_gradient_bottom Gradient bottom
+miscsettings.infobar_gradient_top Gradient top
 miscsettings.infobar_logo_hdd_dir Logo dir
 miscsettings.infobar_sat_display Satellite display on infobar
 miscsettings.infobar_show show Info on EPG change

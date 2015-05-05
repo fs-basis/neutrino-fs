@@ -78,6 +78,7 @@ COsdSetup::COsdSetup(bool wizard_mode)
 	colorInfoclockNotifier = NULL;
 	screensaverNotifier = NULL;
 	channellistNotifier = NULL;
+//	infobarHddNotifier = NULL;
 	osd_menu = NULL;
 	submenu_menus = NULL;
 	mfFontFile = NULL;
@@ -676,6 +677,7 @@ int COsdSetup::showOsdSetup()
 	delete colorInfoclockNotifier;
 	delete screensaverNotifier;
 	delete channellistNotifier;
+//	delete infobarHddNotifier;
 	delete osd_menu;
 	return res;
 }
@@ -994,6 +996,8 @@ const CMenuOptionChooser::keyval HDD_STATFS_OPTIONS[HDD_STATFS_OPTION_COUNT] =
 void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 {
 	menu_infobar->addIntroItems(LOCALE_MISCSETTINGS_INFOBAR);
+
+//	infobarHddNotifier = new COnOffNotifier();
 
 	CMenuOptionChooser * mc;
 	CMenuForwarder * mf;

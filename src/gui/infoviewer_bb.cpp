@@ -453,7 +453,7 @@ void CInfoViewerBB::paintFoot(int w)
 
 void CInfoViewerBB::showIcon_SubT()
 {
-	return;
+//	return;
 	if (!is_visible)
 		return;
 	bool have_sub = false;

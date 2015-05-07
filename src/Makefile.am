@@ -119,7 +119,7 @@ neutrino_LDADD = \
 if ENABLE_WEBIF
 neutrino_LDADD += \
 	nhttpd/libnhttpd.a \
-	nhttpd/tuxboxapi/coolstream/libnhttpd_tuxboxapi.a \
+	nhttpd/tuxboxapi/libnhttpd_tuxboxapi.a \
 	nhttpd/yhttpd_mods/libyhttpdmods.a \
 	nhttpd/yhttpd_core/libyhttpd.a
 endif

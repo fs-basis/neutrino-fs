@@ -523,7 +523,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.progressbar_timescale_green = configfile.getInt32("progressbar_timescale_green", 100);
 	g_settings.progressbar_timescale_yellow = configfile.getInt32("progressbar_timescale_yellow", 70);
 	g_settings.progressbar_timescale_invert = configfile.getBool("progressbar_timescale_invert", false);
-	g_settings.infobar_show = configfile.getInt32("infobar_show", configfile.getInt32("infobar_cn", 1));
+	g_settings.infobar_show = configfile.getInt32("infobar_show", configfile.getInt32("infobar_cn", 0));
 	g_settings.infobar_show_channellogo   = 2; //configfile.getInt32("infobar_show_channellogo"  , 2 );
 	g_settings.infobar_progressbar   = 3; //configfile.getInt32("infobar_progressbar"  , 3 ); // between epg
 	g_settings.casystem_display = configfile.getInt32("casystem_display", 1 );//discreet ca mode default
@@ -541,7 +541,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.wzap_time = configfile.getInt32("wzap_time", 3 );
 
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
-	g_settings.radiotext_enable = configfile.getBool("radiotext_enable"          , false);
+	g_settings.radiotext_enable = configfile.getBool("radiotext_enable"          , true);
 	g_settings.radiotext_rass_dir = configfile.getString("radiotext_rass_dir", "/tmp/cache");
 	//audio
 	g_settings.audio_AnalogMode = configfile.getInt32( "audio_AnalogMode", 0 );

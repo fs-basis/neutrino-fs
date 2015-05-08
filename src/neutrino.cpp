@@ -4230,6 +4230,9 @@ void CNeutrinoApp::radioMode( bool rezap)
 			channelList->zapTo(0, true); /* force re-zap */
 	}
 	frameBuffer->showFrame("radiomode.jpg");
+
+	videoDecoder->SetSyncMode((AVSYNC_TYPE)AVSYNC_DISABLED);
+	audioDecoder->SetSyncMode((AVSYNC_TYPE)AVSYNC_DISABLED);
 }
 
 //switching from current mode to tv or radio mode or to optional parameter prev_mode

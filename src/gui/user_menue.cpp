@@ -387,11 +387,6 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 			menu_item = new CMenuForwarder(LOCALE_RASS_HEAD, true, NULL, neutrino, "rass", key, icon);
 			menu_item->setHint(NEUTRINO_ICON_HINT_RASS, LOCALE_MENU_HINT_RASS);
 			break;
-		case SNeutrinoSettings::ITEM_YOUTUBE:
-			keyhelper.get(&key,&icon);
-			menu_item = new CMenuForwarder(LOCALE_MOVIEPLAYER_YTPLAYBACK, true, NULL, neutrino, "ytplayback", key, icon);
-			menu_item->setHint(NEUTRINO_ICON_HINT_YTPLAY, LOCALE_MENU_HINT_YTPLAY);
-			break;
 		case SNeutrinoSettings::ITEM_FILEPLAY:
 			keyhelper.get(&key,&icon);
 			menu_item = new CMenuForwarder(LOCALE_MOVIEPLAYER_FILEPLAYBACK, true, NULL, neutrino, "fileplayback", key, icon);

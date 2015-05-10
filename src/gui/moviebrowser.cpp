@@ -66,7 +66,9 @@
 #include <driver/record.h>
 #include <driver/display.h>
 #include <system/helpers.h>
+#if 0
 #include <system/ytcache.h>
+#endif
 #include <zapit/debug.h>
 #include <driver/moviecut.h>
 
@@ -558,6 +560,7 @@ void CMovieBrowser::initGlobalSettings(void)
 	m_settings.browserRowWidth[8] = m_defaultRowWidth[m_settings.browserRowItem[8]];
 
 	m_settings.ts_only = 0;
+#if 0
 	m_settings.ytmode = cYTFeedParser::MOST_POPULAR;
 	m_settings.ytorderby = cYTFeedParser::ORDERBY_PUBLISHED;
 	m_settings.ytresults = 10;
@@ -566,6 +569,7 @@ void CMovieBrowser::initGlobalSettings(void)
 	m_settings.ytconcconn = 4;
 	m_settings.ytsearch_history_max = 0;
 	m_settings.ytsearch_history_size = 0;
+#endif
 }
 
 void CMovieBrowser::initFrames(void)
@@ -692,6 +696,7 @@ bool CMovieBrowser::loadSettings(MB_SETTINGS* settings)
 		settings->browserRowItem[i] = (MB_INFO_ITEM)configfile.getInt32("mb_browserRowItem_" + to_string(i), MB_INFO_MAX_NUMBER);
 		settings->browserRowWidth[i] = configfile.getInt32("mb_browserRowWidth_" + to_string(i), 50);
 	}
+#if 0
 	settings->ytmode = configfile.getInt32("mb_ytmode", cYTFeedParser::MOST_POPULAR);
 	settings->ytorderby = configfile.getInt32("mb_ytorderby", cYTFeedParser::ORDERBY_PUBLISHED);
 	settings->ytresults = configfile.getInt32("mb_ytresults", 10);
@@ -712,6 +717,7 @@ bool CMovieBrowser::loadSettings(MB_SETTINGS* settings)
 			settings->ytsearch_history.push_back(configfile.getString("mb_ytsearch_history_" + to_string(i), ""));
 	}
 	settings->ytsearch_history_size = settings->ytsearch_history.size();
+#endif
 	return (result);
 }
 
@@ -757,6 +763,7 @@ bool CMovieBrowser::saveSettings(MB_SETTINGS* settings)
 		configfile.setInt32("mb_browserRowItem_" + to_string(i), settings->browserRowItem[i]);
 		configfile.setInt32("mb_browserRowWidth_" + to_string(i), settings->browserRowWidth[i]);
 	}
+#if 0
 	configfile.setInt32("mb_ytmode", settings->ytmode);
 	configfile.setInt32("mb_ytorderby", settings->ytorderby);
 	configfile.setInt32("mb_ytresults", settings->ytresults);
@@ -775,6 +782,7 @@ bool CMovieBrowser::saveSettings(MB_SETTINGS* settings)
 	std::list<std::string>:: iterator it = settings->ytsearch_history.begin();
 	for (int i = 0; i < settings->ytsearch_history_size; i++, ++it)
 		configfile.setString("mb_ytsearch_history_" + to_string(i), *it);
+#endif
 
 	if (configfile.getModifiedFlag())
 		configfile.saveConfig(MOVIEBROWSER_SETTINGS_FILE);
@@ -864,12 +872,13 @@ int CMovieBrowser::exec(CMenuTarget* parent, const std::string & actionKey)
 		showMenu(true);
 		saveSettings(&m_settings);
 	}
+#if 0
 	else if (actionKey == "show_ytmenu")
 	{
 		showYTMenu(true);
 		saveSettings(&m_settings);
 	}
-
+#endif
 	return returnval;
 }
 
@@ -953,8 +962,10 @@ int CMovieBrowser::exec(const char* path)
 						m_currentStartPos = showStartPosSelectionMenu(); // display start menu m_currentStartPos =
 					}
 
+#if 0
 					if (show_mode == MB_SHOW_YT)
 						cYTCache::getInstance()->useCachedCopy(m_movieSelectionHandler);
+#endif
 
 					if (m_currentStartPos >= 0) {
 						playing_info = m_movieSelectionHandler;
@@ -965,6 +976,7 @@ int CMovieBrowser::exec(const char* path)
 						refresh();
 				}
 			}
+#if 0
 			else if ((show_mode == MB_SHOW_YT) && (msg == (neutrino_msg_t) g_settings.key_record) && m_movieSelectionHandler)
 			{
 				m_movieSelectionHandler->source = (show_mode == MB_SHOW_YT) ? MI_MOVIE_INFO::YT : MI_MOVIE_INFO::NK;
@@ -978,6 +990,7 @@ int CMovieBrowser::exec(const char* path)
 					hintBox.hide();
 				}
 			}
+#endif
 			else if (msg == CRCInput::RC_home)
 			{
 				loop = false;
@@ -1219,9 +1232,12 @@ void CMovieBrowser::refreshMovieInfo(void)
 		return;
 
 	std::string fname;
+#if 0
 	if (show_mode == MB_SHOW_YT) {
 		fname = m_movieSelectionHandler->tfile;
-	} else {
+	} else 
+#endif		
+	{
 		fname = getScreenshotName(m_movieSelectionHandler->file.Name, S_ISDIR(m_movieSelectionHandler->file.Mode));
 		if ((fname.empty()) && (m_movieSelectionHandler->file.Name.length() > 18)) {
 			std::string cover = m_movieSelectionHandler->file.Name;
@@ -1251,8 +1267,10 @@ void CMovieBrowser::refreshMovieInfo(void)
 	int lx = m_cBoxFrame.iX+m_cBoxFrameTitleRel.iX+m_cBoxFrameTitleRel.iWidth-logo_w-10;
 	int ly = m_cBoxFrameTitleRel.iY+m_cBoxFrame.iY+ (m_cBoxFrameTitleRel.iHeight-logo_h)/2;
 	short pb_hdd_offset = 104;
+#if 0
 	if (show_mode == MB_SHOW_YT)
 		pb_hdd_offset = 0;
+#endif
 	static uint64_t old_EpgId = 0;
 	if (CChannelLogo && (old_EpgId != m_movieSelectionHandler->epgEpgId >>16)) {
 		if (newHeader)
@@ -1299,8 +1317,10 @@ void CMovieBrowser::refreshMovieInfo(void)
 
 void CMovieBrowser::info_hdd_level(bool /* paint_hdd */)
 {
+#if 0
 	if (show_mode == MB_SHOW_YT)
 		return;
+#endif
 
 /*
 	struct statfs s;
@@ -1589,6 +1609,7 @@ void CMovieBrowser::refreshTitle(void)
 {
 	std::string title = m_textTitle.c_str();
 	const char *icon = NEUTRINO_ICON_MOVIEPLAYER;
+#if 0
 	if (show_mode == MB_SHOW_YT) {
 		title = g_Locale->getText(LOCALE_MOVIEPLAYER_YTPLAYBACK);
 		title += " : ";
@@ -1598,6 +1619,7 @@ void CMovieBrowser::refreshTitle(void)
 			title += " \"" + m_settings.ytsearch + "\"";
 		icon = NEUTRINO_ICON_YTPLAY;
 	}
+#endif
 
 	TRACE("[mb]->refreshTitle : %s\n", title.c_str());
 
@@ -1703,8 +1725,10 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	}
 	else if (msg == CRCInput::RC_blue)
 	{
+#if 0
 		if (show_mode == MB_SHOW_YT)
 			ytparser.Cleanup();
+#endif
 
 		loadMovies();
 		refresh();
@@ -1765,9 +1789,11 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	}
 	else if (msg == CRCInput::RC_setup)
 	{
+#if 0
 		if (show_mode == MB_SHOW_YT)
 			showYTMenu();
 		else
+#endif
 			showMenu();
 
 	}
@@ -1870,6 +1896,7 @@ void CMovieBrowser::markItem(CListFrame *list)
 
 void CMovieBrowser::scrollBrowserItem(bool next, bool page)
 {
+#if 0
 	int mode = -1;
 	if (show_mode == MB_SHOW_YT && next && ytparser.HaveNext() && m_pcBrowser->getSelectedLine() == m_pcBrowser->getLines() - 1)
 		mode = cYTFeedParser::NEXT;
@@ -1886,6 +1913,7 @@ void CMovieBrowser::scrollBrowserItem(bool next, bool page)
 		g_RCInput->clearRCMsg();
 		return;
 	}
+#endif
 	if (next)
 		page ? m_pcBrowser->scrollPageDown(1) : m_pcBrowser->scrollLineDown(1);
 	else
@@ -2633,12 +2661,19 @@ void CMovieBrowser::loadMovies(bool doRefresh)
 {
 	TRACE("[mb] loadMovies: \n");
 
-	CHintBox loadBox((show_mode == MB_SHOW_YT) ? LOCALE_MOVIEPLAYER_YTPLAYBACK : LOCALE_MOVIEBROWSER_HEAD, g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(
+#if 0
+					(show_mode == MB_SHOW_YT) ? LOCALE_MOVIEPLAYER_YTPLAYBACK : 
+#endif 
+																				LOCALE_MOVIEBROWSER_HEAD, g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 
+#if 0
 	if (show_mode == MB_SHOW_YT) {
 		loadYTitles(m_settings.ytmode, m_settings.ytsearch, m_settings.ytvid);
-	} else {
+	} else
+#endif
+	{
 		loadAllTsFileNamesFromStorage(); // P1
 		m_seriename_stale = true; // we reloded the movie info, so make sure the other list are updated later on as well
 		updateSerienames();
@@ -3136,9 +3171,12 @@ bool CMovieBrowser::getMovieInfoItem(MI_MOVIE_INFO& movie_info, MB_INFO_ITEM ite
 			break;
 
 		case MB_INFO_RECORDDATE: 			// 		= 13,
+#if 0
 			if (show_mode == MB_SHOW_YT) {
 				*item_string = movie_info.ytdate;
-			} else {
+			} else
+#endif
+			{
 				tm_tmp = localtime(&movie_info.file.Time);
 				snprintf(str_tmp, sizeof(str_tmp),"%02d.%02d.%02d",tm_tmp->tm_mday,(tm_tmp->tm_mon) + 1,tm_tmp->tm_year >= 100 ? tm_tmp->tm_year-100 : tm_tmp->tm_year);
 				*item_string = str_tmp;
@@ -3230,7 +3268,7 @@ void CMovieBrowser::autoFindSerie(void)
 		}
 	}
 }
-
+#if 0
 void CMovieBrowser::loadYTitles(int mode, std::string search, std::string id)
 {
 	printf("CMovieBrowser::loadYTitles: parsed %d old mode %d new mode %d region %s\n", ytparser.Parsed(), ytparser.GetFeedMode(), m_settings.ytmode, m_settings.ytregion.c_str());
@@ -3627,7 +3665,7 @@ bool CMovieBrowser::showYTMenu(bool calledExternally)
 	refresh();
 	return true;
 }
-
+#endif
 CMenuSelector::CMenuSelector(const char * OptionName, const bool Active, char * OptionValue, int* ReturnInt,int ReturnIntValue) : CMenuItem()
 {
 	height     = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();

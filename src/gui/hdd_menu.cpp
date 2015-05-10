@@ -456,7 +456,7 @@ void CHDDMenuHandler::setRecordPath(std::string &dev)
 		CRecordManager::getInstance()->SetDirectory(g_settings.network_nfs_recordingdir);
 		if(g_settings.timeshiftdir.empty())
 		{
-			std::string timeshiftDir = g_settings.network_nfs_recordingdir + "/.timeshift";
+			std::string timeshiftDir = g_settings.timeshiftdir + "/.timeshift";
 			safe_mkdir(timeshiftDir.c_str());
 			printf("New timeshift dir: %s\n", timeshiftDir.c_str());
 			CRecordManager::getInstance()->SetTimeshiftDirectory(timeshiftDir);

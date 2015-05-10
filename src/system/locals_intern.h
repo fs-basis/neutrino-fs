@@ -1769,7 +1769,6 @@ const char * locale_real_names[] =
 	"movieplayer.tshelp8",
 	"movieplayer.tshelp9",
 	"movieplayer.tsplayback",
-	"movieplayer.ytplayback",
 	"mpkey.audio",
 	"mpkey.bookmark",
 	"mpkey.forward",

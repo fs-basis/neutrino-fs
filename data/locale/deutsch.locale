@@ -281,6 +281,7 @@ clock_size_height Höhe der Anzeige
 clock_switch_off Uhr ausblenden
 clock_switch_on Uhr einblenden
 color.gradient Farbverlauf
+color.gradient_c2c Farbe zum Farbverlauf
 colorchooser.alpha alpha
 colorchooser.blue blau
 colorchooser.green grün

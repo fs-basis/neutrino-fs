@@ -66,7 +66,7 @@ DMX::DMX()
 	pID = 0;
 	cache = true;
 	dmx_num = 0;
-	dmxBufferSizeInKB = 512;
+	dmxBufferSizeInKB = 1024;
 	init();
 	eit_version = 0;
 	dmx = NULL;
@@ -74,6 +74,7 @@ DMX::DMX()
 
 void DMX::init()
 {
+	fd = -1;
 	lastChanged = time_monotonic();
 	filter_index = 0;
 	real_pauseCounter = 0;
@@ -130,6 +131,7 @@ void DMX::closefd(void)
 		dmx = NULL;
 #endif
 		}
+		fd = -1;
 	}
 }
 
@@ -504,6 +506,7 @@ int DMX::immediate_start(void)
 		dmx = new cDemux(dmx_num);
 		dmx->Open(DMX_PSI_CHANNEL, NULL, dmxBufferSizeInKB*1024UL);
 	}
+	fd = 1;
 
 	/* setfilter() only if this is no dummy filter... */
 	if (filters[filter_index].filter && filters[filter_index].mask)

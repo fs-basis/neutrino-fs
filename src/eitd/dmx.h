@@ -53,6 +53,7 @@ class DMX
 {
 protected:
 
+	int		fd;
 	cDemux *	dmx;
 	int		dmx_num;
 	unsigned short  pID;
@@ -68,7 +69,7 @@ protected:
 	bool		seen_section;
 
 	inline bool isOpen(void) {
-		return (dmx != NULL);
+		return (fd != -1);
 	}
 
 	int immediate_start(void); /* mutex must be locked before and unlocked after this method */

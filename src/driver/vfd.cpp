@@ -66,7 +66,7 @@ extern CRemoteControl * g_RemoteControl; /* neutrino.cpp */
 #define VFDLENGTH 16
 #endif
 
-#define SCROLL_TIME 100000
+#define SCROLL_TIME 350000
 
 bool invert = false;
 char g_str[64];

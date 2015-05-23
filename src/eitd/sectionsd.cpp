@@ -1504,13 +1504,14 @@ void CTimeThread::run()
 		sleep_time = ntprefresh * 60;
 		if(success) {
 			if(dvb_time) {
-				setSystemTime(dvb_time);
+				if (dvb_time > (time_t) 1420074000) /*1420074000 - 01.01.2015*/
+					setSystemTime(dvb_time);
 				/* retry a second time immediately after start, to get TOT ? */
 				if(first_time)
 					sleep_time = 5;
 			}
-			/* in case of wrong TDT date, dont send time is set, 1325376000 - 01.01.2012 */
-			if(time_ntp || (dvb_time > (time_t) 1325376000)) {
+			/* in case of wrong TDT date, dont send time is set, 1420074000 - 01.01.2015 */
+			if(time_ntp || (dvb_time > (time_t) 1420074000)) {
 				sendTimeEvent(time_ntp, dvb_time);
 				xprintf("%s: Time set via %s, going to sleep for %d seconds.\n", name.c_str(),
 						time_ntp ? "NTP" : first_time ? "DVB (TDT)" : "DVB (TOT)", sleep_time);

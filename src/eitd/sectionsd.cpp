@@ -102,7 +102,7 @@ static bool messaging_zap_detected = false;
 //NTP-Config
 #define CONF_FILE CONFIGDIR "/neutrino.conf"
 
-std::string ntp_system_cmd_prefix = find_executable("rdate") + "-s ";
+std::string ntp_system_cmd_prefix = "/usr/sbin/rdate -s "; // from busybox
 
 std::string ntp_system_cmd;
 std::string ntpserver;
@@ -1473,7 +1473,7 @@ void CTimeThread::run()
 			 * shutdown" hack on with libcoolstream... :-( */
 			rc = dmx->Read(static_buf, MAX_SECTION_LENGTH, timeoutInMSeconds);
 #else
-			time_t start = time_monotonic_ms();
+			time_t m_start = time_monotonic_ms();
 			/* speed up shutdown by looping around Read() */
 			struct pollfd ufds;
 			ufds.events = POLLIN|POLLPRI|POLLERR;
@@ -1489,7 +1489,7 @@ void CTimeThread::run()
 						rc = dmx->Read(static_buf, MAX_SECTION_LENGTH, 10);
 					DMX::unlock();
 				}
-			} while (running && rc == 0 && (time_monotonic_ms() < timeoutInMSeconds + start));
+			} while (running && rc == 0 && (time_monotonic_ms() < timeoutInMSeconds + m_start));
 #endif
 			xprintf("%s: getting DVB time done : %d messaging_neutrino_sets_time %d\n", name.c_str(), rc, messaging_neutrino_sets_time);
 			if (rc > 0) {

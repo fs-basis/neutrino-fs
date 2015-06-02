@@ -195,9 +195,6 @@ void CMoviePlayerGui::Init(void)
 	showStartingHint = false;
 
 	iso_file = false;
-#if 0
-	lock_subs = false;
-#endif
 	bgThread = 0;
 	info_1 = "";
 	info_2 = "";
@@ -758,7 +755,7 @@ void* CMoviePlayerGui::bgPlayThread(void *arg)
 				eof++;
 			else
 				eof = 0;
-			if (eof > 5) {
+			if (eof > 2) {
 				printf("CMoviePlayerGui::bgPlayThread: playback stopped, try to rezap...\n");
 				t_channel_id * chid = new t_channel_id;
 				*chid = mp->movie_info.epgId;
@@ -772,9 +769,6 @@ void* CMoviePlayerGui::bgPlayThread(void *arg)
 		bgmutex.unlock();
 		if (res == 0)
 			break;
-#if 0
-		mp->showSubtitle(0);
-#endif
 	}
 	printf("%s: play end...\n", __func__);
 	mp->PlayFileEnd();
@@ -2189,7 +2183,7 @@ extern "C" {
 #include <libavcodec/avcodec.h>
 }
 
-void CMoviePlayerGui::clearSubtitle(bool lock)
+void CMoviePlayerGui::clearSubtitle()
 {
 	if ((max_x-min_x > 0) && (max_y-min_y > 0))
 		frameBuffer->paintBackgroundBoxRel(min_x, min_y, max_x-min_x, max_y-min_y);
@@ -2199,7 +2193,6 @@ void CMoviePlayerGui::clearSubtitle(bool lock)
 	max_x = CFrameBuffer::getInstance()->getScreenX();
 	max_y = CFrameBuffer::getInstance()->getScreenY();
 	end_time = 0;
-	lock_subs = lock;
 }
 
 fb_pixel_t * simple_resize32(uint8_t * orgin, uint32_t * colors, int nb_colors, int ox, int oy, int dx, int dy);
@@ -2238,15 +2231,6 @@ bool CMoviePlayerGui::convertSubtitle(std::string &text)
 
 void CMoviePlayerGui::showSubtitle(neutrino_msg_data_t data)
 {
-	AVSubtitle * sub = (AVSubtitle *) data;
-	if (lock_subs) {
-		if (sub) {
-			avsubtitle_free(sub);
-			delete sub;
-		}
-		return;
-	}
-
 	if (!data) {
 		if (end_time && time_monotonic_ms() > end_time) {
 			printf("************************* hide subs *************************\n");
@@ -2254,6 +2238,7 @@ void CMoviePlayerGui::showSubtitle(neutrino_msg_data_t data)
 		}
 		return;
 	}
+	AVSubtitle * sub = (AVSubtitle *) data;
 
 	printf("************************* EVT_SUBT_MESSAGE: num_rects %d fmt %d *************************\n",  sub->num_rects, sub->format);
 #if 0

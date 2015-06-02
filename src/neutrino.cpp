@@ -950,7 +950,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	//Movie-Player
 	g_settings.movieplayer_repeat_on = configfile.getInt32("movieplayer_repeat_on", CMoviePlayerGui::REPEAT_OFF);
-	g_settings.youtube_dev_id = configfile.getString("youtube_dev_id","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
 	//Filebrowser
 	g_settings.filebrowser_showrights =  configfile.getInt32("filebrowser_showrights", 1);
@@ -1467,7 +1466,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	//Movie-Player
 	configfile.setInt32( "movieplayer_repeat_on", g_settings.movieplayer_repeat_on );
-	configfile.setString( "youtube_dev_id", g_settings.youtube_dev_id );
 
 	//Filebrowser
 	configfile.setInt32("filebrowser_showrights", g_settings.filebrowser_showrights);
@@ -2669,11 +2667,6 @@ void CNeutrinoApp::RealRun(CMenuWidget &mainMenu)
 				if (g_settings.recording_type != CNeutrinoApp::RECORDING_OFF)
 					CRecordManager::getInstance()->exec(NULL, "Record");
 			}
-#if 0
-			else if ((mode == mode_webtv) && msg == (neutrino_msg_t) g_settings.mpkey_subtitle) {
-				CMoviePlayerGui::getInstance().selectSubtitle();
-			}
-#endif
 			/* after sensitive key bind, check user menu */
 			else if (usermenu.showUserMenu(msg)) {
 			}
@@ -3038,11 +3031,6 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		}
 		return messages_return::handled;
 	}
-#if 0
-	if (mode == mode_webtv && msg == NeutrinoMessages::EVT_SUBT_MESSAGE) {
-		CMoviePlayerGui::getInstance().showSubtitle(data);
-	}
-#endif
 	if(msg == NeutrinoMessages::EVT_ZAP_COMPLETE) {
 		CZapit::getInstance()->GetAudioMode(g_settings.audio_AnalogMode);
 		if(g_settings.audio_AnalogMode < 0 || g_settings.audio_AnalogMode > 2)
@@ -4831,10 +4819,6 @@ void CNeutrinoApp::StopSubtitles(bool enable_glcd_mirroring)
 	if (enable_glcd_mirroring)
 		nGLCD::MirrorOSD(g_settings.glcd_mirror_osd);
 #endif
-#if 0
-	if (mode == mode_webtv)
-		CMoviePlayerGui::getInstance().clearSubtitle(true);
-#endif
 }
 
 void CNeutrinoApp::StartSubtitles(bool show)
@@ -4853,10 +4837,6 @@ void CNeutrinoApp::StartSubtitles(bool show)
 		return;
 	dvbsub_start(0);
 	tuxtx_pause_subtitle(false);
-#if 0
-	if (mode == mode_webtv)
-		CMoviePlayerGui::getInstance().clearSubtitle(false);
-#endif 
 }
 
 void CNeutrinoApp::SelectSubtitles()

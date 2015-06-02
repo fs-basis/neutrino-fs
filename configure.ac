@@ -311,7 +311,6 @@ lib/libeventserver/Makefile
 lib/libmd5sum/Makefile
 lib/libnet/Makefile
 lib/xmltree/Makefile
-lib/jsoncpp/Makefile
 lib/sectionsdclient/Makefile
 lib/timerdclient/Makefile
 lib/libcoolstream/Makefile

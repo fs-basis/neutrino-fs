@@ -183,9 +183,9 @@ fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t
 	memset((void*)gradientBuf, '\0', bSize * sizeof(fb_pixel_t));
 
 	int start_box = 0;
-	int end_box = bSize;
+	int end_box = ((mode == gradientDark2Light2Dark) || (mode == gradientLight2Dark2Light)) ? bSize/2 : bSize;
 
-	if (mode == gradientDark2Light) {
+	if ((mode == gradientDark2Light2Dark) || (mode == gradientDark2Light)) {
 		fb_pixel_t temp_col = start_col;
 		start_col = end_col;
 		end_col = temp_col;
@@ -201,7 +201,7 @@ fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t
 	uint8_t end_g  = (uint8_t)((end_col & 0x0000FF00) >>  8);
 	uint8_t end_b  = (uint8_t) (end_col & 0x000000FF);
 
-	float steps = (float) bSize;
+	float steps = (float) end_box;
 
 	float trStep = (float)(end_tr - start_tr) / steps;
 	float rStep = (float)(end_r - start_r) / steps;
@@ -220,6 +220,23 @@ fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t
 			         ((g  <<  8) & 0x0000FF00) |
 			         ( b         & 0x000000FF);
 	}
+
+	if ((mode == gradientDark2Light2Dark) || (mode == gradientLight2Dark2Light)) {
+		end_box = bSize - end_box;
+		for (int i = start_box; i < end_box; i++) {
+
+			uint8_t tr = limitChar((int)((float)end_tr + trStep*(float)i));
+			uint8_t r  = limitChar((int)((float)end_r + rStep*(float)i));
+			uint8_t g  = limitChar((int)((float)end_g + gStep*(float)i));
+			uint8_t b  = limitChar((int)((float)end_b + bStep*(float)i));
+
+			gradientBuf[bSize-i-1] = ((tr << 24) & 0xFF000000) |
+				         ((r  << 16) & 0x00FF0000) |
+				         ((g  <<  8) & 0x0000FF00) |
+				         ( b         & 0x000000FF);
+		}
+	}
+
 	return gradientBuf;
 }
 

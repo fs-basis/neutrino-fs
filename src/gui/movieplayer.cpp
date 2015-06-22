@@ -294,13 +294,6 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 		moviebrowser->setMode(MB_SHOW_RECORDS);
 		wakeup_hdd(g_settings.network_nfs_recordingdir.c_str());
 	}
-#if 0
-	else if (actionKey == "ytplayback") {
-		isMovieBrowser = true;
-		moviebrowser->setMode(MB_SHOW_YT);
-		isYT = true;
-	}
-#endif
 	else if (actionKey == "fileplayback") {
 		wakeup_hdd(g_settings.network_nfs_moviedir.c_str());
 	}
@@ -596,12 +589,6 @@ bool CMoviePlayerGui::prepareFile(CFile *file)
 			unsigned idx = filelist_it - filelist.begin();
 			p_movie_info = milist[idx];
 		}
-#if 0
-		if (isYT) {
-			file_name = file->Url;
-			is_file_player = true;
-		}
-#endif
 		fillPids();
 	}
 	if (file->getType() == CFile::FILE_ISO)

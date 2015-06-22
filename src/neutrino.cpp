@@ -111,10 +111,6 @@
 #endif
 #include <system/set_threadname.h>
 
-#if 0
-#include <system/ytcache.h>
-#endif
-
 #include <audio.h>
 #include <ca_cs.h>
 #include <cs_api.h>

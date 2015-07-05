@@ -127,7 +127,7 @@ private:
 
 	int ChannelList_Rec;
 
-	CComponentsChannelLogoScalable* CChannelLogo;
+	CComponentsChannelLogo* CChannelLogo;
 	bool headerNew;
 
 	void paintDetails(int index);

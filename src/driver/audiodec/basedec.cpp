@@ -43,7 +43,6 @@
 #ifdef ENABLE_FFMPEGDEC
 #include "ffmpegdec.h"
 #else
-#include "ffmpegdec.h"
 #include "cdrdec.h"
 #include "mp3dec.h"
 #include "oggdec.h"
@@ -70,15 +69,8 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in,
 										unsigned int* const secondsToSkip)
 {
 	RetCode Status = OK;
-	FILE* fp;
 
-	if(( in->FileType == CFile::STREAM_AUDIO ) && (in->Filename.find(".flv") != string::npos))
-	{
-		fp = fopen( in->Filename.c_str(), "rc" );
-	}
-	else
-		fp = fopen( in->Filename.c_str(), "r" );
-
+	FILE* fp = fopen( in->Filename.c_str(), "r" );
 	if ( fp == NULL )
 	{
 		fprintf( stderr, "Error opening file %s for decoding.\n",
@@ -106,12 +98,6 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in,
 				Status = COggDec::getInstance()->Decoder( fp, OutputFd, state,
 						&in->MetaData, t,
 						secondsToSkip );
-			else if (ftype(fp, "flv")) {
-				Status = CFfmpegDec::getInstance()->Decoder(fp, OutputFd, state,
-						&in->MetaData, t,
-						secondsToSkip );
-				in->MetaData.type = CFile::FILE_UNKNOWN;
-			}
 			else
 				Status = CMP3Dec::getInstance()->Decoder( fp, OutputFd, state,
 						&in->MetaData, t,
@@ -139,12 +125,6 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in,
 					&in->MetaData, t,
 					secondsToSkip );
 #endif
-		else if (in->FileType == CFile::FILE_FLV) {
-			Status = CFfmpegDec::getInstance()->Decoder(fp, OutputFd, state,
-					&in->MetaData, t,
-					secondsToSkip );
-			in->MetaData.type = CFile::FILE_UNKNOWN;
-		}
 		else
 		{
 			fprintf( stderr, "DecoderBase: Supplied filetype is not " );
@@ -229,7 +209,6 @@ bool CBaseDec::GetMetaDataBase(CAudiofile* const in, const bool nice)
 #ifndef ENABLE_FFMPEGDEC
 	if (in->FileType == CFile::FILE_MP3 || in->FileType == CFile::FILE_OGG
 			|| in->FileType == CFile::FILE_WAV || in->FileType == CFile::FILE_CDR
-			|| in->FileType == CFile::FILE_FLV
 #ifdef ENABLE_FLAC
 			|| in->FileType == CFile::FILE_FLAC
 #endif
@@ -273,16 +252,6 @@ bool CBaseDec::GetMetaDataBase(CAudiofile* const in, const bool nice)
 				Status = FlacDec.GetMetaData(fp, nice, &in->MetaData);
 			}
 #endif
-			else if (in->FileType == CFile::FILE_FLV)
-			{
-				struct stat st;
-				if (!fstat(fileno(fp), &st))
-					in->MetaData.filesize = st.st_size;
-				in->MetaData.type = in->FileType;
-
-				CFfmpegDec d;
-				Status = d.GetMetaData(fp, nice, &in->MetaData);
-			}
 #else
 			struct stat st;
 			if (!fstat(fileno(fp), &st))

@@ -28,7 +28,6 @@
 #include <config.h>
 #endif
 
-#define __STDC_CONSTANT_MACROS
 #define __STDC_LIMIT_MACROS
 #include <stdint.h>
 #include <global.h>
@@ -90,8 +89,14 @@ extern CInfoClock *InfoClock;
 #define ISO_MOUNT_POINT "/media/iso"
 
 CMoviePlayerGui* CMoviePlayerGui::instance_mp = NULL;
+CMoviePlayerGui* CMoviePlayerGui::instance_bg = NULL;
+OpenThreads::Mutex CMoviePlayerGui::mutex;
 OpenThreads::Mutex CMoviePlayerGui::bgmutex;
 OpenThreads::Condition CMoviePlayerGui::cond;
+pthread_t CMoviePlayerGui::bgThread;
+cPlayback *CMoviePlayerGui::playback;
+CMovieBrowser* CMoviePlayerGui::moviebrowser;
+CBookmarkManager * CMoviePlayerGui::bookmarkmanager;
 
 CMoviePlayerGui& CMoviePlayerGui::getInstance()
 {
@@ -99,6 +104,7 @@ CMoviePlayerGui& CMoviePlayerGui::getInstance()
 	if (!instance_mp)
 	{
 		instance_mp = new CMoviePlayerGui();
+		instance_bg = new CMoviePlayerGui();
 		printf("[neutrino CMoviePlayerGui] Instance created...\n");
 	}
 	return *instance_mp;
@@ -112,13 +118,22 @@ CMoviePlayerGui::CMoviePlayerGui()
 CMoviePlayerGui::~CMoviePlayerGui()
 {
 	//playback->Close();
-	stopPlayBack();
+	if (this == instance_mp)
+		stopPlayBack();
 	delete moviebrowser;
+	moviebrowser = NULL;
 	delete filebrowser;
+	filebrowser = NULL;
 	delete bookmarkmanager;
+	bookmarkmanager = NULL;
 	delete playback;
-	filelist.clear();
+	playback = NULL;
+	if (this == instance_mp) {
+		delete instance_bg;
+		instance_bg = NULL;
+	}
 	instance_mp = NULL;
+	filelist.clear();
 }
 
 #if !HAVE_COOL_HARDWARE
@@ -138,9 +153,12 @@ void CMoviePlayerGui::Init(void)
 
 	frameBuffer = CFrameBuffer::getInstance();
 
-	playback = new cPlayback(0);
-	moviebrowser = new CMovieBrowser();
-	bookmarkmanager = new CBookmarkManager();
+	if (playback == NULL)
+		playback = new cPlayback(0);
+	if (moviebrowser == NULL)
+		moviebrowser = new CMovieBrowser();
+	if (bookmarkmanager == NULL)
+		bookmarkmanager = new CBookmarkManager();
 
 	tsfilefilter.addFilter("ts");
 #if HAVE_TRIPLEDRAGON
@@ -633,6 +651,7 @@ bool CMoviePlayerGui::SelectFile()
 		p_movie_info = CRecordManager::getInstance()->GetMovieInfo(live_channel_id);
 		file_name = CRecordManager::getInstance()->GetFileName(live_channel_id) + ".ts";
 		fillPids();
+		makeFilename();
 		ret = true;
 	}
 #if 0 // TODO
@@ -800,32 +819,32 @@ bool CMoviePlayerGui::PlayBackgroundStart(const std::string &file, const std::st
 	}
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
 
-	Cleanup();
-	ClearFlags();
-	ClearQueue();
+	instance_bg->Cleanup();
+	instance_bg->ClearFlags();
+	instance_bg->ClearQueue();
 
-	isWebTV = true;
-	is_file_player = true;
-	isHTTP = true;
+	instance_bg->isWebTV = true;
+	instance_bg->is_file_player = true;
+	instance_bg->isHTTP = true;
 
-	file_name = file;
-	pretty_name = name;
+	instance_bg->file_name = file;
+	instance_bg->pretty_name = name;
 
-	movie_info.epgTitle = name;
-	movie_info.epgChannel = file;
-	movie_info.epgId = chan;
-	p_movie_info = &movie_info;
+	instance_bg->movie_info.epgTitle = name;
+	instance_bg->movie_info.epgChannel = file;
+	instance_bg->movie_info.epgId = chan;
+	instance_bg->p_movie_info = &movie_info;
 
 	numpida = 0; currentapid = 0;
 	numpids = 0;
 	numpidt = 0; currentttxsub = "";
 
-	bool res = PlayFileStart();
+	bool res = instance_bg->PlayFileStart();
 	if (res) {
-		if (pthread_create (&bgThread, 0, CMoviePlayerGui::bgPlayThread, this))
+		if (pthread_create (&bgThread, 0, CMoviePlayerGui::bgPlayThread, instance_bg))
 			fprintf(stderr, "ERROR: pthread_create(%s)\n", __func__);
 	} else
-		PlayFileEnd();
+		instance_bg->PlayFileEnd();
 	printf("%s: this %p started: res %d thread %lx\n", __func__, this, res, bgThread);fflush(stdout);
 	return res;
 }
@@ -981,7 +1000,13 @@ bool CMoviePlayerGui::PlayFileStart(void)
 			startposition = -1;
 			int i;
 			int towait = (timeshift == TSHIFT_MODE_ON) ? TIMESHIFT_SECONDS+1 : TIMESHIFT_SECONDS;
-			for (i = 0; i < 500; i++) {
+			int cnt = 500;
+			if (IS_WEBTV(movie_info.epgId)) {
+				videoDecoder->setBlank(false);
+				cnt = 200;
+				towait = 20;
+			}
+			for(i = 0; i < cnt; i++) {
 				playback->GetPosition(position, duration);
 				startposition = (duration - position);
 
@@ -991,6 +1016,7 @@ bool CMoviePlayerGui::PlayFileStart(void)
 
 				usleep(20000);
 			}
+			printf("CMoviePlayerGui::PlayFile: waiting for data: i=%d position %d duration %d (%d), start %d\n", i, position, duration, towait, startposition);
 			if (timeshift == TSHIFT_MODE_REWIND) {
 				startposition = duration;
 			} else {
@@ -1007,12 +1033,13 @@ bool CMoviePlayerGui::PlayFileStart(void)
 				if (timeshift == TSHIFT_MODE_ON)
 					startposition = 0;
 				else
-					startposition = duration - TIMESHIFT_SECONDS*1000;
+					startposition = std::max(0, duration - towait*1000);
 			}
 			printf("******************* Timeshift %d, position %d, seek to %d seconds\n", timeshift, position, startposition/1000);
 		}
-		if (/* !is_file_player && */ startposition >= 0)//FIXME no jump for file at start yet
+		if (/* !is_file_player && */ startposition >= 0)
 			playback->SetPosition(startposition, true);
+
 
 		/* playback->Start() starts paused */
 		if (timeshift == TSHIFT_MODE_REWIND) {

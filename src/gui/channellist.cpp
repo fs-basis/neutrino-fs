@@ -2151,6 +2151,10 @@ void CChannelList::paintHead()
 	header->paint(CC_SAVE_SCREEN_NO);
 }
 
+	CComponentsHeader* CChannelList::getHeaderObject()
+{
+	return header;}
+
 void CChannelList::paintBody()
 {
 	int icon_w = 0, icon_h = 0;

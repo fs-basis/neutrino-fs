@@ -1034,6 +1034,8 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	ca_dotmatrix->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS_DOTMATRIX);
 	menu_infobar->addItem(ca_dotmatrix);
 
+	menu_infobar->addItem(GenericMenuSeparator);
+
 	// logo directory
 	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_INFOBAR_LOGO_HDD_DIR, true, g_settings.logo_hdd_dir, this, "logo_dir");
 	mf->setHint("", LOCALE_MENU_HINT_INFOBAR_LOGO_DIR);

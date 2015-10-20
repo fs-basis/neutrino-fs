@@ -273,7 +273,8 @@ void CInfoViewer::initClock()
 
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
-		clock->setClockFormat("%H:%M", "%H.%M");
+		clock->setClockFormat("%H:%M", "%H %M");
+		clock->setClockIntervall(1);
 	if (time_width)
 			clock->setWidth(time_width);
 	}

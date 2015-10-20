@@ -1017,29 +1017,24 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	CMenuOptionChooser * mc;
 	CMenuForwarder * mf;
 
-#if 0
-	// CA system frame
-	ca_frame = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_CASYSTEM_FRAME, &g_settings.casystem_frame, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.casystem_display < 2);
-	ca_frame->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS_FRAME);
-	menu_infobar->addItem(ca_frame);
 
-	menu_infobar->addItem(GenericMenuSeparator);
-#endif
 
 	// CA system
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_CASYSTEM_DISPLAY, &g_settings.casystem_display, INFOBAR_CASYSTEM_MODE_OPTIONS, INFOBAR_CASYSTEM_MODE_OPTION_COUNT, true, this);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS);
 	menu_infobar->addItem(mc);
 
-	// CA system frame
-	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_CASYSTEM_FRAME, &g_settings.casystem_frame, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.casystem_display < 2);
-	//mc->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS);
-	menu_infobar->addItem(mc);
 
 	// CA system dotmatrix
 	ca_dotmatrix = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_CASYSTEM_DOTMATRIX, &g_settings.casystem_dotmatrix, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.casystem_display < 2);
 	ca_dotmatrix->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS_DOTMATRIX);
 	menu_infobar->addItem(ca_dotmatrix);
+
+
+	// CA system frame
+	ca_frame = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_CASYSTEM_FRAME, &g_settings.casystem_frame, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.casystem_display < 2);
+	ca_frame->setHint("", LOCALE_MENU_HINT_INFOBAR_CASYS_FRAME);
+	menu_infobar->addItem(ca_frame);
 
 	// logo directory
 	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_INFOBAR_LOGO_HDD_DIR, true, g_settings.logo_hdd_dir, this, "logo_dir");

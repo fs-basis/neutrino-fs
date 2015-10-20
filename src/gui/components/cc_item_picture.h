@@ -32,6 +32,7 @@
 #endif
 
 #include "cc_base.h"
+#include "cc_item.h"
 #include <string>
 #include <driver/pictureviewer/pictureviewer.h>
 
@@ -53,7 +54,7 @@ class CComponentsPicture : public CComponentsItem
 		int dx, dy;
 
 		///property: name of image (without extensionn) full path to image (with extension), icon names to find in /widget/icons.h, icons will paint never scaled
-		std::string pic_name;
+		std::string pic_name, pic_name_old;
  
 		///indicate that image was sucessful painted
 		bool is_image_painted;
@@ -152,8 +153,10 @@ class CComponentsPicture : public CComponentsItem
 
 		///paint item
 		virtual void paint(bool do_save_bg = CC_SAVE_SCREEN_YES);
-		///hide item
-		virtual void hide(bool no_restore = false);
+		///hide item, see also CComponents::hide();
+		virtual void hide();
+		
+		virtual bool hasChanges();
 };
 
 class 	CComponentsPictureScalable : public CComponentsPicture

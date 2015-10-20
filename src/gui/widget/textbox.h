@@ -180,8 +180,9 @@ class CTextBox
 		void    refresh(void);
 		void    scrollPageDown(const int pages);
 		void    scrollPageUp(const int pages);
-		void    enableBackgroundPaint(bool mode = true){m_nPaintBackground = mode;};
-		void    enableSaveScreen(bool mode = true){m_SaveScreen = mode;};
+		void    enableBackgroundPaint(bool mode = true){m_nPaintBackground = mode;}
+		//enable screen saving behind chars, is required for transparent text paint, returns true if mode was changed
+		bool    enableSaveScreen(bool mode = true);
 		bool	setText(const std::string* newText, int max_width = 0, bool force_repaint = true);
 		void 	setTextColor(fb_pixel_t color_text){ m_textColor = color_text;};
 		void	setBackGroundRadius(const int radius, const int type = CORNER_ALL){m_nBgRadius = radius; m_nBgRadiusType = type;};
@@ -208,6 +209,7 @@ class CTextBox
 		inline int	getTextMode()			{return m_nMode;};
 		void paint (void);
 		void hide (void);
+		bool clearScreenBuffer();
 		void blit(bool b) { m_blit = b; };
 };
 

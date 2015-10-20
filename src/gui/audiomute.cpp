@@ -5,7 +5,7 @@
 	audioMute - Neutrino-GUI
 	Copyright (C) 2013 M. Liebmann (micha-bbg)
 	CComponents implementation
-	Copyright (C) 2013 Thilo Graf
+	Copyright (C) 2013-2015 Thilo Graf
 
 	License: GPL
 
@@ -71,7 +71,7 @@ void CAudioMute::AudioMute(int newValue, bool isEvent)
 			if (do_paint_mute_icon)
 			{
 				frameBuffer->fbNoCheck(true);
-				this->hide(true);
+				this->hide();
 				frameBuffer->fbNoCheck(false);
 			}
 			frameBuffer->setFbArea(CFrameBuffer::FB_PAINTAREA_MUTEICON1);
@@ -82,13 +82,22 @@ void CAudioMute::AudioMute(int newValue, bool isEvent)
 
 		frameBuffer->fbNoCheck(true);
 		if (newValue) {
-			if (do_paint_mute_icon)
+			if (do_paint_mute_icon){
 				this->paint();
+				if (!CInfoClock::getInstance()->isBlocked()) //paint clock before it's running but if no blocked, this avoids delay
+					CInfoClock::getInstance()->paint();
+			}
 			frameBuffer->setFbArea(CFrameBuffer::FB_PAINTAREA_MUTEICON1, x, y, width, height);
 		}
 		else {
-			if (do_paint_mute_icon)
-				this->hide(true);
+			if (do_paint_mute_icon){
+				this->hide();
+				if ((g_settings.mode_clock) && (doInit)){
+					if (!CInfoClock::getInstance()->isBlocked()) //paint clock before it's running but if no blocked, this avoids delay
+						CInfoClock::getInstance()->paint();
+					CInfoClock::getInstance()->enableInfoClock(!CInfoClock::getInstance()->isBlocked());
+				}
+			}
 			frameBuffer->setFbArea(CFrameBuffer::FB_PAINTAREA_MUTEICON1);
 		}
 		frameBuffer->fbNoCheck(false);
@@ -109,7 +118,7 @@ void CAudioMute::enableMuteIcon(bool enable)
 	}
 	else {
 		if (neutrino->isMuted())
-			this->hide(true);
+			this->hide();
 		frameBuffer->doPaintMuteIcon(false);
 		do_paint_mute_icon = false;
 	}

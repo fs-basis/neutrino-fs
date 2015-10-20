@@ -127,7 +127,7 @@ private:
 
 	int ChannelList_Rec;
 
-	CComponentsChannelLogoScalable* CChannelLogo;
+
 	bool headerNew;
 
 	void paintDetails(int index);
@@ -242,5 +242,6 @@ public:
 	};
 	unsigned Size() { return (*chanlist).size(); }
 	ZapitChannelList &getChannels() { return channels; };
+	CComponentsHeader* getHeaderObject();
 };
 #endif

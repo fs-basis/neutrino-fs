@@ -245,7 +245,7 @@ int CStreamInfo2::doSignalStrengthLoop ()
 
 void CStreamInfo2::hide ()
 {
-	pip->hide(true);
+	pip->hide();
 	frameBuffer->paintBackgroundBoxRel (0, 0, max_width, max_height);
 	frameBuffer->blit();
 }

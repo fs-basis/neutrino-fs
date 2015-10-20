@@ -143,6 +143,8 @@ void CSignalBar::initSBarValue()
 	if (sb_vlbl == NULL){
 		sb_vlbl = new CComponentsLabel();
 		sb_vlbl->doPaintBg(false);
+		sb_vlbl->doPaintTextBoxBg(false);
+		sb_vlbl->enableTboxSaveScreen(true);
 		sb_vlbl->setText("  0%", sb_val_mode, sb_font);
 	}
 
@@ -167,9 +169,9 @@ void CSignalBar::initSBarName()
 	if (sb_lbl == NULL){
 		sb_lbl = new CComponentsLabel();
 		sb_lbl->doPaintBg(false);
+		sb_lbl->doPaintTextBoxBg(false);
+		sb_lbl->enableTboxSaveScreen(true);
 		sb_lbl->setText(sb_name, CTextBox::NO_AUTO_LINEBREAK | CTextBox::RIGHT, sb_font);
-		sb_lbl->forceTextPaint();
-		sb_lbl->doPaintTextBoxBg(true);
 	}
 
 	//move and set dimensions
@@ -181,6 +183,7 @@ void CSignalBar::initSBarName()
 	//set current text and body color
 	sb_lbl->setTextColor(sb_caption_color);
 	sb_lbl->setColorBody(col_body);
+
 
 	//add name label object to container
 	if (!sb_lbl->isAdded())
@@ -217,12 +220,6 @@ void CSignalBar::paintScale()
 		string percent(i_str.str());
 		percent += "%";
 		sb_vlbl->setText(percent, sb_val_mode, sb_font);
-
-		//we must force paint backround, because of changing values
-		sb_vlbl->doPaintBg(true);
-		sb_vlbl->forceTextPaint();
-		sb_vlbl->doPaintTextBoxBg(true);
-		sb_vlbl->setColorBody(col_body);
 
 		//repaint labels
 		for(size_t i=0; i<this->v_cc_items.size(); i++)

@@ -40,7 +40,6 @@ class CScreenSaver
 		unsigned int 	index;
 
 		bool		status_mute;
-		bool		status_clock;
 
 		bool ReadDir();
 		void PaintPicture();

@@ -879,7 +879,7 @@ void CEventList::paintHead(t_channel_id _channel_id, std::string _channelname, s
 	int font_lr  = SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE;
 
 	CComponentsFrmChain header(x, y, full_width, theight);
-	header.enableColBodyGradient(g_settings.theme.menu_Head_gradient);
+	header.enableColBodyGradient(g_settings.theme.menu_Hint_gradient, COL_MENUCONTENT_PLUS_0);
 	header.setCorner(RADIUS_LARGE, CORNER_TOP);
 	header.set2ndColor(COL_MENUCONTENT_PLUS_0);
 

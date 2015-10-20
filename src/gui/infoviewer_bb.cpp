@@ -443,11 +443,8 @@ void CInfoViewerBB::paintFoot(int w)
 	CComponentsShapeSquare foot(g_InfoViewer->ChanInfoX, BBarY, width, InfoHeightY_Info);
 
 	foot.setColorBody(g_settings.theme.infobar_gradient_bottom ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_BUTTONS_BACKGROUND);
-//	foot.setColorBody(COL_INFOBAR_BUTTONS_BACKGROUND);
-	foot.enableColBodyGradient(g_settings.theme.infobar_gradient_bottom);
-	foot.setColBodyGradient(CColorGradient::gradientDark2Light, CFrameBuffer::gradientVertical);
+	foot.enableColBodyGradient(g_settings.theme.infobar_gradient_bottom, COL_INFOBAR_PLUS_0, g_settings.theme.infobar_gradient_bottom_direction);
 	foot.setCorner(RADIUS_LARGE, CORNER_BOTTOM);
-	foot.set2ndColor(COL_INFOBAR_PLUS_0);
 
 	foot.paint(CC_SAVE_SCREEN_NO);
 }
@@ -662,6 +659,7 @@ void CInfoViewerBB::showSysfsHdd()
 void CInfoViewerBB::showBarSys(int percent)
 {	
 	if (is_visible){
+		sysscale->doPaintBg(false);
 		sysscale->setDimensionsAll(bbIconMinX, BBarY + InfoHeightY_Info / 2 - 2 - 6, hddwidth, 6);
 		sysscale->setValues(percent, 100);
 		sysscale->paint();
@@ -671,6 +669,7 @@ void CInfoViewerBB::showBarSys(int percent)
 void CInfoViewerBB::showBarHdd(int percent)
 {
 	if (is_visible) {
+		hddscale->doPaintBg(false);
 		if (percent >= 0){
 			hddscale->setDimensionsAll(bbIconMinX, BBarY + InfoHeightY_Info / 2 + 2 + 0, hddwidth, 6);
 			hddscale->setValues(percent, 100);

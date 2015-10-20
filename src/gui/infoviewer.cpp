@@ -95,8 +95,8 @@ extern bool timeset;
 CInfoViewer::CInfoViewer ()
 	: fader(g_settings.theme.infobar_alpha)
 {
-	sigscale = NULL;
-	snrscale = NULL;
+	sigbox = NULL;
+
 	timescale = NULL;
 	info_CurrentNext.current_zeit.startzeit = 0;
 	info_CurrentNext.current_zeit.dauer = 0;
@@ -129,8 +129,8 @@ CInfoViewer::CInfoViewer ()
 
 CInfoViewer::~CInfoViewer()
 {
-	delete sigscale;
-	delete snrscale;
+	delete sigbox;
+
 	delete timescale;
 	delete infoViewerBB;
 	delete infobar_txt;
@@ -251,19 +251,14 @@ void CInfoViewer::start ()
 
 	initClock();
 	time_height = clock->getHeight();
-	time_width = min(g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth("88:88"), clock->getWidth());
-	clock->setWidth(time_width);
+    time_width  = clock->getWidth();
 }
 
 void CInfoViewer::changePB()
 {
-	if (sigscale)
-		delete sigscale;
-	sigscale = new CProgressBar();
-	
-	if (snrscale)
-		delete snrscale;
-	snrscale = new CProgressBar();
+	if (sigbox)
+		delete sigbox;
+	sigbox = NULL;
 	
 	if (timescale)
 		delete timescale;
@@ -274,32 +269,21 @@ void CInfoViewer::changePB()
 void CInfoViewer::initClock()
 {
 
-	static int gradient_top = g_settings.theme.infobar_gradient_top;
-	static int gradient_c2c = g_settings.theme.gradient_c2c;
-
-	if ((gradient_top != g_settings.theme.infobar_gradient_top || gradient_c2c != g_settings.theme.gradient_c2c) && clock != NULL) {
-		gradient_top = g_settings.theme.infobar_gradient_top;
-		gradient_c2c = g_settings.theme.gradient_c2c;
-		clock->clearSavedScreen();
-		delete clock;
-		clock = NULL;
-	}
+	int gradient_top = g_settings.theme.infobar_gradient_top;
 
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
-		clock->setClockBlink("%H %M");
-		clock->setClockIntervall(1);
-		clock->doPaintBg(!gradient_top);
-		clock->enableTboxSaveScreen(gradient_top);
-		if (time_width)
+		clock->setClockFormat("%H:%M", "%H.%M");
+	if (time_width)
 			clock->setWidth(time_width);
 	}
-
+	InfoClock->getInstance()->disableInfoClock();
+	clock->enableColBodyGradient(gradient_top, COL_INFOBAR_PLUS_0);
+	clock->enableSegmentSaveScreen(gradient_top);
 	clock->setColorBody(COL_INFOBAR_PLUS_0);
 	clock->setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
-	clock->setClockFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
-	clock->setClockAlignment(CC_ALIGN_HOR_CENTER | CC_ALIGN_VER_CENTER);
-	clock->refresh();
+	clock->doPaintBg(!gradient_top);
+	clock->setClockFont(g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]);
 	clock->setPos(BoxEndX - 10 - clock->getWidth(), ChanNameY);
 	clock->setTextColor(COL_INFOBAR_TEXT);
 }
@@ -424,8 +408,7 @@ void CInfoViewer::paintHead()
 	CComponentsShapeSquare header(BoxStartX, ChanNameY, BoxEndX-BoxStartX, time_height);
 
 	header.setColorBody(g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_PLUS_0);
-	header.enableColBodyGradient(g_settings.theme.infobar_gradient_top);
-	header.set2ndColor(COL_INFOBAR_PLUS_0);
+	header.enableColBodyGradient(g_settings.theme.infobar_gradient_top, COL_INFOBAR_PLUS_0, g_settings.theme.infobar_gradient_top_direction);
 	header.setCorner(RADIUS_LARGE, CORNER_TOP);
 	clock->setTextColor(g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_TEXT : COL_INFOBAR_TEXT);
 	clock->setColorBody(header.getColorBody());
@@ -639,9 +622,7 @@ void CInfoViewer::showMovieTitle(const int playState, const t_channel_id &Channe
 
 void CInfoViewer::reset_allScala()
 {
-	sigscale->reset();
-	snrscale->reset();
-	timescale->reset();
+	changePB();
 	lastsig = lastsnr = -1;
 	infoViewerBB->reset_allScala();
 }
@@ -1523,47 +1504,12 @@ void CInfoViewer::showSNR ()
 			g_SignalFont->RenderString (3 + BoxStartX + ((ChanWidth - satNameWidth) / 2), BoxStartY + 2 * chanH - 3, satNameWidth, freq, SDT_freq_update ? COL_COLORED_EVENTS_TEXT:COL_INFOBAR_TEXT);
 			SDT_freq_update = false;
 		}
-
-		char percent[10];
-		uint16_t ssig, ssnr;
-		int sw, snr, sig, posx, posy;
-
-		int height;
-		ssig = CFEManager::getInstance()->getLiveFE()->getSignalStrength();
-		ssnr = CFEManager::getInstance()->getLiveFE()->getSignalNoiseRatio();
-
-		sig = (ssig & 0xFFFF) * 100 / 65535;
-		snr = (ssnr & 0xFFFF) * 100 / 65535;
-		height = g_SignalFont->getHeight () - 1;
-
-		if (lastsig != sig) {
-			lastsig = sig;
-			posx = BoxStartX + (ChanWidth - (bar_width + 2 + (g_SignalFont->getWidth() * 4))) / 2;
-			posy = freqStartY;
-			sigscale->setDimensionsAll(posx, posy+4, bar_width, 10 * g_settings.screen_yres / 100);
-			sigscale->setColorBody(COL_INFOBAR_PLUS_0);
-			sigscale->setValues(sig, 100);
-			sigscale->paint();
-			snprintf (percent, sizeof(percent), "%d%%S", sig);
-			posx = posx + bar_width + 2;
-			sw = BoxStartX + ChanWidth - posx;
-			frameBuffer->paintBoxRel (posx, posy, sw, height, COL_INFOBAR_PLUS_0);
-			g_SignalFont->RenderString (posx, posy + height, sw, percent, COL_INFOBAR_TEXT);
+		if (sigbox == NULL){
+			sigbox = new CSignalBox(BoxStartX+4, BoxStartY+ChanHeight/2-4, ChanWidth-8, ChanHeight/2+2, CFEManager::getInstance()->getLiveFE());
+			sigbox->setTextColor(COL_INFOBAR_TEXT);
+			sigbox->doPaintBg(false);
 		}
-		if (lastsnr != snr) {
-			lastsnr = snr;
-			posx = BoxStartX + (ChanWidth - (bar_width + 2 + (g_SignalFont->getWidth() * 4))) / 2;
-			posy = freqStartY + height - (2 * g_settings.screen_yres / 100);
-			snrscale->setDimensionsAll(posx, posy+4, bar_width, 10 * g_settings.screen_yres / 100);
-			snrscale->setColorBody(COL_INFOBAR_PLUS_0);
-			snrscale->setValues(snr, 100);
-			snrscale->paint();
-			snprintf (percent, sizeof(percent), "%d%%Q", snr);
-			posx = posx + bar_width + 2;
-			sw = BoxStartX + ChanWidth - posx -4;
-			frameBuffer->paintBoxRel (posx, posy, sw, height-2, COL_INFOBAR_PLUS_0);
-			g_SignalFont->RenderString (posx, posy + height, sw, percent, COL_INFOBAR_TEXT);
-		}
+		sigbox->paint(false);
 	}
 	if(showButtonBar)
 		infoViewerBB->showSysfsHdd();
@@ -1622,13 +1568,13 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		int pb_startx = BoxEndX - pb_w - SHADOW_OFFSET;
 		int pb_starty = ChanNameY - (pb_h + 10);
 		int pb_shadow = COL_INFOBAR_SHADOW_PLUS_0;
-		timescale->setShadowOnOff(true);
+		timescale->enableShadow();
 		int pb_color = (g_settings.progressbar_design == CProgressBar::PB_MONO) ? COL_INFOBAR_PLUS_0 : COL_INFOBAR_SHADOW_PLUS_0;
 		if(g_settings.infobar_progressbar){
 			pb_startx = xStart;
 			pb_w = BoxEndX - 10 - xStart;
 			pb_shadow = 0;
-			timescale->setShadowOnOff(false);
+			timescale->disableShadow();
 		}
 		int tmpY = CurrInfoY - height - ChanNameY + time_height - 
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getDigitOffset()/3;
@@ -1982,7 +1928,7 @@ void CInfoViewer::showInfoFile()
 	//set some properties for info object
 	infobar_txt->setDimensionsAll(xStart, yStart, width, height);
 	infobar_txt->setCorner(RADIUS_SMALL);
-	infobar_txt->setShadowOnOff(true);
+	infobar_txt->enableShadow();
 	infobar_txt->setTextColor(COL_INFOBAR_TEXT);
 	infobar_txt->setColorBody(COL_INFOBAR_PLUS_0);
 	infobar_txt->doPaintTextBoxBg(false);
@@ -2010,10 +1956,15 @@ void CInfoViewer::killTitle()
 			killRadiotext();
 		}
 
+		delete clock;
+		clock = NULL;
+		delete sigbox;
+		sigbox = NULL;
 		killInfobarText();
 		frameBuffer->blit();
 	}
 	showButtonBar = false;
+	InfoClock->getInstance()->enableInfoClock();
 }
 
 #if 0

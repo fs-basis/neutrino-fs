@@ -31,6 +31,7 @@
 #include "cc_frm_chain.h"
 #include "cc_item_picture.h"
 #include "cc_item_text.h"
+#include <gui/widget/icons.h>
 #include <string>
 #include <driver/neutrinofonts.h>
 #include <driver/rcinput.h>
@@ -43,7 +44,7 @@
 /*!
 Shows a button box with caption and optional icon.
 */
-class CComponentsButton : public CComponentsFrmChain
+class CComponentsButton : public CComponentsFrmChain, public CCTextScreen
 {
 	protected:
 		///object: picture object

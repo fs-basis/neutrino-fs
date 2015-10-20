@@ -63,6 +63,8 @@ struct SNeutrinoTheme
 	unsigned char menu_Head_Text_blue;
 
 	int menu_Head_gradient;
+	int menu_Head_gradient_direction;
+	int menu_Separator_gradient_enable;
 
 	unsigned char menu_Content_alpha;
 	unsigned char menu_Content_red;
@@ -95,6 +97,9 @@ struct SNeutrinoTheme
 	unsigned char menu_Content_inactive_Text_blue;
 
 	int menu_Hint_gradient;
+	int menu_Hint_gradient_direction;
+	int menu_ButtonBar_gradient;
+	int menu_ButtonBar_gradient_direction;
 
 	unsigned char infobar_alpha;
 	unsigned char infobar_red;
@@ -112,7 +117,9 @@ struct SNeutrinoTheme
 	unsigned char infobar_Text_blue;
 
 	int infobar_gradient_top;
+	int infobar_gradient_top_direction;
 	int infobar_gradient_bottom;
+	int infobar_gradient_bottom_direction;
 
 	unsigned char colored_events_alpha;
 	unsigned char colored_events_red;
@@ -126,7 +133,6 @@ struct SNeutrinoTheme
 	unsigned char clock_Digit_red;
 	unsigned char clock_Digit_green;
 	unsigned char clock_Digit_blue;
-	int gradient_c2c;
 };
 
 struct SNeutrinoSettings

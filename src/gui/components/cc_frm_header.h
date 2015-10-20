@@ -29,13 +29,14 @@
 #include "cc_item_picture.h"
 #include "cc_item_text.h"
 #include "cc_frm_icons.h"
+#include "cc_frm_clock.h"
 #include <driver/colorgradient.h>
 
 //! Sub class of CComponentsForm. Shows a header with prepared items.
 /*!
 CComponentsHeader provides prepared items like icon, caption and context button icons, mostly for usage in menues or simple windows
 */
-class CComponentsHeader : public CComponentsForm
+class CComponentsHeader : public CComponentsForm, public CCTextScreen
 {
 	private:
 		///member: init genaral variables, parameters for mostly used properties
@@ -56,6 +57,8 @@ class CComponentsHeader : public CComponentsForm
 		CComponentsText * cch_text_obj;
 		///object: context button object, see also addContextButton(), removeContextButtons()
 		CComponentsIconForm * cch_btn_obj;
+		///object: clock object
+		CComponentsFrmClock * cch_cl_obj;
 
 		///property: caption text, see also setCaption()
 		std::string cch_text;
@@ -72,6 +75,8 @@ class CComponentsHeader : public CComponentsForm
 		int cch_icon_x;
 		///property: internal width for icon object
 		int cch_icon_w;
+		///property: internal width for clock object
+		int cch_clock_w;
 		///property: internal x-position for caption object
 		int cch_text_x;
 		///property: internal offset of context button icons within context button object
@@ -84,6 +89,14 @@ class CComponentsHeader : public CComponentsForm
 		int cch_size_mode;
 		///property: alignment of caption within header, see also setCaptionAlignment(), possible values are CTextBox::CENTER, default = CTextBox::NO_AUTO_LINEBREAK (left)
 		int cch_caption_align;
+		///property: enable/disable of clock, see also enableClock()
+		bool cch_cl_enable;
+		///property: clock format
+		const char* cch_cl_format;
+		///property: secondary clock format
+		const char* cch_cl_sec_format;
+		///property: enable running clock
+		bool cch_cl_enable_run;
 
 		///init font object and recalculates height if required
 		void initCaptionFont(Font* font = NULL);
@@ -93,6 +106,8 @@ class CComponentsHeader : public CComponentsForm
 		void initCaption();
 		///sub: init context button object
 		void initButtons();
+		///sub: init clock object
+		void initClock();
 
 	public:
 		enum
@@ -116,9 +131,9 @@ class CComponentsHeader : public CComponentsForm
 		virtual ~CComponentsHeader();
 
 		///set caption text, parameters: string, int align_mode (default left) 
-		virtual void setCaption(const std::string& caption, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK);
+		virtual void setCaption(const std::string& caption, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK, const fb_pixel_t& text_color = COL_MENUHEAD_TEXT);
 		///set caption text, parameters: loacle, int align_mode (default left)
-		virtual void setCaption(neutrino_locale_t caption_locale, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK);
+		virtual void setCaption(neutrino_locale_t caption_locale, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK, const fb_pixel_t& text_color = COL_MENUHEAD_TEXT);
 
 		///set alignment of caption within header, possible paramters are CTextBox::CENTER, CTextBox::NO_AUTO_LINEBREAK
 		virtual void setCaptionAlignment(const int& align_mode){cch_caption_align = align_mode;};
@@ -159,7 +174,6 @@ class CComponentsHeader : public CComponentsForm
 
 		virtual void setUpsideDown(bool upsidedown) { 	cc_body_gradient_mode = upsidedown ? CColorGradient::gradientDark2Light : CColorGradient::gradientLight2Dark;corner_type	= upsidedown ? CORNER_BOTTOM : CORNER_TOP;};
 		virtual void setGradientLDL(bool ldl) { 	cc_body_gradient_mode = ldl ? CColorGradient::gradientLight2Dark2Light : CColorGradient::gradientLight2Dark;};
-		virtual void setGradient(bool grad) { col_body_gradient = grad;};
 
 		enum
 		{
@@ -185,7 +199,7 @@ class CComponentsHeader : public CComponentsForm
 		};
 
 		///set offset between icons within context button object
-		virtual void setButtonsSpace(const int buttons_space){cch_buttons_space = buttons_space;};
+		virtual void setButtonsSpace(const int buttons_space){cch_buttons_space = buttons_space;}
 
 		enum
 		{
@@ -193,15 +207,31 @@ class CComponentsHeader : public CComponentsForm
 			CC_HEADER_SIZE_SMALL 	= 1
 		};
 		///set size of header, possible values are CC_HEADER_SIZE_LARGE, CC_HEADER_SIZE_SMALL
-		virtual void setSizeMode(const int& size_mode){cch_size_mode = size_mode; initCCItems();};
+		virtual void setSizeMode(const int& size_mode){cch_size_mode = size_mode; initCCItems();}
 
 		///init all items within header object
 		virtual void initCCItems();
 		///returns the text object
-		virtual CComponentsText* getTextObject(){return cch_text_obj;};
+		virtual CComponentsText* getTextObject(){return cch_text_obj;}
+
+		///returns the clock object
+		virtual CComponentsFrmClock* getClockObject(){return cch_cl_obj;}
+
+		///enable display of clock, parameter bool enable, const char* format, bool run
+		virtual void enableClock(bool enable = true, const char* format = "%H:%M", const char* sec_format_str = NULL, bool run = false);
+		///disable clock, without parameter
+		virtual void disableClock();
 
 		///paint header
 		virtual void paint(bool do_save_bg = CC_SAVE_SCREEN_YES);
+
+		///hides item, arg: no_restore see hideCCItem()
+		void hide(){disableClock(); CComponents::hide();}
+		///erase current screen without restore of background, it's similar to paintBackgroundBoxRel() from CFrameBuffer
+		virtual void kill(){disableClock(); CComponentsForm::kill();}
+
+		///set color gradient on/off, returns true if gradient mode was changed
+		virtual bool enableColBodyGradient(const int& enable_mode, const fb_pixel_t& sec_color = 255 /*=COL_BACKGROUND*/, const int& direction = -1);
 };
 
 //! Sub class of CComponentsHeader.

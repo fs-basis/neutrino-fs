@@ -28,7 +28,7 @@
 #include "cc_item_text.h"
 
 
-class CComponentsExtTextForm : public CComponentsForm
+class CComponentsExtTextForm : public CComponentsForm, public CCTextScreen
 {
 	private:
 		///property: content of label, see also setLabelAndText()
@@ -94,10 +94,10 @@ class CComponentsExtTextForm : public CComponentsForm
 		///assigns text Font type
 		void setLabelAndTextFont(Font* font);
 
-		///assigns texts for label and text, parameter as struct (locale_ext_txt_t), parameters provide the same properties like setLabelAndText()
-		void setLabelAndTexts(const locale_ext_txt_t& texts);
-		///assigns texts for label and text, parameter as struct (string_ext_txt_t), parameters provide the same properties like setLabelAndText()
-		void setLabelAndTexts(const string_ext_txt_t& locale_texts);
+		///assigns texts for label and text, parameter as struct (cc_locale_ext_txt_t), parameters provide the same properties like setLabelAndText()
+		void setLabelAndTexts(const cc_locale_ext_txt_t& texts);
+		///assigns texts for label and text, parameter as struct (cc_string_ext_txt_t), parameters provide the same properties like setLabelAndText()
+		void setLabelAndTexts(const cc_string_ext_txt_t& locale_texts);
 
 		///assigns colors for text for label text, parameter as fb_pixel_t
 		void setLabelAndTextColor(const fb_pixel_t label_color , const fb_pixel_t text_color);

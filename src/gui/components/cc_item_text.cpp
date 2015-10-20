@@ -148,12 +148,13 @@ void CComponentsText::initCCText()
 	ct_textbox->setTextColor(ct_col_text);
 	ct_textbox->setWindowMaxDimensions(iWidth, iHeight);
 	ct_textbox->setWindowMinDimensions(iWidth, iHeight);
-	ct_textbox->enableSaveScreen(save_tbox_screen);
+	ct_textbox->enableSaveScreen(cc_txt_save_screen);
 	ct_textbox->enableUTF8(ct_utf8_encoded);
 	ct_textbox->blit(false);
 
 	//observe behavior of parent form if available
 	bool force_text_paint = ct_force_text_paint;
+#if 0 //FIXME.,
 	if (cc_parent){
 		//if any embedded text item was hided because of hided parent form,
 		//we must ensure repaint of text, otherwise text item is not visible
@@ -161,6 +162,7 @@ void CComponentsText::initCCText()
 			force_text_paint = true;
 	}
 
+#endif
 	//send text to CTextBox object, but force text paint text if force_text_paint option is enabled
 	//this is managed by CTextBox object itself
 	ct_text_sent = ct_textbox->setText(&ct_text, this->iWidth, force_text_paint);
@@ -186,8 +188,12 @@ void CComponentsText::clearCCText()
 
 void CComponentsText::setText(const std::string& stext, const int mode, Font* font_text, const fb_pixel_t& color_text, const int& style)
 {
-	ct_old_text = ct_text;
+	if (ct_text != stext || ct_text_mode != mode || ct_text_style != style ){
+		//ct_textbox->clearScreenBuffer();
 	ct_text = stext;
+		ct_old_text = ct_text;
+	}
+
 	if (mode != ~CTextBox::AUTO_WIDTH)
 		ct_text_mode = mode;
 	if (font_text)
@@ -264,12 +270,12 @@ void CComponentsText::paint(bool do_save_bg)
 	paintText(do_save_bg);
 }
 
-void CComponentsText::hide(bool no_restore)
+void CComponentsText::hide()
 {
 	if (ct_textbox)
 		ct_textbox->hide();
 	ct_old_text = "";
-	hideCCItem(no_restore);
+	CComponents::hide();
 }
 
 //small helper to remove excessiv linbreaks
@@ -309,7 +315,33 @@ int CComponentsText::getTextLinesAutoHeight(const int& textMaxHeight, const int&
 
 void CComponentsText::setTextColor(const fb_pixel_t& color_text)
 {
+	if (ct_col_text != color_text){
+		//ct_textbox->clearScreenBuffer();
+
 	ct_col_text = color_text;
 	if (ct_textbox)
 		ct_textbox->setTextColor(ct_col_text);
+	}
 }
+
+bool CComponentsText::clearSavedScreen()
+{
+	bool ret0 = CCDraw::clearSavedScreen();
+	bool ret1 = false;
+#if 0
+	if (ct_textbox)
+		ret1 = ct_textbox->clearScreenBuffer();
+#endif
+	return max<bool>(ret0, ret1);
+}
+#if 0
+bool CComponentsText::enableColBodyGradient(const int& enable_mode, const fb_pixel_t& sec_color)
+{
+	if (CCDraw::enableColBodyGradient(enable_mode, sec_color)){
+		if (ct_textbox)
+			ct_textbox->clearScreenBuffer();
+	}
+	return false;
+}
+#endif
+

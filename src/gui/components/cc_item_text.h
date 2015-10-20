@@ -27,6 +27,8 @@
 #define __CC_ITEM_TEXT_H__
 
 #include "cc_base.h"
+#include "cc_item.h"
+#include "cc_text_screen.h"
 #include <gui/widget/textbox.h>
 #include <string>
 
@@ -38,7 +40,7 @@ Handling of text parts based up CTextBox attributes and methodes.
 CComponentsText provides a interface to the embedded CTextBox object.
 */
 
-class CComponentsText : public CComponentsItem, public CBox
+class CComponentsText : public CCTextScreen, public CComponentsItem, public CBox
 {
 	protected:
 		///object: CTextBox object
@@ -119,7 +121,7 @@ class CComponentsText : public CComponentsItem, public CBox
 
 		///default members to paint a text box and hide painted text
 		///hide textbox
-		void hide(bool no_restore = false);
+		void hide();
 		///paint text box, parameter do_save_bg: default = true, causes fill of backckrond pixel buffer
 		void paint(bool do_save_bg = CC_SAVE_SCREEN_YES);
 
@@ -165,16 +167,27 @@ class CComponentsText : public CComponentsItem, public CBox
 
 		///returns count of lines from a text box page
 		virtual int getTextLinesAutoHeight(const int& textMaxHeight, const int& textWidth, const int& mode);
-		// overload function from cc_base CComponents
+		///allows to save bg screen behind text within CTextBox object, see also cc_txt_save_screen
 		void enableTboxSaveScreen(bool mode)
 		{
-			save_tbox_screen = mode;
+			if (cc_txt_save_screen == mode)
+				return;
+			cc_txt_save_screen = mode;
 			if (ct_textbox)
 				ct_textbox->enableSaveScreen(mode);
 		}
 		///enable/disable utf8 encoding
 		void enableUTF8(bool enable = true){ct_utf8_encoded = enable;}
 		void disableUTF8(bool enable = false){enableUTF8(enable);}
+		/*!Clean up screen buffers from background layers.
+		 * Paint cache and gradient cache not touched.
+		 * The default basic methode CCDraw::clearSavedScreen() doesn't considering text bg screen, therefore
+		 * we ensure also clean up the background of textbox object.
+		 * Returns true if any buffer was cleane
+		*/
+		virtual bool clearSavedScreen();
+// 		///set color gradient on/off, returns true if gradient mode was changed
+// 		virtual bool enableColBodyGradient(const int& enable_mode, const fb_pixel_t& sec_color = 255 /*=COL_BACKGROUND*/);
 };
 
 

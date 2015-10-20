@@ -212,7 +212,7 @@ void CComponentsWindow::initFooter()
 	if (ccw_footer){
 		ccw_footer->setPos(0, CC_APPEND);
 		ccw_footer->setWidth(width-2*fr_thickness);
-		ccw_footer->setShadowOnOff(shadow);
+		ccw_footer->enableShadow(shadow);
 		ccw_footer->setCorner(corner_rad, CORNER_BOTTOM);
 	}
 }

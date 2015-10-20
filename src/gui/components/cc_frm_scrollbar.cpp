@@ -165,12 +165,12 @@ void CComponentsScrollBar::initSegments()
 		//set color for marked id
 		if (sb_mark_id == id){
 			item->setColorBody(COL_MENUCONTENTSELECTED_PLUS_0);
-			item->enableColBodyGradient(true);
+			item->enableColBodyGradient(CC_COLGRAD_COL_A_2_COL_B);
 			item->setColBodyGradient(CColorGradient::gradientDark2Light2Dark, CFrameBuffer::gradientHorizontal);
 		}
 		else{
 			item->setColorBody(COL_MENUCONTENT_PLUS_1);
-			item->enableColBodyGradient(false);
+			item->disableColBodyGradient();
 		}
 	}
 

@@ -2447,9 +2447,8 @@ void CNeutrinoApp::RealRun(CMenuWidget &mainMenu)
 
 	dprintf(DEBUG_NORMAL, "initialized everything\n");
 
+	//activating infoclock
 	InfoClock = CInfoClock::getInstance();
-	if(g_settings.mode_clock)
-		g_settings.mode_clock = InfoClock->StartClock();
 
 	if(g_settings.power_standby || init_cec_setting)
 		standbyMode(true, true);
@@ -2848,7 +2847,7 @@ int CNeutrinoApp::showChannelList(const neutrino_msg_t _msg, bool from_menu)
 	channelList_painted = true;
 
 	neutrino_msg_t msg = _msg;
-	InfoClock->enableInfoClock(false);
+	InfoClock->enableInfoClock(false);//TODO: use callback in channel list class
 	StopSubtitles();
 
 //_show:
@@ -4262,17 +4261,6 @@ void CNeutrinoApp::switchTvRadioMode(const int prev_mode)
 	}
 }
 
-//switching clock on or off depends of current displayed or not
-void CNeutrinoApp::switchClockOnOff()
-{
-	if(g_settings.mode_clock) {
-		InfoClock->enableInfoClock(false);
-		g_settings.mode_clock = false;
-	} else {
-		g_settings.mode_clock = true;
-		InfoClock->enableInfoClock(true);
-	}
-}
 
 /**************************************************************************************
 *          CNeutrinoApp -  exec, menuitem callback (shutdown)                         *
@@ -4308,7 +4296,7 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 	}
 	else if (actionKey=="clock_switch")
 	{
-		switchClockOnOff();
+		InfoClock->switchClockOnOff();
 		returnval = menu_return::RETURN_EXIT_ALL;
 	}
 	else if (actionKey=="tv_radio_switch")//used in mainmenu

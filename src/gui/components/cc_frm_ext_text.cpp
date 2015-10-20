@@ -105,7 +105,7 @@ void CComponentsExtTextForm::initLabel()
 	if (ccx_label_obj == NULL){
 		ccx_label_obj = new CComponentsLabel();
 		ccx_label_obj->doPaintBg(false);
-		ccx_label_obj->enableTboxSaveScreen(save_tbox_screen);
+		ccx_label_obj->enableTboxSaveScreen(cc_txt_save_screen);
 	}	
 
 	//add label object
@@ -128,7 +128,7 @@ void CComponentsExtTextForm::initText()
 	if (ccx_text_obj == NULL){
 		ccx_text_obj = new CComponentsText();
 		ccx_text_obj->doPaintBg(false);
-		ccx_text_obj->enableTboxSaveScreen(save_tbox_screen);
+		ccx_text_obj->enableTboxSaveScreen(cc_txt_save_screen);
 	}
 
 	//add text object
@@ -161,12 +161,12 @@ void CComponentsExtTextForm::setLabelAndText(const neutrino_locale_t& locale_lab
 	setLabelAndText(g_Locale->getText(locale_label_text), g_Locale->getText(locale_text), font_text);
 }
 
-void CComponentsExtTextForm::setLabelAndTexts(const string_ext_txt_t& texts)
+void CComponentsExtTextForm::setLabelAndTexts(const cc_string_ext_txt_t& texts)
 {
 	setLabelAndText(texts.label_text, texts.text, texts.font);
 }
 
-void CComponentsExtTextForm::setLabelAndTexts(const locale_ext_txt_t& locale_texts)
+void CComponentsExtTextForm::setLabelAndTexts(const cc_locale_ext_txt_t& locale_texts)
 {
 	setLabelAndText(g_Locale->getText(locale_texts.label_text), g_Locale->getText(locale_texts.text), locale_texts.font);
 }

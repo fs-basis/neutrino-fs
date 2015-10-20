@@ -185,6 +185,10 @@ fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t
 	int start_box = 0;
 	int end_box = ((mode == gradientDark2Light2Dark) || (mode == gradientLight2Dark2Light)) ? bSize/2 : bSize;
 
+	fb_pixel_t temp_col = end_col;
+	end_col =  start_col;
+	start_col = temp_col;
+
 	if ((mode == gradientDark2Light2Dark) || (mode == gradientDark2Light)) {
 		fb_pixel_t temp_col = start_col;
 		start_col = end_col;

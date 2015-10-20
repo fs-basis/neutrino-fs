@@ -110,7 +110,7 @@ void CComponentsInfoBox::paintPicture()
 	pic->setColorBody(col_body);
 
 	//set gradient behavior of pic object
-	if (col_body_gradient)
+	if (cc_body_gradient_enable)
 		pic->doPaintBg(false);
 
 	//fit icon into frame
@@ -150,7 +150,7 @@ void CComponentsInfoBox::paint(bool do_save_bg)
 	cctext->doPaintTextBoxBg(ct_paint_textbg);
 	cctext->doPaintBg(false);
 	cctext->setTextColor(ct_col_text);
-	cctext->enableTboxSaveScreen(save_tbox_screen);
+	cctext->enableTboxSaveScreen(cc_txt_save_screen);
 
 	//calculate vars for x-position and dimensions
 	int tx = x_offset + x_text + pic_w;

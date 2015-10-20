@@ -1931,7 +1931,7 @@ int CLuaInstance::CWindowHide(lua_State *L)
 			paramBoolDeprecated(L, tmp.c_str());
 		no_restore = (tmp == "true" || tmp == "1" || tmp == "yes");
 	}
-	m->w->hide(no_restore);
+	m->w->hide(); //FIXME: no_restore without effect, remove it or use with kill()?
 	return 0;
 }
 
@@ -2288,7 +2288,7 @@ int CLuaInstance::ComponentsTextHide(lua_State *L)
 		m->ct->setText("", m->mode, g_Font[m->font_text]);
 		m->ct->paint();
 	} else
-		m->ct->hide(no_restore);
+		m->ct->hide(); //FIXME: no_restore without effect, remove or use with kill()
 	return 0;
 }
 
@@ -2495,7 +2495,7 @@ int CLuaInstance::CPictureHide(lua_State *L)
 		m->cp->setPicture("");
 		m->cp->paint();
 	} else
-		m->cp->hide(no_restore);
+		m->cp->hide(); //FIXME: no_restore without effect, remove or use with kill()
 	return 0;
 }
 

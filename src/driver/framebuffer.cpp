@@ -2095,7 +2095,7 @@ bool CFrameBuffer::_checkFbArea(int _x, int _y, int _dx, int _dy, bool prev)
 //					waitForIdle();
 					fb_no_check = true;
 					if (prev)
-						CAudioMute::getInstance()->hide(true);
+						CAudioMute::getInstance()->hide();
 					else
 						CAudioMute::getInstance()->paint();
 					fb_no_check = false;

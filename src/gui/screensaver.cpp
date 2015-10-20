@@ -52,7 +52,6 @@ CScreenSaver::CScreenSaver()
 	m_viewer	= new CPictureViewer();
 	index 		= 0;
 	status_mute	= CAudioMute::getInstance()->getStatus();
-	status_clock	= InfoClock->getStatus();
 }
 
 CScreenSaver::~CScreenSaver()
@@ -80,8 +79,7 @@ void CScreenSaver::Start()
 	status_mute = CAudioMute::getInstance()->getStatus();
 	CAudioMute::getInstance()->enableMuteIcon(false);
 
-	status_clock = InfoClock->getStatus();
-	InfoClock->enableInfoClock(false);
+	InfoClock->disableInfoClock();
 
 	m_viewer->SetScaling((CPictureViewer::ScalingMode)g_settings.picviewer_scaling);
 	m_viewer->SetVisible(g_settings.screen_StartX, g_settings.screen_EndX, g_settings.screen_StartY, g_settings.screen_EndY);
@@ -117,7 +115,7 @@ void CScreenSaver::Stop()
 	thrScreenSaver = 0;
 
 	m_frameBuffer->paintBackground(); //clear entire screen
-	InfoClock->enableInfoClock(status_clock);
+	InfoClock->enableInfoClock(InfoClock->isBlocked());
 	CAudioMute::getInstance()->enableMuteIcon(status_mute);
 }
 

@@ -102,10 +102,10 @@ void CComponentsButton::initVarButton(	const int& x_pos, const int& y_pos, const
 	shadow		= has_shadow;
 	shadow_w	= SHADOW_OFFSET;
 
-	col_body_gradient = false/*g_settings.gradiant*/; //gradient is prepared for use but disabled at the moment till some other parts of gui parts are provide gradient
+	cc_body_gradient_enable = false/*g_settings.gradiant*/; //gradient is prepared for use but disabled at the moment till some other parts of gui parts are provide gradient
 	setColBodyGradient(CColorGradient::gradientLight2Dark, CFrameBuffer::gradientVertical, CColorGradient::light);
 	col_frame 	= color_frame;
-	col_body	= col_body_gradient? COL_DARK_GRAY : color_body;
+	col_body	= cc_body_gradient_enable? COL_DARK_GRAY : color_body;
 	col_shadow	= color_shadow;
 
 	cc_item_enabled  = enabled;
@@ -115,8 +115,8 @@ void CComponentsButton::initVarButton(	const int& x_pos, const int& y_pos, const
 	append_y_offset = 0;
 	corner_rad	= 0;
 	
-	cc_btn_capt_col		= col_body_gradient ? COL_BUTTON_TEXT_ENABLED : COL_INFOBAR_SHADOW_TEXT;
-	cc_btn_capt_disable_col = col_body_gradient ? COL_BUTTON_TEXT_DISABLED : COL_MENUCONTENTINACTIVE_TEXT;
+	cc_btn_capt_col		= cc_body_gradient_enable ? COL_BUTTON_TEXT_ENABLED : COL_INFOBAR_SHADOW_TEXT;
+	cc_btn_capt_disable_col = cc_body_gradient_enable ? COL_BUTTON_TEXT_DISABLED : COL_MENUCONTENTINACTIVE_TEXT;
 	cc_btn_icon_obj	= NULL;
 	cc_btn_capt_obj = NULL;
 	cc_btn_dy_font  = CNeutrinoFonts::getInstance();
@@ -174,7 +174,7 @@ void CComponentsButton::initCaption()
 		if (cc_btn_capt_obj == NULL){
 			cc_btn_capt_obj = new CComponentsLabel();
 			cc_btn_capt_obj->doPaintBg(false);
-			cc_btn_capt_obj->enableTboxSaveScreen(save_tbox_screen);
+			cc_btn_capt_obj->enableTboxSaveScreen(cc_txt_save_screen);
 			addCCItem(cc_btn_capt_obj);
 		}
 	}else{

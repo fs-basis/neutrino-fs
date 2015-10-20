@@ -37,6 +37,7 @@
 #include <driver/screen_max.h>
 #include <gui/pluginlist.h>
 #include <gui/widget/stringinput.h>
+#include <gui/infoclock.h>
 
 
 #include <driver/fade.h>
@@ -501,7 +502,7 @@ CMenuWidget::CMenuWidget()
 	preselected 	= -1;
 	details_line	= NULL;
 	info_box	= NULL;
-	show_details_line = true;
+
 	nextShortcut	= 1;
 }
 
@@ -527,7 +528,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const mn_widge
 	frameBuffer = CFrameBuffer::getInstance();
 	iconfile = Icon;
 	details_line = new CComponentsDetailLine();
-	show_details_line = true;
+	details_line->enableSaveBg();
 	info_box = new CComponentsInfoBox();
 	
 	//handle select values
@@ -586,7 +587,10 @@ void CMenuWidget::move(int xoff, int yoff)
 CMenuWidget::~CMenuWidget()
 {
 	resetWidget(true);
+	if (details_line){
+		details_line->hide();
 	delete details_line;
+	}
 	delete info_box;
 }
 
@@ -1007,6 +1011,9 @@ void CMenuWidget::hide()
 		items[count]->init(-1, 0, 0, 0);
 	hint_painted	= false;
 	washidden = true;
+	if (CInfoClock::getInstance()->isRun())
+		CInfoClock::getInstance()->enableInfoClock(!CInfoClock::getInstance()->isBlocked());
+	OnAfterHide();
 }
 
 void CMenuWidget::checkHints()
@@ -1134,12 +1141,15 @@ void CMenuWidget::calcSize()
 
 void CMenuWidget::paint()
 {
+	OnBeforePaint();
+	if (CInfoClock::getInstance()->isRun())
+		CInfoClock::getInstance()->disableInfoClock();
 	calcSize();
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8 /*, nameString.c_str()*/);
 
 	// paint head
 	CComponentsHeader header(x, y, width + sb_width, hheight, getName(), iconfile);
-	header.setShadowOnOff(CC_SHADOW_ON);
+	header.enableShadow();
 	header.setOffset(10);
 	header.set2ndColor(COL_MENUCONTENT_PLUS_0);
 	header.paint(CC_SAVE_SCREEN_NO);
@@ -1312,17 +1322,13 @@ void CMenuWidget::paintHint(int pos)
 	if (pos < 0 && !hint_painted)
 		return;
 
-	info_box->enableGradient(g_settings.theme.menu_Hint_gradient  != 0);
-	info_box->set2ndColor(COL_INFOBAR_SHADOW_PLUS_1); // COL_INFOBAR_SHADOW_PLUS_1 is default footer color
-
-	
 	if (hint_painted) {
 		/* clear detailsline line */
 		if (details_line)
-			savescreen ? details_line->hide() : details_line->kill();
+			details_line->hide();
 		/* clear info box */
 		if ((info_box) && (pos < 0))
-			savescreen ? info_box->hide(true) : info_box->kill();
+			savescreen ? info_box->hide() : info_box->kill();
 		hint_painted = false;
 	}
 	if (pos < 0)
@@ -1332,7 +1338,7 @@ void CMenuWidget::paintHint(int pos)
 	
 	if (!item->hintIcon && item->hint == NONEXISTANT_LOCALE && item->hintText.empty()) {
 		if (info_box) {
-			savescreen ? info_box->hide(false) : info_box->kill();
+			savescreen ? info_box->hide() : info_box->kill();
 			hint_painted = false;
 		}
 		return;
@@ -1372,15 +1378,15 @@ void CMenuWidget::paintHint(int pos)
 		info_box->removeLineBreaks(str);
 		info_box->setText(str, CTextBox::AUTO_WIDTH, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_HINT], COL_MENUCONTENT_TEXT);
 		info_box->setCorner(RADIUS_LARGE);
-		info_box->syncSysColors();
-		info_box->setColorBody(COL_MENUCONTENTDARK_PLUS_0);
-		info_box->setShadowOnOff(CC_SHADOW_ON);
+		info_box->setColorAll(COL_MENUCONTENT_PLUS_6, COL_MENUCONTENTDARK_PLUS_0, COL_MENUCONTENTDARK_PLUS_0);
+		info_box->enableShadow();
 		info_box->setPicture(item->hintIcon ? item->hintIcon : "");
+		info_box->enableColBodyGradient(g_settings.theme.menu_Hint_gradient, COL_INFOBAR_SHADOW_PLUS_1, g_settings.theme.menu_Hint_gradient_direction);// COL_INFOBAR_SHADOW_PLUS_1 is default footer color
 	}
 	
 	//paint result
-	if (show_details_line)
-		details_line->paint(savescreen);
+
+	details_line->paint();
 	info_box->paint(savescreen);
 	
 	hint_painted = true;
@@ -2195,8 +2201,8 @@ int CMenuSeparator::paint(bool selected)
 	frameBuffer->paintBoxRel(x,y, dx, height, item_bgcolor);
 	if ((type & LINE))
 	{
-		frameBuffer->paintHLineRel(x+10,dx-20,y+(height>>1), COL_MENUCONTENT_PLUS_3);
-		frameBuffer->paintHLineRel(x+10,dx-20,y+(height>>1)+1, COL_MENUCONTENT_PLUS_1);
+		int grad = g_settings.theme.menu_Separator_gradient_enable ? CC_COLGRAD_COL_DARK_LIGHT_DARK : CC_COLGRAD_OFF;
+		paintBoxRel(x+10, y+(height>>1), dx-20, 2, COL_MENUCONTENT_PLUS_3, 0, CORNER_NONE, grad, COL_MENUCONTENT_PLUS_0, CFrameBuffer::gradientHorizontal, CColorGradient::light);
 	}
 	if ((type & STRING))
 	{

@@ -100,7 +100,8 @@ class CInfoViewer
 	CChannelEventList::iterator     eli;
 
 	int lastsnr, lastsig, lasttime;
-	CProgressBar *snrscale, *sigscale, *timescale;
+	CProgressBar *timescale;
+	CSignalBox *sigbox;
 	bool casysChange;
 	bool channellogoChange;
 	uint32_t lcdUpdateTimer;

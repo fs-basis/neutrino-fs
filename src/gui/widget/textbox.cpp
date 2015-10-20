@@ -135,7 +135,7 @@ CTextBox::~CTextBox()
 	//TRACE("[CTextBox] del\r\n");
 	m_cLineArray.clear();
 	//hide();
-	delete[] m_bgpixbuf;
+	clearScreenBuffer();
 }
 
 void CTextBox::initVar(void)
@@ -563,13 +563,9 @@ void CTextBox::refreshText(void)
 	//find changes
 	bool has_changed = hasChanged(&ax, &ay, &dx, &dy);
 
-	//destroy pixel buffer on changed property values
-	if (has_changed){
-		if (m_bgpixbuf){
-			//TRACE("[CTextBox] %s destroy ol pixel buffer, has changes %d\r\n", __FUNCTION__, __LINE__);
-			delete[] m_bgpixbuf;
-			m_bgpixbuf = NULL;
-		}
+	//destroy pixel buffer on changed property values, always on color background and text color changes
+	if (has_changed && (m_old_textBackgroundColor != m_textBackgroundColor || m_old_textColor != m_textColor)){
+		clearScreenBuffer();
 	}
 
 #if !HAVE_SPARK_HARDWARE && !HAVE_DUCKBOX_HARDWARE
@@ -594,11 +590,7 @@ void CTextBox::refreshText(void)
 	//Paint Text Background
 	bool allow_paint_bg = (m_old_cText != m_cText || has_changed || m_has_scrolled);
 	if (m_nPaintBackground){
-		if (m_bgpixbuf){
-			//TRACE("[CTextBox] %s destroy bg %d\r\n", __FUNCTION__, __LINE__);
-			delete[] m_bgpixbuf;
-			m_bgpixbuf = NULL;
-		}
+		clearScreenBuffer();
 		if (allow_paint_bg){
 			//TRACE("[CTextBox] %s paint bg %d\r\n", __FUNCTION__, __LINE__);
 			frameBuffer->paintBoxRel(ax, ay, dx, dy,  m_textBackgroundColor, m_nBgRadius, m_nBgRadiusType);
@@ -784,3 +776,28 @@ void CTextBox::hide (void)
 
 	frameBuffer = NULL;
 }
+
+bool CTextBox::clearScreenBuffer()
+{
+	if(m_bgpixbuf){
+		//TRACE("[CTextBox] %s destroy bg %d\r\n", __FUNCTION__, __LINE__);
+		delete[] m_bgpixbuf;
+		m_bgpixbuf = NULL;
+		return true;
+	}
+	return false;
+}
+
+bool CTextBox::enableSaveScreen(bool mode)
+{
+	if (m_SaveScreen == mode)
+		return false;
+
+	if (!m_SaveScreen || m_SaveScreen != mode)
+		clearScreenBuffer();
+
+	m_SaveScreen = mode;
+
+	return true;
+}
+

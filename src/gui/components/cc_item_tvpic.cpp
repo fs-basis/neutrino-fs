@@ -73,7 +73,7 @@ CComponentsPIP::CComponentsPIP(	const int x_pos, const int y_pos, const int perc
 CComponentsPIP::~CComponentsPIP()
 {
  	hide();
- 	videoDecoder->Pig(-1, -1, -1, -1);
+//  	videoDecoder->Pig(-1, -1, -1, -1);
 }
 
 void CComponentsPIP::paint(bool do_save_bg)
@@ -119,8 +119,8 @@ void CComponentsPIP::paint(bool do_save_bg)
 }
 
 
-void CComponentsPIP::hide(bool no_restore)
+void CComponentsPIP::hide()
 {
 	videoDecoder->Pig(-1, -1, -1, -1);
-	hideCCItem(no_restore);
+	CComponents::hide();
 }

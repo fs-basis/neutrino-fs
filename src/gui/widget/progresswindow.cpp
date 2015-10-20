@@ -189,9 +189,9 @@ unsigned int CProgressWindow::getGlobalStatus(void)
 	return global_progress;
 }
 
-void CProgressWindow::hide(bool no_restore)
+void CProgressWindow::hide()
 {
-	CComponentsWindow::hide(no_restore);
+	CComponentsWindow::hide();
 	frameBuffer->blit();
 }
 

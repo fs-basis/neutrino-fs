@@ -126,6 +126,7 @@ void CTimeOSD::updatePos(int position, int duration)
 
 	timescale.setProgress(x, y + height/4, width, height/2, percent, 100);
 	timescale.paint();
+	frameBuffer->blit();
 }
 
 void CTimeOSD::update(int position, int duration)
@@ -158,6 +159,7 @@ void CTimeOSD::switchMode(int position, int duration)
 			break;
 		case MODE_BAR:
 			KillAndResetTimescale();
+			frameBuffer->blit();
 			return;
 		default:
 			m_mode = MODE_ASC;

@@ -95,7 +95,7 @@ CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 	cl_interval	= interval_seconds;
 	cl_timer 	= NULL;
 	paintClock		= false;
-#if 0
+#if 1
 	may_blit		= true;
 #endif	
 
@@ -370,7 +370,7 @@ void CComponentsFrmClock::paint(bool do_save_bg)
 
 	//paint form contents
 	CComponentsForm::paint(do_save_bg);
-#if 0 //has no effect
+#if 1 //has no effect
 	if (may_blit)
 		frameBuffer->blit();
 #endif

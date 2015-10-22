@@ -46,7 +46,7 @@ class CComponentsFrmClock : public CComponentsForm, public CCTextScreen
 	private:
 		CComponentsTimer *cl_timer;
 		void ShowTime();
-#if 0
+#if 1
 		bool may_blit;
 #endif
 	
@@ -163,7 +163,7 @@ class CComponentsFrmClock : public CComponentsForm, public CCTextScreen
 
 		///set color gradient on/off, returns true if gradient mode was changed
 		virtual bool enableColBodyGradient(const int& enable_mode, const fb_pixel_t& sec_color = 255 /*=COL_BACKGROUND*/);
-#if 0
+#if 1
 		///enable/disable automatic blitting
 		void setBlit(bool _may_blit = true) { may_blit = _may_blit; }
 #endif

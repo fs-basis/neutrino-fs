@@ -4818,7 +4818,6 @@ void CNeutrinoApp::StopSubtitles(bool enable_glcd_mirroring)
 	if (enable_glcd_mirroring)
 		nGLCD::MirrorOSD(g_settings.glcd_mirror_osd);
 #endif
-
 #if 0
 	if (mode == mode_webtv)
 		CMoviePlayerGui::getInstance(true).clearSubtitle(true);
@@ -4841,7 +4840,6 @@ void CNeutrinoApp::StartSubtitles(bool show)
 		return;
 	dvbsub_start(0);
 	tuxtx_pause_subtitle(false);
-
 #if 0
 	if (mode == mode_webtv)
 		CMoviePlayerGui::getInstance(true).clearSubtitle(false);

@@ -4452,6 +4452,23 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		g_RCInput->postMsg(NeutrinoMessages::STANDBY_ON, 0);
 		return menu_return::RETURN_EXIT_ALL;
 	}
+#if 0
+	else if(actionKey == "easyswitch") {
+		INFO("easyswitch\n");
+		CParentalSetup pin;
+		if (pin.checkPin()) {
+			if (parent)
+				parent->hide();
+
+			std::string text = "Easy menu switched " + string(g_settings.easymenu?"OFF":"ON") + string(", when restart box.\nRestart now?");
+			if (ShowMsg(LOCALE_MESSAGEBOX_INFO, text, CMessageBox::mbrNo, CMessageBox::mbYes | CMessageBox::mbNo, NEUTRINO_ICON_INFO, 0) == CMessageBox::mbrYes) {
+				g_settings.easymenu = (g_settings.easymenu == 0) ? 1 : 0;
+				INFO("change easymenu to %d\n", g_settings.easymenu);
+				g_RCInput->postMsg(NeutrinoMessages::REBOOT, 0);
+			}
+		}
+	}
+#endif
 
 	return returnval;
 }
@@ -4801,6 +4818,11 @@ void CNeutrinoApp::StopSubtitles(bool enable_glcd_mirroring)
 	if (enable_glcd_mirroring)
 		nGLCD::MirrorOSD(g_settings.glcd_mirror_osd);
 #endif
+
+#if 0
+	if (mode == mode_webtv)
+		CMoviePlayerGui::getInstance(true).clearSubtitle(true);
+#endif
 }
 
 void CNeutrinoApp::StartSubtitles(bool show)
@@ -4819,6 +4841,11 @@ void CNeutrinoApp::StartSubtitles(bool show)
 		return;
 	dvbsub_start(0);
 	tuxtx_pause_subtitle(false);
+
+#if 0
+	if (mode == mode_webtv)
+		CMoviePlayerGui::getInstance(true).clearSubtitle(false);
+#endif 
 }
 
 void CNeutrinoApp::SelectSubtitles()

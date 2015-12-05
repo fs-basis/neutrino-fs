@@ -286,6 +286,8 @@ ci.reset_standby Reset after standby
 ci.save_pincode Save pincode
 ci.settings Conditional access
 ci.timeout Timeout waiting CI menu ready
+ci.tuner Use CI only with tuner:
+ci.use Enable CI
 ci.waiting Waiting for CI answer
 clock_background Show background
 clock_seconds Show seconds
@@ -931,6 +933,7 @@ lua.boolparam_deprecated3 for a Boolean parameter is deprecated.\n              
 lua.function_deprecated1 Caution!
 lua.function_deprecated2 Function
 lua.function_deprecated3 is deprecated,\n                      please use
+lua.parameter_deprecated2 Parameter
 lua.versionscheck1 Your Lua API version is too old
 lua.versionscheck2 This requires at least
 mainmenu.audioplayer Audioplayer

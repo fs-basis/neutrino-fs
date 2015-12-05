@@ -129,7 +129,6 @@ class CMoviePlayerGui : public CMenuTarget
 	int tmag[REC_MAX_TPIDS];
 	int tpage[REC_MAX_TPIDS];
 	std::string currentttxsub;
-	unsigned long long last_read;
 
 #if 0
 	/* subtitles vars */
@@ -142,6 +141,7 @@ class CMoviePlayerGui : public CMenuTarget
 	time_t end_time;
 	bool ext_subs;
 #endif
+	uint64_t last_read;
 
 	/* playback from MB */
 	bool isMovieBrowser;
@@ -240,7 +240,6 @@ class CMoviePlayerGui : public CMenuTarget
 	int GetSpeed() { return speed; }
 	int GetPosition() { return position; }
 	int GetDuration() { return duration; }
-	size_t GetReadCount();
 	void UpdatePosition();
 	int timeshift;
 	int file_prozent;
@@ -266,8 +265,14 @@ class CMoviePlayerGui : public CMenuTarget
 	void Pause(bool b = true);
 	void selectAudioPid(void);
 	bool SetPosition(int pos, bool absolute = false);
-	std::string GetFile() { return file_name; }
+#if 0
+	void selectSubtitle();
+	void showSubtitle(neutrino_msg_data_t data);
+	void clearSubtitle(bool lock = false);
+#endif
 	int getKeyPressed() { return keyPressed; };
+	size_t GetReadCount();
+	std::string GetFile() { return pretty_name; }
 };
 
 #endif

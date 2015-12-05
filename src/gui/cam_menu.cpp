@@ -110,13 +110,36 @@ int CCAMMenuHandler::doMainMenu()
 
 	CMenuWidget* cammenu = new CMenuWidget(LOCALE_CI_SETTINGS, NEUTRINO_ICON_SETTINGS);
 	cammenu->addIntroItems();
-
+#ifdef BOXMODEL_APOLLO
+	int fecount = CFEManager::getInstance()->getFrontendCount();
+	char fename[fecount+1][255];
+#endif
 	if(CiSlots) {
 		cammenu->addItem( new CMenuOptionChooser(LOCALE_CI_RESET_STANDBY, &g_settings.ci_standby_reset, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 		cammenu->addItem( new CMenuOptionNumberChooser(LOCALE_CI_CLOCK, &g_settings.ci_clock, true, 6, 12, this));
 	}
 	cammenu->addItem( new CMenuOptionChooser(LOCALE_CI_IGNORE_MSG, &g_settings.ci_ignore_messages, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	cammenu->addItem( new CMenuOptionChooser(LOCALE_CI_SAVE_PINCODE, &g_settings.ci_save_pincode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
+
+#ifdef BOXMODEL_APOLLO
+	CMenuOptionChooser::keyval_ext feselect[fecount+1];
+	feselect[0].key = -1;
+	feselect[0].value = NONEXISTANT_LOCALE;
+	feselect[0].valname = g_Locale->getText(LOCALE_OPTIONS_OFF);
+	int select_count = 1;
+
+	for (int i = 0; i < fecount; i++) {
+		CFrontend * fe = CFEManager::getInstance()->getFE(i);
+		int num = fe->getNumber();
+		snprintf(fename[select_count], sizeof(fename[select_count]), "%d: %s", num+1, fe->getName());
+		feselect[select_count].key = num;
+		feselect[select_count].value = NONEXISTANT_LOCALE;
+		feselect[select_count].valname = fename[select_count];
+		select_count++;
+	}
+	CMenuOptionChooser * mc = new CMenuOptionChooser(LOCALE_CI_TUNER, &g_settings.ci_tuner, feselect, select_count, true, this);
+	cammenu->addItem(mc);
+#endif
 	cammenu->addItem( GenericMenuSeparatorLine );
 
 	CMenuWidget * tempMenu;
@@ -259,14 +282,14 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 		return -1;
 
 	if(MsgId == CA_MESSAGE_MSG_INSERTED) {
-		snprintf(str, sizeof(str), "%s %d", 
+		snprintf(str, sizeof(str), "%s %d",
 				g_Locale->getText(SlotType == CA_SLOT_TYPE_CI ? LOCALE_CI_INSERTED : LOCALE_SC_INSERTED), (int)curslot+1);
 		printf("CCAMMenuHandler::handleCamMsg: %s\n", str);
 		ShowHint(LOCALE_MESSAGEBOX_INFO, str, 450, 3);
 		if (in_menu)
 			msgret = messages_return::cancel_all;
 	} else if (MsgId == CA_MESSAGE_MSG_REMOVED) {
-		snprintf(str, sizeof(str), "%s %d", 
+		snprintf(str, sizeof(str), "%s %d",
 				g_Locale->getText(SlotType == CA_SLOT_TYPE_CI ? LOCALE_CI_REMOVED : LOCALE_SC_REMOVED), (int)curslot+1);
 
 		printf("CCAMMenuHandler::handleCamMsg: %s\n", str);
@@ -282,7 +305,7 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 		if (ca)
 			ca->ModuleName(SlotType, curslot, name);
 
-		snprintf(str, sizeof(str), "%s %d: %s", 
+		snprintf(str, sizeof(str), "%s %d: %s",
 				g_Locale->getText(SlotType == CA_SLOT_TYPE_CI ? LOCALE_CI_INIT_OK : LOCALE_SC_INIT_OK), (int)curslot+1, name);
 		printf("CCAMMenuHandler::handleCamMsg: %s\n", str);
 		CCamManager::getInstance()->Start(CZapit::getInstance()->GetCurrentChannelID(), CCamManager::PLAY, true);
@@ -292,7 +315,7 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 		if (ca)
 			ca->ModuleName(SlotType, curslot, name);
 
-		snprintf(str, sizeof(str), "%s %d: %s", 
+		snprintf(str, sizeof(str), "%s %d: %s",
 				g_Locale->getText(SlotType == CA_SLOT_TYPE_CI ? LOCALE_CI_INIT_FAILED : LOCALE_SC_INIT_FAILED), (int)curslot+1, name);
 
 		printf("CCAMMenuHandler::handleCamMsg: %s\n", str);
@@ -454,7 +477,7 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 			return -1;
 		}
 		CNeutrinoApp::getInstance()->zapTo(channel->getChannelID());
-	} 
+	}
 	return 1;
 }
 
@@ -474,7 +497,7 @@ int CCAMMenuHandler::doMenu(int slot, CA_SLOT_TYPE slotType)
 
 		ca->MenuEnter(slotType, slot);
 		while(true) {
-			showHintBox(LOCALE_MESSAGEBOX_INFO, 
+			showHintBox(LOCALE_MESSAGEBOX_INFO,
 				g_Locale->getText(slotType == CA_SLOT_TYPE_CI ? LOCALE_CI_WAITING : LOCALE_SC_WAITING));
 
 			g_RCInput->getMsgAbsoluteTimeout (&msg, &data, &timeoutEnd);
@@ -536,6 +559,10 @@ bool CCAMMenuHandler::changeNotify(const neutrino_locale_t OptionName, void * Da
 			printf("CCAMMenuHandler::changeNotify: clear saved pincode\n");
 			g_settings.ci_pincode.clear();
 		}
+	}
+	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_CI_TUNER)) {
+		printf("CCAMMenuHandler::changeNotify: bind CI to tuner %d\n", g_settings.ci_tuner);
+		CCamManager::getInstance()->SetCITuner(g_settings.ci_tuner);
 	}
 	return false;
 }

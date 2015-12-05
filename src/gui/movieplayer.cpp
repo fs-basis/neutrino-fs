@@ -44,6 +44,7 @@
 #include <gui/infoclock.h>
 #include <gui/plugins.h>
 #include <gui/videosettings.h>
+#include <gui/streaminfo2.h>
 #include <driver/screenshot.h>
 #include <driver/volume.h>
 #include <driver/display.h>
@@ -615,6 +616,8 @@ bool CMoviePlayerGui::prepareFile(CFile *file)
 		if (filelist_it != filelist.end()) {
 			unsigned idx = filelist_it - filelist.begin();
 			p_movie_info = milist[idx];
+			startposition = p_movie_info->bookmarks.start > 0 ? p_movie_info->bookmarks.start*1000 : -1;
+			printf("CMoviePlayerGui::prepareFile: file %s start %d\n", file_name.c_str(), startposition);
 		}
 		fillPids();
 	}
@@ -815,8 +818,13 @@ bool CMoviePlayerGui::PlayBackgroundStart(const std::string &file, const std::st
 			zp = NULL;
 			if (!unlocked)
 				return false;
+		} else {
+			CZapitChannel * channel = CServiceManager::getInstance()->FindChannel(chan);
+			if (channel && channel->Locked() != g_settings.parentallock_defaultlocked && !CNeutrinoApp::getInstance()->channelList->checkLockStatus(0x100))
+				return false;
 		}
 	}
+
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
 
 	instance_bg->Cleanup();
@@ -904,6 +912,7 @@ bool CMoviePlayerGui::PlayFileStart(void)
 
 	position = 0, duration = 0;
 	speed = 1;
+	last_read = 0;
 
 	printf("%s: starting...\n", __func__);
 	stopPlayBack();
@@ -1429,6 +1438,14 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			StartSubtitles(true);
 			if (restore)
 				FileTime.show(position);
+		} else if (msg == CRCInput::RC_red) {
+			bool restore = FileTime.IsVisible();
+			FileTime.kill();
+			CStreamInfo2 streaminfo;
+			streaminfo.exec(NULL, "");
+			if (restore)
+				FileTime.show(position);
+			update_lcd = true;
 		} else if (msg == NeutrinoMessages::SHOW_EPG) {
 			handleMovieBrowser(NeutrinoMessages::SHOW_EPG, position);
 		} else if (msg == (neutrino_msg_t) g_settings.key_screenshot) {
@@ -2542,23 +2559,6 @@ bool CMoviePlayerGui::getAPID(unsigned int i, int &apid, unsigned int &is_ac3)
 	return false;
 }
 
-size_t CMoviePlayerGui::GetReadCount()
-{
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-	uint64_t this_read = 0;
-	this_read = playback->GetReadCount();
-	uint64_t res;
-	if (this_read < last_read)
-		res = 0;
-	else
-		res = this_read - last_read;
-	last_read = this_read;
-	return (size_t) res;
-#else
-	return 0;
-#endif
-}
-
 void CMoviePlayerGui::selectAutoLang()
 {
 #if 0
@@ -2727,4 +2727,17 @@ void CMoviePlayerGui::showFileInfos()
 		delete sfimenu;
 	}
 	return;
+}
+
+size_t CMoviePlayerGui::GetReadCount()
+{
+	uint64_t this_read = 0;
+	this_read = playback->GetReadCount();
+	uint64_t res;
+	if (this_read < last_read)
+		res = 0;
+	else
+		res = this_read - last_read;
+	last_read = this_read;
+	return (size_t) res;
 }

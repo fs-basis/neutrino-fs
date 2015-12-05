@@ -180,7 +180,6 @@ extern cVideo *pipDecoder;
 extern cDemux *videoDemux;
 extern cAudio * audioDecoder;
 cPowerManager *powerManager;
-cCpuFreqManager * cpuFreq;
 
 void stop_daemons(bool stopall = true, bool for_flash = false);
 void stop_video(void);
@@ -460,24 +459,13 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.enabled_auto_modes[i] = configfile.getInt32(cfg_key, 1);
 	}
 
-	g_settings.cpufreq = configfile.getInt32("cpufreq", 0);
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-	g_settings.standby_cpufreq = configfile.getInt32("standby_cpufreq", 0);
-#else
-	g_settings.standby_cpufreq = configfile.getInt32("standby_cpufreq", 100);
-#endif
 	g_settings.rounded_corners = configfile.getInt32("rounded_corners", 1);
 	g_settings.ci_standby_reset = configfile.getInt32("ci_standby_reset", 0);
-	g_settings.ci_clock = configfile.getInt32("ci_clock", 9);
+	g_settings.ci_clock = configfile.getInt32("ci_clock", 6);
 	g_settings.ci_ignore_messages = configfile.getInt32("ci_ignore_messages", 0);
 	g_settings.ci_save_pincode = configfile.getInt32("ci_save_pincode", 0);
 	g_settings.ci_pincode = configfile.getString("ci_pincode", "");
 	g_settings.ci_tuner = configfile.getInt32("ci_tuner", -1);
-
-#ifndef CPU_FREQ
-	g_settings.cpufreq = 0;
-	g_settings.standby_cpufreq = 50;
-#endif
 
 	g_settings.make_hd_list = configfile.getInt32("make_hd_list", 0);
 	g_settings.make_webtv_list = configfile.getInt32("make_webtv_list", 1);
@@ -1128,8 +1116,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		sprintf(cfg_key, "enabled_auto_mode_%d", i);
 		configfile.setInt32(cfg_key, g_settings.enabled_auto_modes[i]);
 	}
-	configfile.setInt32( "cpufreq", g_settings.cpufreq);
-	configfile.setInt32( "standby_cpufreq", g_settings.standby_cpufreq);
 	configfile.setInt32("rounded_corners", g_settings.rounded_corners);
 	configfile.setInt32("ci_standby_reset", g_settings.ci_standby_reset);
 	configfile.setInt32("ci_clock", g_settings.ci_clock);
@@ -2113,10 +2099,7 @@ TIMER_START();
 	g_Locale        = new CLocaleManager;
 
 	int loadSettingsErg = loadSetup(NEUTRINO_SETTINGS_FILE);
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-	cpuFreq = new cCpuFreqManager();
-	cpuFreq->SetCpuFreq(g_settings.cpufreq * 1000 * 1000);
-#endif
+
 	wake_up( timer_wakeup );
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 	CCECSetup cecsetup;
@@ -2245,10 +2228,6 @@ TIMER_START();
 	powerManager = new cPowerManager;
 	powerManager->Open();
 
-#if !HAVE_SPARK_HARDWARE && !HAVE_DUCKBOX_HARDWARE
-	cpuFreq = new cCpuFreqManager();
-	cpuFreq->SetCpuFreq(g_settings.cpufreq * 1000 * 1000);
-#endif
 #if HAVE_COOL_HARDWARE
 	/* only SAT-hd1 before rev 8 has fan */
 	g_info.has_fan = (cs_get_revision()  < 8 && CFEManager::getInstance()->getFE(0)->hasSat());
@@ -2965,8 +2944,7 @@ bool CNeutrinoApp::wakeupFromStandby(void)
 	bool alive = recordingstatus || CEpgScan::getInstance()->Running() ||
 		CStreamManager::getInstance()->StreamStatus();
 
-	if ((mode == mode_standby) && !alive) {
-		cpuFreq->SetCpuFreq(g_settings.cpufreq * 1000 * 1000);
+	{
 #if !HAVE_SPARK_HARDWARE
 		if(g_settings.ci_standby_reset) {
 			g_CamHandler->exec(NULL, "ca_ci_reset0");
@@ -2994,7 +2972,7 @@ void CNeutrinoApp::standbyToStandby(void)
 		}
 		g_Zapit->setStandby(true);
 		g_Sectionsd->setPauseScanning(true);
-		cpuFreq->SetCpuFreq(g_settings.standby_cpufreq * 1000 * 1000);
+
 #if defined (BOXMODEL_IPBOX9900) || defined (BOXMODEL_IPBOX99)
 		system("echo 0 > /proc/stb/misc/fan");
 #endif
@@ -4109,8 +4087,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 			perror(NEUTRINO_ENTER_STANDBY_SCRIPT " failed");
 		bool alive = recordingstatus || CEpgScan::getInstance()->Running() ||
 			CStreamManager::getInstance()->StreamStatus();
-		if(!alive)
-			cpuFreq->SetCpuFreq(g_settings.standby_cpufreq * 1000 * 1000);
 
 		//fan speed
 		if (g_info.has_fan)
@@ -4129,7 +4105,7 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 		powerManager->SetStandby(false, false);
 		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
 		CVFD::getInstance()->ShowText("resume");
-		cpuFreq->SetCpuFreq(g_settings.cpufreq * 1000 * 1000);
+
 		videoDecoder->Standby(false);
 		CEpgScan::getInstance()->Stop();
 #if ENABLE_FASTSCAN
@@ -4372,7 +4348,7 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		hintBox->hide();
 		delete hintBox;
 	}
-	else if(actionKey=="nkplayback" || actionKey=="ytplayback" || actionKey=="tsmoviebrowser" || actionKey=="fileplayback") {
+	else if(actionKey=="nkplayback" ||  actionKey=="tsmoviebrowser" || actionKey=="fileplayback") {
 		frameBuffer->Clear();
 		if(mode == NeutrinoMessages::mode_radio )
 			frameBuffer->stopFrame();
@@ -4557,12 +4533,8 @@ void stop_daemons(bool stopall, bool for_flash)
 		CVFD::getInstance()->Clear();
 		CVFD::getInstance()->setBacklight(g_settings.backlight_deepstandby);
 	}
-	if(stopall && !for_flash) {
-		if (cpuFreq) {
-			cpuFreq->SetCpuFreq(g_settings.cpufreq * 1000 * 1000);
-			delete cpuFreq;
-		}
 
+	{
 		if (powerManager) {
 			/* if we were in standby, leave it otherwise, the next
 			   start of neutrino will fail in "_write_gxa" in

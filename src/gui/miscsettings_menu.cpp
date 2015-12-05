@@ -167,54 +167,6 @@ const CMenuOptionChooser::keyval CHANNELLIST_NEW_ZAP_MODE_OPTIONS[CHANNELLIST_NE
 	{ 2, LOCALE_CHANNELLIST_NEW_ZAP_MODE_ACTIVE	}
 };
 
-#ifdef CPU_FREQ
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-#define CPU_FREQ_OPTION_COUNT 6
-const CMenuOptionChooser::keyval_ext CPU_FREQ_OPTIONS[CPU_FREQ_OPTION_COUNT] =
-{
-	{ 0, LOCALE_CPU_FREQ_DEFAULT, NULL  },
-	{ 450, NONEXISTANT_LOCALE, "450 Mhz"},
-	{ 500, NONEXISTANT_LOCALE, "500 Mhz"},
-	{ 550, NONEXISTANT_LOCALE, "550 Mhz"},
-	{ 600, NONEXISTANT_LOCALE, "600 Mhz"},
-	{ 650, NONEXISTANT_LOCALE, "650 Mhz"}
-};
-#define CPU_FREQ_OPTION_STANDBY_COUNT 11
-const CMenuOptionChooser::keyval_ext CPU_FREQ_OPTIONS_STANDBY[CPU_FREQ_OPTION_STANDBY_COUNT] =
-{
-	{ 0, LOCALE_CPU_FREQ_DEFAULT, NULL  },
-	{ 200, NONEXISTANT_LOCALE, "200 Mhz"},
-	{ 250, NONEXISTANT_LOCALE, "250 Mhz"},
-	{ 300, NONEXISTANT_LOCALE, "300 Mhz"},
-	{ 350, NONEXISTANT_LOCALE, "350 Mhz"},
-	{ 400, NONEXISTANT_LOCALE, "400 Mhz"},
-	{ 450, NONEXISTANT_LOCALE, "450 Mhz"},
-	{ 500, NONEXISTANT_LOCALE, "500 Mhz"},
-	{ 550, NONEXISTANT_LOCALE, "550 Mhz"},
-	{ 600, NONEXISTANT_LOCALE, "600 Mhz"},
-	{ 650, NONEXISTANT_LOCALE, "650 Mhz"}
-};
-#else
-#define CPU_FREQ_OPTION_COUNT 13
-const CMenuOptionChooser::keyval_ext CPU_FREQ_OPTIONS[CPU_FREQ_OPTION_COUNT] =
-{
-	{ 0, LOCALE_CPU_FREQ_DEFAULT, NULL },
-	{ 50, NONEXISTANT_LOCALE,  "50 Mhz"},
-	{ 100, NONEXISTANT_LOCALE, "100 Mhz"},
-	{ 150, NONEXISTANT_LOCALE, "150 Mhz"},
-	{ 200, NONEXISTANT_LOCALE, "200 Mhz"},
-	{ 250, NONEXISTANT_LOCALE, "250 Mhz"},
-	{ 300, NONEXISTANT_LOCALE, "300 Mhz"},
-	{ 350, NONEXISTANT_LOCALE, "350 Mhz"},
-	{ 400, NONEXISTANT_LOCALE, "400 Mhz"},
-	{ 450, NONEXISTANT_LOCALE, "450 Mhz"},
-	{ 500, NONEXISTANT_LOCALE, "500 Mhz"},
-	{ 550, NONEXISTANT_LOCALE, "550 Mhz"},
-	{ 600, NONEXISTANT_LOCALE, "600 Mhz"}
-};
-#endif
-#endif /*CPU_FREQ*/
-
 const CMenuOptionChooser::keyval EPG_SCAN_OPTIONS[] =
 {
 	{ CEpgScan::SCAN_CURRENT, LOCALE_MISCSETTINGS_EPG_SCAN_BQ },
@@ -309,14 +261,6 @@ int CMiscMenue::showMiscSettingsMenu()
 	mf->setHint("", LOCALE_MENU_HINT_MISC_ZAPIT);
 	misc_menue.addItem(mf);
 
-#ifdef CPU_FREQ
-	//CPU
-	CMenuWidget misc_menue_cpu(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS, width);
-	showMiscSettingsMenuCPUFreq(&misc_menue_cpu);
-	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_CPU, true, NULL, &misc_menue_cpu, NULL, CRCInput::RC_4);
-	mf->setHint("", LOCALE_MENU_HINT_MISC_CPUFREQ);
-	misc_menue.addItem(mf);
-#endif /*CPU_FREQ*/
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 	// kerneloptions
 	CKernelOptions kernelOptions;
@@ -581,22 +525,6 @@ int CMiscMenue::showMiscSettingsMenuChanlist()
 		g_RCInput->postMsg(NeutrinoMessages::EVT_SERVICESCHANGED, 0);
 	return res;
 }
-
-#ifdef CPU_FREQ
-//CPU
-void CMiscMenue::showMiscSettingsMenuCPUFreq(CMenuWidget *ms_cpu)
-{
-	ms_cpu->addIntroItems(LOCALE_MISCSETTINGS_CPU);
-
-	CCpuFreqNotifier * cpuNotifier = new CCpuFreqNotifier();
-	ms_cpu->addItem(new CMenuOptionChooser(LOCALE_CPU_FREQ_NORMAL, &g_settings.cpufreq, CPU_FREQ_OPTIONS, CPU_FREQ_OPTION_COUNT, true, cpuNotifier));
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-	ms_cpu->addItem(new CMenuOptionChooser(LOCALE_CPU_FREQ_STANDBY, &g_settings.standby_cpufreq, CPU_FREQ_OPTIONS_STANDBY, CPU_FREQ_OPTION_STANDBY_COUNT, true));
-#else
-	ms_cpu->addItem(new CMenuOptionChooser(LOCALE_CPU_FREQ_STANDBY, &g_settings.standby_cpufreq, CPU_FREQ_OPTIONS, CPU_FREQ_OPTION_COUNT, true));
-#endif
-}
-#endif /*CPU_FREQ*/
 
 bool CMiscMenue::changeNotify(const neutrino_locale_t OptionName, void * /*data*/)
 {

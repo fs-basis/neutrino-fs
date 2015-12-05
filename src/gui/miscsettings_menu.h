@@ -33,8 +33,6 @@
 
 #include <string>
 
-//#define CPU_FREQ
-
 class CMiscMenue : public CMenuTarget, CChangeObserver
 {	
 	private:
@@ -60,9 +58,7 @@ class CMiscMenue : public CMenuTarget, CChangeObserver
 		void showMiscSettingsMenuFBrowser(CMenuWidget *ms_fbrowser);
 		int showMiscSettingsMenuEnergy();
 		int showMiscSettingsMenuChanlist();
-#ifdef CPU_FREQ
-		void showMiscSettingsMenuCPUFreq(CMenuWidget *ms_cpu);
-#endif /*CPU_FREQ*/
+
 	public:
 		CMiscMenue();
 		~CMiscMenue();

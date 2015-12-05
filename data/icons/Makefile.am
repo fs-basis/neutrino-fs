@@ -152,14 +152,12 @@ install_DATA += \
 	hint_tvradio_switch.png \
 	hint_vfd.png \
 	hint_video.png \
-	hint_ytplay.png \
 	home.png \
 	icon_blue.png \
 	icon_green.png \
 	icon_movieplayer.png \
 	icon_red.png \
 	icon_yellow.png \
-	icon_ytplay.png \
 	important.png \
 	info.png \
 	info_blue.png \

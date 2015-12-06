@@ -1292,19 +1292,20 @@ void CMovieBrowser::refreshMovieInfo(void)
 	int lx = m_cBoxFrame.iX+m_cBoxFrameTitleRel.iX+m_cBoxFrameTitleRel.iWidth-logo_w-10;
 	int ly = m_cBoxFrameTitleRel.iY+m_cBoxFrame.iY+ (m_cBoxFrameTitleRel.iHeight-logo_h)/2;
 	short pb_hdd_offset = 104;
-	static uint64_t old_EpgId = 0;
-	if (CChannelLogo && (old_EpgId != m_movieSelectionHandler->epgEpgId >>16)) {
+	//static uint64_t old_EpgId = 0;
+	if (CChannelLogo /*&& (old_EpgId != m_movieSelectionHandler->epgEpgId >>16)*/) {
 		if (newHeader)
 			CChannelLogo->clearFbData(); // reset logo screen data
 		else
 			CChannelLogo->hide();
+			CChannelLogo->clearSavedScreen();
 		delete CChannelLogo;
 		CChannelLogo = NULL;
 	}
-	if (old_EpgId != m_movieSelectionHandler->epgEpgId >>16) {
+	//if (old_EpgId != m_movieSelectionHandler->epgEpgId >>16) {
 		CChannelLogo = new CComponentsChannelLogoScalable(0, 0, m_movieSelectionHandler->epgChannel, m_movieSelectionHandler->epgEpgId >>16); //TODO: add logo into header as item
-		old_EpgId = m_movieSelectionHandler->epgEpgId >>16;
-	}
+		//old_EpgId = m_movieSelectionHandler->epgEpgId >>16;
+	//}
 
 	if (CChannelLogo && CChannelLogo->hasLogo()) {
 		//scale image if required, TODO: move into an own handler, eg. header, so channel logo should be paint in header object

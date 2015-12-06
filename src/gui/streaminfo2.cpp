@@ -663,6 +663,18 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 				CServiceManager::getInstance()->GetSatelliteName(channel->getSatellitePosition()).c_str());
 		g_Font[font_info]->RenderString (xpos+spaceoffset, ypos, box_width, buf, COL_INFOBAR_TEXT);
 
+		//provider
+		if(channel->pname){
+			ypos += iheight;
+			std::string prov_name = channel->pname;
+			size_t pos = prov_name.find_first_of("]");
+			if(pos != std::string::npos)
+				prov_name=prov_name.substr(pos+2);
+			sprintf (buf, "%s:",g_Locale->getText (LOCALE_CHANNELLIST_PROVS));
+			g_Font[font_info]->RenderString(xpos, ypos, box_width, buf , COL_INFOBAR_TEXT);
+			g_Font[font_info]->RenderString (xpos+spaceoffset, ypos, box_width, prov_name.c_str(), COL_INFOBAR_TEXT);
+		}
+
 		//channel
 		ypos += iheight;
 		sprintf (buf, "%s:",g_Locale->getText (LOCALE_TIMERLIST_CHANNEL));//swiped locale

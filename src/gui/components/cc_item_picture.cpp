@@ -255,7 +255,7 @@ void CComponentsPicture::paint(bool do_save_bg)
 void CComponentsPicture::hide()
 {
 	CComponents::hide();
-	CComponents::clearSavedScreen();
+	//CComponents::clearSavedScreen();
 	is_image_painted = false;
 }
 

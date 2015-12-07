@@ -1298,7 +1298,7 @@ void CMovieBrowser::refreshMovieInfo(void)
 			CChannelLogo->clearFbData(); // reset logo screen data
 		else
 			CChannelLogo->hide();
-			CChannelLogo->clearSavedScreen();
+			//CChannelLogo->clearSavedScreen();
 		delete CChannelLogo;
 		CChannelLogo = NULL;
 	}

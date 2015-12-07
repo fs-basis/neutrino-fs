@@ -595,7 +595,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	sprintf (buf, "%s:", g_Locale->getText (LOCALE_STREAMINFO_AUDIOTYPE));
 	g_Font[font_info]->RenderString (xpos, ypos, box_width, buf, COL_INFOBAR_TEXT);
 
-	if(type == AUDIO_FMT_MPEG) {
+	if(type == AUDIO_FMT_AUTO) {
 		const int max_mode = 4;
 		const char *mpegmodes[max_mode] = { "stereo", "joint_st", "dual_ch", "single_ch" };
 		sprintf (buf, "MPEG %s (%d)", (mode > max_mode) ?"unk":mpegmodes[mode], freq);

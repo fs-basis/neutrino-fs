@@ -894,8 +894,6 @@ void CMovieInfo::clearMovieInfo(MI_MOVIE_INFO * movie_info)
 		movie_info->bookmarks.user[i].name = "";
 	}
 	movie_info->tfile.clear();
-	movie_info->ytdate.clear();
-	movie_info->ytid.clear();
 }
 
 void MI_MOVIE_INFO::clear(void)
@@ -947,9 +945,6 @@ void MI_MOVIE_INFO::clear(void)
 		bookmarks.user[i].name = "";
 	}
 	tfile = "";
-	ytdate = "";
-	ytid = "";
-	ytitag = 0;
 	marked = false;
 }
 

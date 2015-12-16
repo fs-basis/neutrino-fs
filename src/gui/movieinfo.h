@@ -175,6 +175,7 @@ class MI_MOVIE_INFO
 	int  VideoType;
 	int	 epgVTXPID;			// currently not used, we just do not want to loose this info if movie info is saved backed 
 	bool marked;
+	bool delAsk;
 	std::string tfile; // thumbnail/cover file name
 
 	enum miSource { UNKNOWN = 0, YT, NK };

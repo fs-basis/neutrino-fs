@@ -45,6 +45,7 @@
 
 #include <gui/infoviewer.h>
 #include <gui/bouquetlist.h>
+#include "gui/keybind_setup.h"
 #include <gui/widget/icons.h>
 #include <gui/widget/hintbox.h>
 #include <gui/customcolor.h>
@@ -218,34 +219,45 @@ void CInfoViewerBB::getBBButtonInfo()
 	bbButtonMaxH = 0;
 	bbButtonMaxX = g_InfoViewer->ChanInfoX;
 	int bbButtonMaxW = 0;
-	int mode;
+	int mode = NeutrinoMessages::mode_unknown;
 	for (int i = 0; i < CInfoViewerBB::BUTTON_MAX; i++) {
 		int w = 0, h = 0;
 		bool active;
 		std::string text, icon;
 		switch (i) {
-		case CInfoViewerBB::BUTTON_EPG:
+		case CInfoViewerBB::BUTTON_RED:
+//			pers = SNeutrinoSettings::P_MAIN_RED_BUTTON;
 			icon = NEUTRINO_ICON_INFO_RED;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
 			if (mode == NeutrinoMessages::mode_ts) {
-				text = g_Locale->getText(LOCALE_EPGMENU_STREAMINFO);
-			} else {
-				text = CUserMenu::getUserMenuButtonName(0, active);
+				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_red, active);
 				if (!text.empty())
 					break;
-				text = g_settings.usermenu[SNeutrinoSettings::BUTTON_RED]->title;
-				if (text.empty())
-					text = g_Locale->getText(LOCALE_INFOVIEWER_EVENTLIST);
 			}
+			text = CUserMenu::getUserMenuButtonName(0, active);
+			if (!text.empty())
+				break;
+			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_RED]->title;
+			if (text.empty())
+				text = g_Locale->getText(LOCALE_INFOVIEWER_EVENTLIST);
 			break;
-		case CInfoViewerBB::BUTTON_AUDIO:
+		case CInfoViewerBB::BUTTON_GREEN:
+//			pers = SNeutrinoSettings::P_MAIN_GREEN_BUTTON;
 			icon = NEUTRINO_ICON_INFO_GREEN;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
-			text = CUserMenu::getUserMenuButtonName(1, active);
-			if (text.empty())
-				text = g_Locale->getText(LOCALE_AUDIOSELECTMENUE_HEAD);
 			mode = CNeutrinoApp::getInstance()->getMode();
+			if (mode == NeutrinoMessages::mode_ts) {
+				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_green, active);
+				if (text != g_Locale->getText(LOCALE_MPKEY_AUDIO))
+					break;
+			}
+			text = CUserMenu::getUserMenuButtonName(1, active);
+			if (!text.empty() && (mode == NeutrinoMessages::mode_tv || mode == NeutrinoMessages::mode_radio))
+				break;
+			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_GREEN]->title;
+			if (text != g_Locale->getText(LOCALE_AUDIOSELECTMENUE_HEAD))
+				break;
 			if ((mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) && !CMoviePlayerGui::getInstance().timeshift) {
 				text = CMoviePlayerGui::getInstance(mode == NeutrinoMessages::mode_webtv).CurrentAudioName();
 			} else if (!g_RemoteControl->current_PIDs.APIDs.empty()) {
@@ -255,16 +267,30 @@ void CInfoViewerBB::getBBButtonInfo()
 				}
 			}
 			break;
-		case CInfoViewerBB::BUTTON_SUBS:
+		case CInfoViewerBB::BUTTON_YELLOW:
+//			pers = SNeutrinoSettings::P_MAIN_YELLOW_BUTTON;
 			icon = NEUTRINO_ICON_INFO_YELLOW;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
+			mode = CNeutrinoApp::getInstance()->getMode();
+			if (mode == NeutrinoMessages::mode_ts) {
+				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_yellow, active);
+				if (!text.empty())
+					break;
+			}
 			text = CUserMenu::getUserMenuButtonName(2, active);
 			if (text.empty())
 				text = g_Locale->getText((g_RemoteControl->are_subchannels) ? LOCALE_INFOVIEWER_SUBSERVICE : LOCALE_INFOVIEWER_SELECTTIME);
 			break;
-		case CInfoViewerBB::BUTTON_FEAT:
+		case CInfoViewerBB::BUTTON_BLUE:
+//			pers = SNeutrinoSettings::P_MAIN_BLUE_BUTTON;
 			icon = NEUTRINO_ICON_INFO_BLUE;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
+			mode = CNeutrinoApp::getInstance()->getMode();
+			if (mode == NeutrinoMessages::mode_ts) {
+				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_blue, active);
+				if (!text.empty())
+					break;
+			}
 			text = CUserMenu::getUserMenuButtonName(3, active);
 			if (text.empty())
 				text = g_Locale->getText(LOCALE_INFOVIEWER_STREAMINFO);
@@ -277,6 +303,11 @@ void CInfoViewerBB::getBBButtonInfo()
 		bbButtonInfo[i].h = h;
 		bbButtonInfo[i].text = text;
 		bbButtonInfo[i].icon = icon;
+
+//		if (pers > -1 && (g_settings.personalize[pers] != CPersonalizeGui::PERSONALIZE_ACTIVE_MODE_ENABLED))
+//			active = false;
+//		bbButtonInfo[i].active = active;
+
 	}
 	// Calculate position/size of buttons
 	minX = std::min(bbIconMinX, g_InfoViewer->ChanInfoX + (((g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX) * 75) / 100));
@@ -284,6 +315,20 @@ void CInfoViewerBB::getBBButtonInfo()
 	bbButtonMaxX = g_InfoViewer->ChanInfoX + 10;
 	int br = 0, count = 0;
 	for (int i = 0; i < CInfoViewerBB::BUTTON_MAX; i++) {
+
+//#if 0
+//		if ((i == CInfoViewerBB::BUTTON_YELLOW) && (g_RemoteControl->subChannels.empty())) { // no subchannels
+//			bbButtonInfo[i].paint = false;
+//			bbButtonInfo[i].x = -1;
+//			continue;
+//		}
+//		else
+//#else
+//		if (!bbButtonInfo[i].active)
+//			bbButtonInfo[i].paint = false;
+//#endif
+//		else
+
 		{
 			count++;
 			bbButtonInfo[i].paint = true;
@@ -305,22 +350,22 @@ void CInfoViewerBB::getBBButtonInfo()
 	}
 	bbButtonMaxX = g_InfoViewer->ChanInfoX + 10;
 
-	bbButtonInfo[CInfoViewerBB::BUTTON_EPG].x = bbButtonMaxX;
-	bbButtonInfo[CInfoViewerBB::BUTTON_FEAT].x = minX - bbButtonInfo[CInfoViewerBB::BUTTON_FEAT].w;
+	bbButtonInfo[CInfoViewerBB::BUTTON_RED].x = bbButtonMaxX;
+	bbButtonInfo[CInfoViewerBB::BUTTON_BLUE].x = minX - bbButtonInfo[CInfoViewerBB::BUTTON_BLUE].w;
 
-	int x1 = bbButtonInfo[CInfoViewerBB::BUTTON_EPG].x + bbButtonInfo[CInfoViewerBB::BUTTON_EPG].w;
-	int rest = bbButtonInfo[CInfoViewerBB::BUTTON_FEAT].x - x1;
+	int x1 = bbButtonInfo[CInfoViewerBB::BUTTON_RED].x + bbButtonInfo[CInfoViewerBB::BUTTON_RED].w;
+	int rest = bbButtonInfo[CInfoViewerBB::BUTTON_BLUE].x - x1;
 
 	if (Btns < 4) {
-		rest -= bbButtonInfo[CInfoViewerBB::BUTTON_AUDIO].w;
-		bbButtonInfo[CInfoViewerBB::BUTTON_AUDIO].x = x1 + rest / 2;
+		rest -= bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w;
+		bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x = x1 + rest / 2;
 	}
 	else {
-		rest -= bbButtonInfo[CInfoViewerBB::BUTTON_AUDIO].w + bbButtonInfo[CInfoViewerBB::BUTTON_SUBS].w;
+		rest -= bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w + bbButtonInfo[CInfoViewerBB::BUTTON_YELLOW].w;
 		rest = rest / 3;
-		bbButtonInfo[CInfoViewerBB::BUTTON_AUDIO].x = x1 + rest;
-		bbButtonInfo[CInfoViewerBB::BUTTON_SUBS].x = bbButtonInfo[CInfoViewerBB::BUTTON_AUDIO].x + 
-								bbButtonInfo[CInfoViewerBB::BUTTON_AUDIO].w + rest;
+		bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x = x1 + rest;
+		bbButtonInfo[CInfoViewerBB::BUTTON_YELLOW].x = bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x + 
+								bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w + rest;
 	}
 #endif
 	bbButtonMaxX = g_InfoViewer->ChanInfoX + 10;
@@ -337,10 +382,10 @@ void CInfoViewerBB::getBBButtonInfo()
 		}
 	} else {
 		printf("[infoviewer_bb:%s#%d: count <= 0???\n", __func__, __LINE__);
-		bbButtonInfo[BUTTON_EPG].x   = bbButtonMaxX;
-		bbButtonInfo[BUTTON_AUDIO].x = bbButtonMaxX + step;
-		bbButtonInfo[BUTTON_SUBS].x  = bbButtonMaxX + 2*step;
-		bbButtonInfo[BUTTON_FEAT].x  = bbButtonMaxX + 3*step;
+		bbButtonInfo[BUTTON_RED].x	= bbButtonMaxX;
+		bbButtonInfo[BUTTON_GREEN].x	= bbButtonMaxX + step;
+		bbButtonInfo[BUTTON_YELLOW].x	= bbButtonMaxX + 2*step;
+		bbButtonInfo[BUTTON_BLUE].x	= bbButtonMaxX + 3*step;
 	}
 }
 
@@ -383,7 +428,7 @@ void CInfoViewerBB::showBBButtons(const int modus)
 			}
 		}
 
-		if (modus == CInfoViewerBB::BUTTON_AUDIO)
+		if (modus == CInfoViewerBB::BUTTON_GREEN)
 			showIcon_DD();
 
 		for (i = 0; i < CInfoViewerBB::BUTTON_MAX; i++) {

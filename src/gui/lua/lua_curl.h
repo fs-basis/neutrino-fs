@@ -16,6 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#include <curl/curl.h>
+#include <curl/easy.h>
 
 #ifndef _LUACURL_H
 #define _LUACURL_H

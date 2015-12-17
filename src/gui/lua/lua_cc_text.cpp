@@ -98,12 +98,12 @@ int CLuaInstCCText::CCTextNew(lua_State *L)
 	if (font_text >= SNeutrinoSettings::FONT_TYPE_COUNT || font_text < 0)
 		font_text = SNeutrinoSettings::FONT_TYPE_MENU;
 
-	bool has_shadow = false;
-	if (!tableLookup(L, "has_shadow", has_shadow)) {
+	lua_Integer shadow_mode = CC_SHADOW_OFF;
+	if (!tableLookup(L, "shadow_mode", shadow_mode)) {
 		std::string tmp1 = "false";
-		if (tableLookup(L, "has_shadow", tmp1))
+		if (tableLookup(L, "shadow_mode", tmp1))
 			paramBoolDeprecated(L, tmp1.c_str());
-		has_shadow = (tmp1 == "true" || tmp1 == "1" || tmp1 == "yes");
+		shadow_mode = (tmp1 == "true" || tmp1 == "1" || tmp1 == "yes");
 	}
 
 	tableLookup(L, "color_text",   color_text);
@@ -142,7 +142,7 @@ int CLuaInstCCText::CCTextNew(lua_State *L)
 
 	CLuaCCText **udata = (CLuaCCText **) lua_newuserdata(L, sizeof(CLuaCCText *));
 	*udata = new CLuaCCText();
-	(*udata)->ct = new CComponentsText(x, y, dx, dy, text, mode, g_Font[font_text], pw, has_shadow, (fb_pixel_t)color_text, (fb_pixel_t)color_frame, (fb_pixel_t)color_body, (fb_pixel_t)color_shadow);
+	(*udata)->ct = new CComponentsText(x, y, dx, dy, text, mode, g_Font[font_text], CComponentsText::FONT_STYLE_REGULAR, pw, shadow_mode, (fb_pixel_t)color_text, (fb_pixel_t)color_frame, (fb_pixel_t)color_body, (fb_pixel_t)color_shadow);
 	(*udata)->parent = pw;
 	(*udata)->mode = mode;
 	(*udata)->font_text = font_text;
@@ -185,7 +185,7 @@ int CLuaInstCCText::CCTextHide(lua_State *L)
 		m->ct->setText("", m->mode, g_Font[m->font_text]);
 		m->ct->paint();
 	} else
-		m->ct->hide(no_restore);
+		m->ct->hide(); //FIXME: no_restore without effect, remove or use with kill()
 	return 0;
 }
 

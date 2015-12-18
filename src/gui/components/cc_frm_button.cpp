@@ -40,11 +40,11 @@ CComponentsButton::CComponentsButton( 	const int& x_pos, const int& y_pos, const
 					CComponentsForm* parent,
 					bool selected,
 					bool enabled,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
 {
 	cc_btn_capt_locale = NONEXISTANT_LOCALE;
-	initVarButton(x_pos, y_pos, w, h,  caption, icon_name, parent, selected, enabled, has_shadow, color_frame, color_body, color_shadow);
+	initVarButton(x_pos, y_pos, w, h,  caption, icon_name, parent, selected, enabled, shadow_mode, color_frame, color_body, color_shadow);
 }
 
 CComponentsButton::CComponentsButton( 	const int& x_pos, const int& y_pos, const int& w, const int& h,
@@ -52,11 +52,11 @@ CComponentsButton::CComponentsButton( 	const int& x_pos, const int& y_pos, const
 					CComponentsForm* parent,
 					bool selected,
 					bool enabled,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
 {
 	cc_btn_capt_locale = caption_locale;
-	initVarButton(x_pos, y_pos, w, h, g_Locale->getText(cc_btn_capt_locale), icon_name, parent, selected, enabled, has_shadow, color_frame, color_body, color_shadow);
+	initVarButton(x_pos, y_pos, w, h, g_Locale->getText(cc_btn_capt_locale), icon_name, parent, selected, enabled, shadow_mode, color_frame, color_body, color_shadow);
 }
 
 CComponentsButton::CComponentsButton( 	const int& x_pos, const int& y_pos, const int& w, const int& h,
@@ -64,11 +64,11 @@ CComponentsButton::CComponentsButton( 	const int& x_pos, const int& y_pos, const
 					CComponentsForm* parent,
 					bool selected,
 					bool enabled,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
 {
 	string _icon_name = icon_name == NULL ? "" : string(icon_name);
-	initVarButton(x_pos, y_pos, w, h,  caption, _icon_name, parent, selected, enabled, has_shadow, color_frame, color_body, color_shadow);
+	initVarButton(x_pos, y_pos, w, h,  caption, _icon_name, parent, selected, enabled, shadow_mode, color_frame, color_body, color_shadow);
 }
 
 CComponentsButton::CComponentsButton( 	const int& x_pos, const int& y_pos, const int& w, const int& h,
@@ -76,12 +76,12 @@ CComponentsButton::CComponentsButton( 	const int& x_pos, const int& y_pos, const
 					CComponentsForm* parent,
 					bool selected,
 					bool enabled,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
 {
 	string _icon_name = icon_name == NULL ? "" : string(icon_name);
 	cc_btn_capt_locale = caption_locale;
-	initVarButton(x_pos, y_pos, w, h,  g_Locale->getText(cc_btn_capt_locale), _icon_name, parent, selected, enabled, has_shadow, color_frame, color_body, color_shadow);
+	initVarButton(x_pos, y_pos, w, h,  g_Locale->getText(cc_btn_capt_locale), _icon_name, parent, selected, enabled, shadow_mode, color_frame, color_body, color_shadow);
 }
 
 void CComponentsButton::initVarButton(	const int& x_pos, const int& y_pos, const int& w, const int& h,
@@ -90,7 +90,7 @@ void CComponentsButton::initVarButton(	const int& x_pos, const int& y_pos, const
 					CComponentsForm* parent,
 					bool selected,
 					bool enabled,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
 {
 	cc_item_type 	= CC_ITEMTYPE_BUTTON;
@@ -99,7 +99,7 @@ void CComponentsButton::initVarButton(	const int& x_pos, const int& y_pos, const
 	y 		= y_pos;
 	width 		= w;
 	height	 	= h;
-	shadow		= has_shadow;
+	shadow		= shadow_mode;
 	shadow_w	= SHADOW_OFFSET;
 
 	cc_body_gradient_enable = false/*g_settings.gradiant*/; //gradient is prepared for use but disabled at the moment till some other parts of gui parts are provide gradient

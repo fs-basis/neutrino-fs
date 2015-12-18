@@ -37,32 +37,32 @@ using namespace std;
 CComponentsExtTextForm::CComponentsExtTextForm(	const int& x_pos, const int& y_pos, const int& w, const int& h,
 						const std::string& label_text, const std::string& text,
 						CComponentsForm* parent,
-						bool has_shadow,
+						int shadow_mode,
 						fb_pixel_t label_color,
 						fb_pixel_t text_color,
 						fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
 {
-	initVarExtTextForm(x_pos, y_pos, w, h, label_text, text, parent, has_shadow, label_color, text_color, color_frame, color_body, color_shadow);
+	initVarExtTextForm(x_pos, y_pos, w, h, label_text, text, parent, shadow_mode, label_color, text_color, color_frame, color_body, color_shadow);
 	initCCTextItems();
 }
 
 CComponentsExtTextFormLocalized::CComponentsExtTextFormLocalized(const int& x_pos, const int& y_pos, const int& w, const int& h,
 								const neutrino_locale_t& locale_label_text, const neutrino_locale_t& locale_text,
 								CComponentsForm* parent,
-								bool has_shadow,
+								int shadow_mode,
 								fb_pixel_t label_color,
 								fb_pixel_t text_color,
 								fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
 								: CComponentsExtTextForm(	x_pos, y_pos, w, h,
 												g_Locale->getText(locale_label_text), g_Locale->getText(locale_text),
 												parent,
-												has_shadow,
+												shadow_mode,
 												label_color, text_color, color_frame, color_body, color_shadow){};
 
 void CComponentsExtTextForm::initVarExtTextForm(const int& x_pos, const int& y_pos, const int& w, const int& h,
 						const std::string& label_text, const std::string& text,
 						CComponentsForm* parent,
-						bool has_shadow,
+						int shadow_mode,
 						fb_pixel_t label_color,
 						fb_pixel_t text_color,
 						fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
@@ -82,7 +82,7 @@ void CComponentsExtTextForm::initVarExtTextForm(const int& x_pos, const int& y_p
 	
 	ccx_label_text 	= label_text;
 	ccx_text 	= text;
-	shadow 		= has_shadow;
+	shadow 		= shadow_mode;
 	ccx_label_color	= label_color;
 	ccx_text_color	= text_color;
 	col_frame	= color_frame;

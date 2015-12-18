@@ -43,7 +43,7 @@ CComponentsInfoBox::CComponentsInfoBox(	const int& x_pos,
 					const int mode,
 					Font* font_text,
 					CComponentsForm *parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_text,
 					fb_pixel_t color_frame,
 					fb_pixel_t color_body,
@@ -55,7 +55,7 @@ CComponentsInfoBox::CComponentsInfoBox(	const int& x_pos,
 	y 		= y_pos;
 	width 		= w;
 	height	 	= h;
-	shadow		= has_shadow;
+	shadow		= shadow_mode;
 	col_frame 	= color_frame;
 	col_body	= color_body;
 	col_shadow	= color_shadow;

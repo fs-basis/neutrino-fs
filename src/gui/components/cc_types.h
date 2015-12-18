@@ -70,6 +70,7 @@ typedef enum
 //required typedefs
 typedef struct cc_fbdata_t
 {
+	bool enabled;
 	int fbdata_type;
 	int x;
 	int y;
@@ -82,9 +83,10 @@ typedef struct cc_fbdata_t
 	fb_pixel_t* pixbuf;
 	gradientData_t *gradient_data;
 	void * data;
+	bool is_painted;
 } cc_fbdata_struct_t;
 
-//fb data object types
+//fb data object layer types
 typedef enum
 {
 	CC_FBDATA_TYPE_BGSCREEN,
@@ -182,8 +184,12 @@ typedef struct cc_string_ext_txt_t
 
 #define CC_WIDTH_MIN		16
 #define CC_HEIGHT_MIN		16
-#define CC_SHADOW_ON 		true
-#define CC_SHADOW_OFF 		false
+
+#define CC_SHADOW_OFF 		0
+#define CC_SHADOW_ON 		1
+#define CC_SHADOW_RIGHT 	2
+#define CC_SHADOW_BOTTOM 	4
+
 #define CC_SAVE_SCREEN_YES 	true
 #define CC_SAVE_SCREEN_NO 	false
 

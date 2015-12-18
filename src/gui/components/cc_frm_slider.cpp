@@ -34,7 +34,7 @@ CComponentsSlider::CComponentsSlider(	const int& x_pos, const int& y_pos, const 
 					const int& min_value,
 					const int& max_value,
 					CComponentsForm *parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t& color_frame,
 					fb_pixel_t& color_body,
 					fb_pixel_t& color_shadow)
@@ -51,7 +51,7 @@ CComponentsSlider::CComponentsSlider(	const int& x_pos, const int& y_pos, const 
 	csl_min_value 		= min_value;
 	csl_max_value 		= max_value;
 
-	shadow		= has_shadow;
+	shadow		= shadow_mode;
 	col_frame	= color_frame;
 	col_body	= color_body;
 	col_shadow	= color_shadow;

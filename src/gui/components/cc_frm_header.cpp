@@ -51,12 +51,12 @@ CComponentsHeader::CComponentsHeader(	const int& x_pos, const int& y_pos, const 
 					const std::string& icon_name,
 					const int& buttons,
 					CComponentsForm* parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame,
 					fb_pixel_t color_body,
 					fb_pixel_t color_shadow)
 {
-	initVarHeader(x_pos, y_pos, w, h, caption, icon_name, buttons, parent, has_shadow, color_frame, color_body, color_shadow);
+	initVarHeader(x_pos, y_pos, w, h, caption, icon_name, buttons, parent, shadow_mode, color_frame, color_body, color_shadow);
 }
 
 CComponentsHeaderLocalized::CComponentsHeaderLocalized(	const int& x_pos, const int& y_pos, const int& w, const int& h,
@@ -64,7 +64,7 @@ CComponentsHeaderLocalized::CComponentsHeaderLocalized(	const int& x_pos, const 
 							const std::string& icon_name,
 							const int& buttons,
 							CComponentsForm* parent,
-							bool has_shadow,
+							int shadow_mode,
 							fb_pixel_t color_frame,
 							fb_pixel_t color_body,
 							fb_pixel_t color_shadow)
@@ -72,7 +72,7 @@ CComponentsHeaderLocalized::CComponentsHeaderLocalized(	const int& x_pos, const 
 										g_Locale->getText(caption_locale),
 										icon_name, buttons,
 										parent,
-										has_shadow,
+										shadow_mode,
 										color_frame, color_body, color_shadow){};
 
 void CComponentsHeader::initVarHeader(	const int& x_pos, const int& y_pos, const int& w, const int& h,
@@ -80,26 +80,26 @@ void CComponentsHeader::initVarHeader(	const int& x_pos, const int& y_pos, const
 					const std::string& icon_name,
 					const int& buttons,
 					CComponentsForm* parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame,
 					fb_pixel_t color_body,
 					fb_pixel_t color_shadow)
 {
 	cc_item_type 		= CC_ITEMTYPE_FRM_HEADER;
 	cc_txt_save_screen	= true;
-	x	= x_pos;
-	y	= y_pos;
+	x	= x_old = x_pos;
+	y	= y_old = y_pos;
 
 	//init header width
-	width 	= w == 0 ? frameBuffer->getScreenWidth(true) : w;
+	width 	= width_old = w == 0 ? frameBuffer->getScreenWidth(true) : w;
 
 	//init header default height
-	height 		= max(h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
+	height 	= height_old = max(h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
 
 	cch_size_mode	= CC_HEADER_SIZE_LARGE;
 	initCaptionFont();	//sets cch_font and calculate height if required;
 
-	shadow		= has_shadow;
+	shadow		= shadow_mode;
 	col_frame = col_frame_old 	= color_frame;
 	col_body = col_body_old		= color_body;
 	col_shadow = col_shadow_old	= color_shadow;
@@ -377,6 +377,14 @@ void CComponentsHeader::disableClock()
 
 void CComponentsHeader::initClock()
 {
+	//exit here if clock was disabled
+	if (!cch_cl_enable){
+		if (cch_cl_obj){
+			removeCCItem(cch_cl_obj);
+			cch_cl_obj = NULL;
+		}
+		return;
+	}
 	//create instance for header clock object and add to container
 	if (cch_cl_obj == NULL){
 		dprintf(DEBUG_DEBUG, "[CComponentsHeader]\n    [%s - %d] init clock...\n", __func__, __LINE__);

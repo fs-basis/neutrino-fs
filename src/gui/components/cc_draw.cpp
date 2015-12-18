@@ -189,21 +189,29 @@ inline bool CCDraw::hasChanges()
 
 inline void CCDraw::setXPos(const int& xpos)
 {
+	if (x == xpos)
+		return;
 	x = xpos;
 }
 
 inline void CCDraw::setYPos(const int& ypos)
 {
+	if (y == ypos)
+		return;
 	y = ypos;
 }
 
 inline void CCDraw::setHeight(const int& h)
 {
+	if (height == h)
+		return;
 	height = h;
 }
 
 inline void CCDraw::setWidth(const int& w)
 {
+	if (width == w)
+		return;
 	width = w;
 }
 
@@ -240,13 +248,17 @@ bool CCDraw::enableColBodyGradient(const int& enable_mode, const fb_pixel_t& sec
 
 inline void CCDraw::setCornerType(const int& type)
 {
+	if (corner_type == type)
+		return;
 	corner_type = type;
 }
 
 inline void CCDraw::setCorner(const int& radius, const int& type)
 {
-	corner_rad = radius; 
 	setCornerType(type);
+	if (corner_rad == radius)
+		return;
+	corner_rad = radius;
 }
 
 gradientData_t* CCDraw::getGradientData()
@@ -377,7 +389,7 @@ bool CCDraw::clearScreenBuffer()
 		ret = true;
 	if (clearFbGradientData())
 		ret = true;
-
+	firstPaint = true;
 	return ret;
 }
 
@@ -437,16 +449,16 @@ cc_screen_data_t CCDraw::getScreenData(const int& ax, const int& ay, const int& 
 
 void CCDraw::enableSaveBg(bool save_bg)
 {
-	cc_save_bg = save_bg;
-	if (!cc_save_bg)
+	if (!cc_save_bg || (cc_save_bg != save_bg))
 		clearSavedScreen();
+	cc_save_bg = save_bg;
 }
 
 void CCDraw::enablePaintCache(bool enable)
 {
-	cc_paint_cache = enable;
-	if (!cc_paint_cache)
+	if (!cc_paint_cache || (cc_paint_cache != enable))
 		clearPaintCache();
+	cc_paint_cache = enable;
 }
 
 //paint framebuffer layers
@@ -455,21 +467,13 @@ void CCDraw::paintFbItems(bool do_save_bg)
 	//first modify background handling
 	enableSaveBg(do_save_bg);
 
-	if (hasChanges()){
-		if (!firstPaint){
-			firstPaint = true;
-		}else{
-			clearScreenBuffer();
-		}
-	}
-
 	//save background before first paint, cc_save_bg must be true
 	if (firstPaint && cc_save_bg){
 		/* On first we must ensure that screen buffer is empty.
 		 * Here we clean possible screen buffers in bg layers,
-		 * paint cache and gradient buffer.
+		 * without paint cache and gradient buffer.
 		*/
-		clearScreenBuffer();
+		clearSavedScreen();
 
 		/* On second step we check for
 		 * usable item dimensions and exit here if found any problem
@@ -524,7 +528,7 @@ void CCDraw::paintFbItems(bool do_save_bg)
 		/*paint all fb relevant basic parts (shadow, frame and body)
 		 * with all specified properties, paint_bg must be enabled
 		*/
-		if (paint_bg){				
+		if (paint_bg){
 			if (fbtype == CC_FBDATA_TYPE_FRAME) {
 				if (fbdata.frame_thickness > 0 && cc_allow_paint)
 					frameBuffer->paintBoxFrame(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.frame_thickness, fbdata.color, fbdata.r, fbdata.rtype);
@@ -532,8 +536,8 @@ void CCDraw::paintFbItems(bool do_save_bg)
 			else if (fbtype == CC_FBDATA_TYPE_BACKGROUND){
 				frameBuffer->paintBackgroundBoxRel(x, y, fbdata.dx, fbdata.dy);
 			}
-			else if (fbtype == CC_FBDATA_TYPE_SHADOW_BOX && !is_painted) {
-				if (shadow) {
+			else if (fbtype == CC_FBDATA_TYPE_SHADOW_BOX && !is_painted) { //TODO: is_painted is too global here, shadow will not paint on current instance without called kill/hide
+				if (fbdata.enabled) {
 					/* here we paint the shadow around the body
 					 * on 1st step we check for already cached screen buffer, if true
 					 * then restore this instead to call the paint methode.
@@ -554,38 +558,40 @@ void CCDraw::paintFbItems(bool do_save_bg)
 			}
 			else if (fbtype == CC_FBDATA_TYPE_BOX){
 				if(cc_allow_paint) {
-					//ensure clean gradient data on disabled gradient
-					if(cc_body_gradient_enable == CC_COLGRAD_OFF && fbdata.gradient_data){
-						dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], gradient mode is disabled but filled\033[0m\n", __func__, __LINE__);
-						clearFbGradientData();
-					}
-					if (cc_body_gradient_enable != CC_COLGRAD_OFF){
-						/* if color gradient enabled we create a gradient_data 
-						* instance and add it to the fbdata object
-						* On disabled coloor gradient we do paint only a default box
-						*/
-						if (fbdata.gradient_data == NULL){
-							dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], crate new gradient data)...\033[0m\n", __func__, __LINE__);
-							fbdata.gradient_data = getGradientData();
-						}
-
-						// if found empty gradient buffer, create it, otherwise paint from cache
-						if (fbdata.gradient_data->boxBuf == NULL){
-							dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint new gradient)...\033[0m\n", __func__, __LINE__);
-							fbdata.gradient_data->boxBuf = frameBuffer->paintBoxRel(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, 0, fbdata.gradient_data, fbdata.r, fbdata.rtype);
-						}else{
-							dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint cached gradient)...\033[0m\n", __func__, __LINE__);
-							frameBuffer->blitBox2FB(fbdata.gradient_data->boxBuf, fbdata.dx, fbdata.dy, fbdata.x, fbdata.y);
-						}
+					/* here we paint the main body of box
+					* on 1st step we check for already cached background buffer, if true
+					* then restore this instead to call the paint methodes and gradient creation
+					* paint cache can be enable/disable with enablePaintCache()
+					*/
+					if (fbdata.pixbuf){
+						dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint body from cache...\033[0m\n", __func__, __LINE__);
+						frameBuffer->RestoreScreen(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.pixbuf);
 					}else{
-						/* here we paint the main body of box
-						* on 1st step we check for already cached background buffer, if true
-						* then restore this instead to call the paint methodes and gradient creation
-						* paint cache can be enable/disable with enablePaintCache()
-						*/
-						if (fbdata.pixbuf){
-							dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint body from cache...\033[0m\n", __func__, __LINE__);
-							frameBuffer->RestoreScreen(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.pixbuf);
+						//ensure clean gradient data on disabled gradient
+						if(cc_body_gradient_enable == CC_COLGRAD_OFF && fbdata.gradient_data){
+							dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], gradient mode is disabled but filled\033[0m\n", __func__, __LINE__);
+							clearFbGradientData();
+						}
+						if (cc_body_gradient_enable != CC_COLGRAD_OFF){
+							/* if color gradient enabled we create a gradient_data
+							* instance and add it to the fbdata object
+							* On disabled coloor gradient we do paint only a default box
+							*/
+							if (fbdata.gradient_data == NULL){
+								dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], crate new gradient data)...\033[0m\n", __func__, __LINE__);
+								fbdata.gradient_data = getGradientData();
+							}
+
+							// if found empty gradient buffer, create it, otherwise paint from cache
+							if (fbdata.gradient_data->boxBuf == NULL){
+								dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint new gradient)...\033[0m\n", __func__, __LINE__);
+								fbdata.gradient_data->boxBuf = frameBuffer->paintBoxRel(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, 0, fbdata.gradient_data, fbdata.r, fbdata.rtype);
+								if (cc_paint_cache)
+									fbdata.pixbuf = getScreen(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy);
+							}else{
+								dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint cached gradient)...\033[0m\n", __func__, __LINE__);
+								frameBuffer->blitBox2FB(fbdata.gradient_data->boxBuf, fbdata.dx, fbdata.dy, fbdata.x, fbdata.y);
+							}
 						}else{
 							dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint default box)...\033[0m\n", __func__, __LINE__);
 							frameBuffer->paintBoxRel(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.color, fbdata.r, fbdata.rtype);
@@ -657,7 +663,7 @@ void CCDraw::kill(const fb_pixel_t& bg_color, const int& corner_radius)
 			frameBuffer->paintBackgroundBoxRel(v_fbdata[i].x, v_fbdata[i].y, v_fbdata[i].dx, v_fbdata[i].dy);
 #endif
 	}
-	clearFbData();
+
 	firstPaint = true;
 	is_painted = false;
 }
@@ -672,4 +678,12 @@ bool CCDraw::doPaintBg(bool do_paint)
 	return true;
 }
 
+void CCDraw::enableShadow(int mode, const int& shadow_width)
+{
+	if (shadow != mode)
+		shadow = mode;
+	if (shadow != CC_SHADOW_OFF)
+		if (shadow_width != -1)
+			setShadowWidth(shadow_width);
+}
 

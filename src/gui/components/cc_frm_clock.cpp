@@ -40,7 +40,6 @@
 
 using namespace std;
 
-
 CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 						const int& y_pos,
 						Font * font,
@@ -49,13 +48,12 @@ CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 						bool activ,
 						const int& interval_seconds,
 						CComponentsForm* parent,
-						bool has_shadow,
+						int shadow_mode,
 						fb_pixel_t color_frame,
 						fb_pixel_t color_body,
 						fb_pixel_t color_shadow,
 						int font_style
 					)
-
 
 {
 	cc_item_type 	= CC_ITEMTYPE_FRM_CLOCK;
@@ -63,7 +61,7 @@ CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 	x 		= x_pos;
 	y 		= y_pos;
 
-	shadow		= has_shadow;
+	shadow		= shadow_mode;
 	shadow_w	= SHADOW_OFFSET;
 	col_frame 	= color_frame;
 	col_body	= color_body;
@@ -78,7 +76,7 @@ CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 	//init default font
 	cl_font 	= font;
 	cl_font_style	= font_style;
-	if (cl_font == NULL){
+	if (cl_font == NULL) {
 		int dx = 0;
 		int dy = 30;
 		setClockFont(*CNeutrinoFonts::getInstance()->getDynFont(dx, dy, cl_format_str, cl_font_style));
@@ -90,14 +88,13 @@ CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 
 	//set default text background behavior
 	cc_txt_save_screen = false;
- 
+
 	//set default running clock properties
 	cl_interval	= interval_seconds;
 	cl_timer 	= NULL;
 	paintClock		= false;
-#if 1
+
 	may_blit		= true;
-#endif	
 
 	//general init
 	initCCLockItems();
@@ -370,10 +367,9 @@ void CComponentsFrmClock::paint(bool do_save_bg)
 
 	//paint form contents
 	CComponentsForm::paint(do_save_bg);
-#if 1 //has no effect
+
 	if (may_blit)
 		frameBuffer->blit();
-#endif
 }
 
 void CComponentsFrmClock::setClockFont(Font *font, const int& style)

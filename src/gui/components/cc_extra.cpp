@@ -44,10 +44,10 @@ bool paintBoxRel(	const int& x,
 			const int& gradient_direction,
 			const int& gradient_intensity,
 			const fb_pixel_t& color_frame,
-			bool has_shadow,
+			int shadow_mode,
 			const fb_pixel_t& color_shadow)
 {
-	CComponentsShapeSquare box(x, y, dx, dy, NULL, has_shadow, color_frame, color_body, color_shadow);
+	CComponentsShapeSquare box(x, y, dx, dy, NULL, shadow_mode, color_frame, color_body, color_shadow);
 	box.setColBodyGradient(gradient_mode, gradient_direction, gradient_sec_col, gradient_intensity);
 	box.setCorner(radius, corner_type);
 	box.paint(CC_SAVE_SCREEN_NO);
@@ -71,11 +71,10 @@ bool paintTextBoxRel(	const string& text,
 			const int& gradient_direction,
 			const int& gradient_intensity,
 			const fb_pixel_t& color_frame,
-			bool has_shadow,
+			int shadow_mode,
 			const fb_pixel_t& color_shadow)
 {
-	CComponentsText box(x, y, dx, dy, text, mode, font, NULL, has_shadow, color_text, color_frame, color_body, color_shadow);
-
+	CComponentsText box(x, y, dx, dy, text, mode, font, font_style, NULL, shadow_mode, color_text, color_frame, color_body, color_shadow);
 	box.setColBodyGradient(gradient_mode, gradient_direction, gradient_sec_col, gradient_intensity);
 	box.doPaintBg(color_body !=0);
 	box.enableTboxSaveScreen(false);
@@ -95,10 +94,10 @@ bool paintImage(	const std::string& image_name,
 			const int& radius,
 			const int& corner_type,
 			const fb_pixel_t& color_frame,
-			bool has_shadow,
+			int shadow_mode,
 			const fb_pixel_t& color_shadow)
 {
-	CComponentsPicture box( x, y, dx, dy, image_name, NULL, has_shadow, color_frame, color_body, color_shadow, transparent);
+	CComponentsPicture box( x, y, dx, dy, image_name, NULL, shadow_mode, color_frame, color_body, color_shadow, transparent);
 	box.doPaintBg(color_body !=0);
 	box.setCorner(radius, corner_type);
 	box.paint(CC_SAVE_SCREEN_NO);

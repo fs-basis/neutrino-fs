@@ -74,7 +74,7 @@ class CComponentsPicture : public CComponentsItem
 		void init(	const int &x_pos, const int &y_pos, const int &w, const int &h,
 				const std::string& image_name,
 				CComponentsForm *parent,
-				bool has_shadow,
+				int shadow_mode,
 				fb_pixel_t color_frame,
 				fb_pixel_t color_background,
 				fb_pixel_t color_shadow,
@@ -105,7 +105,7 @@ class CComponentsPicture : public CComponentsItem
 		CComponentsPicture( 	const int &x_pos, const int &y_pos, const int &w, const int &h,
 					const std::string& image_name,
 					CComponentsForm *parent = NULL,
-					bool has_shadow = CC_SHADOW_OFF,
+					int shadow_mode = CC_SHADOW_OFF,
 					fb_pixel_t color_frame = COL_MENUCONTENT_PLUS_6,
 					fb_pixel_t color_background = 0,
 					fb_pixel_t color_shadow = COL_MENUCONTENTDARK_PLUS_0,
@@ -121,7 +121,7 @@ class CComponentsPicture : public CComponentsItem
 		CComponentsPicture( 	const int &x_pos, const int &y_pos,
 					const std::string& image_name,
 					CComponentsForm *parent = NULL,
-					bool has_shadow = CC_SHADOW_OFF,
+					int shadow_mode = CC_SHADOW_OFF,
 					fb_pixel_t color_frame = COL_MENUCONTENT_PLUS_6,
 					fb_pixel_t color_background = 0,
 					fb_pixel_t color_shadow = COL_MENUCONTENTDARK_PLUS_0,
@@ -169,12 +169,12 @@ class 	CComponentsPictureScalable : public CComponentsPicture
 		CComponentsPictureScalable( 	const int &x_pos, const int &y_pos,
 						const std::string& image_name,
 						CComponentsForm *parent = NULL,
-						bool has_shadow = CC_SHADOW_OFF,
+						int shadow_mode = CC_SHADOW_OFF,
 						fb_pixel_t color_frame = COL_MENUCONTENT_PLUS_6,
 						fb_pixel_t color_background = 0,
 						fb_pixel_t color_shadow = COL_MENUCONTENTDARK_PLUS_0,
 						int transparent = CFrameBuffer::TM_NONE)
-						: CComponentsPicture(x_pos, y_pos, 0, 0, image_name, parent, has_shadow, color_frame, color_background, color_shadow, transparent){};
+						: CComponentsPicture(x_pos, y_pos, 0, 0, image_name, parent, shadow_mode, color_frame, color_background, color_shadow, transparent){};
 };
 
 class CComponentsChannelLogo : public CComponentsPicture
@@ -204,7 +204,7 @@ class CComponentsChannelLogo : public CComponentsPicture
 					const std::string& channelName = "",
 					const uint64_t& channelId =0,
 					CComponentsForm *parent = NULL,
-					bool has_shadow = CC_SHADOW_OFF,
+					int shadow_mode = CC_SHADOW_OFF,
 					fb_pixel_t color_frame = COL_MENUCONTENT_PLUS_6,
 					fb_pixel_t color_background = 0,
 					fb_pixel_t color_shadow = COL_MENUCONTENTDARK_PLUS_0,
@@ -220,7 +220,7 @@ class CComponentsChannelLogo : public CComponentsPicture
 					const std::string& channelName = "",
 					const uint64_t& channelId =0,
 					CComponentsForm *parent = NULL,
-					bool has_shadow = CC_SHADOW_OFF,
+					int shadow_mode = CC_SHADOW_OFF,
 					fb_pixel_t color_frame = COL_MENUCONTENT_PLUS_6,
 					fb_pixel_t color_background = 0,
 					fb_pixel_t color_shadow = COL_MENUCONTENTDARK_PLUS_0,
@@ -252,12 +252,12 @@ class 	CComponentsChannelLogoScalable : public CComponentsChannelLogo
 						const std::string& channelName = "",
 						const uint64_t& channelId =0,
 						CComponentsForm *parent = NULL,
-						bool has_shadow = CC_SHADOW_OFF,
+						int shadow_mode = CC_SHADOW_OFF,
 						fb_pixel_t color_frame = COL_MENUCONTENT_PLUS_6,
 						fb_pixel_t color_background = 0,
 						fb_pixel_t color_shadow = COL_MENUCONTENTDARK_PLUS_0,
 						int transparent = CFrameBuffer::TM_BLACK)
-						: CComponentsChannelLogo(x_pos, y_pos, 0, 0, channelName, channelId, parent, has_shadow, color_frame, color_background, color_shadow, transparent){};
+						: CComponentsChannelLogo(x_pos, y_pos, 0, 0, channelName, channelId, parent, shadow_mode, color_frame, color_background, color_shadow, transparent){};
 };
 
 #endif

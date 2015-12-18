@@ -79,8 +79,8 @@ class CCDraw : public COSDFader
 		///property: defined radius of corner, without effect, if corner_type=0
 		int corner_rad, corner_rad_old;
 
-		///property: true=component has shadow
-		bool shadow;
+		///property: shadow mode 0 = CC_SHADOW_OFF
+		int shadow;
 		///property: width of shadow
 		int shadow_w, shadow_w_old;
 
@@ -241,10 +241,11 @@ class CCDraw : public COSDFader
 		inline virtual int getCornerRadius(){return corner_rad;};
 
 		///switch shadow on/off
+		virtual void setShadowWidth(const int& shadow_width){if (shadow_w != shadow_width) shadow_w = shadow_width;}
 		///Note: it's recommended to use #defines: CC_SHADOW_ON=true or CC_SHADOW_OFF=false as parameter, see also cc_types.h
-		inline virtual void enableShadow(bool has_shadow = true){shadow = has_shadow;}
+		virtual void enableShadow(int mode = CC_SHADOW_ON, const int& shadow_width = -1);
 		///switch shadow off
-		inline virtual void disableShadow(){enableShadow(false);}
+		virtual void disableShadow(){enableShadow(CC_SHADOW_OFF);}
 
 		///paint caching for body and shadow, see also cc_paint_cache NOTE: has no effect if paint_bg = false
 		virtual void enablePaintCache(bool enable = true);

@@ -43,19 +43,19 @@ CComponentsFooter::CComponentsFooter(CComponentsForm* parent)
 CComponentsFooter::CComponentsFooter(	const int& x_pos, const int& y_pos, const int& w, const int& h,
 					const int& buttons,
 					CComponentsForm* parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame,
 					fb_pixel_t color_body,
 					fb_pixel_t color_shadow )
 {
 	//CComponentsFooter
-	initVarFooter(x_pos, y_pos, w, h, buttons, parent, has_shadow, color_frame, color_body, color_shadow);
+	initVarFooter(x_pos, y_pos, w, h, buttons, parent, shadow_mode, color_frame, color_body, color_shadow);
 }
 
 void CComponentsFooter::initVarFooter(	const int& x_pos, const int& y_pos, const int& w, const int& h,
 					const int& buttons,
 					CComponentsForm* parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame,
 					fb_pixel_t color_body,
 					fb_pixel_t color_shadow )
@@ -72,7 +72,7 @@ void CComponentsFooter::initVarFooter(	const int& x_pos, const int& y_pos, const
 	cch_font 	= g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL];
 	height 		= max(h, cch_font->getHeight());
 
-	shadow		= has_shadow;
+	shadow		= shadow_mode;
 	col_frame	= color_frame;
 	col_body	= color_body;
 	col_shadow	= color_shadow;
@@ -142,7 +142,7 @@ void CComponentsFooter::setButtonLabels(const struct button_label_s * const cont
 			continue;
 		}
 
-		CComponentsButton *btn = new CComponentsButton(0, CC_CENTERED, w_btn_min, btn_contour ? 4 : height, txt, btn_name);
+		CComponentsButton *btn = new CComponentsButton(0, CC_CENTERED, w_btn_min, height-height/(btn_contour ? 4 : 3), txt, btn_name);
 		btn->setButtonFont(ccf_btn_font);
 		btn->doPaintBg(btn_contour);
 		btn->setButtonEventMsg(content[i].btn_msg);

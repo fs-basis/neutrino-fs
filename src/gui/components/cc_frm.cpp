@@ -39,7 +39,7 @@ using namespace std;
 //sub class CComponentsForm from CComponentsItem
 CComponentsForm::CComponentsForm(	const int x_pos, const int y_pos, const int w, const int h,
 					CComponentsForm* parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame,
 					fb_pixel_t color_body,
 					fb_pixel_t color_shadow)
@@ -51,7 +51,7 @@ CComponentsForm::CComponentsForm(	const int x_pos, const int y_pos, const int w,
 	cc_xr 		= x;
 	cc_yr 		= y;
 
-	shadow		= has_shadow;
+	shadow 		= shadow_mode;
 	shadow_w	= SHADOW_OFFSET;
 	corner_rad	= RADIUS_LARGE;
 	corner_type 	= CORNER_ALL;

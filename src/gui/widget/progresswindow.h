@@ -38,12 +38,12 @@ class CProgressWindow : public CComponentsWindow, public CMenuTarget
 		unsigned int local_progress;
 		int w_bar_frame;
 		int h_height;
-		void Init();
+		void Init(bool global_only = false);
 		void fitItems();
 
 	public:
 
-		CProgressWindow(CComponentsForm *parent = NULL);
+		CProgressWindow(CComponentsForm *parent = NULL, bool global_only = false);
 		void setTitle(const neutrino_locale_t title);
 		virtual void hide();
 

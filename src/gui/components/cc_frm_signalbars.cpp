@@ -152,7 +152,7 @@ void CSignalBar::initSBarValue()
 	int vlbl_x = sb_scale->getXPos() + sb_scale_width + append_y_offset;
 	int vlbl_h = sb_scale->getHeight();
 	int vlbl_y = sb_item_height/2 + sb_item_top - vlbl_h/2 - append_x_offset;
-	sb_vlbl->setDimensionsAll(vlbl_x, vlbl_y, sb_vlbl_width, vlbl_h);
+	sb_vlbl->setDimensionsAll(vlbl_x, vlbl_y, sb_vlbl_width - append_x_offset, vlbl_h);
 
 	//set current text and body color color
 	sb_vlbl->setTextColor(sb_caption_color);
@@ -178,7 +178,7 @@ void CSignalBar::initSBarName()
 	int lbl_x = sb_vlbl->getXPos()+ sb_vlbl->getWidth();
 	int lbl_h = sb_vlbl->getHeight();
 	int lbl_y = sb_item_height/2 + sb_item_top - lbl_h/2 - append_x_offset;
-	sb_lbl->setDimensionsAll(lbl_x, lbl_y, sb_lbl_width, lbl_h);
+	sb_lbl->setDimensionsAll(lbl_x, lbl_y, sb_lbl_width- append_x_offset, lbl_h);
 
 	//set current text and body color
 	sb_lbl->setTextColor(sb_caption_color);

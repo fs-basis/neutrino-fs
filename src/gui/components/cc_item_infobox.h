@@ -70,7 +70,7 @@ class CComponentsInfoBox : public CComponentsText
 					const int mode = CTextBox::AUTO_WIDTH,
 					Font* font_text = NULL,
 					CComponentsForm *parent = NULL,
-					bool has_shadow = CC_SHADOW_OFF,
+					int shadow_mode = CC_SHADOW_OFF,
 					fb_pixel_t color_text = COL_MENUCONTENT_TEXT,
 					fb_pixel_t color_frame = COL_MENUCONTENT_PLUS_6,
 					fb_pixel_t color_body = COL_MENUCONTENT_PLUS_0,

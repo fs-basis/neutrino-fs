@@ -44,26 +44,26 @@ using namespace std;
 CComponentsPicture::CComponentsPicture(	const int &x_pos, const int &y_pos, const int &w, const int &h,
 					const std::string& image_name,
 					CComponentsForm *parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame, fb_pixel_t color_background, fb_pixel_t color_shadow, int transparent)
 {
-	init(x_pos, y_pos, w, h, image_name, parent, has_shadow, color_frame, color_background, color_shadow, transparent, SCALE);
+	init(x_pos, y_pos, w, h, image_name, parent, shadow_mode, color_frame, color_background, color_shadow, transparent, SCALE);
 }
 
 CComponentsPicture::CComponentsPicture(	const int &x_pos, const int &y_pos,
 					const std::string& image_name,
 					CComponentsForm *parent,
-					bool has_shadow,
+					int shadow_mode,
 					fb_pixel_t color_frame, fb_pixel_t color_background, fb_pixel_t color_shadow, int transparent)
 {
-	init(x_pos, y_pos, 0, 0, image_name, parent, has_shadow, color_frame, color_background, color_shadow, transparent, NO_SCALE);
+	init(x_pos, y_pos, 0, 0, image_name, parent, shadow_mode, color_frame, color_background, color_shadow, transparent, NO_SCALE);
 }
 
 
 void CComponentsPicture::init(	const int &x_pos, const int &y_pos, const int &w, const int &h,
 				const string& image_name,
 				CComponentsForm *parent,
-				bool has_shadow,
+				int shadow_mode,
 				fb_pixel_t color_frame, fb_pixel_t color_background, fb_pixel_t color_shadow, int transparent,
 				bool allow_scale)
 {
@@ -76,7 +76,7 @@ void CComponentsPicture::init(	const int &x_pos, const int &y_pos, const int &w,
 	width	= dx	= w;
 	height	= dy	= h;
 	pic_name = pic_name_old = image_name;
-	shadow		= has_shadow;
+	shadow		= shadow_mode;
 	shadow_w	= SHADOW_OFFSET;
 	col_frame 	= color_frame;
 	col_body	= color_background;
@@ -255,7 +255,7 @@ void CComponentsPicture::paint(bool do_save_bg)
 void CComponentsPicture::hide()
 {
 	CComponents::hide();
-	//CComponents::clearSavedScreen();
+	CComponents::clearSavedScreen();
 	is_image_painted = false;
 }
 
@@ -277,10 +277,10 @@ CComponentsChannelLogo::CComponentsChannelLogo( const int &x_pos, const int &y_p
 						const std::string& channelName,
 						const uint64_t& channelId,
 						CComponentsForm *parent,
-						bool has_shadow,
+						int shadow_mode,
 						fb_pixel_t color_frame, fb_pixel_t color_background, fb_pixel_t color_shadow, int transparent)
 						:CComponentsPicture(x_pos, y_pos, w, h,
-						"", parent, has_shadow,
+						"", parent, shadow_mode,
 						color_frame, color_background, color_shadow, transparent)
 {
 	init(channelId, channelName, SCALE);
@@ -290,10 +290,10 @@ CComponentsChannelLogo::CComponentsChannelLogo( const int &x_pos, const int &y_p
 						const std::string& channelName,
 						const uint64_t& channelId,
 						CComponentsForm *parent,
-						bool has_shadow,
+						int shadow_mode,
 						fb_pixel_t color_frame, fb_pixel_t color_background, fb_pixel_t color_shadow, int transparent)
 						:CComponentsPicture(x_pos, y_pos, 0, 0,
-						"", parent, has_shadow,
+						"", parent, shadow_mode,
 						color_frame, color_background, color_shadow, transparent)
 {
 	init(channelId, channelName, NO_SCALE);

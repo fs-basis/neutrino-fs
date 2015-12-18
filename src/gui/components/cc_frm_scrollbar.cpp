@@ -62,9 +62,9 @@ using namespace std;
 CComponentsScrollBar::CComponentsScrollBar(	const int &x_pos, const int &y_pos, const int &w, const int &h,
 						const int& count,
 						CComponentsForm* parent,
-						bool has_shadow,
+						int shadow_mode,
 						fb_pixel_t color_frame, fb_pixel_t color_body, fb_pixel_t color_shadow)
-						:CComponentsFrmChain(x_pos, y_pos, w, h, NULL, CC_DIR_Y, parent, has_shadow, color_frame, color_body, color_shadow)
+						:CComponentsFrmChain(x_pos, y_pos, w, h, NULL, CC_DIR_Y, parent, shadow_mode, color_frame, color_body, color_shadow)
 {
 	initVarSbForm(count);
 }

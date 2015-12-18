@@ -139,7 +139,7 @@ CChannelList::~CChannelList()
 		cc_minitv = NULL;
 	}
 	if (CChannelLogo) {
-		//CChannelLogo->clearSavedScreen();
+		CChannelLogo->clearSavedScreen();
 		delete CChannelLogo;
 		CChannelLogo = NULL;
 	}

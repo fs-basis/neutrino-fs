@@ -39,6 +39,7 @@
 #include <gui/widget/icons.h>
 #include <gui/widget/messagebox.h>
 #include <gui/widget/mountchooser.h>
+#include <gui/pictureviewer.h>
 
 #include "widget/hintbox.h"
 #include "widget/buttons.h"

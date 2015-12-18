@@ -138,10 +138,10 @@ std::string CPictureViewer::DownloadImage(std::string url)
 
 bool CPictureViewer::DecodeImage (const std::string & _name, bool showBusySign, bool unscaled)
 {
-	// dbout("DecodeImage {\n"); 
+	// dbout("DecodeImage {\n");
 #if 0 // quick fix for issue #245. TODO more smart fix for this problem
 	if (name == m_NextPic_Name) {
-		//      dbout("DecodeImage }\n"); 
+		//      dbout("DecodeImage }\n");
 		return true;
 	}
 #endif
@@ -245,7 +245,7 @@ bool CPictureViewer::DecodeImage (const std::string & _name, bool showBusySign, 
 	if (url)
 		unlink(name.c_str());
 	hideBusy ();
-	//   dbout("DecodeImage }\n"); 
+	//   dbout("DecodeImage }\n");
 	return (m_NextPic_Buffer != NULL);
 }
 
@@ -368,7 +368,7 @@ void CPictureViewer::Move (int dx, int dy)
 		m_CurrentPic_YPos = (m_endy - m_starty - m_CurrentPic_Y) / 2 + m_starty;
 	else
 		m_CurrentPic_YPos = m_starty;
-	//  dbout("Display x(%d) y(%d) xpan(%d) ypan(%d) xpos(%d) ypos(%d)\n",m_CurrentPic_X, m_CurrentPic_Y, 
+	//  dbout("Display x(%d) y(%d) xpan(%d) ypan(%d) xpos(%d) ypos(%d)\n",m_CurrentPic_X, m_CurrentPic_Y,
 	//          m_CurrentPic_XPan, m_CurrentPic_YPan, m_CurrentPic_XPos, m_CurrentPic_YPos);
 
 	//fb_display (m_CurrentPic_Buffer, m_CurrentPic_X, m_CurrentPic_Y, m_CurrentPic_XPan, m_CurrentPic_YPan, m_CurrentPic_XPos, m_CurrentPic_YPos);
@@ -673,7 +673,7 @@ bool CPictureViewer::GetLogoName(const uint64_t& channel_id, const std::string& 
 				name = v_path[j];
 				return true;
 			}
-		}	
+		}
 	}
 	return false;
 }

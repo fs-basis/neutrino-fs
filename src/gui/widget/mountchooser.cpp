@@ -56,7 +56,7 @@ CMountChooser::CMountChooser(const neutrino_locale_t Name, const std::string & I
 			addItem(new CMenuForwarder(s.c_str(),true,NULL,this,(std::string("MID:") + std::string(indexStr)).c_str()),
 				selectedLocalDir == g_settings.network_nfs[i].local_dir);
 		}
-	}	
+	}
 }
 
 
@@ -78,12 +78,12 @@ int CMountChooser::exec(CMenuTarget* parent, const std::string & actionKey)
 		}
 		hide();
 		return menu_return::RETURN_EXIT;
-	} else 
+	} else
 	{
 		return CMenuWidget::exec(parent, actionKey);
 	}
 }
-#if 0 
+#if 0
 //never used
 void CMountChooser::setSelectedItem(int selection)
 {

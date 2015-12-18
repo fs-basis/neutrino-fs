@@ -380,7 +380,7 @@ int CVideoSettings::showVideoSetup()
 		if (system_rev == 9 || system_rev == 11 || system_rev == 12) { // Tank, Trinity, Zee2
 			vs_analg_ch = new CMenuOptionChooser(LOCALE_VIDEOMENU_ANALOG_MODE, &g_settings.analog_mode1, VIDEOMENU_VIDEOSIGNAL_TANK_OPTIONS, VIDEOMENU_VIDEOSIGNAL_TANK_OPTION_COUNT, true, this);
 			vs_analg_ch->setHint("", LOCALE_MENU_HINT_VIDEO_ANALOG_MODE);
-		} else 
+		} else
 #endif
 		{
 			if(system_rev != 10) {

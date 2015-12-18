@@ -1,7 +1,7 @@
 /*
  *  Driver for the Samsung HCR-13SS22 VF-Display connected to the Conexant
  *  CX2450x (Nevis) SoC via Coolstream VFD-Controller - public definititons.
- *	
+ *
  *  Copyright (C) 2008 Coolstream International Limited
  */
 

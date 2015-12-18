@@ -3,7 +3,7 @@ EPGMenu.eventinfo Détails programme en cours
 EPGMenu.eventlist Liste évènements programme en cours
 EPGMenu.head EPG - Information du programme
 EPGMenu.streaminfo Informations techniques
-EPGPlus.actions Actions 
+EPGPlus.actions Actions
 EPGPlus.bybouquet_mode Par bouquet
 EPGPlus.bypage_mode par Page
 EPGPlus.head Eventlist Présentation (EPG Plus)
@@ -415,7 +415,7 @@ flashupdate.url_file Fichier de configuration
 flashupdate.versioncheck Vérification de la version
 flashupdate.writeflash Ecrire l'Image entièrement
 flashupdate.writeflashmtd Ecrire une partition
-flashupdate.wrongbase flashupdate.wrongbase Your Release cycle differs.\nTo continue? 
+flashupdate.wrongbase flashupdate.wrongbase Your Release cycle differs.\nTo continue?
 fontmenu.channellist Liste de chaines
 fontmenu.epg EPG
 fontmenu.eventlist Liste d'évènements
@@ -586,9 +586,9 @@ moviebrowser.dir Path
 moviebrowser.dir_head Additional paths
 moviebrowser.edit_book Bookmark change
 moviebrowser.edit_book_name_info1 Enter new Bookmark name
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_pos_info1 Enter new Position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Enter new jump length (s)
 moviebrowser.edit_book_type_info2 <0 back , >0 for, 0: none
 moviebrowser.edit_serie Enter name of serie
@@ -601,11 +601,11 @@ moviebrowser.head_filter Filter movies by category:
 moviebrowser.head_playlist Last played:
 moviebrowser.head_recordlist Last recorded:
 moviebrowser.hide_series Hide series
-moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel 
-moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel 
-moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen 
-moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition 
-moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition 
+moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel
+moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel
+moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen
+moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition
+moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition
 moviebrowser.info_audio Audio
 moviebrowser.info_channel Channel
 moviebrowser.info_filename Name
@@ -622,7 +622,7 @@ moviebrowser.info_parental_lockage_12year 12 years
 moviebrowser.info_parental_lockage_16year 16 years
 moviebrowser.info_parental_lockage_18year 18 years
 moviebrowser.info_parental_lockage_6year 6 years
-moviebrowser.info_parental_lockage_always never 
+moviebrowser.info_parental_lockage_always never
 moviebrowser.info_path Path
 moviebrowser.info_prevplaydate Last play date
 moviebrowser.info_prodcountry Country
@@ -688,23 +688,23 @@ moviebrowser.use_rec_dir Use record directory
 movieplayer.bookmark Signet
 movieplayer.bookmarkname Nom du signet
 movieplayer.bookmarkname_hint1 Entrer un nom pour votre nouveau signet
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.defplugin Start-Plugin
 movieplayer.fileplayback Fichier via VLC
 movieplayer.head Lecteur vidéo
 movieplayer.toomanybookmarks Il y'a plusieurs signets.\nVous avez à éffacer l'un d'eux avant.
-movieplayer.tshelp1 Stop 
-movieplayer.tshelp10 approx. 10 minutes back 
-movieplayer.tshelp11 skip approx. 10 minutes 
-movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n 
-movieplayer.tshelp2 Select audio track 
-movieplayer.tshelp3 Pause/Continue 
-movieplayer.tshelp4 Create bookmark 
-movieplayer.tshelp5 Show progress 
-movieplayer.tshelp6 approx. 1 minute back 
-movieplayer.tshelp7 skip approx. 1 minute 
-movieplayer.tshelp8 approx. 5 minutes back 
-movieplayer.tshelp9 skip approx. 5 minutes 
+movieplayer.tshelp1 Stop
+movieplayer.tshelp10 approx. 10 minutes back
+movieplayer.tshelp11 skip approx. 10 minutes
+movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n
+movieplayer.tshelp2 Select audio track
+movieplayer.tshelp3 Pause/Continue
+movieplayer.tshelp4 Create bookmark
+movieplayer.tshelp5 Show progress
+movieplayer.tshelp6 approx. 1 minute back
+movieplayer.tshelp7 skip approx. 1 minute
+movieplayer.tshelp8 approx. 5 minutes back
+movieplayer.tshelp9 skip approx. 5 minutes
 movieplayer.tsplayback Lecture TS
 mpkey.audio Audio track
 mpkey.bookmark save bookmark
@@ -811,19 +811,19 @@ pictureviewer.sortorder.filename (Nom de fichier)
 ping.ok est joignable (ping)
 ping.protocol est injoignable (erreur hôte ou protocole)
 ping.socket est injoignable (erreur socket)
-ping.unreachable est injoignable 
+ping.unreachable est injoignable
 pinprotection.head Entrer code PIN
 pinprotection.wrongcode Le code PIN est faux! Essayer encore.
 plugins.result plugin output
 rclock.lockmsg votre télécommande Récepteur sera bloquée.\n pour débloquer, Appuyer <ROUGE> \n et <DBOX> sur la Télécommande.
-rclock.menueadd Bloquer Télécommande (RC) 
+rclock.menueadd Bloquer Télécommande (RC)
 rclock.title Bloquer Télécommande (RC)
 rclock.unlockmsg Télécommande réactivée.
 recordingmenu.apids default audio streams
 recordingmenu.apids_ac3 record AC3 streams
 recordingmenu.apids_alt record alternative streams
 recordingmenu.apids_std record standard stream
-recordingmenu.defdir Répertoire d’enregistrement 
+recordingmenu.defdir Répertoire d’enregistrement
 recordingmenu.file Directe (fichier)
 recordingmenu.help Dispositifs d’enregistrement:\n--------------------------\nserveur:\nutilisation du programme de streaming sur PC\n\n(analogique) vcr:\nutilisation de la sortie vcr\n\ndirecte (fichier):\ndirectement dans le répertoire NFS mounté\nsur le dique dur interne(HDD)\nTS: utiliser mode spts (dbox2)\nPES: ne pas utiliser le mode spts(dbox2)\n\n\nTaille fichier Max.:\n---------------------\nNFS V2: 2 GB (2048 MB)\nNFS V3: Presque illimité (0 MB)\nFAT: 2 GB (2048 MB)\nFAT32: 4 GB (4096 MB)
 recordingmenu.off off
@@ -846,7 +846,7 @@ satsetup.extended_motor Réglages Moteur
 satsetup.minidiseqc Mini-DiSEqC
 satsetup.nodiseqc Pas de DiSEqC
 satsetup.satellite Satellite
-satsetup.smatvremote mise au point SMATV 
+satsetup.smatvremote mise au point SMATV
 scants.abort_body Should the search really be aborted?
 scants.abort_header Abondonner le balayage
 scants.actcable Cable:
@@ -919,7 +919,7 @@ timer.eventtimed.title Programme Evènement
 timerbar.channelswitch programmer
 timerbar.recordevent Enregistrer
 timerlist.alarmtime Réveil
-timerlist.apids PIDs Audio 
+timerlist.apids PIDs Audio
 timerlist.apids_dflt record default audio streams
 timerlist.bouquetselect Choisir bouquet
 timerlist.channel Chaine
@@ -956,9 +956,9 @@ timerlist.repeat.unknown inconnu
 timerlist.repeat.wednesday Mercredi
 timerlist.repeat.weekdays Jours de la semaine
 timerlist.repeat.weekly Hebdomadaire
-timerlist.repeatcount repeats 
-timerlist.repeatcount.help1 amount of timer repeats 
-timerlist.repeatcount.help2 0 for unlimited repeats 
+timerlist.repeatcount repeats
+timerlist.repeatcount.help1 amount of timer repeats
+timerlist.repeatcount.help2 0 for unlimited repeats
 timerlist.save Sauvegarder horaire
 timerlist.standby Mode SB
 timerlist.standby.off Quitter Veille

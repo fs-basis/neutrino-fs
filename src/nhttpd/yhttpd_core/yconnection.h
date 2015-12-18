@@ -58,7 +58,7 @@ public:
 
 private:
 	void EndConnection();				// End Connection Handling
-	
+
 	// performance/time measurement
 	struct 	timeval 	tv_connection_start,
 				tv_connection_Response_start,

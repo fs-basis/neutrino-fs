@@ -87,7 +87,7 @@ case "$1" in
 	prepare_tv)
 		prepare_tv
 		;;
-		
+
 	udp_stream)
 		if [ "$2" = "start" ]
 		then

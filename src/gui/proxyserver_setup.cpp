@@ -68,7 +68,7 @@ int CProxySetup::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
 	}
 
 	res = showProxySetup();
-	
+
 	return res;
 }
 
@@ -77,7 +77,7 @@ int CProxySetup::showProxySetup()
 {
 	//init
 	CMenuWidget * mn = new CMenuWidget(menue_title, menue_icon, width, MN_WIDGET_ID_PROXYSETUP);
-	
+
 	neutrino_locale_t subtitle = (menue_title == LOCALE_FLASHUPDATE_PROXYSERVER_SEP ? NONEXISTANT_LOCALE : LOCALE_FLASHUPDATE_PROXYSERVER_SEP);
 	mn->addIntroItems(subtitle);
 

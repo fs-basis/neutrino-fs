@@ -5,7 +5,7 @@
 
         Copyright (C) 2007 Speed2206
         and some other guys
-        
+
         Reworked by dbt (Thilo Graf)
         Copyright (C) 2010, 2011 dbt
 
@@ -14,10 +14,10 @@
         This is the customization menu, as originally showcased in
         Oxygen. It is a more advanced version of the 'user levels'
         patch currently available.
-        
+
         The reworked version >1.24 works more dynamicly with input objects
         and their parameters and it's more code reduced. It's also independent
-        from #ifdefs of items. 
+        from #ifdefs of items.
         The personalize-object collects all incomming forwarder item objects.
         These will be handled here and will be shown after evaluation.
 
@@ -39,47 +39,47 @@
 	Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 	Boston, MA  02110-1301, USA.
 
-		
+
 	NOTE for ignorant distributors:
 	It's not allowed to distribute any compiled parts of this code, if you don't accept the terms of GPL.
 	Please read it and understand it right!
-	This means for you: Hold it, if not, leave it! You could face legal action! 
+	This means for you: Hold it, if not, leave it! You could face legal action!
 	Otherwise ask the copyright owners, anything else would be theft!
-        
-        
+
+
         Parameters:
 	addItem(CMenuWidget *widget, CMenuItem *menuItem, const int *personalize_mode, const bool defaultselected, const bool item_mode),
 	addItem(const int& widget_id, CMenuItem *menuItem, const int *personalize_mode, const bool defaultselected, const bool item_mode),
-	
+
 	CMenuWidget *widget 		= pointer to menue widget object, also to get with 'getWidget(const int& id)'
-	const int& widget_id		= index of widget (overloaded), this index is definied in vector 'v_widget', to get with 'getWidgetId()' 
+	const int& widget_id		= index of widget (overloaded), this index is definied in vector 'v_widget', to get with 'getWidgetId()'
 	CMenuItem *menuItem		= pointer to a menuitem object, can be forwarders, locked forwarders and separators...NO CHOOSERS!
 	const int *personalize_mode	= optional, default NULL, pointer to a specified personalize setting look at: PERSONALIZE_MODE, this regulates the personalize mode
 	const bool item_mode		= optional, default true, if you don't want to see this item in personalize menue, then set it to false
 	CMenuItem *observer_Item	= optional, default NULL, if you want to observe this item with another item (observer), then use this prameter.
 					  Effect: this observed item will be deactivated, if observer is set to 'visible' or 'pin-protected'
-	
+
 	Icon handling:
 	If you define an icon in the item object, this will be shown in the personalized menu but not the personilazitions menue itself, otherwise a shortcut will be create
-	
+
 	Shortcuts (optional): default is set to '1':
-	A default start-shortcut you can create with personalize.setShortcut(), 
+	A default start-shortcut you can create with personalize.setShortcut(),
 	this sets default value '1', e.g.personalize.setShortcut(0) sets value '0'
 	Only values 0-9 are possible, others will be ignored!
-	
+
 	Separators:
 	Add separators with
 	addSeparator(CMenuWidget &widget, const neutrino_locale_t locale_text, const bool item_mode)
 	OR
 	addSeparator(const int& widget_id, const neutrino_locale_t locale_text, const bool item_mode)
-	
+
 		Parameters:
 		CMenuWidget &widget 			= rev to menue widget object
 		const int& widget_id			= index of widget (overloaded), this index is definied in vector 'v_widget', to get with 'getWidgetId(widget_object)'
-		
+
 		const neutrino_locale_t locale_text	= optional, default NONEXISTANT_LOCALE, adds a line separator, is defined a locale then adds a text separator
 		const bool item_mode			= optional, default true, if you don't want to see this sparator also in personalize menue, then set it to false, usefull for to much separtors ;-)
-		
+
 	Usage:
 	It's possible to personalize only forwarders, locked forwarders and separators!
 
@@ -98,9 +98,9 @@
 	{
 		{LOCALE_1, 	NEUTRINO_ICON_1, 	width1},
 		{LOCALE_2, 	NEUTRINO_ICON_2, 	width2},
-		{LOCALE_3,	NEUTRINO_ICON_3, 	width3}, 
+		{LOCALE_3,	NEUTRINO_ICON_3, 	width3},
 	};
-	
+
 	//add it to widget collection as single
 	personalize.addWidget(mn);
 	OR as struct
@@ -113,8 +113,8 @@
 	personalize.addItem(&mn, tvswitch, &g_settings.personalize_tvmode);
 	OR with widget id
 	personalize.addItem(0, tvswitch, &g_settings.personalize_tvmode);
-	
-	//if you want to add a non personalized separator use this function, you must use this anstead addItem(GenericMenuSeparatorLine)  
+
+	//if you want to add a non personalized separator use this function, you must use this anstead addItem(GenericMenuSeparatorLine)
 	personalize.addSeparator(mn);
 	OR with widget id
 	personalize.addSeparator(0);
@@ -126,26 +126,26 @@
 	//finally add the menue items
 	personalize.addPersonalizedItems();
 	//this member makes the same like mn->addItem(...) known from CMenuWidget()-class for all collected and evaluated objects
-	
+
 	//reset shortcuts:
 	personalize.setShortcut();
-	
+
 	Enums:
 	PERSONALIZE_MODE: use as parameter 'personalize_mode'
 		PERSONALIZE_MODE_NOTVISIBLE 	: not visible in your personalized menue
 		PERSONALIZE_MODE_VISIBLE	: visible in your personalized menue
 		PERSONALIZE_MODE_PIN		: visible in your personalized menue with PIN access
-		
+
 	PERSONALIZE_PROTECT_MODE: used also as parameter 'personalize_mode'
 		PERSONALIZE_MODE_NOT_PROTECTED	: visible in personalize settings menue with PIN setup, option 'no'
 		PERSONALIZE_MODE_PIN_PROTECTED	: visible in personalize settings menue with PIN setup, option 'yes'
-		
-	PERSONALIZE_ITEM_MODE: use as as parameter 'item_mode items in personalize settings menu 
+
+	PERSONALIZE_ITEM_MODE: use as as parameter 'item_mode items in personalize settings menu
 		PERSONALIZE_SHOW_NO		: dont'show this item in personalize settings menu
 		PERSONALIZE_SHOW_AS_ITEM_OPTION	: show as item with options 'visible, not visible or PIN'
 		PERSONALIZE_SHOW_AS_ACCESS_OPTION: show as item with options 'PIN' with 'yes' or 'no'
 		PERSONALIZE_SHOW_ONLY_IN_PERSONALIZE_MENU :usefull to hide separators in menu, but visible only in personalizing menu
-	
+
 
 */
 

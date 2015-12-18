@@ -85,7 +85,7 @@ class CVolumeBar : public CComponentsForm
 			VOLUMEBAR_POS_BOTTOM_RIGHT	= 3,
 			VOLUMEBAR_POS_TOP_CENTER	= 4,
 			VOLUMEBAR_POS_BOTTOM_CENTER	= 5,
-			VOLUMEBAR_POS_HIGHER_CENTER	= 6 
+			VOLUMEBAR_POS_HIGHER_CENTER	= 6
 		};
 
 		CVolumeBar(/*int current_volume*/);

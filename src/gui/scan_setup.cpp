@@ -170,9 +170,9 @@ const CMenuOptionChooser::keyval TERRSETUP_SCANTP_FEC[TERRSETUP_SCANTP_FEC_COUNT
 	{ FEC_7_8,  LOCALE_EXTRA_FEC_7_8  },
 	{ FEC_AUTO, LOCALE_EXTRA_FEC_AUTO },
 	// DTMB ie
-	{ FEC_2_5,  LOCALE_EXTRA_FEC_2_5  }, 
-	{ FEC_3_5,  LOCALE_EXTRA_FEC_3_5  }, 
-	{ FEC_4_5,  LOCALE_EXTRA_FEC_4_5  }, 
+	{ FEC_2_5,  LOCALE_EXTRA_FEC_2_5  },
+	{ FEC_3_5,  LOCALE_EXTRA_FEC_3_5  },
+	{ FEC_4_5,  LOCALE_EXTRA_FEC_4_5  },
 
 };
 
@@ -1928,7 +1928,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &actionkey)
 		name = scansettings.satName;
 	else if (actionkey == "terrestrial")
 		name = scansettings.terrestrialName;
-	else 
+	else
 		name = scansettings.cableName;
 
 	position = CServiceManager::getInstance()->GetSatellitePosition(name.c_str());

@@ -10,12 +10,12 @@
 class CTesthook : public Cyhook
 {
 public:
-	THandleStatus Hook_SendResponse(CyhookHandler *hh); 
+	THandleStatus Hook_SendResponse(CyhookHandler *hh);
 	CTesthook(){};
 	~CTesthook(){};
-	
+
 	virtual std::string getHookName(void) {return std::string("Testhook");}
-	
+
 };
 #endif /*TESTHOOK_H_*/
 

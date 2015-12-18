@@ -119,8 +119,8 @@ typedef enum
 
 typedef struct
 {
-	int pos;			// position in seconds from file start	
-	int length;     	// bookmark type, 0: just a bookmark, < 0 jump back (seconds), > 0 jump forward (seconds) 
+	int pos;			// position in seconds from file start
+	int length;     	// bookmark type, 0: just a bookmark, < 0 jump back (seconds), > 0 jump forward (seconds)
 	std::string name; 	// bookmark name to be displayed
 }MI_BOOKMARK;
 
@@ -158,7 +158,7 @@ class MI_MOVIE_INFO
 	time_t dateOfLastPlay; 		// last play date of movie in seconds since 1970
 	int  dirItNr;  				// handle for quick directory path access only, this is not saved in xml, might be used by the owner of the movie info struct
 	int  genreMajor;            // see showEPG class for more info, usually filled by EPG
-	char genreMinor;			// genreMinor not used so far			
+	char genreMinor;			// genreMinor not used so far
 	int  length;                // movie length in minutes, usually filled by EPG
 	int  quality;                 // user classification (3 stars: classics, 2 stars: very good, 1 star: good, 0 stars: OK)
 	int  productionDate;         // user defined Country (not from EPG yet, but might be possible)
@@ -173,7 +173,7 @@ class MI_MOVIE_INFO
 	int  epgMode;			// currently not used, we just do not want to loose this info if movie info is saved backed
 	int  epgVideoPid; 		// currently not used, we just do not want to loose this info if movie info is saved backed
 	int  VideoType;
-	int	 epgVTXPID;			// currently not used, we just do not want to loose this info if movie info is saved backed 
+	int	 epgVTXPID;			// currently not used, we just do not want to loose this info if movie info is saved backed
 	bool marked;
 	bool delAsk;
 	std::string tfile; // thumbnail/cover file name
@@ -201,10 +201,10 @@ class CMovieInfo
 		void printDebugMovieInfo(MI_MOVIE_INFO& movie_info);							// print movie info on debug channel (RS232)
 		void clearMovieInfo(MI_MOVIE_INFO* movie_info);									// Set movie info structure to initial values
 		bool addNewBookmark(MI_MOVIE_INFO* movie_info,MI_BOOKMARK &new_bookmark);		// add a new bookmark to the given movie info. If there is no space false is returned
-		
+
 	private:// Functions
 		bool parseXmlTree (std::string &text, MI_MOVIE_INFO* movie_info);			// this is the 'good' function, but it needs the xmllib which is not currently linked within neutrino. Might be to slow as well. If used, add bookmark parsing
-		bool parseXmlQuickFix(std::string &text, MI_MOVIE_INFO* movie_info);		// OK, this is very quick an dirty. It does not waste execution time or flash (this is QUICK). But, do not play to much with the xml files (e.g. with MS Notepad) since small changes in the structure could cause the parser to fail (this it DIRTY). 
+		bool parseXmlQuickFix(std::string &text, MI_MOVIE_INFO* movie_info);		// OK, this is very quick an dirty. It does not waste execution time or flash (this is QUICK). But, do not play to much with the xml files (e.g. with MS Notepad) since small changes in the structure could cause the parser to fail (this it DIRTY).
 		bool loadFile(CFile& file, std::string &buffer);
 		bool saveFile(const CFile& file, std::string &buffer);
 	private:// variables

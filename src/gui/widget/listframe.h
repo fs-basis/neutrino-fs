@@ -67,7 +67,7 @@ typedef struct
 	std::vector<bool> marked;
 }LF_LINES;
 
-class CListFrame  
+class CListFrame
 {
 	private:
 		/* Functions */
@@ -105,14 +105,14 @@ class CListFrame
 		int m_nSelectedLine;
 
 		bool m_showSelection;
-		
+
 		Font* m_pcFontTitle;
 		std::string m_textTitle;
 		int m_nFontTitleHeight;
-		
+
 		Font* m_pcFontList;
 		int m_nFontListHeight;
-		
+
 		Font* m_pcFontHeaderList;
 		int m_nFontHeaderListHeight;
 
@@ -121,9 +121,9 @@ class CListFrame
 		/* Constructor */
 		CListFrame();
 		CListFrame(	LF_LINES* lines);
-		CListFrame(	LF_LINES* lines, 
+		CListFrame(	LF_LINES* lines,
 					Font* font_text,
-					const int mode, 
+					const int mode,
 					const CBox* position,
 					const char* textTitle = NULL,
 					Font* font_title = NULL);
@@ -134,7 +134,7 @@ class CListFrame
 		void    refresh(void);
 		void    refreshLine(int line);
 		void    scrollPageDown(const int pages);
-		void    scrollPageUp(const int pages);				
+		void    scrollPageUp(const int pages);
 		void 	scrollLineDown(const int lines);
 		void 	scrollLineUp(const int lines);
 		bool	setLines(LF_LINES* lines);

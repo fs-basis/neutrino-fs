@@ -1,8 +1,8 @@
-/*      
+/*
         LCD-Daemon  -   DBoxII-Project
 
         Copyright (C) 2001 Steffen Hehn 'McClean',
-                      2003 thegoodguy	
+                      2003 thegoodguy
 
         License: GPL
 
@@ -35,12 +35,12 @@ static bool	signs[] = {1, 1, 1, 1,
 			   1, 1, 1, 1,
 			   1, 1, 1, 1,
 			   1, 1, 1, 1,
-			   
+
 			   1, 1, 1, 0,
 			   1, 1, 1, 0,
 			   0, 1, 1, 0,
 			   1, 1, 0, 0,
-			   
+
 			   1, 1, 1, 0,
 			   1, 1, 1, 0,
 			   1, 1, 1, 0,

@@ -28,7 +28,7 @@
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 	***********************************************************
-  
+
 	Module Name: msgbox.h .
 
 	Description: interface of the CMsgBox class
@@ -56,7 +56,7 @@
 
 #include <driver/fb_window.h>
 
-class CMsgBox  
+class CMsgBox
 {
 	public:
 		/* enum definition */
@@ -126,14 +126,14 @@ class CMsgBox
 		virtual ~CMsgBox();
 		CMsgBox();
 		CMsgBox(const char * text);
-		CMsgBox(  const char * text, 
+		CMsgBox(  const char * text,
 				   Font* fontText,
-				   const int mode, 
-				   const CBox* position, 
+				   const int mode,
+				   const CBox* position,
 				   const char * title,
 				   Font* fontTitle,
 				   const char * icon,
-				   int return_button = mbCancel, 
+				   int return_button = mbCancel,
 				   const result_ default_result = mbrCancel);
 
 		/* Functions */
@@ -148,23 +148,23 @@ class CMsgBox
 		bool	setText(const std::string* newText);
 };
 
-extern int ShowMsg2UTF(	const neutrino_locale_t Caption, 
-						const char * const Text, 
-						const CMsgBox::result_ Default, 
-						const uint32_t ShowButtons, 
-						const char * const Icon = NULL, 
-						const int Width = 450, 
-						const int timeout = -1, 
+extern int ShowMsg2UTF(	const neutrino_locale_t Caption,
+						const char * const Text,
+						const CMsgBox::result_ Default,
+						const uint32_t ShowButtons,
+						const char * const Icon = NULL,
+						const int Width = 450,
+						const int timeout = -1,
 						bool returnDefaultOnTimeout = false); // UTF-8
 
-extern int ShowMsg2UTF(	const char * const Title, 
-						const char * const Text, 
-						const CMsgBox::result_ Default, 
-						const uint32_t ShowButtons, 
-						const char * const Icon = NULL, 
-						const int Width = 450, 
-						const int timeout = -1, 
+extern int ShowMsg2UTF(	const char * const Title,
+						const char * const Text,
+						const CMsgBox::result_ Default,
+						const uint32_t ShowButtons,
+						const char * const Icon = NULL,
+						const int Width = 450,
+						const int timeout = -1,
 						bool returnDefaultOnTimeout = false); // UTF-8
-						
+
 
 #endif

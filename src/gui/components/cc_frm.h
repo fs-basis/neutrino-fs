@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -50,7 +50,7 @@ class CComponentsForm : public CComponentsItem
 		u_int8_t cur_page;
 		///scrollbar width
 		int w_sb;
-		///returns true, if current page is changed, see also: setCurrentPage() 
+		///returns true, if current page is changed, see also: setCurrentPage()
 		bool isPageChanged();
 
 		///enable/disable page scrolling, default enabled with page scroll mode up/down keys, see also enablePageScroll()

@@ -30,7 +30,7 @@ protected:
 public:
 	class CWebserver *Webserver;
 	class CWebserverConnection *Connection;
-	
+
 	// con/destructors
 	CWebserverResponse();
 	CWebserverResponse(CWebserver *pWebserver);

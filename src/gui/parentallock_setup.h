@@ -23,7 +23,7 @@
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the 
+	along with this program; if not, write to the
 	Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 	Boston, MA  02110-1301, USA.
 
@@ -45,14 +45,14 @@ class CParentalSetup : public CMenuTarget, public CPINProtection
 	private:
 		int width;
 		int showParentalSetup();
-		
+
 	protected:
 		virtual CMenuTarget* getParent() { return( NULL);};
 
-	public:	
-		
+	public:
+
 		CParentalSetup() : CPINProtection(g_settings.parentallock_pincode)
-		{ 
+		{
 			width = 40;
 			title = LOCALE_PARENTALLOCK_HEAD;
 		};

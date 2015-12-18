@@ -458,7 +458,7 @@ motorcontrol.head Motor-Setup
 movieplayer.bookmark Bookmarks
 movieplayer.bookmarkname Bookmark Name
 movieplayer.bookmarkname_hint1 Gib ä Name für's nöie Bookmark i.
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.defplugin Start-Plugin
 movieplayer.fileplayback Datei via VLC
 movieplayer.head Movieplayer
@@ -577,7 +577,7 @@ pinprotection.head PIN-Abfroog
 pinprotection.wrongcode Gib dä Code nomou i!
 plugins.result Pluginusgab
 rclock.lockmsg d'Färnbedienig vo de DBOX2 wird gschperrt.\num d'Schperri ufzhebe, bitte\n<ROT> u <DBOX> uf dr Färnbedienig\ndruecke.
-rclock.menueadd FB schperre 
+rclock.menueadd FB schperre
 rclock.title Färnbedienig schperre
 rclock.unlockmsg Färnbedienig reaktiviert...
 recordingmenu.defdir Ufnahmeverzeichnis

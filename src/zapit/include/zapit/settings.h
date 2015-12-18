@@ -46,7 +46,7 @@
 #define MYSERVICES_XML	CONFIGDIR "/zapit/myservices.xml"
 
 #define CABLES_XML      CONFIGDIR "/cables.xml"
-#define SATELLITES_XML  CONFIGDIR "/satellites.xml" 
+#define SATELLITES_XML  CONFIGDIR "/satellites.xml"
 #define TERRESTRIAL_XML CONFIGDIR "/terrestrial.xml"
 #define WEBTV_XML	CONFIGDIR "/webtv_usr.xml"
 

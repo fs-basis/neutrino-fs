@@ -111,7 +111,7 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 		{
 			fileBrowser.Dir_Mode = true;
 			if (fileBrowser.exec("/swap") == true)
-				g_settings.image_settings_backup_path = fileBrowser.getSelectedFile()->Name; 
+				g_settings.image_settings_backup_path = fileBrowser.getSelectedFile()->Name;
 			else
 				return res;
 		}

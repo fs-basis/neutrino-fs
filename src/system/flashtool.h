@@ -42,7 +42,7 @@
 class CFlashTool
 {
 	private:
-	
+
 		CProgressWindow* statusViewer;
 		std::string mtdDevice;
 		std::string ErrorMessage;
@@ -76,18 +76,18 @@ class CFlashTool
 class CFlashVersionInfo
 {
  private:
-	
+
 	char date[11];
 	char time[6];
 	char releaseCycle[5];
 	int  version;
 	time_t datetime;
-	
+
  public:
 	char snapshot;
-	
+
 	CFlashVersionInfo(const std::string & versionString);
-	
+
 	const char *getDate(void) const;
 	const char *getTime(void) const;
 	const char *getReleaseCycle(void) const;
@@ -110,15 +110,15 @@ class CMTDInfo
 		};
 
 		std::vector<SMTDPartition*> mtdData;
-		
+
 		void getPartitionInfo();
 
 		CMTDInfo();
 		~CMTDInfo();
 
-	public: 
+	public:
 		static CMTDInfo* getInstance();
-	
+
 		int getMTDCount();
 
 		//mtdinfos abfragen (nach mtdnummer)

@@ -31,7 +31,7 @@
 
 #include <string>
 
-const char *mdev_env[] = 
+const char *mdev_env[] =
 {
 	"ACTION" ,
 	"MDEV" ,

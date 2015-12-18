@@ -157,7 +157,7 @@ class CBouquetManager
 };
 
 /*
- * Struct for channel comparison by channel names 
+ * Struct for channel comparison by channel names
  *
  * TODO:
  * Channel names are not US-ASCII, but UTF-8 encoded.

@@ -1,13 +1,13 @@
 /*
 DBOX2 -- Projekt
- 
-(c) 2001 rasc Lizenz: GPL 
- 
+
+(c) 2001 rasc Lizenz: GPL
+
 Lastchannel History buffer
- 
+
 Einfache Klasse fuer schnelles Zappen zum letzten Kanal.
 Ggf. laesst sich damit ein kleines ChannelHistory-Menue aufbauen-
- 
+
 Das ganze ist als sich selbst ueberschreibender Ringpuffer realisiert,
 welcher nach dem LIFO-prinzip wieder ausgelesen wird.
 Es wird aber gecheckt, ob ein Neuer Wert ein Mindestzeitabstand zum alten
@@ -122,7 +122,7 @@ void CLastChannel::set_store_difftime (int secs)
 {
 	secs_diff_before_store = secs;
 }
-#if 0 
+#if 0
 //never used
 int CLastChannel::get_store_difftime (void) const
 

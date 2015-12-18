@@ -96,7 +96,7 @@ int CBookmarkManager::createBookmark (const std::string & url, const std::string
 }
 
 //------------------------------------------------------------------------
-#if 0 
+#if 0
 //never used
 void CBookmarkManager::removeBookmark (unsigned int index) {
 	std::vector<CBookmark>::iterator p = bookmarks.begin()+index;
@@ -191,7 +191,7 @@ bool CBookmarkManager::changeNotify(const neutrino_locale_t, void *)
 
 //------------------------------------------------------------------------
 
-#if 0 
+#if 0
 //never used
 int CBookmarkManager::getBookmarkCount(void) const {
 	return bookmarks.size();
@@ -212,7 +212,7 @@ void CBookmarkManager::flush() {
 }
 
 //------------------------------------------------------------------------
-#if 0 
+#if 0
 //never used
 const CBookmark * CBookmarkManager::getBookmark(CMenuTarget* parent)
 {

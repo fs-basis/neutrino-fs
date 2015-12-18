@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -95,7 +95,7 @@ void CComponentsFooter::initVarFooter(	const int& x_pos, const int& y_pos, const
 
 void CComponentsFooter::setButtonLabels(const struct button_label_s * const content, const size_t& label_count, const int& chain_width, const int& label_width)
 {
-	//define required total width of button group, minimal width is >0, sensless values are nonsens! 
+	//define required total width of button group, minimal width is >0, sensless values are nonsens!
 	int w_chain = chain_width > 0 ? chain_width : width;//TODO: alow and handle only with rational values >0, exit here
 	if (w_chain < 100){
 		dprintf(DEBUG_NORMAL, "[CComponentsFooter]   [%s - %d] stupid width of chain: width = %d, values < 100 are nonsens, buttons not painted!\n", __func__, __LINE__, w_chain);
@@ -195,7 +195,7 @@ void CComponentsFooter::setButtonLabels(const struct button_label_s * const cont
 void CComponentsFooter::setButtonLabels(const struct button_label_l * const content, const size_t& label_count, const int& chain_width, const int& label_width)
 {
 	button_label_s buttons[label_count];
-	
+
 	for (size_t i= 0; i< label_count; i++){
 		buttons[i].button = content[i].button;
 		buttons[i].text = content[i].locale != NONEXISTANT_LOCALE ? g_Locale->getText(content[i].locale) : "";

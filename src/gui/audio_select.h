@@ -54,7 +54,7 @@ class CAudioSelectMenuHandler : public CMenuTarget
 	public:
 		CAudioSelectMenuHandler();
 		~CAudioSelectMenuHandler();
-		
+
 		int  exec( CMenuTarget* parent,  const std::string &actionkey);
 		int  doMenu();
 

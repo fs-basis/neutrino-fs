@@ -110,12 +110,12 @@ libneutrino_gui_a_SOURCES = \
 
 if BOXTYPE_SPARK
 libneutrino_gui_a_SOURCES += \
-	3dsetup.cpp 
+	3dsetup.cpp
 endif
 
 if BOXTYPE_DUCKBOX
 libneutrino_gui_a_SOURCES += \
-	3dsetup.cpp 
+	3dsetup.cpp
 endif
 
 if ENABLE_GRAPHLCD

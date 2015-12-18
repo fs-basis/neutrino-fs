@@ -419,7 +419,7 @@ fprintf(stderr, "CFrameBuffer::setMode avail: %d active: %d\n", available, activ
 	paintBackground();
 	return ret;
 }
-#if 0 
+#if 0
 //never used
 void CFrameBuffer::setTransparency( int /*tr*/ )
 {
@@ -1097,7 +1097,7 @@ void CFrameBuffer::paintBoxFrame(const int x, const int y, const int dx, const i
 				while (p < pe)
 					*p++ = col;
 				*p = mergeColor(*p, ilevel, col, 255 - ilevel);
-				
+
 			}
 			// right
 			if ((corner_tr && line < radius) || (corner_br && line >= dy - radius)) {
@@ -1299,9 +1299,9 @@ void * CFrameBuffer::int_convertRGB2FB(unsigned char *rgbbuff, unsigned long x, 
 
 	if (alpha) {
 		for(i = 0; i < count ; i++)
-			fbbuff[i] = ((rgbbuff[i*4+3] << 24) & 0xFF000000) | 
-				    ((rgbbuff[i*4]   << 16) & 0x00FF0000) | 
-				    ((rgbbuff[i*4+1] <<  8) & 0x0000FF00) | 
+			fbbuff[i] = ((rgbbuff[i*4+3] << 24) & 0xFF000000) |
+				    ((rgbbuff[i*4]   << 16) & 0x00FF0000) |
+				    ((rgbbuff[i*4+1] <<  8) & 0x0000FF00) |
 				    ((rgbbuff[i*4+2])       & 0x000000FF);
 	} else {
 		switch (m_transparent) {

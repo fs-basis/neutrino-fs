@@ -63,7 +63,7 @@ void CComponentsFrmChain::initVarChain(	const int& x_pos, const int& y_pos, cons
 	col_frame	= color_frame;
 	col_body	= color_body;
 	col_shadow	= color_shadow;
-	
+
 	chn_direction	= direction;
 
 	if (v_items)

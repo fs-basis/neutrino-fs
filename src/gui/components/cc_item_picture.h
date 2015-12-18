@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -55,7 +55,7 @@ class CComponentsPicture : public CComponentsItem
 
 		///property: name of image (without extensionn) full path to image (with extension), icon names to find in /widget/icons.h, icons will paint never scaled
 		std::string pic_name, pic_name_old;
- 
+
 		///indicate that image was sucessful painted
 		bool is_image_painted;
 
@@ -155,7 +155,7 @@ class CComponentsPicture : public CComponentsItem
 		virtual void paint(bool do_save_bg = CC_SAVE_SCREEN_YES);
 		///hide item, see also CComponents::hide();
 		virtual void hide();
-		
+
 		virtual bool hasChanges();
 };
 
@@ -184,10 +184,10 @@ class CComponentsChannelLogo : public CComponentsPicture
 		uint64_t channel_id;
 		///channel name
 		std::string channel_name;
-		
+
 		///alternate image file, if no channel logo is available
 		std::string alt_pic_name;
-		
+
 		///indicates that logo is available, after paint or new instance, value = false
 		bool has_logo;
 
@@ -228,15 +228,15 @@ class CComponentsChannelLogo : public CComponentsPicture
 
 		///set channel id and/or channel name, NOTE: channel name is prefered
 		void setChannel(const uint64_t& channelId, const std::string& channelName);
-		
+
 		///set an alternate logo if no logo is available NOTE: value of has_logo will set to true
 		void setAltLogo(const std::string& picture_name);
 		///set an alternate logo if no logo is available, NOTE: value of has_logo will set to true
 		void setAltLogo(const char* picture_name);
-		
+
 		///returns true, if any logo is available, also if an alternate logo was setted
 		bool hasLogo(){return has_logo;};
-		
+
 };
 
 class 	CComponentsChannelLogoScalable : public CComponentsChannelLogo

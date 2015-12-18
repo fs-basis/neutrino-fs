@@ -46,7 +46,7 @@ class CPictureViewerSetup : public CMenuTarget
 		int showPictureViewerSetup();
 
 
-	public:	
+	public:
 		CPictureViewerSetup();
 		~CPictureViewerSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);

@@ -80,7 +80,7 @@ class CPictureViewerGui : public CMenuTarget
 		int			footerHeight;
 		int			buttons1Height;
 		int			buttons2Height;
-		bool				visible;			
+		bool				visible;
 		State          m_state;
 		SortOrder      m_sort;
 

@@ -516,7 +516,7 @@ void CControlAPI::RCCGI(CyhookHandler *hh)
 		else if (hh->ParamList["1"] == "unlock"){// unlock remote control
 			if(CRCLock::locked)
 				NeutrinoAPI->EventServer->sendEvent(NeutrinoMessages::UNLOCK_RC, CEventServer::INITID_HTTPD);
-			  
+
 		}
 		else{
 			hh->SendError();
@@ -667,7 +667,7 @@ void CControlAPI::HWInfoCGI(CyhookHandler *hh)
 	std::string boxname = NeutrinoAPI->NeutrinoYParser->func_get_boxtype(hh, "");
 	std::string boxmodel = NeutrinoAPI->NeutrinoYParser->func_get_boxmodel(hh, "");
 
-	static CNetAdapter netadapter; 
+	static CNetAdapter netadapter;
 	std::string eth_id = netadapter.getMacAddr();
 	std::transform(eth_id.begin(), eth_id.end(), eth_id.begin(), ::tolower);
 
@@ -1213,7 +1213,7 @@ void CControlAPI::GetBouquetsCGI(CyhookHandler *hh) {
 		mode = CZapitClient::MODE_TV;
 	else if (hh->ParamList["mode"].compare("RADIO") == 0)
 		mode = CZapitClient::MODE_RADIO;
- 
+
 	std::string bouquet;
 	for (int i = 0, size = (int) g_bouquetManager->Bouquets.size(); i < size; i++) {
 		std::string item = "";
@@ -1396,12 +1396,12 @@ inline static bool sortByDateTime (const CChannelEvent& a, const CChannelEvent& 
 }
 extern const char * GetGenre(const unsigned char contentClassification); // UTF-8
 
-void CControlAPI::EpgSearchXMLCGI(CyhookHandler *hh) 
+void CControlAPI::EpgSearchXMLCGI(CyhookHandler *hh)
 {
 	EpgSearchCGI(hh, true); //xml_format = true
 }
 
-void CControlAPI::EpgSearchTXTCGI(CyhookHandler *hh) 
+void CControlAPI::EpgSearchTXTCGI(CyhookHandler *hh)
 {
 	EpgSearchCGI(hh, false); //xml_format = false
 }
@@ -1427,7 +1427,7 @@ void CControlAPI::EpgSearchCGI(CyhookHandler *hh, bool xml_format )
 		else{
 			hh->SetHeader(HTTP_OK, "text/plain; charset=UTF-8"); // default
 		}
-    
+
 		std::vector<t_channel_id> v;
 		int channel_nr =  CNeutrinoApp::getInstance ()->channelList->getSize();//unique channelList TV or Radio
 		for(int channel = 0; channel < channel_nr; channel++){

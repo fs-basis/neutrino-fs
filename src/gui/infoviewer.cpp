@@ -259,7 +259,7 @@ void CInfoViewer::changePB()
 	if (sigbox)
 		delete sigbox;
 	sigbox = NULL;
-	
+
 	if (timescale)
 		delete timescale;
 	timescale = new CProgressBar();
@@ -292,7 +292,7 @@ void CInfoViewer::initClock()
 void CInfoViewer::showRecordIcon (const bool show)
 {
 	CRecordManager * crm		= CRecordManager::getInstance();
-	
+
 	recordModeActive		= crm->RecordingStatus();
 	/* FIXME if record or timeshift stopped while infobar visible, artifacts */
 	if (recordModeActive)
@@ -313,21 +313,21 @@ void CInfoViewer::showRecordIcon (const bool show)
 			Icon_Rec	= NEUTRINO_ICON_REC;
 
 		int records		= crm->GetRecordCount();
-		
+
 		const int radius = RADIUS_MIN;
 		const int ChanName_X = BoxStartX + ChanWidth + SHADOW_OFFSET;
 		const int icon_space = 3, box_posY = 5;
 		int box_len = 0, rec_icon_posX = 0, ts_icon_posX = 0;
-		
+
 		int rec_icon_w = 0, rec_icon_h = 0, ts_icon_w = 0, ts_icon_h = 0;
 		frameBuffer->getIconSize(Icon_Rec.c_str(), &rec_icon_w, &rec_icon_h);
 		frameBuffer->getIconSize(Icon_Ts.c_str(), &ts_icon_w, &ts_icon_h);
-		
+
 		int chanH = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight () * (g_settings.screen_yres / 100);
 		if (chanH < rec_icon_h)
 			chanH = rec_icon_h;
 		const int box_posX = ChanInfoX + SHADOW_OFFSET;   //ChanName_X + SHADOW_OFFSET;
-		
+
 		int i = 0;
 		recmap_t recmap = crm->GetRecordMap();
 		for(recmap_iterator_t it = recmap.begin(); it != recmap.end(); it++) {
@@ -340,7 +340,7 @@ void CInfoViewer::showRecordIcon (const bool show)
 				show_icon = Icon_Ts;
 			}
 			std::string records_msg = inst->GetEpgTitle();
-			int TextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(records_msg) 
+			int TextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(records_msg)
 					* (g_settings.screen_xres / 100);
 			box_len = icon_width + TextWidth + icon_space*5;
 			spacer = i*(chanH + 10);
@@ -486,9 +486,9 @@ void CInfoViewer::showMovieTitle(const int playState, const t_channel_id &Channe
 				 const int duration, const int curr_pos,
 				 const int repeat_mode)
 {
-	if (g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_LEFT || 
-	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_RIGHT || 
-	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_CENTER || 
+	if (g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_LEFT ||
+	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_RIGHT ||
+	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_CENTER ||
 	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_HIGHER_CENTER)
 		isVolscale = CVolume::getInstance()->hideVolscale();
 	else
@@ -654,9 +654,9 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 	int ChanNum = channel->number;
 	current_epg_id = channel->getEpgID();
 
-	if (g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_LEFT || 
-	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_RIGHT || 
-	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_CENTER || 
+	if (g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_LEFT ||
+	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_RIGHT ||
+	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_CENTER ||
 	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_HIGHER_CENTER)
 		isVolscale = CVolume::getInstance()->hideVolscale();
 	else
@@ -753,7 +753,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 					satname_tmp +=" ";
 					satname_tmp += name.substr( pos1,pos2-pos1 );
 					satNameWidth = g_SignalFont->getRenderWidth (satname_tmp);
-					if (satNameWidth > (ChanWidth - 4)) 
+					if (satNameWidth > (ChanWidth - 4))
 						satNameWidth = ChanWidth - 4;
 				}
 			}
@@ -805,7 +805,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 					chann_size = 1;
 				chname_width += (chname_width/chann_size/2);
 
-				int tmpY = ((ChanNameY + time_height) - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getDigitOffset() 
+				int tmpY = ((ChanNameY + time_height) - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getDigitOffset()
 						+ g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getDigitOffset());
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(
 					ChanNameX + 10 + ChanNumWidth + chname_width, tmpY,
@@ -873,7 +873,7 @@ void CInfoViewer::setInfobarTimeout(int timeout_ext)
 				timeoutEnd = CRCInput::calcTimeoutEnd (g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR_MOVIE] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR_MOVIE] + timeout_ext);
 				break;
 		default:
-				timeoutEnd = CRCInput::calcTimeoutEnd(6 + timeout_ext); 
+				timeoutEnd = CRCInput::calcTimeoutEnd(6 + timeout_ext);
 				break;
 	}
 }
@@ -897,8 +897,8 @@ void CInfoViewer::loop(bool show_dot)
 		g_RCInput->getMsgAbsoluteTimeout (&msg, &data, &timeoutEnd);
 
 #ifdef ENABLE_PIP
-		if ((msg == (neutrino_msg_t) g_settings.key_pip_close) || 
-		    (msg == (neutrino_msg_t) g_settings.key_pip_setup) || 
+		if ((msg == (neutrino_msg_t) g_settings.key_pip_close) ||
+		    (msg == (neutrino_msg_t) g_settings.key_pip_setup) ||
 		    (msg == (neutrino_msg_t) g_settings.key_pip_swap)) {
 			g_RCInput->postMsg(msg, data);
 			res = messages_return::cancel_info;
@@ -942,7 +942,7 @@ void CInfoViewer::loop(bool show_dot)
 			virtual_zap_mode = true;
 			res = messages_return::cancel_all;
 			hideIt = true;
-		} else if ((msg == NeutrinoMessages::EVT_RECORDMODE) && 
+		} else if ((msg == NeutrinoMessages::EVT_RECORDMODE) &&
 			   (CMoviePlayerGui::getInstance().timeshift) && (CRecordManager::getInstance()->GetRecordCount() == 1)) {
 			res = CNeutrinoApp::getInstance()->handleMsg(msg, data);
 		} else if (!fileplay && !CMoviePlayerGui::getInstance().timeshift) {
@@ -1175,7 +1175,7 @@ void CInfoViewer::showRadiotext()
 		rt_y = g_settings.screen_StartY + 10;
 		rt_h = rt_y + 7 + rt_dy*(g_Radiotext->S_RtOsdRows+1)+SHADOW_OFFSET;
 		rt_w = rt_x+rt_dx+SHADOW_OFFSET;
-		
+
 		int lines = 0;
 		for (int i = 0; i < g_Radiotext->S_RtOsdRows; i++) {
 			if (g_Radiotext->RT_Text[i][0] != '\0') lines++;
@@ -1192,7 +1192,7 @@ void CInfoViewer::showRadiotext()
 		//	g_Radiotext->RT_Titel, tr("Radiotext"), g_Radiotext->RT_PTY == 0 ? g_Radiotext->RDS_PTYN : g_Radiotext->ptynr2string(g_Radiotext->RT_PTY), g_Radiotext->RT_MsgShow ? ":" : tr("  [waiting ...]"));
 				if ((lines) || (g_Radiotext->RT_PTY !=0)) {
 					sprintf(stext[0], g_Radiotext->RT_PTY == 0 ? "%s %s%s" : "%s (%s)%s", tr("Radiotext"), g_Radiotext->RT_PTY == 0 ? g_Radiotext->RDS_PTYN : g_Radiotext->ptynr2string(g_Radiotext->RT_PTY), ":");
-					
+
 					// shadow
 					frameBuffer->paintBoxRel(rt_x+SHADOW_OFFSET, rt_y+SHADOW_OFFSET, rt_dx, rt_dy, COL_INFOBAR_SHADOW_PLUS_0, RADIUS_LARGE, CORNER_TOP);
 					frameBuffer->paintBoxRel(rt_x, rt_y, rt_dx, rt_dy, COL_INFOBAR_PLUS_0, RADIUS_LARGE, CORNER_TOP);
@@ -1342,7 +1342,7 @@ int CInfoViewer::handleMsg (const neutrino_msg_t msg, neutrino_msg_data_t data)
 				if (fileplay) {
 					const char *unit_short_minute = g_Locale->getText(LOCALE_UNIT_SHORT_MINUTE);
 					char runningRest[64]; // %d can be 10 digits max...
-					int curr_pos = CMoviePlayerGui::getInstance().GetPosition(); 
+					int curr_pos = CMoviePlayerGui::getInstance().GetPosition();
 					int duration = CMoviePlayerGui::getInstance().GetDuration();
 					snprintf(runningRest, sizeof(runningRest), "%d / %d %s", (curr_pos + 30000) / 60000, (duration - curr_pos + 30000) / 60000, unit_short_minute);
 					display_Info(NULL, NULL, true, false, CMoviePlayerGui::getInstance().file_prozent, NULL, runningRest);
@@ -1498,7 +1498,7 @@ void CInfoViewer::showSNR ()
 			newfreq = false;
 
 			std::string polarisation = "";
-			
+
 			if (CFrontend::isSat(CFEManager::getInstance()->getLiveFE()->getCurrentDeliverySystem()))
 				polarisation = transponder::pol(CFEManager::getInstance()->getLiveFE()->getPolarization());
 
@@ -1581,7 +1581,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			pb_shadow = 0;
 			timescale->disableShadow();
 		}
-		int tmpY = CurrInfoY - height - ChanNameY + time_height - 
+		int tmpY = CurrInfoY - height - ChanNameY + time_height -
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getDigitOffset()/3;
 /*
 		switch(g_settings.infobar_progressbar) //set progressbar position
@@ -1900,7 +1900,7 @@ void CInfoViewer::showInfoFile()
 {
 	return;
 	//read textcontent from this file
-	std::string infobar_file = "/tmp/infobar.txt"; 
+	std::string infobar_file = "/tmp/infobar.txt";
 
 	//exit if file not found, don't create an info object, delete old instance if required
 	if (!file_size(infobar_file.c_str()))	{

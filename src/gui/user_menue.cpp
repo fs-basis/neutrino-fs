@@ -29,11 +29,11 @@
 	Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 	Boston, MA  02110-1301, USA.
 
-		
+
 	NOTE for ignorant distributors:
 	It's not allowed to distribute any compiled parts of this code, if you don't accept the terms of GPL.
 	Please read it and understand it right!
-	This means for you: Hold it, if not, leave it! You could face legal action! 
+	This means for you: Hold it, if not, leave it! You could face legal action!
 	Otherwise ask the copyright owners, anything else would be theft!
 */
 
@@ -86,7 +86,7 @@ extern CPlugins * g_PluginList;			/* neutrino.cpp */
 extern CCAMMenuHandler * g_CamHandler;
 #endif
 
-// 
+//
 #include <system/debug.h>
 
 CUserMenu::CUserMenu()
@@ -145,7 +145,7 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 	CMenuItem* menu_item = NULL;
 	CMenuItem* last_menu_item = NULL;
 	CColorKeyHelper keyhelper;
-	
+
 	//set default feature key
 	neutrino_msg_t key = feat_key[CPersonalizeGui::PERSONALIZE_FEAT_KEY_AUTO].key; //CRCInput::RC_nokey
 
@@ -155,7 +155,7 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 	// define classes
 	CSubChannelSelectMenu subchanselect;
 	CNeutrinoApp * neutrino	= CNeutrinoApp::getInstance();
-	
+
 	std::string txt = g_settings.usermenu[button]->title;
 	if (button < COL_BUTTONMAX && txt.empty())
 		txt = g_Locale->getText(user_menu[button].caption);
@@ -170,15 +170,15 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 	*/
 	menu->OnAfterHide.connect(sigc::mem_fun(CInfoClock::getInstance(), &CInfoClock::block));
 
-	if (button < COL_BUTTONMAX)	
+	if (button < COL_BUTTONMAX)
 		menu->setSelected(user_menu[button].selected);
-	
+
 	//show cancel button if configured
 	if (g_settings.personalize[SNeutrinoSettings::P_UMENU_SHOW_CANCEL])
 		menu->addIntroItems(NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, CMenuWidget::BTN_TYPE_CANCEL);
 	else
 		menu->addItem(GenericMenuSeparator);
-	
+
 	bool _mode_ts = CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_ts;
 
 	std::string itemstr_last("1");
@@ -360,7 +360,7 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 			break;
 #endif
 		case SNeutrinoSettings::ITEM_CLOCK:
-			keyhelper.get(&key,&icon); 
+			keyhelper.get(&key,&icon);
 			menu_item = new CMenuForwarder(!g_settings.mode_clock ? LOCALE_CLOCK_SWITCH_ON:LOCALE_CLOCK_SWITCH_OFF, true, NULL, neutrino, "clock_switch", key, icon);
 			menu_item->setHint("", LOCALE_MENU_HINT_CLOCK_MODE);
 			break;
@@ -445,7 +445,7 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 				continue;
 		    }
 		}
-			
+
 		itemstr_last = *it;
 		if (menu_item) {
 			menu_items++;
@@ -462,7 +462,7 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 		menu->exec(NULL, "");
 	else if (last_menu_item)
 		last_menu_item->exec( NULL );
-	
+
 	InfoClock->enableInfoClock(true);
 	CNeutrinoApp::getInstance()->StartSubtitles();
 
@@ -580,6 +580,6 @@ bool CUserMenu::changeNotify(const neutrino_locale_t OptionName, void * Data)
 	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_MAINMENU_PAUSESECTIONSD)) {
 		g_Sectionsd->setPauseScanning((*((int *)Data)) == 0);
 	}
-	
+
 	return false;
 }

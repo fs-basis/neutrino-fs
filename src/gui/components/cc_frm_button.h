@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -164,7 +164,7 @@ class CComponentsButton : public CComponentsFrmChain, public CCTextScreen
 		///returns current result value of button object
 		inline virtual int getButtonResult(){return cc_btn_result;};
 
-		///assigns an alias value to button object, parameter1 as int, e.g. previous known as mbYes, mbNo... from message boxes 
+		///assigns an alias value to button object, parameter1 as int, e.g. previous known as mbYes, mbNo... from message boxes
 		virtual void setButtonAlias(const int& alias_value){cc_btn_alias = alias_value;};
 		///returns an alias value from button object, see also cc_btn_alias
 		inline virtual int getButtonAlias(){return cc_btn_alias;};

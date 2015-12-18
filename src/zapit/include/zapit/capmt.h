@@ -45,7 +45,7 @@ class CCam : public CBasicClient
 	private:
 		virtual unsigned char getVersion(void) const;
 		virtual const char *getSocketName(void) const;
-		int camask; 
+		int camask;
 		int *demuxes;
 		int source_demux;
 		uint8_t cabuf[2048];

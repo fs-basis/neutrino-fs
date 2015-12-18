@@ -78,10 +78,10 @@ CTextBox::CTextBox(const char * text, Font* font_text, const int pmode,
 
 	if(text != NULL)
 		m_cText = m_old_cText = text;
-	
+
 	if(font_text != NULL)
 		m_pcFontText = font_text;
-	
+
 	if(position != NULL)
 	{
 		m_cFrame 	= *position;
@@ -167,7 +167,7 @@ void CTextBox::initVar(void)
 	m_cFrame.iWidth		= m_old_dx = MIN_WINDOW_WIDTH;
 	m_cFrame.iY		= m_old_y = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - MIN_WINDOW_HEIGHT) >>1);
 	m_cFrame.iHeight	= m_old_dy = MIN_WINDOW_HEIGHT;
-	
+
 	m_has_scrolled		= false;
 
 	m_nMaxHeight 		= MAX_WINDOW_HEIGHT;
@@ -422,7 +422,7 @@ void CTextBox::refreshTextLineArray(void)
 
 				//add current word to current line
 				aktLine  += aktWord;
-				//set current line width 
+				//set current line width
 				aktWidth += aktWordWidth;
 
 				//set max text width, if required
@@ -442,7 +442,7 @@ void CTextBox::refreshTextLineArray(void)
 					aktLine = "";
 					aktWidth = 0;
 					m_nNrOfNewLine++;
-					
+
 					if(pos_prev >= TextChars)
 						loop = false;
 				}
@@ -559,7 +559,7 @@ void CTextBox::refreshText(void)
 	int ay = m_cFrameTextRel.iY+m_cFrame.iY;
 	int dx = m_cFrameTextRel.iWidth;
 	int dy = m_cFrameTextRel.iHeight;
-	
+
 	//find changes
 	bool has_changed = hasChanged(&ax, &ay, &dx, &dy);
 

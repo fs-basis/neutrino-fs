@@ -3,7 +3,7 @@
  *
  * (C) 2002-2003 Andreas Oberritter <obi@tuxbox.org>
  *
- * Copyright (C) 2011 CoolStream International Ltd 
+ * Copyright (C) 2011 CoolStream International Ltd
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -609,7 +609,7 @@ fe_status_t CFrontend::getStatus(void) const
 	return (fe_status_t) (event.status & FE_HAS_LOCK);
 }
 
-#if 0 
+#if 0
 //never used
 FrontendParameters CFrontend::getFrontend(void) const
 {
@@ -642,7 +642,7 @@ uint16_t CFrontend::getSignalNoiseRatio(void) const
 	return snr;
 }
 
-#if 0 
+#if 0
 //never used
 uint32_t CFrontend::getUncorrectedBlocks(void) const
 {
@@ -1692,7 +1692,7 @@ void CFrontend::setDiseqc(int sat_no, const uint8_t pol, const uint32_t frequenc
 			cmd.msg[3] = 0xF0 | ((sat_no / 4) & 0x03);
 			//send the command to setup second uncommited switch and
 			// wait 100 ms.
-			sendDiseqcCommand(&cmd, 100);	
+			sendDiseqcCommand(&cmd, 100);
 #else
 			/* for 64 inputs */
 			uint8_t cascade_input[16] = {0xF0, 0xF4, 0xF8, 0xFC, 0xF1, 0xF5, 0xF9, 0xFD, 0xF2, 0xF6, 0xFA,
@@ -1717,7 +1717,7 @@ void CFrontend::setDiseqc(int sat_no, const uint8_t pol, const uint32_t frequenc
 	}
 
 	// Toneburst should not be repeated and should be sent AFTER
-	// all diseqc, this means we don't support a toneburst switch 
+	// all diseqc, this means we don't support a toneburst switch
 	// before any diseqc equipment.
 	if (config.diseqcType == MINI_DISEQC)
 		sendToneBurst(b, 1);

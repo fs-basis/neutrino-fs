@@ -64,7 +64,7 @@ CNFSMountGui::CNFSMountGui()
 	m_nfs_sup = CFSMounter::FS_UNPROBED;
 	m_cifs_sup = CFSMounter::FS_UNPROBED;
 	m_lufs_sup = CFSMounter::FS_UNPROBED;
-	
+
 	width = 50;
 }
 
@@ -203,7 +203,7 @@ int CNFSMountGui::menu()
 		mountMenuEntry[i] = new CMenuForwarder("", true, ISO_8859_1_entry[i], this, s2);
 		if (!i)
 			menu_offset = mountMenuW.getItemsCount();
-		
+
 		if (CFSMounter::isMounted(g_settings.network_nfs[i].local_dir))
 		{
 			mountMenuEntry[i]->iconName = NEUTRINO_ICON_MOUNTED;

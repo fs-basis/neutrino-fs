@@ -411,7 +411,7 @@ void SIevent::parseExtendedEventDescriptor(const uint8_t *buf, unsigned maxlen)
 #endif
                 items+=1+*items;
         }
-        if(*items) 
+        if(*items)
                 appendExtendedText(_language, convertDVBUTF8((const char *)(items+1), min(maxlen-(items+1-buf), (*items)), table, tsidonid));
 }
 
@@ -732,7 +732,7 @@ void SIevent::dump(void) const
 	for_each(ratings.begin(), ratings.end(), printSIparentalRating());
 	for_each(linkage_descs.begin(), linkage_descs.end(), printSIlinkage());
 }
-#if 0 
+#if 0
 //never used
 void SIevent::dumpSmall(void) const
 {

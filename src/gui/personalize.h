@@ -5,7 +5,7 @@
 
         Copyright (C) 2007 Speed2206
         and some other guys
-        
+
         Reworked by dbt (Thilo Graf)
         Copyright (C) 2010, 2011 dbt
 
@@ -14,10 +14,10 @@
         This is the customization menu, as originally showcased in
         Oxygen. It is a more advanced version of the 'user levels'
         patch currently available.
-        
+
         The reworked version >1.24 works more dynamicly with input objects
         and their parameters and it's more code reduced. It's also independent
-        from #ifdefs of items. 
+        from #ifdefs of items.
         The personalize-object collects all incomming forwarder item objects.
         These will be handled here and will be shown after evaluation.
 
@@ -43,7 +43,7 @@
 	NOTE for ignorant distributors:
 	It's not allowed to distribute any compiled parts of this code, if you don't accept the terms of GPL.
 	Please read it and understand it right!
-	This means for you: Hold it, if not, leave it! You could face legal action! 
+	This means for you: Hold it, if not, leave it! You could face legal action!
 	Otherwise ask the copyright owners, anything else would be theft!
 */
 
@@ -178,9 +178,9 @@ class CPersonalizeGui : public CMenuTarget, public CChangeObserver, public CPINP
 		void 	addObservedItem(CMenuWidget *widget, CMenuItem *observer_Item, CMenuItem *to_observ_Item);
 		bool 	changeNotify(const neutrino_locale_t locale= NONEXISTANT_LOCALE, void *data = NULL);
 		bool 	isObserver(CMenuWidget* widget, CMenuItem * item);
-	public:	
+	public:
 		//general options for personalized items
-		enum PERSONALIZE_MODE 
+		enum PERSONALIZE_MODE
 		{
 			PERSONALIZE_MODE_NOTVISIBLE =  0,
 			PERSONALIZE_MODE_VISIBLE  =  1,
@@ -190,7 +190,7 @@ class CPersonalizeGui : public CMenuTarget, public CChangeObserver, public CPINP
 		};
 
 		//options for personalized items with pin protection
-		enum PERSONALIZE_PROTECT_MODE 
+		enum PERSONALIZE_PROTECT_MODE
 		{
 			PERSONALIZE_PROTECT_MODE_NOT_PROTECTED =  0,
 			PERSONALIZE_PROTECT_MODE_PIN_PROTECTED  =  2,
@@ -199,7 +199,7 @@ class CPersonalizeGui : public CMenuTarget, public CChangeObserver, public CPINP
 		};
 
 		//options for show_epg_feat options
-		enum PERSONALIZE_ACTIVE_MODE 
+		enum PERSONALIZE_ACTIVE_MODE
 		{
 			PERSONALIZE_ACTIVE_MODE_DISABLED =  0,
 			PERSONALIZE_ACTIVE_MODE_ENABLED  =  1,
@@ -208,7 +208,7 @@ class CPersonalizeGui : public CMenuTarget, public CChangeObserver, public CPINP
 		};
 
 		//internal display modes for items in personalize settings menue
-		enum PERSONALIZE_ITEM_MODE 
+		enum PERSONALIZE_ITEM_MODE
 		{
 			PERSONALIZE_SHOW_NO =  0,
 			PERSONALIZE_SHOW_AS_ITEM_OPTION  =  1,
@@ -217,7 +217,7 @@ class CPersonalizeGui : public CMenuTarget, public CChangeObserver, public CPINP
 		};
 
 		//options for features key
-		enum PERSONALIZE_FEAT_KEY 
+		enum PERSONALIZE_FEAT_KEY
 		{
 			PERSONALIZE_FEAT_KEY_RED,
 			PERSONALIZE_FEAT_KEY_GREEN,

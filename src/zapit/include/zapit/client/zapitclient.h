@@ -246,7 +246,7 @@ class CZapitClient:public CBasicClient
 		unsigned int  sig;
 		unsigned int  snr;
 		unsigned long ber;
-		// maybe later... 
+		// maybe later...
 		// int          has_lock;
 		// int          has_signal;
 		// int          has_sync;
@@ -421,7 +421,7 @@ class CZapitClient:public CBasicClient
 	/* set Scan-Type for channel search */
   	//void setScanType(const scanType mode);
 
-	/* get FrontEnd Signal Params */ 
+	/* get FrontEnd Signal Params */
 	//void getFESignal (struct responseFESignal& f);
 
 	/****************************************/

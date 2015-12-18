@@ -62,7 +62,7 @@ CMediaPlayerMenu::CMediaPlayerMenu()
 	setUsageMode();
 
 	width = 40;
-	
+
 	audioPlayer 	= NULL;
 	inetPlayer 	= NULL;
 }
@@ -90,7 +90,7 @@ int CMediaPlayerMenu::exec(CMenuTarget* parent, const std::string &actionKey)
 
 	if (parent)
 		parent->hide();
-	
+
 	CAudioMute *audiomute = CAudioMute::getInstance();
 	if (actionKey == "audioplayer")
 	{
@@ -120,30 +120,30 @@ int CMediaPlayerMenu::exec(CMenuTarget* parent, const std::string &actionKey)
 		InfoClock->enableInfoClock(true);
 		return res;
 	}
-	
+
 	int res = initMenuMedia();
-	
+
 	return res;
 }
 
 
 //show selectable mediaplayer items
 int CMediaPlayerMenu::initMenuMedia(CMenuWidget *m, CPersonalizeGui *p)
-{	
+{
 	CPersonalizeGui *personalize = p;
 	CMenuWidget 	*media = m;
-	
+
 	bool show = (personalize == NULL || media == NULL);
 
 	if (personalize == NULL)
 		 personalize = new CPersonalizeGui();
-	
+
 	if (media == NULL)
 		 media = new CMenuWidget(menu_title, NEUTRINO_ICON_MULTIMEDIA, width, MN_WIDGET_ID_MEDIA);
 
 	personalize->addWidget(media);
 	personalize->addIntroItems(media);
-	
+
 	CMenuForwarder *fw_audio = NULL;
 	CMenuForwarder *fw_inet = NULL;
 	CMenuForwarder *fw_pviewer = NULL;
@@ -218,14 +218,14 @@ int CMediaPlayerMenu::initMenuMedia(CMenuWidget *m, CPersonalizeGui *p)
 			showNetworkNFSMounts(media, personalize);
 
 	}
-	
+
 	int res = menu_return::RETURN_NONE;
-	
+
 	if (show)
 	{
  		//adding personalized items
 		personalize->addPersonalizedItems();
-		
+
 		//add I_TYPE_MULTIMEDIA plugins
 		unsigned int nextShortcut = (unsigned int)media->getNextShortcut();
 		media->integratePlugins(CPlugins::I_TYPE_MULTIMEDIA, nextShortcut, enabled);
@@ -245,14 +245,14 @@ int CMediaPlayerMenu::initMenuMedia(CMenuWidget *m, CPersonalizeGui *p)
 
 //show movieplayer submenu with selectable items for moviebrowser or filebrowser
 void CMediaPlayerMenu::showMoviePlayer(CMenuWidget *moviePlayer, CPersonalizeGui *p)
-{ 
+{
 	p->addSeparator(*moviePlayer, LOCALE_MAINMENU_MOVIEPLAYER, true);
 
 	//moviebrowser
 	CMenuForwarder *fw_mbrowser = new CMenuForwarder(LOCALE_MOVIEBROWSER_HEAD, true, NULL, this, "movieplayer");
 	fw_mbrowser->setHint(NEUTRINO_ICON_HINT_MB, LOCALE_MENU_HINT_MB);
 	p->addItem(moviePlayer, fw_mbrowser, &g_settings.personalize[SNeutrinoSettings::P_MPLAYER_MBROWSER]);
-	
+
 	//fileplayback
 	CMenuForwarder *fw_file = new CMenuForwarder(LOCALE_MOVIEPLAYER_FILEPLAYBACK, true, NULL, &CMoviePlayerGui::getInstance(), "fileplayback");
 	fw_file->setHint(NEUTRINO_ICON_HINT_FILEPLAY, LOCALE_MENU_HINT_FILEPLAY);
@@ -262,7 +262,7 @@ void CMediaPlayerMenu::showMoviePlayer(CMenuWidget *moviePlayer, CPersonalizeGui
 void CMediaPlayerMenu::showNetworkNFSMounts(CMenuWidget *menu_nfs, CPersonalizeGui *p)
 {
 	p->addSeparator(*menu_nfs, LOCALE_NETWORKMENU_MOUNT, true);
-	
+
 	CMenuForwarder * mf_mount = new CMenuForwarder(LOCALE_NFS_MOUNT , true, NULL, new CNFSMountGui(), NULL);
 	mf_mount->setHint("", LOCALE_MENU_HINT_NET_NFS_MOUNT);
 	p->addItem(menu_nfs, mf_mount, &g_settings.personalize[SNeutrinoSettings::P_MPLAYER_FILEPLAY]);

@@ -1213,7 +1213,7 @@ menu.hint_reload_plugins Reload plugins from flash
 menu.hint_reset Reset Neutrino-HD GUI settings to defaults\nTuner config and channels not affected
 menu.hint_restore Restore files from selected backup
 menu.hint_rotor_swap Swap rotor east/west directions\nin motor control
-menu.hint_rounded_corners Draw round or rectangular windows corners 
+menu.hint_rounded_corners Draw round or rectangular windows corners
 menu.hint_save_settings Save all settings to flash
 menu.hint_saveas Save Neutrino-HD GUI settings to file
 menu.hint_scan_auto Auto-scan selected provider
@@ -1640,7 +1640,7 @@ moviebrowser.truncate Obciąć film?
 moviebrowser.truncate_failed Błąd.
 moviebrowser.truncate_failed_playing Impossible to truncate playing movie.
 moviebrowser.truncating Skracanie filmu, proszę czekać ...
-moviebrowser.ts_only Pokaż tylko nagrania 
+moviebrowser.ts_only Pokaż tylko nagrania
 moviebrowser.update_if_dest_empty_only Kopiuj jeśli miejsce docelowe jest puste
 moviebrowser.use_dir Użyj katalogu
 moviebrowser.use_movie_dir Użyj katalogu z filmami
@@ -1921,7 +1921,7 @@ recordingmenu.end_of_recording_max max. Czas nagrywania
 recordingmenu.end_of_recording_name Czas zakończenia nagrywania
 recordingmenu.file dysk
 recordingmenu.filename_template Szablon nazwy pliku
-recordingmenu.filename_template_hint wildcards zostaną zastąpione 
+recordingmenu.filename_template_hint wildcards zostaną zastąpione
 recordingmenu.filename_template_hint2 %C = kanał, %T = tytuł, %I = info, %d = data, %t = czas
 recordingmenu.help Urządzenia nagrywające:\n--------------------------------------\nserwer:\nwykorzystuje serwer strumieniowania\n\nmagnetowid:\nwykorzystuje gniazdo magnetowidu (drugi scart)\n\ndysk:\nwykorzystuje zasób sieciowy (NFS)\nlub wewnętrzny dysk twardy\nTS: używaj trybu SPTS(Dbox2)\nPES: nie używaj trybu SPTS(Dbox2)\n\n\nMaksymalny rozmiar pliku:\n---------------------\nNFS V2: 2 GB (2048 MB)\nNFS V3: bez ograniczeń (0 MB)\nFAT: 2 GB (2048 MB)\nFAT32: 4 GB (4096 MB)\n\nDla NFS (UDP) zaleca się zapis synchroniczny
 recordingmenu.multimenu.ask_stop_all Napewno zatrzymać wszystkie %d nagrania?
@@ -1966,7 +1966,7 @@ satsetup.diseqcrepeat Liczba powtórzeń DiSEqC
 satsetup.extended Konfiguracja DiSEqC
 satsetup.extended_motor Konfiguracja siłownika
 satsetup.fastscan_all kanały SD i HD
-satsetup.fastscan_auto_diseqc Rozpocznij konfigurację DiSEqC 
+satsetup.fastscan_auto_diseqc Rozpocznij konfigurację DiSEqC
 satsetup.fastscan_auto_diseqc_wait Trwa konfiguracja DiSEqC
 satsetup.fastscan_hd tylko kanały HD
 satsetup.fastscan_head Szybki skan (Astra 1, 19.2E, 12.515Mhz)
@@ -2011,7 +2011,7 @@ satsetup.satellite Satelita
 satsetup.select_sat Wybór satelit
 satsetup.smatvremote SMATV
 satsetup.uncomm_input Wejście niepodłączone
-satsetup.uni_settings Ustawienia Unicable 
+satsetup.uni_settings Ustawienia Unicable
 satsetup.unicable Unicable
 satsetup.usals_repeat Powtarzanie USALS
 satsetup.use_bat Użyj BAT

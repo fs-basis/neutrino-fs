@@ -443,7 +443,7 @@ do_ext_uninstaller()
 	if [ -e "$uinst"  ]; then
 		chmod 755 "$uinst"
 		`$uinst $1_uninstall.inc`
-	fi 
+	fi
 }
 # -----------------------------------------------------------
 # view /proc/$1 Informations

@@ -53,7 +53,7 @@ class CComponentsScrollBar : public CComponentsFrmChain
 
 		///init segements
 		void initSegments();
-		
+
 		///init all items
 		void initCCItems();
 

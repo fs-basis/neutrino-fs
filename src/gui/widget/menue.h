@@ -27,7 +27,7 @@
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the 
+	along with this program; if not, write to the
 	Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 	Boston, MA  02110-1301, USA.
 */
@@ -112,7 +112,7 @@ class CMenuItem
 		int x, y, dx, offx, name_start_x, icon_frame_w;
 		bool used;
 		fb_pixel_t item_color, item_bgcolor;
-		
+
 		void initItemColors(const bool select_mode);
 		lua_State	*luaState;
 		std::string	luaAction;
@@ -141,12 +141,12 @@ class CMenuItem
 		CMenuItem(bool Active = true, neutrino_msg_t DirectKey = CRCInput::RC_nokey, const char * const IconName= NULL, const char * const IconName_Info_right = NULL, bool IsStatic = false);
 
 		virtual ~CMenuItem(){}
-		
+
 		virtual void isUsed(void)
 		{
 			used = true;
 		}
-		
+
 		virtual void init(const int X, const int Y, const int DX, const int OFFX);
 
 		virtual int paint (bool selected = false) = 0;
@@ -166,13 +166,13 @@ class CMenuItem
 		virtual void setActive(const bool Active);
 		virtual void setMarked(const bool Marked);
 		virtual void setInert(const bool Inert);
-		
+
 		virtual void paintItemButton(const bool select_mode, int item_height, const char * const icon_Name = NEUTRINO_ICON_BUTTON_RIGHT);
-		
+
 		virtual void prepareItem(const bool select_mode, const int &item_height);
 
 		virtual void setItemButton(const char * const icon_Name, const bool is_select_button = false);
-		
+
 		virtual void paintItemCaption(const bool select_mode, const char * right_text=NULL, const fb_pixel_t right_bgcol=0);
 
 		virtual void paintItemSlider( const bool select_mode, const int &item_height, const int &optionvalue, const int &factor, const char * left_text=NULL, const char * right_text=NULL);
@@ -294,7 +294,7 @@ class CAbstractMenuOptionChooser : public CMenuItem
 			optionValue = NULL;
 		}
 		~CAbstractMenuOptionChooser(){}
-		
+
 };
 
 class CMenuOptionNumberChooser : public CAbstractMenuOptionChooser
@@ -476,16 +476,16 @@ class CMenuGlobal
 {
 	public:
 		std::vector<int> v_selected;
-		
-		CMenuGlobal();	
+
+		CMenuGlobal();
 		~CMenuGlobal();
-		
+
 		static CMenuGlobal* getInstance();
 };
 
 class CMenuWidget : public CMenuTarget, public CComponentsSignals
 {
-	private: 
+	private:
 		mn_widget_id_t 		widget_index;
 		CMenuGlobal		*mglobal;
 		CComponentsDetailLine	*details_line;
@@ -548,10 +548,10 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		CMenuWidget(const std::string &Name, const std::string & Icon = "", const int mwidth = 30, const mn_widget_id_t &w_index = NO_WIDGET_ID);
 		CMenuWidget(const neutrino_locale_t Name, const std::string & Icon = "", const int mwidth = 30, const mn_widget_id_t &w_index = NO_WIDGET_ID);
 		~CMenuWidget();
-		
+
 		virtual void addItem(CMenuItem* menuItem, const bool defaultselected = false);
-		
-		enum 
+
+		enum
 		{
 			BTN_TYPE_BACK	= 0,
 			BTN_TYPE_CANCEL = 1,
@@ -584,7 +584,7 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		void enableFade(bool _enable) { fade = _enable; };
 		void enableSaveScreen(bool enable);
 		void paintHint(int num);
-		enum 
+		enum
 		{
 			MENU_POS_CENTER 	,
 			MENU_POS_TOP_LEFT	,
@@ -608,7 +608,7 @@ class CPINProtection
 		neutrino_locale_t title, hint;
 	public:
 		CPINProtection(std::string &validpin)
-		{ 
+		{
 			validPIN = &validpin;
 			hint = NONEXISTANT_LOCALE;
 			title = LOCALE_PINPROTECTION_HEAD;
@@ -648,11 +648,11 @@ class CLockedMenuForwarder : public CMenuForwarder, public CPINProtection
 					: CMenuForwarder(Text, Active, Option, Target, ActionKey, DirectKey, IconName, IconName_Info_right) ,CPINProtection(_validPIN)
 					{
 						Ask = ask;
-						
-						//if we in ask mode then show NEUTRINO_ICON_SCRAMBLED as default info icon or no icon, 
+
+						//if we in ask mode then show NEUTRINO_ICON_SCRAMBLED as default info icon or no icon,
 						//but use always an info icon if defined in parameter 'IconName_Info_right'
 						if (IconName_Info_right || ask)
-							iconName_Info_right = IconName_Info_right ? IconName_Info_right : NEUTRINO_ICON_LOCK; 
+							iconName_Info_right = IconName_Info_right ? IconName_Info_right : NEUTRINO_ICON_LOCK;
 					};
 
 		virtual int exec(CMenuTarget* parent);

@@ -1,6 +1,6 @@
 /*
 	$port: themes.cpp,v 1.16 2010/09/05 21:27:44 tuxbox-cvs Exp $
-	
+
 	Neutrino-GUI  -   DBoxII-Project
 
 	License: GPL
@@ -77,11 +77,11 @@ int CThemes::exec(CMenuTarget* parent, const std::string & actionKey)
 		else
 		{
 			std::string themeFile = actionKey;
-			if ( strstr(themeFile.c_str(), "{U}") != 0 ) 
+			if ( strstr(themeFile.c_str(), "{U}") != 0 )
 			{
 				themeFile.erase(0, 3);
 				readFile(((std::string)THEMESDIR_VAR + "/" + themeFile + FILE_PREFIX).c_str());
-			} 
+			}
 			else
 				readFile(((std::string)THEMESDIR + "/" + themeFile + FILE_PREFIX).c_str());
 		}
@@ -150,12 +150,12 @@ int CThemes::Show()
 	std::string file_name = "";
 
 	CMenuWidget themes (LOCALE_COLORMENU_MENUCOLORS, NEUTRINO_ICON_SETTINGS, width);
-	
+
 	themes.addIntroItems(LOCALE_COLORTHEMEMENU_HEAD2);
-	
+
 	//set default theme
 	themes.addItem(new CMenuForwarder(LOCALE_COLORTHEMEMENU_NEUTRINO_THEME, true, NULL, this, "theme_neutrino", CRCInput::RC_red));
-	
+
 	readThemes(themes);
 
 	CKeyboardInput nameInput(LOCALE_COLORTHEMEMENU_NAME, &file_name);

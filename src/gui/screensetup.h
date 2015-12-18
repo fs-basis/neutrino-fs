@@ -78,7 +78,7 @@ class CScreenSetup : public CMenuTarget
     void paintBorder(int selected);
     void unpaintBorder(int selected);
     void paintIcons(int pselected);
-	
+
  public:
     CScreenSetup();
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE

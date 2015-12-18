@@ -150,7 +150,7 @@ bool CNetworkConfig::modified_from_orig(void)
 		if((ssid != orig_ssid) || (key != orig_key))
 			return 1;
 	}
-	/* check for following changes with dhcp enabled trigger apply question on menu quit, 
+	/* check for following changes with dhcp enabled trigger apply question on menu quit,
 	 * even if apply already done */
 	if (inet_static) {
 		if ((orig_address         != address        ) ||

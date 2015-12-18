@@ -7,7 +7,7 @@ EPGPlus.head Vorschau Übasicht (EPG Plus)
 EPGPlus.record Aufnema
 EPGPlus.refresh_epg Aktualisiern
 EPGPlus.remind Vormerkn
-EPGPlus.scroll_mode Roin 
+EPGPlus.scroll_mode Roin
 EPGPlus.stretch_mode Streckn
 GENRE.ARTS.0 Kunst / Kultur
 GENRE.ARTS.1 Darstellende Künste
@@ -309,7 +309,7 @@ ipsetup.hint_2 Mit OK speichan, mit HOME obbrecha
 keybindingmenu.RC Fernbedienung
 keybindingmenu.addrecord neie Aufnahm
 keybindingmenu.addrecord_head neie Aufnahm
-keybindingmenu.addremind neia Umschoittermin	
+keybindingmenu.addremind neia Umschoittermin
 keybindingmenu.addremind_head neia Umschoittermin
 keybindingmenu.allchannels_on_ok Sendalistn
 keybindingmenu.bouquetchannels_on_ok Bouquet-Senda
@@ -351,7 +351,7 @@ keychoosermenu.setnew Neie Dasdn eistein
 keychoosermenu.setnone Koa Dasdn
 languagesetup.head Sprocheistellunga
 languagesetup.select Sproch
-lcdcontroler.brightness normale Helligkeid 
+lcdcontroler.brightness normale Helligkeid
 lcdcontroler.brightnessstandby Standby Helligkeid
 lcdcontroler.contrast Kontrast
 lcdcontroler.head LCD Eistellunga
@@ -403,9 +403,9 @@ miscsettings.shutdown_real_rcdelay verzögats Ausschoitn
 miscsettings.startbhdriver BH-Mode Treiba lon
 motorcontrol.head Motor-Eistellunga
 movieplayer.bookmark Vormerka
-movieplayer.bookmarkname Merkal Nama 
+movieplayer.bookmarkname Merkal Nama
 movieplayer.bookmarkname_hint1 Bitte gems den Nama fürs neie Merkal o.
-movieplayer.bookmarkname_hint2 movieplayer.skipping Umsortiern bitte wartn 
+movieplayer.bookmarkname_hint2 movieplayer.skipping Umsortiern bitte wartn
 movieplayer.fileplayback Fuim mim VLC
 movieplayer.head Fuimspuia
 movieplayer.toomanybookmarks Sie ham scho zvui Merkal oglegt.\nEs muas erst a andas glöscht wern.
@@ -480,8 +480,8 @@ ping.socket kumt nix (Socket error)
 ping.unreachable kumt nix (unreachable)
 pinprotection.head PIN-Abfrage
 pinprotection.wrongcode Gems den Code nomoi ei!
-rclock.lockmsg D Fernbedienung von da dbox2 werd gsperrt.\nUm die Sperrn aufzhem, bitte\n<ROT> und <DBOX> auf da Fernbedienung\ndrucka. 
-rclock.menueadd FB sperrn 
+rclock.lockmsg D Fernbedienung von da dbox2 werd gsperrt.\nUm die Sperrn aufzhem, bitte\n<ROT> und <DBOX> auf da Fernbedienung\ndrucka.
+rclock.menueadd FB sperrn
 rclock.title Fernbedienung sperrn
 rclock.unlockmsg Fernbedienung reaktiviert...
 recordingmenu.off aus
@@ -589,7 +589,7 @@ timerlist.repeat.wednesday Mi
 timerlist.repeat.weekdays Wochatogs
 timerlist.repeat.weekly jede woch
 timerlist.save Speichan
-timerlist.standby SB 
+timerlist.standby SB
 timerlist.standby.off Ausm Standy aufwacha
 timerlist.standby.on In Standy geh
 timerlist.stoptime Stopzeid

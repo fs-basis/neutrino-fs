@@ -67,8 +67,8 @@ public:
 		RECORDING_VCR    = 2,
 		RECORDING_FILE   = 3
 	};
-	
-	
+
+
 
 private:
 	CFrameBuffer * frameBuffer;
@@ -197,7 +197,7 @@ public:
 	}
 	void switchTvRadioMode(const int prev_mode = mode_unknown);
 
-	
+
 	bool isMuted() {return current_muted; }
 	void setCurrentMuted(int m) { current_muted = m; }
 	int recordingstatus;

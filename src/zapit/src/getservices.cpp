@@ -81,7 +81,7 @@ bool CServiceManager::ParseScanXml(delivery_system_t delsys)
 
 	return (scanInputParser != NULL);
 }
-#if 0 
+#if 0
 //never used
 xmlDocPtr CServiceManager::ScanXml()
 {
@@ -178,7 +178,7 @@ void CServiceManager::RemovePosition(t_satellite_position satellitePosition)
 	INFO("delete %d, size after: %zd", satellitePosition, allchans.size());
 }
 
-#if 0 
+#if 0
 //never used
 void CServiceManager::RemoveNVODChannels()
 {
@@ -369,7 +369,7 @@ void CServiceManager::ParseTransponders(xmlNodePtr node, t_satellite_position sa
 					CFrontend::getXMLDelsysFEC(fec, feparams.delsys, feparams.modulation, feparams.fec_inner);
 				else if (CFrontend::isCable(delsys))
 					feparams.delsys = DVB_C;
-				
+
 			} else if (CFrontend::isTerr(delsys)) {
 				feparams.delsys = DVB_T;
 			}
@@ -775,7 +775,7 @@ int CServiceManager::LoadMotorPositions(void)
 
 	return 0;
 }
-#if 0 
+#if 0
 //never used
 void CServiceManager::SaveMotorPositions()
 {
@@ -995,7 +995,7 @@ void CServiceManager::WriteSatHeader(FILE * fd, sat_config_t &config)
 				config.name.c_str(), config.position, config.diseqc, config.uncommited);
 	else
 		fprintf(fd, "\t<%s name=\"%s\" position=\"%hd\">\n",
-			delivery_name.c_str(), 
+			delivery_name.c_str(),
 			config.name.c_str(), config.position);
 }
 
@@ -1314,7 +1314,7 @@ bool CServiceManager::ReplaceProviderName(std::string &name, t_transport_stream_
 	}
 	return false;
 }
-#if 0 
+#if 0
 //never used
 int CServiceManager::GetFreeNumber(bool radio)
 {
@@ -1341,7 +1341,7 @@ int CServiceManager::GetMaxNumber(bool radio)
 	}
 	return i+1;
 }
-#if 0 
+#if 0
 //never used
 void CServiceManager::FreeNumber(int number, bool radio)
 {

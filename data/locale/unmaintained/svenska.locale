@@ -103,7 +103,7 @@ apidselector.head Välj språk
 audiomenu.PCMOffset Sänk volymen (PCM)
 audiomenu.analogout Analog utgång
 audiomenu.audio_left_right_selectable väljbar i Ljudmenu
-audiomenu.audiochannel_up_down_enable Ljudval med höger/vänster 
+audiomenu.audiochannel_up_down_enable Ljudval med höger/vänster
 audiomenu.avs avs
 audiomenu.dolbydigital Dolby Digital som default
 audiomenu.monoleft mono vänster
@@ -293,7 +293,7 @@ flashupdate.mtdselector Partitionsväljare
 flashupdate.programmingflash programmerar flash
 flashupdate.proxypassword Lösenord
 flashupdate.proxypassword_hint1 ange lösenord för proxyserver
-flashupdate.proxypassword_hint2    
+flashupdate.proxypassword_hint2
 flashupdate.proxyserver Server
 flashupdate.proxyserver_hint1 ange proxyservers namn och IP, använd namn:port
 flashupdate.proxyserver_hint2 lämna raden tom om du inte har en proxy
@@ -487,7 +487,7 @@ motorcontrol.head Motorinstallation
 movieplayer.bookmark Bokmärken
 movieplayer.bookmarkname Bokmärkesnamn
 movieplayer.bookmarkname_hint1 Ange ett namn för ditt nya bokmärke
-movieplayer.bookmarkname_hint2   
+movieplayer.bookmarkname_hint2
 movieplayer.defplugin Startplugin
 movieplayer.fileplayback Fil via VLC
 movieplayer.head Filmspelare

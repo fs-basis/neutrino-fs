@@ -1536,16 +1536,16 @@ void COsdSetup::paintWindowSize(int w, int h)
 		if (win_demo->isPainted())
 			win_demo->kill();
 	}
-	
+
 	g_settings.window_width = w;
 	g_settings.window_height = h;
-	if (g_settings.window_width > WINDOW_SIZE_MAX)	
+	if (g_settings.window_width > WINDOW_SIZE_MAX)
 		g_settings.window_width = WINDOW_SIZE_MAX;
-	if (g_settings.window_width < WINDOW_SIZE_MIN)	
+	if (g_settings.window_width < WINDOW_SIZE_MIN)
 		g_settings.window_width = WINDOW_SIZE_MIN;
-	if (g_settings.window_height > WINDOW_SIZE_MAX)	
+	if (g_settings.window_height > WINDOW_SIZE_MAX)
 		g_settings.window_height = WINDOW_SIZE_MAX;
-	if (g_settings.window_height < WINDOW_SIZE_MIN)	
+	if (g_settings.window_height < WINDOW_SIZE_MIN)
 		g_settings.window_height = WINDOW_SIZE_MIN;
 
 	win_demo->setWidth(frameBuffer->getScreenWidthRel());

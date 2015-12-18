@@ -44,7 +44,7 @@ class CComponentsSlider : public CComponentsForm
 
 		///property: current value that should be displayed by slider button, see also setValuePos()
 		int csl_current_value;
-		
+
 		///property: minimal scale value, see also setValueScale()
 		int csl_min_value;
 		///property: maximal scale value, see also setValueScale()
@@ -71,7 +71,7 @@ class CComponentsSlider : public CComponentsForm
 					fb_pixel_t& color_body = COL_MENUHEAD_PLUS_0,
 					fb_pixel_t& color_shadow = COL_MENUCONTENTDARK_PLUS_0);
 // 		~CComponentsSlider(); //inherited from CComponentsForm
-		
+
 		void setValuePos(const int& current_value);
 		void setValueScale(const int& min_value, const int& max_value);
 		void setSliderIcon(const std::string &icon_name);

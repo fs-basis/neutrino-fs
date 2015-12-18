@@ -87,7 +87,7 @@ bool CScreenShot::GetData()
 #ifdef USE_NEVIS_GXA
 	CFrameBuffer::getInstance()->setActive(false);
 #endif
-	if (videoDecoder->getBlank()) 
+	if (videoDecoder->getBlank())
 		get_video = false;
 #if !HAVE_GENERIC_HARDWARE
 	res = videoDecoder->GetScreenImage(pixel_data, xres, yres, get_video, get_osd, scale_to_video);
@@ -139,7 +139,7 @@ bool CScreenShot::Start(const std::string custom_cmd)
 
 	if (!custom_cmd.empty())
 		cmd = "/bin/grab " + custom_cmd;
-		
+
 	cmd += " '";
 	cmd += filename;
 	cmd += "'";
@@ -391,9 +391,9 @@ bool CScreenShot::SaveBmp()
 }
 #endif
 
-/* 
+/*
  * create filename member from channel name and its current EPG data,
- * with added date and time including msecs and suffix for selected format 
+ * with added date and time including msecs and suffix for selected format
  */
 void CScreenShot::MakeFileName(const t_channel_id channel_id)
 {

@@ -3,7 +3,7 @@ EPGMenu.eventinfo Détails programme en cours
 EPGMenu.eventlist Liste évènements programme en cours
 EPGMenu.head EPG - Information du programme
 EPGMenu.streaminfo Informations techniques
-EPGPlus.actions Actions 
+EPGPlus.actions Actions
 EPGPlus.bybouquet_mode Par bouquet
 EPGPlus.bypage_mode par Page
 EPGPlus.head Eventlist Présentation (EPG Plus)
@@ -450,7 +450,7 @@ motorcontrol.head Réglage moteur
 movieplayer.bookmark Signet
 movieplayer.bookmarkname Nom du signet
 movieplayer.bookmarkname_hint1 Entrer un nom pour votre nouveau signet
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.fileplayback Fichier via VLC
 movieplayer.head Lecteur vidéo
 movieplayer.toomanybookmarks Il y'a plusieurs signets.\nVous avez à éffacer l'un d'eux avant.
@@ -527,14 +527,14 @@ pictureviewer.sortorder.filename (Nom de fichier)
 ping.ok est joignable (ping)
 ping.protocol est injoignable (erreur hôte ou protocole)
 ping.socket est injoignable (erreur socket)
-ping.unreachable est injoignable 
+ping.unreachable est injoignable
 pinprotection.head Entrer code PIN
 pinprotection.wrongcode Le code PIN est faux! Essayer encore.
 rclock.lockmsg votre télécommande Récepteur sera bloquée.\n pour débloquer, Appuyer <ROUGE> \n et <DBOX> sur la Télécommande.
-rclock.menueadd Bloquer Télécommande (RC) 
+rclock.menueadd Bloquer Télécommande (RC)
 rclock.title Bloquer Télécommande (RC)
 rclock.unlockmsg Télécommande réactivée.
-recordingmenu.defdir Répertoire d'enregistrement 
+recordingmenu.defdir Répertoire d'enregistrement
 recordingmenu.file Directe (fichier)
 recordingmenu.filesettingsseparator Enregistrement directe
 recordingmenu.help Dispositifs d'enregistrement:\n--------------------------\nserveur:\nutilisation du programme de streaming sur PC\n\n(analogique) vcr:\nutilisation de la sortie vcr\n\ndirecte (fichier):\ndirectement dans le répertoire NFS mounté\nsur le dique dur interne(HDD)\nTS: utiliser mode spts (dbox2)\nPES: ne pas utiliser le mode spts(dbox2)\n\n\nTaille fichier Max.:\n---------------------\nNFS V2: 2 GB (2048 MB)\nNFS V3: Presque illimité (0 MB)\nFAT: 2 GB (2048 MB)\nFAT32: 4 GB (4096 MB)
@@ -557,7 +557,7 @@ satsetup.extended_motor Réglages Moteur
 satsetup.minidiseqc Mini-DiSEqC
 satsetup.nodiseqc Pas de DiSEqC
 satsetup.satellite Satellite
-satsetup.smatvremote mise au point SMATV 
+satsetup.smatvremote mise au point SMATV
 scants.actcable Cable:
 scants.actsatellite Satellite:
 scants.bouquet Bouquet
@@ -615,7 +615,7 @@ timer.eventtimed.title Programme Evènement
 timerbar.channelswitch programmer
 timerbar.recordevent Enregistrer
 timerlist.alarmtime Réveil
-timerlist.apids PIDs Audio 
+timerlist.apids PIDs Audio
 timerlist.bouquetselect Choisir bouquet
 timerlist.channel Chaine
 timerlist.channelselect choisir chaine

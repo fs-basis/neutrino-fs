@@ -139,7 +139,7 @@ int CCECSetup::showMenu()
 
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 void CCECSetup::setCECSettings(bool b)
-{	
+{
 	printf("[neutrino CEC Settings] %s init CEC settings...\n", __FUNCTION__);
 	if (b) {
 		// wakeup

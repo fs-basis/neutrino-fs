@@ -60,7 +60,7 @@ class CTestMenu : public CMenuTarget
 		void showHWTests(CMenuWidget *widget);
 		void showCCTests(CMenuWidget *widget);
 
-	public:	
+	public:
 		CTestMenu();
 		~CTestMenu();
 		int exec(CMenuTarget* parent, const std::string & actionKey);

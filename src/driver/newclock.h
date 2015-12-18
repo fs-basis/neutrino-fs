@@ -1,4 +1,4 @@
-/*      
+/*
         LCD-Daemon  -   DBoxII-Project
 
         Copyright (C) 2001 Steffen Hehn 'McClean'

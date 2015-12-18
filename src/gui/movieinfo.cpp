@@ -294,7 +294,7 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 /************************************************************************
 
 ************************************************************************/
-#if 0 
+#if 0
 //never used
 bool CMovieInfo::parseXmlTree(char */*text*/, MI_MOVIE_INFO * /*movie_info*/)
 {
@@ -501,7 +501,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 /************************************************************************
 
 ************************************************************************/
-#if 0 
+#if 0
 //never used
 void CMovieInfo::printDebugMovieInfo(MI_MOVIE_INFO & movie_info)
 {
@@ -987,7 +987,7 @@ bool CMovieInfo::saveFile(const CFile & file, std::string &text)
 	bool result = false;
 	int fd;
 	if ((fd = open(file.Name.c_str(), O_SYNC | O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0) {
-		/*int nr=*/ 
+		/*int nr=*/
 		write(fd, text.c_str(), text.size());
 		//fdatasync(fd);
 		close(fd);

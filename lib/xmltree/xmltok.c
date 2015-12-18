@@ -158,7 +158,7 @@ struct normal_encoding {
  E ## isInvalid2, \
  E ## isInvalid3, \
  E ## isInvalid4
- 
+
 static int checkCharRefNumber(int);
 
 #include "xmltimpl.h"
@@ -480,7 +480,7 @@ DEFINE_UTF16_TO_UTF16
 #undef IS_NMSTRT_CHAR_MINBPC
 #undef IS_INVALID_CHAR
 
-static const struct normal_encoding little2_encoding = { 
+static const struct normal_encoding little2_encoding = {
   { VTABLE, 2, 0,
 #if BYTE_ORDER == 12
     1
@@ -497,7 +497,7 @@ static const struct normal_encoding little2_encoding = {
 
 #if BYTE_ORDER != 21
 
-static const struct normal_encoding internal_little2_encoding = { 
+static const struct normal_encoding internal_little2_encoding = {
   { VTABLE, 2, 0, 1 },
   {
 #include "iasctab.h"
@@ -838,7 +838,7 @@ const ENCODING *findEncoding(const ENCODING *enc, const char *ptr, const char *e
       return enc;
     return &big2_encoding.enc;
   }
-  return 0;  
+  return 0;
 }
 
 int XmlParseXmlDecl(int isGeneralTextEntity,

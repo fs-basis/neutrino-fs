@@ -4,7 +4,7 @@
 #include <config.h>
 #include "pv_config.h"
 #ifdef FBV_SUPPORT_JPEG
-	
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -17,7 +17,7 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-	
+
 #include <setjmp.h>
 
 #include <global.h>
@@ -125,7 +125,7 @@ int fh_jpeg_load(const char *filename,unsigned char **buffer,int* x,int* y)
 			jpeg_read_scanlines(ciptr, &lb, 1);
 			memmove(bp,lb,px*c);
 			bp+=px*c;
-		}                 
+		}
 
 	}
 	jpeg_finish_decompress(ciptr);

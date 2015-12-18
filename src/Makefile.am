@@ -152,7 +152,7 @@ if BOXTYPE_COOL
 neutrino_LDADD += \
 	$(top_builddir)/lib/libcoolstream/libhwcaps.a
 neutrino_LDADD += -lcoolstream-mt -lca-sc
-if ENABLE_TMSDK 
+if ENABLE_TMSDK
 else
 if BOXMODEL_APOLLO
 neutrino_LDADD += -lca-ci -llnxtmvssUsr -llnxUKAL -llnxplatUsr -llnxtmasUsr -llnxdvbciUsr -llnxpvrUsr -llnxcssUsr -llnxnotifyqUsr -ltmpvrDataManager-cst -ltmpvrIndexStorage -llnxscsUsr

@@ -58,7 +58,7 @@ class CInfoViewer
 #ifndef SKIP_CA_STATUS
 	bool           CA_Status;
 #endif
-	
+
 	int            InfoHeightY;
 	bool	       fileplay;
 
@@ -72,7 +72,7 @@ class CInfoViewer
         int             rt_y;
         int             rt_h;
         int             rt_w;
-	
+
 	std::string ChannelName;
 
 	int            ChanNameX;
@@ -170,10 +170,10 @@ class CInfoViewer
 	void lookAheadEPG(const int ChanNum, const std::string & Channel, const t_channel_id new_channel_id = 0, const bool calledFromNumZap = false); //alpha: fix for nvod subchannel update
 	void	killTitle();
 	void	getEPG(const t_channel_id for_channel_id, CSectionsdClient::CurrentNextInfo &info);
-	
+
 	void	showSubchan();
 	//void	Set_CA_Status(int Status);
-	
+
 	int     handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data);
 	void    clearVirtualZapMode() {virtual_zap_mode = false;}
 	void    changePB();

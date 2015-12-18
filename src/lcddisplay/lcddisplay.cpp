@@ -18,7 +18,7 @@
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
- 
+
 	You should have received a copy of the GNU General Public License
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
@@ -61,8 +61,8 @@ CLCDDisplay::CLCDDisplay()
 		perror("clear failed");
 		return;
 	}
-	
-	//graphic (binary) mode 
+
+	//graphic (binary) mode
 #ifdef HAVE_TRIPLEDRAGON
 	if (ioctl(fd, IOC_LCD_WRMODE, LCD_MODE_BIN) < 0)
 #else
@@ -103,8 +103,8 @@ void CLCDDisplay::resume()
 		perror("clear failed");
 		return;
 	}
-	
-	//graphic (binary) mode 
+
+	//graphic (binary) mode
 #ifdef HAVE_TRIPLEDRAGON
 	if (ioctl(fd, IOC_LCD_WRMODE, LCD_MODE_BIN) < 0)
 #else
@@ -191,7 +191,7 @@ void CLCDDisplay::convert_data ()
 	char tmp;
 
 	for (x = 0; x < LCD_COLS; x++)
-	{   
+	{
 		for (y = 0; y < LCD_ROWS; y++)
 		{
 			tmp = 0;
@@ -234,16 +234,16 @@ void CLCDDisplay::draw_point(const int x, const int y, const int state)
 
 /*
  * draw_line
- * 
+ *
  * args:
  * x1    StartCol
  * y1    StartRow
  * x2    EndCol
  * y1    EndRow
  * state LCD_PIXEL_OFF/LCD_PIXEL_ON/LCD_PIXEL_INV
- * 
+ *
  */
-void CLCDDisplay::draw_line(const int x1, const int y1, const int x2, const int y2, const int state)  
+void CLCDDisplay::draw_line(const int x1, const int y1, const int x2, const int y2, const int state)
 {
 	int dx = abs (x1 - x2);
 	int dy = abs (y1 - y2);
@@ -329,7 +329,7 @@ void CLCDDisplay::draw_line(const int x1, const int y1, const int x2, const int 
 
 void CLCDDisplay::draw_fill_rect (int left,int top,int right,int bottom,int state) {
 	int x,y;
-	for(x = left + 1;x < right;x++) {  
+	for(x = left + 1;x < right;x++) {
 		for(y = top + 1;y < bottom;y++) {
 			draw_point(x,y,state);
 		}
@@ -346,11 +346,11 @@ void CLCDDisplay::draw_rectangle (int left,int top, int right, int bottom, int l
 	draw_line(left,top,left,bottom,linestate);
 	draw_line(right,top,right,bottom,linestate);
 	draw_line(left,bottom,right,bottom,linestate);
-	draw_fill_rect(left,top,right,bottom,fillstate);  
-}  
+	draw_fill_rect(left,top,right,bottom,fillstate);
+}
 
 
-void CLCDDisplay::draw_polygon(int num_vertices, int *vertices, int state) 
+void CLCDDisplay::draw_polygon(int num_vertices, int *vertices, int state)
 {
 
 	// coordinate checking in draw_pixel (-> you can draw polygons only
@@ -364,7 +364,7 @@ void CLCDDisplay::draw_polygon(int num_vertices, int *vertices, int state)
 			vertices[(i<<1)+3],
 			state);
 	}
-   
+
 	draw_line(vertices[0],
 		vertices[1],
 		vertices[(num_vertices<<1)-2],
@@ -393,7 +393,7 @@ bool CLCDDisplay::paintIcon(std::string filename, int x, int y, bool invert)
 	filename = iconBasePath + filename;
 
 	_fd = open(filename.c_str(), O_RDONLY );
-	
+
 	if (_fd==-1)
 	{
 		printf("\nerror while loading icon: %s\n\n", filename.c_str() );
@@ -421,7 +421,7 @@ bool CLCDDisplay::paintIcon(std::string filename, int x, int y, bool invert)
 		}
 		y++;
 	}
-	
+
 	close(_fd);
 	return true;
 }
@@ -465,10 +465,10 @@ bool CLCDDisplay::load_png(const char * const filename)
 #endif
 				{
 					png_init_io(png_ptr,fh);
-					
+
 					png_read_info(png_ptr, info_ptr);
 					png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
-					
+
 					if (
 						(color_type == PNG_COLOR_TYPE_PALETTE) &&
 						(bit_depth  == 1                     ) &&
@@ -477,14 +477,14 @@ bool CLCDDisplay::load_png(const char * const filename)
 						)
 					{
 						png_set_packing(png_ptr); /* expand to 1 byte blocks */
-						
+
 						number_passes = png_set_interlace_handling(png_ptr);
 						png_read_update_info(png_ptr,info_ptr);
-						
+
 						if (width == png_get_rowbytes(png_ptr, info_ptr))
 						{
 							ret_value = true;
-							
+
 							for (pass = 0; pass < number_passes; pass++)
 							{
 								fbptr = (png_byte *)raw;

@@ -39,7 +39,7 @@ public:
 	// Request Data
 	CStringList ParameterList;
 	CStringList HeaderList;
-	CStringList UrlData;	// url, fullurl, path, filename, fileext, paramstring 
+	CStringList UrlData;	// url, fullurl, path, filename, fileext, paramstring
 	void analyzeURL(std::string);
 
 	// constructor & destructor

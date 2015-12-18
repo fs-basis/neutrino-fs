@@ -37,10 +37,10 @@
 #include <string>
 
  class CVfdSetup : public CMenuTarget, CChangeObserver, CActivateObserver
-{	
+{
 	private:
 		int width;
-		
+
 		int showSetup();
 		int showBrightnessSetup();
 		void showLedSetup(CMenuWidget *mn_led_widget);
@@ -50,8 +50,8 @@
 		int brightness;
 		int brightnessstandby;
 		int brightnessdeepstandby;
-		
-		bool vfd_enabled; 
+
+		bool vfd_enabled;
 
 	public:
 		CVfdSetup();

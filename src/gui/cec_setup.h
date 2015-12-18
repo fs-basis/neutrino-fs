@@ -37,13 +37,13 @@ class CCECSetup : public CMenuTarget, CChangeObserver
 {
 	private:
 		CMenuOptionChooser 	*cec1, *cec2;
-				
+
 		int width;
 
 		int showMenu();
- 		
 
-	public:	
+
+	public:
 		CCECSetup();
 		~CCECSetup();
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE

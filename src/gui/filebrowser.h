@@ -91,7 +91,7 @@ public:
 	 * @return the last key calculated by #handleMsg(neutrino_msg_t)
 	 */
 	unsigned char getOldKey() const;
-#if 0	
+#if 0
 	/**
 	 * Returns time of last key push.
 	 * resolution: usecs
@@ -222,7 +222,7 @@ class CFileBrowser
 		bool		exec(const char * const dirname);
 		bool		playlist_manager(CFileList &playlist,unsigned int playing);
 		CFile		*getSelectedFile();
-		
+
 		inline const CFileList & getSelectedFiles(void) const
 			{
 				return selected_filelist;

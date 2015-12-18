@@ -38,7 +38,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <math.h>
-#include <sys/stat.h> 
+#include <sys/stat.h>
 
 #include <daemonc/remotecontrol.h>
 #include <system/helpers.h>
@@ -1308,7 +1308,7 @@ void CVFD::ShowNumber(int number)
 
 	if (number < 0)
 		return;
-	
+
 #ifdef BOXMODEL_APOLLO
 	int ret = ioctl(fd, IOC_FP_SET_NUMBER, number);
 	if(ret < 0) {

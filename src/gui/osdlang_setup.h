@@ -49,17 +49,17 @@ class CLangSelectNotifier : public CChangeObserver
 };
 
 class COsdLangSetup : public CMenuTarget, CChangeObserver
-{	
-	private:				
+{
+	private:
 		int  width;
 		int is_wizard;
 		CTZChangeNotifier * tzNotifier;
-		
+
 		int showLocalSetup();
 		void showPrefMenu(CMenuWidget *prefMenu, CLangSelectNotifier *langNotifier);
-		
+
 		CMenuOptionStringChooser* getTzItems();
-		
+
 		bool changeNotify(const neutrino_locale_t, void *);
 
 	public:

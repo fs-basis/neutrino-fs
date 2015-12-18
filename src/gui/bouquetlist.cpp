@@ -731,7 +731,7 @@ void CBouquetList::paint()
 #endif
 	if (favonly)
 		frameBuffer->paintBoxRel(x, y + (height - footerHeight), width, footerHeight, COL_INFOBAR_SHADOW_PLUS_1, RADIUS_LARGE, CORNER_BOTTOM); //round
-	else 
+	else
 		::paintButtons(x, y + (height - footerHeight), width, numbuttons, CBouquetListButtons, width, footerHeight);
 
 	if(!Bouquets.empty())

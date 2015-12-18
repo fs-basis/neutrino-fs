@@ -41,8 +41,8 @@
 
 #define STEP_MODE_OFF 0
 #define STEP_MODE_AUTO 1
-#define STEP_MODE_ON 2 
-#define STEP_MODE_TIMED 3       
+#define STEP_MODE_ON 2
+#define STEP_MODE_TIMED 3
 
 class CMotorControl : public CMenuTarget
 {

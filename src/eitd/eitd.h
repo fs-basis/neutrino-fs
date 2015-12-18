@@ -139,7 +139,7 @@ class CSectionThread : public OpenThreads::Thread, public DMX
 		virtual void afterWait() {};
 
 		/* process section after getSection */
-		virtual void processSection() {}; 
+		virtual void processSection() {};
 		/* cleanup before exit */
 		virtual void cleanup() {};
 
@@ -237,7 +237,7 @@ class CFreeSatThread : public CEventsThread
 		/* overloaded hooks */
 		void addFilters();
 	public:
-		CFreeSatThread(); 
+		CFreeSatThread();
 };
 
 class CCNThread : public CEventsThread
@@ -249,7 +249,7 @@ class CCNThread : public CEventsThread
 		void beforeSleep();
 		void beforeWait();
 		void afterWait();
-		void processSection(); 
+		void processSection();
 		void cleanup();
 
 		/* CN-specific */

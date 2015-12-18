@@ -211,7 +211,7 @@ inline sections_id_t create_sections_id(const uint8_t table_id, const uint16_t e
 					((sections_id_t) section_number));
 }
 
-bool DMX::check_complete(sections_id_t s_id, uint8_t number, uint8_t last, uint8_t segment_last) 
+bool DMX::check_complete(sections_id_t s_id, uint8_t number, uint8_t last, uint8_t segment_last)
 {
 	bool ret = false;
 

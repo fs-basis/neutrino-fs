@@ -364,7 +364,7 @@ void CInfoViewerBB::getBBButtonInfo()
 		rest -= bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w + bbButtonInfo[CInfoViewerBB::BUTTON_YELLOW].w;
 		rest = rest / 3;
 		bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x = x1 + rest;
-		bbButtonInfo[CInfoViewerBB::BUTTON_YELLOW].x = bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x + 
+		bbButtonInfo[CInfoViewerBB::BUTTON_YELLOW].x = bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x +
 								bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w + rest;
 	}
 #endif
@@ -396,9 +396,9 @@ void CInfoViewerBB::showBBButtons(const int modus)
 	int i;
 	bool paint = false;
 
-	if (g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_LEFT || 
-	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_RIGHT || 
-	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_CENTER || 
+	if (g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_LEFT ||
+	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_RIGHT ||
+	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_BOTTOM_CENTER ||
 	    g_settings.volume_pos == CVolumeBar::VOLUMEBAR_POS_HIGHER_CENTER)
 		g_InfoViewer->isVolscale = CVolume::getInstance()->hideVolscale();
 	else
@@ -423,7 +423,7 @@ void CInfoViewerBB::showBBButtons(const int modus)
 			if (bbButtonInfo[i].x > 0) {
 				frameBuffer->paintIcon(bbButtonInfo[i].icon, bbButtonInfo[i].x, BBarY, InfoHeightY_Info);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(bbButtonInfo[i].x + (bbButtonInfo[i].w /2 - bbButtonInfo[i].cx /2), BBarFontY, 
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(bbButtonInfo[i].x + (bbButtonInfo[i].w /2 - bbButtonInfo[i].cx /2), BBarFontY,
 				       bbButtonInfo[i].w, bbButtonInfo[i].text, COL_INFOBAR_TEXT);
 			}
 		}
@@ -444,7 +444,7 @@ void CInfoViewerBB::showBBIcons(const int modus, const std::string & icon)
 	if ((bbIconInfo[modus].x <= g_InfoViewer->ChanInfoX) || (bbIconInfo[modus].x >= g_InfoViewer->BoxEndX))
 		return;
 	if ((modus >= CInfoViewerBB::ICON_SUBT) && (modus < CInfoViewerBB::ICON_MAX) && (bbIconInfo[modus].x != -1) && (is_visible)) {
-		frameBuffer->paintIcon(icon, bbIconInfo[modus].x - g_InfoViewer->time_width, g_InfoViewer->ChanNameY + 8, 
+		frameBuffer->paintIcon(icon, bbIconInfo[modus].x - g_InfoViewer->time_width, g_InfoViewer->ChanNameY + 8,
 				       InfoHeightY_Info, 1, true, !g_settings.theme.infobar_gradient_top, COL_INFOBAR_BUTTONS_BACKGROUND);
 	}
 }
@@ -527,10 +527,10 @@ void CInfoViewerBB::showIcon_DD()
 	if (!is_visible || !g_settings.infobar_show_dd_available)
 		return;
 	std::string dd_icon;
-	if ((g_RemoteControl->current_PIDs.PIDs.selected_apid < g_RemoteControl->current_PIDs.APIDs.size()) && 
+	if ((g_RemoteControl->current_PIDs.PIDs.selected_apid < g_RemoteControl->current_PIDs.APIDs.size()) &&
 	    (g_RemoteControl->current_PIDs.APIDs[g_RemoteControl->current_PIDs.PIDs.selected_apid].is_ac3))
 		dd_icon = NEUTRINO_ICON_DD;
-	else 
+	else
 		dd_icon = g_RemoteControl->has_ac3 ? NEUTRINO_ICON_DD_AVAIL : NEUTRINO_ICON_DD_GREY;
 
 	showBBIcons(CInfoViewerBB::ICON_DD, dd_icon);
@@ -654,7 +654,7 @@ void CInfoViewerBB::showOne_CAIcon()
 	if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_radio) {
 		if (scrambledNoSig)
 			sIcon = NEUTRINO_ICON_SCRAMBLED2_BLANK;
-		else {	
+		else {
 			if (fta)
 				sIcon = NEUTRINO_ICON_SCRAMBLED2_GREY;
 			else
@@ -711,7 +711,7 @@ void CInfoViewerBB::showSysfsHdd()
 }
 
 void CInfoViewerBB::showBarSys(int percent)
-{	
+{
 	if (is_visible){
 		sysscale->doPaintBg(false);
 		sysscale->setDimensionsAll(bbIconMinX, BBarY + InfoHeightY_Info / 2 - 2 - 6, hddwidth, 6);
@@ -791,7 +791,7 @@ void CInfoViewerBB::paint_ca_icons(int caid, const char *icon, int &icon_space_o
 	if (px) {
 		snprintf(buf, sizeof(buf), "%s_%s", icon_map[caid].second, icon);
 		if ((px >= (endx-8)) || (px <= 0))
-			printf("#####[%s:%d] Error paint icon %s, px: %d,  py: %d, endx: %d, icon_offset: %d\n", 
+			printf("#####[%s:%d] Error paint icon %s, px: %d,  py: %d, endx: %d, icon_offset: %d\n",
 				__FUNCTION__, __LINE__, buf, px, py, endx, icon_offset[icon_map[caid].first]);
 		else
 			frameBuffer->paintIcon(buf, px, py);
@@ -949,7 +949,7 @@ void CInfoViewerBB::changePB()
 		hddscale = new CProgressBar();
 		hddscale->setType(CProgressBar::PB_REDRIGHT);
 	}
-	
+
 	if (!sysscale) {
 		sysscale = new CProgressBar();
 		sysscale->setType(CProgressBar::PB_REDRIGHT);
@@ -990,7 +990,7 @@ void CInfoViewerBB::scrambledCheck(bool force)
 		else
 			scrambledNoSig = true;
 	}
-	
+
 	if ((scrambledErr != scrambledErrSave) || (scrambledNoSig != scrambledNoSigSave) || force) {
 		showIcon_CA_Status(0);
 		showIcon_Resolution();

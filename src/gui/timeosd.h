@@ -39,7 +39,7 @@ class CTimeOSD : public CComponentsFrmClock
 			MODE_BAR,
 			MODE_HIDE
 		};
-	
+
 	private:
 		CProgressBar		timescale;
 		mode m_mode;

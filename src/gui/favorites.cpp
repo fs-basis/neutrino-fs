@@ -115,7 +115,7 @@ int CFavorites::exec(CMenuTarget* parent, const std::string & actionKey)
 	std::string str;
 	int         res = menu_return::RETURN_EXIT_ALL;
 	bool	    show_list;
-	//printf("[favorites] key %s\n", actionKey.c_str()); 
+	//printf("[favorites] key %s\n", actionKey.c_str());
 	show_list = (actionKey == "showlist");
 	if (parent)
 		parent->hide();

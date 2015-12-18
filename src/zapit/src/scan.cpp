@@ -602,7 +602,7 @@ bool CServiceScan::ScanTransponder()
 
 	printf("[scan] scanning sat %s position %d\n", providerName.c_str(), satellitePosition);
 	CZapit::getInstance()->SendEvent(CZapitClient::EVT_SCAN_SATELLITE, providerName.c_str(), providerName.size()+1);
-	
+
 	TP->feparams.inversion = INVERSION_AUTO;
 
 	flags = TP->scan_mode;
@@ -649,7 +649,7 @@ bool CServiceScan::ScanTransponder()
 	return (found_channels != 0);
 }
 
-#if 0 
+#if 0
 //never used
 bool CServiceScan::ReplaceTransponderParams(freq_id_t freq, t_satellite_position satellitePosition, FrontendParameters *feparams)
 {

@@ -532,12 +532,12 @@ void CComponentsHeader::initCCItems()
 	//init text
 	initCaption();
 }
-	
+
 void CComponentsHeader::paint(bool do_save_bg)
 {
 	//prepare items
 	initCCItems();
-	
+
 	//paint form contents
 	paintForm(do_save_bg);
 

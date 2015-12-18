@@ -75,7 +75,7 @@ CColorChooser::CColorChooser(const neutrino_locale_t Name, unsigned char *R, uns
 	font_info   = SNeutrinoSettings::FONT_TYPE_MENU;
 	observer    = Observer;
 	name        = Name;
-	
+
 	//calculate max width of LOCALS
 	offset = 0;
 	for (int i = 0; i < 4; i++) {
@@ -84,7 +84,7 @@ CColorChooser::CColorChooser(const neutrino_locale_t Name, unsigned char *R, uns
 			offset = tmpoffset;
 		}
 	}
-	
+
 	width 	    = w_max((offset + (162 + mheight*4 + 10)), 0);
 	height	    = h_max(hheight+ mheight* 4, 0);
 

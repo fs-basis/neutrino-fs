@@ -34,7 +34,7 @@
 #include <pthread.h>
 class CPictureViewer
 {
-	struct cformathandler 
+	struct cformathandler
 	{
 		struct cformathandler *next;
 		int (*get_size)(const char *,int *,int*, int, int);
@@ -96,7 +96,7 @@ class CPictureViewer
 	int m_CurrentPic_YPos;
 	int m_CurrentPic_XPan;
 	int m_CurrentPic_YPan;
-	
+
 	unsigned char* m_busy_buffer;
 	int m_busy_x;
 	int m_busy_y;
@@ -107,7 +107,7 @@ class CPictureViewer
 	int m_starty;
 	int m_endx;
 	int m_endy;
-	
+
 	std::string logo_hdd_dir;
 	struct logo_data {
 		std::string name;

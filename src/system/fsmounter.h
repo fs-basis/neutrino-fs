@@ -2,7 +2,7 @@
 	Neutrino-GUI  -   DBoxII-Project
 
 	FS Mount/Umount by Zwen
-	
+
 	Homepage: http://dbox.cyberphoria.org/
 
 	Kommentar:
@@ -41,7 +41,7 @@ class CFSMounter
 {
 // protected
  public:
-	
+
 	enum FS_Support
 	{
 		FS_UNSUPPORTED   = 0,
@@ -49,7 +49,7 @@ class CFSMounter
 		FS_NEEDS_MODULES = 2,
 		FS_UNPROBED      = 3
 	};
-	
+
  public:
 
 	enum FSType
@@ -58,7 +58,7 @@ class CFSMounter
 		CIFS = 1,
 		LUFS = 2
 	};
-	
+
 	enum MountRes
 	{
 		MRES_FS_NOT_SUPPORTED     = 0,
@@ -97,7 +97,7 @@ class CFSMounter
 				       std::string options1, std::string options2);
 	static bool automount();
 	static CFSMounter::UMountRes umount(const char * const dir = NULL);
-	static void getMountedFS(MountInfos& fs); 
+	static void getMountedFS(MountInfos& fs);
 	static FS_Support fsSupported(const FSType fs, const bool keep_modules = false);
 };
 

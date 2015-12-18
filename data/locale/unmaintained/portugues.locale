@@ -469,7 +469,7 @@ flashupdate.url_file localização da imagem
 flashupdate.versioncheck verificar versão
 flashupdate.writeflash Escrever a imagem toda
 flashupdate.writeflashmtd Escrever uma partição
-flashupdate.wrongbase flashupdate.wrongbase Your Release cycle differs.\nTo continue? 
+flashupdate.wrongbase flashupdate.wrongbase Your Release cycle differs.\nTo continue?
 fontmenu.channellist Lista de canais
 fontmenu.epg EPG
 fontmenu.eventlist Lista de Eventos
@@ -619,7 +619,7 @@ miscsettings.shutdown_real Activar standby
 miscsettings.shutdown_real_rcdelay Desligar com telecomando
 miscsettings.startbhdriver carregar BH-Mode drivers
 miscsettings.virtual_zap_mode Virtual zap
-motorcontrol.head Definições do Motor 
+motorcontrol.head Definições do Motor
 moviebrowser.book_clear_all Clear all
 moviebrowser.book_head Bookmarks
 moviebrowser.book_lastmoviestop Last play stop:
@@ -640,9 +640,9 @@ moviebrowser.dir Path
 moviebrowser.dir_head Additional paths
 moviebrowser.edit_book Bookmark change
 moviebrowser.edit_book_name_info1 Enter new Bookmark name
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_pos_info1 Enter new Position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Enter new jump length (s)
 moviebrowser.edit_book_type_info2 <0 back , >0 for, 0: none
 moviebrowser.edit_serie Enter name of serie
@@ -655,11 +655,11 @@ moviebrowser.head_filter Filter movies by category:
 moviebrowser.head_playlist Last played:
 moviebrowser.head_recordlist Last recorded:
 moviebrowser.hide_series Hide series
-moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel 
-moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel 
-moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen 
-moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition 
-moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition 
+moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel
+moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel
+moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen
+moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition
+moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition
 moviebrowser.info_audio Audio
 moviebrowser.info_channel Channel
 moviebrowser.info_filename Name
@@ -676,7 +676,7 @@ moviebrowser.info_parental_lockage_12year 12 years
 moviebrowser.info_parental_lockage_16year 16 years
 moviebrowser.info_parental_lockage_18year 18 years
 moviebrowser.info_parental_lockage_6year 6 years
-moviebrowser.info_parental_lockage_always never 
+moviebrowser.info_parental_lockage_always never
 moviebrowser.info_path Path
 moviebrowser.info_prevplaydate Last play date
 moviebrowser.info_prodcountry Country
@@ -742,23 +742,23 @@ moviebrowser.use_rec_dir Use record directory
 movieplayer.bookmark Favoritos
 movieplayer.bookmarkname Nome da lista
 movieplayer.bookmarkname_hint1 Introduzir um nome para a nova lista
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.defplugin Start-Plugin
 movieplayer.fileplayback Ficheiro via VLC
 movieplayer.head Movieplayer
 movieplayer.toomanybookmarks Tem demasiadas lista de favoritos.\nNecessita primeiro apagar alguma(s) dela(s).
-movieplayer.tshelp1 Stop 
-movieplayer.tshelp10 approx. 10 minutes back 
-movieplayer.tshelp11 skip approx. 10 minutes 
-movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n 
-movieplayer.tshelp2 Select audio track 
-movieplayer.tshelp3 Pause/Continue 
-movieplayer.tshelp4 Create bookmark 
-movieplayer.tshelp5 Show progress 
-movieplayer.tshelp6 approx. 1 minute back 
-movieplayer.tshelp7 skip approx. 1 minute 
-movieplayer.tshelp8 approx. 5 minutes back 
-movieplayer.tshelp9 skip approx. 5 minutes 
+movieplayer.tshelp1 Stop
+movieplayer.tshelp10 approx. 10 minutes back
+movieplayer.tshelp11 skip approx. 10 minutes
+movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n
+movieplayer.tshelp2 Select audio track
+movieplayer.tshelp3 Pause/Continue
+movieplayer.tshelp4 Create bookmark
+movieplayer.tshelp5 Show progress
+movieplayer.tshelp6 approx. 1 minute back
+movieplayer.tshelp7 skip approx. 1 minute
+movieplayer.tshelp8 approx. 5 minutes back
+movieplayer.tshelp9 skip approx. 5 minutes
 movieplayer.tsplayback Play TS
 mpkey.audio Audio track
 mpkey.bookmark save bookmark
@@ -870,7 +870,7 @@ pinprotection.head Introduzir código PIN
 pinprotection.wrongcode Código PIN errado! Tende de novo.
 plugins.result plugin output
 rclock.lockmsg O comando da sua box será bloqueado.\n Para desbloquear a sua box, prima <VERMELHO> \n e <DBOX> no seu telecomando.
-rclock.menueadd Bloquear RC 
+rclock.menueadd Bloquear RC
 rclock.title Bloquear Telecomando
 rclock.unlockmsg Comando da box reactivado.
 recordingmenu.apids default audio streams
@@ -935,7 +935,7 @@ servicemenu.restart Soft restart
 servicemenu.restart_hint Restarting, please wait
 servicemenu.restart_refused_recording Cant restart, recording in progress
 servicemenu.scants Busca de Canais
-servicemenu.update Actualização de Software 
+servicemenu.update Actualização de Software
 settings.help Ajuda
 settings.missingoptionsconffile As configurações de neutrino foram actualizadas.\nNovas opções estão agora seleccionadas.
 settings.noconffile Não foram encontradas as configurações anteriores de neutrino.\nA usar as predefinidas.
@@ -1008,9 +1008,9 @@ timerlist.repeat.unknown desconhecido
 timerlist.repeat.wednesday Qua
 timerlist.repeat.weekdays nos dias de semana
 timerlist.repeat.weekly Semanal
-timerlist.repeatcount repeats 
-timerlist.repeatcount.help1 amount of timer repeats 
-timerlist.repeatcount.help2 0 for unlimited repeats 
+timerlist.repeatcount repeats
+timerlist.repeatcount.help1 amount of timer repeats
+timerlist.repeatcount.help2 0 for unlimited repeats
 timerlist.save Guardar programação
 timerlist.standby Modo a deixar o receptor
 timerlist.standby.off Deixar standby

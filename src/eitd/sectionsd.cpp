@@ -286,8 +286,8 @@ static bool deleteEvent(const event_id_t uniqueKey)
 //xprintf("addEvent: current %012" PRIx64 " event %012" PRIx64 " messaging_got_CN %d\n", messaging_current_servicekey, evt.get_channel_id(), messaging_got_CN);
 		readLockMessaging();
 		// only if it is the current channel... and if we don't have them already.
-		if (evt.get_channel_id() == messaging_current_servicekey && 
-				(messaging_got_CN != 0x03)) { 
+		if (evt.get_channel_id() == messaging_current_servicekey &&
+				(messaging_got_CN != 0x03)) {
 xprintf("addEvent: ch %012" PRIx64 " running %d (%s) got_CN %d\n", evt.get_channel_id(), evt.runningStatus(), evt.runningStatus() > 2 ? "curr" : "next", messaging_got_CN);
 
 			unlockMessaging();
@@ -1389,7 +1389,7 @@ void CTimeThread::setSystemTime(time_t tim)
 	timediff = int64_t(tim * 1000000 - (tv.tv_usec + tv.tv_sec * 1000000));
 
 	xprintf("%s: timediff %" PRId64 ", current: %02d.%02d.%04d %02d:%02d:%02d, dvb: %s", name.c_str(), timediff,
-			tmTime->tm_mday, tmTime->tm_mon+1, tmTime->tm_year+1900, 
+			tmTime->tm_mday, tmTime->tm_mon+1, tmTime->tm_year+1900,
 			tmTime->tm_hour, tmTime->tm_min, tmTime->tm_sec, ctime(&tim));
 
 #if 0
@@ -1635,7 +1635,7 @@ void CSectionThread::run()
 		}
 		if (zeit > lastChanged + skipTime) {
 #ifdef DEBUG_SECTION_THREADS
-			xprintf("%s: skipping to next filter %d from %d (seconds %d)\n", 
+			xprintf("%s: skipping to next filter %d from %d (seconds %d)\n",
 				name.c_str(), filter_index+1, (int)filters.size(), (int)(zeit - lastChanged));
 #endif
 			need_change = true;
@@ -1956,7 +1956,7 @@ CFreeSatThread::CFreeSatThread()
 void CFreeSatThread::addFilters()
 {
 	//other TS, scheduled, freesat epg is only broadcast using table_ids 0x60 (scheduled) and 0x61 (scheduled later)
-	addfilter(0x60, 0xfe); 
+	addfilter(0x60, 0xfe);
 }
 #endif
 

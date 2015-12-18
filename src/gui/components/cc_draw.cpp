@@ -405,7 +405,7 @@ bool CCDraw::CheckFbData(const cc_fbdata_t& fbdata, const char* func, const int 
 	int32_t rest = fbdata.dx % (int32_t)frameBuffer->getScreenWidth(true);
         int32_t end  = rows * (int32_t)frameBuffer->getScreenWidth(true) + rest;
 	if (	(fbdata.x < 0 || fbdata.y < 0) ||
-		(end >= (int32_t)frameBuffer->getScreenWidth(true)*(int32_t)frameBuffer->getScreenHeight(true)) 
+		(end >= (int32_t)frameBuffer->getScreenWidth(true)*(int32_t)frameBuffer->getScreenHeight(true))
 	   ) {
 			dprintf(DEBUG_NORMAL, "[CCDraw] ERROR! Position < 0 or > FB end [%s - %d]\n\tx = %d  y = %d\n\tdx = %d  dy = %d\n",
 				func, line,
@@ -506,7 +506,7 @@ void CCDraw::paintFbItems(bool do_save_bg)
 		}
 		firstPaint = false;
 	}
-	
+
 	for(size_t i=0; i< v_fbdata.size(); i++){
 		cc_fbdata_t& fbdata = v_fbdata[i];
 
@@ -672,7 +672,7 @@ bool CCDraw::doPaintBg(bool do_paint)
 {
 	if (paint_bg == do_paint)
 		return false;
-	
+
 	paint_bg = do_paint;
 	//clearSavedScreen();
 	return true;

@@ -68,7 +68,7 @@ class CBookmarkManager : public CChangeObserver
  private:
 	std::vector<CBookmark> bookmarks;
 	CConfigFile	bookmarkfile;
-	
+
     CFrameBuffer		*frameBuffer;
 	unsigned int		selected;
 	unsigned int		liststart;
@@ -76,13 +76,13 @@ class CBookmarkManager : public CChangeObserver
 	int			fheight; // Fonthoehe Timerlist-Inhalt
 	int			theight; // Fonthoehe Timerlist-Titel
 	int			footerHeight;
-	bool			visible;			
+	bool			visible;
 	int 			width;
 	int 			height;
 	int 			x;
 	int 			y;
 
-	
+
 	//int bookmarkCount;
 	bool bookmarkname_entered;
 	bool bookmarksmodified;
@@ -90,7 +90,7 @@ class CBookmarkManager : public CChangeObserver
 	void writeBookmarkFile();
 	CBookmark getBookmark();
 	int addBookmark(CBookmark inBookmark);
-	
+
 	void paintItem(int pos);
 	void paint();
 	void paintHead();
@@ -110,7 +110,7 @@ class CBookmarkManager : public CChangeObserver
 	int getBookmarkCount(void) const;
 	int getMaxBookmarkCount(void) const;
 	void flush();
-	
+
 	const CBookmark * getBookmark(CMenuTarget* parent);
 };
 

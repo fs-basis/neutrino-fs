@@ -41,8 +41,8 @@
 
 class CKeybindSetup : public CMenuTarget, public CChangeObserver
 {
-	public:	
-		enum keynames 
+	public:
+		enum keynames
 		{
 			NKEY_TV_RADIO_MODE,
 			NKEY_POWER_OFF,
@@ -91,7 +91,7 @@ class CKeybindSetup : public CMenuTarget, public CChangeObserver
 			NKEY_PIC_MODE,
 			NKEY_PIC_SIZE,
 			NKEY_RECORD,
-			
+
 			KEYBINDS_COUNT
 		};
 
@@ -108,7 +108,7 @@ class CKeybindSetup : public CMenuTarget, public CChangeObserver
 		void showKeyBindMovieplayerSetup(CMenuWidget *bindSettings_mplayer);
 		void showKeyBindSpecialSetup(CMenuWidget *bindSettings_special);
 
-	public:				
+	public:
 		CKeybindSetup();
 		~CKeybindSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);
@@ -117,4 +117,4 @@ class CKeybindSetup : public CMenuTarget, public CChangeObserver
 };
 
 #endif
-		
+

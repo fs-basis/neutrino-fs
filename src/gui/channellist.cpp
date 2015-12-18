@@ -485,7 +485,7 @@ void CChannelList::calcSize()
 	{
 		info_height = 2*fheight + fdescrheight + 10;
 		if (g_settings.channellist_foot == 2)
-			info_height = 2*fheight + 10; 
+			info_height = 2*fheight + 10;
 	}
 	else
 		info_height = 0;
@@ -2125,8 +2125,8 @@ void CChannelList::paintHead()
 		header->setIcon(NEUTRINO_ICON_LOCK);
 		string header_txt 		= !edit_state ? name : string(g_Locale->getText(LOCALE_CHANNELLIST_EDIT)) + ": " + name;
 		fb_pixel_t header_txt_col 	= (edit_state ? COL_RED : COL_MENUHEAD_TEXT);
-		header->setColorBody(COL_MENUHEAD_PLUS_0); 
-		
+		header->setColorBody(COL_MENUHEAD_PLUS_0);
+
 		header->setCaption(header_txt, CTextBox::NO_AUTO_LINEBREAK, header_txt_col);
 
 	if (header->enableColBodyGradient(g_settings.theme.menu_Head_gradient, COL_MENUCONTENT_PLUS_0)){
@@ -2141,7 +2141,7 @@ void CChannelList::paintHead()
 					header->removeContextButtons();
 			header->enableClock(true, "%H:%M", "%H %M", true);
 			logo_off = header->getClockObject()->getWidth() + 10;
- 
+
 			header->getClockObject()->setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
 		}else{
 			if (header->getClockObject()){

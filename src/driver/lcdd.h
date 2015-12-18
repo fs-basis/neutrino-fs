@@ -165,7 +165,7 @@ class CLCD
 		{
 			public:
 				LcdFont *channelname;
-				LcdFont *time; 
+				LcdFont *time;
 				LcdFont *menutitle;
 				LcdFont *menu;
 		};
@@ -202,7 +202,7 @@ class CLCD
 		CLCD();
 
 		static void* TimeThread(void*);
-		bool lcdInit(const char * fontfile1, const char * fontname1, 
+		bool lcdInit(const char * fontfile1, const char * fontname1,
 		             const char * fontfile2=NULL, const char * fontname2=NULL,
 		             const char * fontfile3=NULL, const char * fontname3=NULL);
 		void setlcdparameter(int dimm, int contrast, int power, int inverse, int bias);
@@ -237,7 +237,7 @@ class CLCD
 		static CLCD* getInstance();
 		void init(const char * fontfile, const char * fontname,
 		          const char * fontfile2=NULL, const char * fontname2=NULL,
-		          const char * fontfile3=NULL, const char * fontname3=NULL); 
+		          const char * fontfile3=NULL, const char * fontname3=NULL);
 
 		void setMode(const MODES m, const char * const title = "");
 		MODES getMode() { return mode; };
@@ -307,7 +307,7 @@ class CLCD
 		std::string m_infoBoxTitle;
 		int m_infoBoxTimer;   // for later use
 		bool m_infoBoxAutoNewline;
-		
+
 		bool m_progressShowEscape;
 		std::string  m_progressHeaderGlobal;
 		std::string  m_progressHeaderLocal;

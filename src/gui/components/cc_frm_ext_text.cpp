@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -70,16 +70,16 @@ void CComponentsExtTextForm::initVarExtTextForm(const int& x_pos, const int& y_p
 	cc_item_type 	= CC_ITEMTYPE_FRM_EXT_TEXT;
 	x = x_pos;
 	y = y_pos;
-	
+
 	width = w;
 	//init ccx_label_width and ccx_text_width
 	//default ccx_label_width = 30% of form width
 	ccx_percent_label_w = DEF_LABEL_WIDTH_PERCENT;
 	ccx_label_width = ccx_percent_label_w * width/100;
 	ccx_text_width	= width-ccx_label_width;
-	
+
 	height = h;
-	
+
 	ccx_label_text 	= label_text;
 	ccx_text 	= text;
 	shadow 		= shadow_mode;
@@ -106,7 +106,7 @@ void CComponentsExtTextForm::initLabel()
 		ccx_label_obj = new CComponentsLabel();
 		ccx_label_obj->doPaintBg(false);
 		ccx_label_obj->enableTboxSaveScreen(cc_txt_save_screen);
-	}	
+	}
 
 	//add label object
 	if (!ccx_label_obj->isAdded())

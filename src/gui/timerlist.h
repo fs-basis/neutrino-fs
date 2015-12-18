@@ -2,7 +2,7 @@
 	Neutrino-GUI  -   DBoxII-Project
 
 	Timerliste by Zwen
-	
+
 	Homepage: http://dbox.cyberphoria.org/
 
 	Kommentar:
@@ -60,7 +60,7 @@ class CTimerList : public CMenuTarget
 		bool		visible;
 
 		CTimerdClient *Timer;
-		CTimerd::TimerList timerlist;             // List of timers		
+		CTimerd::TimerList timerlist;             // List of timers
 		CTimerd::responseGetTimer timerNew;
 		int timerNew_standby_on;
 		std::string timerNew_channel_name;

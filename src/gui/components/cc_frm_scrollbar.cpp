@@ -92,7 +92,7 @@ void CComponentsScrollBar::initVarSbForm(const int& count)
 
 void CComponentsScrollBar::setSegmentCount(const int& segment_count, const int& mark_id)
 {
-	sb_segments_count = segment_count; 
+	sb_segments_count = segment_count;
 	sb_mark_id = mark_id;
 	initSegments();
 }

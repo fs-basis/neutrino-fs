@@ -175,7 +175,7 @@ struct saveSIlinkageXML : public std::unary_function<class SIlinkage, void>
 	void operator() (const SIlinkage &l) { l.saveXML(f);}
 };
 
-class SIcomponent 
+class SIcomponent
 {
 	public:
 		unsigned int component;
@@ -187,7 +187,7 @@ class SIcomponent
 			component = 0;
 			streamContent=0;
 			componentType=0;
-			componentTag=0;      
+			componentTag=0;
 		}
 		SIcomponent(const struct descr_component_header *comp) {
 			component = 0;
@@ -251,7 +251,7 @@ struct saveSIcomponentXML : public std::unary_function<class SIcomponent, void>
 	void operator() (const SIcomponent &c) { c.saveXML(f);}
 };
 
-class SIparentalRating 
+class SIparentalRating
 {
 	public:
 		unsigned int countryCode;

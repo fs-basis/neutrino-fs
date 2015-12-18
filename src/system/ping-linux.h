@@ -1,4 +1,4 @@
-#define ICMP_ECHOREPLY          0 
+#define ICMP_ECHOREPLY          0
 #define ICMP_ECHO               8
 #define ICMP_MINLEN             8
 

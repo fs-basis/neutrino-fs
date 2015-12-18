@@ -132,7 +132,7 @@ bool CWebserverResponse::SendResponse() {
 			}
 		} while (Connection->HookHandler.status == HANDLED_REWRITE);
 
-	// Send static file 
+	// Send static file
 	if (Connection->HookHandler.status == HANDLED_SENDFILE
 			&& !Connection->RequestCanceled) {
 		bool cache = !Connection->HookHandler.cached;
@@ -155,7 +155,7 @@ bool CWebserverResponse::SendResponse() {
 }
 
 //=============================================================================
-// Output 
+// Output
 //=============================================================================
 void CWebserverResponse::SendHeader(HttpResponseType responseType, bool cache,
 		std::string ContentType) {

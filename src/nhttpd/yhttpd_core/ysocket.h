@@ -1,6 +1,6 @@
 //=============================================================================
 // YHTTPD
-// Socket Class : Basic Socket Operations 
+// Socket Class : Basic Socket Operations
 //-----------------------------------------------------------------------------
 // Socket-Handler
 //=============================================================================
@@ -55,7 +55,7 @@ public:
 	bool		isOpened;					// is this socket open?
 	bool		isValid;					// false on Socket Errors. Must close.
 	struct timeval 	tv_start_waiting;				// Put keep-alive Socket to Wait-Queue
-	
+
 	void 		close(void);					// Close Socket
 	void 		shutdown(void);					// Shutdown Socket
 	bool 		listen(int port, int max_connections);		// Listen on Port for max Slave Connections
@@ -69,7 +69,7 @@ public:
 	int 		Read(char *buffer, unsigned int length);	// Read a buffer (normal or SSL)
 	int 		Send(char const *buffer, unsigned int length);	// Send a buffer (normal or SSL)
 	bool 		CheckSocketOpen();				// check if socket was closed by client
-	
+
 	// send & receive
 	bool 		SendFile(int filed, off_t start = 0, off_t size = -1); // Send a File
 	std::string 	ReceiveBlock();					// receive a Block. Look at length
@@ -90,7 +90,7 @@ protected:
 	SSL		*ssl;						// ssl habdler for this socket
 #endif
 private:
-	std::string	receive_buffer;					// buffer for receive from socket 
+	std::string	receive_buffer;					// buffer for receive from socket
 	sockaddr_in	addr;						// "slave" Client Socket Data
 	socklen_t	addr_len;					// Length of addr struct
 	SOCKET		sock;						// "C" Socket-ID

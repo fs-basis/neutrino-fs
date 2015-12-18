@@ -57,7 +57,7 @@ public:
 	};
 
 	virtual ~Drawable();
-	
+
 	/**
 	 * Overwrite this method in subclasses to draw on the window
 	 *
@@ -68,12 +68,12 @@ public:
 	virtual void draw(CFBWindow *window, int x, int y, int width) = 0;
 
 	virtual int getWidth(void);
-	
+
 	virtual int getHeight(void);
 
 	/**
 	 * Overwrite this method in subclasses to print some info
-	 * about the content. Mainly used for debuging ;) 
+	 * about the content. Mainly used for debuging ;)
 	 */
 	virtual void print(void) = 0;
 
@@ -92,8 +92,8 @@ protected:
 
 	int m_width;
 
-private:	
-	
+private:
+
 };
 
 /**
@@ -109,7 +109,7 @@ public:
 	void init();
 
 	void draw(CFBWindow *window, int x, int y, int width);
-	
+
 	void print();
 
 protected:
@@ -132,7 +132,7 @@ public:
 	void init();
 
 	void draw(CFBWindow *window, int x, int y, int width);
-	
+
 	void print();
 
 protected:
@@ -150,7 +150,7 @@ public:
 	DPagebreak();
 
 	void draw(CFBWindow *window, int x, int y, int width);
-	
+
 	void print();
 
 	DType getType();
@@ -158,7 +158,7 @@ public:
 protected:
 
 private:
-	
+
 };
 
 #endif

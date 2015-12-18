@@ -50,7 +50,7 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 {
 	protected:
 		int width;
-	
+
 	private:
 		CMenuWidget			*satOnOff;
 
@@ -92,7 +92,7 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 		bool in_menu;
 
 		int is_wizard;
-		
+
 		int r_system;
 
 		neutrino_locale_t satprov_locale;
@@ -128,7 +128,7 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 		void saveScanSetup();
 
 		CScanSetup(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
-	public:	
+	public:
 		~CScanSetup();
 
 		static CScanSetup* getInstance();

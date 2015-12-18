@@ -320,7 +320,7 @@ void CComponentsForm::removeCCItem(const uint& cc_item_id)
 
 void CComponentsForm::removeCCItem(CComponentsItem* cc_Item)
 {
-	uint id = getCCItemId(cc_Item);	
+	uint id = getCCItemId(cc_Item);
 	removeCCItem(id);
 }
 
@@ -576,9 +576,9 @@ void CComponentsForm::setSelectedItem(int item_id)
 
 	if (id > (int)(count-1) || id < 0 || (count == 0)){
 		dprintf(DEBUG_NORMAL, "[CComponentsForm]   [%s - %d] invalid parameter item_id = %u, available items = %zu, allowed values are: 0...%zu! \n", 	__func__,
-																				__LINE__, 
-																				item_id, 
-																				count, 
+																				__LINE__,
+																				item_id,
+																				count,
 																				count==0 ? 0:count-1);
 		//exit if no item is available
 		if (count == 0)
@@ -638,9 +638,9 @@ void CComponentsForm::ScrollPage(int direction, bool do_paint)
 
 	int target_page_id = (int)page_count - 1;
 	int target_page = (int)cur_page;
-	
+
 	if (direction == SCROLL_P_DOWN)
-		target_page = target_page+1 > target_page_id ? 0 : target_page+1;	
+		target_page = target_page+1 > target_page_id ? 0 : target_page+1;
 	else if	(direction == SCROLL_P_UP)
 		target_page = target_page-1 < 0 ? target_page_id : target_page-1;
 

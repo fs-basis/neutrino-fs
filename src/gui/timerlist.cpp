@@ -495,12 +495,12 @@ int CTimerList::show()
 			frameBuffer->blit();
 		}
 		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
-		
+
 		//ignore numeric keys
 		if (g_RCInput->isNumeric(msg)){
 			msg = CRCInput::RC_nokey;
 		}
-			
+
 		if ( msg <= CRCInput::RC_MaxRC )
 			timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_MENU] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings
 							      ::TIMING_MENU]);
@@ -1220,7 +1220,7 @@ int CTimerList::newTimer()
 				char cChannelId[3+16+1+1];
 				sprintf(cChannelId, "SC:" PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS ",", channels[j]->getChannelID());
 				mwtv->addItem(new CMenuForwarder(channels[j]->getName(), true, NULL, this, (std::string(cChannelId) + channels[j]->getName()).c_str(), CRCInput::RC_nokey, NULL, channels[j]->scrambled ? NEUTRINO_ICON_SCRAMBLED : (channels[j]->getUrl().empty() ? NULL : NEUTRINO_ICON_STREAMING)));
-			  
+
 			}
 			if (!channels.empty())
 				mctv.addItem(new CMenuForwarder(g_bouquetManager->Bouquets[i]->bFav ? g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME) : g_bouquetManager->Bouquets[i]->Name.c_str() /*g_bouquetManager->Bouquets[i]->Name.c_str()*/, true, NULL, mwtv));

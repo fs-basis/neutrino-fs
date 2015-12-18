@@ -145,7 +145,7 @@ void CStringInput::init()
 	}
 
 	height = hheight+ bheight; // space for the possible numpad and the buttonbar will be added in initSMS()
-	
+
 	x = getScreenStartX(width);
 	y = getScreenStartY(height);
 	selected = 0;
@@ -155,7 +155,7 @@ void CStringInput::init()
 void CStringInput::NormalKeyPressed(const neutrino_msg_t key)
 {
 	if (CRCInput::isNumeric(key))
-	{	
+	{
 		std::string tmp_value = *valueString;
 		if (selected >= (int)valueString->length())
 			valueString->append(selected - valueString->length() + 1, ' ');

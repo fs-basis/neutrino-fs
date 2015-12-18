@@ -114,7 +114,7 @@ void CBEChannelWidget::paintItem(int pos)
 			initItem2DetailsLine (pos, current);
 			paintDetails(current);
 		}
-	
+
 		frameBuffer->paintBoxRel(x,ypos, width- 15, iheight, COL_MENUCONTENT_PLUS_0);
 		frameBuffer->paintBoxRel(x,ypos, width- 15, iheight, bgcolor, RADIUS_LARGE);
 	} else {
@@ -203,7 +203,7 @@ void CBEChannelWidget::paintFoot()
 std::string CBEChannelWidget::getInfoText(int index)
 {
 	std::string res = "";
-	
+
 	std::string satname = CServiceManager::getInstance()->GetSatelliteName((*Channels)[index]->getSatellitePosition());
 	transponder t;
 	CServiceManager::getInstance()->GetTransponder((*Channels)[index]->getTransponderId(), t);
@@ -212,9 +212,9 @@ std::string CBEChannelWidget::getInfoText(int index)
 		desc = desc + " (" + std::string((*Channels)[index]->pname) + ")";
 	else
 		desc = desc + " (" + satname + ")";
-	
+
 	res = satname + " " + desc;
-	
+
 	return res;
 }
 
@@ -222,9 +222,9 @@ void CBEChannelWidget::paintDetails(int index)
 {
 	//details line
 	dline->paint(CC_SAVE_SCREEN_NO);
-	
+
 	std::string str = getInfoText(index);
-	
+
 	//info box
 	ibox->setText(str, CTextBox::AUTO_WIDTH | CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_HINT]);
 	ibox->setColorBody(COL_MENUCONTENTDARK_PLUS_0);
@@ -238,17 +238,17 @@ void CBEChannelWidget::initItem2DetailsLine (int pos, int /*ch_index*/)
 	int ypos2 = y + height + INFO_BOX_Y_OFFSET;
 	int ypos1a = ypos1 + (fheight/2)-2;
 	int ypos2a = ypos2 + (info_height/2)-2;
-	
+
 	if (dline)
 		dline->kill(); //kill details line
-		
+
 	// init Line if detail info (and not valid list pos)
 	if (pos >= 0)
 	{
 		if (dline == NULL)
 			dline = new CComponentsDetailLine(xpos, ypos1a, ypos2a, fheight/2+1, info_height-RADIUS_LARGE*2);
 		dline->setYPos(ypos1a);
-		
+
 		//infobox
 		if (ibox == NULL){
 			ibox = new CComponentsInfoBox();
@@ -256,10 +256,10 @@ void CBEChannelWidget::initItem2DetailsLine (int pos, int /*ch_index*/)
 
 		if (ibox->isPainted())
 			ibox->hide();
-		
+
 			ibox->setDimensionsAll(x, ypos2, width, info_height);
 			ibox->setFrameThickness(2);
-#if 0			
+#if 0
 		ibox->paint(false,true);
 #endif
 			ibox->setCorner(RADIUS_LARGE);

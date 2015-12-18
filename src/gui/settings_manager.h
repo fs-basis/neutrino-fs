@@ -44,10 +44,10 @@ class CSettingsManager : public CMenuTarget
 		int showMenu();
 		int showMenu_wizard();
 
-	public:	
+	public:
 		CSettingsManager(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
 		~CSettingsManager();
-		
+
 		int exec(CMenuTarget* parent, const std::string & actionKey = "");
 };
 

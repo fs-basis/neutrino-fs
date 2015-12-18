@@ -124,7 +124,7 @@ bool CExtUpdate::ErrorReset(bool modus, const std::string & msg1, const std::str
 
 	if (msg2.empty())
 		snprintf(buf, sizeof(buf), "%s\n", msg1.c_str());
-	else 
+	else
 		snprintf(buf, sizeof(buf), "%s %s\n", msg1.c_str(), msg2.c_str());
 
 	if ((!msg1.empty()) || (!msg2.empty())) {
@@ -245,9 +245,9 @@ bool CExtUpdate::applySettings()
 	struct utsname uts_info;
 	if( uname(&uts_info) == 0 ) {
 		osrelease = uts_info.release;
-		size_t pos = osrelease.find_first_of(" "); 
-		if (pos != std::string::npos) 
-			osrelease = osrelease.substr(0, pos); 
+		size_t pos = osrelease.find_first_of(" ");
+		if (pos != std::string::npos)
+			osrelease = osrelease.substr(0, pos);
 	}
 	else
 		return ErrorReset(0, "error no kernel info");
@@ -510,7 +510,7 @@ bool CExtUpdate::findConfigEntry(std::string & line, std::string find)
 	}
 	return false;
 }
-	
+
 bool CExtUpdate::readConfig(const std::string & line)
 {
 	std::string tmp1 = line;
@@ -543,7 +543,7 @@ bool CExtUpdate::isBlacklistEntry(const std::string & file)
 
 bool CExtUpdate::checkSpecialFolders(std::string line, bool copy)
 {
-	if ((line == "/") || (line == "/*") || (line == "/*.*") || (line.find("/dev") == 0) || (line.find("/proc") == 0) || 
+	if ((line == "/") || (line == "/*") || (line == "/*.*") || (line.find("/dev") == 0) || (line.find("/proc") == 0) ||
 			(line.find("/sys") == 0) || (line.find("/mnt") == 0) || (line.find("/tmp") == 0)) {
 		char buf[PATH_MAX];
 		neutrino_locale_t msg = (copy) ? LOCALE_FLASHUPDATE_UPDATE_WITH_SETTINGS_SKIPPED : LOCALE_FLASHUPDATE_UPDATE_WITH_SETTINGS_DEL_SKIPPED;
@@ -560,7 +560,7 @@ bool CExtUpdate::readBackupList(const std::string & dstPath)
 	char buf[PATH_MAX];
 	static struct stat FileInfo;
 	vector<std::string>::iterator it;
-	
+
 	f1 = fopen(backupList.c_str(), "r");
 	if (f1 == NULL) {
 		f1 = fopen(backupList.c_str(), "w");
@@ -704,7 +704,7 @@ bool CExtUpdate::readBackupList(const std::string & dstPath)
 					FileHelpers->copyDir(line.c_str(), dst.c_str(), true);
 				}
 			}
-		
+
 		}
 	}
 	sync();

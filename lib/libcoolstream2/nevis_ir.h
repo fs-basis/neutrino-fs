@@ -1,4 +1,4 @@
-/* 
+/*
  * public definitions for the CX2450x Infrared receiver driver
  *
  * Copyright (C) 2008-2011 Coolstream International Limited

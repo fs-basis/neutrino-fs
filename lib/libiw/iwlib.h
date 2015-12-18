@@ -35,7 +35,7 @@
 /* This is our header selection. Try to hide the mess and the misery :-(
  * Don't look, you would go blind ;-)
  * Note : compatibility with *old* distributions has been removed,
- * you will need Glibc 2.2 and older to compile (which means 
+ * you will need Glibc 2.2 and older to compile (which means
  * Mandrake 8.0, Debian 2.3, RH 7.1 or older).
  */
 

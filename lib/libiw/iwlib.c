@@ -1913,8 +1913,8 @@ iw_print_timeval(char *				buffer,
         int s;
 
 	s = (timev->tv_sec - tz->tz_minuteswest * 60) % 86400;
-	snprintf(buffer, buflen, "%02d:%02d:%02d.%06u", 
-		s / 3600, (s % 3600) / 60, 
+	snprintf(buffer, buflen, "%02d:%02d:%02d.%06u",
+		s / 3600, (s % 3600) / 60,
 		s % 60, (u_int32_t) timev->tv_usec);
 }
 
@@ -2029,7 +2029,7 @@ iw_get_mac_addr(int			skfd,
   /* Do it */
   ret = ioctl(skfd, SIOCGIFHWADDR, &ifr);
 
-  memcpy(eth->ether_addr_octet, ifr.ifr_hwaddr.sa_data, 6); 
+  memcpy(eth->ether_addr_octet, ifr.ifr_hwaddr.sa_data, 6);
   *ptype = ifr.ifr_hwaddr.sa_family;
   return(ret);
 }
@@ -2639,7 +2639,7 @@ static const struct iw_ioctl_description standard_event_descr[] = {
 		.header_type	= IW_HEADER_TYPE_ADDR,
 	},
 	[IWEVEXPIRED	- IWEVFIRST] = {
-		.header_type	= IW_HEADER_TYPE_ADDR, 
+		.header_type	= IW_HEADER_TYPE_ADDR,
 	},
 	[IWEVGENIE	- IWEVFIRST] = {
 		.header_type	= IW_HEADER_TYPE_POINT,
@@ -2647,7 +2647,7 @@ static const struct iw_ioctl_description standard_event_descr[] = {
 		.max_tokens	= IW_GENERIC_IE_MAX,
 	},
 	[IWEVMICHAELMICFAILURE	- IWEVFIRST] = {
-		.header_type	= IW_HEADER_TYPE_POINT, 
+		.header_type	= IW_HEADER_TYPE_POINT,
 		.token_size	= 1,
 		.max_tokens	= sizeof(struct iw_michaelmicfailure),
 	},

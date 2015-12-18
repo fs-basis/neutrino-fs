@@ -60,7 +60,7 @@ int CBuildInfo::exec(CMenuTarget* parent, const string & /*actionKey*/)
 
 	if (parent)
 		parent->hide();
-		
+
 	//exit if no informations available
 	if (!HasData()){
 		return res;
@@ -96,7 +96,7 @@ int CBuildInfo::exec(CMenuTarget* parent, const string & /*actionKey*/)
 		if ( msg >  CRCInput::RC_MaxRC && msg != CRCInput::RC_timeout){
 			CNeutrinoApp::getInstance()->handleMsg( msg, data );
 		}
-		
+
 
 	}
 

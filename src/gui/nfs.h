@@ -2,7 +2,7 @@
 	Neutrino-GUI  -   DBoxII-Project
 
 	NFS Mount/Umount GUI by Zwen
-	
+
 	Homepage: http://dbox.cyberphoria.org/
 
 	Kommentar:
@@ -58,7 +58,7 @@ class CNFSMountGui : public CMenuTarget
 	CFSMounter::FS_Support m_nfs_sup;
 	CFSMounter::FS_Support m_cifs_sup;
 	CFSMounter::FS_Support m_lufs_sup;
-	
+
  protected:
 	int width;
 

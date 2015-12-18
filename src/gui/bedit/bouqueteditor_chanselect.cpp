@@ -189,7 +189,7 @@ void CBEChannelSelectWidget::onRedKeyPressed()
 		break;
 		default:
 			sort(Channels.begin(), Channels.end(), CmpChannelByChName());
-		break;	  
+		break;
 	}
 	paintFoot();
 	paint();
@@ -259,7 +259,7 @@ void CBEChannelSelectWidget::paintFoot()
 std::string CBEChannelSelectWidget::getInfoText(int index)
 {
 	std::string res = "";
-	
+
 	std::string satname = CServiceManager::getInstance()->GetSatelliteName(Channels[index]->getSatellitePosition());
 	transponder t;
 	CServiceManager::getInstance()->GetTransponder(Channels[index]->getTransponderId(), t);
@@ -268,9 +268,9 @@ std::string CBEChannelSelectWidget::getInfoText(int index)
 		desc = desc + " (" + std::string(Channels[index]->pname) + ")";
 	else
 		desc = desc + " (" + satname + ")";
-	
+
 	res = satname + " " + desc;
-	
+
 	return res;
 }
 
@@ -278,9 +278,9 @@ void CBEChannelSelectWidget::paintDetails(int index)
 {
 	//details line
 	dline->paint(CC_SAVE_SCREEN_NO);
-	
+
 	std::string str = getInfoText(index);
-	
+
 	//info box
 	ibox->setText(str, CTextBox::AUTO_WIDTH | CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_HINT]);
 	ibox->setColorBody(COL_MENUCONTENTDARK_PLUS_0);

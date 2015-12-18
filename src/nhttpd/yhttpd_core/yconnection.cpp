@@ -111,7 +111,7 @@ void CWebserverConnection::HandleConnection() {
 				+ (tv_connection_Response_end.tv_usec
 						- tv_connection_Response_start.tv_usec));
 
-		// print production times			
+		// print production times
 		log_level_printf(1, "enlapsed time request:%ld response:%ld url:%s\n",
 				enlapsed_request, enlapsed_response,
 				(Request.UrlData["fullurl"]).c_str());

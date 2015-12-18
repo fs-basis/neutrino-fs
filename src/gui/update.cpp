@@ -25,7 +25,7 @@
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the 
+	along with this program; if not, write to the
 	Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 	Boston, MA  02110-1301, USA.
 */
@@ -233,8 +233,8 @@ bool CFlashUpdate::selectHttpImage(void)
 	showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILE)); // UTF-8
 
 	char current[200];
-	snprintf(current, 200, "%s: %s %s %s %s %s", g_Locale->getText(LOCALE_FLASHUPDATE_CURRENTVERSION_SEP), curInfo.getReleaseCycle(), 
-		g_Locale->getText(LOCALE_FLASHUPDATE_CURRENTVERSIONDATE), curInfo.getDate(), 
+	snprintf(current, 200, "%s: %s %s %s %s %s", g_Locale->getText(LOCALE_FLASHUPDATE_CURRENTVERSION_SEP), curInfo.getReleaseCycle(),
+		g_Locale->getText(LOCALE_FLASHUPDATE_CURRENTVERSIONDATE), curInfo.getDate(),
 		g_Locale->getText(LOCALE_FLASHUPDATE_CURRENTVERSIONTIME), curInfo.getTime());
 
 	CMenuWidget SelectionWidget(LOCALE_FLASHUPDATE_SELECTIMAGE, NEUTRINO_ICON_UPDATE, listWidth, MN_WIDGET_ID_IMAGESELECTOR);
@@ -919,7 +919,7 @@ int CFlashExpert::showMTDSelector(const std::string & actionkey)
 		bool enabled = true;
 #ifdef BOXMODEL_APOLLO
 		// disable write uboot / uldr / env
-		if ((actionkey == "writemtd") && (lx == mtdInfo->findMTDNumberFromName("u-boot") || 
+		if ((actionkey == "writemtd") && (lx == mtdInfo->findMTDNumberFromName("u-boot") ||
 			                          lx == mtdInfo->findMTDNumberFromName("uldr") ||
 			                          lx == mtdInfo->findMTDNumberFromName("env")))
 			enabled = false;

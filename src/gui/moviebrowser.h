@@ -343,7 +343,7 @@ class CMovieBrowser : public CMenuTarget
 		void setMode(int mode) {
 			if (show_mode != mode)
 				m_file_info_stale = true;
-			show_mode = mode; 
+			show_mode = mode;
 		}
 
 	private: //Functions

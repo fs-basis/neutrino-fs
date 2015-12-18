@@ -109,7 +109,7 @@ CHintBoxExt::~CHintBoxExt(void)
 	if (m_message != NULL) {
 		free(m_message);
 
-		// content has been set using "m_message" so we are responsible to 
+		// content has been set using "m_message" so we are responsible to
 		// delete it
 		for (ContentLines::iterator it = m_lines.begin();
 			 it != m_lines.end(); ++it)
@@ -170,7 +170,7 @@ void CHintBoxExt::init(const neutrino_locale_t Caption, const std::string &Capti
 			m_height = m_theight + m_fheight + maxHeight;
 			if (pagebreak)
 				m_startEntryOfPage.push_back(line+1);
-			else 
+			else
 				m_startEntryOfPage.push_back(line);
 			page++;
 			if (m_maxEntriesPerPage < (m_startEntryOfPage[page] - m_startEntryOfPage[page-1]))
@@ -186,7 +186,7 @@ void CHintBoxExt::init(const neutrino_locale_t Caption, const std::string &Capti
 		line++;
 	}
 
-	// if there is only one page m_height is already correct 
+	// if there is only one page m_height is already correct
     // but m_maxEntries has not been set
 	if (m_startEntryOfPage.size() > 1)
 	{
@@ -203,12 +203,12 @@ void CHintBoxExt::init(const neutrino_locale_t Caption, const std::string &Capti
 // 	printf("pages: %d, startEntryVec: %d\n",page+1,m_startEntryOfPage.size()-1);
 // 	printf("maxEntries: %d\n", m_maxEntriesPerPage);
 
-	m_width = w_max(maxWidth,SHADOW_OFFSET); 
+	m_width = w_max(maxWidth,SHADOW_OFFSET);
 	m_currentPage = 0;
 	m_pages = page + 1;
 	unsigned int additional_width;
 
-	if (has_scrollbar()) 
+	if (has_scrollbar())
 		scrollWidth = 15;
 	else
 		scrollWidth = 0;
@@ -268,7 +268,7 @@ void CHintBoxExt::refresh(bool toround)
 	{
 		return;
 	}
-	
+
 	if (!bgPainted) {
 		// bottom, right shadow
 		m_window->paintBoxRel(SHADOW_OFFSET, SHADOW_OFFSET, m_width, m_height, COL_INFOBAR_SHADOW_PLUS_0, RADIUS_LARGE, toround ? CORNER_ALL : CORNER_BOTTOM | CORNER_TOP_RIGHT);
@@ -281,7 +281,7 @@ void CHintBoxExt::refresh(bool toround)
 #if 0
 	// title bar
 	m_window->paintBoxRel(0, 0, m_width, m_theight, (CFBWindow::color_t)COL_MENUHEAD_PLUS_0, RADIUS_LARGE, CORNER_TOP);//round
-	
+
 	// icon
 	int x_offset = 6, icon_space = x_offset, x_text;
 	const char *title_text = (m_caption == NONEXISTANT_LOCALE) ? m_captionString.c_str() : g_Locale->getText(m_caption);
@@ -297,7 +297,7 @@ void CHintBoxExt::refresh(bool toround)
 	}
 	else
 		x_text = x_offset;
-	
+
 	// title text
 	m_window->RenderString(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE], x_text, m_theight, m_width, title_text, COL_MENUHEAD_TEXT);
 #endif
@@ -339,7 +339,7 @@ void CHintBoxExt::refresh(bool toround)
 		}
 	}
 
-	if (has_scrollbar()) 
+	if (has_scrollbar())
 	{
 //		yPos = m_theight + (m_fheight >> 1);
 		yPos = m_theight;

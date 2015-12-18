@@ -132,7 +132,7 @@ int CStreamInfo2::doSignalStrengthLoop ()
 #define BAR_WIDTH 150
 #define BAR_HEIGHT 12
 	int res = menu_return::RETURN_REPAINT;
-	
+
 	neutrino_msg_t msg;
 	uint64_t maxb, minb, lastb, tmp_rate;
 	unsigned int current_pmt_version= pmt_version;
@@ -159,7 +159,7 @@ int CStreamInfo2::doSignalStrengthLoop ()
 
 		int ret = update_rate ();
 		if (paint_mode == 0) {
-			
+
 			if (cnt < 12)
 				cnt++;
 			int dheight = g_Font[font_info]->getHeight ();

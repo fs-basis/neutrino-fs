@@ -655,7 +655,7 @@ int str_compare_withoutspace(char const *s1, char const *s2)
 		cmp_result = tolower(*s1) - tolower(*s2);
 	}
 	return cmp_result;
-} 
+}
 #endif
 
 // -- Find Bouquet-Name, if BQ exists   (2002-04-02 rasc)
@@ -674,7 +674,7 @@ int CBouquetManager::existsBouquet(char const * const name, bool ignore_user)
 			int upper1 = 0 ,upper2 = 0;
 			std::string str2 = name;
 			size_t  pos=0;
-			size_t pos2 = Bouquets[i]->Name.find("] "); 
+			size_t pos2 = Bouquets[i]->Name.find("] ");
 			if(pos != std::string::npos){
 				pos += pos2;
 			}
@@ -692,7 +692,7 @@ int CBouquetManager::existsBouquet(char const * const name, bool ignore_user)
 				if(isupper(str2[pos])){
 					++upper2;
 				}
-				pos++;  
+				pos++;
 			}
 			if ( ( upper2 && (lower1 < lower2)) || (lower2==0 && upper1==0 && upper2==lower1) ){
 				Bouquets[i]->Name = str2;

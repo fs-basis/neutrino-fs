@@ -95,7 +95,7 @@ THandleStatus CNeutrinoYParser::Hook_ReadConfig(CConfigFile *Config, CStringList
 		Config->setInt32("configfile.version", CONF_VERSION);
 		Config->saveConfig(HTTPD_CONFIGFILE);
 	}
-	//std::string logo = 
+	//std::string logo =
 	ConfigList["TUXBOX_LOGOS_URL"];
 	return HANDLED_CONTINUE;
 }

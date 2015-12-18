@@ -1,6 +1,6 @@
 #!/bin/sh
 # 1st arg is dir where unpack, $2 file to be installed
-update_file() 
+update_file()
 {
 
 	FILE_IMAGE=$1
@@ -33,7 +33,7 @@ PAT=$1/temp_inst/inst
 len_a=${#PAT}
 
 find $PAT  | while read i ;do
-	if [ -d "$i" ] || [ $(basename "$i") == "boot.bmp.gz" ] || [ $(basename "$i") == "uImage" ];then 
+	if [ -d "$i" ] || [ $(basename "$i") == "boot.bmp.gz" ] || [ $(basename "$i") == "uImage" ];then
 		continue
 	fi
 

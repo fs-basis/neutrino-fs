@@ -192,7 +192,7 @@ record_error_msg_t CRecordInstance::Start(CZapitChannel * channel)
 	for (unsigned int i = 0; i < recMovieInfo->audioPids.size(); i++) {
 		apids[numpids++] = recMovieInfo->audioPids[i].epgAudioPid;
 		if(channel->getAudioChannel(i)->audioChannelType == CZapitAudioChannel::EAC3){
-			psi.addPid(recMovieInfo->audioPids[i].epgAudioPid, EN_TYPE_AUDIO_EAC3, recMovieInfo->audioPids[i].atype, channel->getAudioChannel(i)->description.c_str());		  
+			psi.addPid(recMovieInfo->audioPids[i].epgAudioPid, EN_TYPE_AUDIO_EAC3, recMovieInfo->audioPids[i].atype, channel->getAudioChannel(i)->description.c_str());
 		}else
 			psi.addPid(recMovieInfo->audioPids[i].epgAudioPid, EN_TYPE_AUDIO, recMovieInfo->audioPids[i].atype, channel->getAudioChannel(i)->description.c_str());
 
@@ -799,7 +799,7 @@ void CRecordInstance::GetRecordString(std::string &str, std::string &dur)
 	char dtime[20];
 	int h = duration / 60;
 	int m = duration - (h * 60);
-	snprintf(dtime, sizeof(dtime), "(%d %s %02d %s)", h, h == 1 ? g_Locale->getText(LOCALE_RECORDING_TIME_HOUR) : g_Locale->getText(LOCALE_RECORDING_TIME_HOURS), 
+	snprintf(dtime, sizeof(dtime), "(%d %s %02d %s)", h, h == 1 ? g_Locale->getText(LOCALE_RECORDING_TIME_HOUR) : g_Locale->getText(LOCALE_RECORDING_TIME_HOURS),
 							  m, g_Locale->getText(LOCALE_RECORDING_TIME_MIN));
 	str = stime + channel->getName() + ": " + GetEpgTitle() + ((err & REC_STATUS_OVERFLOW) ? "  [!] " : " ");
 	dur = dtime;
@@ -1607,7 +1607,7 @@ bool CRecordManager::RunStopScript(void)
 	return true;
 }
 
-/* 
+/*
  * if we not recording and standby mode -> wakeup zapit
  * check if we can record channel without zap
  * 	if no - change mode and zap
@@ -1660,7 +1660,7 @@ bool CRecordManager::CutBackNeutrino(const t_channel_id channel_id, CFrontend * 
 		if (frontend == NULL)
 			return false;
 
-		/* if allocateFE was successful, full zapTo_serviceID 
+		/* if allocateFE was successful, full zapTo_serviceID
 		 * needed, if record frontend same as live, and its on different TP */
 		bool found = (live_fe != frontend) || IS_WEBTV(live_channel_id) || SAME_TRANSPONDER(live_channel_id, channel_id);
 

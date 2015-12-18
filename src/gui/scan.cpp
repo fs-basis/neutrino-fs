@@ -326,7 +326,7 @@ int CScanTs::exec(CMenuTarget* /*parent*/, const std::string & actionKey)
 				istheend = true;
 				msg = CRCInput::RC_timeout;
 			}
-			
+
 			else if(msg == CRCInput::RC_home) {
 				if(manual && !scansettings.scan_nit_manual)
 					continue;

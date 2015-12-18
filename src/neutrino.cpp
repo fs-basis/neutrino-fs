@@ -4837,7 +4837,7 @@ void CNeutrinoApp::StartSubtitles(bool show)
 #if 0
 	if (mode == mode_webtv)
 		CMoviePlayerGui::getInstance(true).clearSubtitle(false);
-#endif 
+#endif
 }
 
 void CNeutrinoApp::SelectSubtitles()

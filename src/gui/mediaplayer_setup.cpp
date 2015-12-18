@@ -71,7 +71,7 @@ int CMediaPlayerSetup::exec(CMenuTarget* parent, const std::string & /*actionKey
 
 
 	res = showMediaPlayerSetup();
-	
+
 	return res;
 }
 

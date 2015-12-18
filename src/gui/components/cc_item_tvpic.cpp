@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -83,18 +83,18 @@ void CComponentsPIP::paint(bool do_save_bg)
 	int pig_y = (cc_parent ? cc_yr : y) + fr_thickness;
 	int pig_w = width-2*fr_thickness;
 	int pig_h = height-2*fr_thickness;
-	
+
 	paintInit(do_save_bg);
-	
+
 	if (videoDecoder->getAspectRatio() == 1){
 		int tmpw = pig_w;
 		pig_w -= pig_w*25/100;
-		pig_x += tmpw/2-pig_w/2; 
+		pig_x += tmpw/2-pig_w/2;
 	}
 
 	if (!cc_allow_paint)
 		return;
-	
+
 	int mode = CNeutrinoApp::getInstance()->getMode();
 	if(mode == NeutrinoMessages::mode_tv || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_ts) {
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE

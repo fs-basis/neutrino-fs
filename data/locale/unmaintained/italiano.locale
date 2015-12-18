@@ -2,9 +2,9 @@ AUDIOSelectMenue.head Selezione Audio
 EPGMenu.epgplus Lista Programmi
 EPGMenu.eventinfo Dettagli programma corrente
 EPGMenu.eventlist Lista programmi canale corrente
-EPGMenu.head EPG - Informazioni programmi (EPG Plus) 
+EPGMenu.head EPG - Informazioni programmi (EPG Plus)
 EPGMenu.streaminfo informazioni tecniche
-EPGPlus.actions Azioni 
+EPGPlus.actions Azioni
 EPGPlus.bybouquet_mode per bouquet
 EPGPlus.bypage_mode per pagina
 EPGPlus.head Informazioni programmi (EPG Plus)
@@ -141,7 +141,7 @@ audioplayer.keylevel Cambio-Tasti
 audioplayer.load_radio_stations Carica internet radio
 audioplayer.name Riproduttore audio
 audioplayer.pause Pausa
-audioplayer.play Play 
+audioplayer.play Play
 audioplayer.playing Brano attuale
 audioplayer.playlist_fileerror_msg Il file non puo essere creato:
 audioplayer.playlist_fileoverwrite_msg Vuoi sovrascrivere questo file:
@@ -227,7 +227,7 @@ colorthememenu.dblue_theme Nerazzurro
 colorthememenu.dvb2k_theme DVB2000
 colorthememenu.gray Gray Theme
 colorthememenu.head Seleziona
-colorthememenu.neutrino_theme Neutrino 
+colorthememenu.neutrino_theme Neutrino
 colorthememenu.red_theme Simply Red
 cpu.freq Frequenza Cpu
 cpu.freq_default Default
@@ -396,7 +396,7 @@ flashupdate.currentversiondate Data
 flashupdate.currentversiontime Orario
 flashupdate.erasefailed cancellazione fallita
 flashupdate.erasing cancellazione
-flashupdate.experimentalimage hai scelto un firmware sperimentale non testato 
+flashupdate.experimentalimage hai scelto un firmware sperimentale non testato
 flashupdate.expertfunctions funzioni avanzate
 flashupdate.fileis0bytes la dimensione del file e 0 Bytes
 flashupdate.fileselector Seleziona file
@@ -439,7 +439,7 @@ flashupdate.url_file configurazione
 flashupdate.versioncheck controlla versione
 flashupdate.writeflash Scrittura immagine completa
 flashupdate.writeflashmtd Scrittura singole parti
-flashupdate.wrongbase flashupdate.wrongbase Your Release cycle differs.\nContinuare? 
+flashupdate.wrongbase flashupdate.wrongbase Your Release cycle differs.\nContinuare?
 fontmenu.channellist Lista Canali
 fontmenu.epg Titolo EPG
 fontmenu.eventlist Lista programmi
@@ -686,10 +686,10 @@ moviebrowser.dir Path
 moviebrowser.dir_head Additional paths
 moviebrowser.edit_book Bookmark cambia
 moviebrowser.edit_book_name_info1 Inserisci nome nuovo Bookmark
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_name_info2 nome book info2
 moviebrowser.edit_book_pos_info1 Inserisci nuova Posizione (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Inserisci lunghezza nuovo salto (s)
 moviebrowser.edit_book_type_info2 <0 indetro , >0 avanti, 0: niente
 moviebrowser.edit_serie Inserisci nome serie
@@ -702,11 +702,11 @@ moviebrowser.head_filter Filtra video per categoria:
 moviebrowser.head_playlist Ultimo visto:
 moviebrowser.head_recordlist Ultimo registrato:
 moviebrowser.hide_series Nascondi serie
-moviebrowser.hint_jumpbackward Salta indietro di 5 s\n '0' per annullare 
-moviebrowser.hint_jumpforward Salta avanti di 5 s\n '0' per annullare 
-moviebrowser.hint_movieend Fine video di 5 s\n '0' per annullare 
-moviebrowser.hint_newbook_backward Nuovo salto indietro\n 'blue' per finire 
-moviebrowser.hint_newbook_forward Nuovo salto avanti\n 'blue' per finire 
+moviebrowser.hint_jumpbackward Salta indietro di 5 s\n '0' per annullare
+moviebrowser.hint_jumpforward Salta avanti di 5 s\n '0' per annullare
+moviebrowser.hint_movieend Fine video di 5 s\n '0' per annullare
+moviebrowser.hint_newbook_backward Nuovo salto indietro\n 'blue' per finire
+moviebrowser.hint_newbook_forward Nuovo salto avanti\n 'blue' per finire
 moviebrowser.info_audio Audio
 moviebrowser.info_channel Canale
 moviebrowser.info_filename Nome
@@ -722,7 +722,7 @@ moviebrowser.info_parental_lockage_12year 12 anni
 moviebrowser.info_parental_lockage_16year 16 anni
 moviebrowser.info_parental_lockage_18year 18 anni
 moviebrowser.info_parental_lockage_6year 6 anni
-moviebrowser.info_parental_lockage_always mai 
+moviebrowser.info_parental_lockage_always mai
 moviebrowser.info_path Path
 moviebrowser.info_prevplaydate Data ultimo Play
 moviebrowser.info_prodcountry Nazione
@@ -785,23 +785,23 @@ moviebrowser.use_rec_dir Usa directory registrazione
 movieplayer.bookmark Bookmarks
 movieplayer.bookmarkname Nome Bookmark
 movieplayer.bookmarkname_hint1 Inserire nome del nuovo bookmark
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.defplugin Start-Plugin
 movieplayer.fileplayback File play
 movieplayer.head Movieplayer
 movieplayer.toomanybookmarks Ci sono troppi bookmarks.\nDevi prima cancellarne altri.
-movieplayer.tshelp1 Stop 
-movieplayer.tshelp10 appross. 10 minuti indietro 
-movieplayer.tshelp11 salta appross. 10 minuti 
-movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n 
-movieplayer.tshelp2 Seleziona traccia audio 
-movieplayer.tshelp3 Pause/Continue 
-movieplayer.tshelp4 Crea bookmark 
-movieplayer.tshelp5 Motra progresso 
-movieplayer.tshelp6 appross 1 minuto indietro 
-movieplayer.tshelp7 salta appross 1 minuto 
-movieplayer.tshelp8 appross 5 minuti indietro 
-movieplayer.tshelp9 salta appross 5 minuti 
+movieplayer.tshelp1 Stop
+movieplayer.tshelp10 appross. 10 minuti indietro
+movieplayer.tshelp11 salta appross. 10 minuti
+movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n
+movieplayer.tshelp2 Seleziona traccia audio
+movieplayer.tshelp3 Pause/Continue
+movieplayer.tshelp4 Crea bookmark
+movieplayer.tshelp5 Motra progresso
+movieplayer.tshelp6 appross 1 minuto indietro
+movieplayer.tshelp7 salta appross 1 minuto
+movieplayer.tshelp8 appross 5 minuti indietro
+movieplayer.tshelp9 salta appross 5 minuti
 movieplayer.tsplayback Play TS
 mpkey.audio Traccia audio
 mpkey.bookmark salva segnalibro
@@ -830,7 +830,7 @@ networkmenu.ntptitle Syncronizzazione orario
 networkmenu.setupnow abilita Network adesso
 networkmenu.setuponstartup abilita Network all avvio
 networkmenu.show mostra impostazioni attive Network
-networkmenu.test controlla Network 
+networkmenu.test controlla Network
 neutrino_starting Avvio di Neutrino ...
 nfs.alreadymounted directory gia montata
 nfs.automount monta all avvio
@@ -1061,7 +1061,7 @@ timerlist.menunew Nuovo timer
 timerlist.message Messaggi
 timerlist.moderadio Canali radio
 timerlist.modeselect Modo di selezione
-timerlist.modetv Canali TV 
+timerlist.modetv Canali TV
 timerlist.modify Modifica
 timerlist.name lista Timer
 timerlist.new Nuovo timer
@@ -1087,9 +1087,9 @@ timerlist.repeat.unknown sconoscito
 timerlist.repeat.wednesday Mercoledi
 timerlist.repeat.weekdays ad inizio Settimana
 timerlist.repeat.weekly settimanalmente
-timerlist.repeatcount ripetizioni 
-timerlist.repeatcount.help1 totale ripetizioni 
-timerlist.repeatcount.help2 0 ripetizioni illimitate 
+timerlist.repeatcount ripetizioni
+timerlist.repeatcount.help1 totale ripetizioni
+timerlist.repeatcount.help2 0 ripetizioni illimitate
 timerlist.save Salva timer
 timerlist.standby Modalita standby
 timerlist.standby.off Disattiva standby

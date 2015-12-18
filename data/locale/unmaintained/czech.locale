@@ -35,7 +35,7 @@ GENRE.ARTS.9 nové média
 GENRE.CHILDRENs_PROGRAMMES.0 programy pro děti a mládež
 GENRE.CHILDRENs_PROGRAMMES.1 programy pro děti předškolního věku
 GENRE.CHILDRENs_PROGRAMMES.2 zábavné programy pro lidi ve věku 6 – 14 let
-GENRE.CHILDRENs_PROGRAMMES.3 zábavné programy pro lidi ve věku 10 – 16 let 
+GENRE.CHILDRENs_PROGRAMMES.3 zábavné programy pro lidi ve věku 10 – 16 let
 GENRE.CHILDRENs_PROGRAMMES.4 informační a naučné školní programy
 GENRE.CHILDRENs_PROGRAMMES.5 animované programy
 GENRE.DOCUS_MAGAZINES.0 dokumenty/magazíny
@@ -144,7 +144,7 @@ audioplayer.button_select_title_by_id hledej podle ID
 audioplayer.button_select_title_by_name hledej podle názvu
 audioplayer.defdir Výchozí adresář
 audioplayer.delete smaž
-audioplayer.deleteall smaž vše 
+audioplayer.deleteall smaž vše
 audioplayer.display_order Pořadí
 audioplayer.enable_sc_metadata Použij meta-data pro shoutcast
 audioplayer.fastforward přetoč dopředu
@@ -195,7 +195,7 @@ bouqueteditor.lock zamkni
 bouqueteditor.move přesuň
 bouqueteditor.name Úprava buketů
 bouqueteditor.newbouquetname Nový název buketu
-bouqueteditor.rename přejmenuj zpět 
+bouqueteditor.rename přejmenuj zpět
 bouqueteditor.savechanges? Uložení těchto změn?
 bouqueteditor.savingchanges Ukládám změny. Prosím čekej...
 bouqueteditor.switch přidej/odstraň
@@ -647,7 +647,7 @@ flashupdate.url_file Konfigurační soubor
 flashupdate.versioncheck Kontrola verze
 flashupdate.writeflash Zapsání celého IMAGE do paměti FLASH
 flashupdate.writeflashmtd Zapsání jedné oddílu
-flashupdate.wrongbase Vaše verze je odlišná. \nPokračovat? 
+flashupdate.wrongbase Vaše verze je odlišná. \nPokračovat?
 fontmenu.channellist Seznam kanálů
 fontmenu.epg EPG
 fontmenu.eventlist Programový průvodce
@@ -749,7 +749,7 @@ infoviewer.streaminfo Infodoplňky
 infoviewer.subchan_disp_pos Zobrazení podkanálů
 infoviewer.subchan_infobar Celé info
 infoviewer.subservice Doplňkové služby
-infoviewer.waittime Načítání hodin ... 
+infoviewer.waittime Načítání hodin ...
 ipsetup.hint_1 Použij 0. .. 9 nebo klávesy NAHORU / DOLŮ
 ipsetup.hint_2 OK = uložení, EXIT = zrušení
 keybindingmenu.RC Nastavení ovladače
@@ -884,7 +884,7 @@ mainsettings.savesettingsnow_hint Ukládání nastavení, \nProsím čekej ...
 mainsettings.timezone Časové pásmo
 mainsettings.video Obraz
 menu.back zpět
-menu.cancel zrušit 
+menu.cancel zrušit
 menu.hint_a_pic Nastavení přehrávače hudby a obrázkového prohlížeče
 menu.hint_aplay Přehrávač zvukových souborů
 menu.hint_aplay_setup Změna zobrazení titulu, předvolený adresář, spořič obrazovky a další
@@ -1369,7 +1369,7 @@ menu.hint_webtv_setup Tu nakonfigurované WebTV kanály budou k dispozici v stan
 menu.hint_window_size Seznam kanálů, EPG-Infp a něktoré jiné okna jsou zmenšené tímto faktorem
 menu.hint_ytplay Přehrání vybraných youtube videí
 menu.hint_ytplay_setup Konfigurace specifických voleb YouTube, napr. horní limit výsledů vyhledávání
-menu.hint_zap_cycle Při přepínání kanálů setrvat v aktuálním buketu 
+menu.hint_zap_cycle Při přepínání kanálů setrvat v aktuálním buketu
 menu.next níže (MENU ukončí)
 messagebox.back zpět
 messagebox.cancel zruš
@@ -1706,7 +1706,7 @@ mpkey.plugin Spusť doplněk
 mpkey.rewind Dozadu
 mpkey.stop Zastav
 mpkey.subtitle Titulky
-mpkey.time Zobrazení času 
+mpkey.time Zobrazení času
 networkmenu.apply_settings Změny se aplikují ...
 networkmenu.apply_settings_now Chcete nyní aplikovat změny?
 networkmenu.broadcast Vysílání
@@ -1843,7 +1843,7 @@ personalize.pinprotect Ano
 personalize.pinstatus vyžadují PIN
 personalize.plugins Doplňky
 personalize.usermenu_plugin_types Výběr Doplńku pro zobrazení
-personalize.usermenu_preferred_buttons Přiřazení preferovaných kláves 
+personalize.usermenu_preferred_buttons Přiřazení preferovaných kláves
 personalize.usermenu_show_cancel Zobrazit "Zrušit" kláves
 personalize.visible Viditelné
 pictureviewer.defdir Výchozí adresář
@@ -2015,7 +2015,7 @@ satsetup.usals_repeat Opakování USALS příkazu
 satsetup.use_bat Použití BAT
 satsetup.use_fta_flag Jen nekódované
 satsetup.use_nit Použití NIT
-satsetup.use_usals Použití USALS 
+satsetup.use_usals Použití USALS
 sc.empty Žádná karta ve čtečce
 sc.init_failed Chyba inicializace karty
 sc.init_ok Inicializace karty kompletní
@@ -2337,4 +2337,4 @@ zapitsetup.info Kanál při spuštění
 zapitsetup.last_radio Rádiový kanál
 zapitsetup.last_tv TV kanál
 zapitsetup.last_use Poslední sledovaný kanál
-zaptotimer.announce Minuta do změny kanálu. 
+zaptotimer.announce Minuta do změny kanálu.

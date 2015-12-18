@@ -76,7 +76,7 @@ class CNetworkConfig
 class CNetAdapter
 {
 	private:
-		long mac_addr_sys ( u_char *addr);	
+		long mac_addr_sys ( u_char *addr);
 	public:
 		std::string getMacAddr(void);
 };

@@ -3,11 +3,11 @@ EPGMenu.eventinfo Передачи канала подробно
 EPGMenu.eventlist Телегид канала
 EPGMenu.head Телегид-Информ
 EPGMenu.streaminfo техническая информация канала
-EPGPlus.actions Действия 
-EPGPlus.bybouquet_mode по пакетам 
-EPGPlus.bypage_mode по страницам 
+EPGPlus.actions Действия
+EPGPlus.bybouquet_mode по пакетам
+EPGPlus.bypage_mode по страницам
 EPGPlus.head Телегид по всем каналам (просмотр/обзор)
-EPGPlus.next_bouquet Пакет вперед 
+EPGPlus.next_bouquet Пакет вперед
 EPGPlus.options Опции
 EPGPlus.page_down вниз страница
 EPGPlus.page_up вверх страница
@@ -32,7 +32,7 @@ GENRE.ARTS.6 кино/фильм
 GENRE.ARTS.7 экспериментальное кино/видео
 GENRE.ARTS.8 трансляции/пресса
 GENRE.ARTS.9 новые течения
-GENRE.CHILDRENs_PROGRAMMES.0 дети/передачи для детей  
+GENRE.CHILDRENs_PROGRAMMES.0 дети/передачи для детей
 GENRE.CHILDRENs_PROGRAMMES.1 программа для дошкольников
 GENRE.CHILDRENs_PROGRAMMES.2 развлекательная программа от 6 до 14
 GENRE.CHILDRENs_PROGRAMMES.3 развлекательная программа от 10 до 16
@@ -77,7 +77,7 @@ GENRE.SOCIAL_POLITICAL.2 экономика/общественные консу�
 GENRE.SOCIAL_POLITICAL.3 замечательные люди
 GENRE.SPORTS.0 спорт
 GENRE.SPORTS.1 специальные (Олимпийские игры, Мировые чемпионаты и т.д.)
-GENRE.SPORTS.10 конный спорт 
+GENRE.SPORTS.10 конный спорт
 GENRE.SPORTS.11 военный спорт
 GENRE.SPORTS.2 спортивные журналы
 GENRE.SPORTS.3 футбол
@@ -98,7 +98,7 @@ GENRE.TRAVEL_HOBBIES.7 садоводство
 GENRE.UNKNOWN определить нельзя
 apids.hint_1 Введите APIDs потока
 apids.hint_2 в hex, разделяйте ' '
-apidselector.head Выбор языка 
+apidselector.head Выбор языка
 audiomenu.PCMOffset Уменьшение громкости PCM
 audiomenu.analogout Аналоговый выход
 audiomenu.avs avs
@@ -117,7 +117,7 @@ audioplayer.deleteall Удалить все
 audioplayer.display_order Порядок сортировки
 audioplayer.enable_sc_metadata enable shoutcast meta data parsing
 audioplayer.fastforward Вперед
-audioplayer.follow Выбор текущей 
+audioplayer.follow Выбор текущей
 audioplayer.head Аудио-плейлист
 audioplayer.highprio Задать высокий приоритет
 audioplayer.id3scan Сканировать ID3-теги
@@ -127,11 +127,11 @@ audioplayer.jump_dialog_hint2 (в секундах)
 audioplayer.jump_dialog_title Выбор направление отката
 audioplayer.jump_forwards Шаг вперёд
 audioplayer.keylevel Другие кнопки управления
-audioplayer.name Аудиоплеер 
+audioplayer.name Аудиоплеер
 audioplayer.pause Пауза
 audioplayer.play Играть
 audioplayer.playing Выбранный трек
-audioplayer.playlist_fileerror_msg Файл создать не удалось: 
+audioplayer.playlist_fileerror_msg Файл создать не удалось:
 audioplayer.playlist_fileerror_title Ошибочка
 audioplayer.playlist_fileoverwrite_msg Этот файл будет перезаписан:
 audioplayer.playlist_fileoverwrite_title Перезаписать?
@@ -388,8 +388,8 @@ flashupdate.globalprogress Общий прогресс:
 flashupdate.head Обновление софта
 flashupdate.md5check проверка прошивки
 flashupdate.md5sumerror прошивка без ошибок
-flashupdate.msgbox Найдена следующая новая прошивка:\nДата: %s, %s\nбазовый имидж: %s\nтип имиджа: %s\n\nХотите загрузить и установить эту версию сейчас? 
-flashupdate.msgbox_manual Найден новый файл:\nДата: %s, %s\nБазовый имидж: %s\nТип: %s\n\n Хотите загрузить и установить эту версию сейчас? 
+flashupdate.msgbox Найдена следующая новая прошивка:\nДата: %s, %s\nбазовый имидж: %s\nтип имиджа: %s\n\nХотите загрузить и установить эту версию сейчас?
+flashupdate.msgbox_manual Найден новый файл:\nДата: %s, %s\nБазовый имидж: %s\nТип: %s\n\n Хотите загрузить и установить эту версию сейчас?
 flashupdate.mtdselector Выбор раздела
 flashupdate.programmingflash программирование флешь
 flashupdate.proxypassword Пароль
@@ -518,7 +518,7 @@ lcdmenu.head ЖК Настройки
 lcdmenu.lcdcontroler Контрастность / Яркость
 lcdmenu.statusline В строке статуса
 lcdmenu.statusline.both громкость / время
-lcdmenu.statusline.playtime время 
+lcdmenu.statusline.playtime время
 lcdmenu.statusline.volume громкость
 mainmenu.audioplayer Аудиоплеер
 mainmenu.games Игры
@@ -589,9 +589,9 @@ moviebrowser.dir Path
 moviebrowser.dir_head Additional paths
 moviebrowser.edit_book Bookmark change
 moviebrowser.edit_book_name_info1 Enter new Bookmark name
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_pos_info1 Enter new Position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Enter new jump length (s)
 moviebrowser.edit_book_type_info2 <0 back , >0 for, 0: none
 moviebrowser.edit_serie Enter name of serie
@@ -604,11 +604,11 @@ moviebrowser.head_filter Filter movies by category:
 moviebrowser.head_playlist Last played:
 moviebrowser.head_recordlist Last recorded:
 moviebrowser.hide_series Hide series
-moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel 
-moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel 
-moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen 
-moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition 
-moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition 
+moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel
+moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel
+moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen
+moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition
+moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition
 moviebrowser.info_audio Audio
 moviebrowser.info_channel Channel
 moviebrowser.info_filename Name
@@ -625,7 +625,7 @@ moviebrowser.info_parental_lockage_12year 12 years
 moviebrowser.info_parental_lockage_16year 16 years
 moviebrowser.info_parental_lockage_18year 18 years
 moviebrowser.info_parental_lockage_6year 6 years
-moviebrowser.info_parental_lockage_always never 
+moviebrowser.info_parental_lockage_always never
 moviebrowser.info_path Path
 moviebrowser.info_prevplaydate Last play date
 moviebrowser.info_prodcountry Country
@@ -696,17 +696,17 @@ movieplayer.defplugin Старт плагина
 movieplayer.fileplayback Просмотр файлов (VLC)
 movieplayer.head Видеоплеер
 movieplayer.toomanybookmarks Слишком много закладок.\n Удалите одну из уже существующих.
-movieplayer.tshelp1 стоп 
-movieplayer.tshelp10 назад на 10 мин. 
+movieplayer.tshelp1 стоп
+movieplayer.tshelp10 назад на 10 мин.
 movieplayer.tshelp11 вперед на 10 мин.
-movieplayer.tshelp12 подробнее смотри на http://www.giggo.de/dbox2/movieplayer.html\n 
+movieplayer.tshelp12 подробнее смотри на http://www.giggo.de/dbox2/movieplayer.html\n
 movieplayer.tshelp2 выбор звук.дорожки
 movieplayer.tshelp3 пауза/продолжить
-movieplayer.tshelp4 добавить закладку 
+movieplayer.tshelp4 добавить закладку
 movieplayer.tshelp5 общее время
-movieplayer.tshelp6 назад на 1 мин. 
+movieplayer.tshelp6 назад на 1 мин.
 movieplayer.tshelp7 вперед на 1 мин.
-movieplayer.tshelp8 назад на 5 мин. 
+movieplayer.tshelp8 назад на 5 мин.
 movieplayer.tshelp9 вперед на 5 мин.
 movieplayer.tsplayback Просмотр TS-файлов
 mpkey.audio Audio track
@@ -819,7 +819,7 @@ pinprotection.head Введите PIN-код
 pinprotection.wrongcode Неверный PIN-код! Повторите ввод.
 plugins.result вывод плагина
 rclock.lockmsg Ваш пульт управления заблокирован.\n Для разблокирования, нажмите <КРАСНУЮ> \n и <DREAM> на вашем пульте управления.
-rclock.menueadd Заблокировать Пульт управления 
+rclock.menueadd Заблокировать Пульт управления
 rclock.title Заблокировать Пульт управления
 rclock.unlockmsg Пульт управления активирован.
 recordingmenu.apids default audio streams
@@ -957,8 +957,8 @@ timerlist.repeat.unknown Хрен знает что
 timerlist.repeat.wednesday Срд
 timerlist.repeat.weekdays по дням недели
 timerlist.repeat.weekly еженедельно
-timerlist.repeatcount повторы 
-timerlist.repeatcount.help1 число повторов 
+timerlist.repeatcount повторы
+timerlist.repeatcount.help1 число повторов
 timerlist.repeatcount.help2 0 - повтор навсегда
 timerlist.save Сохранить таймер
 timerlist.standby Тип включения

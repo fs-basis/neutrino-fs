@@ -42,7 +42,7 @@
 #include <string>
 
 class COsdSetup : public CMenuTarget, public CChangeObserver
-{	
+{
 	private:
 		CFrameBuffer *frameBuffer;
 		CColorSetupNotifier *colorSetupNotifier;
@@ -83,9 +83,9 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 		void paintWindowSize(int w, int h);
 
  		void AddFontSettingItem(CMenuWidget &font_Settings, const SNeutrinoSettings::FONT_TYPES number_of_fontsize_entry);
- 
+
 	public:
-		enum INFOBAR_CHANNEL_LOGO_POS_OPTIONS	
+		enum INFOBAR_CHANNEL_LOGO_POS_OPTIONS
 		{
 			INFOBAR_NO_LOGO,
 			INFOBAR_LOGO_AS_CHANNELLUM,
@@ -93,13 +93,13 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 			INFOBAR_LOGO_BESIDE_CHANNELNAME
 		};
 
-		enum INFOBAR_CHANNEL_LOGO_BACKROUND_OPTIONS	
+		enum INFOBAR_CHANNEL_LOGO_BACKROUND_OPTIONS
 		{
 			INFOBAR_NO_BACKGROUND,
 			INFOBAR_LOGO_FRAMED,
 			INFOBAR_LOGO_SHADED
 		};
-		
+
 		COsdSetup(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
 		~COsdSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);

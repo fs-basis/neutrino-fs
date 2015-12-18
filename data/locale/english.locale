@@ -125,7 +125,7 @@ audiomenu.auto_subs Auto select subtitles
 audiomenu.avs avs
 audiomenu.avsync A/V sync
 audiomenu.avsync_am Audio master
-audiomenu.clockrec 
+audiomenu.clockrec
 audiomenu.dolbydigital Prefer Dolby Digital (AC-3)
 audiomenu.hdmi_dd Encoded DD on HDMI
 audiomenu.hdmi_dd_auto auto
@@ -552,7 +552,7 @@ extra.west West
 extra.zap_cycle Zap cycle
 extra.zapit_fe_retries Tune retries
 extra.zapit_fe_timeout Tune timeout
-extra.zapit_hvoltage 18V for rotor moving 
+extra.zapit_hvoltage 18V for rotor moving
 extra.zapit_make_bouquet Make Remaining Channels list
 extra.zapit_motor_speed Motor moving speed
 extra.zapit_scanpids Scan/Use pids
@@ -1313,7 +1313,7 @@ menu.hint_reset Reset Neutrino GUI settings to defaults\nTuner config and channe
 menu.hint_restart_tuner Restart the internal tuner. This may help if you're experiencing reception problems
 menu.hint_restore Restore files from selected backup
 menu.hint_rotor_swap Swap rotor east/west directions\nin motor control
-menu.hint_rounded_corners Draw round or rectangular windows corners 
+menu.hint_rounded_corners Draw round or rectangular windows corners
 menu.hint_save_settings Save all settings to flash
 menu.hint_saveas Save Neutrino GUI settings to file
 menu.hint_scan_auto Auto-scan selected provider
@@ -1439,7 +1439,7 @@ menu.hint_tvmode Switch box to TV mode
 menu.hint_tvradio_switch Switches between TV and Radio mode
 menu.hint_upnp Access UPNP servers available in your local network
 menu.hint_vfd Frontpanel LEDs, VFD options
-menu.hint_vfd_brightness Working brightness 
+menu.hint_vfd_brightness Working brightness
 menu.hint_vfd_brightness_setup Configure frontpanel display brightness\nfor different modes
 menu.hint_vfd_brightnessdeepstandby Brightness in deep-standby mode
 menu.hint_vfd_brightnessdim Auto-dim brightness
@@ -1462,7 +1462,7 @@ menu.hint_video_format TV aspect ratio
 menu.hint_video_mask Define a channel-specific border to hide unwanted screen content
 menu.hint_video_mixer_color This color will be used for the background if there is no signal available.
 menu.hint_video_mode HDMI output video mode
-menu.hint_video_modes VF key will cycle between enabled modes 
+menu.hint_video_modes VF key will cycle between enabled modes
 menu.hint_video_modes_auto Enable modes to auto-select based on content
 menu.hint_video_pip Picture in picture size and position
 menu.hint_video_scart_mode Select analog output mode for SCART connectors
@@ -1653,7 +1653,7 @@ moviebrowser.edit_book Bookmark change
 moviebrowser.edit_book_name_info1 Enter new Bookmark name
 moviebrowser.edit_book_name_info2 book name info2
 moviebrowser.edit_book_pos_info1 Enter new Position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Enter new jump length (s)
 moviebrowser.edit_book_type_info2 <0 back , >0 for, 0: none
 moviebrowser.edit_serie Enter name of serie
@@ -1679,15 +1679,15 @@ moviebrowser.help_button_red Change sort
 moviebrowser.help_button_right Change view
 moviebrowser.help_button_yellow Switch active window
 moviebrowser.hide_series Hide series
-moviebrowser.hint_copy_onefile 
-moviebrowser.hint_copy_several 
-moviebrowser.hint_cut 
+moviebrowser.hint_copy_onefile
+moviebrowser.hint_copy_several
+moviebrowser.hint_cut
 moviebrowser.hint_jumpbackward Jump back in 5 seconds\n'0' to cancel
 moviebrowser.hint_jumpforward Jump forward in 5 seconds\n'0' to cancel
 moviebrowser.hint_movieend Film end in 5 seconds\n'0' to cancel
 moviebrowser.hint_newbook_backward New jump back started\n'%s' to define endposition, '0' to cancel
 moviebrowser.hint_newbook_forward New jump forward started\n'%s' to define endposition, '0' to cancel
-moviebrowser.hint_truncate 
+moviebrowser.hint_truncate
 moviebrowser.info_audio Audio
 moviebrowser.info_channel Channel
 moviebrowser.info_file File
@@ -1779,7 +1779,7 @@ moviecut.cancel Cancel movie editing?
 movieplayer.bookmark Bookmarks
 movieplayer.bookmarkname Bookmarkname
 movieplayer.bookmarkname_hint1 Enter a name for your new bookmark
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.chapters Chapters
 movieplayer.defplugin Start-Plugin
 movieplayer.fileplayback File play

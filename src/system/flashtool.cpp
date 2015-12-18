@@ -405,7 +405,7 @@ bool CFlashTool::erase(int globalProgressEnd)
 	close(fd);
 	return true;
 }
-#if 0 
+#if 0
 //never used
 bool CFlashTool::check_cramfs( const std::string & /*filename*/ )
 {

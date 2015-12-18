@@ -167,7 +167,7 @@ int CNetworkServiceSetup::showNetworkServiceSetup()
 
 	//set active when found
 	bool active;
-		
+
 	for(unsigned i = 0; i < SERVICE_COUNT; i++) {
 		items[i] = new CNetworkService(services[i].cmd, services[i].options);
 		services[i].enabled = items[i]->Enabled();
@@ -178,10 +178,10 @@ int CNetworkServiceSetup::showNetworkServiceSetup()
 		active = false;
 		if ( !(access(execute1, F_OK)) || !(access(execute2, F_OK)) )
 			active = true;
-			
+
 		if ( (services[i].name == "Telnet") && useinetd)
 			active = false;
-		
+
 		CMenuOptionChooser * mc = new CMenuOptionChooser(services[i].name.c_str(), &services[i].enabled, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, active, items[i], CRCInput::convertDigitToKey(shortcut++), "");
 
 		mc->setHint(services[i].icon, services[i].hint);

@@ -67,7 +67,7 @@ GENRE.NEWS.0 uutiset
 GENRE.NEWS.1 uutiset / sääennuste
 GENRE.NEWS.2 ajankohtaisohjelma
 GENRE.NEWS.3 dokumentti
-GENRE.NEWS.4 keskustelu / haastattelu 
+GENRE.NEWS.4 keskustelu / haastattelu
 GENRE.SHOW.0 viihde / visailu
 GENRE.SHOW.1 visailu
 GENRE.SHOW.2 viihdeohjelma
@@ -313,7 +313,7 @@ flashupdate.titlewriteflash Flash-muistin kirjoitus
 flashupdate.updatemode Päivitystapa
 flashupdate.updatemode_internet Internet
 flashupdate.updatemode_manual Manuaalinen
-flashupdate.url_file Päivitysasetukset 
+flashupdate.url_file Päivitysasetukset
 flashupdate.versioncheck Version tarkastus
 flashupdate.writeflash Kirjoita koko flash-muisti
 flashupdate.writeflashmtd Kirjoita yksi osio
@@ -349,8 +349,8 @@ fontsize.infobar_small Pieni
 fontsize.menu Valikkoteksti
 fontsize.menu_info Valikkotiedot
 fontsize.menu_title Valikko-otsikko
-gtxalpha.alpha1 Otsikko 
-gtxalpha.alpha2 Valikko 
+gtxalpha.alpha1 Otsikko
+gtxalpha.alpha2 Valikko
 imageinfo.creator Koonnut:
 imageinfo.date Päiväys:
 imageinfo.dokumentation Ohjeet:
@@ -497,9 +497,9 @@ moviebrowser.book_type_backward Repeat
 moviebrowser.book_type_forward jump over
 moviebrowser.edit_book Bookmark change
 moviebrowser.edit_book_name_info1 Enter new Bookmark name
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_pos_info1 Enter new Position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Enter new jump length (s)
 moviebrowser.edit_book_type_info2 <0 back , >0 for, 0: none
 moviebrowser.edit_serie Enter name of serie
@@ -511,11 +511,11 @@ moviebrowser.head TS MovieBrowser
 moviebrowser.head_filter Filter movies by category:
 moviebrowser.head_playlist Last played:
 moviebrowser.head_recordlist Last recorded:
-moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel 
-moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel 
-moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen 
-moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition 
-moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition 
+moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel
+moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel
+moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen
+moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition
+moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition
 moviebrowser.info_audio Audio
 moviebrowser.info_channel Channel
 moviebrowser.info_filename Name
@@ -531,7 +531,7 @@ moviebrowser.info_parental_lockage_12year 12 years
 moviebrowser.info_parental_lockage_16year 16 years
 moviebrowser.info_parental_lockage_18year 18 years
 moviebrowser.info_parental_lockage_6year 6 years
-moviebrowser.info_parental_lockage_always never 
+moviebrowser.info_parental_lockage_always never
 moviebrowser.info_path Path
 moviebrowser.info_prevplaydate Last play date
 moviebrowser.info_prodcountry Country
@@ -584,7 +584,7 @@ moviebrowser.start_record_start Movie start
 movieplayer.bookmark Kirjanmerkit
 movieplayer.bookmarkname Kirjanmerkki
 movieplayer.bookmarkname_hint1 Syötä nimi uudelle kirjanmerkille
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.defplugin Oletuslaajennos
 movieplayer.fileplayback Toisto VLC:n kautta
 movieplayer.head Mediasoitin

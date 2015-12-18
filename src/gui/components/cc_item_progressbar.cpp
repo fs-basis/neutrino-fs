@@ -458,7 +458,7 @@ void CProgressBar::paintProgress(bool do_save_bg)
 
 	//body
 	if (pb_last_width == -1 && col_body != 0) /* first paint */
-		paintInit(do_save_bg); 
+		paintInit(do_save_bg);
 
 	//progress
 	bool pb_invert = (pb_type == PB_REDRIGHT) || ((pb_type == PB_TIMESCALE) && g_settings.progressbar_timescale_invert);

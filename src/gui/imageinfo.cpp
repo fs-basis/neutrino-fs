@@ -64,7 +64,7 @@ void CImageInfo::Init(void)
 	item_offset	= 10;
 	item_font 	= g_Font[SNeutrinoSettings::FONT_TYPE_MENU];
 	item_height 	= item_font->getHeight();
-	
+
 	license_txt	= "";
 	v_info.clear();
 	config.loadConfig("/.version");
@@ -122,7 +122,7 @@ int CImageInfo::exec(CMenuTarget* parent, const std::string &)
 		}
 		else if (msg == CRCInput::RC_red){
 			// init temporarly vars
-			neutrino_locale_t info_cap , new_btn_cap; 
+			neutrino_locale_t info_cap , new_btn_cap;
 			info_cap = new_btn_cap = NONEXISTANT_LOCALE;
 			string info_txt = "";
 			neutrino_locale_t btn_cap = btn_red->getCaptionLocale();
@@ -142,12 +142,12 @@ int CImageInfo::exec(CMenuTarget* parent, const std::string &)
 				info_txt = getLicenseText();
 				new_btn_cap = LOCALE_BUILDINFO_MENU;
 			}
-			
+
 			//assign new caption and info contents
 			cc_sub_caption->setText(info_cap, CTextBox::AUTO_WIDTH, item_font);
 			InitInfoText(info_txt);
 			btn_red->setCaption(new_btn_cap);
-			
+
 			//paint items
 			cc_sub_caption->paint(false);
 			cc_lic->paint(false);
@@ -176,7 +176,7 @@ int CImageInfo::exec(CMenuTarget* parent, const std::string &)
 
 	hide();
 	frameBuffer->blit();
-	
+
 	return res;
 }
 
@@ -215,7 +215,7 @@ void CImageInfo::InitMinitv()
 	//init the minitv object
 	if (cc_tv == NULL)
 		cc_tv = new CComponentsPIP (0, item_offset);
-	
+
 #if 0 //static assign of dimensions are distorting ratio of mini tv picture
 	//init width and height
 	cc_tv->setWidth(cc_win->getWidth()/3);
@@ -301,15 +301,15 @@ void CImageInfo::InitInfos()
 		cc_info = new CComponentsForm();
 	if (!cc_info->isAdded())
 		cc_win->addWindowItem(cc_info);
-	
+
 	cc_info->setPos(item_offset, item_offset);
-	
+
 	//set width, use size between left border and minitv
 	cc_info->setWidth(cc_win->getWidth() - cc_tv->getWidth() - 2*item_offset);
-	
+
 	//calculate initial height for info form
 	cc_info->setHeight(v_info.size()*item_height);
-	
+
 	//create label and text items
 	for (size_t i=0; i<v_info.size(); i++) {
 		CComponentsExtTextForm *item = new CComponentsExtTextForm(1, CC_APPEND, cc_info->getWidth(), item_height, g_Locale->getText(v_info[i].caption), v_info[i].info_text);
@@ -367,7 +367,7 @@ void CImageInfo::InitInfoText(const std::string& text)
 	Font * caption_font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU];
 	int caption_height = caption_font->getHeight();
 	if (cc_sub_caption == NULL)
-		cc_sub_caption = new CComponentsLabel(cc_info->getXPos(), CC_APPEND, cc_info->getWidth(), caption_height, 
+		cc_sub_caption = new CComponentsLabel(cc_info->getXPos(), CC_APPEND, cc_info->getWidth(), caption_height,
 						     g_Locale->getText(LOCALE_IMAGEINFO_LICENSE), CTextBox::AUTO_WIDTH, item_font);
 	if (!cc_sub_caption->isAdded())
 		cc_win->addWindowItem(cc_sub_caption);

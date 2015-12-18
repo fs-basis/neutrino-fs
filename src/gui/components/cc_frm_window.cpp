@@ -141,7 +141,7 @@ void CComponentsWindow::initVarWindow(	const int& x_pos, const int& y_pos, const
 
 	ccw_head 	= NULL;
 	ccw_left_sidebar= NULL;
-	ccw_right_sidebar= NULL;	
+	ccw_right_sidebar= NULL;
 	ccw_body	= NULL;
 	ccw_footer	= NULL;
 
@@ -280,7 +280,7 @@ void CComponentsWindow::initBody()
 		int h_body = height - h_header - h_footer - 2*fr_thickness;
 		int x_body = w_l_sidebar;
 		int w_body = width-2*fr_thickness - w_l_sidebar - w_r_sidebar;
-		
+
 		ccw_body->setDimensionsAll(x_body, CC_APPEND, w_body, h_body);
 		ccw_body->doPaintBg(false);
 	}
@@ -309,7 +309,7 @@ void CComponentsWindow::initCCWItems()
 			ccw_footer = NULL;
 		}
 	}
-	
+
 	//add/remove left sidebar
 	if (ccw_show_l_sideber){
 		initLeftSideBar();
@@ -394,7 +394,7 @@ void CComponentsWindow::enablePageScroll(const int& mode)
 
 void CComponentsWindow::paintCurPage(bool do_save_bg)
 {
-	if (is_painted) //ensure that we have painted already the parent form before paint body 
+	if (is_painted) //ensure that we have painted already the parent form before paint body
 		ccw_body->paint(do_save_bg);
 	else
 		paint(do_save_bg);

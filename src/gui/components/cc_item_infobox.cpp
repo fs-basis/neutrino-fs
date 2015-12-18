@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -118,7 +118,7 @@ void CComponentsInfoBox::paintPicture()
 
 	//paint, but set visibility mode
 	pic->allowPaint(cc_allow_paint);
-	pic->paint(CC_SAVE_SCREEN_NO);	
+	pic->paint(CC_SAVE_SCREEN_NO);
 }
 
 void CComponentsInfoBox::paint(bool do_save_bg)

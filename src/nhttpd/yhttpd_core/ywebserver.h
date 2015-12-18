@@ -1,6 +1,6 @@
 //=============================================================================
 // YHTTPD
-// Webserver Class : Until now: exact one instance 
+// Webserver Class : Until now: exact one instance
 //-----------------------------------------------------------------------------
 // The Webserver Class creates one "master" Listener Socket on given Port.
 // If a Connection is accepted, a new Socket ist used. The Webserver creates
@@ -64,7 +64,7 @@ protected:
 	void 		SL_CloseSocketBySlot(int slot);		// Close socket by slot index
 	int 		SL_GetExistingSocket(SOCKET sock);	// look for socket reuse
 	int 		SL_GetFreeSlot();			// get free slot
-	
+
 
 public:
 	static bool 	is_threading;				// Use Threading for new Connections
@@ -80,10 +80,10 @@ public:
 				{conf_no_keep_alive_ips=_conf_no_keep_alive_ips;}
 	bool 		run(void);				// Start the Webserver
 	void 		stop(void)				// Stop the Webserver
-				{terminate=true;}; 
+				{terminate=true;};
 
 	// public for WebTread
-	void 		clear_Thread_List_Number(int number);	// Set Entry(number)to NULL in Threadlist 
+	void 		clear_Thread_List_Number(int number);	// Set Entry(number)to NULL in Threadlist
 	void		addSocketToMasterSet(SOCKET fd); 	// add Socket to select master set
 	bool		CheckKeepAliveAllowedByIP(std::string client_ip); // Check if IP is allowed for keep-alive
 };

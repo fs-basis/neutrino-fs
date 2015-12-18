@@ -64,7 +64,7 @@ class CBEChannelSelectWidget : public CListBox
 
 		int	footerHeight;
 		int	info_height;
-		
+
 		std::string getInfoText(int index);
 	public:
 		ZapitChannelList Channels;

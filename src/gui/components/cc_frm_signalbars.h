@@ -280,7 +280,7 @@ class CSignalBox : public CComponentsForm
 		void setTextColor(const fb_pixel_t& caption_color){ sbx_caption_color = caption_color;};
 		///get caption color of signalbars, see also property 'sbx_caption_color'
 		fb_pixel_t getTextColor(){return sbx_caption_color;};
-		
+
 		///paint items
 		void paint(bool do_save_bg);
 
@@ -289,7 +289,7 @@ class CSignalBox : public CComponentsForm
 
 		///return current snr value
 		uint16_t getSNRValue(void) { return snrbar->getValue();}
-		
+
 		///return current snr value
 };
 

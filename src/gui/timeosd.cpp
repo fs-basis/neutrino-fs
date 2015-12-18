@@ -6,7 +6,7 @@
 	Copyright (C) 2013, Thilo Graf 'dbt'
 	Copyright (C) 2013, Michael Liebmann 'micha-bbg'
 	Copyright (C) 2013, martii
-	
+
 	License: GPL
 
 	This program is free software; you can redistribute it and/or

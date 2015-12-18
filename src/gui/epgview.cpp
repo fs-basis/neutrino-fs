@@ -799,7 +799,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t* a_start
 						g_settings.wzap_time-=5;
 					else
 						g_settings.wzap_time--;
-					  
+
 					if(g_settings.wzap_time<0)
 						g_settings.wzap_time = 60;
 					showTimerEventBar(true, true);
@@ -911,7 +911,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t* a_start
 				break;
 			}
 			case CRCInput::RC_blue:
-			{	
+			{
 				if(!followlist.empty() && !call_fromfollowlist){
 					hide();
 					time_t tmp_sZeit  = epgData.epg_times.startzeit;

@@ -21,7 +21,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  */
- 
+
 #include <driver/fontrenderer.h>
 #include <driver/framebuffer.h>
 #include <system/localize.h>
@@ -45,31 +45,31 @@ struct button_label_ext
 };
 
 int paintButtons(	const button_label * const content,
-			const int &count, 
-			const int &x, 
-			const int &y, 
+			const int &count,
+			const int &x,
+			const int &y,
 			const int &footerheight,
-			const int &footerwidth, 
+			const int &footerwidth,
 			const int &maxwidth,
 			bool show = true,
 			int *wantedwidth = NULL,
 			int *wantedheight = NULL);
 
 int paintButtons(	const button_label_ext * const content,
-			const int &count, 
-			const int &x, 
-			const int &y, 
+			const int &count,
+			const int &x,
+			const int &y,
 			const int &footerheight,
-			const int &footerwidth, 
+			const int &footerwidth,
 			const int &maxwidth,
 			bool show = true,
 			int *wantedwidth = NULL,
 			int *wantedheight = NULL);
 
-int paintButtons(	const int &x, 
-			const int &y, 
-			const int &footerwidth, 
-			const int &count, 
+int paintButtons(	const int &x,
+			const int &y,
+			const int &footerwidth,
+			const int &count,
 			const button_label * const content,
 			const int &maxwidth,
 			const int &footerheight = 0);

@@ -1,5 +1,5 @@
 /*
-        $Header$        
+        $Header$
 
 	LCD-Daemon  -   DBoxII-Project
 
@@ -19,7 +19,7 @@
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
- 
+
 	You should have received a copy of the GNU General Public License
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
@@ -106,7 +106,7 @@ FT_Error LcdFontRenderClass::FTC_Face_Requester(FTC_FaceID  face_id,
 		return error;
 	}
 	return 0;
-}                                                                                                                                
+}
 
 FTC_FaceID LcdFontRenderClass::getFaceID(const char *family, const char *style)
 {
@@ -187,7 +187,7 @@ extern int UTF8ToUnicode(const char * &text, const bool utf8_encoded); // return
 #if 0
 {
 	int unicode_value;
-	
+
 	if (utf8_encoded && ((((unsigned char)(*text)) & 0x80) != 0))
 	{
 		int remaining_unicode_length;
@@ -208,7 +208,7 @@ extern int UTF8ToUnicode(const char * &text, const bool utf8_encoded); // return
 		}
 		else                     // cf.: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 			return -1;       // corrupted character or a character with > 4 bytes utf-8 representation
-		
+
 		for (int i = 0; i < remaining_unicode_length; i++)
 		{
 			text++;
@@ -243,7 +243,7 @@ void LcdFont::RenderString(int x, int y, const int width, const char * text, con
 	scaler.pixel   = true;
 
 	if ((err = FTC_Manager_LookupSize(renderer->cacheManager, &scaler, &size)) != 0)
-	{ 
+	{
 		printf("FTC_Manager_Lookup_Size failed! (%d)\n",err);
 		pthread_mutex_unlock(&renderer->render_mutex);
 		return;
@@ -280,14 +280,14 @@ void LcdFont::RenderString(int x, int y, const int width, const char * text, con
 		  printf("failed to get glyph bitmap.\n");
 		  continue;
 		}
-    
+
 		int rx=x+glyph->left;
 		int ry=y-glyph->top;
 		if(pos==selected)
 		{
 			framebuffer->draw_fill_rect(x-2,y-glyph->height-2, x+glyph->width+2, y+2, CLCDDisplay::PIXEL_INV );
 		}
-		
+
 		for (int ay=0; ay<glyph->height; ay++)
 		{
 			int ax=0;
@@ -320,7 +320,7 @@ int LcdFont::getRenderWidth(const char * text, const bool utf8_encoded)
 
 	err = FTC_Manager_LookupSize(renderer->cacheManager, &scaler, &size);
 	if (err != 0)
-	{ 
+	{
 		printf("FTC_Manager_Lookup_Size failed! (0x%x)\n", err);
 		pthread_mutex_unlock(&renderer->render_mutex);
 		return -1;
@@ -344,7 +344,7 @@ int LcdFont::getRenderWidth(const char * text, const bool utf8_encoded)
 			printf("failed to get glyph bitmap.\n");
 			continue;
 		}
-    
+
 		x+=glyph->xadvance+1;
 	}
 	pthread_mutex_unlock(&renderer->render_mutex);

@@ -44,7 +44,7 @@ class CDVBString
 	std::string content;
 
 	unsigned int add_character(const unsigned char character, const unsigned char next_character);
-	
+
  public:
 	CDVBString(const char * the_content, const int size);
 

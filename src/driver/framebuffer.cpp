@@ -560,7 +560,7 @@ int CFrameBuffer::setMode(unsigned int /*nxRes*/, unsigned int /*nyRes*/, unsign
 	}
 	return 0;
 }
-#if 0 
+#if 0
 //never used
 void CFrameBuffer::setTransparency( int /*tr*/ )
 {
@@ -591,7 +591,7 @@ void CFrameBuffer::setBlendLevel(int level)
 #endif
 }
 
-#if 0 
+#if 0
 //never used
 void CFrameBuffer::setAlphaFade(int in, int num, int tr)
 {
@@ -829,7 +829,7 @@ void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int
 				if (dx-ofr-ofl == 0)
 					printf("[%s - %d]: radius %d, start x %d y %d end x %d y %d\n", __FUNCTION__, __LINE__, radius, x, y, x+dx-ofr-ofl, y+line);
 				else
-					printf("[%s - %04d]: Calculated width: %d\n                      (radius %d, dx %d, offsetLeft %d, offsetRight %d).\n                      Width can not be less than 0, abort.\n", 
+					printf("[%s - %04d]: Calculated width: %d\n                      (radius %d, dx %d, offsetLeft %d, offsetRight %d).\n                      Width can not be less than 0, abort.\n",
 						__FUNCTION__, __LINE__, dx-ofr-ofl, radius, dx, ofl, ofr);
 				line++;
 				continue;
@@ -1474,7 +1474,7 @@ void CFrameBuffer::paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t co
 		}
 	}
 }
-#if 0 
+#if 0
 //never used
 void CFrameBuffer::setBackgroundColor(const fb_pixel_t color)
 {
@@ -1763,7 +1763,7 @@ void CFrameBuffer::RestoreScreen(int x, int y, int dx, int dy, fb_pixel_t * cons
 	}
 	checkFbArea(x, y, dx, dy, false);
 }
-#if 0 
+#if 0
 //never used
 void CFrameBuffer::switch_signal (int signal)
 {
@@ -1789,7 +1789,7 @@ void CFrameBuffer::switch_signal (int signal)
 			memset(thiz->lfb, 0, thiz->stride * thiz->yRes);
 	}
 }
-#endif 
+#endif
 
 void CFrameBuffer::Clear()
 {
@@ -1848,9 +1848,9 @@ void * CFrameBuffer::int_convertRGB2FB(unsigned char *rgbbuff, unsigned long x, 
 
 	if (alpha) {
 		for(i = 0; i < count ; i++)
-			fbbuff[i] = ((rgbbuff[i*4+3] << 24) & 0xFF000000) | 
-				    ((rgbbuff[i*4]   << 16) & 0x00FF0000) | 
-				    ((rgbbuff[i*4+1] <<  8) & 0x0000FF00) | 
+			fbbuff[i] = ((rgbbuff[i*4+3] << 24) & 0xFF000000) |
+				    ((rgbbuff[i*4]   << 16) & 0x00FF0000) |
+				    ((rgbbuff[i*4+1] <<  8) & 0x0000FF00) |
 				    ((rgbbuff[i*4+2])       & 0x000000FF);
 	} else {
 		switch (m_transparent) {
@@ -1917,7 +1917,7 @@ void CFrameBuffer::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32
 #endif
 		return;
 	}
-	
+
 #elif defined(USE_NEVIS_GXA)
 	u32 cmd;
 	void * uKva;

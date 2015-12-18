@@ -465,7 +465,7 @@ void CDBoxInfoWidget::paint()
 		}
 	}
 
-	ypos = std::max(ypos, ypos_mem);	
+	ypos = std::max(ypos, ypos_mem);
 	ypos += mheight/2;
 
 	int headOffset=0;

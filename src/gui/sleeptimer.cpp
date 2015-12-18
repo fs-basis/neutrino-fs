@@ -1,4 +1,4 @@
-/*      
+/*
         Neutrino-GUI  -   DBoxII-Project
 
         Copyright (C) 2001 Steffen Hehn 'McClean'
@@ -107,7 +107,7 @@ int CSleepTimerWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*
 	else if(shutdown_min != new_val) {
 		shutdown_min = new_val;
 		printf("sleeptimer min: %d\n", shutdown_min);
-		if (shutdown_min == 0)	// if set to zero remove existing sleeptimer 
+		if (shutdown_min == 0)	// if set to zero remove existing sleeptimer
 		{
 			int timer_id = g_Timerd->getSleeptimerID();
 			if (timer_id > 0)

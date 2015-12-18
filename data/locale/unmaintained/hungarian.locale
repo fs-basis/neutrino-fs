@@ -400,7 +400,7 @@ extra.tp_pol_h horizontális
 extra.tp_rate SR
 extra.update_dir Image fájl helye
 extra.use_gotoxx USALS
-extra.volume_pos Hangerőszabályzó 
+extra.volume_pos Hangerőszabályzó
 extra.west nyugat
 extra.zap_cycle Körbejárás
 extra.zapit_backup Backup channels to /tmp
@@ -544,7 +544,7 @@ hdd_format Formázás
 hdd_format_failed Formázás sikertelen
 hdd_format_warn Minden adat elvész. Biztos benne?
 hdd_fs Fájlrendszer
-hdd_manage 
+hdd_manage
 hdd_middle közepes
 hdd_noise Teljesítmény / zaj
 hdd_not_found Nincs merevlemez
@@ -746,26 +746,26 @@ moviebrowser.dir Útvonal
 moviebrowser.dir_head További útvonalak
 moviebrowser.edit_book Bookmark change
 moviebrowser.edit_book_name_info1 Enter new Bookmark name
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_pos_info1 Enter new Position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Enter new jump length (s)
 moviebrowser.edit_book_type_info2 <0 back , >0 for, 0: none
 moviebrowser.edit_serie Enter name of serie
 moviebrowser.error_no_movies No movies found
-moviebrowser.foot_filter Szűrés: 
+moviebrowser.foot_filter Szűrés:
 moviebrowser.foot_play Lejátszás
-moviebrowser.foot_sort Rendezés: 
+moviebrowser.foot_sort Rendezés:
 moviebrowser.head Felvett anyagok
 moviebrowser.head_filter Szűrés kategória szerint:
 moviebrowser.head_playlist Legutóbb lejátszott:
 moviebrowser.head_recordlist Legutóbb felvett:
 moviebrowser.hide_series Sorozatok elrejtése
-moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel 
-moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel 
-moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen 
-moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition 
-moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition 
+moviebrowser.hint_jumpbackward Jump back in 5 s\n '0' to cancel
+moviebrowser.hint_jumpforward Jump forward in 5 s\n '0' to cancel
+moviebrowser.hint_movieend Filmende in 5 s\n '0' zum weitersehen
+moviebrowser.hint_newbook_backward New jump back\n 'blue' for endposition
+moviebrowser.hint_newbook_forward New jump forward\n 'blue' for endposition
 moviebrowser.info_audio Hangsáv
 moviebrowser.info_channel Csatorna
 moviebrowser.info_filename Fájlnév
@@ -848,23 +848,23 @@ moviebrowser.use_rec_dir Felvétel könyvtár
 movieplayer.bookmark könyvjelzők
 movieplayer.bookmarkname könyvjelző neve
 movieplayer.bookmarkname_hint1 Kérem adjon nevet az új könyvjelzőnek!
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.defplugin Start-Plugin
 movieplayer.fileplayback Fájlok lejátszása
 movieplayer.head Filmböngésző
 movieplayer.toomanybookmarks Túl sok könyvjelző.\nElőbb törölni kell egyet.
-movieplayer.tshelp1 Stop 
-movieplayer.tshelp10 approx. 10 minutes back 
-movieplayer.tshelp11 skip approx. 10 minutes 
-movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n 
-movieplayer.tshelp2 Select audio track 
-movieplayer.tshelp3 Pause/Continue 
-movieplayer.tshelp4 Create bookmark 
-movieplayer.tshelp5 Show progress 
-movieplayer.tshelp6 approx. 1 minute back 
-movieplayer.tshelp7 skip approx. 1 minute 
-movieplayer.tshelp8 approx. 5 minutes back 
-movieplayer.tshelp9 skip approx. 5 minutes 
+movieplayer.tshelp1 Stop
+movieplayer.tshelp10 approx. 10 minutes back
+movieplayer.tshelp11 skip approx. 10 minutes
+movieplayer.tshelp12 Help: http://www.giggo.de/dbox2/movieplayer.html\n
+movieplayer.tshelp2 Select audio track
+movieplayer.tshelp3 Pause/Continue
+movieplayer.tshelp4 Create bookmark
+movieplayer.tshelp5 Show progress
+movieplayer.tshelp6 approx. 1 minute back
+movieplayer.tshelp7 skip approx. 1 minute
+movieplayer.tshelp8 approx. 5 minutes back
+movieplayer.tshelp9 skip approx. 5 minutes
 movieplayer.tsplayback TS lejátszása
 mpkey.audio Hangsáv
 mpkey.bookmark Könyvjelző mentése
@@ -1028,7 +1028,7 @@ satsetup.fastscan_hd csak HD adások
 satsetup.fastscan_head Gyorskeresés (Astra 1, 19.2E, 12.515Mhz)
 satsetup.fastscan_prov Szolgáltató
 satsetup.fastscan_prov_cd CanalDigitaal
-satsetup.fastscan_prov_telesat TĂ©lĂ©SAT 
+satsetup.fastscan_prov_telesat TĂ©lĂ©SAT
 satsetup.fastscan_prov_tvv TV Vlaanderen
 satsetup.fastscan_sd csak SD adások
 satsetup.fastscan_type Keresés módja
@@ -1086,7 +1086,7 @@ servicemenu.restart_refused_recording Újraindítás nem lehetséges, felvétel 
 servicemenu.scants Csatornakeresés
 servicemenu.update Szoftverfrissítés
 settings.help Segítség
-settings.menu_pos Menü pozíció 
+settings.menu_pos Menü pozíció
 settings.missingoptionsconffile A konfigurációs fájl hiányos vagy nem található.\nA hiányzó adatok alapértelmezettre lesznek állítva.
 settings.noconffile A beállítások hiányoznak.\nAlapértékek használata.
 settings.pos_bottom_left bal lent
@@ -1164,9 +1164,9 @@ timerlist.repeat.unknown ismeretlen
 timerlist.repeat.wednesday SZ
 timerlist.repeat.weekdays hét adott napjain
 timerlist.repeat.weekly hetente
-timerlist.repeatcount repeats 
-timerlist.repeatcount.help1 amount of timer repeats 
-timerlist.repeatcount.help2 0 for unlimited repeats 
+timerlist.repeatcount repeats
+timerlist.repeatcount.help1 amount of timer repeats
+timerlist.repeatcount.help2 0 for unlimited repeats
 timerlist.save Időzítő mentése
 timerlist.standby Készenlét fajtája
 timerlist.standby.off bekapcsolás

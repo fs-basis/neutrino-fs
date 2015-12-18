@@ -95,8 +95,8 @@ struct SI_section_header {
 	unsigned section_number                 : 8;
 	unsigned last_section_number            : 8;
 } __attribute__ ((packed)) ; // 8 bytes
-#endif 
-class SIsectionEIT 
+#endif
+class SIsectionEIT
 #ifdef USE_DVBSI_EVENTS
 	: public EventInformationSection
 #endif
@@ -107,9 +107,9 @@ protected:
 	int parsed;
 	void parse(void);
 public:
-	SIsectionEIT(uint8_t *buf) 
+	SIsectionEIT(uint8_t *buf)
 #ifdef USE_DVBSI_EVENTS
-		: EventInformationSection(buf) 
+		: EventInformationSection(buf)
 #endif
 	{
 		buffer = buf;

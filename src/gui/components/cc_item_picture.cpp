@@ -1,5 +1,5 @@
 /*
-	Based up Neutrino-GUI - Tuxbox-Project 
+	Based up Neutrino-GUI - Tuxbox-Project
 	Copyright (C) 2001 by Steffen Hehn 'McClean'
 
 	Classes for generic GUI-related components.
@@ -325,7 +325,7 @@ void CComponentsChannelLogo::setAltLogo(const char* picture_name)
 
 void CComponentsChannelLogo::setChannel(const uint64_t& channelId, const std::string& channelName)
 {
-	channel_id = channelId; 
+	channel_id = channelId;
 	channel_name = channelName;
 	int dummy;
 

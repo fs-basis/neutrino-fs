@@ -137,7 +137,7 @@ void CLCD::count_down() {
 		if (timeout_cnt == 0) {
 			setlcdparameter();
 		}
-	} 
+	}
 }
 
 void CLCD::wake_up() {
@@ -330,7 +330,7 @@ void CLCD::setlcdparameter(int dimm, const int contrast, const int power, const 
 
 		close(fd);
 	}
-	
+
 	if ((fd = open("/dev/dbox/lcd0", O_RDWR)) == -1)
 	{
 		perror("[lcdd] open '/dev/dbox/lcd0' failed");
@@ -352,7 +352,7 @@ void CLCD::setlcdparameter(int dimm, const int contrast, const int power, const 
 			perror("[lcdd] set invert failed!");
 		}
 
-		if (g_info.box_Type == CControld::TUXBOX_MAKER_PHILIPS) 
+		if (g_info.box_Type == CControld::TUXBOX_MAKER_PHILIPS)
 		{
 			if (ioctl(fd, LCD_IOCTL_BIAS, &bias) < 0)
 			{
@@ -827,7 +827,7 @@ void CLCD::showMenuText(const int position, const char * text, const int highlig
 
 void CLCD::showAudioTrack(const std::string & artist, const std::string & title, const std::string & album)
 {
-	if (mode != MODE_AUDIO) 
+	if (mode != MODE_AUDIO)
 	{
 		return;
 	}
@@ -963,7 +963,7 @@ void CLCD::setMode(const MODES m, const char * const title)
 	{
 		display.load_screen(&(background[BACKGROUND_LCD]));
 		display.draw_fill_rect(0, 14, LCD_COLS, 48, CLCDDisplay::PIXEL_OFF);
-		
+
 		showAudioPlayMode(AUDIO_MODE_STOP);
 		showVolume(volume, false);
 		showclock = true;
@@ -1208,7 +1208,7 @@ void CLCD::showInfoBox(const char * const title, const char * const text ,int au
 			fonts.menu->RenderString(start_pos+4,EPG_INFO_WINDOW_POS+5, width+5, m_infoBoxTitle.c_str(), CLCDDisplay::PIXEL_ON);
 		}
 
-		// paint info 
+		// paint info
 		std::string text_line;
 		int line;
 		int pos = 0;
@@ -1217,13 +1217,13 @@ void CLCD::showInfoBox(const char * const title, const char * const text ,int au
 		{
 			text_line.clear();
 			while ( m_infoBoxText[pos] != '\n' &&
-					((fonts.menu->getRenderWidth(text_line) < EPG_INFO_TEXT_WIDTH-10) || !m_infoBoxAutoNewline )&& 
+					((fonts.menu->getRenderWidth(text_line) < EPG_INFO_TEXT_WIDTH-10) || !m_infoBoxAutoNewline )&&
 					(pos < length)) // UTF-8
 			{
 				if ( m_infoBoxText[pos] >= ' ' && m_infoBoxText[pos] <= '~' )  // any char between ASCII(32) and ASCII (126)
 					text_line += m_infoBoxText[pos];
 				pos++;
-			} 
+			}
 			//printf("[lcdd] line %d:'%s'\r\n",line,text_line.c_str());
 			fonts.menu->RenderString(EPG_INFO_TEXT_POS+1,EPG_INFO_TEXT_POS+(line*EPG_INFO_FONT_HEIGHT)+EPG_INFO_FONT_HEIGHT+3, EPG_INFO_TEXT_WIDTH, text_line.c_str(), CLCDDisplay::PIXEL_ON);
 			if ( m_infoBoxText[pos] == '\n' )
@@ -1250,25 +1250,25 @@ void CLCD::showFilelist(int flist_pos,CFileList* flist,const char * const mainDi
 		m_fileListPos = flist_pos;
 	if(mainDir != NULL)
 		m_fileListHeader = mainDir;
-		
-	if (mode == MODE_FILEBROWSER && 
+
+	if (mode == MODE_FILEBROWSER &&
 	    m_fileList != NULL &&
 	    !m_fileList->empty() )
-	{    
-		
+	{
+
 		printf("[lcdd] FileList:OK\n");
 		int size = m_fileList->size();
-		
+
 		display.draw_fill_rect(-1, -1, LCD_COLS, 52, CLCDDisplay::PIXEL_OFF); // clear lcd
-		
+
 		if(m_fileListPos > size)
 			m_fileListPos = size-1;
-		
-		int width = fonts.menu->getRenderWidth(m_fileListHeader); 
+
+		int width = fonts.menu->getRenderWidth(m_fileListHeader);
 		if(width > LCD_COLS - 10)
 			width = LCD_COLS - 10;
 		fonts.menu->RenderString((LCD_COLS - width) / 2, 11, width+5, m_fileListHeader.c_str(), CLCDDisplay::PIXEL_ON);
-		
+
 		//printf("list%d,%d\r\n",m_fileListPos,(*m_fileList)[m_fileListPos].Marked);
 		std::string text;
 		int marked;
@@ -1324,11 +1324,11 @@ void CLCD::showFilelist(int flist_pos,CFileList* flist,const char * const mainDi
 			marker_length=4;// not smaller than 4 pixel
 		int marker_offset = ((BAR_POS_HEIGTH-2-marker_length) * m_fileListPos) /size  ;
 		//printf("%d,%d,%d\r\n",pages,marker_length,marker_offset);
-		
+
 		display.draw_fill_rect (BAR_POS_X,   BAR_POS_Y,   BAR_POS_X+BAR_POS_WIDTH,   BAR_POS_Y+BAR_POS_HEIGTH,   CLCDDisplay::PIXEL_ON);
 		display.draw_fill_rect (BAR_POS_X+1, BAR_POS_Y+1, BAR_POS_X+BAR_POS_WIDTH-1, BAR_POS_Y+BAR_POS_HEIGTH-1, CLCDDisplay::PIXEL_OFF);
 		display.draw_fill_rect (BAR_POS_X+1, BAR_POS_Y+1+marker_offset, BAR_POS_X+BAR_POS_WIDTH-1, BAR_POS_Y+1+marker_offset+marker_length, CLCDDisplay::PIXEL_ON);
-	
+
 		displayUpdate();
 	}
 }
@@ -1344,10 +1344,10 @@ void CLCD::showProgressBar(int global, const char * const text,int show_escape,i
 {
 	if(text != NULL)
 		m_progressHeaderGlobal = text;
-		
+
 	if(timer != -1)
 		m_infoBoxTimer = timer;
-		
+
 	if(global >= 0)
 	{
 		if(global > 100)
@@ -1355,7 +1355,7 @@ void CLCD::showProgressBar(int global, const char * const text,int show_escape,i
 		else
 			m_progressGlobal = global;
 	}
-	
+
 	if(show_escape != -1)
 		m_progressShowEscape = show_escape;
 
@@ -1364,21 +1364,21 @@ void CLCD::showProgressBar(int global, const char * const text,int show_escape,i
 		//printf("[lcdd] prog:%s,%d,%d\n",m_progressHeaderGlobal.c_str(),m_progressGlobal,m_progressShowEscape);
 		// Clear Display
 		display.draw_fill_rect (0, 12, LCD_COLS, 64, CLCDDisplay::PIXEL_OFF);
-	
-		// paint progress header 
+
+		// paint progress header
 		int width = fonts.menu->getRenderWidth(m_progressHeaderGlobal);
 		if(width > 100)
 			width = 100;
 		int start_pos = (LCD_COLS - width) /2;
 		fonts.menu->RenderString(start_pos, 12+12, width+10, m_progressHeaderGlobal.c_str(), CLCDDisplay::PIXEL_ON);
-	
-		// paint global bar 
+
+		// paint global bar
 		int marker_length = (PROG_GLOB_POS_WIDTH * m_progressGlobal)/100;
-		
+
 		display.draw_fill_rect (PROG_GLOB_POS_X,   				 PROG_GLOB_POS_Y,   PROG_GLOB_POS_X+PROG_GLOB_POS_WIDTH,   PROG_GLOB_POS_Y+PROG_GLOB_POS_HEIGTH,   CLCDDisplay::PIXEL_ON);
 		display.draw_fill_rect (PROG_GLOB_POS_X+1+marker_length, PROG_GLOB_POS_Y+1, PROG_GLOB_POS_X+PROG_GLOB_POS_WIDTH-1, PROG_GLOB_POS_Y+PROG_GLOB_POS_HEIGTH-1, CLCDDisplay::PIXEL_OFF);
-	
-		// paint foot 
+
+		// paint foot
 		if(m_progressShowEscape  == true)
 		{
 			fonts.menu->RenderString(90, 64, 40, "Home", CLCDDisplay::PIXEL_ON);
@@ -1405,10 +1405,10 @@ void CLCD::showProgressBar2(int local,const char * const text_local ,int global 
 	//printf("[lcdd] prog2\n");
 	if(text_local != NULL)
 		m_progressHeaderLocal = text_local;
-		
+
 	if(text_global != NULL)
 		m_progressHeaderGlobal = text_global;
-		
+
 	if(global >= 0)
 	{
 		if(global > 100)
@@ -1416,7 +1416,7 @@ void CLCD::showProgressBar2(int local,const char * const text_local ,int global 
 		else
 			m_progressGlobal = global;
 	}
-	
+
 	if(local >= 0)
 	{
 		if(local > 100)
@@ -1424,7 +1424,7 @@ void CLCD::showProgressBar2(int local,const char * const text_local ,int global 
 		else
 			m_progressLocal = local;
 	}
-	
+
 	if(show_escape != -1)
 		m_progressShowEscape = show_escape;
 
@@ -1433,36 +1433,36 @@ void CLCD::showProgressBar2(int local,const char * const text_local ,int global 
 		//printf("[lcdd] prog2:%s,%d,%d\n",m_progressHeaderGlobal.c_str(),m_progressGlobal,m_progressShowEscape);
 		// Clear Display
 		display.draw_fill_rect (0, 12, LCD_COLS, 64, CLCDDisplay::PIXEL_OFF);
-		
-	
-		// paint  global caption 
+
+
+		// paint  global caption
 		int width = fonts.menu->getRenderWidth(m_progressHeaderGlobal);
 		if(width > 100)
 			width = 100;
 		int start_pos = (LCD_COLS - width) /2;
 		fonts.menu->RenderString(start_pos, PROG2_GLOB_POS_Y+20, width+10, m_progressHeaderGlobal.c_str(), CLCDDisplay::PIXEL_ON);
-	
-		// paint global bar 
+
+		// paint global bar
 		int marker_length = (PROG2_GLOB_POS_WIDTH * m_progressGlobal)/100;
-		
+
 		display.draw_fill_rect (PROG2_GLOB_POS_X,   				PROG2_GLOB_POS_Y,   PROG2_GLOB_POS_X+PROG2_GLOB_POS_WIDTH,   PROG2_GLOB_POS_Y+PROG2_GLOB_POS_HEIGTH,   CLCDDisplay::PIXEL_ON);
 		display.draw_fill_rect (PROG2_GLOB_POS_X+1+marker_length, PROG2_GLOB_POS_Y+1, PROG2_GLOB_POS_X+PROG2_GLOB_POS_WIDTH-1, PROG2_GLOB_POS_Y+PROG2_GLOB_POS_HEIGTH-1, CLCDDisplay::PIXEL_OFF);
-	
-		
-		// paint  local caption 
+
+
+		// paint  local caption
 		width = fonts.menu->getRenderWidth(m_progressHeaderLocal);
 		if(width > 100)
 			width = 100;
 		start_pos = (LCD_COLS - width) /2;
 		fonts.menu->RenderString(start_pos, PROG2_LOCAL_POS_Y -3, width+10, m_progressHeaderLocal.c_str(), CLCDDisplay::PIXEL_ON);
-		// paint local bar 
+		// paint local bar
 		marker_length = (PROG2_LOCAL_POS_WIDTH * m_progressLocal)/100;
-		
+
 		display.draw_fill_rect (PROG2_LOCAL_POS_X,   				PROG2_LOCAL_POS_Y,   PROG2_LOCAL_POS_X+PROG2_LOCAL_POS_WIDTH,   PROG2_LOCAL_POS_Y+PROG2_LOCAL_POS_HEIGTH,   CLCDDisplay::PIXEL_ON);
 		display.draw_fill_rect (PROG2_LOCAL_POS_X+1+marker_length,   PROG2_LOCAL_POS_Y+1, PROG2_LOCAL_POS_X+PROG2_LOCAL_POS_WIDTH-1, PROG2_LOCAL_POS_Y+PROG2_LOCAL_POS_HEIGTH-1, CLCDDisplay::PIXEL_OFF);
-		
-		
-		// paint foot 
+
+
+		// paint foot
 		if(m_progressShowEscape  == true)
 		{
 			fonts.menu->RenderString(90, 64, 40, "Home", CLCDDisplay::PIXEL_ON);

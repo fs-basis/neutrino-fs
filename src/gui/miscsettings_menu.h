@@ -34,7 +34,7 @@
 #include <string>
 
 class CMiscMenue : public CMenuTarget, CChangeObserver
-{	
+{
 	private:
 		CFanControlNotifier *fanNotifier;
 		CSectionsdConfigNotifier* sectionsdConfigNotifier;

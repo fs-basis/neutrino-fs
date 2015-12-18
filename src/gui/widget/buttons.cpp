@@ -64,10 +64,10 @@ int paintButtons(	const int &x,
 };
 
 int paintButtons(	const button_label * const content,
-			const int &count, 
-			const int &x,	
-			const int &y, 
-			const int &footerwidth, 
+			const int &count,
+			const int &x,
+			const int &y,
+			const int &footerwidth,
 			const int &footerheight,
 			const int &maxwidth,
 			bool show,
@@ -86,10 +86,10 @@ int paintButtons(	const button_label * const content,
 }
 
 int paintButtons(	const button_label_ext * const content,
-			const int &count, 
-			const int &x,	
-			const int &y, 
-			const int &footerwidth, 
+			const int &count,
+			const int &x,
+			const int &y,
+			const int &footerwidth,
 			const int &footerheight,
 			const int &maxwidth,
 			bool show,
@@ -103,20 +103,20 @@ int paintButtons(	const button_label_ext * const content,
 	int y_footer = y;
 	int w_footer = footerwidth;
 	int h_footer = 0;
-	
+
 	int w_space 	= 10; //minimal space between buttons
 	int h_space	= 4; //minimal space between caption and/or icon and border
 	int x_icon 	= x_footer + w_space;
 	int x_caption 	= 0;
-	
+
 	int x_button = x_icon;
 	int h_button = 0;
-	
+
 	//calculate max of h + w
 	//icon
 	int h_max_icon = 0;
 	int w_icons = 0;
-	
+
 	//text
 	int w_text = 0;
 	int h_max_text = font->getHeight();
@@ -181,7 +181,7 @@ int paintButtons(	const button_label_ext * const content,
 
 	//calculate button heigth
 	h_button = std::max(h_max_icon, h_max_text); //calculate optimal button height
-	
+
 	//calculate footer heigth
 	h_footer = footerheight == 0 ? (h_button + 2*h_space) : footerheight;
 
@@ -197,7 +197,7 @@ int paintButtons(	const button_label_ext * const content,
 	if (w_footer > 0)
 		frameBuffer->paintBoxRel(x_footer, y_footer, w_footer, h_footer, COL_INFOBAR_SHADOW_PLUS_1, RADIUS_LARGE, CORNER_BOTTOM); //round
 
-	
+
 	//baseline
 	int y_base = y_footer + h_footer/2;
 	int spacing = maxwidth - w_space * 2 - w_text - w_icons - (count_icons + count_labels - 1) * h_space;
@@ -236,23 +236,23 @@ int paintButtons(	const button_label_ext * const content,
 	for (int j = 0; j < cnt; j++)
 	{
 		const char * caption = NULL;
-		//set caption... 
+		//set caption...
 		caption = buttontext[j];
 
 		const char * icon = content[j].button ? content[j].button : "";
 
 		// calculate baseline startposition of icon and text in y
  		int y_caption = y_base + h_max_text/2+1;
-		
+
 		// paint icon and text
 		frameBuffer->paintIcon(icon, x_button , y_base - iconh[j]/2);
 		x_caption = x_button + iconw[j] + h_space;
 		font->RenderString(x_caption, y_caption, fwidth[j], caption, COL_INFOBAR_SHADOW_TEXT);
- 		
- 		/* 	set next startposition x, if text is length=0 then offset is =renderwidth of icon, 
-  		* 	for generating buttons without captions, 
-  		*/		
- 		
+
+ 		/* 	set next startposition x, if text is length=0 then offset is =renderwidth of icon,
+  		* 	for generating buttons without captions,
+  		*/
+
 		/* increase x position */
 		x_button = x_caption;
 		if (fwidth[j])
@@ -283,7 +283,7 @@ int paintButtons(	const button_label_ext * const content,
  * vertical_paint       optional, default value is false (horizontal) sets direction of painted buttons
  * fcolor               optional, default value is COL_INFOBAR_SHADOW_TEXT, use it to render font with other color
  * alt_buttontext       optional, default NULL, overwrites button caption at definied buttonlabel id (see parameter alt_buttontext_id) with this text
- * alt_buttontext_id    optional, default 0, means id from buttonlable struct which text you will change 
+ * alt_buttontext_id    optional, default 0, means id from buttonlable struct which text you will change
  * show                 optional, default value is true (show button), if false, then no show and return the height of the button.
  */
 
@@ -418,7 +418,7 @@ int paintButtons(       const int &x,
 	for (uint j = 0; j < cnt; j++)
 	{
 		const char * caption = NULL;
-		//set caption... 
+		//set caption...
 		if (alt_buttontext != NULL && j == buttontext_id)
 			caption = alt_buttontext; //...with an alternate buttontext
 		else
@@ -434,13 +434,13 @@ int paintButtons(       const int &x,
 		x_caption = x_button + iconw[j] + h_space;
 		font->RenderString(x_caption, y_caption, fwidth[j], caption, fcolor);
 
-		/*      set next startposition x, if text is length=0 then offset is =renderwidth of icon, 
-		 *       for generating buttons without captions, 
+		/*      set next startposition x, if text is length=0 then offset is =renderwidth of icon,
+		 *       for generating buttons without captions,
 		 */
 
 		int lentext = strlen(caption);
 		if (vertical_paint)
-			// set x_icon for painting buttons with vertical arrangement 
+			// set x_icon for painting buttons with vertical arrangement
 		{
 			if (lentext !=0)
 			{

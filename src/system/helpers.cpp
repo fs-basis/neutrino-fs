@@ -429,7 +429,7 @@ std::string getNowTimeStr(const char* format)
 	char tmpStr[256];
 	struct timeval tv;
 	struct tm t;
-	gettimeofday(&tv, NULL);        
+	gettimeofday(&tv, NULL);
 	strftime(tmpStr, sizeof(tmpStr), format, localtime_r(&tv.tv_sec, &t));
 	return (std::string)tmpStr;
 }
@@ -508,7 +508,7 @@ std::string& htmlEntityDecode(std::string& text)
 		text = str_replace(dt[i].htmlCode, dt[i].code, text);
 
 	return text;
-}	
+}
 
 CFileHelpers::CFileHelpers()
 {

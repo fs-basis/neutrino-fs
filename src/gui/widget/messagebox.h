@@ -71,7 +71,7 @@ class CMessageBox : public CHintBoxExt
 			mbrBack   = 3,
 			mbrOk     = 4
 		} result;
-	
+
 	enum buttons_
 		{
 			mbYes             = 0x01,
@@ -85,7 +85,7 @@ class CMessageBox : public CHintBoxExt
 			mbBtnAlignLeft    = 0x0400,
 			mbBtnAlignRight   = 0x0800
 		} buttons;
-	
+
 	// Text & Caption are always UTF-8 encoded
 	CMessageBox(const neutrino_locale_t Caption, const char * const Text, const int Width = 500, const char * const Icon = NULL, const CMessageBox::result_ &Default = mbrYes, const uint32_t ShowButtons = mbAll);
 	CMessageBox(const std::string &Caption, const char * const Text, const int Width = 500, const char * const Icon = NULL, const CMessageBox::result_ &Default = mbrYes, const uint32_t ShowButtons = mbAll);

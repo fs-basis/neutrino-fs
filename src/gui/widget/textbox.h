@@ -97,7 +97,7 @@ class CTextBox
 			NO_AUTO_LINEBREAK 		= 0x400,  	//paint text without auto linebreak,  cutting text
 			AUTO_LINEBREAK_NO_BREAKCHARS	= 0x800		//no linbreak an char '-' and '.'
 		};
-		
+
 	private:
 		/* Functions */
 		void refreshTextLineArray(void);
@@ -108,7 +108,7 @@ class CTextBox
 		void refreshText(void);
 		void reSizeMainFrameWidth(int maxTextWidth);
 		void reSizeMainFrameHeight(int maxTextHeight);
-		
+
 		bool hasChanged(int* x, int* y, int* dx, int* dy);
 		void reInitToCompareVar(int* x, int* y, int* dx, int* dy);
 
@@ -158,17 +158,17 @@ class CTextBox
 
 		CFrameBuffer * frameBuffer;
 /*		int max_width;*/
-		
+
 		int text_Hborder_width;
 		int text_Vborder_width;
 		bool m_FontUseDigitHeight;
 		bool m_blit;
-		
+
 	public:
 		/* Constructor */
 		CTextBox();
 		CTextBox(	const char * text);
-		CTextBox(	const char * text, 
+		CTextBox(	const char * text,
 					Font* font_text,
 					const int pmode,
 					const CBox* position,

@@ -66,7 +66,7 @@ class CHintBoxExt
 	ContentLines             m_lines;
 	std::string              m_iconfile;
 	bool			 bgPainted;
-	
+
 	void refresh(bool toround = 1);
 
  public:
@@ -76,7 +76,7 @@ class CHintBoxExt
 	CHintBoxExt(const std::string &Caption, ContentLines& lines, const int Width = 450, const char * const Icon = NEUTRINO_ICON_INFO);
 
 	~CHintBoxExt(void);
-	
+
 	void init(const neutrino_locale_t Caption, const std::string &CaptionString, const int Width, const char * const Icon);
 
 	bool has_scrollbar(void);

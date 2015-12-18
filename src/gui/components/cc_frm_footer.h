@@ -53,7 +53,7 @@ It's usable like a header but without caption, and context button icons as defau
 Additional implemented is a button container (chain) and some methods which can add
 buttons via struct, vector or text and icon parameters. Also a compatible but limited methode
 to add button labels known by older button handler, to find in gui/widget/buttons.h/cpp.
-functionality. Why limited ?: old parameter 'struct button_label' doesn't provide newer parameters. 
+functionality. Why limited ?: old parameter 'struct button_label' doesn't provide newer parameters.
 Missing parameters are filled with default values and must be assigned afterward, if required.
 */
 class CComponentsFooter : public CComponentsHeader
@@ -108,7 +108,7 @@ class CComponentsFooter : public CComponentsHeader
 		void setButtonLabel(const char *button_icon, const std::string& text, const int& chain_width = 0, const int& label_width = 0, const neutrino_msg_t& msg = CRCInput::RC_nokey, const int& result_value = -1, const int& alias_value = -1);
 		///add single button label with locale label type as content, chain_width as int, label width as int
 		void setButtonLabel(const char *button_icon, const neutrino_locale_t& locale, const int& chain_width = 0, const int& label_width = 0, const neutrino_msg_t& msg = CRCInput::RC_nokey, const int& result_value = -1, const int& alias_value = -1);
-		
+
 		///causes show/hide countour of button frame and background, parameter bool show, default= true
 		void showButtonContour(bool show = true);
 

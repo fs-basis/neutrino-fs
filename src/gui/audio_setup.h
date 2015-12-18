@@ -40,15 +40,15 @@ class CAudioSetup : public CMenuTarget
 	private:
 		int width, selected;
 		int is_wizard;
-		
+
 		int showAudioSetup();
 
-	public:	
+	public:
 		CAudioSetup(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
 		~CAudioSetup();
-		
+
 		void setWizardMode(int mode) {is_wizard = mode;};
-		
+
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 
@@ -57,7 +57,7 @@ class CTruVolumeNotifier : public CChangeObserver
 	private:
 		CMenuOptionChooser* toDisable_oj[2];
 		CMenuOptionNumberChooser* toDisable_nj;
-		
+
 	public:
 		CTruVolumeNotifier( CMenuOptionChooser* o1, CMenuOptionChooser* o2, CMenuOptionNumberChooser *n1);
 		bool changeNotify(const neutrino_locale_t, void * data);

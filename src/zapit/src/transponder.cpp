@@ -133,7 +133,7 @@ void transponder::dumpServiceXml(FILE * fd)
 				getFEParams()->inversion,
 				getFEParams()->bandwidth,
 				getFEParams()->code_rate_HP,
-				getFEParams()->code_rate_LP, 
+				getFEParams()->code_rate_LP,
 				getFEParams()->modulation,
 				getFEParams()->transmission_mode,
 				getFEParams()->guard_interval,
@@ -174,9 +174,9 @@ void transponder::dump(std::string label)
 	}
 }
 
-#if 0 
+#if 0
 //never used
-void transponder::ddump(std::string label) 
+void transponder::ddump(std::string label)
 {
 	if (zapit_debug)
 		dump(label);

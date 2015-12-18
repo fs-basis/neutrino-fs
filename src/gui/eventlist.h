@@ -117,14 +117,14 @@ class CEventList
 	void paintHead(t_channel_id _channel_id, std::string _channelname, std::string _channelname_prev = "", std::string _channelname_next = "");
 	void hide();
 	void showFunctionBar(bool show, t_channel_id channel_id);
-	
+
 	int timerPre;
 	int timerPost;
 	void UpdateTimerList(void);
 	bool HasTimerConflicts(time_t starttime, time_t duration, event_id_t * epg_ID);
 	bool showfollow;
 	CTimerd::CTimerEventTypes isScheduled(t_channel_id channel_id, CChannelEvent * event, int * tID = NULL);
-	
+
 	public:
 		CEventList();
 		~CEventList();

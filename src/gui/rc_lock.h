@@ -40,7 +40,7 @@ private:
 	void lockBox();
 
 public:
-	static const std::string NO_USER_INPUT; 
+	static const std::string NO_USER_INPUT;
 	int  exec(CMenuTarget* parent, const std::string & actionKey);
 	static bool locked;
 };

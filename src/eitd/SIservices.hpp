@@ -85,7 +85,7 @@ struct printSInvodReference : public std::unary_function<class SInvodReference, 
 
 typedef std::set <SInvodReference, std::less<SInvodReference> > SInvodReferences;
 
-class SIservice 
+class SIservice
 {
 //protected:
 public:
@@ -116,13 +116,13 @@ public:
 		is_actual = 0;
 	}
 
-#if 0 
+#if 0
 // unused
 	int eitScheduleFlag(void)	{ return (int)flags.EIT_schedule_flag; }
 	int eitPresentFollowingFlag(void) { return (int)flags.EIT_present_following_flag; }
 #endif
 	int runningStatus(void)	const	{ return (int)flags.running_status; }
-#if 0 
+#if 0
 // unused
 	int freeCAmode(void)		{ return (int)flags.free_CA_mode; }
 #endif

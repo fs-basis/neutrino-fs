@@ -46,7 +46,7 @@ class CCDraw : public COSDFader
 
 		///object: framebuffer object, usable in all sub classes
 		CFrameBuffer * frameBuffer;
-		
+
 		///property: x-position on screen, to alter with setPos() or setDimensionsAll(), see also defines CC_APPEND, CC_CENTERED
 		int x, x_old;
 		///property: y-position on screen, to alter setPos() or setDimensionsAll(), see also defines CC_APPEND, CC_CENTERED
@@ -95,7 +95,7 @@ class CCDraw : public COSDFader
 
 		///paint caching for body and shadow, default init value = true, see also enablePaintCache() NOTE: has no effect if paint_bg = false
 		bool cc_paint_cache;
-		
+
 		///enable/disable background buffer, default init value = false, see also enableSaveBg()
 		bool cc_save_bg;
 
@@ -178,7 +178,7 @@ class CCDraw : public COSDFader
 		virtual int getRealXPos(){return cc_xr;}
 		///get real y-position on screen. Use this, if item contains own render methods and item is bound to a form
 		virtual int getRealYPos(){return cc_yr;}
-		
+
 		///set height of component on screen
 		virtual void setHeight(const int& h);
 		///set width of component on screen

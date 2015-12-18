@@ -285,7 +285,7 @@ CBaseDec::RetCode CFfmpegDec::Decoder(FILE *_in, int /*OutputFd*/, State* state,
 					seek_flags = AVSEEK_FLAG_BACKWARD;
 					if (pts < start_pts) {
 						pts = start_pts;
-						*state = PAUSE; 
+						*state = PAUSE;
 					}
 				} else {
 					pts += skip;
@@ -499,7 +499,7 @@ bool CFfmpegDec::SetMetaData(FILE *_in, CAudioMetaData* m, bool save_cover)
 	}
 	m->type_info = type_info;
 	// make sure bitrate is set to prevent refresh metadata from gui, its a flag
-	m->bitrate = bitrate ? bitrate : 1; 
+	m->bitrate = bitrate ? bitrate : 1;
 	m->samplerate = samplerate;
 
 	return true;

@@ -27,11 +27,11 @@
 	Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 	Boston, MA  02110-1301, USA.
 
-		
+
 	NOTE for ignorant distributors:
 	It's not allowed to distribute any compiled parts of this code, if you don't accept the terms of GPL.
 	Please read it and understand it right!
-	This means for you: Hold it, if not, leave it! You could face legal action! 
+	This means for you: Hold it, if not, leave it! You could face legal action!
 	Otherwise ask the copyright owners, anything else would be theft!
 */
 
@@ -67,11 +67,11 @@ static user_menu_data_t user_menu[COL_BUTTONMAX] =
 // const char * col_key_helper_icon_def[COL_BUTTONMAX]={NEUTRINO_ICON_BUTTON_RED,NEUTRINO_ICON_BUTTON_GREEN,NEUTRINO_ICON_BUTTON_YELLOW,NEUTRINO_ICON_BUTTON_BLUE};
 
 class CUserMenu : public CChangeObserver
-{	
-	private:		
+{
+	private:
 		int width;
 		bool changeNotify(const neutrino_locale_t OptionName, void *);
-				
+
 	public:
 		CUserMenu();
 		~CUserMenu();
@@ -87,11 +87,11 @@ class CColorKeyHelper
 		int number_key;
 		bool color_key_used[COL_BUTTONMAX];
 	public:
-		CColorKeyHelper() 
+		CColorKeyHelper()
 		{
 			reset();
 		};
-		
+
 		void reset(void)
 		{
 			number_key = 1;

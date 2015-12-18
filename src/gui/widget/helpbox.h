@@ -43,7 +43,7 @@
 class Helpbox
 {
 public:
-	
+
 	Helpbox();
 	~Helpbox();
 
@@ -55,7 +55,7 @@ public:
 	void addLine(const char *icon, const char *text);
 	void addPagebreak();
 protected:
-	
+
 private:
 
 	ContentLines m_lines;

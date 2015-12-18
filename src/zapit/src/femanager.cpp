@@ -691,7 +691,7 @@ CFrontend * CFEManager::allocateFE(CZapitChannel * channel, bool forrecord)
 void CFEManager::setLiveFE(CFrontend * fe)
 {
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
-	livefe = fe; 
+	livefe = fe;
 #if HAVE_COOL_HARDWARE
 	if(femap.size() > 1)
 #endif

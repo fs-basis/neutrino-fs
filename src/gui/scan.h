@@ -51,7 +51,7 @@ class CScanTs : public CMenuTarget
 		int fw;
 		int xpos1; //x position for first column
 		int xpos2; //x position for second column
-		int radar; 
+		int radar;
 		int xpos_radar;
 		int ypos_radar;
 		int ypos_cur_satellite;

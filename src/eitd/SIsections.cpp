@@ -148,7 +148,7 @@ void SIsectionSDT::parse(void)
 						NvodReferenceDescriptor * d = (NvodReferenceDescriptor *) *dit;
 						NvodReferenceConstIterator it;
 						const NvodReferenceList* nlist = d->getNvodReferences();
-						for (it = nlist->begin(); it != nlist->end(); ++it) { 
+						for (it = nlist->begin(); it != nlist->end(); ++it) {
 							SInvodReference nvod((*it)->getTransportStreamId(), (*it)->getOriginalNetworkId(), (*it)->getServiceId());
 							s.nvods.insert(nvod);
 						}

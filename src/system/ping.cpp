@@ -32,7 +32,7 @@
 #endif /*EXIT_FAILURE*/
 
 #define  MAXPACKET   65535
-#define  PKTSIZE     64 
+#define  PKTSIZE     64
 #define  HDRLEN      ICMP_MINLEN
 #define  DATALEN     (PKTSIZE-HDRLEN)
 #define  MAXDATA     (MAXPKT-HDRLEN-TIMLEN)
@@ -43,7 +43,7 @@ static int   timo  = 2;
 static int   rrt;
 static int   sock = -1;
 
-static int 
+static int
 in_checksum( u_short *buf, int len )
 {
   register long sum = 0;
@@ -59,12 +59,12 @@ in_checksum( u_short *buf, int len )
     sum += answer;
   }
   sum = ( sum >> 16 ) + ( sum & 0xffff );
-  sum += ( sum >> 16 );     
-  answer = ~sum;     
+  sum += ( sum >> 16 );
+  answer = ~sum;
 
   return ( answer );
 
-} 
+}
 
 int
 send_ping( const char *host, struct sockaddr_in *taddr )
@@ -82,7 +82,7 @@ send_ping( const char *host, struct sockaddr_in *taddr )
   if(( proto = getprotobyname( "icmp" )) == NULL ){
     return -1;
   }
-  
+
   if(( hp = gethostbyname( host )) != NULL ){
     memmove( &taddr->sin_addr, hp->h_addr_list[0], sizeof( taddr->sin_addr ));
     taddr->sin_port = 0;
@@ -111,7 +111,7 @@ send_ping( const char *host, struct sockaddr_in *taddr )
   icp->icmp_id    = getpid() & 0xFFFF;
   icp->icmp_cksum = in_checksum((u_short *)icp, len );
 
-  if(( ss = sendto( sock, buf, sizeof( buf ), 0, 
+  if(( ss = sendto( sock, buf, sizeof( buf ), 0,
      (struct sockaddr*)taddr, sizeof( *taddr ))) < 0 ){
 #ifdef  DEBUG
   perror( "sock" );
@@ -132,7 +132,7 @@ send_ping( const char *host, struct sockaddr_in *taddr )
   return 0;
 }
 
-static int 
+static int
 recv_ping( struct sockaddr_in *taddr )
 {
   int len;
@@ -159,15 +159,15 @@ recv_ping( struct sockaddr_in *taddr )
 #endif/*DEBUG*/
     exit( EXIT_FAILURE );
   }
-  if( nf == 0 ){ 
-    return -1; 
+  if( nf == 0 ){
+    return -1;
   }
 
   len = HDRLEN + DATALEN;
-  from = sizeof( faddr ); 
+  from = sizeof( faddr );
 
   cc = recvfrom( sock, buf, len, 0, (struct sockaddr*)&faddr, &from );
-  if( cc < 0 ){ 
+  if( cc < 0 ){
     exit( EXIT_FAILURE );
   }
 
@@ -178,7 +178,7 @@ recv_ping( struct sockaddr_in *taddr )
   /*****
   if( icp->icmp_id   != ( getpid() & 0xFFFF )){
     printf( "id: %d\n",  icp->icmp_id );
-    return 1; 
+    return 1;
   }
   *****/
 
@@ -209,9 +209,9 @@ elapsed_time( struct timeval *starttime ){
   }
   free(newtime);
   return( elapsed );
-} 
+}
 
-static int 
+static int
 myping(const std::string &hostname, int t, struct sockaddr_in *sa = NULL)
 {
   int err;
@@ -220,13 +220,13 @@ myping(const std::string &hostname, int t, struct sockaddr_in *sa = NULL)
 
   if (!sa)
 	sa = &_sa;
- 
+
   ident = getpid() & 0xFFFF;
 
-  if( t == 0 ) timo = 2; 
+  if( t == 0 ) timo = 2;
   else         timo = t;
 
-  (void) gettimeofday( &mytime, (struct timezone *)NULL); 
+  (void) gettimeofday( &mytime, (struct timezone *)NULL);
   if(( err = send_ping( hostname.c_str(), sa )) < 0 ){
     return err;
   }
@@ -237,7 +237,7 @@ myping(const std::string &hostname, int t, struct sockaddr_in *sa = NULL)
       return 0;
     }
   } while( recv_ping(sa));
-  close( sock ); 
+  close( sock );
   sock = -1;
 
   return 1;
@@ -270,7 +270,7 @@ tpinghost(const std::string &hostname)
     return rrt;
   else
     return ret;
-} 
+}
 
 int
 tpingthost(const std::string &hostname, int t )
@@ -278,7 +278,7 @@ tpingthost(const std::string &hostname, int t )
   int ret;
 
   if(( ret = myping( hostname, t )) > 0 )
-    return rrt; 
+    return rrt;
   else
     return ret;
 }

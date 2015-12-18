@@ -125,7 +125,7 @@ audiomenu.auto_subs Untertitel automatisch
 audiomenu.avs avs
 audiomenu.avsync A/V sync
 audiomenu.avsync_am Audio master
-audiomenu.clockrec 
+audiomenu.clockrec
 audiomenu.dolbydigital DD-Unterkanal automatisch
 audiomenu.hdmi_dd Dolby Digital über HDMI
 audiomenu.hdmi_dd_auto automatisch
@@ -384,7 +384,7 @@ eventfinder.history Frühere Suchen
 eventfinder.keyword Suche nach Textpassage
 eventfinder.max_history Max. Anzahl früherer Suchen
 eventfinder.search Suche
-eventfinder.search_all_epg Ganze 
+eventfinder.search_all_epg Ganze
 eventfinder.search_within_epg Suche innerhalb EPG-Daten
 eventfinder.search_within_list Suche innerhalb Text
 eventfinder.searching Suche...
@@ -677,7 +677,7 @@ flashupdate.update_with_settings_successfully Settingsübernahme erfolgreich.\nD
 flashupdate.update_with_settings_warning Warnung Flashspeicher!\n \nIm neuen Image sind nur noch %ld KB (von %ld KB) frei,\ndas ist möglicherweise zu wenig, um einen sicheren Betrieb zu gewährleisten.\n \nSoll der Vorgang trotzdem fortgesetzt werden?
 flashupdate.updatemode Updatemodus
 flashupdate.updatemode_internet Internet
-flashupdate.updatemode_manual von lokalem Update-Verzeichnis 
+flashupdate.updatemode_manual von lokalem Update-Verzeichnis
 flashupdate.url_file Internet Konfigurations-Datei
 flashupdate.versioncheck Versionsüberprüfung
 flashupdate.writeflash ganzes Flashimage einspielen
@@ -895,7 +895,7 @@ keychoosermenu.setnone Keine Taste
 languagesetup.head Sprache und Zeitzonen
 languagesetup.osd Menüsprache
 languagesetup.select Sprache
-lcd_info_line Zeige in Infozeile 
+lcd_info_line Zeige in Infozeile
 lcd_info_line_channel Kanalname
 lcd_info_line_clock Uhrzeit
 lcdcontroler.brightness normale
@@ -1434,7 +1434,7 @@ menu.hint_tvmode Schaltet zum TV-Modus
 menu.hint_tvradio_switch Schaltet zwischen TV- und Radio-Modus um
 menu.hint_upnp Zugriff auf UPNP-Server in Ihrem lokalen Netz
 menu.hint_vfd Frontdisplay und Power-LEDs
-menu.hint_vfd_brightness Definiert die Helligkeit im TV-Betrieb 
+menu.hint_vfd_brightness Definiert die Helligkeit im TV-Betrieb
 menu.hint_vfd_brightness_setup Konfiguriert die Helligkeit des Frontdisplays für verschiedene Modi
 menu.hint_vfd_brightnessdeepstandby Definiert die Helligkeit im Deep-Standby
 menu.hint_vfd_brightnessdim Definiert den Wert für das Dimmen des Display nach Ablauf der eingestellten Zeit
@@ -1648,7 +1648,7 @@ moviebrowser.edit_book Bookmark Ändern
 moviebrowser.edit_book_name_info1 Neuer Markierungsname
 moviebrowser.edit_book_name_info2 Markierungsname info2
 moviebrowser.edit_book_pos_info1 Neue Position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Neue Sprunglänge (s)
 moviebrowser.edit_book_type_info2 <0 zurück , >0 vor, 0: kein
 moviebrowser.edit_serie Name der Serie
@@ -1674,15 +1674,15 @@ moviebrowser.help_button_red Sortierung ändern
 moviebrowser.help_button_right Ansicht ändern
 moviebrowser.help_button_yellow Aktives Fenster wechseln
 moviebrowser.hide_series Verstecke Serien
-moviebrowser.hint_copy_onefile 
-moviebrowser.hint_copy_several 
-moviebrowser.hint_cut 
+moviebrowser.hint_copy_onefile
+moviebrowser.hint_copy_several
+moviebrowser.hint_cut
 moviebrowser.hint_jumpbackward Rücksprung in 5 Sekunden\n'0' zum Weitersehen
 moviebrowser.hint_jumpforward Werbung überspringen in 5 Sekunden\n'0' zum Ansehen
 moviebrowser.hint_movieend Filmende in 5 Sekunden\n'0' zum Weitersehen
 moviebrowser.hint_newbook_backward Neue Wiederholung gestartet.\n'%s' bestimmt die Endposition, '0' bricht ab.
 moviebrowser.hint_newbook_forward Neuer Werbesprung gestartet.\n'%s' bestimmt die Endposition, '0' bricht ab.
-moviebrowser.hint_truncate 
+moviebrowser.hint_truncate
 moviebrowser.info_audio Audio
 moviebrowser.info_channel Kanal
 moviebrowser.info_file Datei
@@ -1774,7 +1774,7 @@ moviecut.cancel Bearbeiten des Filmes abbrechen?
 movieplayer.bookmark Bookmarks
 movieplayer.bookmarkname Bookmark Name
 movieplayer.bookmarkname_hint1 Geben Sie den Namen für das neue Lesezeichen ein
-movieplayer.bookmarkname_hint2 
+movieplayer.bookmarkname_hint2
 movieplayer.chapters Kapitel
 movieplayer.defplugin Start-Plugin
 movieplayer.fileplayback Datei-Browser

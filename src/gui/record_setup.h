@@ -48,7 +48,7 @@ class CRecordSetup : public CMenuTarget, public CChangeObserver
 
 		void showRecordTimeShiftSetup(CMenuWidget *menu_ts);
 
-	public:	
+	public:
 		CRecordSetup();
 		~CRecordSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);

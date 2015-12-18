@@ -179,8 +179,8 @@ int CUserMenuSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 
 	int res = showSetup();
 	checkButtonName();
-	
-	return res; 
+
+	return res;
 }
 
 static neutrino_locale_t locals[SNeutrinoSettings::ITEM_MAX];
@@ -191,7 +191,7 @@ neutrino_locale_t CUserMenuSetup::getLocale(unsigned int key)
 		initialized = true;
 		for (int i = 0; i < SNeutrinoSettings::ITEM_MAX; i++)
 			locals[i] = NONEXISTANT_LOCALE;
-		for (int i = 0; usermenu_items[i].key != SNeutrinoSettings::ITEM_MAX; i++) 
+		for (int i = 0; usermenu_items[i].key != SNeutrinoSettings::ITEM_MAX; i++)
 			locals[usermenu_items[i].key] = usermenu_items[i].value;
 	}
 	return locals[key];
@@ -264,7 +264,7 @@ void CUserMenuSetup::checkButtonItems()
 {
 	//count of configured items
 	int used_items = getUsedItemsCount();
-	
+
 	//warn if no items defined and reset menu name, if empty
 	if (used_items == 0){
 		if (!g_settings.usermenu[button]->title.empty()){
@@ -285,11 +285,11 @@ void CUserMenuSetup::checkButtonItems()
 void CUserMenuSetup::checkButtonName()
 {
 	checkButtonItems();
-	
+
 	//exit function, if no items found
 	if (getUsedItemsCount() == 0)
 		return;
-	
+
 	if (button < USERMENU_ITEMS_COUNT && g_settings.usermenu[button]->title.empty())
 	{
 		std::string msg(g_Locale->getText(LOCALE_USERMENU_MSG_INFO_IS_EMPTY));

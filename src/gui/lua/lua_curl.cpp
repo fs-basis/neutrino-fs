@@ -29,9 +29,6 @@
 #include <system/helpers.h>
 #include <neutrino.h>
 
-#include <curl/curl.h>
-#include <curl/easy.h>
-
 #include "luainstance.h"
 #include "lua_curl.h"
 

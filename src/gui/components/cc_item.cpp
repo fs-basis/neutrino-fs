@@ -66,32 +66,32 @@ void CComponentsItem::initParent(CComponentsForm* parent)
 void CComponentsItem::paintInit(bool do_save_bg)
 {
 	if (hasChanges())
-	clearFbData();
+		clearFbData();
 
 	if (v_fbdata.empty()){
-	int th = fr_thickness;
-	fb_pixel_t col_frame_cur = col_frame;
+		int th = fr_thickness;
+		fb_pixel_t col_frame_cur = col_frame;
 
-	//calculate current needed frame thickeness and color, if item selected or not
-	if (cc_item_selected){
-		col_frame_cur = col_frame_sel;
-		th = max(fr_thickness_sel, fr_thickness);
-	}
+		//calculate current needed frame thickeness and color, if item selected or not
+		if (cc_item_selected){
+			col_frame_cur = col_frame_sel;
+			th = max(fr_thickness_sel, fr_thickness);
+		}
 
-	//calculate current needed corner radius for body box, depends of frame thickness
-	int rad = (corner_rad>th) ? corner_rad-th : corner_rad;
-	int sw = (shadow) ? shadow_w : 0;
+		//calculate current needed corner radius for body box, depends of frame thickness
+		int rad = (corner_rad>th) ? corner_rad-th : corner_rad;
+		int sw = (shadow) ? shadow_w : 0;
 
 		//evaluate shadow mode
 		bool sh_r = (shadow & CC_SHADOW_ON) || (shadow & CC_SHADOW_RIGHT);
 		bool sh_b = (shadow & CC_SHADOW_ON) || (shadow & CC_SHADOW_BOTTOM);
 
-	//if item is bound on a parent form, we must use real x/y values and from parent form as reference
-	int ix = x, iy = y;
-	if (cc_parent){
-		ix = cc_xr;
-		iy = cc_yr;
-	}
+		//if item is bound on a parent form, we must use real x/y values and from parent form as reference
+		int ix = x, iy = y;
+		if (cc_parent){
+			ix = cc_xr;
+			iy = cc_yr;
+		}
 
 		//handle shadow width
 		if (width <= sw || height <= sw){ //don't use shadow, if item dimensions too small
@@ -105,21 +105,21 @@ void CComponentsItem::paintInit(bool do_save_bg)
 
 		//init paint layers
 		cc_fbdata_t fbdata[] =
-	{
+		{
 			{true, CC_FBDATA_TYPE_BGSCREEN,		ix,		iy, 		width+isw/2, 	height+isw/2, 	0, 		0, 		0,				0, 	NULL, NULL, NULL, false}, //buffered bg
 			{sh_r, CC_FBDATA_TYPE_SHADOW_BOX, 	ixsr,		iy+isw/2,	isw, 		height, 	col_shadow, 	corner_rad,	corner_type & CORNER_RIGHT,	0, 	NULL, NULL, NULL, false}, //shadow right
 			{sh_b, CC_FBDATA_TYPE_SHADOW_BOX, 	ix+isw/2,	iysb, 		width, 		isw, 		col_shadow, 	corner_rad,	corner_type & CORNER_BOTTOM,	0, 	NULL, NULL, NULL, false}, //shadow bottom
 			{true, CC_FBDATA_TYPE_FRAME,		ix,		iy, 		width, 		height, 	col_frame_cur, 	corner_rad,	corner_type,			th, 	NULL, NULL, NULL, false}, //frame
 			{true, CC_FBDATA_TYPE_BOX,		ix+th,  	iy+th,  	width-2*th,     height-2*th,    col_body,       rad,		corner_type,			0, 	NULL, NULL, NULL, false}, //body
-	};
+		};
 
-	for(size_t i =0; i< (sizeof(fbdata) / sizeof(fbdata[0])) ;i++) {
+		for(size_t i =0; i< (sizeof(fbdata) / sizeof(fbdata[0])) ;i++) {
 			if ((fbdata[i].fbdata_type == CC_FBDATA_TYPE_FRAME) && !fr_thickness)
-			continue;
-		v_fbdata.push_back(fbdata[i]);
-	}
+				continue;
+			v_fbdata.push_back(fbdata[i]);
+		}
 
-	dprintf(DEBUG_DEBUG, "[CComponentsItem] %s:\ncc_item_type: %d\ncc_item_index = %d\nheight = %d\nwidth = %d\n", __func__, cc_item_type,  cc_item_index, height, width);
+		dprintf(DEBUG_DEBUG, "[CComponentsItem] %s:\ncc_item_type: %d\ncc_item_index = %d\nheight = %d\nwidth = %d\n", __func__, cc_item_type,  cc_item_index, height, width);
 	}
 	paintFbItems(do_save_bg);
 }

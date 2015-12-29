@@ -172,13 +172,13 @@ class CProgressBarCache
 						yoff(0)
 		{
 			if (pbCache.size() > 10)
-				clear();
+				pbcClear();
 			pbcCreateBitmaps();
 		}
-		void clear();
+		void pbcClear();
 	public:
 		void pbcPaint(int x, int y, int pbc_active_width, int pbc_passive_width);
-		static CProgressBarCache *lookup(	int dy,
+		static CProgressBarCache *pbcLookup(	int dy,
 							int dx,
 							int active_col,
 							int passive_col,
@@ -190,7 +190,7 @@ class CProgressBarCache
 							int Y);
 };
 
-void CProgressBarCache::clear()
+void CProgressBarCache::pbcClear()
 {
 	for (std::vector<CProgressBarCache *>::iterator it = pbCache.begin(); it != pbCache.end(); ++it) {
 		if ((*it)->pbc_active)
@@ -201,7 +201,7 @@ void CProgressBarCache::clear()
 	pbCache.clear();
 }
 
-CProgressBarCache *CProgressBarCache::lookup(int dy, int dx, int active_col, int passive_col, int design, bool enable_invert, bool enable_gradient, int R, int G, int Y)
+CProgressBarCache *CProgressBarCache::pbcLookup(int dy, int dx, int active_col, int passive_col, int design, bool enable_invert, bool enable_gradient, int R, int G, int Y)
 {
 	// sanitize
 	if (design == CProgressBar::PB_MONO)
@@ -465,7 +465,7 @@ void CProgressBar::paintProgress(bool do_save_bg)
 
 	if (cc_allow_paint){
 		if (pb_active_width != pb_last_width) {
-			CProgressBarCache *pbc = CProgressBarCache::lookup(pb_height, pb_max_width, pb_active_col, pb_passive_col, *pb_design, pb_invert, *pb_gradient, pb_red, pb_yellow, pb_green);
+			CProgressBarCache *pbc = CProgressBarCache::pbcLookup(pb_height, pb_max_width, pb_active_col, pb_passive_col, *pb_design, pb_invert, *pb_gradient, pb_red, pb_yellow, pb_green);
 			if (pbc)
 				pbc->pbcPaint(pb_x, pb_y, pb_active_width, pb_passive_width);
 			is_painted = true;

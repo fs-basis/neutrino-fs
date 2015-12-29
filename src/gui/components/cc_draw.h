@@ -26,6 +26,7 @@
 #define __CC_DRAW__
 
 #include "cc_types.h"
+#include "cc_signals.h"
 #include <driver/colorgradient.h>
 #include <driver/fade.h>
 #include <gui/color.h>
@@ -35,7 +36,7 @@
 Basic paint attributes and member functions for component classes
 */
 
-class CCDraw : public COSDFader
+class CCDraw : public COSDFader, public CComponentsSignals
 {
 	protected:
 		///pixel buffer handling, returns pixel buffer depends of given parameters
@@ -108,6 +109,8 @@ class CCDraw : public COSDFader
 		bool is_painted;
 		///mode: true=activate rendering of basic elements (frame, shadow and body)
 		bool paint_bg;
+		///mode: true=activate rendering of frame
+		bool cc_enable_frame;
 		///mode:  true=allows painting of item, see also allowPaint()
 		bool cc_allow_paint;
 
@@ -256,6 +259,10 @@ class CCDraw : public COSDFader
 		virtual bool isPainted(){return is_painted;}
 		///allows paint of elementary item parts (shadow, frame and body), similar as background, set it usually to false, if item used in a form, returns true, if mode has changed, also cleans screnn buffer
 		virtual bool doPaintBg(bool do_paint);
+		///allows paint frame around body, default true , NOTE: ignored if frame width = 0
+		virtual void enableFrame(bool enable = true, const int& frame_width = -1){cc_enable_frame = enable; setFrameThickness(frame_width == -1 ? fr_thickness : frame_width);}
+		///disallow paint frame around body
+		virtual void disableFrame(){enableFrame(false);}
 		///enable/disable background buffering, default action = enable, see also cc_save_bg
 		virtual void enableSaveBg(bool save_bg = true);
 		///disable background buffering, does the same like enableSaveBg(false), NOTE: cleans existant pixbuffer content!
@@ -272,7 +279,7 @@ class CCDraw : public COSDFader
 		///disable color gradient, returns true if gradient mode was changed
 		virtual bool disableColBodyGradient(){return enableColBodyGradient(CC_COLGRAD_OFF);}
 		///set color gradient properties, possible parameter values for mode and intensity to find in CColorGradient, in driver/framebuffer.h>
-		virtual void setColBodyGradient(const int& mode, const int& direction, const fb_pixel_t& sec_color = 255 /*=COL_BACKGROUND*/, const int& intensity = CColorGradient::normal, uint8_t v_min=0x40, uint8_t v_max=0xE0, uint8_t s=0xC0)
+		virtual void setColBodyGradient(const int& mode, const int& direction = 1 /*CFrameBuffer::gradientVertical*/, const fb_pixel_t& sec_color = 255 /*=COL_BACKGROUND*/, const int& intensity = CColorGradient::normal, uint8_t v_min=0x40, uint8_t v_max=0xE0, uint8_t s=0xC0)
 						{	cc_body_gradient_intensity=intensity;
 							cc_body_gradient_intensity_v_min=v_min;
 							cc_body_gradient_intensity_v_max=v_max;
@@ -283,6 +290,15 @@ class CCDraw : public COSDFader
 
 		///abstract: paint item, arg: do_save_bg see paintInit() above
 		virtual void paint(bool do_save_bg = CC_SAVE_SCREEN_YES) = 0;
+		///paint item, same like paint(CC_SAVE_SCREEN_YES) but without any argument
+		virtual void paint1(){paint(CC_SAVE_SCREEN_YES);}
+		///paint item, same like paint(CC_SAVE_SCREEN_NO) but without any argument
+		virtual void paint0(){paint(CC_SAVE_SCREEN_NO);}
+
+		///signal on before paint fb layers, called inside paintFbItems()
+		sigc::signal<void> OnBeforePaintLayers;
+		///signal on after paint fb layers, called inside paintFbItems()
+		sigc::signal<void> OnAfterPaintLayers;
 
 		/*!
 		 Removes current item from screen and

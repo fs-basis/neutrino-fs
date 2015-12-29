@@ -349,10 +349,11 @@ CMovieBrowser::~CMovieBrowser()
 
 	clearListLines();
 
-	if (CChannelLogo) {
+	if (CChannelLogo)
 		delete CChannelLogo;
-		CChannelLogo = NULL;
-	}
+
+	if (pic)
+		delete pic;
 }
 
 void CMovieBrowser::clearListLines()
@@ -419,7 +420,7 @@ void CMovieBrowser::init(void)
 	m_pcLastRecord = NULL;
 	m_pcInfo = NULL;
 	m_pcFilter = NULL;
-
+	pic = NULL;
 	m_windowFocus = MB_FOCUS_BROWSER;
 
 	m_textTitle = g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD);
@@ -500,7 +501,7 @@ void CMovieBrowser::init(void)
 	movielist.clear();
 
 	CChannelLogo = NULL;
-
+	old_EpgId = 0;
 	m_doRefresh = false;
 	m_doLoadMovies = false;
 }
@@ -1274,16 +1275,13 @@ void CMovieBrowser::refreshMovieInfo(void)
 	bool logo_ok = (!fname.empty());
 	int flogo_w = 0, flogo_h = 0;
 	if (logo_ok) {
-		int picw = (int)(((float)16 / (float)9) * (float)m_cBoxFrameInfo.iHeight);
-		int pich = m_cBoxFrameInfo.iHeight;
-		g_PicViewer->getSize(fname.c_str(), &flogo_w, &flogo_h);
-		g_PicViewer->rescaleImageDimensions(&flogo_w, &flogo_h, picw-2, pich-2);
+		flogo_w = (int)(((float)16 / (float)9) * (float)m_cBoxFrameInfo.iHeight);
+		flogo_h = m_cBoxFrameInfo.iHeight;
 #ifdef BOXMODEL_APOLLO
 		/* align for hw blit */
 		flogo_w = ((flogo_w + 3) / 4) * 4;
 #endif
 	}
-	m_pcInfo->setText(&m_movieSelectionHandler->epgInfo2, logo_ok ? m_cBoxFrameInfo.iWidth-flogo_w-20 : 0);
 
 	static int logo_w = 0;
 	static int logo_h = 0;
@@ -1299,7 +1297,6 @@ void CMovieBrowser::refreshMovieInfo(void)
 			CChannelLogo->clearFbData(); // reset logo screen data
 		else
 			CChannelLogo->hide();
-			CChannelLogo->clearSavedScreen();
 		delete CChannelLogo;
 		CChannelLogo = NULL;
 	}
@@ -1322,6 +1319,7 @@ void CMovieBrowser::refreshMovieInfo(void)
 		ly = m_cBoxFrameTitleRel.iY+m_cBoxFrame.iY+ (m_cBoxFrameTitleRel.iHeight-CChannelLogo->getHeight())/2;
 		CChannelLogo->setXPos(lx - pb_hdd_offset);
 		CChannelLogo->setYPos(ly);
+		CChannelLogo->hide();
 		CChannelLogo->paint();
 		newHeader = false;
 	}
@@ -1329,12 +1327,23 @@ void CMovieBrowser::refreshMovieInfo(void)
 	if (m_settings.gui != MB_GUI_FILTER && logo_ok) {
 		lx = m_cBoxFrameInfo.iX+m_cBoxFrameInfo.iWidth - flogo_w -14;
 		ly = m_cBoxFrameInfo.iY - 1 + (m_cBoxFrameInfo.iHeight-flogo_h)/2;
-		g_PicViewer->DisplayImage(fname, lx+2, ly+1, flogo_w, flogo_h, CFrameBuffer::TM_NONE);
-		framebuffer->paintVLineRel(lx, ly, flogo_h+1, COL_WHITE);
-		framebuffer->paintVLineRel(lx+flogo_w+2, ly, flogo_h+2, COL_WHITE);
-		framebuffer->paintHLineRel(lx, flogo_w+2, ly, COL_WHITE);
-		framebuffer->paintHLineRel(lx, flogo_w+2, ly+flogo_h+1, COL_WHITE);
+		if (pic == NULL){
+			pic = new CComponentsPicture(lx+2, ly+1, flogo_w, flogo_h, fname, NULL, CC_SHADOW_OFF, COL_MENUCONTENTSELECTED_PLUS_0);
+			pic->enableFrame(true, 2);
+			pic->enableCache();
+			pic->doPaintBg(false);
+		}else{
+			pic->setPicture(fname);
+		}
+		if (!m_movieSelectionHandler->epgInfo2.empty())
+			m_pcInfo->OnAfterRefresh.connect(sigc::mem_fun(pic, &CComponentsPicture::paint0));
+		else
+			pic->paint0();
+	}else{
+		delete pic;
+		pic = NULL;
 	}
+	m_pcInfo->setText(&m_movieSelectionHandler->epgInfo2, logo_ok ? m_cBoxFrameInfo.iWidth-flogo_w-20 : 0);
 	framebuffer->blit();
 }
 
@@ -1355,7 +1364,7 @@ void CMovieBrowser::info_hdd_level(bool /* paint_hdd */)
 	if (tmp_blocks_percent_used != blocks_percent_used || paint_hdd) {
 		tmp_blocks_percent_used = blocks_percent_used;
 */
-	if (true) {
+	if (g_settings.infobar_show_sysfs_hdd) {
 		const short pbw = 100;
 		const short border = m_cBoxFrameTitleRel.iHeight/4;
 		CProgressBar pb(m_cBoxFrame.iX+ m_cBoxFrameFootRel.iWidth - pbw - border, m_cBoxFrame.iY+m_cBoxFrameTitleRel.iY + border, pbw, m_cBoxFrameTitleRel.iHeight/2);
@@ -2885,6 +2894,7 @@ bool CMovieBrowser::showMenu(bool calledExternally)
 {
 	/* first clear screen */
 	framebuffer->paintBackground();
+
 	int i;
 	/********************************************************************/
 	/**  directory menu ******************************************************/
@@ -3033,8 +3043,8 @@ bool CMovieBrowser::showMenu(bool calledExternally)
 			refreshLastPlayList();
 			refreshLastRecordList();
 			refreshFilterList();
-			refreshMovieInfo();
 			refreshTitle();
+			refreshMovieInfo();
 			refreshFoot();
 			refreshLCD();
 		}

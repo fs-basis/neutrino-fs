@@ -67,16 +67,16 @@ CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 	col_body	= color_body;
 	col_shadow	= color_shadow;
 
-	corner_rad		= RADIUS_SMALL;
+	corner_rad	= RADIUS_SMALL;
 
 	//init default format and  text color
 	setClockFormat(prformat_str, secformat_str);
-	cl_col_text		= COL_MENUCONTENT_TEXT;
+	cl_col_text	= COL_MENUCONTENT_TEXT;
 
 	//init default font
 	cl_font 	= font;
 	cl_font_style	= font_style;
-	if (cl_font == NULL) {
+	if (cl_font == NULL){
 		int dx = 0;
 		int dy = 30;
 		setClockFont(*CNeutrinoFonts::getInstance()->getDynFont(dx, dy, cl_format_str, cl_font_style));
@@ -92,7 +92,7 @@ CComponentsFrmClock::CComponentsFrmClock( 	const int& x_pos,
 	//set default running clock properties
 	cl_interval	= interval_seconds;
 	cl_timer 	= NULL;
-	paintClock		= false;
+	paintClock	= false;
 
 	may_blit		= true;
 
@@ -172,7 +172,12 @@ void CComponentsFrmClock::initCCLockItems()
 	/* create label objects and add to container, ensure that count of items = count of chars (one char = one segment)
 	 * this is required for the case, if any time string format was changed
 	*/
-	if (v_cc_items.size() != s_time.size()){
+	if (v_cc_items.empty() || (v_cc_items.size() != s_time.size())){
+		//exit on empty time string
+		if (s_time.empty()){
+			clear();
+			return;
+		}
 
 		//clean up possible old items before add new items
 		clear();
@@ -307,8 +312,8 @@ bool CComponentsFrmClock::startClock()
 {
 	if (cl_interval <= 0){
 		dprintf(DEBUG_NORMAL, "[CComponentsFrmClock]    [%s]  clock is set to active, but interval is initialized with value %d ...\n", __func__, cl_interval);
-			return false;
-		}
+		return false;
+	}
 
 	if (cl_timer == NULL){
 		cl_timer = new CComponentsTimer();
@@ -318,7 +323,7 @@ bool CComponentsFrmClock::startClock()
 	cl_timer->setTimerIntervall(cl_interval);
 
 	if (cl_timer->isRun())
-	return  true;
+		return true;
 
 	return  false;
 }
@@ -353,7 +358,7 @@ bool CComponentsFrmClock::Start(bool do_save_bg)
 bool CComponentsFrmClock::Stop()
 {
 	if (stopClock()){
-	paintClock = false;
+		paintClock = false;
 		return true;
 	}
 

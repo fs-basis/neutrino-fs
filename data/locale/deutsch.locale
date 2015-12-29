@@ -309,6 +309,9 @@ colorchooser.alpha alpha
 colorchooser.blue blau
 colorchooser.green grün
 colorchooser.red rot
+colorchooser.save Speichern
+colormenu.advanced_mode_off Standard-Optionen
+colormenu.advanced_mode_on Erweiterte Optionen
 colormenu.background Hintergrundfarbe
 colormenu.clock_textcolor Ziffernfarbe
 colormenu.contrast_fonts Schriftkontrast
@@ -1099,6 +1102,7 @@ menu.hint_inactive_textcolor Ändern Sie die Textfarbe für deaktivierte Fenster
 menu.hint_inet_radio Internetradio
 menu.hint_info Informationen über das Image, CPU, Arbeitsspeicher und Stream und mehr
 menu.hint_infobar_back Ändern Sie die Hintergrundfarbe für die Infobar
+menu.hint_infobar_buttons_usertitle Erzwingt die benutzerdefinierten Titel der Farbtasten
 menu.hint_infobar_casys ein: zeigt alle Aktiven farbig, Mini: einzelnes Symbol ob gesperrt, Diskret: alle Aktiven CA-Systeme
 menu.hint_infobar_casys_color Ändern Sie die Hintergrundfarbe für die CA-Systemanzeige der Infobar
 menu.hint_infobar_casys_dotmatrix ein: CA-Systemanzeige mit Punktematrix im Hintergrund
@@ -1391,8 +1395,10 @@ menu.hint_scrambled_message Bei aktivierter Option erscheint eine Meldung, wenn 
 menu.hint_screen_setup Konfigurieren Sie den Bildschirmbereich für die Menüanzeige
 menu.hint_screensaver_delay Legen sie die Zeit (in Minuten) fest, nach der der Bildschirmschoner starten soll oder schaltet ihn aus
 menu.hint_screensaver_dir Wählen Sie das Verzeichnis, in dem die Bilder für Ihren Bildschirmschoner gespeichert sind
-menu.hint_screensaver_timeout Wählen Sie Die Wartezeit bis zum Bilderwechsel des Bildschirmschoners
+menu.hint_screensaver_mode Modus des Bilschirmschoners wählen.
+menu.hint_screensaver_random Aktviere/deaktiviere zufällige Bilderauswahl.
 menu.hint_screensaver_setup Konfigurieren Sie die Optionen des Bildschirmschoners für den Audioplayer und den Radio-Modus
+menu.hint_screensaver_timeout Wechselintervall des Bildschirmschoners
 menu.hint_screenshot_count Wählen Sie, wie viele Screenshots erstellt werden sollen
 menu.hint_screenshot_cover Während der Wiedergabe von Aufnahmen kann ein Screenshot für die Vorschau im Moviebrowser erstellt werden
 menu.hint_screenshot_dir Wählen Sie das Verzeichnis zum Speichern der Screenshots
@@ -1480,6 +1486,7 @@ messagebox.back Zurück
 messagebox.cancel Abbruch
 messagebox.discard Wollen Sie die Änderungen verwerfen?
 messagebox.error Fehler
+messagebox.feature_not_supported Funktion wird nicht unterstützt. Bitte wenden Sie sich an Ihren Firmware-Anbieter!
 messagebox.info Information
 messagebox.no Nein
 messagebox.ok OK
@@ -1523,6 +1530,7 @@ miscsettings.epg_scan_standby Im Standby Modus
 miscsettings.general Allgemein
 miscsettings.head Erweitert
 miscsettings.infobar Infobar
+miscsettings.infobar_buttons_usertitle Benutzertitel für Farbtasten
 miscsettings.infobar_casystem_display CA-Systemanzeige
 miscsettings.infobar_casystem_dotmatrix CA-Anzeige mit Punktematrix
 miscsettings.infobar_casystem_frame CA-Anzeige mit Rahmen
@@ -1536,6 +1544,7 @@ miscsettings.infobar_disp_3 Logo, Kanalname [Signalbalken]
 miscsettings.infobar_disp_4 Logo, Kanalname [Kanalnummer]
 miscsettings.infobar_disp_5 Logo [Signalbalken]
 miscsettings.infobar_disp_6 Kanalnummer, Logo [Signalbalken]
+miscsettings.infobar_gradient_body Farbverlauf EPG-Bereich
 miscsettings.infobar_gradient_bottom Farbverlauf unten
 miscsettings.infobar_gradient_top Farbverlauf oben
 miscsettings.infobar_logo_hdd_dir Logo-Verzeichnis
@@ -2152,8 +2161,12 @@ scrambled_channel Verschlüsselung aktiv
 screensaver.delay Verzögerung
 screensaver.dir Verzeichnis
 screensaver.menu Bildschirmschoner
+screensaver.mode Modus
+screensaver.mode_clock Uhr
+screensaver.mode_image Bilder
 screensaver.off Bildschirmschoner aus
-screensaver.timeout Bilderwechsel
+screensaver.random Zufällige Bilderwahl
+screensaver.timeout Wechselintervall
 screensetup.lowerright grün = Bildrand unten, rechts
 screensetup.remove Maske entfernen
 screensetup.upperleft rot = Bildrand oben, links

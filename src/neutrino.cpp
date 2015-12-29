@@ -505,6 +505,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_sat_display   = false; //configfile.getBool("infobar_sat_display"  , false );
 	g_settings.infobar_show_channeldesc   = false; //configfile.getBool("infobar_show_channeldesc"  , false );
 	g_settings.infobar_subchan_disp_pos = configfile.getInt32("infobar_subchan_disp_pos"  , 0 );
+	g_settings.infobar_buttons_usertitle = configfile.getBool("infobar_buttons_usertitle", false );
 	g_settings.progressbar_gradient = configfile.getBool("progressbar_gradient", true );
 	g_settings.progressbar_design =  configfile.getInt32("progressbar_design", CProgressBar::PB_COLOR);
 	bool pb_color = configfile.getBool("progressbar_color", true );
@@ -517,9 +518,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_show = configfile.getInt32("infobar_show", configfile.getInt32("infobar_cn", 0));
 	g_settings.infobar_show_channellogo   = 2; //configfile.getInt32("infobar_show_channellogo"  , 2 );
 	g_settings.infobar_progressbar   = 3; //configfile.getInt32("infobar_progressbar"  , 3 ); // between epg
-	g_settings.casystem_display = configfile.getInt32("casystem_display", 1 );//discreet ca mode default
-	g_settings.casystem_dotmatrix = configfile.getInt32("casystem_dotmatrix", 0 );
-	g_settings.casystem_frame = configfile.getInt32("casystem_frame", 0 );
+	g_settings.infobar_casystem_display = configfile.getInt32("infobar_casystem_display", 1 );//discreet ca mode default
+	g_settings.infobar_casystem_dotmatrix = configfile.getInt32("infobar_casystem_dotmatrix", 0 );
+	g_settings.infobar_casystem_frame = configfile.getInt32("infobar_casystem_frame", 1 );
 	g_settings.scrambled_message = configfile.getBool("scrambled_message", false );
 	g_settings.volume_pos = configfile.getInt32("volume_pos", CVolumeBar::VOLUMEBAR_POS_TOP_RIGHT );
 	g_settings.volume_digits = configfile.getBool("volume_digits", true);
@@ -555,6 +556,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screensaver_delay = configfile.getInt32("screensaver_delay", 1);
 	g_settings.screensaver_dir = configfile.getString("screensaver_dir", ICONSDIR);
 	g_settings.screensaver_timeout = configfile.getInt32("screensaver_timeout", 10);
+	g_settings.screensaver_random = configfile.getInt32("screensaver_random", 0);
+	g_settings.screensaver_mode = configfile.getInt32("screensaver_mode", CScreenSaver::SCR_MODE_IMAGE);
 
 	//vcr
 	g_settings.vcr_AutoSwitch = configfile.getBool("vcr_AutoSwitch"       , true );
@@ -599,9 +602,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.widget_fade = false;
 	g_settings.widget_fade           = configfile.getBool("widget_fade"          , false );
 
+	//theme/color options
 	CThemes::getTheme(configfile);
-
-
+	g_settings.osd_colorsettings_advanced_mode = configfile.getBool("osd_colorsettings_advanced_mode", false);
 
 #ifdef ENABLE_GRAPHLCD
 	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 0);
@@ -900,6 +903,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	sub_font_size = configfile.getInt32("fontsize.subtitles", 24);
 
 	g_settings.update_dir = configfile.getString("update_dir", "/tmp");
+	g_settings.update_dir_opkg = configfile.getString("update_dir_opkg", g_settings.update_dir);
 
 	// parentallock
 	if (!parentallocked) {
@@ -1156,6 +1160,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setBool("infobar_sat_display"  , g_settings.infobar_sat_display  );
 	configfile.setBool("infobar_show_channeldesc"  , g_settings.infobar_show_channeldesc  );
 	configfile.setInt32("infobar_subchan_disp_pos"  , g_settings.infobar_subchan_disp_pos  );
+	configfile.setBool("infobar_buttons_usertitle", g_settings.infobar_buttons_usertitle);
 	configfile.setBool("progressbar_gradient", g_settings.progressbar_gradient);
 	configfile.setInt32("progressbar_design", g_settings.progressbar_design);
 	configfile.setInt32("progressbar_timescale_red", g_settings.progressbar_timescale_red);
@@ -1165,9 +1170,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_show", g_settings.infobar_show);
 	configfile.setInt32("infobar_show_channellogo"  , g_settings.infobar_show_channellogo  );
 	configfile.setInt32("infobar_progressbar"  , g_settings.infobar_progressbar  );
-	configfile.setInt32("casystem_display"  , g_settings.casystem_display  );
-	configfile.setInt32("casystem_dotmatrix"  , g_settings.casystem_dotmatrix  );
-	configfile.setInt32("casystem_frame"  , g_settings.casystem_frame  );
+	configfile.setInt32("infobar_casystem_display"  , g_settings.infobar_casystem_display  );
+	configfile.setInt32("infobar_casystem_dotmatrix"  , g_settings.infobar_casystem_dotmatrix  );
+	configfile.setInt32("infobar_casystem_frame"  , g_settings.infobar_casystem_frame  );
 	configfile.setBool("scrambled_message"  , g_settings.scrambled_message  );
 	configfile.setInt32("volume_pos"  , g_settings.volume_pos  );
 	configfile.setBool("volume_digits", g_settings.volume_digits);
@@ -1199,6 +1204,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("screensaver_delay", g_settings.screensaver_delay);
 	configfile.setString("screensaver_dir", g_settings.screensaver_dir);
 	configfile.setInt32("screensaver_timeout", g_settings.screensaver_timeout);
+	configfile.setInt32("screensaver_random", g_settings.screensaver_random);
+	configfile.setInt32("screensaver_mode", g_settings.screensaver_mode);
 
 	//vcr
 	configfile.setBool("vcr_AutoSwitch"       , g_settings.vcr_AutoSwitch       );
@@ -1230,9 +1237,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	//widget settings
 	configfile.setBool("widget_fade"          , g_settings.widget_fade          );
 
+	//theme/color options
 	CThemes::setTheme(configfile);
-
-
+	configfile.setBool("osd_colorsettings_advanced_mode", g_settings.osd_colorsettings_advanced_mode);
 
 #ifdef ENABLE_GRAPHLCD
 	configfile.setInt32("glcd_enable", g_settings.glcd_enable);
@@ -1421,6 +1428,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setString("softupdate_proxypassword" , g_settings.softupdate_proxypassword );
 
 	configfile.setString("update_dir", g_settings.update_dir);
+	configfile.setString("update_dir_opkg", g_settings.update_dir_opkg);
+
 	configfile.setString("font_file", g_settings.font_file);
 	configfile.setString("ttx_font_file", g_settings.ttx_font_file);
 	configfile.setString("sub_font_file", g_settings.sub_font_file);
@@ -2445,6 +2454,7 @@ void CNeutrinoApp::screensaver(bool on)
 	if (on)
 	{
 		m_screensaver = true;
+		CInfoClock::getInstance()->block();
 		CScreenSaver::getInstance()->Start();
 	}
 	else

@@ -248,13 +248,7 @@ void CVolumeBar::paintVolScale()
 	vb_pb->paint(CC_SAVE_SCREEN_NO);
 }
 
-	//final paint
-	void CVolumeBar::paint(bool do_save_bg)
-{
-	//paint form
-	paintForm(do_save_bg);
-	frameBuffer->blit();
-}
+
 
 // CVolumeHelper ####################################################################################################
 

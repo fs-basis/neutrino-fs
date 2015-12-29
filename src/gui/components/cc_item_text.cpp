@@ -192,19 +192,19 @@ bool CComponentsText::setText(const std::string& stext, const int mode, Font* fo
 {
 	if (ct_text != stext || ct_text_mode != mode || ct_font != font_text || ct_col_text != color_text || ct_text_style != style  ){
 		if (ct_text != stext){
-	ct_text = stext;
+			ct_text = stext;
 			ct_old_text = ct_text;
 		}
 		if (ct_text_mode != mode /*|| mode != ~CTextBox::AUTO_WIDTH*/)
-		ct_text_mode = mode;
-	if (font_text)
-		ct_font = font_text;
-	if (color_text != 0)
-		setTextColor(color_text);
-	if (style != FONT_STYLE_REGULAR)
-		ct_text_style = style;
+			ct_text_mode = mode;
+		if (font_text)
+			ct_font = font_text;
+		if (color_text != 0)
+			setTextColor(color_text);
+		if (style != FONT_STYLE_REGULAR)
+			ct_text_style = style;
 
-	dprintf(DEBUG_DEBUG, "[CComponentsText]   [%s - %d] ct_text: %s \n", __func__, __LINE__, ct_text.c_str());
+		dprintf(DEBUG_DEBUG, "[CComponentsText]   [%s - %d] ct_text: %s \n", __func__, __LINE__, ct_text.c_str());
 		return true;
 	}
 
@@ -255,7 +255,7 @@ bool CComponentsText::setTextFromFile(const string& path_to_textfile, const int 
 
 	if (txt.empty())
 		return false;
-
+	
 	return setText(txt, mode, font_text, color_text, style);
 }
 
@@ -342,9 +342,9 @@ void CComponentsText::setTextColor(const fb_pixel_t& color_text)
 	if (ct_col_text != color_text){
 		//ct_textbox->clearScreenBuffer();
 
-	ct_col_text = color_text;
-	if (ct_textbox)
-		ct_textbox->setTextColor(ct_col_text);
+		ct_col_text = color_text;
+		if (ct_textbox)
+			ct_textbox->setTextColor(ct_col_text);
 	}
 }
 

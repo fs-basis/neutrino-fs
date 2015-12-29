@@ -189,11 +189,12 @@ fb_pixel_t* CColorGradient::gradientColorToColor(fb_pixel_t start_col,fb_pixel_t
 	end_col =  start_col;
 	start_col = temp_col;
 
-	if ((mode == gradientDark2Light2Dark) || (mode == gradientDark2Light)) {
-		fb_pixel_t temp_col = start_col;
+
+	if (mode == gradientDark2Light){
+		temp_col = start_col;
 		start_col = end_col;
 		end_col = temp_col;
-		}
+	}
 
 	uint8_t start_tr = (uint8_t)((start_col & 0xFF000000) >> 24);
 	uint8_t start_r  = (uint8_t)((start_col & 0x00FF0000) >> 16);

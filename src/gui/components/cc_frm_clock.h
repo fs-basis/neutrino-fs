@@ -36,7 +36,7 @@
 #include "cc_frm.h"
 #include "cc_timer.h"
 #include "cc_text_screen.h"
-//! Sub class of CComponents. Show clock with digits on screen.
+//! Sub class of CComponents. Show clock with digits on screen. 
 /*!
 Usable as simple fixed display or as ticking clock.
 */
@@ -75,7 +75,7 @@ class CComponentsFrmClock : public CComponentsForm, public CCTextScreen
 		///secondary time format for blink
 		std::string cl_blink_str;
 
-		///initialize clock contents
+		///initialize clock contents  
 		void initCCLockItems();
 		///initialize timestring, called in initCCLockItems()
 		virtual void initTimeString();

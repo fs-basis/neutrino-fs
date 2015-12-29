@@ -548,7 +548,7 @@ CMenuWidget::CMenuWidget()
 	preselected 	= -1;
 	details_line	= NULL;
 	info_box	= NULL;
-
+	header 		= NULL;
 	nextShortcut	= 1;
 }
 
@@ -573,10 +573,10 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const mn_widge
 	mglobal = CMenuGlobal::getInstance(); //create CMenuGlobal instance only here
 	frameBuffer = CFrameBuffer::getInstance();
 	iconfile = Icon;
-	details_line = new CComponentsDetailLine();
-	details_line->enableSaveBg();
-	info_box = new CComponentsInfoBox();
+	details_line = NULL;
 
+	info_box = NULL;
+	header	= NULL;
 	//handle select values
 	if(w_index > MN_WIDGET_ID_MAX){
 		//error
@@ -633,11 +633,26 @@ void CMenuWidget::move(int xoff, int yoff)
 CMenuWidget::~CMenuWidget()
 {
 	resetWidget(true);
+	ResetModules();
+}
+
+void CMenuWidget::ResetModules()
+{
+	if (header){
+		header->hide();
+		delete header;
+		header = NULL;
+	}
 	if (details_line){
 		details_line->hide();
-	delete details_line;
+		delete details_line;
+		details_line = NULL;
 	}
-	delete info_box;
+	if (info_box){
+		info_box->kill();
+		delete info_box;
+		info_box = NULL;
+	}
 }
 
 void CMenuWidget::addItem(CMenuItem* menuItem, const bool defaultselected)
@@ -1043,6 +1058,10 @@ void CMenuWidget::hide()
 	if(savescreen && background)
 		restoreScreen();//FIXME
 	else {
+		if (header)
+			header->kill();
+		if (info_box)
+			info_box->kill();
 		frameBuffer->paintBackgroundBoxRel(x, y, full_width, full_height + fbutton_height);
 		//paintHint(-1);
 	}
@@ -1201,17 +1220,27 @@ void CMenuWidget::initSelectable()
 void CMenuWidget::paint()
 {
 	OnBeforePaint();
+	if (header){
+		if ((bool)header->getCornerRadius() != (bool)g_settings.rounded_corners) //ensure reset if corner mode was changed
+			ResetModules();
+	}
+
 	if (CInfoClock::getInstance()->isRun())
 		CInfoClock::getInstance()->disableInfoClock();
 	calcSize();
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8 /*, nameString.c_str()*/);
 
 	// paint head
-	CComponentsHeader header(x, y, width + sb_width, hheight, getName(), iconfile);
-	header.enableShadow();
-	header.setOffset(10);
-	header.set2ndColor(COL_MENUCONTENT_PLUS_0);
-	header.paint(CC_SAVE_SCREEN_NO);
+	if (header == NULL){
+		header = new CComponentsHeader(x, y, width + sb_width, hheight, getName(), iconfile);
+		header->enableShadow(CC_SHADOW_RIGHT);
+		header->setOffset(10);
+	}
+	header->setColorBody(COL_MENUHEAD_PLUS_0);
+	header->setColorShadow(COL_MENUCONTENTDARK_PLUS_0);
+	header->setCaptionColor(COL_MENUHEAD_TEXT);
+	header->enableColBodyGradient(g_settings.theme.menu_Head_gradient, COL_MENUCONTENT_PLUS_0);
+	header->paint(CC_SAVE_SCREEN_NO);
 
 	// paint body shadow
 	frameBuffer->paintBoxRel(x+SHADOW_OFFSET, y + hheight + SHADOW_OFFSET, width + sb_width, height - hheight + RADIUS_LARGE + (fbutton_count ? fbutton_height : 0), COL_MENUCONTENTDARK_PLUS_0, RADIUS_LARGE, CORNER_BOTTOM);
@@ -1233,6 +1262,8 @@ void CMenuWidget::setMenuPos(const int& menu_width)
 	int scr_h = frameBuffer->getScreenHeight();
 
 	int real_h = full_height + fbutton_height + hint_height;
+	int x_old = x;
+	int y_old = y;
 
 	//configured positions
 	switch(g_settings.menu_pos)
@@ -1265,6 +1296,8 @@ void CMenuWidget::setMenuPos(const int& menu_width)
 			x = /*offx +*/ scr_x + scr_w - menu_width - 10;
 			break;
 	}
+	if (x_old != x || y_old != y)
+		ResetModules();
 }
 
 void CMenuWidget::paintItems()
@@ -1375,8 +1408,10 @@ void CMenuWidget::enableSaveScreen(bool enable)
 
 void CMenuWidget::paintHint(int pos)
 {
-	if (!g_settings.show_menu_hints)
+	if (!g_settings.show_menu_hints){
+		ResetModules(); //ensure clean up on changed setting
 		return;
+	}
 
 	if (pos < 0 && !hint_painted)
 		return;
@@ -1420,35 +1455,38 @@ void CMenuWidget::paintHint(int pos)
 	int imarkh = iheight/2+1;
 
 	//init details line
-	if (details_line){
-		details_line->setXPos(xpos);
-		details_line->setYPos(ypos1a);
-		details_line->setYPosDown(ypos2a);
-		details_line->setHMarkTop(imarkh);
-		details_line->setHMarkDown(markh);
-		details_line->syncSysColors();
-	}
+	if (details_line == NULL)
+		details_line = new CComponentsDetailLine();
+
+	details_line->setXPos(xpos);
+	details_line->setYPos(ypos1a);
+	details_line->setYPosDown(ypos2a);
+	details_line->setHMarkTop(imarkh);
+	details_line->setHMarkDown(markh);
+	details_line->syncSysColors();
 
 	//init infobox
 	std::string str = item->hintText.empty() ? g_Locale->getText(item->hint) : item->hintText;
-	if (info_box){
-		info_box->setDimensionsAll(x, ypos2, iwidth, hint_height);
-		info_box->setFrameThickness(2);
-		info_box->removeLineBreaks(str);
-		info_box->setText(str, CTextBox::AUTO_WIDTH, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_HINT], COL_MENUCONTENT_TEXT);
-		info_box->setCorner(RADIUS_LARGE);
-		info_box->setColorAll(COL_MENUCONTENT_PLUS_6, COL_MENUCONTENTDARK_PLUS_0, COL_MENUCONTENTDARK_PLUS_0);
-		info_box->enableShadow();
-		info_box->setPicture(item->hintIcon ? item->hintIcon : "");
-		info_box->enableColBodyGradient(g_settings.theme.menu_Hint_gradient, COL_INFOBAR_SHADOW_PLUS_1, g_settings.theme.menu_Hint_gradient_direction);// COL_INFOBAR_SHADOW_PLUS_1 is default footer color
-	}
+	if (info_box == NULL)
+		info_box = new CComponentsInfoBox();
+
+	info_box->setDimensionsAll(x, ypos2, iwidth, hint_height);
+	info_box->setFrameThickness(2);
+	info_box->removeLineBreaks(str);
+	info_box->setText(str, CTextBox::AUTO_WIDTH, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_HINT], COL_MENUCONTENT_TEXT);
+	info_box->setCorner(RADIUS_LARGE);
+	info_box->setColorAll(COL_MENUCONTENT_PLUS_6, COL_MENUCONTENTDARK_PLUS_0, COL_MENUCONTENTDARK_PLUS_0);
+	info_box->enableShadow();
+	info_box->setPicture(item->hintIcon ? item->hintIcon : "");
+	info_box->enableColBodyGradient(g_settings.theme.menu_Hint_gradient, COL_INFOBAR_SHADOW_PLUS_1, g_settings.theme.menu_Hint_gradient_direction);// COL_INFOBAR_SHADOW_PLUS_1 is default footer color
 
 	//paint result
-
-	details_line->paint();
-	info_box->paint(savescreen);
-
-	hint_painted = true;
+	if (details_line)
+		details_line->paint();
+	if (info_box)
+		info_box->paint(savescreen);
+	
+	hint_painted = info_box ? info_box->isPainted() : false;
 }
 
 void CMenuWidget::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
@@ -1571,6 +1609,7 @@ int CMenuOptionNumberChooser::exec(CMenuTarget*)
 
 	// give the observer a chance to modify the value
 	paint(true);
+	OnAfterChangeOption();
 
 	if (wantsRepaint)
 		res = menu_return::RETURN_REPAINT;

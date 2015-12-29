@@ -52,7 +52,7 @@
 
 #define USERDIR "/var" THEMESDIR
 #define FILE_PREFIX ".theme"
-
+static 	SNeutrinoTheme &t = g_settings.theme;
 CThemes::CThemes()
 : themefile('\t')
 {
@@ -191,9 +191,9 @@ int CThemes::Show()
 void CThemes::rememberOldTheme(bool remember)
 {
 	if ( remember ) {
-		oldTheme = g_settings.theme;
+		oldTheme = t;
 	} else {
-		g_settings.theme = oldTheme;
+		t = oldTheme;
 
 		notifier = new CColorSetupNotifier;
 		notifier->changeNotify(NONEXISTANT_LOCALE, NULL);
@@ -221,8 +221,11 @@ void CThemes::saveFile(const char *themename)
 {
 	setTheme(themefile);
 
-	if (!themefile.saveConfig(themename))
-		printf("[neutrino theme] %s write error\n", themename);
+	if (themefile.getModifiedFlag()){
+		printf("[neutrino theme] save theme into %s\n", themename);
+		if (!themefile.saveConfig(themename))
+			printf("[neutrino theme] %s write error\n", themename);
+	}
 }
 
 // setup default Colors
@@ -234,7 +237,6 @@ void CThemes::setupDefaultColors()
 
 void CThemes::setTheme(CConfigFile &configfile)
 {
-	SNeutrinoTheme &t = g_settings.theme;
 	configfile.setInt32( "menu_Head_alpha", t.menu_Head_alpha );
 	configfile.setInt32( "menu_Head_red", t.menu_Head_red );
 	configfile.setInt32( "menu_Head_green", t.menu_Head_green );
@@ -293,6 +295,8 @@ void CThemes::setTheme(CConfigFile &configfile)
 
 	configfile.setInt32( "infobar_gradient_top", t.infobar_gradient_top );
 	configfile.setInt32( "infobar_gradient_top_direction", t.infobar_gradient_top_direction );
+	configfile.setInt32( "infobar_gradient_body", t.infobar_gradient_body );
+	configfile.setInt32( "infobar_gradient_body_direction", t.infobar_gradient_body_direction );
 	configfile.setInt32( "infobar_gradient_bottom", t.infobar_gradient_bottom );
 	configfile.setInt32( "infobar_gradient_bottom_direction", t.infobar_gradient_bottom_direction );
 
@@ -311,7 +315,6 @@ void CThemes::setTheme(CConfigFile &configfile)
 
 void CThemes::getTheme(CConfigFile &configfile)
 {
-	SNeutrinoTheme &t = g_settings.theme;
 	t.menu_Head_alpha = configfile.getInt32( "menu_Head_alpha", 0x00 );
 	t.menu_Head_red = configfile.getInt32( "menu_Head_red", 0x00 );
 	t.menu_Head_green = configfile.getInt32( "menu_Head_green", 0x0A );
@@ -362,6 +365,8 @@ void CThemes::getTheme(CConfigFile &configfile)
 
 	t.infobar_gradient_top = configfile.getInt32( "infobar_gradient_top", CC_COLGRAD_OFF );
 	t.infobar_gradient_top_direction = configfile.getInt32( "infobar_gradient_top_direction", CFrameBuffer::gradientVertical );
+	t.infobar_gradient_body = configfile.getInt32( "infobar_gradient_body", CC_COLGRAD_OFF);
+	t.infobar_gradient_body_direction = configfile.getInt32( "infobar_gradient_body_direction", CFrameBuffer::gradientVertical );
 	t.infobar_gradient_bottom = configfile.getInt32( "infobar_gradient_bottom", CC_COLGRAD_OFF );
 	t.infobar_gradient_bottom_direction = configfile.getInt32( "infobar_gradient_bottom_direction", CFrameBuffer::gradientVertical );
 

@@ -85,10 +85,53 @@ bool paintBoxRel(	const int& x,
 			const int& gradient_sec_col = COL_MENUCONTENT_PLUS_0,
 			const int& gradient_direction = CFrameBuffer::gradientVertical,
 			const int& gradient_intensity = CColorGradient::normal,
+			const int& w_frame = 0,
 			const fb_pixel_t& color_frame = COL_MENUCONTENT_PLUS_6,
 			int shadow_mode = CC_SHADOW_OFF,
 			const fb_pixel_t& color_shadow = COL_MENUCONTENTDARK_PLUS_0);
 
+/** 	Paint a box on screen.
+*	@param[in] x 				position
+*	@param[in] y 				position
+*	@param[in] dx 				witdh
+*	@param[in] dy 				height
+*	@param[in] color_body			color of background, default = COL_MENUCONTENT_PLUS_0
+*	@param[in] radius 			corner radius, default = 0
+*	@param[in] corner_type 			corner type, defined in drivers/framebuffer.h
+*						@li CORNER_NONE (default)
+*						@li CORNER_TOP_LEFT
+*						@li CORNER_TOP_RIGHT
+*						@li CORNER_TOP
+*						@li CORNER_BOTTOM_RIGHT
+*						@li CORNER_RIGHT
+*						@li CORNER_BOTTOM_LEFT
+*						@li CORNER_LEFT
+*						@li CORNER_BOTTOM
+*						@li CORNER_ALL
+*	@param[in] color_frame 			color of frame around box, default = COL_MENUCONTENT_PLUS_6
+*	@param[in] shadow_mode 			enable/disable shadow behind box, default = CC_SHADOW_OFF
+*	@param[in] color_shadow 		color of shadow, default = COL_MENUCONTENTDARK_PLUS_0
+*
+*	@return
+*		True if painted
+*	@see
+* 		@li CCDraw()
+* 		@li CComponentsShapeSquare()
+*		@li colors.h
+*		@li driver/framebuffer.h
+*		@li driver/colorgradient.h
+*/
+bool paintBoxRel0(	const int& x,
+			const int& y,
+			const int& dx,
+			const int& dy,
+			const fb_pixel_t& color_body,
+			const int& radius = 0,
+			const int& corner_type = CORNER_NONE,
+			const int& w_frame = 0,
+			const fb_pixel_t& color_frame = COL_MENUCONTENT_PLUS_6,
+			int shadow_mode = CC_SHADOW_OFF,
+			const fb_pixel_t& color_shadow = COL_MENUCONTENTDARK_PLUS_0);
 
 /** 	Paint a text box on screen.
 *	@param[in] std::string& 		text
@@ -145,8 +188,7 @@ bool paintBoxRel(	const int& x,
 *		@li driver/framebuffer.h
 *		@li driver/colorgradient.h
 */
-bool paintTextBoxRel(	CComponentsText* ptext_box,
-			const std::string& text,
+bool paintTextBoxRel(	const std::string& text,
 			const int& x,
 			const int& y,
 			const int& dx,

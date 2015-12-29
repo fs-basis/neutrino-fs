@@ -459,7 +459,7 @@ void CComponentsHeader::initCaption()
 		//set x position of clock
 		cch_cl_obj->setXPos(width - buttons_w - clock_w - cch_offset);
 
-	//set required width of caption object
+		//set required width of caption object
 		cc_text_w -= (clock_w + cch_offset);
 
 		//stop clock if disabled or option run is disabled and clock is running
@@ -484,7 +484,7 @@ void CComponentsHeader::initCaption()
 
 	//set header text properties
 	if (cch_text_obj){
-			//set alignment of text item in dependency from text alignment
+		//set alignment of text item in dependency from text alignment
 		if (cch_caption_align == CTextBox::CENTER)
 			cch_text_x = CC_CENTERED;
 
@@ -553,11 +553,9 @@ bool CComponentsHeader::enableColBodyGradient(const int& enable_mode, const fb_p
 {
 	int dir = direction == -1 ? g_settings.theme.menu_Head_gradient_direction : direction; //header mode is pre defined here
 
-	if (CComponentsForm::enableColBodyGradient(enable_mode, sec_color, dir)){
-		if (cch_text_obj->getCTextBoxObject())
-			cch_text_obj->getCTextBoxObject()->clearScreenBuffer();
-		return true;
-	}
-	return false;
+	if (cch_text_obj->getCTextBoxObject())
+		cch_text_obj->getCTextBoxObject()->clearScreenBuffer();
+
+	return CComponentsForm::enableColBodyGradient(enable_mode, sec_color, dir);
 }
 

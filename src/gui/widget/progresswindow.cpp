@@ -32,7 +32,6 @@
 
 #include <driver/display.h>
 
-
 CProgressWindow::CProgressWindow(CComponentsForm *parent, bool global_only)
 : CComponentsWindow(0, 0, 700, 200, string(), NEUTRINO_ICON_INFO, parent, CC_SHADOW_ON)
 {

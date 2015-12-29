@@ -130,7 +130,7 @@ class CComponentsHeader : public CComponentsForm, public CCTextScreen
 
 		virtual ~CComponentsHeader();
 
-		///set caption text, parameters: string, int align_mode (default left)
+		///set caption text, parameters: string, int align_mode (default left) 
 		virtual void setCaption(const std::string& caption, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK, const fb_pixel_t& text_color = COL_MENUHEAD_TEXT);
 		///set caption text, parameters: loacle, int align_mode (default left)
 		virtual void setCaption(neutrino_locale_t caption_locale, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK, const fb_pixel_t& text_color = COL_MENUHEAD_TEXT);

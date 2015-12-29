@@ -26,7 +26,6 @@
 #define __CC_BASE__
 
 #include "cc_types.h"
-#include "cc_signals.h"
 #include "cc_draw.h"
 
 /// Basic component class.
@@ -34,10 +33,10 @@
 Basic attributes and member functions for component sub classes
 */
 
-class CComponents : public CComponentsSignals, public CCDraw
+class CComponents : public CCDraw
 {
 	protected:
-
+	
 		///property: tag for component, can contains any value if required, default value is NULL, you can fill with a cast, see also setTag() and getTag()
 		void *cc_tag;
 

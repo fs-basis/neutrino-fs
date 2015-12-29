@@ -169,8 +169,6 @@ class CComponentsText : public CCTextScreen, public CComponentsItem, public CBox
 		///helper to remove linebreak chars from a string if needed
 		virtual void removeLineBreaks(std::string& str);
 
-		///returns true, if text was changed
-		virtual bool textChanged(){return ct_old_text != ct_text;};
 		///force paint of text even if text was changed or not
 		virtual void forceTextPaint(bool force_text_paint = true){ct_force_text_paint = force_text_paint;};
 

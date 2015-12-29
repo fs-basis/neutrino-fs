@@ -197,7 +197,7 @@ public:
 	}
 	void switchTvRadioMode(const int prev_mode = mode_unknown);
 
-
+	
 	bool isMuted() {return current_muted; }
 	void setCurrentMuted(int m) { current_muted = m; }
 	int recordingstatus;

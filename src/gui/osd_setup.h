@@ -48,7 +48,7 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 		CColorSetupNotifier *colorSetupNotifier;
 		CFontSizeNotifier *fontsizenotifier;
 		CMenuWidget *osd_menu;
-		CMenuWidget *submenu_menus;
+		CMenuWidget *submenu_menus, *osd_menu_colors;
 		CMenuForwarder *mfFontFile, *mfTtxFontFile, *mfSubFontFile, *mfWindowSize;
 		char window_size_value[10];
 		std::string osdFontFile, osdTtxFontFile, osdSubFontFile;
@@ -56,10 +56,10 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 		COnOffNotifier* colorInfoclockNotifier;
 		COnOffNotifier* screensaverNotifier;
 		COnOffNotifier* channellistNotifier;
-//		COnOffNotifier* infobarHddNotifier;
-		CMenuOptionChooser * ca_dotmatrix;
-		CMenuOptionChooser * ca_frame;
-
+		COnOffNotifier* infobarNotifier;
+		COnOffNotifier* infobarHddNotifier;
+		CGenericMenuActivate casystemActivate;
+		CGenericMenuActivate gradentHeadDirection, gradentHintDirection, gradentInfobarTopDirection, gradentInfobarBodyDirection, gradentInfobarFootDirection;
 		int width;
 		int is_wizard;
 		int show_menu_hints;

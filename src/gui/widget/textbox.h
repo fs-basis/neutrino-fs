@@ -62,7 +62,7 @@
 #include <driver/fb_window.h>
 #include <gui/color.h>
 #include <gui/customcolor.h>
-
+#include <sigc++/signal.h>
 #define TRACE  printf
 #define TRACE_1 printf
 
@@ -81,7 +81,7 @@ class CBox
 		int iHeight;
 };
 
-class CTextBox
+class CTextBox : public sigc::trackable
 {
 	public:
 		/* Variables */
@@ -110,6 +110,8 @@ class CTextBox
 		void reSizeMainFrameHeight(int maxTextHeight);
 
 		bool hasChanged(int* x, int* y, int* dx, int* dy);
+		bool hasChangedPos(int* x, int* y);
+		bool hasChangedDim(int* dx, int* dy);
 		void reInitToCompareVar(int* x, int* y, int* dx, int* dy);
 
 		/* Variables */
@@ -211,6 +213,7 @@ class CTextBox
 		void hide (void);
 		bool clearScreenBuffer();
 		void blit(bool b) { m_blit = b; };
+		sigc::signal<void> OnAfterRefresh;
 };
 
 #endif // !defined(AFX_TEXTBOX_H__208DED01_ABEC_491C_A632_5B21057DC5D8__INCLUDED_)

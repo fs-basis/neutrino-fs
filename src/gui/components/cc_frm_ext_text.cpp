@@ -106,7 +106,7 @@ void CComponentsExtTextForm::initLabel()
 		ccx_label_obj = new CComponentsLabel();
 		ccx_label_obj->doPaintBg(false);
 		ccx_label_obj->enableTboxSaveScreen(cc_txt_save_screen);
-	}
+	}	
 
 	//add label object
 	if (!ccx_label_obj->isAdded())

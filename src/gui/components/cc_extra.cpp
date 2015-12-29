@@ -43,6 +43,7 @@ bool paintBoxRel(	const int& x,
 			const int& gradient_sec_col,
 			const int& gradient_direction,
 			const int& gradient_intensity,
+			const int& w_frame,
 			const fb_pixel_t& color_frame,
 			int shadow_mode,
 			const fb_pixel_t& color_shadow)
@@ -50,8 +51,24 @@ bool paintBoxRel(	const int& x,
 	CComponentsShapeSquare box(x, y, dx, dy, NULL, shadow_mode, color_frame, color_body, color_shadow);
 	box.setColBodyGradient(gradient_mode, gradient_direction, gradient_sec_col, gradient_intensity);
 	box.setCorner(radius, corner_type);
+	box.enableFrame(w_frame, w_frame);
 	box.paint(CC_SAVE_SCREEN_NO);
 	return box.isPainted();
+}
+
+bool paintBoxRel0(	const int& x,
+			const int& y,
+			const int& dx,
+			const int& dy,
+			const fb_pixel_t& color_body,
+			const int& radius,
+			const int& corner_type,
+			const int& w_frame,
+			const fb_pixel_t& color_frame,
+			int shadow_mode,
+			const fb_pixel_t& color_shadow)
+{
+	return paintBoxRel(x, y, dx, dy, color_body, radius, corner_type, w_frame, CC_COLGRAD_OFF, COL_MENUCONTENT_PLUS_0, CFrameBuffer::gradientVertical, CColorGradient::normal, color_frame, shadow_mode, color_shadow);
 }
 
 bool paintTextBoxRel(	const string& text,

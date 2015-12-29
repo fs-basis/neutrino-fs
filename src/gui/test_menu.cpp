@@ -541,7 +541,7 @@ int CTestMenu::exec(CMenuTarget* parent, const std::string &actionKey)
 //		insert the ne object
 // 		header->insertCCItem(1, logo); //replace text with logo
 
-
+		
 		if (!header->isPainted()){
 			header->paint();
 		}

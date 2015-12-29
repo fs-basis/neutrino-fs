@@ -75,7 +75,7 @@ private:
 	bool edit_state;
 
 	CFrameBuffer		*frameBuffer;
-	CComponentsPIP		*cc_minitv;
+
 	unsigned int		selected, selected_in_new_mode;
 	unsigned int            origPosition;
 	unsigned int            newPosition;
@@ -244,5 +244,7 @@ public:
 	ZapitChannelList &getChannels() { return channels; };
 	CComponentsHeader* getHeaderObject();
 	bool checkLockStatus(neutrino_msg_data_t data, bool pip = false);
+	CComponentsHeader* getHeaderObject();
+	void ResetModules();
 };
 #endif

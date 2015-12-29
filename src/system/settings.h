@@ -118,6 +118,8 @@ struct SNeutrinoTheme
 
 	int infobar_gradient_top;
 	int infobar_gradient_top_direction;
+	int infobar_gradient_body;
+	int infobar_gradient_body_direction;
 	int infobar_gradient_bottom;
 	int infobar_gradient_bottom_direction;
 
@@ -175,6 +177,7 @@ struct SNeutrinoSettings
 	int infobar_sat_display;
 	int infobar_show_channeldesc;
 	int infobar_subchan_disp_pos;
+	int infobar_buttons_usertitle;
 	int fan_speed;
 	int infobar_show;
 	int infobar_show_channellogo;
@@ -185,9 +188,9 @@ struct SNeutrinoSettings
 	int progressbar_timescale_green;
 	int progressbar_timescale_yellow;
 	int progressbar_timescale_invert;
-	int casystem_display;
-	int casystem_dotmatrix;
-	int casystem_frame;
+	int infobar_casystem_display;
+	int infobar_casystem_dotmatrix;
+	int infobar_casystem_frame;
 	int scrambled_message;
 	int volume_pos;
 	int volume_digits;
@@ -254,6 +257,8 @@ struct SNeutrinoSettings
 	int screensaver_delay;
 	std::string screensaver_dir;
 	int screensaver_timeout;
+	int screensaver_random;
+	int screensaver_mode;
 
 	//vcr
 	int vcr_AutoSwitch;
@@ -427,7 +432,9 @@ struct SNeutrinoSettings
 	//widget settings
 	int widget_fade;
 
+	//theme/color options
 	SNeutrinoTheme theme;
+	bool osd_colorsettings_advanced_mode;
 
 	int contrast_fonts;
 
@@ -665,6 +672,9 @@ struct SNeutrinoSettings
 	int flashupdate_createimage_add_spare;
 	int flashupdate_createimage_add_kernel;
 
+	std::string	update_dir;
+	std::string	update_dir_opkg;
+
 	//BouquetHandling
 	int bouquetlist_mode;
 
@@ -790,7 +800,7 @@ struct SNeutrinoSettings
 	std::string	font_file;
 	std::string	ttx_font_file;
 	std::string	sub_font_file;
-	std::string	update_dir;
+
 	// USERMENU
 	typedef enum
 	{

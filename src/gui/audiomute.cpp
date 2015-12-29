@@ -77,8 +77,15 @@ void CAudioMute::AudioMute(int newValue, bool isEvent)
 			frameBuffer->setFbArea(CFrameBuffer::FB_PAINTAREA_MUTEICON1);
 			y_old = y;
 		}
-		if ((g_settings.mode_clock) && (doInit))
+
+		/* Infoclock should be blocked in all windows and clean the clock
+		 * display with ClearDisplay() by itself before paint,
+		 * so we don't do this here.
+		*/
+		if (!CInfoClock::getInstance()->isBlocked()){
 			CInfoClock::getInstance()->ClearDisplay();
+			CInfoClock::getInstance()->paint();//avoids delay
+		}
 
 		frameBuffer->fbNoCheck(true);
 		if (newValue) {
@@ -90,14 +97,13 @@ void CAudioMute::AudioMute(int newValue, bool isEvent)
 			frameBuffer->setFbArea(CFrameBuffer::FB_PAINTAREA_MUTEICON1, x, y, width, height);
 		}
 		else {
-			if (do_paint_mute_icon){
+			if (!CInfoClock::getInstance()->isBlocked()){
+				CInfoClock::getInstance()->ClearDisplay();
+				this->kill();
+				clearSavedScreen();
+				CInfoClock::getInstance()->paint();//avoids delay
+			}else
 				this->hide();
-				if ((g_settings.mode_clock) && (doInit)){
-					if (!CInfoClock::getInstance()->isBlocked()) //paint clock before it's running but if no blocked, this avoids delay
-						CInfoClock::getInstance()->paint();
-					CInfoClock::getInstance()->enableInfoClock(!CInfoClock::getInstance()->isBlocked());
-				}
-			}
 			frameBuffer->setFbArea(CFrameBuffer::FB_PAINTAREA_MUTEICON1);
 		}
 		frameBuffer->fbNoCheck(false);
@@ -117,8 +123,8 @@ void CAudioMute::enableMuteIcon(bool enable)
 			this->paint();
 	}
 	else {
-		if (neutrino->isMuted())
-			this->hide();
+		if (!neutrino->isMuted())
+			this->kill();
 		frameBuffer->doPaintMuteIcon(false);
 		do_paint_mute_icon = false;
 	}

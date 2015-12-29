@@ -88,8 +88,9 @@ void CComponentsSlider::initCCSlBody()
 {
 	if (!csl_body_icon.empty()){
 		if (csl_body_obj == NULL){
-			csl_body_obj = new CComponentsPicture(0, 0, 0, 0, csl_body_icon);
-			csl_body_obj->doPaintBg(false);
+			csl_body_obj = new CComponentsPicture(0, 0, width-2*fr_thickness, 16, csl_body_icon);
+			csl_body_obj->setColorBody(this->col_body); //FIXME: Background handling during current instance of slider object
+			csl_body_obj->doPaintBg(true);
 			addCCItem(csl_body_obj);
 		}
 		else
@@ -118,8 +119,9 @@ void CComponentsSlider::initCCSlSlider()
 {
 	if (!csl_slider_icon.empty()){
 		if (csl_slider_obj == NULL){
-			csl_slider_obj = new CComponentsPicture(0, 0, 0, 0, csl_slider_icon);
-			csl_slider_obj->doPaintBg(false);
+			csl_slider_obj = new CComponentsPicture(0, 0, csl_slider_icon);
+			csl_slider_obj->setColorBody(this->col_body); //FIXME: Background handling during current instance of slider object
+			csl_slider_obj->doPaintBg(true);
 			addCCItem(csl_slider_obj);
 		}
 		else
@@ -135,7 +137,7 @@ void CComponentsSlider::initCCSlSlider()
 	int slider_h = csl_slider_obj->getHeight();
 
 	//position of slider icon
-	int slider_x = csl_body_obj->getXPos() - slider_w/2 + csl_body_obj->getWidth() * (abs(csl_min_value) + csl_current_value) / (abs(csl_min_value) + abs(csl_max_value));
+	int slider_x = csl_body_obj->getXPos() + (csl_body_obj->getWidth()-slider_w) * (abs(csl_min_value) + csl_current_value) / (abs(csl_min_value) + abs(csl_max_value));
 	int slider_y = height/2-slider_h/2;
 
 	if (csl_slider_obj)

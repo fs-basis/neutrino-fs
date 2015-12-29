@@ -82,11 +82,12 @@ void CComponentsPicture::init(	const int &x_pos, const int &y_pos, const int &w,
 	col_body	= color_background;
 	col_shadow	= color_shadow;
 	do_scale	= allow_scale;
-
+	image_cache	= NULL; //image
+	enable_cache	= false;
 	is_image_painted= false;
 	do_paint	= true;
 	image_transparent = transparent;
-	cc_paint_cache	= false;
+	cc_paint_cache	= false; //bg
 	keep_dx_aspect 	= false;
 	keep_dy_aspect	= false;
 
@@ -94,8 +95,19 @@ void CComponentsPicture::init(	const int &x_pos, const int &y_pos, const int &w,
 	initParent(parent);
 }
 
+void CComponentsPicture::clearCache()
+{
+	if (image_cache){
+		delete[] image_cache;
+		image_cache = NULL;
+	}
+}
+
 void CComponentsPicture::setPicture(const std::string& picture_name)
 {
+	if (pic_name == picture_name)
+		return;
+	clearCache();
 	pic_name = picture_name;
 	initCCItem();
 }
@@ -157,6 +169,9 @@ void CComponentsPicture::initCCItem()
 	//check dimensions, leave if dimensions are equal
 	if (width == dx && height == dy)
 		return;
+
+	//clean up possible cache on changed dimensions
+	clearCache();
 
 	//temporarily vars
 	int w_2scale = width;
@@ -220,6 +235,8 @@ void CComponentsPicture::paintPicture()
 	int x_pic = x;
 	int y_pic = y;
 	initPosition(&x_pic, &y_pic);
+	x_pic += fr_thickness;
+	y_pic += fr_thickness;
 	initCCItem();
 
 	if (pic_name.empty())
@@ -227,12 +244,26 @@ void CComponentsPicture::paintPicture()
 
 	if (cc_allow_paint){
 		dprintf(DEBUG_INFO, "[CComponentsPicture] %s: paint image file: pic_name=%s\n", __func__, pic_name.c_str());
-		frameBuffer->SetTransparent(image_transparent);
-		if (do_scale)
-			is_image_painted = g_PicViewer->DisplayImage(pic_name, x_pic, y_pic, width, height);
-		else
-			is_image_painted = frameBuffer->paintIcon(pic_name, x_pic, y_pic, height, 1, do_paint, paint_bg, col_body);
-		frameBuffer->SetTransparentDefault();
+		if (image_cache == NULL){
+			frameBuffer->SetTransparent(image_transparent);
+			if (do_scale)
+				is_image_painted = g_PicViewer->DisplayImage(pic_name, x_pic, y_pic, width-2*fr_thickness, height-2*fr_thickness);
+			else
+				is_image_painted = frameBuffer->paintIcon(pic_name, x_pic, y_pic, height, 1, do_paint, paint_bg, col_body);
+			frameBuffer->SetTransparentDefault();
+			if (enable_cache)
+				image_cache = getScreen(x_pic, y_pic, width, height);
+		}else{
+			frameBuffer->RestoreScreen(x_pic, y_pic, width, height, image_cache);
+		}
+	}
+
+	//benchmark
+	if (debug){
+		gettimeofday(&t2, NULL);
+		uint64_t duration = ((t2.tv_sec * 1000000ULL + t2.tv_usec) - (t1.tv_sec * 1000000ULL + t1.tv_usec)) / 1000ULL;
+		if (duration)
+			fprintf(stderr, "\033[33m[CComponentsPicture] %s: %llu ms to paint image \033[0m\n",	__func__, duration);
 	}
 
 	//benchmark
@@ -255,7 +286,6 @@ void CComponentsPicture::paint(bool do_save_bg)
 void CComponentsPicture::hide()
 {
 	CComponents::hide();
-	CComponents::clearSavedScreen();
 	is_image_painted = false;
 }
 

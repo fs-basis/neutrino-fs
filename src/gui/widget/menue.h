@@ -309,7 +309,7 @@ class CAbstractMenuOptionChooser : public CMenuItem
 			optionValue = NULL;
 		}
 		~CAbstractMenuOptionChooser(){}
-
+		sigc::signal<void> OnAfterChangeOption;
 };
 
 class CMenuOptionNumberChooser : public CAbstractMenuOptionChooser
@@ -445,7 +445,7 @@ class CMenuOptionChooser : public CAbstractMenuOptionChooser
 		int getWidth(void);
 		void setOptions(const struct keyval * const Options, const unsigned Number_Of_Options);
 		void setOptions(const struct keyval_ext * const Options, const unsigned Number_Of_Options);
-		sigc::signal<void> OnAfterChangeOption;
+
 		int paint(bool selected);
 
 		int exec(CMenuTarget* parent);
@@ -506,7 +506,7 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		CComponentsDetailLine	*details_line;
 		CComponentsInfoBox	*info_box;
 		int			hint_height;
-
+		CComponentsHeader 	*header;
 	protected:
 		std::string		nameString;
 		neutrino_locale_t	name;
@@ -563,7 +563,7 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		CMenuWidget(const std::string &Name, const std::string & Icon = "", const int mwidth = 30, const mn_widget_id_t &w_index = NO_WIDGET_ID);
 		CMenuWidget(const neutrino_locale_t Name, const std::string & Icon = "", const int mwidth = 30, const mn_widget_id_t &w_index = NO_WIDGET_ID);
 		~CMenuWidget();
-
+		void ResetModules();
 		virtual void addItem(CMenuItem* menuItem, const bool defaultselected = false);
 
 		enum

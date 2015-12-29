@@ -90,7 +90,7 @@ CInfoViewerBB::CInfoViewerBB()
 	bbIconInfo[0].h = 0;
 	BBarY = 0;
 	BBarFontY = 0;
-
+	foot = cabar 		= NULL;
 	Init();
 }
 
@@ -110,7 +110,7 @@ void CInfoViewerBB::Init()
 	}
 
 	InfoHeightY_Info = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight() + 5;
-	setBBOffset();
+	initBBOffset();
 
 	changePB();
 }
@@ -121,10 +121,7 @@ CInfoViewerBB::~CInfoViewerBB()
 		pthread_cancel(scrambledT);
 		scrambledT = 0;
 	}
-	if (hddscale)
-		delete hddscale;
-	if (sysscale)
-		delete sysscale;
+	ResetModules();
 }
 
 CInfoViewerBB* CInfoViewerBB::getInstance()
@@ -183,7 +180,7 @@ void CInfoViewerBB::getBBIconInfo()
 				iconView = checkBBIcon(NEUTRINO_ICON_RESOLUTION_1280, &w, &h);
 			break;
 		case CInfoViewerBB::ICON_CA:
-			if (g_settings.casystem_display == 2)
+			if (g_settings.infobar_casystem_display == 2)
 				iconView = checkBBIcon(NEUTRINO_ICON_SCRAMBLED2, &w, &h);
 			break;
 		case CInfoViewerBB::ICON_TUNER:
@@ -230,73 +227,74 @@ void CInfoViewerBB::getBBButtonInfo()
 			icon = NEUTRINO_ICON_INFO_RED;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
-			if (mode == NeutrinoMessages::mode_ts) {
+			if (mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) {
 				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_red, active);
 				if (!text.empty())
 					break;
 			}
-			text = CUserMenu::getUserMenuButtonName(0, active);
+			text = CUserMenu::getUserMenuButtonName(0, active, g_settings.infobar_buttons_usertitle);
 			if (!text.empty())
 				break;
 			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_RED]->title;
-			if (text.empty())
-				text = g_Locale->getText(LOCALE_INFOVIEWER_EVENTLIST);
 			break;
 		case CInfoViewerBB::BUTTON_GREEN:
 //			pers = SNeutrinoSettings::P_MAIN_GREEN_BUTTON;
 			icon = NEUTRINO_ICON_INFO_GREEN;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
-			if (mode == NeutrinoMessages::mode_ts) {
+			if (mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) {
 				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_green, active);
-				if (text != g_Locale->getText(LOCALE_MPKEY_AUDIO))
+				if (!text.empty())
 					break;
 			}
-			text = CUserMenu::getUserMenuButtonName(1, active);
-			if (!text.empty() && (mode == NeutrinoMessages::mode_tv || mode == NeutrinoMessages::mode_radio))
+			text = CUserMenu::getUserMenuButtonName(1, active, g_settings.infobar_buttons_usertitle);
+			if (!text.empty())
 				break;
 			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_GREEN]->title;
-			if (text != g_Locale->getText(LOCALE_AUDIOSELECTMENUE_HEAD))
-				break;
-			if ((mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) && !CMoviePlayerGui::getInstance().timeshift) {
-				text = CMoviePlayerGui::getInstance(mode == NeutrinoMessages::mode_webtv).CurrentAudioName();
-			} else if (!g_RemoteControl->current_PIDs.APIDs.empty()) {
-				int selected = g_RemoteControl->current_PIDs.PIDs.selected_apid;
-				if (text.empty()){
-					text = g_RemoteControl->current_PIDs.APIDs[selected].desc;
-				}
-			}
 			break;
 		case CInfoViewerBB::BUTTON_YELLOW:
 //			pers = SNeutrinoSettings::P_MAIN_YELLOW_BUTTON;
 			icon = NEUTRINO_ICON_INFO_YELLOW;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
-			if (mode == NeutrinoMessages::mode_ts) {
+			if (mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) {
 				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_yellow, active);
 				if (!text.empty())
 					break;
 			}
-			text = CUserMenu::getUserMenuButtonName(2, active);
-			if (text.empty())
-				text = g_Locale->getText((g_RemoteControl->are_subchannels) ? LOCALE_INFOVIEWER_SUBSERVICE : LOCALE_INFOVIEWER_SELECTTIME);
+			text = CUserMenu::getUserMenuButtonName(2, active, g_settings.infobar_buttons_usertitle);
+			if (!text.empty())
+				break;
+			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_YELLOW]->title;
 			break;
 		case CInfoViewerBB::BUTTON_BLUE:
 //			pers = SNeutrinoSettings::P_MAIN_BLUE_BUTTON;
 			icon = NEUTRINO_ICON_INFO_BLUE;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
-			if (mode == NeutrinoMessages::mode_ts) {
+			if (mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio) {
 				text = CKeybindSetup::getMoviePlayerButtonName(CRCInput::RC_blue, active);
 				if (!text.empty())
 					break;
 			}
-			text = CUserMenu::getUserMenuButtonName(3, active);
-			if (text.empty())
-				text = g_Locale->getText(LOCALE_INFOVIEWER_STREAMINFO);
+			text = CUserMenu::getUserMenuButtonName(3, active, g_settings.infobar_buttons_usertitle);
+			if (!text.empty())
+				break;
+			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_BLUE]->title;
 			break;
 		default:
 			break;
+		}
+		//label audio control button in movieplayer/upnp mode
+		if (mode == NeutrinoMessages::mode_ts || mode == NeutrinoMessages::mode_webtv || mode == NeutrinoMessages::mode_audio)
+		{
+			if (!CMoviePlayerGui::getInstance().timeshift)
+			{
+				if (text == g_Locale->getText(LOCALE_MPKEY_AUDIO) && !g_settings.infobar_buttons_usertitle)
+				{
+					text = CMoviePlayerGui::getInstance(mode == NeutrinoMessages::mode_webtv).CurrentAudioName();
+				}
+			}
 		}
 		bbButtonInfo[i].w = w;
 		bbButtonInfo[i].cx = std::min(g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(text),w);
@@ -304,9 +302,6 @@ void CInfoViewerBB::getBBButtonInfo()
 		bbButtonInfo[i].text = text;
 		bbButtonInfo[i].icon = icon;
 
-//		if (pers > -1 && (g_settings.personalize[pers] != CPersonalizeGui::PERSONALIZE_ACTIVE_MODE_ENABLED))
-//			active = false;
-//		bbButtonInfo[i].active = active;
 
 	}
 	// Calculate position/size of buttons
@@ -413,7 +408,25 @@ void CInfoViewerBB::showBBButtons(const int modus)
 	}
 
 	if (paint) {
+#if 1
 		paintFoot(g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX - g_InfoViewer->ChanInfoX);
+#else
+		fb_pixel_t *pixbuf = NULL;
+		int buf_x = bbIconMinX - 5;
+		int buf_y = BBarY;
+		int buf_w = g_InfoViewer->BoxEndX-buf_x;
+		int buf_h = InfoHeightY_Info;
+		if (modus != -1) {
+			pixbuf = new fb_pixel_t[buf_w * buf_h];
+//printf("\nbuf_x: %d, buf_y: %d, buf_w: %d, buf_h: %d, pixbuf: %p\n \n", buf_x, buf_y, buf_w, buf_h, pixbuf);
+			frameBuffer->SaveScreen(buf_x, buf_y, buf_w, buf_h, pixbuf);
+			paintFoot();
+			if (pixbuf != NULL) {
+				frameBuffer->RestoreScreen(buf_x, buf_y, buf_w, buf_h, pixbuf);
+				delete [] pixbuf;
+			}
+		}
+#endif
 		int last_x = minX;
 
 		for (i = BUTTON_MAX; i > 0;) {
@@ -459,7 +472,7 @@ void CInfoViewerBB::paintshowButtonBar()
 	}
 	g_InfoViewer->sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
 
-	if (g_settings.casystem_display < 2)
+	if (g_settings.infobar_casystem_display < 2)
 		paintCA_bar(0,0);
 
 	paintFoot();
@@ -493,13 +506,14 @@ void CInfoViewerBB::paintFoot(int w)
 {
 	int width = (w == 0) ? g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX : w;
 
-	CComponentsShapeSquare foot(g_InfoViewer->ChanInfoX, BBarY, width, InfoHeightY_Info);
+	if (foot == NULL)
+		foot = new CComponentsShapeSquare(g_InfoViewer->ChanInfoX, BBarY, width, InfoHeightY_Info, NULL, CC_SHADOW_ON);
 
-	foot.setColorBody(g_settings.theme.infobar_gradient_bottom ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_BUTTONS_BACKGROUND);
-	foot.enableColBodyGradient(g_settings.theme.infobar_gradient_bottom, COL_INFOBAR_PLUS_0, g_settings.theme.infobar_gradient_bottom_direction);
-	foot.setCorner(RADIUS_LARGE, CORNER_BOTTOM);
+	foot->setColorBody(g_settings.theme.infobar_gradient_bottom ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_BUTTONS_BACKGROUND);
+	foot->enableColBodyGradient(g_settings.theme.infobar_gradient_bottom, COL_INFOBAR_PLUS_0, g_settings.theme.infobar_gradient_bottom_direction);
+	foot->setCorner(RADIUS_LARGE, CORNER_BOTTOM);
 
-	foot.paint(CC_SAVE_SCREEN_NO);
+	foot->paint(CC_SAVE_SCREEN_NO);
 }
 
 void CInfoViewerBB::showIcon_SubT()
@@ -738,8 +752,8 @@ void CInfoViewerBB::showBarHdd(int percent)
 void CInfoViewerBB::paint_ca_icons(int caid, const char *icon, int &icon_space_offset)
 {
 	char buf[20];
-	int endx = g_InfoViewer->BoxEndX - (g_settings.casystem_frame ? 20 : 10);
-	int py = g_InfoViewer->BoxEndY + (g_settings.casystem_frame ? 4 : 2); /* hand-crafted, should be automatic */
+	int endx = g_InfoViewer->BoxEndX - (g_settings.infobar_casystem_frame ? 20 : 10);
+	int py = g_InfoViewer->BoxEndY + (g_settings.infobar_casystem_frame ? 4 : 2); /* hand-crafted, should be automatic */
 	int px = 0;
 	static map<int, std::pair<int,const char*> > icon_map;
 	const int icon_space = 10, icon_number = 10;
@@ -780,7 +794,7 @@ void CInfoViewerBB::paint_ca_icons(int caid, const char *icon, int &icon_space_o
 	if (icon_offset[icon_map[caid].first] == 0)
 		return;
 
-	if (g_settings.casystem_display == 0) {
+	if (g_settings.infobar_casystem_display == 0) {
 		px = endx - (icon_offset[icon_map[caid].first] - icon_space );
 	} else {
 		icon_space_offset += icon_sizeW[icon_map[caid].first];
@@ -800,10 +814,10 @@ void CInfoViewerBB::paint_ca_icons(int caid, const char *icon, int &icon_space_o
 
 void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 {
-	if (g_settings.casystem_display == 3)
+	if (g_settings.infobar_casystem_display == 3)
 		return;
 	if(NeutrinoMessages::mode_ts == CNeutrinoApp::getInstance()->getMode() && !CMoviePlayerGui::getInstance().timeshift){
-		if (g_settings.casystem_display == 2) {
+		if (g_settings.infobar_casystem_display == 2) {
 			fta = true;
 			showOne_CAIcon();
 		}
@@ -818,11 +832,11 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 	const char *ecm_info_f = "/tmp/ecm.info";
 
 	if(!g_InfoViewer->chanready) {
-		if (g_settings.casystem_display == 2) {
+		if (g_settings.infobar_casystem_display == 2) {
 			fta = true;
 			showOne_CAIcon();
 		}
-		else if(g_settings.casystem_display == 0) {
+		else if(g_settings.infobar_casystem_display == 0) {
 			for (int i = 0; i < (int)(sizeof(caids)/sizeof(int)); i++) {
 				paint_ca_icons(caids[i], white, icon_space_offset);
 			}
@@ -834,7 +848,7 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 	if(!channel)
 		return;
 
-	if (g_settings.casystem_display == 2) {
+	if (g_settings.infobar_casystem_display == 2) {
 		fta = channel->camap.empty();
 		showOne_CAIcon();
 		return;
@@ -877,7 +891,7 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 		}
 #if 0
 		static int icon_space_offset = 0;
-		if ((g_settings.casystem_display == 1) && (icon_space_offset)) {
+		if ((g_settings.infobar_casystem_display == 1) && (icon_space_offset)) {
 			paintCA_bar(0,icon_space_offset);
 			icon_space_offset = 0;
 		}
@@ -891,7 +905,7 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 				if((found = (caid == caids[i])))
 					break;
 			}
-			if(g_settings.casystem_display == 0)
+			if(g_settings.infobar_casystem_display == 0)
 				paint_ca_icons(caids[i], (found ? (caids[i] == (ecm_caid & 0xFF00) ? green : yellow) : white), icon_space_offset);
 			else if(found)
 				paint_ca_icons(caids[i], (caids[i] == (ecm_caid & 0xFF00) ? green : yellow), icon_space_offset);
@@ -901,35 +915,41 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 
 void CInfoViewerBB::paintCA_bar(int left, int right)
 {
-	int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.casystem_frame ? 24 : 0)) / 4;
-	int ycnt = (bottom_bar_offset - (g_settings.casystem_frame ? 14 : 0)) / 4;
+	int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.infobar_casystem_frame ? 24 : 0)) / 4;
+	int ycnt = (bottom_bar_offset - (g_settings.infobar_casystem_frame ? 14 : 0)) / 4;
+	int ca_width = g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX;
 
 	if (right)
 		right = xcnt - ((right/4)+1);
 	if (left)
 		left =  xcnt - ((left/4)-1);
 
-	if (g_settings.casystem_frame) { // with highlighted frame
+	if (g_settings.infobar_casystem_frame) { // with highlighted frame
 		if (!right || !left) { // paint full bar
-			// background
-			frameBuffer->paintBox(g_InfoViewer->ChanInfoX     , g_InfoViewer->BoxEndY    , g_InfoViewer->BoxEndX     , g_InfoViewer->BoxEndY + bottom_bar_offset     , COL_INFOBAR_PLUS_0);
-			// shadow
-			frameBuffer->paintBox(g_InfoViewer->ChanInfoX + 14, g_InfoViewer->BoxEndY + 4, g_InfoViewer->BoxEndX - 6 , g_InfoViewer->BoxEndY + bottom_bar_offset - 6 , COL_INFOBAR_SHADOW_PLUS_0 , RADIUS_SMALL, CORNER_ALL);
-			// ca bar
-			frameBuffer->paintBox(g_InfoViewer->ChanInfoX + 11, g_InfoViewer->BoxEndY + 1, g_InfoViewer->BoxEndX - 11, g_InfoViewer->BoxEndY + bottom_bar_offset - 11, COL_INFOBAR_CASYSTEM_PLUS_0, RADIUS_SMALL, CORNER_ALL);
-			// highlighed frame
-			frameBuffer->paintBoxFrame(g_InfoViewer->ChanInfoX + 10, g_InfoViewer->BoxEndY, g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - 2*10, bottom_bar_offset - 10, 1, COL_INFOBAR_CASYSTEM_PLUS_2, RADIUS_SMALL, CORNER_ALL);
+			// framed ca bar
+			if (cabar == NULL)
+				cabar = new CComponentsShapeSquare(g_InfoViewer->ChanInfoX+11, g_InfoViewer->BoxEndY+1, ca_width-22 , bottom_bar_offset-11 , NULL, CC_SHADOW_ON, COL_INFOBAR_CASYSTEM_PLUS_2, COL_INFOBAR_CASYSTEM_PLUS_0);
+			//cabar->setCorner(RADIUS_SMALL, CORNER_ALL);
+			cabar->enableShadow(CC_SHADOW_ON, 3);
+			cabar->setFrameThickness(2);
+
+// 			cabar->paint(CC_SAVE_SCREEN_NO);
+		}else{  //TODO: remove this part, cabar object can do this
+			if (cabar == NULL)
+				cabar = new CComponentsShapeSquare(g_InfoViewer->ChanInfoX, g_InfoViewer->BoxEndY, ca_width , bottom_bar_offset-11, NULL, CC_SHADOW_OFF, COL_INFOBAR_CASYSTEM_PLUS_2);
+			//cabar->setCorner(RADIUS_SMALL, CORNER_ALL);
+			cabar->disableShadow();
+			cabar->setFrameThickness(2);
+			cabar->setColorBody(COL_INFOBAR_CASYSTEM_PLUS_0);
 		}
-		else
-			frameBuffer->paintBox(g_InfoViewer->ChanInfoX + 12 + (right*4), g_InfoViewer->BoxEndY + 2, g_InfoViewer->BoxEndX - 12 - (left*4), g_InfoViewer->BoxEndY + bottom_bar_offset - 12, COL_INFOBAR_CASYSTEM_PLUS_0);
+		cabar->setFrameThickness(2);
+		cabar->setCorner(RADIUS_SMALL, CORNER_ALL);
+		cabar->paint(CC_SAVE_SCREEN_NO);
 	}
 	else
-
-//		frameBuffer->paintBox(g_InfoViewer->ChanInfoX + (right*4), g_InfoViewer->BoxEndY, g_InfoViewer->BoxEndX - (left*4), g_InfoViewer->BoxEndY + bottom_bar_offset, COL_INFOBAR_PLUS_0);
-
-		frameBuffer->paintBox(g_InfoViewer->ChanInfoX + (right*4), g_InfoViewer->BoxEndY, g_InfoViewer->BoxEndX - (left*4), g_InfoViewer->BoxEndY + bottom_bar_offset, COL_INFOBAR_CASYSTEM_PLUS_0);
-
-	if (!g_settings.casystem_dotmatrix) //don't show dotmatrix
+		paintBoxRel(g_InfoViewer->ChanInfoX, g_InfoViewer->BoxEndY, ca_width , bottom_bar_offset, COL_INFOBAR_CASYSTEM_PLUS_0);
+#if 1
+	if (!g_settings.infobar_casystem_dotmatrix) //don't show dotmatrix
 		return;
 
 	if (left)
@@ -937,9 +957,10 @@ void CInfoViewerBB::paintCA_bar(int left, int right)
 
 	for (int i = 0  + right; i < xcnt - left; i++) {
 		for (int j = 0; j < ycnt; j++) {
-			frameBuffer->paintBoxRel((g_InfoViewer->ChanInfoX + (g_settings.casystem_frame ? 14 : 2)) + i*4, g_InfoViewer->BoxEndY + (g_settings.casystem_frame ? 4 : 2) + j*4, 2, 2, COL_INFOBAR_PLUS_1);
+			frameBuffer->paintBoxRel((g_InfoViewer->ChanInfoX + (g_settings.infobar_casystem_frame ? 14 : 2)) + i*4, g_InfoViewer->BoxEndY + (g_settings.infobar_casystem_frame ? 4 : 2) + j*4, 2, 2, COL_INFOBAR_PLUS_1);
 		}
 	}
+#endif
 }
 
 void CInfoViewerBB::changePB()
@@ -963,9 +984,25 @@ void CInfoViewerBB::reset_allScala()
 	//lasthdd = lastsys = -1;
 }
 
-void CInfoViewerBB::setBBOffset()
+void CInfoViewerBB::ResetModules()
 {
-	bottom_bar_offset = (g_settings.casystem_display < 2) ? (g_settings.casystem_frame ? 36 : 22) : 0;
+	if (hddscale){
+		delete hddscale; hddscale = NULL;
+	}
+	if (sysscale){
+		delete sysscale; sysscale = NULL;
+	}
+	if (foot){
+		delete foot; foot = NULL;
+	}
+	if (cabar){
+		delete cabar; cabar = NULL;
+	}
+}
+
+void CInfoViewerBB::initBBOffset()
+{
+	bottom_bar_offset = (g_settings.infobar_casystem_display < 2) ? (g_settings.infobar_casystem_frame ? 36 : 22) : 0;
 }
 
 void* CInfoViewerBB::scrambledThread(void *arg)

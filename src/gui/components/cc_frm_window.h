@@ -83,6 +83,12 @@ class CComponentsWindow : public CComponentsForm
 		bool ccw_show_r_sideber;
 		///width of sidebars
 		int ccw_w_sidebar;
+		///header bg color
+		fb_pixel_t ccw_col_head;
+		///header text color
+		fb_pixel_t ccw_col_head_text;
+		///footer bg color
+		fb_pixel_t ccw_col_footer;
 
 		///initialze header object
 		void initHeader();
@@ -142,7 +148,7 @@ class CComponentsWindow : public CComponentsForm
 					fb_pixel_t color_shadow = COL_MENUCONTENTDARK_PLUS_0);
 
 		///add item to body object, also usable is addCCItem() to add items to the windo object
-		void addWindowItem(CComponentsItem* cc_Item);
+		int addWindowItem(CComponentsItem* cc_Item);
 
 		///allow/disallow paint a footer, default true, see also ccw_show_footer, showHeader()
 		void showFooter(bool show = true){ccw_show_footer = show; initCCWItems();};
@@ -158,8 +164,11 @@ class CComponentsWindow : public CComponentsForm
 		void enableSidebar(const int& sidbar_type = CC_WINDOW_LEFT_SIDEBAR | CC_WINDOW_RIGHT_SIDEBAR);
 
 		///set caption in header with string, see also getHeaderObject()
-		void setWindowCaption(const std::string& text, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK){ccw_caption = text; ccw_align_mode = align_mode;};
-
+		void setWindowCaption(const std::string& text, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK){ccw_caption = text; ccw_align_mode = align_mode;}
+		///set header text color
+		void setWindowHeaderTextColor(const fb_pixel_t& color){ccw_col_head_text = color;}
+		///set background to header
+		void setWindowHeaderColor(const fb_pixel_t& color){ccw_col_head = color;}
 		///set caption in header from locales, see also getHeaderObject()
 		void setWindowCaption(neutrino_locale_t locale_text, const int& align_mode = CTextBox::NO_AUTO_LINEBREAK);
 		///set caption alignment, see CTextBox for possible modes
@@ -178,6 +187,9 @@ class CComponentsWindow : public CComponentsForm
 		CComponentsForm* getBodyObject(){return ccw_body;};
 		///returns a pointer to the internal footer object, use this to get access to footer properities
 		CComponentsFooter* getFooterObject(){return ccw_footer;};
+
+		///set background to footer
+		void setWindowFooterColor(const fb_pixel_t& color){ccw_col_footer = color;}
 
 		///returns a pointer to the internal left side bar object, use this to get access to left sidebar properities
 		CComponentsFrmChain* getLeftSidebarObject(){return ccw_left_sidebar;};

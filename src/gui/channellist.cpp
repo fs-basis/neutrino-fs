@@ -86,7 +86,7 @@ extern CBouquetList   * TVfavList;
 extern CBouquetList   * RADIOfavList;
 
 extern bool autoshift;
-
+static CComponentsPIP	*cc_minitv = NULL;
 extern CBouquetManager *g_bouquetManager;
 extern int old_b_id;
 static CComponentsChannelLogoScalable* CChannelLogo = NULL;
@@ -130,19 +130,7 @@ CChannelList::CChannelList(const char * const pName, bool phistoryMode, bool _vl
 
 CChannelList::~CChannelList()
 {
-	if(dline){
-		delete dline;
-		dline = NULL;
-	}
-	if (cc_minitv){
-		delete 	cc_minitv;
-		cc_minitv = NULL;
-	}
-	if (CChannelLogo) {
-		CChannelLogo->clearSavedScreen();
-		delete CChannelLogo;
-		CChannelLogo = NULL;
-	}
+	ResetModules();
 }
 
 void CChannelList::SetChannelList(ZapitChannelList* zlist)
@@ -612,7 +600,7 @@ int CChannelList::show()
 
 	COSDFader fader(g_settings.theme.menu_Content_alpha);
 	fader.StartFadeIn();
-
+	CInfoClock::getInstance()->ClearDisplay();
 	paint();
 	frameBuffer->blit();
 
@@ -981,12 +969,14 @@ void CChannelList::hide()
 	}
 
 	header->kill();
-	if (CChannelLogo)
+	if (CChannelLogo){
 		CChannelLogo->kill();
+		delete CChannelLogo;
+		CChannelLogo = NULL;
+	}
 
 	frameBuffer->paintBackgroundBoxRel(x, y, full_width, height + info_height);
 	clearItem2DetailsLine();
-	CInfoClock::getInstance()->enableInfoClock(!CInfoClock::getInstance()->isBlocked());
 	CInfoClock::getInstance()->enableInfoClock(!CInfoClock::getInstance()->isBlocked());
 	frameBuffer->blit();
 }
@@ -1733,6 +1723,7 @@ void CChannelList::showChannelLogo() //TODO: move into an own handler, eg. heade
 			CChannelLogo->setYPos(y + (theight - CChannelLogo->getHeight()) / 2);
 			CChannelLogo->paint();
 		} else {
+			CChannelLogo->hide();
 			delete CChannelLogo;
 			CChannelLogo = NULL;
 		}
@@ -2126,16 +2117,17 @@ void CChannelList::paintHead()
 
 	if (bouquet && bouquet->zapitBouquet && bouquet->zapitBouquet->bLocked != g_settings.parentallock_defaultlocked)
 		header->setIcon(NEUTRINO_ICON_LOCK);
-		string header_txt 		= !edit_state ? name : string(g_Locale->getText(LOCALE_CHANNELLIST_EDIT)) + ": " + name;
-		fb_pixel_t header_txt_col 	= (edit_state ? COL_RED : COL_MENUHEAD_TEXT);
-		header->setColorBody(COL_MENUHEAD_PLUS_0);
 
-		header->setCaption(header_txt, CTextBox::NO_AUTO_LINEBREAK, header_txt_col);
+	string header_txt 		= !edit_state ? name : string(g_Locale->getText(LOCALE_CHANNELLIST_EDIT)) + ": " + name;
+	fb_pixel_t header_txt_col 	= (edit_state ? COL_RED : COL_MENUHEAD_TEXT);
+	header->setColorBody(COL_MENUHEAD_PLUS_0);
+
+	header->setCaption(header_txt, CTextBox::NO_AUTO_LINEBREAK, header_txt_col);
 
 	if (header->enableColBodyGradient(g_settings.theme.menu_Head_gradient, COL_MENUCONTENT_PLUS_0)){
 		if (CChannelLogo)
 			CChannelLogo->clearFbData();
-		}
+	}
 
 	if (timeset) {
 		if(!edit_state){
@@ -2159,9 +2151,29 @@ void CChannelList::paintHead()
 	header->paint(CC_SAVE_SCREEN_NO);
 }
 
-	CComponentsHeader* CChannelList::getHeaderObject()
+CComponentsHeader* CChannelList::getHeaderObject()
 {
-	return header;}
+	return header;
+}
+
+void CChannelList::ResetModules()
+{
+	delete header;
+	header = NULL;
+	if(dline){
+		delete dline;
+		dline = NULL;
+	}
+	if (cc_minitv){
+		delete 	cc_minitv;
+		cc_minitv = NULL;
+	}
+	if (CChannelLogo) {
+		delete CChannelLogo;
+		CChannelLogo = NULL;
+	}
+}
+
 
 void CChannelList::paintBody()
 {

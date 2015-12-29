@@ -84,7 +84,7 @@ bool CComponentsTimer::startTimer()
 		}
 		if (res == 0){
 			dprintf(DEBUG_INFO,"\033[33m[CComponentsTimer] [%s - %d]  timer thread [%lu] created with interval = %d\033[0m\n", __func__,  __LINE__, pthread_self(), tm_interval);
-	CNeutrinoApp::getInstance()->OnBeforeRestart.connect(sl);
+			CNeutrinoApp::getInstance()->OnBeforeRestart.connect(sl);
 		}else{
 			dprintf(DEBUG_NORMAL, "\033[33m[CComponentsTimer] [%s - %d] ERROR! pthread_create\033[0m\n", __func__, __LINE__);
 		}
@@ -105,13 +105,13 @@ bool CComponentsTimer::stopTimer()
 		if (thres != 0)
 			dprintf(DEBUG_NORMAL, "\033[33m[CComponentsTimer] [%s - %d] ERROR! pthread_join\033[0m\n", __func__, __LINE__);
 
-	if (thres == 0){
-		tm_thread = 0;
-		//ensure disconnect of unused slot
-		sl.disconnect();
+		if (thres == 0){
+			tm_thread = 0;
+			//ensure disconnect of unused slot
+			sl.disconnect();
 			dprintf(DEBUG_INFO,"\033[33m[CComponentsTimer]    [%s] timer thread terminated ...\033[0m\n", __func__);
-		return true;
-	}
+			return true;
+		}
 	}
 	return false;
 }

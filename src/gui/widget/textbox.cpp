@@ -518,10 +518,8 @@ void CTextBox::refreshScroll(void)
 //first init is done in initVar() and reinit done in reInitToCompareVar()
 bool CTextBox::hasChanged(int* x, int* y, int* dx, int* dy)
 {
-	if (	   m_old_x != *x
-		|| m_old_y != *y
-		|| m_old_dx != *dx
-		|| m_old_dy != *dy
+	if (	   hasChangedPos(x, y)
+		|| hasChangedDim(dx, dy)
 		|| m_old_textBackgroundColor != m_textBackgroundColor
 		|| m_old_textColor != m_textColor
 		|| m_old_nBgRadius != m_nBgRadius
@@ -531,6 +529,17 @@ bool CTextBox::hasChanged(int* x, int* y, int* dx, int* dy)
 	}
 	return false;
 }
+
+bool CTextBox::hasChangedPos(int* x, int* y)
+{
+	return  (m_old_x != *x || m_old_y != *y);
+}
+
+bool CTextBox::hasChangedDim(int* dx, int* dy)
+{
+	return (m_old_dx != *dx || m_old_dy != *dy);
+}
+
 void CTextBox::reInitToCompareVar(int* x, int* y, int* dx, int* dy)
 {
 	m_old_x = *x;
@@ -563,8 +572,13 @@ void CTextBox::refreshText(void)
 	//find changes
 	bool has_changed = hasChanged(&ax, &ay, &dx, &dy);
 
-	//destroy pixel buffer on changed property values, always on color background and text color changes
-	if (has_changed && (m_old_textBackgroundColor != m_textBackgroundColor || m_old_textColor != m_textColor)){
+	//clean up possible screen on any changes
+	if (has_changed && m_bgpixbuf){
+		/*TODO/FIXME: in some cases could be required, that we must restore old saved screen. eg. if a text without bg was painted
+		 * and another text should be painted as next on the same position like current text, but new text will be overpaint and is
+		 * not visible. It's currently solvable only with appropriate order of text items
+		*/
+		frameBuffer->RestoreScreen(m_old_x, m_old_y, m_old_dx, m_old_dy, m_bgpixbuf);
 		clearScreenBuffer();
 	}
 
@@ -715,6 +729,7 @@ void CTextBox::refresh(void)
 	refreshScroll();
 	m_blit = _m_blit;
 	refreshText();
+	OnAfterRefresh();
 }
 
 

@@ -58,6 +58,7 @@ CCDraw::CCDraw() : COSDFader(g_settings.theme.menu_Content_alpha)
 	is_painted		= false;
 	paint_bg 		= true;
 	cc_allow_paint		= true;
+	cc_enable_frame		= true;
 
 	cc_body_gradient_enable	= cc_body_gradient_enable_old 	= CC_COLGRAD_OFF;
 	cc_body_gradient_2nd_col = cc_body_gradient_2nd_col_old	= COL_MENUCONTENT_PLUS_0;
@@ -403,7 +404,7 @@ bool CCDraw::CheckFbData(const cc_fbdata_t& fbdata, const char* func, const int 
 {
 	int32_t rows = fbdata.dx / (int32_t)frameBuffer->getScreenWidth(true) - 1 + fbdata.y;
 	int32_t rest = fbdata.dx % (int32_t)frameBuffer->getScreenWidth(true);
-        int32_t end  = rows * (int32_t)frameBuffer->getScreenWidth(true) + rest;
+	int32_t end  = rows * (int32_t)frameBuffer->getScreenWidth(true) + rest;
 	if (	(fbdata.x < 0 || fbdata.y < 0) ||
 		(end >= (int32_t)frameBuffer->getScreenWidth(true)*(int32_t)frameBuffer->getScreenHeight(true))
 	   ) {
@@ -464,6 +465,9 @@ void CCDraw::enablePaintCache(bool enable)
 //paint framebuffer layers
 void CCDraw::paintFbItems(bool do_save_bg)
 {
+	//pick up signal if filled
+	OnBeforePaintLayers();
+
 	//first modify background handling
 	enableSaveBg(do_save_bg);
 
@@ -506,7 +510,7 @@ void CCDraw::paintFbItems(bool do_save_bg)
 		}
 		firstPaint = false;
 	}
-
+	
 	for(size_t i=0; i< v_fbdata.size(); i++){
 		cc_fbdata_t& fbdata = v_fbdata[i];
 
@@ -528,35 +532,39 @@ void CCDraw::paintFbItems(bool do_save_bg)
 		/*paint all fb relevant basic parts (shadow, frame and body)
 		 * with all specified properties, paint_bg must be enabled
 		*/
-		if (paint_bg){
+		if (cc_enable_frame){
 			if (fbtype == CC_FBDATA_TYPE_FRAME) {
 				if (fbdata.frame_thickness > 0 && cc_allow_paint)
 					frameBuffer->paintBoxFrame(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.frame_thickness, fbdata.color, fbdata.r, fbdata.rtype);
 			}
-			else if (fbtype == CC_FBDATA_TYPE_BACKGROUND){
+		}
+		if (paint_bg){
+			if (fbtype == CC_FBDATA_TYPE_BACKGROUND){
 				frameBuffer->paintBackgroundBoxRel(x, y, fbdata.dx, fbdata.dy);
 			}
-			else if (fbtype == CC_FBDATA_TYPE_SHADOW_BOX && !is_painted) { //TODO: is_painted is too global here, shadow will not paint on current instance without called kill/hide
-				if (fbdata.enabled) {
-					/* here we paint the shadow around the body
-					 * on 1st step we check for already cached screen buffer, if true
-					 * then restore this instead to call the paint methode.
-					 * This could be usally, if we use existant instances of "this" object
-					*/
-					if (cc_allow_paint){
-						if (fbdata.pixbuf){
-							dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint shadow from cache...\033[0m\n", __func__, __LINE__);
-							frameBuffer->RestoreScreen(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.pixbuf);
-						}else{
-							frameBuffer->paintBoxRel(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.color, fbdata.r, fbdata.rtype);
-						}
-						//if is paint cache enabled
-						if (cc_paint_cache && fbdata.pixbuf == NULL)
-							fbdata.pixbuf = getScreen(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy);
+		}
+		if (fbtype == CC_FBDATA_TYPE_SHADOW_BOX && !is_painted) { //TODO: is_painted is too global here, shadow will not paint on current instance without called kill/hide
+			if (fbdata.enabled) {
+				/* here we paint the shadow around the body
+					* on 1st step we check for already cached screen buffer, if true
+					* then restore this instead to call the paint methode.
+					* This could be usally, if we use existant instances of "this" object
+				*/
+				if (cc_allow_paint){
+					if (fbdata.pixbuf){
+						dprintf(DEBUG_INFO, "\033[33m[CCDraw]\t[%s - %d], paint shadow from cache...\033[0m\n", __func__, __LINE__);
+						frameBuffer->RestoreScreen(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.pixbuf);
+					}else{
+						frameBuffer->paintBoxRel(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy, fbdata.color, fbdata.r, fbdata.rtype);
 					}
+					//if is paint cache enabled
+					if (cc_paint_cache && fbdata.pixbuf == NULL)
+						fbdata.pixbuf = getScreen(fbdata.x, fbdata.y, fbdata.dx, fbdata.dy);
 				}
 			}
-			else if (fbtype == CC_FBDATA_TYPE_BOX){
+		}
+		if (paint_bg){
+			if (fbtype == CC_FBDATA_TYPE_BOX){
 				if(cc_allow_paint) {
 					/* here we paint the main body of box
 					* on 1st step we check for already cached background buffer, if true
@@ -604,6 +612,8 @@ void CCDraw::paintFbItems(bool do_save_bg)
 			}
 		}
 	}
+	//pick up signal if filled
+	OnAfterPaintLayers();
 }
 
 
@@ -672,7 +682,7 @@ bool CCDraw::doPaintBg(bool do_paint)
 {
 	if (paint_bg == do_paint)
 		return false;
-
+	
 	paint_bg = do_paint;
 	//clearSavedScreen();
 	return true;

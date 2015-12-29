@@ -257,12 +257,12 @@ void CBEChannelWidget::initItem2DetailsLine (int pos, int /*ch_index*/)
 		if (ibox->isPainted())
 			ibox->hide();
 
-			ibox->setDimensionsAll(x, ypos2, width, info_height);
-			ibox->setFrameThickness(2);
+		ibox->setDimensionsAll(x, ypos2, width, info_height);
+		ibox->setFrameThickness(2);
 #if 0
 		ibox->paint(false,true);
 #endif
-			ibox->setCorner(RADIUS_LARGE);
+		ibox->setCorner(RADIUS_LARGE);
 		ibox->disableShadow();
 	}
 }

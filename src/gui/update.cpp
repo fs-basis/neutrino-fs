@@ -464,6 +464,7 @@ printf("[update] mode is %d\n", softupdate_mode);
 		}
 		hide();
 
+#if 0
 		//package install:
 		if (file_selected->getType() == CFile::FILE_PKG_PACKAGE){
 			COPKGManager opkg;
@@ -479,6 +480,7 @@ printf("[update] mode is %d\n", softupdate_mode);
 			//!always leave here!
 			return false;
 		}
+#endif
 		//set internal filetype
 		char const * ptr = rindex(filename.c_str(), '.');
 		if(ptr) {

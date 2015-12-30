@@ -1561,7 +1561,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	int height = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight();
 	int CurrInfoY = (BoxEndY + ChanNameY + header_height) / 2;
 	int NextInfoY = CurrInfoY/* + height*/;	// lower end of next info box
-	int InfoX = ChanInfoX + 10;
+	int InfoX = ChanInfoX + ChanNumWidth + 20;
 
 
 	int xStart = InfoX;

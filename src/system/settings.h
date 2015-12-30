@@ -673,8 +673,9 @@ struct SNeutrinoSettings
 	int flashupdate_createimage_add_kernel;
 
 	std::string	update_dir;
+#if 0
 	std::string	update_dir_opkg;
-
+#endif
 	//BouquetHandling
 	int bouquetlist_mode;
 

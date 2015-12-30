@@ -495,6 +495,8 @@ void CInfoViewerBB::paintshowButtonBar()
 	showIcon_Tuner();
 	showIcon_Logo();
 	//showSysfsHdd();
+	if (g_settings.infobar_casystem_display < 2)
+		ShowRecDirScale();
 }
 
 void CInfoViewerBB::showIcon_Logo()
@@ -745,6 +747,29 @@ void CInfoViewerBB::showBarHdd(int percent)
 		}else {
 			frameBuffer->paintBoxRel(bbIconMinX, BBarY + InfoHeightY_Info / 2 + 2 + 0, hddwidth, 6, COL_INFOBAR_BUTTONS_BACKGROUND);
 			hddscale->reset();
+		}
+	}
+}
+
+void CInfoViewerBB::ShowRecDirScale()
+{
+	if (g_settings.infobar_show_sysfs_hdd) {
+		int percent = 0;
+		uint64_t t, u;
+		//if (get_fs_usage(g_settings.network_nfs_recordingdir.c_str(), t, u))
+		//	percent = (int)((u * 100ULL) / t);
+		percent = cHddStat::getInstance()->getPercent();
+		int py = g_InfoViewer->BoxEndY + (g_settings.infobar_casystem_frame ? 4 : 2);
+		int px = (g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX)/2;
+		if (is_visible) {
+			if (percent >= 0){
+				hddscale->setDimensionsAll(px, py, hddwidth, 18);
+				hddscale->setValues(percent, 100);
+				hddscale->paint();
+			}else {
+				frameBuffer->paintBoxRel(px, py, hddwidth, 18, COL_INFOBAR_PLUS_0);
+				hddscale->reset();
+			}
 		}
 	}
 }

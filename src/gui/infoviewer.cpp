@@ -401,9 +401,10 @@ void CInfoViewer::paintBackground(int col_NumBox)
 
 #if 0
 	// number box
-	if (numbox == NULL) //TODO: move into an own member, paintNumBox() or so...
-		numbox = new CComponentsShapeSquare(BoxStartX, BoxStartY, ChanWidth, ChanHeight, NULL, CC_SHADOW_ON);
-	else
+	if (numbox == NULL){ //TODO: move into an own member, paintNumBox() or so...
+		numbox = new CComponentsShapeSquare(BoxStartX, BoxStartY, ChanWidth, ChanHeight);
+		numbox->enableShadow(CC_SHADOW_ON, 6, true);
+	}else
 		numbox->setDimensionsAll(BoxStartX, BoxStartY, ChanWidth, ChanHeight);
 
 	numbox->setColorBody(g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_PLUS_0 : col_NumBox);
@@ -415,6 +416,8 @@ void CInfoViewer::paintBackground(int col_NumBox)
 
 void CInfoViewer::paintHead()
 {
+	int head_x = BoxStartX+ChanWidth+5;
+	int head_w = BoxEndX-head_x;
 	if (header == NULL){
 		header = new CComponentsShapeSquare(ChanInfoX, ChanNameY, BoxEndX-ChanInfoX, time_height, NULL, CC_SHADOW_RIGHT);
 		header->setCorner(RADIUS_LARGE, CORNER_TOP);
@@ -2005,6 +2008,10 @@ void CInfoViewer::showInfoFile()
 		killInfobarText();
 		return;
 	}
+
+	//check dimension, if changed then kill to force reinit
+	if (infobar_txt->getWidth() != width)
+		infobar_txt->kill();
 
 	//set some properties for info object
 	infobar_txt->setDimensionsAll(xStart, yStart, width, height);

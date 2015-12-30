@@ -319,7 +319,8 @@ void CInfoViewer::showRecordIcon (const bool show)
 		
 
 		const int ChanName_X = BoxStartX + ChanWidth + SHADOW_OFFSET;
-		const int icon_space = 3, box_posY = 5;
+		const int icon_space = 3;
+		const int box_posY = infobar_txt ? (infobar_txt->getHeight()*-1)-5: -5;
 		int box_len = 0, rec_icon_posX = 0, ts_icon_posX = 0;
 
 		int rec_icon_w = 0, rec_icon_h = 0, ts_icon_w = 0, ts_icon_h = 0;
@@ -329,7 +330,7 @@ void CInfoViewer::showRecordIcon (const bool show)
 		int chanH = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight () * (g_settings.screen_yres / 100);
 		if (chanH < rec_icon_h)
 			chanH = rec_icon_h;
-		const int box_posX = ChanInfoX + SHADOW_OFFSET;   //ChanName_X + SHADOW_OFFSET;
+		const int box_posX = ChanInfoX;   //ChanName_X + SHADOW_OFFSET;
 
 		int i = 0;
 		recmap_t recmap = crm->GetRecordMap();
@@ -1970,7 +1971,6 @@ void CInfoViewer::killInfobarText()
 
 void CInfoViewer::showInfoFile()
 {
-	return;
 	//read textcontent from this file
 	std::string infobar_file = "/tmp/infobar.txt";
 
@@ -1990,7 +1990,7 @@ void CInfoViewer::showInfoFile()
 
 	//set position of info area
 	const int xStart	= ChanInfoX;
-	const int yStart	= BoxStartY;
+	const int yStart	= BoxStartY - 5;
 	const int width		= BoxEndX - ChanInfoX;
 	const int height	= g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight() + 2;
 
@@ -2053,6 +2053,7 @@ void CInfoViewer::killTitle()
 			g_Radiotext->S_RtOsd = g_Radiotext->haveRadiotext() ? 1 : 0;
 			killRadiotext();
 		}
+		if (infobar_txt) spacer += infobar_txt->getHeight();
 		killInfobarText();
 		frameBuffer->paintBackgroundBox(BoxStartX, BoxStartY - spacer - 5, BoxEndX + SHADOW_OFFSET, bottom);
 		frameBuffer->blit();

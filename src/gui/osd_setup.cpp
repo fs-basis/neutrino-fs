@@ -1097,11 +1097,15 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	menu_infobar->addItem(mc);
 #endif
 
+	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
+
 	// buttons usertitle
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_BUTTONS_USERTITLE, &g_settings.infobar_buttons_usertitle, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_BUTTONS_USERTITLE);
 	menu_infobar->addItem(mc);
-	menu_infobar->addItem(GenericMenuSeparator);
+	//menu_infobar->addItem(GenericMenuSeparator);
+
+	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
 #if 0
 	// display options
@@ -1119,7 +1123,7 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	menu_infobar->addItem(mc);
 #endif
 
-	menu_infobar->addItem(GenericMenuSeparator);
+	//menu_infobar->addItem(GenericMenuSeparator);
 
 	// CA system
 	casystemActivate.Clear(); //ensure empty activator object -> cleanup before add new items, prevents possible segfault!
@@ -1142,7 +1146,7 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	menu_infobar->addItem(mc);
 	casystemActivate.Add(mc);
 
-	menu_infobar->addItem(GenericMenuSeparator);
+	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
 	// flash/hdd statfs
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_SYSFS_HDD, &g_settings.infobar_show_sysfs_hdd, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, !(g_settings.infobar_casystem_display == 3));
@@ -1158,6 +1162,8 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	menu_infobar->addItem(mc);
 	infobarHddNotifier->addItem(mc);
 #endif
+
+	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
 	// tuner icon
 	bool mc_active = false;

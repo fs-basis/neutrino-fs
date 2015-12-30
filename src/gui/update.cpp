@@ -48,7 +48,9 @@
 
 #include <gui/color.h>
 #include <gui/filebrowser.h>
+#if 0
 #include <gui/opkg_manager.h>
+#endif
 #include <gui/widget/messagebox.h>
 #include <gui/widget/hintbox.h>
 

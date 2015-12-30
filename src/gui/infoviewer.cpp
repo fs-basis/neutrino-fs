@@ -616,7 +616,6 @@ void CInfoViewer::showMovieTitle(const int playState, const t_channel_id &Channe
 		speedw = 5 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(runningRest);
 		icon_w += speedw;
 	}
-
 	int icon_x = ChanInfoX + 10 + ChanNumWidth / 2 - icon_w / 2;
 	int icon_y = (BoxEndY + ChanNameY + time_height) / 2 - icon_h / 2;
 	if (speed) {
@@ -1566,7 +1565,6 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	int NextInfoY = CurrInfoY/* + height*/;	// lower end of next info box
 	int InfoX = ChanInfoX + ChanNumWidth + 20;
 
-
 	int xStart = InfoX;
 	if (starttimes)
 		xStart += info_time_width + 10;
@@ -1605,7 +1603,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			pb_shadow = 0;
 		}
 		int tmpY = CurrInfoY - height - ChanNameY + header_height - 
-			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getDigitOffset()/3;
+			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getDigitOffset()/3+SHADOW_OFFSET;
 /*
 		switch(g_settings.infobar_progressbar) //set progressbar position
 		{
@@ -1683,7 +1681,6 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 													 CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
 			txt_cur_start->paint(CC_SAVE_SCREEN_NO);
 		}
-
 		if (runningRest){
 			if (txt_cur_event_rest)
 				{
@@ -1711,7 +1708,6 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 												 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
 												 CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
 		txt_next_event->paint(CC_SAVE_SCREEN_NO);
-
 		if (nextStart){
 			if (txt_next_start)
 				{

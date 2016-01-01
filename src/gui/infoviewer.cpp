@@ -748,7 +748,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 	bool logo_ok = false;
 	if (ChanNum) /* !fileplay */
 	{
-		char strChanNum[10];
+		//char strChanNum[10];
 		snprintf (strChanNum, sizeof(strChanNum), "%d", ChanNum);
 		const int channel_number_width =(g_settings.infobar_show_channellogo == 6) ? 5 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth (strChanNum) : 0;
 		ChannelLogoMode = showChannelLogo(current_channel_id,channel_number_width); // get logo mode, paint channel logo if adjusted
@@ -790,12 +790,14 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 		if ((!logo_ok && g_settings.infobar_show_channellogo < 2) || g_settings.infobar_show_channellogo == 2 || g_settings.infobar_show_channellogo == 4) // no logo in numberbox
 		{
 			// show number in numberbox
-			if (g_settings.channellist_show_numbers) {
+			if (g_settings.channellist_show_numbers)
+				PaintChanNumber();
+			/*{
 			ChanNumWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->getRenderWidth(strChanNum) + 5;
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->RenderString(
 				ChanInfoX + 10, ChanNumYPos,
 				ChanNumWidth, strChanNum, col_NumBoxText);
-			} else
+			} */ else
 			ChanNumWidth = 5;
 		}
 		if (ChannelLogoMode == 1 || ( g_settings.infobar_show_channellogo == 3 && !logo_ok) || g_settings.infobar_show_channellogo == 6 ) /* channel number besides channel name */
@@ -879,6 +881,19 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 	aspectRatio = 0;
 	fileplay = 0;
 }
+
+void CInfoViewer::PaintChanNumber()
+{
+	int ChanNumYPos = (BoxEndY + ChanNameY + header_height) /2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->getHeight() /2;
+	if (g_settings.channellist_show_numbers) {
+		ChanNumWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->getRenderWidth(strChanNum) + 5;
+		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->RenderString(
+			ChanInfoX + 10, ChanNumYPos,
+			ChanNumWidth, strChanNum, COL_INFOBAR_TEXT);
+	} else
+		ChanNumWidth = g_settings.infobar_anaclock ? ana_clock_size : 5;
+}
+
 void CInfoViewer::setInfobarTimeout(int timeout_ext)
 {
 	int mode = CNeutrinoApp::getInstance()->getMode();
@@ -1660,86 +1675,104 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	bool colored_event_C = (g_settings.theme.colored_events_infobar == 1);
 	bool colored_event_N = (g_settings.theme.colored_events_infobar == 2);
 
-	//current event
-	if (current && update_current){
-		if (txt_cur_event)
-			{
-			txt_cur_event->hide();
-			delete txt_cur_event;
-			txt_cur_event = NULL;
-			}
-		txt_cur_event = new CComponentsTextTransp(NULL, xStart, CurrInfoY - height, currTimeX - xStart - 5, height, current,
-												 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
-												 CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-		txt_cur_event->paint(runningStart ? CC_SAVE_SCREEN_NO : CC_SAVE_SCREEN_YES);
-		if (runningStart){
-			if (txt_cur_start) {
-				txt_cur_start->hide();
-				delete txt_cur_start;
-				txt_cur_start = NULL;
-				}
-			txt_cur_start = new CComponentsTextTransp(NULL, InfoX, CurrInfoY - height, info_time_width, height, runningStart,
-													 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
-													 CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-			txt_cur_start->paint(CC_SAVE_SCREEN_NO);
-		}
-		if (runningRest){
-			if (txt_cur_event_rest)
-				{
-				txt_cur_event_rest->hide();
-				delete txt_cur_event_rest;
-				txt_cur_event_rest = NULL;
-				}
-			txt_cur_event_rest = new CComponentsTextTransp(NULL, currTimeX, CurrInfoY - height, currTimeW, height, runningRest,
-															CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
- 															CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-			txt_cur_event_rest->paint(CC_SAVE_SCREEN_NO);
-		}
-	}
+    //current event
+    if (current && update_current)
+    {
+        if (txt_cur_start)
+        {
+            txt_cur_start->hide();
+            delete txt_cur_start;
+            txt_cur_start = NULL;
+        }
 
-	//next event
-	if (next && update_next)
-	{
-		if (txt_next_event)
-			{
-			txt_next_event->hide();
-			delete txt_next_event;
-			txt_next_event= NULL;
-			}
-		txt_next_event = new CComponentsTextTransp(NULL, xStart, NextInfoY, nextTimeX - xStart - 5, height, next,
-												 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
-												 CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-		txt_next_event->paint(CC_SAVE_SCREEN_NO);
-		if (nextStart){
-			if (txt_next_start)
-				{
-				txt_next_start->hide();
-				delete txt_next_start;
-				txt_next_start = NULL;
-				}
-			txt_next_start = new CComponentsTextTransp(NULL, InfoX, NextInfoY, info_time_width, height, nextStart,
-													 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
-													 CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-			txt_next_start->paint(CC_SAVE_SCREEN_NO);
-	}
-		if (nextDuration){
-			if (txt_next_in)
-				{
-				txt_next_in->hide();
-				delete txt_next_in;
-				txt_next_in = NULL;
-				}
-			txt_next_in = new CComponentsTextTransp(NULL, nextTimeX, NextInfoY, nextTimeW, height, nextDuration,
-													 CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
-													 CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+        if (txt_cur_event)
+        {
+            txt_cur_event->hide();
+            delete txt_cur_event;
+            txt_cur_event = NULL;
+        }
 
-			txt_next_in->paint(CC_SAVE_SCREEN_NO);
-		}
-	}
+        if (txt_cur_event_rest)
+        {
+            txt_cur_event_rest->hide();
+            delete txt_cur_event_rest;
+            txt_cur_event_rest = NULL;
+        }
+
+        txt_cur_event = new CComponentsTextTransp(NULL, xStart, CurrInfoY - height, currTimeX - xStart - 5, height, current,
+                CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
+                CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+        txt_cur_event->paint(CC_SAVE_SCREEN_YES);
+
+        if (runningStart)
+        {
+            txt_cur_start = new CComponentsTextTransp(NULL, InfoX, CurrInfoY - height, info_time_width, height, runningStart,
+                    CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
+                    CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+            txt_cur_start->paint(CC_SAVE_SCREEN_YES);
+        }
+        if (runningRest)
+        {
+            txt_cur_event_rest = new CComponentsTextTransp(NULL, currTimeX, CurrInfoY - height, currTimeW, height, runningRest,
+                    CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
+                    CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+            txt_cur_event_rest->paint(CC_SAVE_SCREEN_YES);
+        }
+    }
+
+    //next event
+    if (next && update_next)
+    {
+        if (txt_next_start)
+        {
+            txt_next_start->hide();
+            delete txt_next_start;
+            txt_next_start = NULL;
+        }
+
+        if (txt_next_event)
+        {
+            txt_next_event->hide();
+            delete txt_next_event;
+            txt_next_event= NULL;
+        }
+
+        if (txt_next_in)
+        {
+            txt_next_in->hide();
+            delete txt_next_in;
+            txt_next_in = NULL;
+        }
+
+        txt_next_event = new CComponentsTextTransp(NULL, xStart, NextInfoY, nextTimeX - xStart - 5, height, next,
+                CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
+                CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+        txt_next_event->paint(CC_SAVE_SCREEN_YES);
+
+        if (nextStart)
+        {
+            txt_next_start = new CComponentsTextTransp(NULL, InfoX, NextInfoY, info_time_width, height, nextStart,
+                    CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
+                    CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+            txt_next_start->paint(CC_SAVE_SCREEN_YES);
+        }
+        if (nextDuration)
+        {
+            txt_next_in = new CComponentsTextTransp(NULL, nextTimeX, NextInfoY, nextTimeW, height, nextDuration,
+                                                    CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
+                                                    CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+
+            txt_next_in->paint(CC_SAVE_SCREEN_YES);
+        }
+    }
 
 	//finally paint time scale
 	if (pb_pos > -1)
 		timescale->paint();
+
+	//and finally paint channelnumber (again)
+	if (g_settings.channellist_show_numbers)
+		PaintChanNumber();
 }
 
 void CInfoViewer::show_Data (bool calledFromEvent)

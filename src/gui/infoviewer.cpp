@@ -891,7 +891,7 @@ void CInfoViewer::PaintChanNumber()
 			ChanInfoX + 10, ChanNumYPos,
 			ChanNumWidth, strChanNum, COL_INFOBAR_TEXT);
 	} else
-		ChanNumWidth = g_settings.infobar_anaclock ? ana_clock_size : 5;
+		ChanNumWidth = 5;
 }
 
 void CInfoViewer::setInfobarTimeout(int timeout_ext)

@@ -2088,8 +2088,30 @@ void CInfoViewer::killTitle()
 		if (infobar_txt)
 			infobar_txt->kill();
 		//numbox->kill();
+#if 0 //not really required to kill sigbox, numbox does this
+		if (sigbox)
+			sigbox->kill();
+#endif
 		header->kill();
+#if 0 //not really required to kill clock, header does this
+		if (clock)
+			clock->kill();
+#endif
 		body->kill();
+		if (txt_cur_event)
+			txt_cur_event->kill();
+		if (txt_cur_event_rest)
+			txt_cur_event_rest->kill();
+#if 0 //not really required to kill epg infos, body does this
+		if (txt_cur_start)
+			txt_cur_start->kill();
+		if (txt_next_start)
+			txt_next_start->kill();
+		if (txt_next_event)
+			txt_next_event->kill();
+		if (txt_next_in)
+			txt_next_in->kill();
+#endif
 		if (timescale)
 			if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
 				timescale->kill();

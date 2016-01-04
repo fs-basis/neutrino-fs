@@ -1002,7 +1002,7 @@ void COsdSetup::showOsdFontSizeSetup(CMenuWidget *menu_fonts)
 		fontSettings->addItem(mf);
 		w_index++;
 	}
-	g_InfoViewer->ResetModules();
+	g_InfoViewer->KillModules();
 }
 
 //osd timeouts
@@ -1080,7 +1080,7 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 
 	infobarNotifier = new COnOffNotifier(3);
 	infobarHddNotifier = new COnOffNotifier();
-	sigc::slot0<void> slot_ibar = sigc::mem_fun(g_InfoViewer, &CInfoViewer::ResetModules);
+	sigc::slot0<void> slot_ibar = sigc::mem_fun(g_InfoViewer, &CInfoViewer::KillModules);
 
 	CMenuOptionChooser * mc;
 	CMenuForwarder * mf;

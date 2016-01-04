@@ -124,6 +124,9 @@ CInfoViewer::CInfoViewer ()
 	oldinfo.current_uniqueKey = 0;
 	oldinfo.next_uniqueKey = 0;
 	isVolscale = false;
+	info_time_width = 0;
+	timeoutEnd = 0;
+	sec_timer_id = 0;
 	spacer = 0;
 }
 
@@ -257,6 +260,8 @@ void CInfoViewer::ResetPB()
 	}
 
 	if (timescale){
+		if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
+			timescale->kill();
 		delete timescale;
 		timescale = NULL;
 	}
@@ -437,10 +442,18 @@ void CInfoViewer::paintHead()
 void CInfoViewer::paintBody()
 {
 	int h_body = InfoHeightY - header_height + (g_settings.infobar_casystem_display < 2 ? infoViewerBB->bottom_bar_offset : 0);
+
+	if(virtual_zap_mode)
+		h_body -= (g_settings.infobar_casystem_display < 2 ? infoViewerBB->bottom_bar_offset : 0);
+
 	if (body == NULL)
-		body = new CComponentsShapeSquare(ChanInfoX, ChanNameY + header_height, BoxEndX-ChanInfoX, h_body, NULL, CC_SHADOW_RIGHT);
+		body = new CComponentsShapeSquare(ChanInfoX, ChanNameY + header_height, BoxEndX-ChanInfoX, h_body);
 	else
 		body->setDimensionsAll(ChanInfoX, ChanNameY + header_height, BoxEndX-ChanInfoX, h_body);
+
+	//set corner and shadow modes, consider virtual zap mode
+	body->setCorner(RADIUS_LARGE, virtual_zap_mode ? CORNER_BOTTOM : CORNER_NONE);
+	body->enableShadow(virtual_zap_mode ? CC_SHADOW_ON : CC_SHADOW_RIGHT);
 
 	body->setColorBody(g_settings.theme.infobar_gradient_body ? COL_MENUHEAD_PLUS_0 : COL_INFOBAR_PLUS_0);
 	body->enableColBodyGradient(g_settings.theme.infobar_gradient_body, COL_INFOBAR_PLUS_0, g_settings.theme.infobar_gradient_body_direction);
@@ -648,7 +661,10 @@ void CInfoViewer::reset_allScala()
 {
 	changePB();
 	lastsig = lastsnr = -1;
+	infoViewerBB->changePB();
 	infoViewerBB->reset_allScala();
+	if(!clock)
+		initClock();
 }
 
 void CInfoViewer::check_channellogo_ca_SettingsChange()
@@ -2078,8 +2094,30 @@ void CInfoViewer::killTitle()
 		if (infobar_txt)
 			infobar_txt->kill();
 		//numbox->kill();
+#if 0 //not really required to kill sigbox, numbox does this
+		if (sigbox)
+			sigbox->kill();
+#endif
 		header->kill();
+#if 0 //not really required to kill clock, header does this
+		if (clock)
+			clock->kill();
+#endif
 		body->kill();
+		if (txt_cur_event)
+			txt_cur_event->kill();
+		if (txt_cur_event_rest)
+			txt_cur_event_rest->kill();
+#if 0 //not really required to kill epg infos, body does this
+		if (txt_cur_start)
+			txt_cur_start->kill();
+		if (txt_next_start)
+			txt_next_start->kill();
+		if (txt_next_event)
+			txt_next_event->kill();
+		if (txt_next_in)
+			txt_next_in->kill();
+#endif
 		if (timescale)
 			if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
 				timescale->kill();
@@ -2320,8 +2358,22 @@ int CInfoViewerHandler::exec (CMenuTarget * parent, const std::string & /*action
 }
 #endif
 
-void CInfoViewer::ResetModules()
+void CInfoViewer::ResetModules(bool kill)
 {
+	if (kill) {
+		if (txt_cur_event)
+			txt_cur_event->clearSavedScreen();
+		if (txt_cur_event_rest)
+			txt_cur_event_rest->clearSavedScreen();
+		if (txt_cur_start)
+			txt_cur_start->clearSavedScreen();
+		if (txt_next_event)
+			txt_next_event->clearSavedScreen();
+		if (txt_next_in)
+			txt_next_in->clearSavedScreen();
+		if (txt_next_start)
+			txt_next_start->clearSavedScreen();
+	}
 	delete header;
 	header = NULL;
 	delete body;

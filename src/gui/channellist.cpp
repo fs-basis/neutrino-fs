@@ -1396,6 +1396,9 @@ int CChannelList::numericZap(int key)
 
 CZapitChannel* CChannelList::getPrevNextChannel(int key, unsigned int &sl)
 {
+	if(sl >= (*chanlist).size())
+		sl = (*chanlist).size()-1;
+
 	CZapitChannel* channel = (*chanlist)[sl];
 	int bsize = bouquetList->Bouquets.size();
 	int bactive = bouquetList->getActiveBouquetNumber();
@@ -1734,7 +1737,7 @@ void CChannelList::showChannelLogo() //TODO: move into an own handler, eg. heade
 #define NUM_LIST_BUTTONS_SORT 9
 struct button_label SChannelListButtons_SMode[NUM_LIST_BUTTONS_SORT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED,             LOCALE_INFOVIEWER_EVENTLIST},
+	{ NEUTRINO_ICON_BUTTON_RED,             LOCALE_MISCSETTINGS_EPG_HEAD},
 	{ NEUTRINO_ICON_BUTTON_GREEN,           LOCALE_CHANNELLIST_FOOT_SORT_ALPHA},
 	{ NEUTRINO_ICON_BUTTON_YELLOW,          LOCALE_BOUQUETLIST_HEAD},
 	{ NEUTRINO_ICON_BUTTON_BLUE,            LOCALE_INFOVIEWER_NEXT},

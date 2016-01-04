@@ -211,8 +211,8 @@ class CTextBox : public sigc::trackable
 		inline int	getTextMode()			{return m_nMode;};
 		void paint (void);
 		void hide (void);
-		bool clearScreenBuffer();
 		void blit(bool b) { m_blit = b; };
+		bool clearScreenBuffer();
 		sigc::signal<void> OnAfterRefresh;
 };
 

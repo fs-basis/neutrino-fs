@@ -223,7 +223,6 @@ void CInfoViewerBB::getBBButtonInfo()
 		std::string text, icon;
 		switch (i) {
 		case CInfoViewerBB::BUTTON_RED:
-//			pers = SNeutrinoSettings::P_MAIN_RED_BUTTON;
 			icon = NEUTRINO_ICON_INFO_RED;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
@@ -238,7 +237,6 @@ void CInfoViewerBB::getBBButtonInfo()
 			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_RED]->title;
 			break;
 		case CInfoViewerBB::BUTTON_GREEN:
-//			pers = SNeutrinoSettings::P_MAIN_GREEN_BUTTON;
 			icon = NEUTRINO_ICON_INFO_GREEN;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
@@ -253,7 +251,6 @@ void CInfoViewerBB::getBBButtonInfo()
 			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_GREEN]->title;
 			break;
 		case CInfoViewerBB::BUTTON_YELLOW:
-//			pers = SNeutrinoSettings::P_MAIN_YELLOW_BUTTON;
 			icon = NEUTRINO_ICON_INFO_YELLOW;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();
@@ -268,7 +265,6 @@ void CInfoViewerBB::getBBButtonInfo()
 			text = g_settings.usermenu[SNeutrinoSettings::BUTTON_YELLOW]->title;
 			break;
 		case CInfoViewerBB::BUTTON_BLUE:
-//			pers = SNeutrinoSettings::P_MAIN_BLUE_BUTTON;
 			icon = NEUTRINO_ICON_INFO_BLUE;
 			frameBuffer->getIconSize(icon.c_str(), &w, &h);
 			mode = CNeutrinoApp::getInstance()->getMode();

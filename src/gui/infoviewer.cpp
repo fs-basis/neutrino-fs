@@ -236,8 +236,7 @@ void CInfoViewer::start ()
 
 	initClock();
 	time_height = max(ChanHeight / 2, clock->getHeight());
-    time_width  = clock->getWidth();
-
+	time_width  = clock->getWidth();
 }
 
 void CInfoViewer::ResetPB()

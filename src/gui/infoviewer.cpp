@@ -237,8 +237,8 @@ void CInfoViewer::start ()
 	ChanInfoX = BoxStartX;
 
 	initClock();
-	time_height = clock->getHeight();
-    time_width  = clock->getWidth();
+	time_height = max(ChanHeight / 2, clock->getHeight());
+	time_width  = clock->getWidth();
 }
 
 void CInfoViewer::ResetPB()

@@ -80,8 +80,12 @@ class CInfoViewer
 	int            ChanNameX;
 	int            ChanNumWidth;
 	int            ChanWidth;
+	int            ChanHeight;
+	int            numbox_offset;
+
 	char	       strChanNum[10];
 	void           PaintChanNumber();
+
 	CSectionsdClient::CurrentNextInfo info_CurrentNext;
 	CSectionsdClient::CurrentNextInfo oldinfo;
         t_channel_id   current_channel_id;

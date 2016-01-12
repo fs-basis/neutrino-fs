@@ -80,7 +80,7 @@ class CInfoViewer
 	int            ChanNameX;
 	int            ChanNumWidth;
 	int            ChanWidth;
-	int            ChanHeight;
+//	int            ChanHeight;
 	int            numbox_offset;
 
 	char	       strChanNum[10];

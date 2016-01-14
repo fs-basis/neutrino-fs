@@ -99,7 +99,9 @@ int CLuaInstCCText::CCTextNew(lua_State *L)
 		font_text = SNeutrinoSettings::FONT_TYPE_MENU;
 
 	lua_Integer shadow_mode = CC_SHADOW_OFF;
+
 	if (!tableLookup(L, "shadow_mode", shadow_mode)) {
+//	if (!tableLookup(L, "has_shadow", shadow_mode)) {
 		std::string tmp1 = "false";
 		if (tableLookup(L, "shadow_mode", tmp1))
 			paramBoolDeprecated(L, tmp1.c_str());

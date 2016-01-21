@@ -145,7 +145,7 @@ class CInfoViewerBB
 		void showIcon_Tuner(void);
 		void showIcon_Logo();
 		void ShowRecDirScale();
-//		void showIcon_DD(void);
+		void showIcon_DD(void);
 		void showBBButtons(const int modus=-1);
 		void paintshowButtonBar();
 		void getBBButtonInfo(void);

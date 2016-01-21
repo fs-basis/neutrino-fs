@@ -59,6 +59,8 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 		COnOffNotifier* infobarNotifier;
 		COnOffNotifier* infobarHddNotifier;
 		CGenericMenuActivate casystemActivate;
+		CGenericMenuActivate screensaverActivate;
+		CGenericMenuActivate screensaverOptActivate;
 		CGenericMenuActivate gradentHeadDirection, gradentHintDirection, gradentInfobarTopDirection, gradentInfobarBodyDirection, gradentInfobarFootDirection;
 		int width;
 		int is_wizard;

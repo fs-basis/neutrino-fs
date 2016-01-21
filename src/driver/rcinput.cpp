@@ -943,7 +943,10 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 								*(int64_t*) p = timeNew - timeOld;
 #endif
 								printf("[neutrino] CSectionsdClient::EVT_TIMESET: timediff %" PRId64 "\n", *(int64_t*) p);
-								/* FIXME what this code really do ? */
+								/* compensate last_keypress for autorepeat / long press detection
+								 * I doubt this works correcty, if we had kernel 3.4+, using
+								 * EVIOCSCLOCKID ioctl would be better.
+								 * Still guessing the logic behind the condition... */
 								if ((int64_t)last_keypress > *(int64_t*)p)
 									last_keypress += *(int64_t *)p;
 

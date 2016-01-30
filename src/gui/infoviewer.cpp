@@ -439,6 +439,7 @@ void CInfoViewer::paintBody()
 	if (body == NULL){
 		body = new CComponentsShapeSquare(ChanInfoX, y_body, BoxEndX-ChanInfoX, h_body);
 	}else{
+#if 0
 		if(txt_cur_event && txt_next_event){
 			if (h_body != body->getHeight() || y_body != body->getYPos()){
 				txt_cur_start->getCTextBoxObject()->clearScreenBuffer();
@@ -449,6 +450,7 @@ void CInfoViewer::paintBody()
 				txt_next_in->getCTextBoxObject()->clearScreenBuffer();
 			}
 		}
+#endif
 		body->setDimensionsAll(ChanInfoX, y_body, BoxEndX-ChanInfoX, h_body);
 	}
 

@@ -2173,7 +2173,7 @@ void CInfoViewer::killTitle()
 	{
 		is_visible = false;
 		infoViewerBB->is_visible = false;
-#if 0 //unused
+#if 1 //unused
 		int bottom = BoxEndY + SHADOW_OFFSET + infoViewerBB->bottom_bar_offset;
 		if (showButtonBar)
 			bottom += infoViewerBB->InfoHeightY_Info;

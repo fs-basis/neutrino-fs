@@ -272,10 +272,17 @@ bool CCamManager::SetMode(t_channel_id channel_id, enum runmode mode, bool start
 	//INFO("source %d old mask %d new mask %d force update %s", source, oldmask, newmask, force_update ? "yes" : "no");
 
 	/* stop decoding if record stops unless it's the live channel. TODO:PIP? */
-	if (mode == RECORD && start == false && source != cDemux::GetSource(0)) {
-		INFO("MODE!=record(%d) start=false, src %d getsrc %d", mode, source, cDemux::GetSource(0));
+	/* all the modes: RECORD, STREAM, PIP except PLAY now stopping here !! */
+	if (mode && start == false && source != cDemux::GetSource(0)) {
+		INFO("MODE not PLAY:(%d) start=false, src %d getsrc %d", mode, source, cDemux::GetSource(0));
 		cam->sendMessage(NULL, 0, false);
-		cam->sendCaPmt(channel->getChannelID(), NULL, 0, CA_SLOT_TYPE_ALL, channel->scrambled, channel->camap, mode, start);
+		/* clean up channel_map with stopped record/stream/pip services NOT live-tv */
+		it = channel_map.find(channel_id);
+		if(it != channel_map.end() && newmask != 0)
+		{
+			delete it->second;
+			channel_map.erase(channel_id);
+		}
 	}
 
 	if((oldmask != newmask) || force_update) {
@@ -313,7 +320,12 @@ bool CCamManager::SetMode(t_channel_id channel_id, enum runmode mode, bool start
 		/* FIXME: back to live channel from playback dont parse pmt and call setCaPmt
 		 * (see CMD_SB_LOCK / UNLOCK PLAYBACK */
 		//channel->setRawPmt(NULL);//FIXME
-		StopCam(channel_id, cam);
+		//StopCam(channel_id, cam);
+		/* don't use StopCam() here: ci-cam needs the real mode stop */
+		cam->sendCaPmt(channel->getChannelID(), NULL, 0, CA_SLOT_TYPE_CI, channel->scrambled, channel->camap, mode, start);
+		cam->sendMessage(NULL, 0, false);
+		channel_map.erase(channel_id);
+		delete cam;
 	}
 
 	// CI

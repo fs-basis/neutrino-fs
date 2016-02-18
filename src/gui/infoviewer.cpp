@@ -1831,7 +1831,6 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			restore = true;
 	}
 
-
 	//current event
 	if (current && update_current){
 		if (txt_cur_event == NULL)

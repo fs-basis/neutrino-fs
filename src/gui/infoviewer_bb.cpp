@@ -144,6 +144,7 @@ bool CInfoViewerBB::checkBBIcon(const char * const icon, int *w, int *h)
 
 void CInfoViewerBB::getBBIconInfo()
 {
+	initBBOffset();
 	bbIconMaxH 		= 0;
 	showBBIcons_width = 0;
 	BBarY 			= g_InfoViewer->BoxEndY + bottom_bar_offset;
@@ -292,8 +293,6 @@ void CInfoViewerBB::getBBButtonInfo()
 		bbButtonInfo[i].h = h;
 		bbButtonInfo[i].text = text;
 		bbButtonInfo[i].icon = icon;
-
-
 	}
 	// Calculate position/size of buttons
 	minX = std::min(bbIconMinX, g_InfoViewer->ChanInfoX + (((g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX) * 75) / 100));
@@ -301,20 +300,6 @@ void CInfoViewerBB::getBBButtonInfo()
 	bbButtonMaxX = g_InfoViewer->ChanInfoX + 10;
 	int br = 0, count = 0;
 	for (int i = 0; i < CInfoViewerBB::BUTTON_MAX; i++) {
-
-//#if 0
-//		if ((i == CInfoViewerBB::BUTTON_YELLOW) && (g_RemoteControl->subChannels.empty())) { // no subchannels
-//			bbButtonInfo[i].paint = false;
-//			bbButtonInfo[i].x = -1;
-//			continue;
-//		}
-//		else
-//#else
-//		if (!bbButtonInfo[i].active)
-//			bbButtonInfo[i].paint = false;
-//#endif
-//		else
-
 		{
 			count++;
 			bbButtonInfo[i].paint = true;
@@ -931,6 +916,7 @@ void CInfoViewerBB::showIcon_CA_Status(int notfirst)
 
 void CInfoViewerBB::paintCA_bar(int left, int right)
 {
+	initBBOffset();
 	int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.infobar_casystem_frame ? 24 : 0)) / 4;
 	int ycnt = (bottom_bar_offset - (g_settings.infobar_casystem_frame ? 14 : 0)) / 4;
 	int ca_width = g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX;

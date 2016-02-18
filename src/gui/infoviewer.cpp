@@ -249,18 +249,17 @@ void CInfoViewer::ResetPB()
 	}
 
 	if (timescale){
-		if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
-			timescale->kill();
-		delete timescale;
-		timescale = NULL;
+		timescale->reset();
 	}
 }
 
 void CInfoViewer::changePB()
 {
 	ResetPB();
-	timescale = new CProgressBar();
-	timescale->setType(CProgressBar::PB_TIMESCALE);
+	if (!timescale){
+		timescale = new CProgressBar();
+		timescale->setType(CProgressBar::PB_TIMESCALE);
+	}
 }
 
 void CInfoViewer::initClock()
@@ -431,6 +430,7 @@ void CInfoViewer::paintHead()
 void CInfoViewer::paintBody()
 {
 	int h_body = InfoHeightY - header_height;// - SHADOW_OFFSET;
+	infoViewerBB->initBBOffset();
 	if (!zap_mode)
 		h_body += infoViewerBB->bottom_bar_offset;
 
@@ -1707,6 +1707,9 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		timescale->setValues(pb_p, pb_w);
 
 		//printf("paintProgressBar(%d, %d, %d, %d)\n", BoxEndX - pb_w - SHADOW_OFFSET, ChanNameY - (pb_h + 10) , pb_w, pb_h);
+	}else{
+		if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
+			timescale->kill();
 	}
 
 	if (showButtonBar) {
@@ -1720,9 +1723,9 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	int currTimeW = 0;
 	int nextTimeW = 0;
 	if (runningRest)
-		currTimeW = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(runningRest)+10;
+		currTimeW = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(runningRest)*2;
 	if (nextDuration)
-		nextTimeW = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(nextDuration)+10;
+		nextTimeW = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(nextDuration)*2;
 	int currTimeX = BoxEndX - currTimeW - 10;
 	int nextTimeX = BoxEndX - nextTimeW - 10;
 
@@ -1828,6 +1831,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			restore = true;
 	}
 
+
 	//current event
 	if (current && update_current){
 		if (txt_cur_event == NULL)
@@ -1836,7 +1840,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			txt_cur_event->setDimensionsAll(xStart, CurrInfoY - height, currTimeX - xStart - 5, height);
 
 		txt_cur_event->setText(current, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-		if (restore)
+		if (txt_cur_event->isPainted())
 			txt_cur_event->hide();
 		txt_cur_event->paint(CC_SAVE_SCREEN_YES);
 
@@ -1846,7 +1850,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			else
 				txt_cur_start->setDimensionsAll(InfoX, CurrInfoY - height, info_time_width, height);
 			txt_cur_start->setText(runningStart, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-			if (restore)
+			if (txt_cur_event->isPainted())
 				txt_cur_event->hide();
 			txt_cur_start->paint(CC_SAVE_SCREEN_YES);
 		}
@@ -1857,7 +1861,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			else
 				txt_cur_event_rest->setDimensionsAll(currTimeX, CurrInfoY - height, currTimeW, height);
 			txt_cur_event_rest->setText(runningRest, CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-			if (restore)
+			if (txt_cur_event_rest->isPainted())
 				txt_cur_event_rest->hide();
 			txt_cur_event_rest->paint(CC_SAVE_SCREEN_YES);
 		}
@@ -1871,7 +1875,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		else
 			txt_next_event->setDimensionsAll(xStart, NextInfoY, nextTimeX - xStart - 5, height);
 		txt_next_event->setText(next, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-		if (restore)
+		if (txt_next_event->isPainted())
 			txt_next_event->hide();
 		txt_next_event->paint(CC_SAVE_SCREEN_YES);
 
@@ -1881,7 +1885,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			else
 				txt_next_start->setDimensionsAll(InfoX, NextInfoY, info_time_width, height);
 			txt_next_start->setText(nextStart, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-			if (restore)
+			if (txt_next_start->isPainted())
 				txt_next_start->hide();
 			txt_next_start->paint(CC_SAVE_SCREEN_YES);
 		}
@@ -1892,7 +1896,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 			else
 				txt_next_in->setDimensionsAll(nextTimeX, NextInfoY, nextTimeW, height);
 			txt_next_in->setText(nextDuration, CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-			if (restore)
+			if (txt_next_in->isPainted())
 				txt_next_in->hide();
 			txt_next_in->paint(CC_SAVE_SCREEN_YES);
 		}

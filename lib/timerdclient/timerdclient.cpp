@@ -2,7 +2,7 @@
 	Timer Daemon  -   DBoxII-Project
 
 	Copyright (C) 2002 Dirk Szymanski 'Dirch'
-
+	
 	$Id: timerdclient.cpp,v 1.55 2007/10/09 20:46:05 guenther Exp $
 
 	License: GPL
@@ -28,13 +28,14 @@
 #include <timerdclient/timerdmsg.h>
 #include <timerdclient/timerdclient.h>
 
+#include <system/helpers.h>
+
 #ifdef PEDANTIC_VALGRIND_SETUP
 #define VALGRIND_PARANOIA(x) memset(&x, 0, sizeof(x))
 #else
 #define VALGRIND_PARANOIA(x) {}
 #endif
 
-int CTimerdClient::adzap_eventID = 0;
 unsigned char   CTimerdClient::getVersion   () const
 {
 	return CTimerdMsg::ACTVERSION;
@@ -95,7 +96,7 @@ int CTimerdClient::setSleeptimer(time_t announcetime, time_t alarmtime, int time
 		timerID = addTimerEvent(CTimerd::TIMER_SLEEPTIMER,NULL,announcetime,alarmtime,0);
 	}
 
-	return timerID;
+	return timerID;   
 }
 //-------------------------------------------------------------------------
 
@@ -105,7 +106,7 @@ int CTimerdClient::getSleeptimerID()
 	CTimerdMsg::responseGetSleeptimer response;
 	if(!receive_data((char*)&response, sizeof(CTimerdMsg::responseGetSleeptimer)))
 		response.eventID =0;
-	close_connection();
+	close_connection();  
 	return response.eventID;
 }
 //-------------------------------------------------------------------------
@@ -306,12 +307,7 @@ int CTimerdClient::addTimerEvent( CTimerd::CTimerEventTypes evType, void* data, 
 			return -1;
 		}
 	}
-	bool adzaptimer = false;
-	if(evType == CTimerd::TIMER_ADZAP){
-		evType = CTimerd::TIMER_ZAPTO;
-		adzaptimer = true;
-	}
-	CTimerd::TransferEventInfo tei;
+	CTimerd::TransferEventInfo tei; 
 	CTimerd::TransferRecordingInfo tri;
 	CTimerdMsg::commandAddTimer msgAddTimer;
 	VALGRIND_PARANOIA(tei);
@@ -330,8 +326,7 @@ int CTimerdClient::addTimerEvent( CTimerd::CTimerEventTypes evType, void* data, 
 	}
 	/* else if(evType == CTimerd::TIMER_NEXTPROGRAM || evType == CTimerd::TIMER_ZAPTO || */
 	else if (evType == CTimerd::TIMER_ZAPTO ||
-		evType == CTimerd::TIMER_IMMEDIATE_RECORD ||
-		evType == CTimerd::TIMER_ADZAP)
+		evType == CTimerd::TIMER_IMMEDIATE_RECORD)
 	{
 		CTimerd::EventInfo *ei=static_cast<CTimerd::EventInfo*>(data);
 		tei.apids = ei->apids;
@@ -379,19 +374,13 @@ int CTimerdClient::addTimerEvent( CTimerd::CTimerEventTypes evType, void* data, 
 	CTimerdMsg::responseAddTimer response;
 	receive_data((char*)&response, sizeof(response));
 	close_connection();
-
-	if(adzaptimer){
-		adzap_eventID = response.eventID;//set adzap flag
-	}
+	
 	return( response.eventID);
 }
 //-------------------------------------------------------------------------
 
 void CTimerdClient::removeTimerEvent( int evId)
 {
-	if(evId == adzap_eventID)
-		adzap_eventID = 0;//reset adzap flag
-
 	CTimerdMsg::commandRemoveTimer msgRemoveTimer;
 	VALGRIND_PARANOIA(msgRemoveTimer);
 	msgRemoveTimer.eventID  = evId;

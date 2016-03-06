@@ -139,6 +139,8 @@ struct SNeutrinoTheme
 
 struct SNeutrinoSettings
 {
+	std::string version_pseudo;
+
 	//video
 	int video_Format;
 	int video_Mode;
@@ -202,7 +204,6 @@ struct SNeutrinoSettings
 	int infobar_show_res;
 	int infobar_show_tuner;
 	int infobar_show_dd_available;
-	int wzap_time;
 	//audio
 	int audio_AnalogMode;
 	int audio_DolbyDigital;
@@ -790,6 +791,7 @@ struct SNeutrinoSettings
 
 	//movieplayer
 	int   movieplayer_repeat_on;
+	std::string tmdb_api_key;
 
 	//zapit setup
 	std::string StartChannelTV;
@@ -797,6 +799,10 @@ struct SNeutrinoSettings
 	t_channel_id startchanneltv_id;
 	t_channel_id startchannelradio_id;
 	int uselastchannel;
+
+	//adzap
+	int adzap_zapBackPeriod;
+	int adzap_writeData;
 
 	int	power_standby;
 	int	hdd_sleep;
@@ -810,6 +816,9 @@ struct SNeutrinoSettings
 	std::string	font_file;
 	std::string	ttx_font_file;
 	std::string	sub_font_file;
+
+	int		livestreamResolution;
+	std::string	livestreamScriptPath;
 
 	// USERMENU
 	typedef enum
@@ -855,6 +864,8 @@ struct SNeutrinoSettings
 		ITEM_TUNER_RESTART = 30,
 		ITEM_THREE_D_MODE = 31,
 		ITEM_RASS = 32,
+		ITEM_LIVESTREAM_RESOLUTION = 33,
+		ITEM_ADZAP = 34,
 
 		ITEM_MAX   // MUST be always the last in the list
 	} USER_ITEM;
@@ -882,8 +893,6 @@ struct SNeutrinoSettings
 		WIZARD_ON	= 2
 	};
 };
-
-/* some default Values */
 
 extern const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SETTINGS_MAX];
 
@@ -938,9 +947,6 @@ const time_settings_struct_t timing_setting[SNeutrinoSettings::TIMING_SETTING_CO
 // shadow
 #define SHADOW_OFFSET                   6
 
-/* end default values */
-
-
 struct SglobalInfo
 {
 	unsigned char     box_Type;
@@ -958,7 +964,6 @@ const int PARENTALLOCK_PROMPT_NEVER          = 0;
 const int PARENTALLOCK_PROMPT_ONSTART        = 1;
 const int PARENTALLOCK_PROMPT_CHANGETOLOCKED = 2;
 const int PARENTALLOCK_PROMPT_ONSIGNAL       = 3;
-
 
 class CScanSettings
 {

@@ -47,6 +47,7 @@
 
 #include "global.h"
 #include "neutrino.h"
+#include "version_pseudo.h"
 
 #include <daemonc/remotecontrol.h>
 
@@ -67,6 +68,8 @@
 #if !HAVE_GENERIC_HARDWARE
 #include "gui/3dsetup.h"
 #endif
+
+#include "gui/adzap.h"
 #include "gui/audiomute.h"
 #include "gui/audioplayer.h"
 #include "gui/bouquetlist.h"
@@ -312,8 +315,8 @@ const lcd_setting_struct_t lcd_setting[SNeutrinoSettings::LCD_SETTING_COUNT] =
 static SNeutrinoSettings::usermenu_t usermenu_default[] = {
 	{ CRCInput::RC_red,             "2,3,4,13",                             "",     "red"           },
 	{ CRCInput::RC_green,           "6",                                    "",     "green"         },
-	{ CRCInput::RC_yellow,          "7",                                    "",     "yellow"        },
-	{ CRCInput::RC_blue,            "12,11,14,15,20,21,24,25,19",           "",     "blue"          },
+	{ CRCInput::RC_yellow,          "7,31",                                 "",     "yellow"        },
+	{ CRCInput::RC_blue,            "12,11,20,21,19,14,29,30,15",           "",     "blue"          },
 	{ CRCInput::RC_play,            "9",                                    "",     "5"             },
 	{ CRCInput::RC_audio,           "27",                                   "",     "6"             },
 	{ CRCInput::RC_nokey,           "",                                     "",     ""              },
@@ -361,6 +364,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 				!configfile.getInt32("screen_EndY_lcd", 0)) {
 			printf("[neutrino] config file %s is broken, using defaults\n", fname);
 			configfile.clear();
+		} else {
+			migrateConfig(fname);
 		}
 	}
 	parentallocked = !access(NEUTRINO_PARENTALLOCKED_FILE, R_OK);
@@ -936,6 +941,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	//Movie-Player
 	g_settings.movieplayer_repeat_on = configfile.getInt32("movieplayer_repeat_on", CMoviePlayerGui::REPEAT_OFF);
+	g_settings.tmdb_api_key = configfile.getString("tmdb_api_key","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
 	//Filebrowser
 	g_settings.filebrowser_showrights =  configfile.getInt32("filebrowser_showrights", 1);
@@ -964,6 +970,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	}
 	g_settings.epg_search_history_size = g_settings.epg_search_history.size();
 
+	g_settings.adzap_zapBackPeriod = configfile.getInt32("adzap_zapBackPeriod", 180);
+	g_settings.adzap_writeData = configfile.getInt32("adzap_writeData", 0);
 
 	// USERMENU -> in system/settings.h
 	//-------------------------------------------
@@ -1043,9 +1051,35 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infoClockBackground = configfile.getInt32("infoClockBackground", 0);
 	g_settings.infoClockSeconds = configfile.getInt32("infoClockSeconds", 1);
 
+	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 1920);
+	g_settings.livestreamScriptPath = configfile.getString("livestreamScriptPath", PLUGINDIR_VAR "/webtv");
+
+	g_settings.version_pseudo = configfile.getString("version_pseudo", "19700101000000");
+
+	if (g_settings.version_pseudo < NEUTRINO_VERSION_PSEUDO)
+		upgradeSetup(fname);
+
 	if(erg)
 		configfile.setModifiedFlag(true);
 	return erg;
+}
+
+void CNeutrinoApp::upgradeSetup(const char * fname)
+{
+	if (g_settings.version_pseudo < "20160226110000")
+	{
+		if (g_settings.usermenu[SNeutrinoSettings::BUTTON_YELLOW]->items == "7")
+		{
+			g_settings.usermenu[SNeutrinoSettings::BUTTON_YELLOW]->items = "7,31";
+			configfile.setString("usermenu_tv_yellow", g_settings.usermenu[SNeutrinoSettings::BUTTON_YELLOW]->items);
+		}
+	}
+
+	g_settings.version_pseudo = NEUTRINO_VERSION_PSEUDO;
+	configfile.setString("version_pseudo", g_settings.version_pseudo);
+
+	if (configfile.getModifiedFlag())
+		configfile.saveConfig(fname);
 }
 
 /**************************************************************************************
@@ -1175,7 +1209,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("show_mute_icon"   , g_settings.show_mute_icon);
 	configfile.setInt32("infobar_show_res"  , g_settings.infobar_show_res  );
 	configfile.setInt32("infobar_show_dd_available"  , g_settings.infobar_show_dd_available  );
-	configfile.setInt32("wzap_time"  , g_settings.wzap_time  );
 	configfile.setInt32("infobar_show_tuner"  , g_settings.infobar_show_tuner  );
 	configfile.setBool("radiotext_enable"          , g_settings.radiotext_enable);
 	configfile.setString("radiotext_rass_dir", g_settings.radiotext_rass_dir);
@@ -1463,6 +1496,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	//Movie-Player
 	configfile.setInt32( "movieplayer_repeat_on", g_settings.movieplayer_repeat_on );
+	configfile.setString( "tmdb_api_key", g_settings.tmdb_api_key );
 
 	//Filebrowser
 	configfile.setInt32("filebrowser_showrights", g_settings.filebrowser_showrights);
@@ -1476,6 +1510,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt64("startchanneltv_id", g_settings.startchanneltv_id);
 	configfile.setInt64("startchannelradio_id", g_settings.startchannelradio_id);
 	configfile.setInt32("uselastchannel", g_settings.uselastchannel);
+	configfile.setInt32("adzap_zapBackPeriod", g_settings.adzap_zapBackPeriod);
+	configfile.setInt32("adzap_writeData", g_settings.adzap_writeData);
 	//epg search
 	g_settings.epg_search_history_size = g_settings.epg_search_history.size();
 	if (g_settings.epg_search_history_size > g_settings.epg_search_history_max)
@@ -1531,6 +1567,11 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infoClockFontSize", g_settings.infoClockFontSize);
 	configfile.setInt32("infoClockBackground", g_settings.infoClockBackground);
 	configfile.setInt32("infoClockSeconds", g_settings.infoClockSeconds);
+
+	configfile.setInt32("livestreamResolution", g_settings.livestreamResolution);
+	configfile.setString("livestreamScriptPath", g_settings.livestreamScriptPath);
+
+	configfile.setString("version_pseudo", g_settings.version_pseudo);
 
 	if(strcmp(fname, NEUTRINO_SETTINGS_FILE) || configfile.getModifiedFlag())
 		configfile.saveConfig(fname);
@@ -1904,6 +1945,7 @@ void CNeutrinoApp::SetupFonts(int fmode)
 	/* recalculate infobar position */
 	if (g_InfoViewer)
 		g_InfoViewer->start();
+	OnAfterSetupFonts();
 }
 
 /**************************************************************************************
@@ -3019,7 +3061,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 			CZapitChannel * cc = CZapit::getInstance()->GetCurrentChannel();
 			if (cc && (chid == cc->getChannelID())) {
 				CMoviePlayerGui::getInstance().stopPlayBack();
-				if (CMoviePlayerGui::getInstance().PlayBackgroundStart(cc->getUrl(), cc->getName(), cc->getChannelID()))
+				if (CMoviePlayerGui::getInstance().PlayBackgroundStart(cc->getUrl(), cc->getName(), cc->getChannelID(), cc->getScriptName()))
 					delete [] (unsigned char*) data;
 				else
 					g_RCInput->postMsg(NeutrinoMessages::EVT_ZAP_FAILED, data);
@@ -3372,16 +3414,24 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		}
 #endif
 		//zap to rec channel in standby-mode
+		CTimerd::RecordingInfo * eventinfo = (CTimerd::RecordingInfo *) data;
+		t_channel_id live_channel_id = CZapit::getInstance()->GetCurrentChannelID();
+		/* special case for nhttpd: start direct record, if no eventID */
+		if (eventinfo->eventID == 0) {
+			int rec_mode = CRecordManager::getInstance()->GetRecordMode(live_channel_id);
+			/* start only if not recorded yet */
+			if (rec_mode == CRecordManager::RECMODE_OFF || rec_mode == CRecordManager::RECMODE_TSHIFT)
+				CRecordManager::getInstance()->Record(live_channel_id);
+			delete[] (unsigned char*) data;
+			return messages_return::handled | messages_return::cancel_all;
+		}
 		if(mode == mode_standby){
-			CTimerd::RecordingInfo * eventinfo = (CTimerd::RecordingInfo *) data;
-			t_channel_id live_channel_id = CZapit::getInstance()->GetCurrentChannelID();
-
 			if((eventinfo->channel_id != live_channel_id) && !(SAME_TRANSPONDER(live_channel_id, eventinfo->channel_id)))
 				zapTo(eventinfo->channel_id);
 		}
 
 		if (g_settings.recording_type != CNeutrinoApp::RECORDING_OFF) {
-			CRecordManager::getInstance()->Record((CTimerd::RecordingInfo *) data);
+			CRecordManager::getInstance()->Record(eventinfo);
 			autoshift = CRecordManager::getInstance()->TimeshiftOnly();
 		}
 
@@ -3662,7 +3712,8 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 				CZapitChannel * cc = CZapit::getInstance()->GetCurrentChannel();
 				if (cc && IS_WEBTV(cc->getChannelID())) {
 					CMoviePlayerGui::getInstance().stopPlayBack();
-					CMoviePlayerGui::getInstance().PlayBackgroundStart(cc->getUrl(), cc->getName(), cc->getChannelID());
+					if (!CMoviePlayerGui::getInstance().PlayBackgroundStart(cc->getUrl(), cc->getName(), cc->getChannelID(), cc->getScriptName()))
+						g_RCInput->postMsg(NeutrinoMessages::EVT_ZAP_FAILED, data);
 				}
 			}
 		}
@@ -5151,3 +5202,49 @@ bool CNeutrinoApp::adjustToChannelID(const t_channel_id channel_id)
 
 	return true;
 }
+
+/*
+ * commit 523b273a changed the names of config file entries:
+ *	casystem_display	=> infobar_casystem_display
+ *	casystem_dotmatrix	=> infobar_casystem_dotmatrix
+ *	casystem_frame		=> infobar_casystem_frame
+ * convert these, so that users do not need to set up their system again
+*/
+struct __key_rename {
+	const char *from;
+	const char *to;
+};
+
+static struct __key_rename key_rename[] = {
+	{ "casystem_display",	"infobar_casystem_display" },
+	{ "casystem_dotmatrix",	"infobar_casystem_dotmatrix"},
+	{ "casystem_frame",	"infobar_casystem_frame" },
+	{ NULL, NULL }
+};
+
+/* actually do the migration of the config entries */
+void CNeutrinoApp::migrateConfig(const char *fname)
+{
+	/* we need a second configfile to not create new entries and trigger the
+	 * "new entry created" flag */
+	CConfigFile migconf('\t', false);
+	migconf.loadConfig(fname);
+	/* here we do a simple rename of config file keys */
+	int magic = -424242; /* obviously a value that does not appear in real cases */
+	int tmp = magic;
+	int i;
+	for (i = 0; key_rename[i].from != NULL; i++) {
+		const char *from = key_rename[i].from;
+		const char *to   = key_rename[i].to;
+		tmp = migconf.getInt32(from, magic);
+		if (tmp == magic)	/* old key does not exist */
+			continue;
+		/* only set new key to old value if the new key does not yet exist */
+		if (configfile.getInt32(to, magic) == magic)
+			configfile.setInt32(to, tmp);
+		/* always remove old key*/
+		configfile.deleteKey(from);
+	}
+	/* more complex migration, including converting values etc. could be done here */
+}
+

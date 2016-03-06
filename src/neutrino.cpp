@@ -315,7 +315,7 @@ const lcd_setting_struct_t lcd_setting[SNeutrinoSettings::LCD_SETTING_COUNT] =
 static SNeutrinoSettings::usermenu_t usermenu_default[] = {
 	{ CRCInput::RC_red,             "2,3,4,13",                             "",     "red"           },
 	{ CRCInput::RC_green,           "6",                                    "",     "green"         },
-	{ CRCInput::RC_yellow,          "7,31",                                 "",     "yellow"        },
+	{ CRCInput::RC_yellow,          "7,34",                                 "",     "yellow"        },
 	{ CRCInput::RC_blue,            "12,11,20,21,19,14,29,30,15",           "",     "blue"          },
 	{ CRCInput::RC_play,            "9",                                    "",     "5"             },
 	{ CRCInput::RC_audio,           "27",                                   "",     "6"             },

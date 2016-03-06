@@ -526,7 +526,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.show_mute_icon = configfile.getInt32("show_mute_icon" ,0);
 	g_settings.infobar_show_res = configfile.getInt32("infobar_show_res", 0 );
 	g_settings.infobar_show_dd_available = 1; //configfile.getInt32("infobar_show_dd_available", 1 );
-	g_settings.wzap_time = configfile.getInt32("wzap_time", 3 );
 
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
 	g_settings.radiotext_enable = configfile.getBool("radiotext_enable"          , true);

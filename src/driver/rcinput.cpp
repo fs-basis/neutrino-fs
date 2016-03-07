@@ -1638,6 +1638,10 @@ const char * CRCInput::getSpecialKeyName(const unsigned int key)
 				return "pos";
 			case RC_sleep:
 				return "sleep";
+			case RC_media:
+				return "media";
+			case RC_archive:
+				return "archiv";
 			default:
 				printf("unknown key: %d (0x%x) \n", key, key);
 				return "unknown";

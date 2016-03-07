@@ -254,6 +254,10 @@ class CRCInput
 #else
 			RC_forward	= KEY_FORWARD,
 #endif
+			/* media/portal and archiv/media keys ufs912/ufs913 */
+			RC_media	= KEY_MEDIA,
+			RC_archive	= KEY_ARCHIVE,
+
 			RC_rewind	= KEY_REWIND,
 			RC_stop		= KEY_STOP,
 			RC_timeshift	= KEY_TIME,

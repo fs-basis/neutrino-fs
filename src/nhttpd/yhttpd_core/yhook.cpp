@@ -8,6 +8,8 @@
 #include <cstring>
 #include <strings.h>
 
+// UTF8 convert
+#include <zapit/zapit.h>
 // yhttpd
 #include "yhook.h"
 #include "ylogging.h"
@@ -544,7 +546,7 @@ std::string CyhookHandler::outValue(std::string _content) {
 	std::string result = "";
 	switch (outType) {
 	case xml:
-		result = "<![CDATA[" + _content + "]]>";
+		result = convert_UTF8_To_UTF8_XML(_content.c_str());
 		break;
 	case json:
 		result = json_convert_string(_content);

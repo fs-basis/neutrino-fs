@@ -3083,7 +3083,7 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
 
                 CEitManager::getInstance()->getEventsServiceKey(channel_id, eList);
                 channelTag = "channel id=\""+string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel_id)+"\"";
-                channelData = hh->outPair("display-name", json_convert_string(NeutrinoAPI->GetServiceName(channel_id)), true);
+                channelData = hh->outPair("display-name", hh->outValue(NeutrinoAPI->GetServiceName(channel_id)), true);
 
                 result += hh->outObject(channelTag, channelData);
                 CChannelEventList::iterator eventIterator;
@@ -3102,11 +3102,11 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
                     programmeTag += "stop=\""+std::string(zbuffer)+"\" ";
 
                     CShortEPGData epg;
-                    prog += hh->outPair("title lang=\"de\"", json_convert_string(eventIterator->description), false);
+                    prog += hh->outPair("title lang=\"de\"", hh->outValue(eventIterator->description), false);
 
                     if (CEitManager::getInstance()->getEPGidShort(eventIterator->eventID, &epg))
                     {
-                        prog += hh->outPair("desc lang=\"de\"", json_convert_string(epg.info1+" "+epg.info2), true);
+                        prog += hh->outPair("desc lang=\"de\"", hh->outValue(epg.info1+epg.info2), true);
                     }
 
                     result += hh->outArrayItem(programmeTag, prog, false);

@@ -445,9 +445,14 @@ std::string CyhookHandler::outSingle(std::string _content) {
 //-----------------------------------------------------------------------------
 std::string CyhookHandler::outPair(std::string _key, std::string _content, bool _next) {
 	std::string result = "";
+	std::string end_key = _key.substr(0,_key.find_first_of(' '));
 	switch (outType) {
 	case xml:
-		result = outIndent() + "<" + _key + ">" + _content + "</" + _key + ">";
+		if (!(_content.empty())) {
+			result = outIndent() + "<" + _key + ">" + _content + "</" + end_key + ">";
+		} else {
+			result = outIndent() + "<" + _key + "/>";
+		}
 		break;
 	case json:
 		result = outIndent() + "\"" + _key + "\": \"" + _content + "\"";
@@ -490,10 +495,11 @@ std::string CyhookHandler::outArray(std::string _key, std::string _content, bool
 //-----------------------------------------------------------------------------
 std::string CyhookHandler::outArrayItem(std::string _key, std::string _content, bool _next) {
 	std::string result = "";
+	std::string end_key = _key.substr(0,_key.find_first_of(' '));
 	switch (outType) {
 	case xml:
 		//TODO: xml check and DESC check
-		result = outIndent() + "<" + _key + ">\n" + _content + "</" + _key + ">";
+		result = outIndent() + "<" + _key + ">\n" + _content + "</" + end_key + ">";
 		result += "\n";
 		break;
 	case json:
@@ -512,10 +518,11 @@ std::string CyhookHandler::outArrayItem(std::string _key, std::string _content, 
 //-----------------------------------------------------------------------------
 std::string CyhookHandler::outObject(std::string _key, std::string _content, bool _next) {
 	std::string result = "";
+	std::string end_key = _key.substr(0,_key.find_first_of(' '));
 	switch (outType) {
 	case xml:
 		//TODO: xml check and DESC check
-		result = outIndent() + "<" + _key + ">\n" + _content + "</" + _key + ">";
+		result = outIndent() + "<" + _key + ">\n" + _content + "</" + end_key + ">";
 		result += "\n";
 		break;
 	case json:

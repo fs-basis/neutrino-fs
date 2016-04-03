@@ -3083,7 +3083,7 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
 
                 CEitManager::getInstance()->getEventsServiceKey(channel_id, eList);
                 channelTag = "channel id=\""+string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel_id)+"\"";
-                channelData += hh->outPair("display-name", hh->outValue(NeutrinoAPI->GetServiceName(channel_id)), true);
+                channelData = hh->outPair("display-name", hh->outValue(NeutrinoAPI->GetServiceName(channel_id)), true);
 
                 result += hh->outObject(channelTag, channelData);
                 CChannelEventList::iterator eventIterator;

@@ -3053,7 +3053,7 @@ void CControlAPI::updateBouquetCGI(CyhookHandler *hh)
 //-----------------------------------------------------------------------------
 void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
 {
-	int mode = NeutrinoAPI->Zapit->getMode();
+    int mode = NeutrinoAPI->Zapit->getMode();
     hh->ParamList["format"] = "xml";
     TOutType outType = hh->outStart();
 
@@ -3065,57 +3065,27 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
     std::string programmeTag = "";
     CChannelEventList eList;
 
-// schleife begin
-    for (int i = 0; i < (int) g_bouquetManager->Bouquets.size(); i++)
+    CEitManager::getInstance()->getEventsServiceKey(0, eList,0,"",true);
+    CChannelEventList::iterator eventIterator;
+    for (eventIterator = eList.begin(); eventIterator != eList.end(); ++eventIterator)
     {
-        ZapitChannelList chanlist;
-        if (mode == CZapitClient::MODE_RADIO)
-            g_bouquetManager->Bouquets[i]->getRadioChannels(chanlist);
-        else
-            g_bouquetManager->Bouquets[i]->getTvChannels(chanlist);
-        if(!chanlist.empty() && !g_bouquetManager->Bouquets[i]->bHidden && g_bouquetManager->Bouquets[i]->bUser)
-        {
-            for(int j = 0; j < (int) chanlist.size(); j++)
-            {
-                CZapitChannel * channel = chanlist[j];
-                channel_id = channel->getChannelID();
+        std::string prog = "";
+        programmeTag = "programme ";
+        programmeTag += "channel=\""+string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, eventIterator->get_channel_id())+"\" ";
+        char zbuffer[25] = { 0 };
+        struct tm *mtime = localtime(&eventIterator->startTime);
+        strftime(zbuffer, 21, "%Y%m%d%H%M%S +0200", mtime);
+        programmeTag += "start=\""+std::string(zbuffer)+"\" ";
+        long _stoptime = eventIterator->startTime + eventIterator->duration;
+        mtime = localtime(&_stoptime);
+        strftime(zbuffer, 21, "%Y%m%d%H%M%S +0200", mtime);
+        programmeTag += "stop=\""+std::string(zbuffer)+"\" ";
 
+        prog += hh->outPair("title lang=\"de\"", hh->outValue(eventIterator->description), false);
+		prog += hh->outPair("desc lang=\"de\"", hh->outValue(eventIterator->text), true);
 
-                CEitManager::getInstance()->getEventsServiceKey(channel_id, eList);
-                channelTag = "channel id=\""+string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel_id)+"\"";
-                channelData = hh->outPair("display-name", hh->outValue(NeutrinoAPI->GetServiceName(channel_id)), true);
-
-                result += hh->outObject(channelTag, channelData);
-                CChannelEventList::iterator eventIterator;
-                for (eventIterator = eList.begin(); eventIterator != eList.end(); ++eventIterator)
-                {
-                    std::string prog = "";
-                    programmeTag = "programme ";
-                    programmeTag += "channel=\""+string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel_id)+"\" ";
-                    char zbuffer[25] = { 0 };
-                    struct tm *mtime = localtime(&eventIterator->startTime);
-                    strftime(zbuffer, 21, "%Y%m%d%H%M%S +0200", mtime);
-                    programmeTag += "start=\""+std::string(zbuffer)+"\" ";
-                    long _stoptime = eventIterator->startTime + eventIterator->duration;
-                    mtime = localtime(&_stoptime);
-                    strftime(zbuffer, 21, "%Y%m%d%H%M%S +0200", mtime);
-                    programmeTag += "stop=\""+std::string(zbuffer)+"\" ";
-
-                    CShortEPGData epg;
-                    prog += hh->outPair("title lang=\"de\"", hh->outValue(eventIterator->description), false);
-
-                    if (CEitManager::getInstance()->getEPGidShort(eventIterator->eventID, &epg))
-                    {
-                        prog += hh->outPair("desc lang=\"de\"", hh->outValue(epg.info1+epg.info2), true);
-                    }
-
-                    result += hh->outArrayItem(programmeTag, prog, false);
-                }
-
-            }
-        }
+        result += hh->outArrayItem(programmeTag, prog, false);
     }
-//  schleife ende
 
     result = hh->outObject("tv generator-info-name=\"Neutrino XMLTV Generator v1.0\"", result);
 
@@ -3158,10 +3128,9 @@ void CControlAPI::xmltvm3uCGI(CyhookHandler *hh)
             {
                 CZapitChannel * channel = chanlist[j];
 				std::string bouq_name = g_bouquetManager->Bouquets[i]->Name;
-                std::string chan_id = string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel->getChannelID());
-				std::string logo = string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel->getChannelID() & 0xFFFFFFFFFFFFULL)+".png";
-                result += "#EXTINF:-1 tvg-id=\""+chan_id+"\" tvg-logo=\""+logo+"\" group-title=\""+bouq_name+"\","+channel->getName()+"\n";
-                result += url+chan_id+"\n";
+				std::string chan_id_short = string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel->getChannelID() & 0xFFFFFFFFFFFFULL);
+                result += "#EXTINF:-1 tvg-id=\""+chan_id_short+"\" tvg-logo=\""+chan_id_short+".png\" group-title=\""+bouq_name+"\","+channel->getName()+"\n";
+                result += url+string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel->getChannelID())+"\n";
             }
         }
     }

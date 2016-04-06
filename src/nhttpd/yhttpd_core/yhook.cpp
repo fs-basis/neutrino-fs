@@ -309,7 +309,7 @@ std::string CyhookHandler::BuildHeader(bool cache) {
 		// connection type
 #ifdef Y_CONFIG_FEATURE_KEEP_ALIVE
 		if(keep_alive)
-			result += "Keep-Alive: timeout=300\r\nConnection: Keep-Alive\r\n";
+			result += "Connection: keep-alive\r\n";
 		else
 #endif
 			result += "Connection: close\r\n";

@@ -275,7 +275,6 @@ void CInfoViewer::initClock()
 	if (clock == NULL){
 		clock = new CComponentsFrmClock();
 		clock->setClockFormat("%H:%M", "%H %M");
-		clock->setClockIntervall(1);
 	}
 
 	CInfoClock::getInstance()->disableInfoClock();

@@ -1264,7 +1264,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t* a_start
 						printf("timerd not available\n");
 				}
 				break;
-			case CRCInput::RC_info:
+			case CRCInput::RC_green:
 			{
 				showPos = 0;
 				if (!tmdbtoggle) {
@@ -1360,6 +1360,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t* a_start
 				showPos=0;
 				break;
 #else
+			case CRCInput::RC_info:
 			case CRCInput::RC_help:
 #endif
 
@@ -1571,8 +1572,8 @@ int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::st
 const struct button_label EpgButtons[] =
 {
 	{ NEUTRINO_ICON_BUTTON_RED   , LOCALE_TIMERBAR_RECORDEVENT },
+	{ NEUTRINO_ICON_BUTTON_GREEN , LOCALE_CHANNELLIST_ADDITIONAL },
 	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_TIMERBAR_CHANNELSWITCH },
-	{ NEUTRINO_ICON_BUTTON_INFO_SMALL  , LOCALE_CHANNELLIST_ADDITIONAL },
 	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_EPGVIEWER_MORE_SCREENINGS_SHORT }
 
 };
@@ -1608,9 +1609,9 @@ void CEpgData::showTimerEventBar (bool pshow, bool adzap)
 		adzap_button += g_Locale->getText(LOCALE_UNIT_SHORT_MINUTE);
 	}
 	if (g_settings.recording_type != CNeutrinoApp::RECORDING_OFF)
-		::paintButtons(x, y, 0, (has_follow_screenings && !call_fromfollowlist) ? 4:3, EpgButtons, aw, h, "", false, COL_INFOBAR_SHADOW_TEXT, adzap ? adzap_button.c_str() : NULL, 1);
+		::paintButtons(x, y, 0, (has_follow_screenings && !call_fromfollowlist) ? 4:3, EpgButtons, aw, h, "", false, COL_INFOBAR_SHADOW_TEXT, adzap ? adzap_button.c_str() : NULL, 2);
 	else
-		::paintButtons(x, y, 0, (has_follow_screenings && !call_fromfollowlist) ? 3:2, &EpgButtons[1], aw, h, "", false, COL_INFOBAR_SHADOW_TEXT, adzap ? adzap_button.c_str() : NULL, 0);
+		::paintButtons(x, y, 0, (has_follow_screenings && !call_fromfollowlist) ? 3:2, &EpgButtons[1], aw, h, "", false, COL_INFOBAR_SHADOW_TEXT, adzap ? adzap_button.c_str() : NULL, 1);
 
 	frameBuffer->blit();
 #if 0

@@ -4733,7 +4733,14 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_list_end = tconfig.getInt32( "key_list_end", (unsigned int)CRCInput::RC_nokey );
 	g_settings.key_timeshift = tconfig.getInt32( "key_timeshift", CRCInput::RC_pause );
 	g_settings.key_unlock = tconfig.getInt32( "key_unlock", CRCInput::RC_setup );
+
+	/* media/portal and archiv/media keys ufs912/ufs913 */
+#if defined (BOXMODEL_UFS912) || defined (BOXMODEL_UFS913)
+	g_settings.key_screenshot = tconfig.getInt32( "key_screenshot", CRCInput::RC_media);
+#else
 	g_settings.key_screenshot = tconfig.getInt32( "key_screenshot", (unsigned int)CRCInput::RC_nokey );
+#endif
+
 #ifdef ENABLE_PIP
 	g_settings.key_pip_close = tconfig.getInt32( "key_pip_close", CRCInput::RC_help );
 	g_settings.key_pip_setup = tconfig.getInt32( "key_pip_setup", CRCInput::RC_pos );

@@ -237,7 +237,7 @@ void CInfoViewer::start ()
 	BoxEndY = g_settings.screen_EndY - 10 - infoViewerBB->InfoHeightY_Info - infoViewerBB->bottom_bar_offset;
 	BoxStartY = BoxEndY - InfoHeightY - ChanHeight / 2;
 
-	ChanNameY = BoxStartY + (ChanHeight / 2) + SHADOW_OFFSET;	//oberkante schatten?
+	ChanNameY = BoxStartY + (ChanHeight / 2)/* + SHADOW_OFFSET*/;	//oberkante schatten?
 	ChanInfoX = BoxStartX;
 
 	initClock();

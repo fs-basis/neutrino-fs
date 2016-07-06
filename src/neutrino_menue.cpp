@@ -140,7 +140,7 @@ void CNeutrinoApp::InitMenuMain()
 	dprintf(DEBUG_DEBUG, "init mainmenue\n");
 
 	// Dynamic renumbering
-	personalize.setShortcut();
+	personalize.setShortcut(0);
 
 	CMenuWidget &menu = personalize.getWidget(MENU_MAIN);
 
@@ -273,7 +273,7 @@ void CNeutrinoApp::InitMenuSettings()
 	//CMenuWidget &menu = personalize.getWidget(MENU_SETTINGS);
 
 	// Dynamic renumbering
-	personalize.setShortcut();
+	personalize.setShortcut(0);
 
 	// back button, no personalized
 	personalize.addIntroItems(MENU_SETTINGS);
@@ -384,7 +384,7 @@ void CNeutrinoApp::InitMenuService()
 	//CMenuWidget &menu = personalize.getWidget(MENU_SERVICE);
 
 	// Dynamic renumbering
-	personalize.setShortcut();
+	personalize.setShortcut(0);
 
 	// back button, no personalized
 	personalize.addIntroItems(MENU_SERVICE);

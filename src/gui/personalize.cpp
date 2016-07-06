@@ -205,7 +205,7 @@ CPersonalizeGui::CPersonalizeGui() : CPINProtection(g_settings.personalize_pinco
 {
 	width 	= 0;
 	widget_count = 0;
-	shortcut = 1;
+	shortcut = 0;
 	show_usermenu = false;
 	show_pluginmenu = false;
 	show_pin_setup = false;
@@ -459,7 +459,7 @@ static const struct button_label footerButtons[2] = {
 //init usermenu items
 void CPersonalizeGui::ShowUserMenu()
 {
-	int uMenu_shortcut = 1;
+	int uMenu_shortcut = 0;
 
 	uMenu->addIntroItems(LOCALE_USERMENU_HEAD);
 
@@ -999,7 +999,7 @@ neutrino_msg_t CPersonalizeGui::getShortcut(const int & shortcut_num, neutrino_m
 {
 	if (shortcut_num < 10)
 		return CRCInput::convertDigitToKey(shortcut_num);
-	else if (shortcut_num == 10)
+	else if (shortcut_num == 0)
 		return CRCInput::RC_0;
 	else
 		return alternate_rc_key;

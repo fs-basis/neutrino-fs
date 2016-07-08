@@ -675,6 +675,9 @@ bool CFEManager::haveFreeDemux()
 CFrontend * CFEManager::allocateFE(CZapitChannel * channel, bool forrecord)
 {
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
+		
+	CZapit::getInstance()->GetConfig(zapitCfg);
+	noSameFE = zapitCfg.noSameFE;
 
 	CZapit::getInstance()->GetConfig(zapitCfg);
 	noSameFE = zapitCfg.noSameFE;

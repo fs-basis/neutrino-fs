@@ -1241,9 +1241,6 @@ menu.hint_moviebrowser_setup Set selection and display options.
 menu.hint_movieplayer_plugin Choose a plugin that's executed with the one touch key in movieplayer mode
 menu.hint_net_broadcast Enter broadcast address\nif unsure, use IP address with last .255
 menu.hint_net_dhcp Use DHCP server to auto-configure
-menu.hint_net_djmount Mount UPnP devices as filesystem\nunder /media/00upnp
-menu.hint_net_dropbear Enable ssh access to the box
-menu.hint_net_ftpd Enable file transfer using FTP
 menu.hint_net_gateway Enter gateway/router IP address
 menu.hint_net_hostname Change your box hostname
 menu.hint_net_if Select interface to config
@@ -1266,9 +1263,7 @@ menu.hint_net_services Configure network services:\nTelnet, ftp, uPnp
 menu.hint_net_setupnow Apply current settings
 menu.hint_net_setuponstartup Start network at boot time
 menu.hint_net_show Show current network settings
-menu.hint_net_telnet Enable telnet login to your box
 menu.hint_net_test Test network connection: ping gateway,\n name server and external IP
-menu.hint_net_ushare Share connected HDD over uPnp
 menu.hint_net_xupnpd Share live channels over UPNP
 menu.hint_network IP address, gateway, DNS, Time sync\nNetwork shares and services
 menu.hint_new_zap_mode Allow channel switch while browsing\n(toggle mode with 'mute' in channel list)

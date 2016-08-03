@@ -1813,7 +1813,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 				fromInfoviewer = false;
 			}
 			else
-			callInfoViewer();
+				callInfoViewer();
 			update_lcd = true;
 #if 0
 			clearSubtitle();

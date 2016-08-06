@@ -24,42 +24,44 @@ install_DATA  = $(locale)
 # install_DATA += $(locale_unmaintained)
 
 install_DATA += \
-	0.png \
-	1.png \
-	16_9.png \
-	16_9_gray.png \
-	2.png \
-	3.png \
-	4.png \
-	5.png \
-	6.png \
-	7.png \
-	8.png \
-	9.png \
-	0-red.png \
-	1-red.png \
-	2-red.png \
-	3-red.png \
-	4-red.png \
-	5-red.png \
-	6-red.png \
-	7-red.png \
-	8-red.png \
-	9-red.png \
 	0-green.png \
+	0.png \
+	0-red.png \
+	16_9_gray.png \
+	16_9.png \
 	1-green.png \
+	1.png \
+	1-red.png \
 	2-green.png \
+	2.png \
+	2-red.png \
 	3-green.png \
+	3.png \
+	3-red.png \
 	4-green.png \
+	4.png \
+	4-red.png \
 	5-green.png \
+	5.png \
+	5-red.png \
 	6-green.png \
+	6.png \
+	6-red.png \
 	7-green.png \
+	7.png \
+	7-red.png \
 	8-green.png \
+	8.png \
+	8-red.png \
 	9-green.png \
-	ats.png \
+	9.png \
+	9-red.png \
 	ats_gray.png \
-	audio.png \
+	ats.png \
 	audioplay.png \
+	audio.png \
+	bc_green.png \
+	bc_yellow.png \
 	biss_green.png \
 	biss_white.png \
 	biss_yellow.png \
@@ -74,10 +76,15 @@ install_DATA += \
 	btn_record_active.png \
 	btn_record_inactive.png \
 	btn_stop.png \
-	ca.png \
-	ca2.png \
 	ca2_gray.png \
+	ca2.png \
+	camd3_green.png \
+	camd3_white.png \
+	camd3_yellow.png \
+	ca.png \
 	checkmark.png \
+	ci+_green.png \
+	ci+_grey.png \
 	colors.png \
 	conax_green.png \
 	conax_white.png \
@@ -85,28 +92,36 @@ install_DATA += \
 	cw_green.png \
 	cw_white.png \
 	cw_yellow.png \
-	d_green.png \
-	d_white.png \
-	d_yellow.png \
-	dd.png \
 	dd_avail.png \
 	dd_gray.png \
+	dd.png \
+	dec_card.png \
+	dec_fta.png \
+	dec_int.png \
+	dec_na.png \
+	dec_net.png \
+	d_green.png \
 	down.png \
 	dummy.png \
 	dummy_small.png \
-	error.png \
+	d_white.png \
+	d_yellow.png \
 	epg.png \
+	error.png \
 	features.png \
 	file.png \
 	folder.png \
 	games.png \
+	gbox_green.png \
+	gbox_white.png \
+	gbox_yellow.png \
 	gelb.png \
 	gruen.png \
 	help.png \
 	help_small.png \
 	hidden.png \
-	hint_a_pic.png \
 	hint_adzap.png \
+	hint_a_pic.png \
 	hint_aplay.png \
 	hint_audio.png \
 	hint_back.png \
@@ -160,13 +175,15 @@ install_DATA += \
 	icon_red.png \
 	icon_yellow.png \
 	important.png \
-	info.png \
+	incubusCamd_green.png \
+	incubusCamd_yellow.png \
 	info_blue.png \
 	info_green.png \
+	info.png \
 	info_red.png \
-	info_yellow.png \
-	info_small.png \
 	information.png \
+	info_small.png \
+	info_yellow.png \
 	ird_green.png \
 	ird_white.png \
 	ird_yellow.png \
@@ -175,21 +192,18 @@ install_DATA += \
 	lcd.png \
 	left.png \
 	local.png \
-	lock.png \
 	lock_passive.png \
+	lock.png \
 	mainmenue.png \
+	mbox_green.png \
+	mbox_yellow.png \
 	menu.png \
 	menu_small.png \
+	mgcamd_green.png \
+	mgcamd_white.png \
+	mgcamd_yellow.png \
 	mounted.png \
 	movie.png \
-	mp_b-skip.png \
-	mp_f-skip.png \
-	mp_pause.png \
-	mp_play.png \
-	mp_play_repeat_all.png \
-	mp_play_repeat_track.png \
-	mp3.jpg \
-	mp3.png \
 	mp3-0.jpg \
 	mp3-1.jpg \
 	mp3-2.jpg \
@@ -198,6 +212,14 @@ install_DATA += \
 	mp3-5.jpg \
 	mp3-6.jpg \
 	mp3-7.jpg \
+	mp3.jpg \
+	mp3.png \
+	mp_b-skip.png \
+	mp_f-skip.png \
+	mp_pause.png \
+	mp_play.png \
+	mp_play_repeat_all.png \
+	mp_play_repeat_track.png \
 	multimedia.png \
 	mute.png \
 	mute_small.png \
@@ -210,10 +232,15 @@ install_DATA += \
 	nds_white.png \
 	nds_yellow.png \
 	network.png \
+	newcs_green.png \
+	newcs_yellow.png \
 	not_mounted.png \
 	notyet.png \
 	numericpad.png \
 	ok.png \
+	oscam_green.png \
+	oscam_white.png \
+	oscam_yellow.png \
 	personalize.png \
 	picture.png \
 	pip.png \
@@ -222,8 +249,6 @@ install_DATA += \
 	powervu_white.png \
 	powervu_yellow.png \
 	question.png \
-	radar.pal \
-	radar_red.pal \
 	radar0.raw \
 	radar1.raw \
 	radar2.raw \
@@ -234,16 +259,18 @@ install_DATA += \
 	radar7.raw \
 	radar8.raw \
 	radar9.raw \
+	radar.pal \
+	radar_red.pal \
 	radiomode.jpg \
 	radiotextget.png \
 	radiotextoff.png \
 	radiotextwait.png \
 	rass.png \
 	rclock.png \
-	rec.png \
 	rec_event_marker.png \
 	rec_gray.png \
 	recording.png \
+	rec.png \
 	res_000.png \
 	res_1080.png \
 	res_1280.png \
@@ -274,32 +301,35 @@ install_DATA += \
 	star-on.png \
 	start.jpg \
 	streaming.png \
-	subt.png \
 	subt_gray.png \
+	subt.png \
 	timer.png \
 	tmdb.png \
 	tuner_1.png \
 	tuner_2.png \
 	tuner_3.png \
 	tuner_4.png \
-	up.png \
 	upnp.png \
+	up.png \
 	via_green.png \
 	via_white.png \
 	via_yellow.png \
 	video.png \
-	volume.png \
+	vizcam_green.png \
+	vizcam_yellow.png \
 	volumebody.png \
-	volumeslider2.png \
+	volume.png \
 	volumeslider2alpha.png \
 	volumeslider2blue.png \
 	volumeslider2green.png \
+	volumeslider2.png \
 	volumeslider2red.png \
-	vtxt.png \
 	vtxt_gray.png \
+	vtxt.png \
 	warning.png \
+	wicardd_green.png \
+	wicardd_yellow.png
 	x_green.png \
 	x_white.png \
 	x_yellow.png \
 	zap.png
-

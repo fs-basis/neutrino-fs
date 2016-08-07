@@ -903,9 +903,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	sub_font_size = configfile.getInt32("fontsize.subtitles", 24);
 
 	g_settings.update_dir = configfile.getString("update_dir", "/tmp");
-#if 0
-	g_settings.update_dir_opkg = configfile.getString("update_dir_opkg", g_settings.update_dir);
-#endif
+
 	// parentallock
 	if (!parentallocked) {
 		g_settings.parentallock_prompt = configfile.getInt32( "parentallock_prompt", 0 );
@@ -1471,9 +1469,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setString("softupdate_proxypassword" , g_settings.softupdate_proxypassword );
 
 	configfile.setString("update_dir", g_settings.update_dir);
-#if 0
-	configfile.setString("update_dir_opkg", g_settings.update_dir_opkg);
-#endif
+
 	configfile.setString("font_file", g_settings.font_file);
 	configfile.setString("ttx_font_file", g_settings.ttx_font_file);
 	configfile.setString("sub_font_file", g_settings.sub_font_file);

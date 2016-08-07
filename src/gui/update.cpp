@@ -48,9 +48,7 @@
 
 #include <gui/color.h>
 #include <gui/filebrowser.h>
-#if 0
-#include <gui/opkg_manager.h>
-#endif
+
 #include <gui/widget/messagebox.h>
 #include <gui/widget/hintbox.h>
 
@@ -466,23 +464,6 @@ printf("[update] mode is %d\n", softupdate_mode);
 		}
 		hide();
 
-#if 0
-		//package install:
-		if (file_selected->getType() == CFile::FILE_PKG_PACKAGE){
-			COPKGManager opkg;
-			if (opkg.hasOpkgSupport()){
-				int msgres = ShowMsg(LOCALE_MESSAGEBOX_INFO, LOCALE_OPKG_WARNING_3RDPARTY_PACKAGES, CMessageBox::mbrNo, CMessageBox::mbYes | CMessageBox::mbNo, NEUTRINO_ICON_UPDATE, 700); // UTF-8
-				if (msgres == CMessageBox::mbrYes){
-					if (!opkg.installPackage(UpdatesBrowser.getSelectedFile()->Name))
-						DisplayErrorMessage(g_Locale->getText(LOCALE_OPKG_FAILURE_INSTALL));
-				}
-			}
-			else
-				DisplayInfoMessage(g_Locale->getText(LOCALE_MESSAGEBOX_FEATURE_NOT_SUPPORTED));
-			//!always leave here!
-			return false;
-		}
-#endif
 		//set internal filetype
 		char const * ptr = rindex(filename.c_str(), '.');
 		if(ptr) {

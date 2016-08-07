@@ -81,16 +81,6 @@ int CSoftwareUpdate::showSoftwareUpdate()
 	//flashing
 	CFlashUpdate flash;
 	unsigned int inetkey = CRCInput::RC_red;
-#if 0
-
-	if (COPKGManager::hasOpkgSupport()) {
-		//firmware update via opkg
-		mf = new CMenuDForwarder(LOCALE_OPKG_TITLE, true, NULL, new COPKGManager(), NULL, CRCInput::RC_red);
-		mf->setHint(NEUTRINO_ICON_HINT_SW_UPDATE, LOCALE_MENU_HINT_OPKG);
-		softUpdate.addItem(mf);
-		inetkey = CRCInput::convertDigitToKey(1);
-	}
-#endif
 
 	if (file_exists(g_settings.softupdate_url_file.c_str())) {
 		update_item = new CMenuForwarder(LOCALE_FLASHUPDATE_CHECKUPDATE_INTERNET, true, NULL, &flash, "inet", inetkey);

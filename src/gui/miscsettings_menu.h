@@ -51,12 +51,16 @@ class CMiscMenue : public CMenuTarget, CChangeObserver
 		std::string epg_old_events;
 		std::string epg_max_events;
 
+		std::string tmdb_api_key_short;
+		std::string shoutcast_dev_id_short;
+
 		int showMiscSettingsMenu();
 		void showMiscSettingsMenuGeneral(CMenuWidget *ms_general);
 		void showMiscSettingsMenuEpg(CMenuWidget *ms_epg);
 		void showMiscSettingsMenuFBrowser(CMenuWidget *ms_fbrowser);
 		int showMiscSettingsMenuEnergy();
 		int showMiscSettingsMenuChanlist();
+		int showMiscSettingsMenuOnlineServices();
 
 	public:
 		CMiscMenue();

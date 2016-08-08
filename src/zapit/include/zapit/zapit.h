@@ -43,7 +43,6 @@ typedef struct ZAPIT_start_arg
         int uselastchannel;
         int video_mode;
 	int volume;
-        int ci_clock;
 	std::list<std::string> *webtv_xml;
 } Z_start_arg;
 

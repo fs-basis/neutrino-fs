@@ -944,7 +944,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #else
 	g_settings.shoutcast_dev_id = configfile.getString("shoutcast_dev_id","XXXXXXXXXXXXXXXX");
 #endif
-	g_settings.shoutcast_enabled = ((g_settings.shoutcast_dev_id != "XXXXXXXXXXXXXXXX") && !g_settings.shoutcast_dev_id.empty());
+	g_settings.shoutcast_enabled = configfile.getInt32("shoutcast_enabled", 1);
+	g_settings.shoutcast_enabled = check_shoutcast_dev_id();
 
 	//Movie-Player
 	g_settings.movieplayer_repeat_on = configfile.getInt32("movieplayer_repeat_on", CMoviePlayerGui::REPEAT_OFF);
@@ -953,7 +954,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #else
 	g_settings.tmdb_api_key = configfile.getString("tmdb_api_key","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 #endif
-	g_settings.tmdb_enabled = ((g_settings.tmdb_api_key != "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX") && !g_settings.tmdb_api_key.empty());
+	g_settings.tmdb_enabled = configfile.getInt32("tmdb_enabled", 1);
+	g_settings.tmdb_enabled = check_tmdb_api_key();
 
 	//Filebrowser
 	g_settings.filebrowser_showrights =  configfile.getInt32("filebrowser_showrights", 1);
@@ -1507,12 +1509,14 @@ void CNeutrinoApp::saveSetup(const char * fname)
 #ifndef SHOUTCAST_DEV_ID
 	configfile.setString( "shoutcast_dev_id", g_settings.shoutcast_dev_id );
 #endif
+	configfile.setInt32( "shoutcast_enabled", g_settings.shoutcast_enabled );
 
 	//Movie-Player
 	configfile.setInt32( "movieplayer_repeat_on", g_settings.movieplayer_repeat_on );
 #ifndef TMDB_API_KEY
 	configfile.setString( "tmdb_api_key", g_settings.tmdb_api_key );
 #endif
+	configfile.setInt32( "tmdb_enabled", g_settings.tmdb_enabled );
 
 	//Filebrowser
 	configfile.setInt32("filebrowser_showrights", g_settings.filebrowser_showrights);

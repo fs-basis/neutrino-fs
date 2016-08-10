@@ -1391,8 +1391,7 @@ void CMovieBrowser::info_hdd_level(bool /* paint_hdd */)
 	if (tmp_blocks_percent_used != blocks_percent_used || paint_hdd) {
 		tmp_blocks_percent_used = blocks_percent_used;
 */
-	if (true) {
-	//if (g_settings.infobar_show_sysfs_hdd) {
+	if (g_settings.infobar_show_sysfs_hdd) {
 		const short pbw = 100;
 		const short border = m_cBoxFrameTitleRel.iHeight/4;
 		CProgressBar pb(m_cBoxFrame.iX+ m_cBoxFrameFootRel.iWidth - pbw - border, m_cBoxFrame.iY+m_cBoxFrameTitleRel.iY + border, pbw, m_cBoxFrameTitleRel.iHeight/2);

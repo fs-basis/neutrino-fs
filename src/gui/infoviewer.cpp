@@ -346,7 +346,7 @@ void CInfoViewer::showRecordIcon (const bool show)
 			spacer = i*(chanH + 10);
 		if (show)
 		{
-				frameBuffer->paintBoxRel(box_posX + SHADOW_OFFSET, BoxStartY + box_posY - spacer + SHADOW_OFFSET, box_len, chanH, COL_INFOBAR_SHADOW_PLUS_0, RADIUS_SMALL);
+				frameBuffer->paintBoxRel(box_posX + SHADOW_OFFSET, BoxStartY + box_posY - spacer + SHADOW_OFFSET, box_len, chanH, COL_SHADOW_PLUS_0, RADIUS_SMALL);
 				frameBuffer->paintBoxRel(box_posX, BoxStartY + box_posY - spacer, box_len, chanH, COL_INFOBAR_PLUS_0, RADIUS_SMALL);
 				frameBuffer->paintIcon(show_icon, box_posX + icon_space*2, BoxStartY + box_posY + (chanH - rec_icon_h)/2 - spacer);
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString (box_posX + icon_width + icon_space*3, BoxStartY + box_posY + chanH - spacer, box_len, records_msg.c_str(), COL_INFOBAR_TEXT);
@@ -379,10 +379,10 @@ void CInfoViewer::paintBackground(int col_NumBox)
 	// shadow for channel name, epg data...
 	frameBuffer->paintBox(BoxEndX - c_shadow_width, ChanNameY + SHADOW_OFFSET,
 			      BoxEndX + SHADOW_OFFSET,  BoxEndInfoY + SHADOW_OFFSET,
-			      COL_INFOBAR_SHADOW_PLUS_0, c_rad_large, CORNER_RIGHT);
+			      COL_SHADOW_PLUS_0, c_rad_large, CORNER_RIGHT);
 	frameBuffer->paintBox(ChanInfoX + SHADOW_OFFSET, BoxEndInfoY - c_shadow_width,
 			      BoxEndX - c_shadow_width + 2, BoxEndInfoY + SHADOW_OFFSET,
-			      COL_INFOBAR_SHADOW_PLUS_0, c_rad_large, CORNER_BOTTOM_LEFT);
+			      COL_SHADOW_PLUS_0, c_rad_large, CORNER_BOTTOM_LEFT);
 
 	// background for channel name, epg data
 	frameBuffer->paintBox(ChanInfoX, ChanNameY, BoxEndX, BoxEndY,
@@ -853,8 +853,8 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 	if (g_settings.infobar_show_channellogo < 5 || !logo_ok) {
 		if (ChannelLogoMode != 2) {
 			//FIXME good color to display inactive for zap ?
-			//fb_pixel_t color = CNeutrinoApp::getInstance ()->channelList->SameTP(new_channel_id) ? COL_INFOBAR_TEXT : COL_INFOBAR_SHADOW_TEXT;
-			fb_pixel_t color = g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_TEXT : COL_INFOBAR_TEXT;
+			//fb_pixel_t color = CNeutrinoApp::getInstance ()->channelList->SameTP(new_channel_id) ? COL_INFOBAR_TEXT : COL_MENUFOOT_TEXT;
+			fb_pixel_t color = COL_INFOBAR_TEXT;
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(
 				ChanInfoX + 10, ChanNameY + header_height,
 				BoxEndX - (ChanInfoX + 10) - time_width - LEFT_OFFSET - 5 - infoViewerBB->showBBIcons_width,
@@ -1060,6 +1060,7 @@ void CInfoViewer::loop(bool show_dot)
 				CMoviePlayerGui::getInstance().setFromInfoviewer(true);
 				g_RCInput->postMsg (msg, data);
 				hideIt = true;
+				res = messages_return::cancel_info;
 			}
 			else
 				g_RCInput->postMsg (NeutrinoMessages::SHOW_EPG, 0);
@@ -1370,7 +1371,7 @@ void CInfoViewer::showRadiotext()
 					sprintf(stext[0], g_Radiotext->RT_PTY == 0 ? "%s %s%s" : "%s (%s)%s", tr("Radiotext"), g_Radiotext->RT_PTY == 0 ? g_Radiotext->RDS_PTYN : g_Radiotext->ptynr2string(g_Radiotext->RT_PTY), ":");
 
 					// shadow
-					frameBuffer->paintBoxRel(rt_x+SHADOW_OFFSET, rt_y+SHADOW_OFFSET, rt_dx, rt_dy, COL_INFOBAR_SHADOW_PLUS_0, RADIUS_LARGE, CORNER_TOP);
+					frameBuffer->paintBoxRel(rt_x+SHADOW_OFFSET, rt_y+SHADOW_OFFSET, rt_dx, rt_dy, COL_SHADOW_PLUS_0, RADIUS_LARGE, CORNER_TOP);
 					frameBuffer->paintBoxRel(rt_x, rt_y, rt_dx, rt_dy, COL_INFOBAR_PLUS_0, RADIUS_LARGE, CORNER_TOP);
 					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(rt_x+10, rt_y+ 30, rt_dx-20, stext[0], COL_INFOBAR_TEXT, 0, RTisIsUTF);
 					blit = true;
@@ -1400,7 +1401,7 @@ void CInfoViewer::showRadiotext()
 			}
 			// Body
 			if (lines) {
-				frameBuffer->paintBoxRel(rt_x+SHADOW_OFFSET, rt_y+rt_dy+SHADOW_OFFSET, rt_dx, 7+rt_dy* g_Radiotext->S_RtOsdRows, COL_INFOBAR_SHADOW_PLUS_0, RADIUS_LARGE, CORNER_BOTTOM);
+				frameBuffer->paintBoxRel(rt_x+SHADOW_OFFSET, rt_y+rt_dy+SHADOW_OFFSET, rt_dx, 7+rt_dy* g_Radiotext->S_RtOsdRows, COL_SHADOW_PLUS_0, RADIUS_LARGE, CORNER_BOTTOM);
 				frameBuffer->paintBoxRel(rt_x, rt_y+rt_dy, rt_dx, 7+rt_dy* g_Radiotext->S_RtOsdRows, COL_INFOBAR_PLUS_0, RADIUS_LARGE, CORNER_BOTTOM);
 
 				// RT-Text roundloop
@@ -1754,9 +1755,9 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		int pb_w = 112;
 		int pb_startx = BoxEndX - pb_w - SHADOW_OFFSET;
 		int pb_starty = ChanNameY - (pb_h + 10);
-		int pb_shadow = COL_INFOBAR_SHADOW_PLUS_0;
+		int pb_shadow = COL_SHADOW_PLUS_0;
 		timescale->enableShadow(!g_settings.infobar_progressbar);
-		int pb_color = (g_settings.progressbar_design == CProgressBar::PB_MONO) ? COL_INFOBAR_PLUS_0 : COL_INFOBAR_SHADOW_PLUS_0;
+		int pb_color = (g_settings.progressbar_design == CProgressBar::PB_MONO) ? COL_INFOBAR_PLUS_0 : COL_SHADOW_PLUS_0;
 		if(g_settings.infobar_progressbar){
 			pb_startx = xStart;
 			pb_w = BoxEndX - 10 - xStart;
@@ -2078,7 +2079,7 @@ void CInfoViewer::show_Data (bool calledFromEvent)
 		if (info_CurrentNext.flags & CSectionsdClient::epgflags::has_current) {
 //printf("CInfoViewer::show_Data: ************************************************* runningPercent %d\n", runningPercent);
 			if (!calledFromEvent || (oldrunningPercent != runningPercent)) {
-				frameBuffer->paintBoxRel(BoxEndX - 104, posy + 6, 108, 14, COL_INFOBAR_SHADOW_PLUS_0, 1);
+				frameBuffer->paintBoxRel(BoxEndX - 104, posy + 6, 108, 14, COL_SHADOW_PLUS_0, 1);
 				frameBuffer->paintBoxRel(BoxEndX - 108, posy + 2, 108, 14, COL_INFOBAR_PLUS_0, 1);
 				oldrunningPercent = runningPercent;
 			}

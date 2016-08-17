@@ -395,9 +395,9 @@ void CThemes::getTheme(CConfigFile &configfile)
 
 	//t.menu_Foot_Text default historically depends on t.infobar_Text
 	t.menu_Foot_Text_alpha = configfile.getInt32( "menu_Foot_Text_alpha", 0x00 );
-	t.menu_Foot_Text_red = configfile.getInt32( "menu_Foot_Text_red", int(t.infobar_Text_red*0.6) );
-	t.menu_Foot_Text_green = configfile.getInt32( "menu_Foot_Text_green", int(t.infobar_Text_green*0.6) );
-	t.menu_Foot_Text_blue = configfile.getInt32( "menu_Foot_Text_blue", int(t.infobar_Text_blue*0.6) );
+	t.menu_Foot_Text_red = configfile.getInt32( "menu_Foot_Text_red", int(t.infobar_Text_red*1) );
+	t.menu_Foot_Text_green = configfile.getInt32( "menu_Foot_Text_green", int(t.infobar_Text_green*1) );
+	t.menu_Foot_Text_blue = configfile.getInt32( "menu_Foot_Text_blue", int(t.infobar_Text_blue*1) );
 
 	t.colored_events_alpha = configfile.getInt32( "colored_events_alpha", 0x00 );
 	t.colored_events_red = configfile.getInt32( "colored_events_red", 95 );

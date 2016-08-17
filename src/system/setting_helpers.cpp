@@ -597,6 +597,7 @@ int CDataResetNotifier::exec(CMenuTarget* /*parent*/, const std::string& actionK
 		CColorSetupNotifier::setPalette();
 		CVFD::getInstance()->setlcdparameter();
 		CFrameBuffer::getInstance()->Clear();
+		g_InfoViewer->KillModules();
 	}
 	if(delete_chan) {
 		my_system(3, "/bin/sh", "-c", "rm -f " CONFIGDIR "/zapit/*.xml");

@@ -145,7 +145,7 @@ std::string convert_UTF8_To_UTF8_XML(const char* s)
 			break;
 		default:
 			if ((unsigned char)*s >= 32)
-				r += *s;
+				r += Unicode_Character_to_UTF8((unsigned char)*s);
 		}
 		s++;
 	}

@@ -3065,14 +3065,30 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
     TOutType outType = hh->outStart();
 
     t_channel_id channel_id;
-    //channel_id = CZapit::getInstance()->GetCurrentChannelID();
     std::string result = "";
     std::string channelTag = "";
     std::string channelData = "";
     std::string programmeTag = "";
     CChannelEventList eList;
+	ZapitChannelList chanlist;
 
-    CEitManager::getInstance()->getEventsServiceKey(0, eList,0,"",true);
+	for (int i = 0; i < (int) g_bouquetManager->Bouquets.size(); i++)
+	{
+		if (mode == CZapitClient::MODE_RADIO)
+			g_bouquetManager->Bouquets[i]->getRadioChannels(chanlist);
+		else
+			g_bouquetManager->Bouquets[i]->getTvChannels(chanlist);
+		if(!chanlist.empty() && !g_bouquetManager->Bouquets[i]->bHidden && g_bouquetManager->Bouquets[i]->bUser)
+		{
+			for(int j = 0; j < (int) chanlist.size(); j++)
+			{
+				CZapitChannel * channel = chanlist[j];
+				channel_id = channel->getChannelID();
+				channelTag = "channel id=\""+string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel_id & 0xFFFFFFFFFFFFULL)+"\"";
+				channelData = hh->outPair("display-name", hh->outValue(NeutrinoAPI->GetServiceName(channel_id)), true);
+				result += hh->outObject(channelTag, channelData);
+
+				CEitManager::getInstance()->getEventsServiceKey(channel_id, eList);
     CChannelEventList::iterator eventIterator;
     for (eventIterator = eList.begin(); eventIterator != eList.end(); ++eventIterator)
     {
@@ -3093,6 +3109,10 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
 
         result += hh->outArrayItem(programmeTag, prog, false);
     }
+
+			}
+		}
+	}
 
     result = hh->outObject("tv generator-info-name=\"Neutrino XMLTV Generator v1.0\"", result);
 

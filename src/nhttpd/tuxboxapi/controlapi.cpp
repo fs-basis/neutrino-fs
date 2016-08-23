@@ -228,8 +228,8 @@ const CControlAPI::TyCgiCall CControlAPI::yCgiCallList[]=
 	{"changebouquet",	&CControlAPI::changeBouquetCGI,		"text/plain"},
 	{"updatebouquet",	&CControlAPI::updateBouquetCGI,		"text/plain"},
 	// xmltv
-	{"xmltv.data",		&CControlAPI::xmltvepgCGI,			"+xml"},
-	{"xmltv.m3u",		&CControlAPI::xmltvm3uCGI,			""},
+	{"xmltv.data",		&CControlAPI::xmltvepgCGI,		"+xml"},
+	{"xmltv.m3u",		&CControlAPI::xmltvm3uCGI,		""},
 	// utils
 	{"build_live_url",	&CControlAPI::build_live_url,		""},
 	{"build_playlist",	&CControlAPI::build_playlist,		""},
@@ -3062,7 +3062,7 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
 {
 	int mode = NeutrinoAPI->Zapit->getMode();
 	hh->ParamList["format"] = "xml";
-	TOutType outType = hh->outStart();
+	hh->outStart();
 
 	t_channel_id channel_id;
 	std::string result = "";
@@ -3134,8 +3134,7 @@ void CControlAPI::xmltvepgCGI(CyhookHandler *hh)
 
 void CControlAPI::xmltvm3uCGI(CyhookHandler *hh)
 {
-
-    TOutType outType = hh->outStart();
+    hh->outStart();
     std::string result = "";
 
     int mode = NeutrinoAPI->Zapit->getMode();

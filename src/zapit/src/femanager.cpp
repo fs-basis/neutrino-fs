@@ -632,9 +632,9 @@ CFrontend * CFEManager::getFrontend(CZapitChannel * channel)
 }
 
 #ifdef DYNAMIC_DEMUX
-int CFEManager::getDemux(transponder_id_t id, int feNum)
+int CFEManager::getDemux(transponder_id_t id)
 {
-	for (unsigned int i = feNum +1; i < dmap.size(); i++) {
+	for (unsigned int i = 1; i < dmap.size(); i++) {
 		if((dmap[i].usecount == 0) || dmap[i].tpid == id)
 			return i;
 	}
@@ -675,7 +675,7 @@ bool CFEManager::haveFreeDemux()
 CFrontend * CFEManager::allocateFE(CZapitChannel * channel, bool forrecord)
 {
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
-
+		
 	CZapit::getInstance()->GetConfig(zapitCfg);
 	noSameFE = zapitCfg.noSameFE;
 
@@ -684,7 +684,7 @@ CFrontend * CFEManager::allocateFE(CZapitChannel * channel, bool forrecord)
 	CFrontend * frontend = getFrontend(channel);
 	if (frontend) {
 #ifdef DYNAMIC_DEMUX
-		int dnum = getDemux(channel->getTransponderId(), frontend->getNumber());
+		int dnum = getDemux(channel->getTransponderId());
 		INFO("record demux: %d", dnum);
 		channel->setRecordDemux(dnum);
 		if (forrecord && !dnum) {
@@ -715,7 +715,7 @@ CFrontend * CFEManager::allocateFE(CZapitChannel * channel, bool forrecord)
 void CFEManager::setLiveFE(CFrontend * fe)
 {
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
-	livefe = fe;
+	livefe = fe; 
 #if HAVE_COOL_HARDWARE
 	if(femap.size() > 1)
 #endif

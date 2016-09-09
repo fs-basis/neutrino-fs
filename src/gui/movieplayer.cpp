@@ -1902,8 +1902,8 @@ void CMoviePlayerGui::PlayFileLoop(void)
 				makeScreenShot(true);
 		} else if (msg == CRCInput::RC_yellow) {
 			showFileInfos();
-		} else if (msg == CRCInput::RC_sat || msg == CRCInput::RC_favorites || msg == CRCInput::RC_www) {
-			//FIXME do nothing ?
+		} else if (CNeutrinoApp::getInstance()->listModeKey(msg)) {
+			// do nothing
 		} else if (msg == (neutrino_msg_t) CRCInput::RC_setup) {
 			CNeutrinoApp::getInstance()->handleMsg(NeutrinoMessages::SHOW_MAINMENU, 0);
 		} else if (msg == CRCInput::RC_red || msg == CRCInput::RC_green || msg == CRCInput::RC_yellow || msg == CRCInput::RC_blue ) {

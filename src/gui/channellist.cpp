@@ -2437,8 +2437,6 @@ void CChannelList::paint_events(CChannelEventList &evtlist)
 		}
 		i++;
 	}
-	if ( !evtlist.empty() )
-		evtlist.clear();
 	frameBuffer->blit();
 }
 

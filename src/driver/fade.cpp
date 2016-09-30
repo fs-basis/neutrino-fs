@@ -28,7 +28,7 @@
 #include <driver/fade.h>
 #include <unistd.h>
 
-#ifdef HAVE_COOL_HARDWARE
+#if HAVE_COOL_HARDWARE
 #include <cnxtfb.h>
 #endif
 
@@ -93,7 +93,6 @@ void COSDFader::StopFade()
 	if ( fadeIn || fadeOut ) {
 		g_RCInput->killTimer(fadeTimer);
 #ifdef BOXMODEL_APOLLO
-		usleep(40000);
 		frameBuffer->setBlendMode(CNXTFB_BLEND_MODE_PER_PIXEL); // Global alpha multiplied with pixel alpha
 #else
 		frameBuffer->setBlendMode(1); // Global alpha multiplied with pixel alpha

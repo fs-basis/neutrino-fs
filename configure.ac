@@ -244,6 +244,8 @@ AM_CONDITIONAL(ENABLE_LUA,test "$enable_lua" = "yes")
 # either use dynamic lualib in package lua (openSUSE)
 # ... or in package lua5.2 (debian-derivates)
 # ... and if all fails, assume it is in the linker path (cross build)
+if test "$enable_lua" = "yes"; then
+AC_DEFINE(ENABLE_LUA,1,[include Lua support])
 PKG_CHECK_MODULES([LUA], [lua >= 5.2], echo "lua >= 5.2 found", [
 	PKG_CHECK_MODULES([LUA], [lua5.2 >= 5.2], echo "lua5.2 found", [
 		echo "=> lualib not found, assuming static lua in linker path..."
@@ -251,6 +253,7 @@ PKG_CHECK_MODULES([LUA], [lua >= 5.2], echo "lua >= 5.2 found", [
 		AC_DEFINE(STATIC_LUAPOSIX,1,[Define to 1 for static lua build.])
 	])
 ])
+fi
 # hack...
 AC_DEFINE(LUA_COMPAT_5_2,1,[does not really belong in config.h, but is needed for build with lua 5.3+])
 

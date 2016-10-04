@@ -113,10 +113,12 @@ int CImageInfo::exec(CMenuTarget* parent, const std::string &)
 
 	//init window object, add cc-items and paint all
 	ShowWindow();
+
 	CFrameBuffer *frameBuffer = CFrameBuffer::getInstance();
 
 	bool fadeout = false;
 	neutrino_msg_t postmsg = 0;
+
 	neutrino_msg_t msg;
 	while (1)
 	{
@@ -203,7 +205,7 @@ int CImageInfo::exec(CMenuTarget* parent, const std::string &)
 
 	hide();
 	frameBuffer->blit();
-
+	
 	return res;
 }
 

@@ -236,15 +236,15 @@ fi
 
 # Lua - embeddable scripting language
 AC_ARG_ENABLE(lua,
-	AS_HELP_STRING(--enable-lua,include Lua support),
-	,[enable_lua=no])
+	AS_HELP_STRING(--disable-lua,disable Lua support),
+	,[enable_lua=yes])
 
 AM_CONDITIONAL(ENABLE_LUA,test "$enable_lua" = "yes")
 
-# either use dynamic lualib in package lua (openSUSE)
-# ... or in package lua5.2 (debian-derivates)
-# ... and if all fails, assume it is in the linker path (cross build)
 if test "$enable_lua" = "yes"; then
+	# either use dynamic lualib in package lua (openSUSE)
+	# ... or in package lua5.2 (debian-derivates)
+	# ... and if all fails, assume it is in the linker path (cross build)
 	AC_DEFINE(ENABLE_LUA,1,[include Lua support])
 	PKG_CHECK_MODULES([LUA], [lua >= 5.2], echo "lua >= 5.2 found", [
 		PKG_CHECK_MODULES([LUA], [lua5.2 >= 5.2], echo "lua5.2 found", [

@@ -238,7 +238,7 @@ void CInfoViewer::start ()
 	BoxEndY = g_settings.screen_EndY - 10 - infoViewerBB->InfoHeightY_Info - infoViewerBB->bottom_bar_offset;
 	BoxStartY = BoxEndY - InfoHeightY - ChanHeight / 2;
 
-	ChanNameY = BoxStartY + (ChanHeight / 2) /*+ OFFSET_SHADOW*/;
+	ChanNameY = BoxStartY + (ChanHeight / 2) + OFFSET_SHADOW;
 	ChanInfoX = BoxStartX; /*+ (ChanWidth / 3);*/
 
 	initClock();

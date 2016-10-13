@@ -119,13 +119,14 @@ class CUpnpBrowserGui : public CMenuTarget, public CListHelpers
 	bool updateItemSelection(std::string id, std::vector<UPnPEntry> * &entries, int newpos, unsigned int &selected, unsigned int &liststart);
 	bool selectItem(std::string);
 	void paintItems(std::vector<UPnPEntry> *entry, unsigned int selected, unsigned int max, unsigned int offset);
-	void paintItem  (std::vector<UPnPEntry> *entry, unsigned int pos, unsigned int selected);
+	void paintItem(std::vector<UPnPEntry> *entry, unsigned int pos, unsigned int selected);
 	void paintItemInfo(UPnPEntry *entry);
 	void paintDetails(UPnPEntry *entry, bool use_playing = false);
-	void paintItem2DetailsLine (int pos);
+	void paintItem2DetailsLine(int pos);
 
 	void updateTimes(const bool force = false);
 	void playAudio(std::string name, int type);
+	void stopAudio();
 	void showPicture(std::string name);
 	void playVideo(std::string name, std::string url);
 };

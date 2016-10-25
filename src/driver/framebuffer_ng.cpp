@@ -720,7 +720,7 @@ void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int
 	bool corner_bl = !!(type & CORNER_BOTTOM_LEFT);
 	bool corner_br = !!(type & CORNER_BOTTOM_RIGHT);
 
-	if (dx == 0 || dy == 0) {
+	if (dx <= 0 || dy <= 0) {
 		dprintf(DEBUG_NORMAL, "[CFrameBuffer] [%s - %d]: radius %d, start x %d y %d end x %d y %d\n", __FUNCTION__, __LINE__, radius, x, y, x+dx, y+dy);
 		return;
 	}

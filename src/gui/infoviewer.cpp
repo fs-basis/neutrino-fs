@@ -371,7 +371,7 @@ void CInfoViewer::paintBackground(int col_NumBox)
 	frameBuffer->paintBackgroundBox(BoxStartX,
 					BoxStartY + ChanHeight - 6,
 					BoxStartX + ChanWidth / 3,
-					BoxEndInfoY + OFFSET_SHADO);
+					BoxEndInfoY + OFFSET_SHADOW);
 	*/
 	// kill progressbar + info-line
 	frameBuffer->paintBackgroundBox(BoxStartX + ChanWidth + 40, // 40 for the recording icon!

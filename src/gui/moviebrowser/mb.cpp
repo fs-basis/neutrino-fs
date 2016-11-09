@@ -1273,11 +1273,13 @@ void CMovieBrowser::initMovieCover(void)
 	}
 
 	std::string cover_file;
+#if 0
 	if (show_mode == MB_SHOW_YT)
 	{
 		cover_file = m_movieSelectionHandler->tfile;
 	}
 	else
+#endif
 	{
 		cover_file = getScreenshotName(m_movieSelectionHandler->file.Name, S_ISDIR(m_movieSelectionHandler->file.Mode));
 		if ((cover_file.empty()) && (m_movieSelectionHandler->file.Name.length() > 18))

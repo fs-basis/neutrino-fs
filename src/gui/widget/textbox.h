@@ -205,12 +205,14 @@ class CTextBox : public sigc::trackable
 		inline  int     getLines(void)			{return(m_nNrOfLines);};
 		inline  int     getLinesPerPage(void)		{return m_nLinesPerPage;};
 		inline  int     getPages(void)			{return(m_nNrOfPages);};
+		inline	int	getBackGroundRadius(void)	{return(m_nBgRadius);};
 		inline	void	movePosition(int x, int y)	{m_cFrame.iX = x; m_cFrame.iY = y;};
 		int  getFontTextHeight();
 		inline int	getTextMode()			{return m_nMode;};
 		void paint (void);
 		void hide (void);
 		void blit(bool b) { m_blit = b; };
+		void clear(void);
 		bool clearScreenBuffer();
 		sigc::signal<void> OnAfterRefresh;
 		sigc::signal<void> OnAfterScrollPage;

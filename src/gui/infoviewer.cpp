@@ -2421,7 +2421,7 @@ int CInfoViewer::showChannelLogo(const t_channel_id logo_channel_id, const int c
 */
 	{
 		// check logo dimensions
-		g_PicViewer->rescaleImageDimensions(&logo_w, &logo_h, chan_w, header_height);
+		g_PicViewer->rescaleImageDimensions(&logo_w, &logo_h, chan_w, header_height - 2*OFFSET_INNER_MIN);
 		// hide channel name
 // this is too ugly...		ChannelName = "";
 		// calculate logo position
@@ -2438,7 +2438,7 @@ int CInfoViewer::showChannelLogo(const t_channel_id logo_channel_id, const int c
 	{
 		// check logo dimensions
 		int Logo_max_width = chan_w - logo_w - 10;
-		g_PicViewer->rescaleImageDimensions(&logo_w, &logo_h, Logo_max_width, header_height);
+		g_PicViewer->rescaleImageDimensions(&logo_w, &logo_h, Logo_max_width, header_height - 2*OFFSET_INNER_MIN);
 		// calculate logo position
 		y_mid = ChanNameY + header_height / 2;
 		logo_x = start_x + 10;

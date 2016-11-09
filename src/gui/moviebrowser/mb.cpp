@@ -88,6 +88,7 @@ typedef struct dirent64 dirent_struct;
 
 #define NUMBER_OF_MOVIES_LAST 40 // This is the number of movies shown in last recored and last played list
 #define MOVIE_SMSKEY_TIMEOUT 800
+#define BROWSERFRAMEHEIGHT 75
 
 #define MESSAGEBOX_BROWSER_ROW_ITEM_COUNT 22
 const CMenuOptionChooser::keyval MESSAGEBOX_BROWSER_ROW_ITEM[MESSAGEBOX_BROWSER_ROW_ITEM_COUNT] =
@@ -504,6 +505,8 @@ void CMovieBrowser::initFrames(void)
 		m_cBoxFrameBrowserList.iWidth =	m_cBoxFrame.iWidth / 3 * 2;
 	else
 		m_cBoxFrameBrowserList.iWidth =	m_cBoxFrame.iWidth;
+	if (m_settings.browserAdditional)
+		m_settings.browserFrameHeight = BROWSERFRAMEHEIGHT;
 	m_cBoxFrameBrowserList.iHeight = 	m_cBoxFrame.iHeight * m_settings.browserFrameHeight / 100;
 
 
@@ -3315,7 +3318,7 @@ bool CMovieBrowser::showMenu(bool calledExternally)
 				   This can be reconfigured by user later.
 				   It's just to align view to channellist's view.
 				*/
-				m_settings.browserFrameHeight = 75;
+				m_settings.browserFrameHeight = BROWSERFRAMEHEIGHT;
 			}
 #endif
 			initFrames();

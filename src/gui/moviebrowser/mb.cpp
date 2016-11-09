@@ -475,6 +475,7 @@ void CMovieBrowser::initGlobalSettings(void)
 	m_settings.browserRowWidth[7] = m_defaultRowWidth[m_settings.browserRowItem[7]];
 	m_settings.browserRowWidth[8] = m_defaultRowWidth[m_settings.browserRowItem[8]];
 
+	m_settings.browserAdditional = 0;
 	m_settings.ts_only = 0;
 }
 

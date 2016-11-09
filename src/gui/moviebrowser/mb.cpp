@@ -620,6 +620,7 @@ bool CMovieBrowser::loadSettings(MB_SETTINGS* settings)
 		settings->browserRowItem[i] = (MB_INFO_ITEM)configfile.getInt32("mb_browserRowItem_" + to_string(i), MB_INFO_MAX_NUMBER);
 		settings->browserRowWidth[i] = configfile.getInt32("mb_browserRowWidth_" + to_string(i), 50);
 	}
+	settings->browserAdditional = configfile.getInt32("mb_browserAdditional", 0);
 	return (result);
 }
 

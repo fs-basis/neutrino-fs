@@ -1213,10 +1213,6 @@ void CMovieBrowser::refreshChannelLogo(void)
 	int h_logo_max = m_cBoxFrameTitleRel.iHeight - 2*OFFSET_INNER_MIN;
 	short pb_hdd_offset = 100 + OFFSET_INNER_MID;
 
-	//printf("refreshMovieInfo: EpgId %llx id %llx y %d\n", m_movieSelectionHandler->epgId, m_movieSelectionHandler->channelId, m_cBoxFrameTitleRel.iY);
-	int lx = 0;//never read m_cBoxFrame.iX+m_cBoxFrameTitleRel.iX+m_cBoxFrameTitleRel.iWidth-logo_w-10;
-	int ly = 0;//never read m_cBoxFrameTitleRel.iY+m_cBoxFrame.iY+ (m_cBoxFrameTitleRel.iHeight-logo_h)/2;
-
 	if (m_channelLogo && (old_EpgId != m_movieSelectionHandler->epgId >> 16))
 	{
 		if (newHeader)

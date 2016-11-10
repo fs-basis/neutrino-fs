@@ -487,6 +487,8 @@ void CMovieBrowser::initFrames(void)
 
 	//TRACE("[mb]->%s\n", __func__);
 	m_cBoxFrame.iWidth = 			framebuffer->getScreenWidthRel();
+	if (m_settings.browserAdditional)
+		m_cBoxFrame.iWidth -= 2*ConnectLineBox_Width;
 	m_cBoxFrame.iHeight = 			framebuffer->getScreenHeightRel();
 	m_cBoxFrame.iX = 			getScreenStartX(m_cBoxFrame.iWidth);
 	m_cBoxFrame.iY = 			getScreenStartY(m_cBoxFrame.iHeight);
@@ -1911,7 +1913,7 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	}
 	else if (msg == CRCInput::RC_yellow)
 	{
-		onSetFocusNext();
+		onSetGUIWindowNext();
 	}
 	else if (msg == CRCInput::RC_blue)
 	{

@@ -487,8 +487,6 @@ void CMovieBrowser::initFrames(void)
 
 	//TRACE("[mb]->%s\n", __func__);
 	m_cBoxFrame.iWidth = 			framebuffer->getScreenWidthRel();
-	if (m_settings.browserAdditional)
-		m_cBoxFrame.iWidth -= 2*ConnectLineBox_Width;
 	m_cBoxFrame.iHeight = 			framebuffer->getScreenHeightRel();
 	m_cBoxFrame.iX = 			getScreenStartX(m_cBoxFrame.iWidth);
 	m_cBoxFrame.iY = 			getScreenStartY(m_cBoxFrame.iHeight);
@@ -1213,7 +1211,7 @@ void CMovieBrowser::refreshChannelLogo(void)
 
 	int w_logo_max = m_cBoxFrameTitleRel.iWidth / 4;
 	int h_logo_max = m_cBoxFrameTitleRel.iHeight - 2*OFFSET_INNER_MIN;
-	short pb_hdd_offset = 100 + OFFSET_INNER_MID;
+	short pb_hdd_offset = g_settings.infobar_show_sysfs_hdd ? 100 + OFFSET_INNER_MID + clock_off : clock_off;
 
 	if (m_channelLogo && (old_EpgId != m_movieSelectionHandler->epgId >> 16))
 	{

@@ -1210,7 +1210,7 @@ void CMovieBrowser::refreshChannelLogo(void)
 
 	int w_logo_max = m_cBoxFrameTitleRel.iWidth / 4;
 	int h_logo_max = m_cBoxFrameTitleRel.iHeight - 2*OFFSET_INNER_MIN;
-	short pb_hdd_offset = 100 + OFFSET_INNER_MID;
+	short pb_hdd_offset = g_settings.infobar_show_sysfs_hdd ? 100 + OFFSET_INNER_MID : OFFSET_INNER_MID;
 
 	if (m_channelLogo && (old_EpgId != m_movieSelectionHandler->epgId >> 16))
 	{

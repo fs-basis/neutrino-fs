@@ -3340,7 +3340,7 @@ bool CMovieBrowser::showMenu(bool calledExternally)
 				if (m_settings.browserAdditional)
 					m_settings.browserFrameHeight = BROWSERFRAMEHEIGHT;
 				else
-					m_settings.browserFrameHeight = 65;
+					m_settings.browserFrameHeight = BROWSERFRAMEHEIGHT -10;
 			}
 #endif
 			initFrames();

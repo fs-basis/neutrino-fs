@@ -1210,7 +1210,7 @@ void CMovieBrowser::refreshChannelLogo(void)
 
 	int w_logo_max = m_cBoxFrameTitleRel.iWidth / 4;
 	int h_logo_max = m_cBoxFrameTitleRel.iHeight - 2*OFFSET_INNER_MIN;
-	short pb_hdd_offset = g_settings.infobar_show_sysfs_hdd ? 100 + OFFSET_INNER_MID + clock_off : clock_off;
+	short pb_hdd_offset = 100 + OFFSET_INNER_MID;
 
 	if (m_channelLogo && (old_EpgId != m_movieSelectionHandler->epgId >> 16))
 	{
@@ -1475,7 +1475,7 @@ void CMovieBrowser::info_hdd_level(bool /* paint_hdd */)
 	if (g_settings.infobar_show_sysfs_hdd) {
 		const short pbw = 100;
 		const short border = m_cBoxFrameTitleRel.iHeight/4;
-		CProgressBar pb(m_cBoxFrame.iX+ m_cBoxFrameFootRel.iWidth - pbw - border - clock_off, m_cBoxFrame.iY+m_cBoxFrameTitleRel.iY + border, pbw, m_cBoxFrameTitleRel.iHeight/2);
+		CProgressBar pb(m_cBoxFrame.iX+ m_cBoxFrameFootRel.iWidth - pbw - border, m_cBoxFrame.iY+m_cBoxFrameTitleRel.iY + border, pbw, m_cBoxFrameTitleRel.iHeight/2);
 		pb.setType(CProgressBar::PB_REDRIGHT);
 		pb.setValues(cHddStat::getInstance()->getPercent(), 100);
 		pb.paint(false);

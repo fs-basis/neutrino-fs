@@ -647,7 +647,7 @@ struct SNeutrinoSettings
 	int channellist_show_numbers;
 	int repeat_blocker;
 	int repeat_genericblocker;
-#define LONGKEYPRESS_OFF 499
+#define LONGKEYPRESS_OFF 0
 	int longkeypress_duration;
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 	int accept_other_remotes;

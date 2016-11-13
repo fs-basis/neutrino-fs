@@ -934,7 +934,7 @@ void CStreamStream::run()
 
 			if (av_bitstream_filter_filter(bsfc, codec, NULL, &newpkt.data, &newpkt.size, pkt.data, pkt.size, pkt.flags & AV_PKT_FLAG_KEY) >= 0) {
 #if (LIBAVFORMAT_VERSION_MAJOR == 57 && LIBAVFORMAT_VERSION_MINOR == 25)
-				av_packet_unref(&pkt);
+ 				av_packet_unref(&pkt);
 #else
 				av_free_packet(&pkt);
 #endif

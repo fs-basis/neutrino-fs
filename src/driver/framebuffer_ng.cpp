@@ -293,43 +293,37 @@ unsigned int CFrameBuffer::getStride() const
 }
 
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-unsigned int CFrameBuffer::getScreenWidth(bool real)
+unsigned int CFrameBuffer::getScreenWidth(bool)
 {
-	if(real)
-		return DEFAULT_XRES;
-	else
-		return g_settings.screen_EndX - g_settings.screen_StartX;
+	return DEFAULT_XRES;
 }
 
-unsigned int CFrameBuffer::getScreenHeight(bool real)
+unsigned int CFrameBuffer::getScreenHeight(bool)
 {
-	if(real)
-		return DEFAULT_YRES;
-	else
-		return g_settings.screen_EndY - g_settings.screen_StartY;
+	return DEFAULT_YRES;
 }
 
 unsigned int CFrameBuffer::getScreenWidthRel(bool force_small)
 {
 	int percent = force_small ? WINDOW_SIZE_MIN_FORCED : g_settings.window_width;
 	// always reduce a possible detailline
-	return (g_settings.screen_EndX - g_settings.screen_StartX - 2*ConnectLineBox_Width) * percent / 100;
+	return (DEFAULT_XRES - 2*ConnectLineBox_Width) * percent / 100;
 }
 
 unsigned int CFrameBuffer::getScreenHeightRel(bool force_small)
 {
 	int percent = force_small ? WINDOW_SIZE_MIN_FORCED : g_settings.window_height;
-	return (g_settings.screen_EndY - g_settings.screen_StartY) * percent / 100;
+	return DEFAULT_YRES * percent / 100;
 }
 
 unsigned int CFrameBuffer::getScreenX()
 {
-	return g_settings.screen_StartX;
+	return 0;
 }
 
 unsigned int CFrameBuffer::getScreenY()
 {
-	return g_settings.screen_StartY;
+	return 0;
 }
 #else
 unsigned int CFrameBuffer::getScreenWidth(bool real)

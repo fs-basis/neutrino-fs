@@ -660,6 +660,7 @@ void CCDraw::hide()
 	}
 	is_painted = false;
 	firstPaint = true;
+	frameBuffer->blit();
 }
 
 //erase or paint over rendered objects

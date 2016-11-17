@@ -114,11 +114,10 @@ class CKeybindSetup : public CMenuTarget, public CChangeObserver
 		void showKeyBindMovieplayerSetup(CMenuWidget *bindSettings_mplayer);
 		void showKeyBindMoviebrowserSetup(CMenuWidget *bindSettings_mbrowser);
 		void showKeyBindSpecialSetup(CMenuWidget *bindSettings_special);
-
 		int getRemoteCode();
 		bool setRemoteCode(int code);
-
-	public:
+		
+	public:				
 		CKeybindSetup();
 		~CKeybindSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);

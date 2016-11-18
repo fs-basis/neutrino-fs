@@ -172,11 +172,12 @@ int CAudioSelectMenuHandler::doMenu ()
 	{
 		if (is_mp) {
 			mp->getAPID(i, apid[i], is_ac3[i]);
+			perc_val[i] = (is_ac3[i] == 1) ? g_settings.audio_volume_percent_ac3 : g_settings.audio_volume_percent_pcm;
 		} else {
 			apid[i] = g_RemoteControl->current_PIDs.APIDs[i].pid;
 			is_ac3[i] = g_RemoteControl->current_PIDs.APIDs[i].is_ac3;
+			perc_val[i] = CZapit::getInstance()->GetPidVolume(chan, apid[i], is_ac3[i]);
 		}
-		perc_val[i] = CZapit::getInstance()->GetPidVolume(chan, apid[i], is_ac3[i]);
 		perc_str[i] = to_string(perc_val[i]) + "%";
 
 		CMenuForwarder *fw = new CMenuForwarder(is_mp ? mp->getAPIDDesc(i).c_str() : g_RemoteControl->current_PIDs.APIDs[i].desc,

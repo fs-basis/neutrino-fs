@@ -1330,6 +1330,12 @@ bool CMoviePlayerGui::PlayFileStart(void)
 					p_movie_info->audioPids.push_back(pids);
 				}
 			}
+		else
+			for (unsigned int i = 0; i < numpida; i++)
+				if (apids[i] == playback->GetAPid()) {
+				CZapit::getInstance()->SetVolumePercent((ac3flags[i] == 1) ? g_settings.audio_volume_percent_ac3 : g_settings.audio_volume_percent_pcm);
+				break;
+			}
 		repeat_mode = (repeat_mode_enum) g_settings.movieplayer_repeat_on;
 		playstate = CMoviePlayerGui::PLAY;
 		CVFD::getInstance()->ShowIcon(FP_ICON_PLAY, true);

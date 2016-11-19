@@ -59,8 +59,8 @@ class CTestMenu : public CMenuTarget
 		int showTestMenu();
 		void showHWTests(CMenuWidget *widget);
 		void showCCTests(CMenuWidget *widget);
-
-	public:
+		void showMsgTests(CMenuWidget *widget);
+	public:	
 		CTestMenu();
 		~CTestMenu();
 		int exec(CMenuTarget* parent, const std::string & actionKey);

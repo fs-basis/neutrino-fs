@@ -238,8 +238,8 @@ void CInfoViewer::start ()
 	BoxEndY = g_settings.screen_EndY - 10 - infoViewerBB->InfoHeightY_Info - infoViewerBB->bottom_bar_offset;
 	BoxStartY = BoxEndY - InfoHeightY - ChanHeight / 2;
 
-	ChanNameY = BoxStartY + (ChanHeight / 2) + OFFSET_SHADOW;
-	ChanInfoX = BoxStartX; /*+ (ChanWidth / 3);*/
+	ChanNameY = BoxStartY + (ChanHeight / 2)/* + OFFSET_SHADOW*/;	//oberkante schatten?
+	ChanInfoX = BoxStartX;
 
 	initClock();
 	time_height = max(ChanHeight / 2, clock->getHeight());
@@ -417,8 +417,8 @@ void CInfoViewer::paintHead()
 	int head_x = BoxStartX;
 	int head_w = BoxEndX-head_x;
 	if (header == NULL){
-		header = new CComponentsShapeSquare(head_x, ChanNameY, head_w, time_height, NULL, CC_SHADOW_RIGHT | CC_SHADOW_CORNER_TOP_RIGHT | CC_SHADOW_CORNER_BOTTOM_RIGHT);
-		header->setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
+		header = new CComponentsShapeSquare(head_x, ChanNameY, head_w, time_height, NULL, CC_SHADOW_RIGHT);
+		header->setCorner(RADIUS_LARGE, CORNER_TOP);
 	}else
 		header->setDimensionsAll(head_x, ChanNameY, head_w, time_height);
 
@@ -1771,8 +1771,8 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		int tmpY = CurrInfoY - height - ChanNameY + header_height - 
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getDigitOffset()/3+OFFSET_SHADOW;
 /*
-
-		switch(g_settings.infobar_progressbar){ //set progressbar position
+		switch(g_settings.infobar_progressbar) //set progressbar position
+		{
 			case SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_BELOW_CH_NAME:
 				pb_h = (pb_h/3);
 				pb_starty = ChanNameY + (tmpY-pb_h)/2;

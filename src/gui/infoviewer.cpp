@@ -417,7 +417,7 @@ void CInfoViewer::paintHead()
 	int head_x = BoxStartX;
 	int head_w = BoxEndX-head_x;
 	if (header == NULL){
-		header = new CComponentsShapeSquare(head_x, ChanNameY, head_w, time_height, NULL, CC_SHADOW_RIGHT);
+		header = new CComponentsShapeSquare(head_x, ChanNameY, head_w, time_height, NULL, CC_SHADOW_RIGHT | CC_SHADOW_CORNER_TOP_RIGHT | CC_SHADOW_CORNER_BOTTOM_RIGHT);
 		header->setCorner(RADIUS_LARGE, CORNER_TOP);
 	}else
 		header->setDimensionsAll(head_x, ChanNameY, head_w, time_height);

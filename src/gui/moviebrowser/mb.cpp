@@ -949,22 +949,6 @@ int CMovieBrowser::exec(const char* path)
 						refresh();
 				}
 			}
-<<<<<<< HEAD
-=======
-			else if ((show_mode == MB_SHOW_YT) && (msg == (neutrino_msg_t) g_settings.key_record) && m_movieSelectionHandler)
-			{
-				m_movieSelectionHandler->source = (show_mode == MB_SHOW_YT) ? MI_MOVIE_INFO::YT : MI_MOVIE_INFO::NK;
-				if (cYTCache::getInstance()->addToCache(m_movieSelectionHandler)) {
-					const char *format = g_Locale->getText(LOCALE_MOVIEBROWSER_YT_CACHE_ADD);
-					char buf[1024];
-					snprintf(buf, sizeof(buf), format, m_movieSelectionHandler->file.Name.c_str());
-					CHintBox hintBox(LOCALE_MOVIEBROWSER_YT_CACHE, buf);
-					hintBox.paint();
-					sleep(1); //???
-					hintBox.hide();
-				}
-			}
->>>>>>> DD/master
 			else if (msg == CRCInput::RC_home)
 			{
 				loop = false;

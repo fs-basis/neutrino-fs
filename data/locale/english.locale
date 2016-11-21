@@ -2544,6 +2544,7 @@ webtv.head WebTV
 webtv.xml WebTV XML files
 webtv.xml.add Add XML file
 webtv.xml.del Remove XML file
+webtv.xml.reload Reload XML files
 window_size Window size in %
 word.from from
 word.in in

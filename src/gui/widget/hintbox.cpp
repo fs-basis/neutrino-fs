@@ -179,7 +179,7 @@ void CHintBox::enableTimeOutBar(bool enable)
 
 	if(timeout_pb){
 		timeout_pb->paint0();
-	if (timeout > 0)
+		if (timeout > 0)
 			timeout_pb->setValues(timeout_pb->getValue()+1, 100*timeout);
 		CFrameBuffer::getInstance()->blit();
 	}else{

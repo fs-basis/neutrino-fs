@@ -190,8 +190,8 @@ void CComponentsFrmClock::initCCLockItems()
 			//background paint of item is not required
 			lbl->doPaintBg(false);
 
-			//set corner properties of label item
-			lbl->setCorner(corner_rad-fr_thickness, corner_type);
+			//preset corner properties of label item
+			lbl->setCorner(max(0, corner_rad-fr_thickness), corner_type);
 
 			//set text border to 0
 			lbl->setTextBorderWidth(0,0);
@@ -233,8 +233,8 @@ void CComponentsFrmClock::initCCLockItems()
 				lbl->setCornerType(corner_type & CORNER_LEFT);// 1st label item
 			else if (i == v_cc_items.size()-1)
 				lbl->setCornerType(corner_type & CORNER_RIGHT);// last label item
-			else
-				lbl->setCornerType(0);// inner items
+			else			
+				lbl->setCorner(0,CORNER_NONE);// inner items don't need round corners
 		}
 
 		//extract timestring segment (char)

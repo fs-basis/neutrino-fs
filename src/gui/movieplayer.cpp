@@ -254,8 +254,6 @@ void CMoviePlayerGui::cutNeutrino()
 		return;
 
 	g_Zapit->lockPlayBack();
-	if (!isWebTV)
-		g_Sectionsd->setPauseScanning(true);
 
 #ifdef HAVE_AZBOX_HARDWARE
 	/* we need sectionsd to get idle and zapit to release the demuxes
@@ -290,7 +288,6 @@ void CMoviePlayerGui::restoreNeutrino()
 
 	g_Zapit->unlockPlayBack();
 	//CZapit::getInstance()->EnablePlayback(true);
-	g_Sectionsd->setPauseScanning(false);
 
 	printf("%s: restore mode %x\n", __func__, m_LastMode);fflush(stdout);
 #if 0

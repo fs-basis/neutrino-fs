@@ -897,7 +897,6 @@ struct SNeutrinoSettings
 		ITEM_RASS = 32,
 		ITEM_TUNER_RESTART = 33,
 		ITEM_THREE_D_MODE = 34,
-
 		ITEM_MAX   // MUST be always the last in the list
 	} USER_ITEM;
 	typedef struct {

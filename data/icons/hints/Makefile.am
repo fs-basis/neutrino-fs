@@ -48,5 +48,4 @@ install_DATA = \
 	hint_tvmode.png \
 	hint_tvradio_switch.png \
 	hint_vfd.png \
-	hint_video.png \
-	hint_ytplay.png
+	hint_video.png

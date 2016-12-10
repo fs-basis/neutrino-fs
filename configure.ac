@@ -362,6 +362,7 @@ data/icons/headers/Makefile
 data/icons/hints/Makefile
 data/icons/locale/Makefile
 data/icons/movieplayer/Makefile
+data/icons/own/Makefile
 data/icons/radar/Makefile
 data/icons/slider/Makefile
 data/icons/status/Makefile

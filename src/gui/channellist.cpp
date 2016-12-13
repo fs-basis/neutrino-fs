@@ -2233,7 +2233,6 @@ void CChannelList::ResetModules()
 	}
 }
 
-
 void CChannelList::paintBody()
 {
 	int icon_w = 0, icon_h = 0;

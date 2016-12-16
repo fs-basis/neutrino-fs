@@ -8,8 +8,11 @@ SUBDIRS = \
 	neutrino-scripts \
 	pictures \
 	scripts \
-	themes \
-	y-web
+	themes
+
+if ENABLE_WEBIF
+SUBDIRS += yweb
+endif
 
 if BOXTYPE_TRIPLE
 SUBDIRS += lcd

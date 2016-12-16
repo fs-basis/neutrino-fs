@@ -11,7 +11,7 @@ SUBDIRS = \
 	themes
 
 if ENABLE_WEBIF
-SUBDIRS += yweb
+SUBDIRS += y-web
 endif
 
 if BOXTYPE_TRIPLE

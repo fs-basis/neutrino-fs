@@ -694,12 +694,12 @@ int COsdSetup::showOsdSetup()
 	osd_menu->addItem(mfWindowSize);
 
 	osd_menu->addItem(GenericMenuSeparatorLine);
-
+#if 0
 	// scrambled
 	mc = new CMenuOptionChooser(LOCALE_EXTRA_SCRAMBLED_MESSAGE, &g_settings.scrambled_message, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_SCRAMBLED_MESSAGE);
 	osd_menu->addItem(mc);
-
+#endif
 	// subchannel menu position
 	mc = new CMenuOptionChooser(LOCALE_INFOVIEWER_SUBCHAN_DISP_POS, &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_SUBCHANNEL_POS);

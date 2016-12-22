@@ -42,9 +42,10 @@ class CNetworkConfig
 */
 	void copy_to_orig(void);
 	void init_vars(void);
+/*
 	void readWpaConfig();
 	void saveWpaConfig();
-
+*/
  public:
 	bool        automatic_start;
 	std::string address;

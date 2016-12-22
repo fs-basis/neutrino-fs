@@ -41,7 +41,9 @@ CNetworkConfig::CNetworkConfig()
 	orig_inet_static = false;
 	automatic_start = false;
 	inet_static = false;
+#if 0
 	wireless = false;
+#endif
 }
 
 CNetworkConfig* CNetworkConfig::getInstance()
@@ -98,7 +100,7 @@ void CNetworkConfig::init_vars(void)
 		mac_tmp<<std::hex<<std::setfill('0')<<std::setw(2)<<(int)addr[i]<<':';
 
 	mac_addr = mac_tmp.str().substr(0,17);
-
+#if 0
 	key = "";
 	ssid = "";
 	wireless = 0;
@@ -110,6 +112,7 @@ void CNetworkConfig::init_vars(void)
 		readWpaConfig();
 
 	printf("CNetworkConfig: %s loaded, wireless %s\n", ifname.c_str(), wireless ? "yes" : "no");
+#endif
 }
 
 void CNetworkConfig::copy_to_orig(void)
@@ -122,8 +125,10 @@ void CNetworkConfig::copy_to_orig(void)
 	orig_inet_static     = inet_static;
 	orig_hostname	     = hostname;
 	orig_ifname	     = ifname;
+#if 0
 	orig_ssid	     = ssid;
 	orig_key	     = key;
+#endif
 }
 
 bool CNetworkConfig::modified_from_orig(void)
@@ -146,10 +151,12 @@ bool CNetworkConfig::modified_from_orig(void)
 		if(orig_ifname	      != ifname)
 			printf("CNetworkConfig::modified_from_orig: ifname changed\n");
 #endif
+#if 0
 	if(wireless) {
 		if((ssid != orig_ssid) || (key != orig_key))
 			return 1;
 	}
+#endif
 	/* check for following changes with dhcp enabled trigger apply question on menu quit,
 	 * even if apply already done */
 	if (inet_static) {
@@ -184,8 +191,10 @@ void CNetworkConfig::commitConfig(void)
 {
 	if (modified_from_orig())
 	{
+#if 0
 #ifdef DEBUG
 		printf("CNetworkConfig::commitConfig: modified, saving (wireless %d, ssid %s key %s)...\n", wireless, ssid.c_str(), key.c_str());
+#endif
 #endif
 		if(orig_hostname != hostname)
 			netSetHostname(hostname);
@@ -193,16 +202,17 @@ void CNetworkConfig::commitConfig(void)
 		if (inet_static)
 		{
 			addLoopbackDevice("lo", true);
-			setStaticAttributes(ifname, automatic_start, address, netmask, broadcast, gateway, wireless);
+			setStaticAttributes(ifname, automatic_start, address, netmask, broadcast, gateway); /*, wireless);*/
 		}
 		else
 		{
 			addLoopbackDevice("lo", true);
-			setDhcpAttributes(ifname, automatic_start, wireless);
+			setDhcpAttributes(ifname, automatic_start); /*, wireless);*/
 		}
+#if 0
 		if(wireless && ((key != orig_key) || (ssid != orig_ssid)))
 			saveWpaConfig();
-
+#endif
 		copy_to_orig();
 
 	}
@@ -236,7 +246,7 @@ void CNetworkConfig::stopNetwork(void)
 	my_system(3, "/bin/sh", "-c", cmd.c_str());
 
 }
-
+#if 0
 void CNetworkConfig::readWpaConfig()
 {
 	std::string   s;
@@ -302,3 +312,4 @@ void CNetworkConfig::saveWpaConfig()
 	}
 	out << "}\n";
 }
+#endif

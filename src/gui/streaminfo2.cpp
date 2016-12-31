@@ -633,7 +633,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	snprintf(buf, sizeof(buf), "%s:", g_Locale->getText (LOCALE_STREAMINFO_AUDIOTYPE));
 	g_Font[font_info]->RenderString (xpos, ypos, box_width, buf, COL_MENUCONTENT_TEXT);
 
-	if (type == AUDIO_FMT_AUTO)
+	if (type == AUDIO_FMT_MPEG)
 	{
 		const char *mpegmodes[] =
 		{

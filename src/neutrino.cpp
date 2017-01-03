@@ -2271,8 +2271,8 @@ TIMER_START();
 	char start_text [100];
 	snprintf(start_text, sizeof(start_text), g_Locale->getText(LOCALE_NEUTRINO_STARTING)); // PACKAGE_NAME, PACKAGE_VERSION );
 	start_text[99] = '\0';
-	CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, start_text);
-	hintBox->paint();
+//	CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, start_text);
+//	hintBox->paint();
 
 	CVFD::getInstance()->init(neutrinoFonts->fontDescr.filename.c_str(), neutrinoFonts->fontDescr.name.c_str());
 	CVFD::getInstance()->Clear();
@@ -2450,7 +2450,7 @@ TIMER_START();
 
 	InitZapper();
 	if(loadSettingsErg) {
-		hintBox->hide();
+//		hintBox->hide();
 		dprintf(DEBUG_INFO, "config file or options missing\n");
 		ShowHint(LOCALE_MESSAGEBOX_INFO, loadSettingsErg ==  1 ? g_Locale->getText(LOCALE_SETTINGS_NOCONFFILE)
 				: g_Locale->getText(LOCALE_SETTINGS_MISSINGOPTIONSCONFFILE));
@@ -2462,8 +2462,8 @@ TIMER_START();
 	hdd->exec(NULL, "");
 	delete hdd;
 
-	hintBox->hide(); // InitZapper also displays a hintbox
-	delete hintBox;
+//	hintBox->hide(); // InitZapper also displays a hintbox
+//	delete hintBox;
 
 	cCA::GetInstance()->Ready(true);
 	cCA::GetInstance()->setCheckLiveSlot(g_settings.ci_check_live);
@@ -2479,7 +2479,7 @@ TIMER_START();
 
 TIMER_STOP("################################## after all ##################################");
 	if (g_settings.softupdate_autocheck) {
-		hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_FLASHUPDATE_CHECKUPDATE_INTERNET));
+		CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_FLASHUPDATE_CHECKUPDATE_INTERNET));
 		hintBox->paint();
 		CFlashUpdate flash;
 		if(flash.checkOnlineVersion()) {

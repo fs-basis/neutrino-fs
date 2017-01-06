@@ -2448,7 +2448,6 @@ TIMER_START();
 	CVFD::getInstance()->showVolume(g_settings.current_volume);
 	CVFD::getInstance()->setMuted(current_muted);
 
-	InitZapper();
 	if(loadSettingsErg) {
 //		hintBox->hide();
 		dprintf(DEBUG_INFO, "config file or options missing\n");
@@ -2457,6 +2456,8 @@ TIMER_START();
 		configfile.setModifiedFlag(true);
 		saveSetup(NEUTRINO_SETTINGS_FILE);
 	}
+
+	InitZapper();
 
 	CHDDDestExec * hdd = new CHDDDestExec();
 	hdd->exec(NULL, "");

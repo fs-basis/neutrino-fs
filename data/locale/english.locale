@@ -1278,7 +1278,6 @@ menu.hint_net_ntp Configure time sync
 menu.hint_net_ntpenable Enable time sync using NTP protocol\nIf NTP sync not successfull, DVB will be used
 menu.hint_net_ntprefresh Time sync interval
 menu.hint_net_ntpserver Enter NTP server name
-menu.hint_net_pass Enter passkey (WPA-PSK)
 menu.hint_net_proxy If you use proxy to access internet\nconfigure it here for online software update
 menu.hint_net_proxypass Proxy user password\nif authorization required
 menu.hint_net_proxyserver Proxy server name

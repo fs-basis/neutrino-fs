@@ -83,7 +83,6 @@ class CNetworkSetup : public CMenuTarget, CChangeObserver
 		int saveChangesDialog();
 		void applyNetworkSettings();
 		void saveNetworkSettings();
-		int showWlanList();
 
 		bool checkIntSettings();
 		bool checkStringSettings();

@@ -480,7 +480,7 @@ void CMovieBrowser::initGlobalSettings(void)
 	m_settings.browserRowWidth[7] = m_defaultRowWidth[m_settings.browserRowItem[7]];
 	m_settings.browserRowWidth[8] = m_defaultRowWidth[m_settings.browserRowItem[8]];
 
-	m_settings.browserAdditional = 0;
+	m_settings.browserAdditional = 1;
 	m_settings.ts_only = 0;
 }
 
@@ -639,7 +639,7 @@ bool CMovieBrowser::loadSettings(MB_SETTINGS* settings)
 		settings->browserRowItem[i] = (MB_INFO_ITEM)configfile.getInt32("mb_browserRowItem_" + to_string(i), MB_INFO_MAX_NUMBER);
 		settings->browserRowWidth[i] = configfile.getInt32("mb_browserRowWidth_" + to_string(i), 50);
 	}
-	settings->browserAdditional = configfile.getInt32("mb_browserAdditional", 0);
+	settings->browserAdditional = configfile.getInt32("mb_browserAdditional", 1);
 	return (result);
 }
 

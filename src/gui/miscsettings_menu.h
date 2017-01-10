@@ -48,6 +48,7 @@ class CMiscMenue : public CMenuTarget, CChangeObserver
 		CMenuOptionChooser * tmdb_onoff;
 		CMenuOptionChooser * shoutcast_onoff;
 		CMenuForwarder * epg_dir;
+		CMenuForwarder * epg_read_now;
 		int width;
 		std::string epg_cache;
 		std::string epg_extendedcache;

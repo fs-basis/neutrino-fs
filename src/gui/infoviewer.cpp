@@ -433,7 +433,7 @@ void CInfoViewer::paintHead()
 
 void CInfoViewer::paintBody()
 {
-	int h_body = InfoHeightY - header_height;// - OFFSET_SHADOW;
+	int h_body = InfoHeightY - header_height - OFFSET_SHADOW;
 	if(h_body < 0)
 		h_body = 0;
 

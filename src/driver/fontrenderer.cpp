@@ -296,7 +296,7 @@ return 0;
 
 	//hack: Use additional percentage height offset, font types could have different heights, static values seems not really senseful.
 	upper = halflinegap+ascender+hg/7;   // we add 1/7 of glyph height at top
-	lower = -descender+halflinegap-hg/10;  // we add 1/10 of glyph height at bottom
+	lower = -descender+halflinegap+hg/10;  // we add 1/10 of glyph height at bottom
 
 	height=upper+lower;               // this is total height == distance of lines
 

@@ -743,7 +743,6 @@ struct SNeutrinoSettings
 		FONT_TYPE_INFOBAR_CHANNAME,
 		FONT_TYPE_INFOBAR_INFO,
 		FONT_TYPE_INFOBAR_SMALL,
-		FONT_TYPE_INFOBAR_ECMINFO,
 		FONT_TYPE_FILEBROWSER_ITEM,
 		FONT_TYPE_MENU_HINT,
 		FONT_TYPE_MOVIEBROWSER_HEAD,
@@ -852,9 +851,6 @@ struct SNeutrinoSettings
 	std::string	ttx_font_file;
 	std::string	sub_font_file;
 
-	int		show_ecm;
-	int		show_ecm_pos;
-
 	int		livestreamResolution;
 	std::string	livestreamScriptPath;
 
@@ -907,7 +903,7 @@ struct SNeutrinoSettings
 		ITEM_RASS = 32,
 		ITEM_TUNER_RESTART = 33,
 		ITEM_THREE_D_MODE = 34,
-		ITEM_MAX // MUST be always the last in the list
+		ITEM_MAX   // MUST be always the last in the list
 	} USER_ITEM;
 
 	typedef struct {

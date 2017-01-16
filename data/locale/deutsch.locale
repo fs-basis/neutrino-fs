@@ -375,10 +375,6 @@ debug.level Stufe
 debug.level_1 normal
 debug.level_2 informativ
 debug.level_3 ausführlich
-ecminfo ECM-Info
-ecminfo_null ECM-Info nicht vorhanden
-ecminfo_show ECM-Info anzeigen
-empty Leer
 epg.saving Speichere EPG
 epgextended.actors Darsteller
 epgextended.director Regie
@@ -741,7 +737,6 @@ fontsize.eventlist_title Titel
 fontsize.filebrowser_item Dateibrowsereinträge
 fontsize.hint Schriftart wird initialisiert,\nbitte warten ...
 fontsize.infobar_channame Kanalname
-fontsize.infobar_ecminfo ECM-Info
 fontsize.infobar_info Info
 fontsize.infobar_number Nummer
 fontsize.infobar_small Klein
@@ -1159,7 +1154,6 @@ menu.hint_infobar_casys_color Ändern Sie die Hintergrundfarbe für die CA-Syste
 menu.hint_infobar_casys_dotmatrix ein: CA-Systemanzeige mit Punktematrix im Hintergrund
 menu.hint_infobar_casys_frame ein: CA-Systemanzeige mit Rahmen
 menu.hint_infobar_dd Zeigt ein Dolby Digital Icon bei Verfügbarkeit
-menu.hint_infobar_ecminfo Anzeigen der ECM-Info, während die Infobar eingeblendet ist
 menu.hint_infobar_filesys Zeigen den vom Flash- und einer HDD verwendeten Speicherplatz
 menu.hint_infobar_fonts Ändern Sie die Schriftgrößen in der Infobar
 menu.hint_infobar_logo Logo-, Kanalnummer- und Signal-Anzeige; Optionen in [Klammern] erscheinen in der kleinen Infobox

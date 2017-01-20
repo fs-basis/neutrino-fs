@@ -1513,7 +1513,7 @@ uint32_t CFrontend::sendEN50494TuningCommand(const uint32_t frequency, const int
 				(high_band) << 2;		/* high_band  == 0x04 */
 			cmd.msg[4] = t & 0xFF;
 			fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_18);
-			usleep(15 * 1000);		/* en50494 says: >4ms and < 22 ms */
+			usleep(20 * 1000);		/* en50494 says: >4ms and < 22 ms */
 			sendDiseqcCommand(&cmd, 80);	/* en50494 says: 67.5 ms*/
 			fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_13);
 		}
@@ -1547,7 +1547,7 @@ uint32_t CFrontend::sendEN50607TuningCommand(const uint32_t frequency, const int
 				(horizontal << 1)			|	/* horizontal == 0x02 */
 				high_band;					/* high_band  == 0x01 */
 			fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_18);
-			usleep(15 * 1000);					/* en50494 says: >4ms and < 22 ms */
+			usleep(20 * 1000);					/* en50494 says: >4ms and < 22 ms */
 			sendDiseqcCommand(&cmd, 80);				/* en50607 says: 54 ms*/
 			fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_13);
 		}

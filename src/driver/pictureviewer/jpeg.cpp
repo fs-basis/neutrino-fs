@@ -18,6 +18,9 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+#if __cplusplus >= 201103
+#include <cmath>
+#endif
 #include <setjmp.h>
 
 #include <global.h>
@@ -94,12 +97,21 @@ int fh_jpeg_load(const char *filename,unsigned char **buffer,int* x,int* y)
 	ciptr->dct_method=JDCT_FASTEST;
 	if(*x==(int)ciptr->image_width)
 		ciptr->scale_denom=1;
+#if __cplusplus < 201103
 	else if(abs(*x*2 - ciptr->image_width) < 2)
 		ciptr->scale_denom=2;
 	else if(abs(*x*4 - ciptr->image_width) < 4)
 		ciptr->scale_denom=4;
 	else if(abs(*x*8 - ciptr->image_width) < 8)
 		ciptr->scale_denom=8;
+#else
+	else if(std::abs(*x*2 - ciptr->image_width) < 2)
+		ciptr->scale_denom=2;
+	else if(std::abs(*x*4 - ciptr->image_width) < 4)
+		ciptr->scale_denom=4;
+	else if(std::abs(*x*8 - ciptr->image_width) < 8)
+		ciptr->scale_denom=8;
+#endif
 	else
 		ciptr->scale_denom=1;
 

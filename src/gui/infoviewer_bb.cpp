@@ -63,6 +63,7 @@
 
 extern CRemoteControl *g_RemoteControl;	/* neutrino.cpp */
 extern cVideo * videoDecoder;
+extern CPictureViewer * g_PicViewer;
 
 #define COL_INFOBAR_BUTTONS_BACKGROUND (COL_MENUFOOT_PLUS_0)
 

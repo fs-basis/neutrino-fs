@@ -727,8 +727,6 @@ void CTextBox::refreshText(void)
 			m_pcFontText->RenderString(tx, ty, tw, m_cLineArray[i].c_str(), m_textColor, 0, m_renderMode | ((m_utf8_encoded) ? Font::IS_UTF8 : 0));
 		y += m_nFontTextHeight;
 	}
-	if (m_blit)
-		frameBuffer->blit();
 	m_old_cText = m_cText;
 }
 

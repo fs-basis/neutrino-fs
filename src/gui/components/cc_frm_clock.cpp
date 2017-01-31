@@ -388,8 +388,6 @@ void CComponentsFrmClock::paint(bool do_save_bg)
 	//paint form contents
 	CComponentsForm::paint(do_save_bg);
 
-	if (may_blit)
-		frameBuffer->blit();
 }
 
 void CComponentsFrmClock::setClockFont(Font *font, const int& style)

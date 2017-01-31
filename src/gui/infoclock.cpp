@@ -108,7 +108,7 @@ bool CInfoClock::StopInfoClock()
 	bool ret = Stop();
 	kill();
 	frameBuffer->blit();
-
+	clear();
 	return ret;
 }
 

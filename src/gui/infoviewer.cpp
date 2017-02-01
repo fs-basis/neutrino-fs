@@ -866,7 +866,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 				ChanInfoX + 10, ChanNameY + header_height,
 				BoxEndX - (ChanInfoX + 10) - time_width - LEFT_OFFSET - 5 - infoViewerBB->showBBIcons_width,
 				ChannelName, color , 0, renderFlag);
-#if 0
+/*
 			//provider name
 			if(g_settings.infobar_show_channeldesc && channel->pname){
 				std::string prov_name = channel->pname;
@@ -883,9 +883,9 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(
 					ChanNameX + 10 + ChanNumWidth + chname_width, tmpY,
 					BoxEndX - (ChanNameX + 20) - time_width - LEFT_OFFSET - 10 - ChanNumWidth - chname_width,
-					prov_name, color /*COL_INFOBAR_TEXT*/, 0, renderFlag);
+					prov_name, color, 0, renderFlag);
 			}
-#endif
+*/
 
 		}
 	}

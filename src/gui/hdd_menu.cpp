@@ -1261,8 +1261,10 @@ int CHDDDestExec::exec(CMenuTarget* /*parent*/, const std::string&)
 
 	const char hdparm[] = "/sbin/hdparm";
 	bool have_hdparm = !access(hdparm, X_OK);
-	if (!have_hdparm || !have_hdidle)
+	if (!have_hdparm || !have_hdidle) {
+		free(namelist);
 		return menu_return::RETURN_NONE;
+	}
 
 	struct stat stat_buf;
 	bool have_nonbb_hdparm = !::lstat(hdparm, &stat_buf) && !S_ISLNK(stat_buf.st_mode);

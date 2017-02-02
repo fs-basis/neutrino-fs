@@ -1238,6 +1238,9 @@ int CHDDDestExec::exec(CMenuTarget* /*parent*/, const std::string&)
 
 	const char hdidle[] = "/sbin/hd-idle";
 	bool have_hdidle = !access(hdidle, X_OK);
+	
+	const char hdparm[] = "/sbin/hdparm";
+	bool have_hdparm = !access(hdparm, X_OK);
 
 	if (g_settings.hdd_sleep > 0 && g_settings.hdd_sleep < 60)
 		g_settings.hdd_sleep = 60;
@@ -1257,16 +1260,6 @@ int CHDDDestExec::exec(CMenuTarget* /*parent*/, const std::string&)
 		}
 		if (sleep_seconds)
 			my_system(3, hdidle, "-i", to_string(sleep_seconds).c_str());
-	}
-
-	const char hdparm[] = "/sbin/hdparm";
-	bool have_hdparm = !access(hdparm, X_OK);
-	if (!have_hdparm || !have_hdidle) {
-		while (n--) {
-			free(namelist[n]);
-		}
-		free(namelist);
-		return menu_return::RETURN_NONE;
 	}
 
 	struct stat stat_buf;

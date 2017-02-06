@@ -856,8 +856,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screen_EndY_int = g_settings.screen_EndY;
 	g_settings.screen_StartX = 0;
 	g_settings.screen_StartY = 0;
-	g_settings.screen_EndX = frameBuffer->getScreenWidth() - 1;
-	g_settings.screen_EndY = frameBuffer->getScreenHeight() - 1;
+	g_settings.screen_EndX = frameBuffer->getScreenWidth(true) - 1;
+	g_settings.screen_EndY = frameBuffer->getScreenHeight(true) - 1;
 #endif
 
 	g_settings.screen_width = configfile.getInt32("screen_width", 0);

@@ -92,7 +92,7 @@ class CFbAccelSTi
 #endif
 };
 
-class CFbAccelCSNevis
+class CFbAccelCSHD1
 	: public CFbAccel
 {
 	private:
@@ -104,8 +104,8 @@ class CFbAccelCSNevis
 		void run(void);
 		fb_pixel_t *backbuffer;
 	public:
-		CFbAccelCSNevis();
-		~CFbAccelCSNevis();
+		CFbAccelCSHD1();
+		~CFbAccelCSHD1();
 		void init(const char * const);
 		int setMode(unsigned int xRes, unsigned int yRes, unsigned int bpp);
 		void paintPixel(int x, int y, const fb_pixel_t col);
@@ -124,15 +124,15 @@ class CFbAccelCSNevis
 		void setupGXA(void);
 };
 
-class CFbAccelCSApollo
+class CFbAccelCSHD2
 	: public CFbAccel
 {
 	private:
 		fb_pixel_t *backbuffer;
 
 	public:
-		CFbAccelCSApollo();
-//		~CFbAccelCSApollo();
+		CFbAccelCSHD2();
+//		~CFbAccelCSHD2();
 		int setMode(unsigned int xRes, unsigned int yRes, unsigned int bpp);
 		void paintHLineRel(int x, int dx, int y, const fb_pixel_t col);
 		void paintVLineRel(int x, int y, int dy, const fb_pixel_t col);

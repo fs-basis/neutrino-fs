@@ -35,6 +35,11 @@
 #include <OpenThreads/Mutex>
 #include <OpenThreads/ScopedLock>
 #include <sigc++/signal.h>
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+#include <linux/stmfb.h>
+#include <bpamem.h>
+#endif
+
 #define fb_pixel_t uint32_t
 
 typedef struct fb_var_screeninfo t_fb_var_screeninfo;
@@ -280,6 +285,33 @@ class CFrameBuffer : public sigc::trackable
 			};
 		void SetTransparent(int t){ m_transparent = t; }
 		void SetTransparentDefault(){ m_transparent = m_transparent_default; }
+		virtual void setBorder(int sx, int sy, int ex, int ey);
+		virtual void getBorder(int &sx, int &sy, int &ex, int &ey);
+		virtual void setBorderColor(fb_pixel_t col = 0);
+		virtual fb_pixel_t getBorderColor(void);
+		virtual void ClearFB(void);
+		virtual void resChange(void);
+		virtual void blitArea(int src_width, int src_height, int fb_x, int fb_y, int width, int height);
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+		virtual void blitBPA2FB(unsigned char *mem, SURF_FMT fmt, int w, int h, int x = 0, int y = 0, int pan_x = -1, int pan_y = -1, int fb_x = -1, int fb_y = -1, int fb_w = -1, int fb_h = -1, bool transp = false);
+		virtual void blitBoxFB(int x0, int y0, int x1, int y1, fb_pixel_t color);
+		virtual void setMixerColor(uint32_t mixer_background);
+#endif
+		bool OSDShot(const std::string &name);
+		enum Mode3D
+					{
+						Mode3D_off = 0,
+						Mode3D_SideBySide,
+						Mode3D_TopAndBottom,
+						Mode3D_Tile,
+						Mode3D_SIZE
+					};
+		enum Mode3D mode3D;
+		virtual void set3DMode(Mode3D);
+		virtual Mode3D get3DMode(void);
+		int sX, sY, eX, eY;
+		int startX, startY, endX, endY;
+		fb_pixel_t borderColor, borderColorOld;
 
 // ## AudioMute / Clock ######################################
 	private:

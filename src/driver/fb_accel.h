@@ -29,7 +29,7 @@
 #include <OpenThreads/Condition>
 #include "fb_generic.h"
 
-#if HAVE_SPARK_HARDWARE
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 #define PARTIAL_BLIT 1
 #endif
 
@@ -76,6 +76,20 @@ class CFbAccelSTi
 		fb_pixel_t * getBackBufferPointer() const;
 		void setBlendMode(uint8_t);
 		void setBlendLevel(int);
+		void resChange(void);
+		void setBorder(int sx, int sy, int ex, int ey);
+		void setBorderColor(fb_pixel_t col);
+		void ClearFB(void);
+		void getBorder(int &sx, int &sy, int &ex, int &ey);
+		fb_pixel_t getBorderColor(void);
+		void blitArea(int src_width, int src_height, int fb_x, int fb_y, int width, int height);
+		void set3DMode(Mode3D);
+		Mode3D get3DMode(void);
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+		void blitBPA2FB(unsigned char *mem, SURF_FMT fmt, int w, int h, int x = 0, int y = 0, int pan_x = -1, int pan_y = -1, int fb_x = -1, int fb_y = -1, int fb_w = -1, int fb_h = -1, bool transp = false);
+		void blitBoxFB(int x0, int y0, int x1, int y1, fb_pixel_t color);
+		void setMixerColor(uint32_t mixer_background);
+#endif
 };
 
 class CFbAccelCSNevis

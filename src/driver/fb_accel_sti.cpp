@@ -548,6 +548,191 @@ void CFbAccelSTi::setBlendLevel(int level)
 		perror(LOGTAG "setBlendLevel STMFBIO");
 }
 
+void CFbAccelSTi::resChange(void)
+{
+	if (ioctl(fd, FBIOGET_VSCREENINFO, &screeninfo) == -1)
+		perror("frameBuffer <FBIOGET_VSCREENINFO>");
+
+	sX = (startX * screeninfo.xres)/DEFAULT_XRES;
+	sY = (startY * screeninfo.yres)/DEFAULT_YRES;
+	eX = (endX * screeninfo.xres)/DEFAULT_XRES;
+	eY = (endY * screeninfo.yres)/DEFAULT_YRES;
+	borderColorOld = 0x01010101;
+}
+
+fb_pixel_t CFbAccelSTi::getBorderColor(void)
+{
+	return borderColor; 
+}
+
+void CFbAccelSTi::getBorder(int &sx, int &sy, int &ex, int &ey)
+{
+	sx = startX;
+	sy = startY;
+	ex = endX;
+	ey = endY;
+}
+
+void CFbAccelSTi::setBorder(int sx, int sy, int ex, int ey)
+{
+	startX = sx;
+	startY = sy;
+	endX = ex;
+	endY = ey;
+	sX = (startX * screeninfo.xres)/DEFAULT_XRES;
+	sY = (startY * screeninfo.yres)/DEFAULT_YRES;
+	eX = (endX * screeninfo.xres)/DEFAULT_XRES;
+	eY = (endY * screeninfo.yres)/DEFAULT_YRES;
+	borderColorOld = 0x01010101;
+}
+
+void CFbAccelSTi::setBorderColor(fb_pixel_t col)
+{
+	if (!col && borderColor)
+		blitBoxFB(0, 0, screeninfo.xres, screeninfo.yres, 0);
+	borderColor = col;
+}
+
+void CFbAccelSTi::ClearFB(void)
+{
+	blitBoxFB(0, 0, screeninfo.xres, screeninfo.yres, 0);
+}
+
+void CFbAccelSTi::blitBoxFB(int x0, int y0, int x1, int y1, fb_pixel_t color)
+{
+	if (x0 > -1 && y0 > -1 && x0 < x1 && y0 < y1) {
+		STMFBIO_BLT_DATA  bltData;
+		memset(&bltData, 0, sizeof(STMFBIO_BLT_DATA));
+		bltData.operation  = BLT_OP_FILL;
+		bltData.dstPitch   = screeninfo.xres * 4;
+		bltData.dstFormat  = SURF_ARGB8888;
+		bltData.srcFormat  = SURF_ARGB8888;
+		bltData.dstMemBase = STMFBGP_FRAMEBUFFER;
+		bltData.srcMemBase = STMFBGP_FRAMEBUFFER;
+		bltData.colour     = color;
+		bltData.dst_left   = x0;
+		bltData.dst_top    = y0;
+		bltData.dst_right  = x1;
+		bltData.dst_bottom = y1;
+		if (ioctl(fd, STMFBIO_BLT, &bltData ) < 0)
+			perror("STMFBIO_BLT");
+	}
+}
+
+void CFbAccelSTi::blitBPA2FB(unsigned char *mem, SURF_FMT fmt, int w, int h, int x, int y, int pan_x, int pan_y, int fb_x, int fb_y, int fb_w, int fb_h, bool transp)
+{
+	if (w < 1 || h < 1)
+		return;
+	if (fb_x < 0)
+		fb_x = x;
+	if (fb_y < 0)
+		fb_y = y;
+	if (pan_x < 0 || pan_x > w - x)
+		pan_x = w - x;
+	if (pan_y < 0 || pan_y > h - y)
+		pan_y = h - y;
+	if (fb_w < 0)
+		fb_w = pan_x;
+	if (fb_h < 0)
+		fb_h = pan_y;
+
+	STMFBIO_BLT_EXTERN_DATA blt_data;
+	memset(&blt_data, 0, sizeof(STMFBIO_BLT_EXTERN_DATA));
+	blt_data.operation  = BLT_OP_COPY;
+	if (!transp) /* transp == false (default): use transparency from source alphachannel */
+		blt_data.ulFlags = BLT_OP_FLAGS_BLEND_SRC_ALPHA|BLT_OP_FLAGS_BLEND_DST_MEMORY; // we need alpha blending
+//	blt_data.srcOffset  = 0;
+	switch (fmt) {
+	case SURF_RGB888:
+	case SURF_BGR888:
+		blt_data.srcPitch   = w * 3;
+		break;
+	default: // FIXME, this is wrong for quite a couple of formats which are currently not in use
+		blt_data.srcPitch   = w * 4;
+	}
+	blt_data.dstOffset  = lbb_off;
+	blt_data.dstPitch   = stride;
+	blt_data.src_left   = x;
+	blt_data.src_top    = y;
+	blt_data.src_right  = x + pan_x;
+	blt_data.src_bottom = y + pan_y;
+	blt_data.dst_left   = fb_x;
+	blt_data.dst_top    = fb_y;
+	blt_data.dst_right  = fb_x + fb_w;
+	blt_data.dst_bottom = fb_y + fb_h;
+	blt_data.srcFormat  = fmt;
+	blt_data.dstFormat  = SURF_ARGB8888;
+	blt_data.srcMemBase = (char *)mem;
+	blt_data.dstMemBase = (char *)lfb;
+	blt_data.srcMemSize = blt_data.srcPitch * h;
+	blt_data.dstMemSize = stride * DEFAULT_YRES + lbb_off;
+
+	msync(mem, blt_data.srcPitch * h, MS_SYNC);
+
+	if(ioctl(fd, STMFBIO_BLT_EXTERN, &blt_data) < 0)
+		perror("blitBPA2FB FBIO_BLIT");
+}
+
+CFrameBuffer::Mode3D CFbAccelSTi::get3DMode()
+{
+	return mode3D;
+}
+
+void CFbAccelSTi::set3DMode(Mode3D m)
+{
+	if (mode3D != m) {
+		ClearFB();
+		mode3D = m;
+		borderColorOld = 0x01010101;
+		blit();
+	}
+}
+
+void CFbAccelSTi::blitArea(int src_width, int src_height, int fb_x, int fb_y, int width, int height)
+{
+	if (!src_width || !src_height)
+		return;
+	STMFBIO_BLT_EXTERN_DATA blt_data;
+	memset(&blt_data, 0, sizeof(STMFBIO_BLT_EXTERN_DATA));
+	blt_data.operation  = BLT_OP_COPY;
+	blt_data.ulFlags    = BLT_OP_FLAGS_BLEND_SRC_ALPHA | BLT_OP_FLAGS_BLEND_DST_MEMORY;	// we need alpha blending
+//	blt_data.srcOffset  = 0;
+	blt_data.srcPitch   = src_width * 4;
+	blt_data.dstOffset  = lbb_off;
+	blt_data.dstPitch   = stride;
+//	blt_data.src_top    = 0;
+//	blt_data.src_left   = 0;
+	blt_data.src_right  = src_width;
+	blt_data.src_bottom = src_height;
+	blt_data.dst_left   = fb_x;
+	blt_data.dst_top    = fb_y;
+	blt_data.dst_right  = fb_x + width;
+	blt_data.dst_bottom = fb_y + height;
+	blt_data.srcFormat  = SURF_ARGB8888;
+	blt_data.dstFormat  = SURF_ARGB8888;
+	blt_data.srcMemBase = (char *)backbuffer;
+	blt_data.dstMemBase = (char *)lfb;
+	blt_data.srcMemSize = backbuf_sz;
+	blt_data.dstMemSize = stride * DEFAULT_YRES + lbb_off;
+
+	msync(backbuffer, blt_data.srcPitch * src_height, MS_SYNC);
+
+	if(ioctl(fd, STMFBIO_BLT_EXTERN, &blt_data) < 0)
+		perror("blitArea FBIO_BLIT");
+}
+
+void CFbAccelSTi::setMixerColor(uint32_t mixer_background)
+{
+	struct stmfbio_output_configuration outputConfig;
+	memset(&outputConfig, 0, sizeof(outputConfig));
+	outputConfig.outputid = STMFBIO_OUTPUTID_MAIN;
+	outputConfig.activate = STMFBIO_ACTIVATE_IMMEDIATE;
+	outputConfig.caps = STMFBIO_OUTPUT_CAPS_MIXER_BACKGROUND;
+	outputConfig.mixer_background = mixer_background;
+	if(ioctl(fd, STMFBIO_SET_OUTPUT_CONFIG, &outputConfig) < 0)
+		perror("setting output configuration failed");
+}
+
 #if 0
 /* this is not accelerated... */
 void CFbAccelSTi::paintPixel(const int x, const int y, const fb_pixel_t col)

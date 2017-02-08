@@ -32,6 +32,7 @@
 #include <sys/time.h> /* gettimeofday */
 #include <pthread.h>
 #include <inttypes.h>
+#include <map>
 class CPictureViewer
 {
 	struct cformathandler 

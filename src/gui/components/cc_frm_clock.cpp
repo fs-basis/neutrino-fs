@@ -37,6 +37,7 @@
 #include <ctype.h>
 #include <system/helpers.h>
 #include <system/debug.h>
+#include <driver/fontrenderer.h>
 
 using namespace std;
 

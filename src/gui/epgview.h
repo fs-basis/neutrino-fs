@@ -33,12 +33,9 @@
 #ifndef __epgview__
 #define __epgview__
 
-#include <driver/framebuffer.h>
 #include <driver/rcinput.h>
-#include <driver/fontrenderer.h>
 #include <system/settings.h>
 
-#include <gui/color.h>
 #include <gui/movieinfo.h>
 #include "widget/menue.h"
 
@@ -50,6 +47,7 @@
 
 #define BIG_FONT_FAKTOR 1.5
 
+class CFrameBuffer;
 class CEpgData
 {
 	private:

@@ -26,10 +26,10 @@
 #ifndef __CVOLUME__
 #define __CVOLUME__
 
-#include <driver/framebuffer.h>
 #include <gui/volumebar.h>
 
-class CVolume
+class CFramebuffer;
+class CVolume : public CChangeObserver
 {
 	private:
 		CFrameBuffer * frameBuffer;

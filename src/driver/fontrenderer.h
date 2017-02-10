@@ -136,6 +136,8 @@ class FBFontRenderClass
 		FBFontRenderClass(const int xres = 72, const int yres = 72);
 		~FBFontRenderClass();
 
+		void enableReCheck();
+
 		friend class Font;
 };
 

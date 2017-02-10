@@ -196,3 +196,5 @@ endif
 
 neutrino_LDADD += \
 	@SWRESAMPLE_LIBS@
+
+neutrino_LDADD += -lfribidi

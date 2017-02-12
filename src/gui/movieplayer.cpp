@@ -3333,6 +3333,10 @@ void CMoviePlayerGui::makeScreenShot(bool autoshot, bool forcover)
 
 void CMoviePlayerGui::showFileInfos()
 {
+	CStreamInfo2 * si = new CStreamInfo2;
+	si->exec(NULL, "");
+	delete si;
+/*
 	std::vector<std::string> keys, values;
 	playback->GetMetadata(keys, values);
 	size_t count = keys.size();
@@ -3350,6 +3354,7 @@ void CMoviePlayerGui::showFileInfos()
 		sfimenu=NULL;
 		delete sfimenu;
 	}
+*/
 	return;
 }
 

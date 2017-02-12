@@ -964,7 +964,7 @@ bool CPictureViewer::checkfreemem(size_t bufsize)
 {
 	struct sysinfo info;
 	sysinfo( &info );
-	if(bufsize + 4096 > (size_t)info.freeram + (size_t)info.freeswap){
+	if(bufsize*2 + 4096 > (size_t)info.freeram + (size_t)info.freeswap){
 		dprintf(DEBUG_NORMAL,  "[CPictureViewer] [%s - %d] Error: Out of memory\n", __func__, __LINE__);
 		return false;
 	}

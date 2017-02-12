@@ -86,6 +86,9 @@ class CFbAccelSTi
 		void set3DMode(Mode3D);
 		Mode3D get3DMode(void);
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+		void paintBoxRel(const int x, const int y, const int dx, const int dy, const fb_pixel_t col, int radius, int type);
+		void blitBB2FB(int fx0, int fy0, int fx1, int fy1, int tx0, int ty0, int tx1, int ty2);
+		void blitFB2FB(int fx0, int fy0, int fx1, int fy1, int tx0, int ty0, int tx1, int ty2);
 		void blitBPA2FB(unsigned char *mem, SURF_FMT fmt, int w, int h, int x = 0, int y = 0, int pan_x = -1, int pan_y = -1, int fb_x = -1, int fb_y = -1, int fb_w = -1, int fb_h = -1, bool transp = false);
 		void blitBoxFB(int x0, int y0, int x1, int y1, fb_pixel_t color);
 		void setMixerColor(uint32_t mixer_background);

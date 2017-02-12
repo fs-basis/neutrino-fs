@@ -52,7 +52,7 @@ endif
 
 if BOXTYPE_DUCKBOX
 libneutrino_driver_a_SOURCES += \
-	fb_accel_sti.cpp \
+	fb_accel_sti_noauto.cpp \
 	vfd.cpp
 endif
 

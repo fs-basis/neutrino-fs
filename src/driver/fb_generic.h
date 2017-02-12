@@ -134,7 +134,6 @@ class CFrameBuffer : public sigc::trackable
 		std::map<std::string, rawIcon> icon_cache;
 		int cache_size;
 
-		int *q_circle;
 		bool corner_tl, corner_tr, corner_bl, corner_br;
 
 		void * int_convertRGB2FB(unsigned char *rgbbuff, unsigned long x, unsigned long y, int transp, bool alpha);
@@ -147,9 +146,8 @@ class CFrameBuffer : public sigc::trackable
 		void paintShortHLineRelInternal(const int& x, const int& dx, const int& y, const fb_pixel_t& col);
 		int  limitRadius(const int& dx, const int& dy, int& radius);
 		void setCornerFlags(const int& type);
-		void initQCircle();
-		inline int calcCornersOffset(const int& dy, const int& line, const int& radius, const int& type) { int ofs = 0; calcCorners(&ofs, NULL, NULL, dy, line, radius, type); return ofs; }
-		bool calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, const int& line, const int& radius, const int& type);
+		bool calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, const int& line, const int& radius,
+				const bool& tl, const bool& tr, const bool& bl, const bool& br, int &alpha);
 
 	public:
 		///gradient direction

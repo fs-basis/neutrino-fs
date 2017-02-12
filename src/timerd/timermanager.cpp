@@ -438,7 +438,7 @@ int CTimerManager::adjustEvent(int peventID, time_t announceTime, time_t alarmTi
 	if(events.find(peventID)!=events.end())
 	{
 		CTimerEvent *event = events[peventID];
-		printf("before: EventID: %d - State %d\n",peventID,(int) event->eventState);
+		printf("\x1B[31mbefore: EventID: %d - State %d\n\x1B[0m",peventID,(int) event->eventState);
 		time_t now = time(NULL);
 		if(event->announceTime > 0)
 			event->announceTime = announceTime;
@@ -454,7 +454,7 @@ int CTimerManager::adjustEvent(int peventID, time_t announceTime, time_t alarmTi
 			event->eventState = CTimerd::TIMERSTATE_ISRUNNING;
 		m_saveEvents=true;
 		res = peventID;
-		printf("after: EventID: %d - State %d\n",peventID,(int) event->eventState);
+		printf("\x1B[31mafter: EventID: %d - State %d\n\x1B[0m",peventID,(int) event->eventState);
 	}
 	else
 		res = 0;
@@ -1392,6 +1392,7 @@ bool CTimerEvent_Record::adjustToCurrentEPG()
 	if (!autoAdjustToEPG)
 		return false;
 
+	printf("\x1B[31mInto %s for %d\n\x1B[0m",__func__,eventID);
 	CChannelEventList evtlist;
 	CEitManager::getInstance()->getEventsServiceKey(eventInfo.channel_id, evtlist);
 
@@ -1416,6 +1417,7 @@ bool CTimerEvent_Record::adjustToCurrentEPG()
 			_announceTime = e->startTime - (alarmTime - announceTime);
 			_alarmTime = e->startTime;
 			_stopTime = e->startTime + e->duration;
+			printf("\x1B[31mepg-event %s for Timer %d found\n\x1B[0m",e->description.c_str(),eventID);
 			break;
 		}
 	}
@@ -1427,6 +1429,7 @@ bool CTimerEvent_Record::adjustToCurrentEPG()
 
 	if ((_alarmTime != alarmTime) || (_announceTime != announceTime) || (_stopTime != stopTime)) {
 		alarmTime = _alarmTime; announceTime = _announceTime; stopTime = _stopTime;
+		printf("\x1B[31mdiff for Timer %d detected\n\x1B[0m",eventID);
 		if (CTimerManager::getInstance()->adjustEvent(eventID, _announceTime, _alarmTime, _stopTime))
 			return true;
 		}

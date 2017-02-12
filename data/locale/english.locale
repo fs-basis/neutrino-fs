@@ -1093,6 +1093,7 @@ menu.hint_delete_removed Delete the channels in the 'Removed channels' boquet
 menu.hint_epg_cache Maximum days to cache for future events
 menu.hint_epg_dir Select directory on harddisk or usb flash\nto save EPG.
 menu.hint_epg_extendedcache Maximum hours to cache extended\nevents descriptions
+menu.hint_epg_enablesdt The Service Description Table (SDT) program description table
 menu.hint_epg_fonts Change EPG details window font sizes
 menu.hint_epg_max_events Maximum events to cache. After reaching limit\nEPG cache will remove future events
 menu.hint_epg_old_events Hours after event end time to consider\nevent old and remove it from cache

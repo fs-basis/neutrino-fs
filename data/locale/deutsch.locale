@@ -1564,6 +1564,7 @@ miscsettings.epg_cache EPG-Cache (Tage)
 miscsettings.epg_cache_hint1 EPG-Daten im Voraus zwischenspeichern?
 miscsettings.epg_cache_hint2 (Angabe in Tagen)
 miscsettings.epg_dir EPG Speicherverzeichnis
+miscsettings.epg_enablesdt Transponder Hintergrundaktualisierung
 miscsettings.epg_extendedcache Sendungsbeschr. behalten (Std.)
 miscsettings.epg_extendedcache_hint1 Dauer für die Zwischenspeicherung der
 miscsettings.epg_extendedcache_hint2 Sendungsbeschreibung (Angabe in Stunden)

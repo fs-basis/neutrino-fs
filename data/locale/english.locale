@@ -1564,6 +1564,7 @@ miscsettings.epg_cache EPG-Cache (Days)
 miscsettings.epg_cache_hint1 How long will EPG-Data in the future cached?
 miscsettings.epg_cache_hint2 Set in days.
 miscsettings.epg_dir EPG save path
+miscsettings.epg_enablesdt Transponder Backgroundupdate
 miscsettings.epg_extendedcache EPG Long Description (hours)
 miscsettings.epg_extendedcache_hint1 How long into the future will EPG extended descriptions
 miscsettings.epg_extendedcache_hint2 be Cached? (Set in hours)

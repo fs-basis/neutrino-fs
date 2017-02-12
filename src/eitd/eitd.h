@@ -177,6 +177,7 @@ class CSectionThread : public OpenThreads::Thread, public DMX
 			if(running)
 				return false;
 			running = true;
+			xprintf("%s::Starting\n", name.c_str());
 			return (OpenThreads::Thread::start() == 0);
 		}
 		void StopRun()
@@ -198,6 +199,16 @@ class CSectionThread : public OpenThreads::Thread, public DMX
 			int ret = (OpenThreads::Thread::join() == 0);
 			xprintf("%s::Stop: to close\n", name.c_str());
 			DMX::close();
+			return ret;
+		}
+		bool Kill()
+		{
+			if(!running)
+				return false;
+			xprintf("%s::Canceling\n", name.c_str());
+			int ret = (OpenThreads::Thread::cancel() == 0);
+			DMX::close();
+			running = false;
 			return ret;
 		}
 };

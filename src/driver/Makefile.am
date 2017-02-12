@@ -57,7 +57,7 @@ libneutrino_driver_a_SOURCES += \
 endif
 
 if BOXTYPE_COOL
-if BOXMODEL_APOLLO
+if BOXMODEL_CS_HD2
 libneutrino_driver_a_SOURCES += \
 	fb_accel_cs_hd2.cpp \
 	vfd.cpp
@@ -70,6 +70,7 @@ endif
 
 if BOXTYPE_TRIPLE
 libneutrino_driver_a_SOURCES += \
+	fb_accel_td.cpp \
 	newclock.cpp \
 	lcdd.cpp
 endif

@@ -118,7 +118,7 @@ class CFrameBuffer : public sigc::trackable
 		std::string     backgroundFilename;
 		bool            useBackgroundPaint;
 		unsigned int	xRes, yRes, stride, bpp;
-		t_fb_var_screeninfo screeninfo, oldscreen;
+		t_fb_var_screeninfo screeninfo;
 		fb_cmap cmap;
 		__u16 red[256], green[256], blue[256], trans[256];
 
@@ -189,7 +189,7 @@ class CFrameBuffer : public sigc::trackable
 
 		bool getActive() const;                     // is framebuffer active?
 		void setActive(bool enable);                     // is framebuffer active?
-#if HAVE_COOL_HARDWARE && BOXMODEL_NEVIS
+#ifdef BOXMODEL_CS_HD1
 		virtual void setupGXA() {};
 		virtual void add_gxa_sync_marker() {};
 #endif
@@ -219,7 +219,7 @@ class CFrameBuffer : public sigc::trackable
 		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col, int radius, int type) { paintBoxRel(xa, ya, xb - xa, yb - ya, col, radius, type); }
 
 		void paintBoxFrame(const int x, const int y, const int dx, const int dy, const int px, const fb_pixel_t col, int radius = 0, int type = CORNER_ALL);
-		void paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col);
+		virtual void paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col);
 
 		inline void paintVLine(int x, int ya, int yb, const fb_pixel_t col) { paintVLineRel(x, ya, yb - ya, col); }
 		virtual void paintVLineRel(int x, int y, int dy, const fb_pixel_t col);

@@ -92,7 +92,6 @@ struct sectionsd
 
 	struct commandSetConfig
 	{
-		int scanMode;
 		int epg_cache;
 		int epg_old_events;
 		unsigned int epg_max_events;
@@ -328,7 +327,6 @@ struct sectionsd
 //
 //	setConfig
 //   data of request:
-//	int scanMode; 			-> updating of services and bouquets -> saved in auto_scanning
 //	int epg_cache;			-> in days -> saved in secondsToCache
 //	int epg_old_events;		-> in hours -> saved in oldEventsAre
 //	unsigned int epg_max_events;	-> #of saved events -> saved in max_events

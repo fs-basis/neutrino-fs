@@ -65,7 +65,7 @@
 #include "screensetup.h"
 #endif
 
-#ifdef BOXMODEL_APOLLO
+#ifdef BOXMODEL_CS_HD2
 #include <cnxtfb.h>
 #endif
 

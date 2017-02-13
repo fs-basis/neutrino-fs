@@ -30,9 +30,9 @@
 #include <vector>
 #include <stdio.h>    /* printf       */
 #include <sys/time.h> /* gettimeofday */
+#include <map>
 #include <pthread.h>
 #include <inttypes.h>
-#include <map>
 class CPictureViewer
 {
 	struct cformathandler

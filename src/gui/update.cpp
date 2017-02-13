@@ -838,7 +838,7 @@ void CFlashExpert::readmtd(int preadmtd)
 	if ((std::string)g_settings.update_dir == "/tmp")
 		skipCheck = true;
 #else
-#if BOXMODEL_APOLLO
+#if BOXMODEL_CS_HD2
 	if (forceOtherFilename)
 		filename = otherFilename;
 #endif

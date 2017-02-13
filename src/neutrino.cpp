@@ -848,6 +848,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screen_StartY = g_settings.screen_preset ? g_settings.screen_StartY_lcd : g_settings.screen_StartY_crt;
 	g_settings.screen_EndX = g_settings.screen_preset ? g_settings.screen_EndX_lcd : g_settings.screen_EndX_crt;
 	g_settings.screen_EndY = g_settings.screen_preset ? g_settings.screen_EndY_lcd : g_settings.screen_EndY_crt;
+
+	g_settings.screen_width = frameBuffer->getScreenWidth(true);
+	g_settings.screen_height = frameBuffer->getScreenHeight(true);
+
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
 	g_settings.screen_StartX_int = g_settings.screen_StartX;
 	g_settings.screen_StartY_int = g_settings.screen_StartY;
@@ -855,12 +859,11 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screen_EndY_int = g_settings.screen_EndY;
 	g_settings.screen_StartX = 0;
 	g_settings.screen_StartY = 0;
-	g_settings.screen_EndX = frameBuffer->getScreenWidth(true) - 1;
-	g_settings.screen_EndY = frameBuffer->getScreenHeight(true) - 1;
+	g_settings.screen_width = frameBuffer->getScreenWidth(true) - 1;
+	g_settings.screen_height = frameBuffer->getScreenHeight(true) - 1;
+	g_settings.screen_EndX = g_settings.screen_width;
+	g_settings.screen_EndY = g_settings.screen_height;
 #endif
-
-	g_settings.screen_width = frameBuffer->getScreenWidth(true);
-	g_settings.screen_height = frameBuffer->getScreenHeight(true);
 
 	// avoid configuration mismatch
 	if (g_settings.screen_EndX > g_settings.screen_width)
@@ -4302,6 +4305,7 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 		puts("[neutrino.cpp] executing " NEUTRINO_ENTER_STANDBY_SCRIPT ".");
 		if (my_system(NEUTRINO_ENTER_STANDBY_SCRIPT) != 0)
 			perror(NEUTRINO_ENTER_STANDBY_SCRIPT " failed");
+		CEpgScan::getInstance()->Start(true);
 		bool alive = recordingstatus || CEpgScan::getInstance()->Running() ||
 			CStreamManager::getInstance()->StreamStatus();
 
@@ -4312,7 +4316,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 		frameBuffer->setActive(false);
 		// Active standby on
 		powerManager->SetStandby(false, false);
-		CEpgScan::getInstance()->Start(true);
 #if ENABLE_FASTSCAN
 		if (scansettings.fst_update)
 			fst_timer = g_RCInput->addTimer(30*1000*1000, true);

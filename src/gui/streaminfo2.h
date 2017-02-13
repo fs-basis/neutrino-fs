@@ -25,7 +25,6 @@
 
 #include <gui/widget/menue.h>
 
-#include <driver/framebuffer.h>
 #include <gui/components/cc.h>
 #include <gui/movieplayer.h>
 #include <zapit/femanager.h>
@@ -34,6 +33,8 @@
 
 struct AVFormatContext;
 
+class CFrameBuffer;
+class COSDFader;
 class CStreamInfo2 : public CMenuTarget
 {
 	private:

@@ -21,9 +21,10 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  */
-
+#if 0
 #include <driver/fontrenderer.h>
 #include <driver/framebuffer.h>
+#endif
 #include <system/localize.h>
 #include <gui/color.h>
 

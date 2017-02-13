@@ -73,6 +73,7 @@
 //#include <system/helpers.h>
 #include <zapit/debug.h>
 #include <driver/moviecut.h>
+#include <driver/fontrenderer.h>
 
 #include <timerdclient/timerdclient.h>
 #include <system/hddstat.h>

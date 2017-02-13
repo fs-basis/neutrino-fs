@@ -326,7 +326,7 @@ void CInfoViewer::showRecordIcon (const bool show)
 		frameBuffer->getIconSize(Icon_Rec.c_str(), &rec_icon_w, &rec_icon_h);
 		frameBuffer->getIconSize(Icon_Ts.c_str(), &ts_icon_w, &ts_icon_h);
 
-		int chanH = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight () * (g_settings.screen_yres / 100);
+		int chanH = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight () * (g_settings.font_scaling_y / 100);
 		if (chanH < rec_icon_h)
 			chanH = rec_icon_h;
 		const int box_posX = ChanInfoX;   //ChanName_X + OFFSET_SHADOW;
@@ -344,7 +344,7 @@ void CInfoViewer::showRecordIcon (const bool show)
 			}
 			std::string records_msg = inst->GetEpgTitle();
 			int TextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(records_msg)
-					* (g_settings.screen_xres / 100);
+					* (g_settings.font_scaling_x / 100);
 			box_len = icon_width + TextWidth + icon_space*5;
 			spacer = i*(chanH + 10);
 		if (show)

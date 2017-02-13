@@ -77,7 +77,7 @@ endif
 
 if BOXTYPE_SPARK
 libneutrino_driver_a_SOURCES += \
-	fb_accel_glfb.cpp \
+	fb_accel_sti_noauto.cpp \
 	simple_display.cpp
 endif
 if BOXTYPE_AZBOX

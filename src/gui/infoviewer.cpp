@@ -57,7 +57,7 @@
 #include <gui/color_custom.h>
 #include <gui/widget/icons.h>
 #include <gui/widget/hintbox.h>
-//#include <gui/pictureviewer.h>
+#include <gui/pictureviewer.h>
 #include <gui/movieplayer.h>
 #include <gui/infoclock.h>
 

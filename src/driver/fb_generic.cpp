@@ -43,13 +43,11 @@
 #include <math.h>
 
 #include <linux/kd.h>
-#include <png.h>
 
 #include <gui/audiomute.h>
 #include <gui/color.h>
 #include <gui/pictureviewer.h>
 #include <system/debug.h>
-#include <system/helpers.h>
 #include <global.h>
 #include <video.h>
 #include <cs_api.h>
@@ -60,39 +58,6 @@ extern CPictureViewer * g_PicViewer;
 #define ICON_CACHE_SIZE 1024*1024*2 // 2mb
 
 #define BACKGROUNDIMAGEWIDTH 720
-
-
-
-static int *getQuarterCircle(int radius)
-{
-	static std::map<int,int *> qc_map;
-	std::map<int, int *>::iterator it = qc_map.find(radius);
-	if (it != qc_map.end())
-		return (*it).second;
-
-	int *qc = (int *) malloc((radius * 2 + 2) * sizeof(int));
-	if (!qc)
-		return NULL;
-	int *res = qc_map[radius] = qc;
-
-	float r = (radius + .5) * (radius + .5);
-	radius++;
-	for (int x = 0; x < radius; x++) {
-		float y = sqrt(r - x*x);
-		*qc++ = (int) floor(y); //rint?
-		int a = (int)(256.0 * (y - floor(y)));
-		*qc++ = a ? a : 255;
-	}
-	return res;
-}
-
-inline fb_pixel_t mergeColor(fb_pixel_t oc, int ol, fb_pixel_t ic, int il)
-{
-	return   ((( (oc >> 24)         * ol) + ( (ic >> 24)         * il)) >> 8) << 24
-		|(((((oc >> 16) & 0xff) * ol) + (((ic >> 16) & 0xff) * il)) >> 8) << 16
-		|(((((oc >> 8)  & 0xff) * ol) + (((ic >>  8) & 0xff) * il)) >> 8) << 8
-		|(((( oc        & 0xff) * ol) + (( ic        & 0xff) * il)) >> 8);
-}
 
 void CFrameBuffer::waitForIdle(const char *)
 {
@@ -135,6 +100,8 @@ CFrameBuffer::CFrameBuffer()
 							// TM_NONE:  No 'pseudo' transparency
 							// TM_INI:   Transparency depends on g_settings.infobar_alpha ???
 	m_transparent	 = m_transparent_default;
+	q_circle = NULL;
+	initQCircle();
 	corner_tl = false;
 	corner_tr = false;
 	corner_bl = false;
@@ -154,7 +121,7 @@ CFrameBuffer* CFrameBuffer::getInstance()
 	static CFrameBuffer* frameBuffer = NULL;
 
 	if (!frameBuffer) {
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+#if HAVE_SPARK_HARDWARE
 		frameBuffer = new CFbAccelSTi();
 #endif
 #if HAVE_COOL_HARDWARE
@@ -258,6 +225,11 @@ CFrameBuffer::~CFrameBuffer()
 	if (backupBackground) {
 		delete[] backupBackground;
 		backupBackground = NULL;
+	}
+
+	if (q_circle) {
+		delete[] q_circle;
+		q_circle = NULL;
 	}
 
 	if (lfb)
@@ -496,8 +468,8 @@ fb_pixel_t* CFrameBuffer::paintBoxRel2Buf(const int dx, const int dy, const int 
 
 		int line = 0;
 		while (line < dy) {
-			int ofl, ofr, olevel;
-			calcCorners(NULL, &ofl, &ofr, dy, line, radius, corner_tl, corner_tr, corner_bl, corner_br, olevel);
+			int ofl, ofr;
+			calcCorners(NULL, &ofl, &ofr, dy, line, radius, type);
 			if (dx-ofr-ofl < 1) {
 				if (dx-ofr-ofl == 0) {
 					dprintf(DEBUG_INFO, "[%s - %d]: radius %d, end x %d y %d\n", __func__, __LINE__, radius, dx-ofr-ofl, line);
@@ -541,7 +513,7 @@ fb_pixel_t* CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, co
 
 #ifdef BOXMODEL_CS_HD2
 	if (_dx%4 != 0) {
-		w_align = GetWidth4FB_HW_ACC(x, _dx, true);
+		w_align = getWidth4FB_HW_ACC(x, _dx, true);
 		if (w_align < _dx)
 			_dx = w_align;
 		offs_align = w_align - _dx;
@@ -633,9 +605,7 @@ void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int
 		int line = 0;
 		while (line < dy) {
 			int ofl, ofr;
-			int level;
-			if (calcCorners(NULL, &ofl, &ofr, dy, line, radius,
-					corner_tl, corner_tr, corner_bl, corner_br, level)) {
+			if (calcCorners(NULL, &ofl, &ofr, dy, line, radius, type)) {
 				//printf("3: x %d y %d dx %d dy %d rad %d line %d\n", x, y, dx, dy, radius, line);
 			}
 
@@ -997,36 +967,77 @@ void CFrameBuffer::setCornerFlags(const int& type)
 	corner_br = (type & CORNER_BOTTOM_RIGHT) == CORNER_BOTTOM_RIGHT;
 }
 
-bool CFrameBuffer::calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, const int& line, const int& radius,
-				const bool& tl, const bool& tr, const bool& bl, const bool& br, int &alpha)
+void CFrameBuffer::initQCircle()
 {
+	/* this table contains the x coordinates for a quarter circle (the bottom right quarter) with fixed
+	   radius of 540 px which is the half of the max HD graphics size of 1080 px. So with that table we
+	   ca draw boxes with round corners and als circles by just setting dx = dy = radius (max 540). */
+	static const int _q_circle[541] = {
+		540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540, 540,
+		540, 540, 540, 540, 539, 539, 539, 539, 539, 539, 539, 539, 539, 539, 539, 539, 539, 539, 539, 539,
+		539, 538, 538, 538, 538, 538, 538, 538, 538, 538, 538, 538, 538, 537, 537, 537, 537, 537, 537, 537,
+		537, 537, 536, 536, 536, 536, 536, 536, 536, 536, 535, 535, 535, 535, 535, 535, 535, 535, 534, 534,
+		534, 534, 534, 534, 533, 533, 533, 533, 533, 533, 532, 532, 532, 532, 532, 532, 531, 531, 531, 531,
+		531, 531, 530, 530, 530, 530, 529, 529, 529, 529, 529, 529, 528, 528, 528, 528, 527, 527, 527, 527,
+		527, 526, 526, 526, 526, 525, 525, 525, 525, 524, 524, 524, 524, 523, 523, 523, 523, 522, 522, 522,
+		522, 521, 521, 521, 521, 520, 520, 520, 519, 519, 519, 518, 518, 518, 518, 517, 517, 517, 516, 516,
+		516, 515, 515, 515, 515, 514, 514, 514, 513, 513, 513, 512, 512, 512, 511, 511, 511, 510, 510, 510,
+		509, 509, 508, 508, 508, 507, 507, 507, 506, 506, 506, 505, 505, 504, 504, 504, 503, 503, 502, 502,
+		502, 501, 501, 500, 500, 499, 499, 499, 498, 498, 498, 497, 497, 496, 496, 496, 495, 495, 494, 494,
+		493, 493, 492, 492, 491, 491, 490, 490, 490, 489, 489, 488, 488, 487, 487, 486, 486, 485, 485, 484,
+		484, 483, 483, 482, 482, 481, 481, 480, 480, 479, 479, 478, 478, 477, 477, 476, 476, 475, 475, 474,
+		473, 473, 472, 472, 471, 471, 470, 470, 469, 468, 468, 467, 466, 466, 465, 465, 464, 464, 463, 462,
+		462, 461, 460, 460, 459, 459, 458, 458, 457, 456, 455, 455, 454, 454, 453, 452, 452, 451, 450, 450,
+		449, 449, 448, 447, 446, 446, 445, 445, 444, 443, 442, 441, 441, 440, 440, 439, 438, 437, 436, 436,
+		435, 435, 434, 433, 432, 431, 431, 430, 429, 428, 427, 427, 426, 425, 425, 424, 423, 422, 421, 421,
+		420, 419, 418, 417, 416, 416, 415, 414, 413, 412, 412, 411, 410, 409, 408, 407, 406, 405, 404, 403,
+		403, 402, 401, 400, 399, 398, 397, 397, 395, 394, 393, 393, 392, 391, 390, 389, 388, 387, 386, 385,
+		384, 383, 382, 381, 380, 379, 378, 377, 376, 375, 374, 373, 372, 371, 369, 368, 367, 367, 365, 364,
+		363, 362, 361, 360, 358, 357, 356, 355, 354, 353, 352, 351, 350, 348, 347, 346, 345, 343, 342, 341,
+		340, 339, 337, 336, 335, 334, 332, 331, 329, 328, 327, 326, 324, 323, 322, 321, 319, 317, 316, 315,
+		314, 312, 310, 309, 308, 307, 305, 303, 302, 301, 299, 297, 296, 294, 293, 291, 289, 288, 287, 285,
+		283, 281, 280, 278, 277, 275, 273, 271, 270, 268, 267, 265, 263, 261, 259, 258, 256, 254, 252, 250,
+		248, 246, 244, 242, 240, 238, 236, 234, 232, 230, 228, 225, 223, 221, 219, 217, 215, 212, 210, 207,
+		204, 202, 200, 197, 195, 192, 190, 187, 184, 181, 179, 176, 173, 170, 167, 164, 160, 157, 154, 150,
+		147, 144, 140, 136, 132, 128, 124, 120, 115, 111, 105, 101,  95,  89,  83,  77,  69,  61,  52,  40,
+		 23};
+	if (q_circle == NULL)
+		q_circle = new int[sizeof(_q_circle) / sizeof(int)];
+	memcpy(q_circle, _q_circle, sizeof(_q_circle));
+}
+
+bool CFrameBuffer::calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, const int& line, const int& radius, const int& type)
+{
+/* just an multiplicator for all math to reduce rounding errors */
+#define MUL 32768
 	int scl, _ofs = 0;
 	bool ret = false;
-	if (ofl) *ofl = 0;
-	if (ofr) *ofr = 0;
-	int *q_circle = getQuarterCircle(radius);
+	if (ofl != NULL) *ofl = 0;
+	if (ofr != NULL) *ofr = 0;
+	int scf = (540 * MUL) / ((radius < 1) ? 1 : radius);
 	/* one of the top corners */
-	if (line < radius && (tl || tr)) {
-		/* upper round corners */
-		scl = radius - line;
-		_ofs =  radius - q_circle[2 * scl];
-		if (ofl && tl) *ofl = _ofs;
-		if (ofr && tr) *ofr = _ofs;
-		alpha = q_circle[2 * scl + 1];
+	if (line < radius && (type & CORNER_TOP)) {
+		/* uper round corners */
+		scl = scf * (radius - line) / MUL;
+		if ((scf * (radius - line) % MUL) >= (MUL / 2)) /* round up */
+			scl++;
+		_ofs =  radius - (q_circle[scl] * MUL / scf);
+		if (ofl != NULL) *ofl = corner_tl ? _ofs : 0;
+		if (ofr != NULL) *ofr = corner_tr ? _ofs : 0;
 	}
 	/* one of the bottom corners */
-	else if ((line >= dy - radius) && (bl || br)) {
+	else if ((line >= dy - radius) && (type & CORNER_BOTTOM)) {
 		/* lower round corners */
-		scl = radius - (dy - (line + 1));
-		_ofs = radius - q_circle[2 * scl];
-		if (ofl && bl) *ofl = _ofs;
-		if (ofr && br) *ofr = _ofs;
-		alpha = q_circle[2 * scl + 1];
+		scl = scf * (radius - (dy - (line + 1))) / MUL;
+		if ((scf * (radius - (dy - (line + 1))) % MUL) >= (MUL / 2)) /* round up */
+			scl++;
+		_ofs =  radius - (q_circle[scl] * MUL / scf);
+		if (ofl != NULL) *ofl = corner_bl ? _ofs : 0;
+		if (ofr != NULL) *ofr = corner_br ? _ofs : 0;
 	}
 	else
 		ret = true;
-	if (ofs)
-		*ofs = _ofs;
+	if (ofs != NULL) *ofs = _ofs;
 	return ret;
 }
 
@@ -1035,79 +1046,65 @@ void CFrameBuffer::paintBoxFrame(const int x, const int y, const int dx, const i
 	if (!getActive())
 		return;
 
-	int r_tl = 0, r_tr = 0, r_bl = 0, r_br = 0;
+	if (dx == 0 || dy == 0) {
+		dprintf(DEBUG_NORMAL, "[CFrameBuffer] [%s - %d]: radius %d, start x %d y %d end x %d y %d\n",  __func__, __LINE__, radius, x, y, x+dx, y+dy);
+		return;
+	}
+	if (radius < 0)
+		dprintf(DEBUG_NORMAL, "[CFrameBuffer] [%s - %d]: WARNING! radius < 0 [%d] FIXIT\n", __func__, __LINE__, radius);
+
+	setCornerFlags(type);
+	int rad_tl = 0, rad_tr = 0, rad_bl = 0, rad_br = 0;
 	if (type && radius) {
 		int x_rad = radius - 1;
-		if (corner_tl) r_tl = x_rad;
-		if (corner_tr) r_tr = x_rad;
-		if (corner_bl) r_bl = x_rad;
-		if (corner_br) r_br = x_rad;
+		if (corner_tl) rad_tl = x_rad;
+		if (corner_tr) rad_tr = x_rad;
+		if (corner_bl) rad_bl = x_rad;
+		if (corner_br) rad_br = x_rad;
 	}
-	paintBoxRel(x + r_tl,    y          , dx - r_tl - r_tr, px,               col); // top horizontal
-	paintBoxRel(x + r_bl,    y + dy - px, dx - r_bl - r_br, px,               col); // bottom horizontal
-	paintBoxRel(x          , y + r_tl,    px,               dy - r_tl - r_bl, col); // left vertical
-	paintBoxRel(x + dx - px, y + r_tr,    px,               dy - r_tr - r_br, col); // right vertical
+	paintBoxRel(x + rad_tl , y          , dx - rad_tl - rad_tr, px                  , col); // top horizontal
+	paintBoxRel(x + rad_bl , y + dy - px, dx - rad_bl - rad_br, px                  , col); // bottom horizontal
+	paintBoxRel(x          , y + rad_tl , px                  , dy - rad_tl - rad_bl, col); // left vertical
+	paintBoxRel(x + dx - px, y + rad_tr , px                  , dy - rad_tr - rad_br, col); // right vertical
 
-	if (!radius || !type)
-		return;
+	if (type && radius) {
+		radius = limitRadius(dx, dy, radius);
+		int line = 0;
+		waitForIdle("CFrameBuffer::paintBoxFrame");
+		while (line < dy) {
+			int ofs = 0, ofs_i = 0;
+			// inner box
+			if ((line >= px) && (line < (dy - px)))
+				ofs_i = calcCornersOffset(dy - 2*px, line-px, radius-px, type);
+			// outer box
+			ofs = calcCornersOffset(dy, line, radius, type);
 
-	radius = limitRadius(dx, dy, radius);
-	if (radius < 1)		/* dx or dy = 0... */
-		radius = 1;	/* avoid div by zero below */
-	int line = 0;
-	waitForIdle();
-	while (line < dy) {
-		int ofs = 0, ofs_i = 0;
-		int ilevel = 0, olevel = 0;
-		// inner box
-		if ((line >= px) && (line < (dy - px)))
-			calcCorners(&ofs_i, NULL, NULL, dy - 2 * px, line - px, radius - px,
-					corner_tl, corner_tr, corner_bl, corner_br, ilevel);
-		// outer box
-		calcCorners(&ofs, NULL, NULL, dy, line, radius, corner_tl, corner_tr, corner_bl, corner_br, olevel);
-
-		int _y     = y + line;
-		if (line < px || line >= (dy - px)) {
-			// left
-			if ((corner_tl && line < radius) || (corner_bl && line >= dy - radius)) {
-				paintLine(x + ofs, _y, x + ofs + radius, _y, col);
+			int _x     = x + ofs;
+			int _x_end = x + dx;
+			int _y     = y + line;
+			if ((line < px) || (line >= (dy - px))) {
+				// left
+				if (((corner_tl) && (line < radius)) || ((corner_bl) && (line >= dy - radius)))
+					paintShortHLineRelInternal(_x, radius - ofs, _y, col);
+				// right
+				if (((corner_tr) && (line < radius)) || ((corner_br) && (line >= dy - radius)))
+					paintShortHLineRelInternal(_x_end - radius, radius - ofs, _y, col);
 			}
-			// right
-			if ((corner_tr && line < radius) || (corner_br && line >= dy - radius)) {
-				paintLine(x + dx - radius, _y, x + dx - ofs, _y, col);
+			else if (line < (dy - px)) {
+				int _dx = (ofs_i-ofs) + px;
+				// left
+				if (((corner_tl) && (line < radius)) || ((corner_bl) && (line >= dy - radius)))
+					paintShortHLineRelInternal(_x, _dx, _y, col);
+				// right
+				if (((corner_tr) && (line < radius)) || ((corner_br) && (line >= dy - radius)))
+					paintShortHLineRelInternal(_x_end - ofs_i - px, _dx, _y, col);
 			}
+			if ((line == radius) && (dy > 2*radius))
+				// line outside the rounded corners
+				line = dy - radius;
+			else
+				line++;
 		}
-		else if (line < (dy - px)) {
-			int _dx = (ofs_i - ofs) + px;
-			// left
-			if ((corner_tl && line < radius) || (corner_bl && line >= dy - radius)) {
-				fb_pixel_t *p = lbb + _y * stride/sizeof(fb_pixel_t) + x + ofs;
-				fb_pixel_t *pe = p + _dx;
-
-				*p = mergeColor(*p, 255 - olevel, col, olevel);
-				p++;
-				while (p < pe)
-					*p++ = col;
-				*p = mergeColor(*p, ilevel, col, 255 - ilevel);
-				
-			}
-			// right
-			if ((corner_tr && line < radius) || (corner_br && line >= dy - radius)) {
-				fb_pixel_t *p = lbb + _y * stride/sizeof(fb_pixel_t) + x + dx - ofs_i - px - 1;
-				fb_pixel_t *pe = p + _dx;
-
-				*p = mergeColor(*p, ilevel, col, 255 - ilevel);
-				p++;
-				while (p < pe)
-					*p++ = col;
-				*p = mergeColor(*p, 255 - olevel, col, olevel);
-			}
-		}
-		if (line == radius && dy > 2 * radius)
-			// line outside the rounded corners
-			line = dy - radius;
-		else
-			line++;
 	}
 }
 
@@ -1768,89 +1765,12 @@ bool CFrameBuffer::_checkFbArea(int _x, int _y, int _dx, int _dy, bool prev)
 	return true;
 }
 
-bool CFrameBuffer::OSDShot(const std::string &name)
-{
-	struct timeval ts, te;
-	gettimeofday(&ts, NULL);
-
-	size_t l = name.find_last_of(".");
-	if(l == std::string::npos)
-		return false;
-	if (name.substr(l) != ".png")
-		return false;
-	FILE *out = fopen(name.c_str(), "w");
-	if (!out)
-		return false;
-
-	fb_pixel_t *b = (fb_pixel_t *) lfb;
-
-	png_bytep row_pointers[yRes];
-	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING,
-		(png_voidp) NULL, (png_error_ptr) NULL, (png_error_ptr) NULL);
-	png_infop info_ptr = png_create_info_struct(png_ptr);
-
-	png_init_io(png_ptr, out);
-
-	for (unsigned int y = 0; y < yRes; y++)
-		row_pointers[y] = (png_bytep) (b + y * xRes);
-
-	png_set_compression_level(png_ptr, g_settings.screenshot_png_compression);
-	png_set_bgr(png_ptr);
-	png_set_filter(png_ptr, 0, PNG_FILTER_NONE);
-	png_set_IHDR(png_ptr, info_ptr, xRes, yRes, 8, PNG_COLOR_TYPE_RGBA,
-		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-	png_write_info(png_ptr, info_ptr);
-	png_write_image(png_ptr, row_pointers);
-	png_write_end(png_ptr, NULL);
-	png_destroy_write_struct(&png_ptr, &info_ptr);
-
-	fclose(out);
-
-	gettimeofday(&te, NULL);
-	fprintf(stderr, "%s took %lld us\n", __func__, (te.tv_sec * 1000000LL + te.tv_usec) - (ts.tv_sec * 1000000LL + ts.tv_usec));
-	return true;
-}
-
 /* dummy, can be implemented in CFbAccel */
 void CFrameBuffer::mark(int , int , int , int )
 {
 }
-void CFrameBuffer::resChange(void)
-{
-}
-void CFrameBuffer::setBorder(int, int, int, int)
-{
-}
-void CFrameBuffer::setBorderColor(fb_pixel_t)
-{
-}
-void CFrameBuffer::ClearFB(void)
-{
-}
-void CFrameBuffer::getBorder(int &, int &, int &, int &)
-{
-}
-fb_pixel_t CFrameBuffer::getBorderColor(void)
-{
-}
-void CFrameBuffer::blitArea(int , int , int , int , int , int )
-{
-}
-void CFrameBuffer::set3DMode(Mode3D)
-{
-}
-CFrameBuffer::Mode3D CFrameBuffer::get3DMode(void)
-{
-}
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-void CFrameBuffer::blitBPA2FB(unsigned char* , SURF_FMT , int , int , int , int , int , int , int , int , int , int , bool )
-{
-}
-void CFrameBuffer::blitBoxFB(int , int , int , int , fb_pixel_t )
-{
-}
-void CFrameBuffer::setMixerColor(uint32_t)
-{
-}
-#endif
 
+uint32_t CFrameBuffer::getWidth4FB_HW_ACC(const uint32_t /*x*/, const uint32_t w, const bool /*max*/)
+{
+	return w;
+}

@@ -125,6 +125,7 @@ CChannelList::CChannelList(const char * const pName, bool phistoryMode, bool _vl
 	cc_minitv = NULL;
 	logo_off = 0;
 	pig_on_win = false;
+
 	CChannelLogo = NULL;
 	headerNew = true;
 	bouquet = NULL;
@@ -2127,8 +2128,9 @@ void CChannelList::paintItem(int pos, const bool firstpaint)
 			//name
 			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->RenderString(x+ 5+ numwidth+ 10+prg_offset, ypos+ fheight, width- numwidth- 40- 15-prg_offset, nameAndDescription, color);
 		}
-		if (!firstpaint && curr == selected)
+		if (!firstpaint && curr == selected) {
 			updateVfd();
+	}
 	}
 }
 
@@ -2145,12 +2147,14 @@ void CChannelList::updateVfd()
 	else
 		p_event = &chan->currentEvent;
 
+#if 0
 	if (!(chan->currentEvent.description.empty())) {
 		char nameAndDescription[255];
 		snprintf(nameAndDescription, sizeof(nameAndDescription), "%s - %s",
 				chan->getName().c_str(), p_event->description.c_str());
 		CVFD::getInstance()->showMenuText(0, nameAndDescription, -1, true); // UTF-8
 	} else
+#endif
 		CVFD::getInstance()->showMenuText(0, chan->getName().c_str(), -1, true); // UTF-8
 }
 
@@ -2446,7 +2450,8 @@ void CChannelList::paint_events(CChannelEventList &evtlist)
 	for (e=evtlist.begin(); e!=evtlist.end(); ++e )
 	{
 		//Remove events in the past
-		if ( (u_azeit > (e->startTime + e->duration)) && (!(e->eventID == 0)))
+        time_t dif = azeit - e->startTime;
+        if ( (dif > 0) && (!(e->eventID == 0)))
 		{
 			do
 			{
@@ -2454,8 +2459,9 @@ void CChannelList::paint_events(CChannelEventList &evtlist)
 				e = evtlist.erase( e );
 				if (e == evtlist.end())
 					break;
+				dif = azeit - e->startTime;
 			}
-			while ( u_azeit > (e->startTime + e->duration));
+			while ( dif > 0);
 		}
 		if (e == evtlist.end())
 			break;

@@ -10,4 +10,3 @@ SUBDIRS = \
 	slider \
 	status \
 	various
-

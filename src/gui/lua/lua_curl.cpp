@@ -135,6 +135,7 @@ int CLuaInstCurl::CurlDownload(lua_State *L)
 					as secund return value
 	A, userAgent	string		empty
 	P, postfields	string		empty
+	data, post-data	string		empty
 	v, verbose	bool		false
 	s, silent	bool		false
 	h, header	bool		false
@@ -144,6 +145,9 @@ int CLuaInstCurl::CurlDownload(lua_State *L)
 	useProxy	bool		true (default)
 	followRedir	bool		true
 	maxRedirs	number		20
+	data				string		empty
+	httpheader,
+	custom-header		string		empty 
 */
 
 /*
@@ -219,7 +223,8 @@ Example:
 	tableLookup(L, "A", userAgent) || tableLookup(L, "userAgent", userAgent);
 
 	std::string postfields = "";//specify data to POST to server
-	tableLookup(L, "P", postfields) || tableLookup(L, "postfields", postfields);
+	tableLookup(L, "P", postfields) || tableLookup(L, "postfields", postfields) ||
+	tableLookup(L, "data", postfields) || tableLookup(L, "post-data", postfields);
 
 	bool verbose = false;
 	tableLookup(L, "v", verbose) || tableLookup(L, "verbose", verbose);
@@ -247,6 +252,9 @@ Example:
 
 	lua_Integer maxRedirs = 20;
 	tableLookup(L, "maxRedirs", maxRedirs);
+	
+	std::string customheader = "";
+	tableLookup(L, "httpheader", customheader) || tableLookup(L, "custom-header", customheader);
 
 	curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
 	if (toFile) {
@@ -268,6 +276,12 @@ Example:
 	if (!userAgent.empty())
 		curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, userAgent.c_str());
 
+	if (!customheader.empty()) {
+		 struct curl_slist *chunk = NULL;
+		 chunk = curl_slist_append(chunk, customheader.c_str());
+		 curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, chunk);
+	}
+		
 	if (!postfields.empty())
 		curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, postfields.c_str());
 

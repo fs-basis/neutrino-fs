@@ -85,12 +85,12 @@ void CFrameBuffer::waitForIdle(const char *)
 
 static uint8_t * virtual_fb = NULL;
 inline unsigned int make16color(uint16_t r, uint16_t g, uint16_t b, uint16_t t,
-                                  uint32_t  /*rl*/ = 0, uint32_t  /*ro*/ = 0,
-                                  uint32_t  /*gl*/ = 0, uint32_t  /*go*/ = 0,
-                                  uint32_t  /*bl*/ = 0, uint32_t  /*bo*/ = 0,
-                                  uint32_t  /*tl*/ = 0, uint32_t  /*to*/ = 0)
+				  uint32_t  /*rl*/ = 0, uint32_t  /*ro*/ = 0,
+				  uint32_t  /*gl*/ = 0, uint32_t  /*go*/ = 0,
+				  uint32_t  /*bl*/ = 0, uint32_t  /*bo*/ = 0,
+				  uint32_t  /*tl*/ = 0, uint32_t  /*to*/ = 0)
 {
-        return ((t << 24) & 0xFF000000) | ((r << 8) & 0xFF0000) | ((g << 0) & 0xFF00) | (b >> 8 & 0xFF);
+	return ((t << 24) & 0xFF000000) | ((r << 8) & 0xFF0000) | ((g << 0) & 0xFF00) | (b >> 8 & 0xFF);
 }
 
 static int *getQuarterCircle(int radius)

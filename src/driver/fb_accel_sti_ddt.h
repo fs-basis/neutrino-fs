@@ -24,19 +24,11 @@
 #ifndef __fbaccel__
 #define __fbaccel__
 #include <config.h>
-
-#include <stdint.h>
-#include <linux/fb.h>
-#include <linux/vt.h>
-
-#include <string>
-#include <map>
-#include <vector>
 #include <OpenThreads/Mutex>
 #include <OpenThreads/ScopedLock>
 #include <OpenThreads/Thread>
 #include <OpenThreads/Condition>
-#include <linux/stmfb.h>
+#include "fb_generic_sti_ddt.h"
 #include <bpamem.h>
 
 class CFrameBuffer;
@@ -45,9 +37,9 @@ class CFbAccel
 	private:
 		CFrameBuffer *fb;
 		fb_pixel_t lastcol;
-		OpenThreads::Mutex mutex;
 		void setColor(fb_pixel_t col);
 		void run(void);
+		OpenThreads::Mutex mutex;
 	public:
 		fb_pixel_t *backbuffer;
 		fb_pixel_t *lbb;
@@ -55,14 +47,14 @@ class CFbAccel
 		~CFbAccel();
 		bool init(void);
 		int setMode(void);
-		void paintPixel(int x, int y, const fb_pixel_t col);
+
 		void paintRect(const int x, const int y, const int dx, const int dy, const fb_pixel_t col);
-		void paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col);
 		void blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t xoff, uint32_t yoff, uint32_t xp, uint32_t yp, bool transp);
 		void waitForIdle(void);
 		void mark(int x, int y, int dx, int dy);
+		void paintPixel(int x, int y, const fb_pixel_t col);
+		void paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col);
 		void blit();
-		void update();
 		int sX, sY, eX, eY;
 		int startX, startY, endX, endY;
 		t_fb_var_screeninfo s;

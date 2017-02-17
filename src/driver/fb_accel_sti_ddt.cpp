@@ -48,6 +48,9 @@
 
 #include <stdlib.h>
 
+#include <linux/stmfb.h>
+#include <bpamem.h>
+
 #include <driver/abstime.h>
 
 /* note that it is *not* enough to just change those values */
@@ -71,6 +74,7 @@ CFbAccel::CFbAccel(CFrameBuffer *_fb)
 	fb = _fb;
 	init();
 	lastcol = 0xffffffff;
+
 	lbb = fb->lfb;	/* the memory area to draw to... */
 	if (fb->available < 12*1024*1024)
 	{
@@ -159,12 +163,9 @@ CFbAccel::~CFbAccel()
 		close(fb->fd);
 }
 
-void CFbAccel::update()
+void CFbAccel::setColor(fb_pixel_t col)
 {
-}
-
-void CFbAccel::setColor(fb_pixel_t)
-{
+	(void)col; /* avoid "unused parameter" compiler warning */
 }
 
 void CFbAccel::paintRect(const int x, const int y, const int dx, const int dy, const fb_pixel_t col)

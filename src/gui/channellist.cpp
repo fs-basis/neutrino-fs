@@ -125,7 +125,6 @@ CChannelList::CChannelList(const char * const pName, bool phistoryMode, bool _vl
 	cc_minitv = NULL;
 	logo_off = 0;
 	pig_on_win = false;
-
 	CChannelLogo = NULL;
 	headerNew = true;
 	bouquet = NULL;
@@ -2450,8 +2449,7 @@ void CChannelList::paint_events(CChannelEventList &evtlist)
 	for (e=evtlist.begin(); e!=evtlist.end(); ++e )
 	{
 		//Remove events in the past
-        time_t dif = azeit - e->startTime;
-        if ( (dif > 0) && (!(e->eventID == 0)))
+		if ( (u_azeit > (e->startTime + e->duration)) && (!(e->eventID == 0)))
 		{
 			do
 			{
@@ -2459,9 +2457,8 @@ void CChannelList::paint_events(CChannelEventList &evtlist)
 				e = evtlist.erase( e );
 				if (e == evtlist.end())
 					break;
-				dif = azeit - e->startTime;
 			}
-			while ( dif > 0);
+			while ( u_azeit > (e->startTime + e->duration));
 		}
 		if (e == evtlist.end())
 			break;

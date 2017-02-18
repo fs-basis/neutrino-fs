@@ -617,7 +617,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.epg_scan_mode = CEpgScan::MODE_OFF;
 	}
 	g_settings.epg_save_mode = configfile.getInt32("epg_save_mode", 0);
-	g_settings.enable_sdt = configfile.getInt32("enable_sdt",1);
+	g_settings.enable_sdt = configfile.getInt32("enable_sdt",0);
 	//widget settings
 	g_settings.widget_fade = false;
 	g_settings.widget_fade           = configfile.getBool("widget_fade"          , false );

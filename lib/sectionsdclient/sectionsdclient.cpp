@@ -218,7 +218,6 @@ void CSectionsdClient::setConfig(const epg_config config)
 	msg->epg_extendedcache	= config.epg_extendedcache;
 	msg->epg_save_frequently= config.epg_save_frequently;
 	msg->epg_read_frequently= config.epg_read_frequently;
-	msg->enable_sdt		= config.enable_sdt;
 //	config.network_ntpserver:
 	strcpy(&pData[sizeof(sectionsd::commandSetConfig)], config.network_ntpserver.c_str());
 //	config.epg_dir:

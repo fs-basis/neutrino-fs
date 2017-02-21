@@ -39,6 +39,9 @@
 #include <string>
 #include <vector>
 
+#include <OpenThreads/Mutex>
+#include <OpenThreads/ScopedLock>
+
 #ifdef BOXMODEL_CS_HD2
 #ifdef HAVE_COOLSTREAM_CS_IR_GENERIC_H
 #include <cs_ir_generic.h>
@@ -138,6 +141,12 @@ class CRCInput
 			bool			correct_time;
 		};
 
+		struct in_dev
+		{
+			int fd;
+			std::string path;
+		};
+
 		uint32_t               timerid;
 		std::vector<timer> timers;
 
@@ -147,30 +156,18 @@ class CRCInput
 		int 		fd_pipe_high_priority[2];
 		int 		fd_pipe_low_priority[2];
 		int         	fd_gamerc;
-#if HAVE_SPARK_HARDWARE
-#define NUMBER_OF_EVENT_DEVICES 1
-#else
-#ifdef HAVE_DUCKBOX_HARDWARE
-#if defined (BOXMODEL_IPBOX9900) || defined (BOXMODEL_IPBOX99) || defined (BOXMODEL_IPBOX55) || defined (BOXMODEL_HL101)
-#define NUMBER_OF_EVENT_DEVICES 2
-#else
-#define NUMBER_OF_EVENT_DEVICES 1
-#endif
-#else
-#define NUMBER_OF_EVENT_DEVICES 1
-#endif
-#endif
-		int         	fd_rc[NUMBER_OF_EVENT_DEVICES];
+		std::vector<in_dev> indev;
 		int		fd_keyb;
 		int		fd_event;
 
 		int		fd_max;
-		int		clickfd;
 		bool		*timer_wakeup;
 		__u16 rc_last_key;
-		void set_dsp();
+		OpenThreads::Mutex mutex;
 
-		void open(int dev = -1);
+		void open(bool recheck = false);
+		bool checkpath(in_dev id);
+		bool checkdev();
 		void close();
 		int translate(int code);
 		void calculateMaxFd(void);
@@ -300,10 +297,6 @@ class CRCInput
 		};
 		void set_rc_hw(void);
 
-		inline int getFileHandle(void) /* used for plugins (i.e. games) only */
-		{
-			return fd_rc[0];
-		}
 		void stopInput(const bool ext = false);
 		void restartInput(const bool ext = false);
 		bool isLocked(void);
@@ -342,12 +335,9 @@ class CRCInput
 		void clearRCMsg();
 
 		int messageLoop( bool anyKeyCancels = false, int timeout= -1 );
-		void open_click();
-		void close_click();
-		void play_click();
-		void reset_dsp(int rate);
 
 		void setLongPressAny(bool b) { longPressAny = b; };
+		void setKeyRepeatDelay(unsigned int start_ms, unsigned int repeat_ms);
 };
 
 

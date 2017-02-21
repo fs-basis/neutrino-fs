@@ -935,11 +935,6 @@ int CMovieBrowser::exec(const char* path)
 				TRACE("[mb] Timerevent\n");
 				loop = false;
 			}
-			else if ((msg == NeutrinoMessages::EVT_TIMER) && (data == g_InfoViewer->sec_timer_id))
-			{
-				if (timeset)
-					refreshTitle();
-			}
 			else if (msg == CRCInput::RC_ok)
 			{
 				for (unsigned int i = 0; i < m_vMovieInfo.size(); i++) {
@@ -1295,7 +1290,13 @@ void CMovieBrowser::initMovieCover(void)
 	}
 
 	std::string cover_file;
-
+#if 0
+	if (show_mode == MB_SHOW_YT)
+	{
+		cover_file = m_movieSelectionHandler->tfile;
+	}
+	else
+#endif
 	{
 		cover_file = getScreenshotName(m_movieSelectionHandler->file.Name, S_ISDIR(m_movieSelectionHandler->file.Mode));
 		if ((cover_file.empty()) && (m_movieSelectionHandler->file.Name.length() > 18))
@@ -1986,7 +1987,6 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 
 				TRACE("[mb]->new sorting %d, %s\n", m_settings.sorting.item, g_Locale->getText(m_localizedItemName[m_settings.sorting.item]));
 
-				refreshTitle();
 				refreshBrowserList();
 				refreshMovieInfo();
 				refreshFoot();

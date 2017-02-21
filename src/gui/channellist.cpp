@@ -2127,9 +2127,8 @@ void CChannelList::paintItem(int pos, const bool firstpaint)
 			//name
 			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->RenderString(x+ 5+ numwidth+ 10+prg_offset, ypos+ fheight, width- numwidth- 40- 15-prg_offset, nameAndDescription, color);
 		}
-		if (!firstpaint && curr == selected) {
+		if (!firstpaint && curr == selected)
 			updateVfd();
-	}
 	}
 }
 
@@ -2146,14 +2145,12 @@ void CChannelList::updateVfd()
 	else
 		p_event = &chan->currentEvent;
 
-#if 0
 	if (!(chan->currentEvent.description.empty())) {
 		char nameAndDescription[255];
 		snprintf(nameAndDescription, sizeof(nameAndDescription), "%s - %s",
 				chan->getName().c_str(), p_event->description.c_str());
 		CVFD::getInstance()->showMenuText(0, nameAndDescription, -1, true); // UTF-8
 	} else
-#endif
 		CVFD::getInstance()->showMenuText(0, chan->getName().c_str(), -1, true); // UTF-8
 }
 

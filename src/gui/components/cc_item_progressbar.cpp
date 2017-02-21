@@ -177,7 +177,7 @@ class CProgressBarCache
 		}
 		void pbcClear();
 	public:
-		void pbcPaint(int x, int y, int pbc_active_width, int pbc_passive_width, CFrameBuffer *frameBuffer);
+		void pbcPaint(int x, int y, int pbc_active_width, int pbc_passive_width);
 		static CProgressBarCache *pbcLookup(	int dy,
 							int dx,
 							int active_col,
@@ -222,9 +222,10 @@ CProgressBarCache *CProgressBarCache::pbcLookup(int dy, int dx, int active_col, 
 	return pbc;
 }
 
-void CProgressBarCache::pbcPaint(int x, int y, int pbc_active_width, int pbc_passive_width, CFrameBuffer *frameBuffer)
+void CProgressBarCache::pbcPaint(int x, int y, int pbc_active_width, int pbc_passive_width)
 {
 	y += yoff;
+	static CFrameBuffer *frameBuffer = CFrameBuffer::getInstance();
 	unsigned int stride = frameBuffer->getStride() / sizeof(fb_pixel_t);
 	fb_pixel_t *p = frameBuffer->getFrameBufferPointer() + y * stride + x;
 	int off = stride - pbc_width;
@@ -458,7 +459,7 @@ void CProgressBar::paintProgress(bool do_save_bg)
 
 	//body
 	if (pb_last_width == -1 && col_body != 0) /* first paint */
-		paintInit(do_save_bg); 
+		paintInit(do_save_bg);
 
 	//progress
 	bool pb_invert = (pb_type == PB_REDRIGHT) || ((pb_type == PB_TIMESCALE) && g_settings.theme.progressbar_timescale_invert);
@@ -467,7 +468,7 @@ void CProgressBar::paintProgress(bool do_save_bg)
 		if (!is_painted || (pb_active_width != pb_last_width)) {
 			CProgressBarCache *pbc = CProgressBarCache::pbcLookup(pb_height, pb_max_width, pb_active_col, pb_passive_col, *pb_design, pb_invert, *pb_gradient, pb_red, pb_yellow, pb_green);
 			if (pbc)
-				pbc->pbcPaint(pb_x, pb_y, pb_active_width, pb_passive_width, frameBuffer);
+				pbc->pbcPaint(pb_x, pb_y, pb_active_width, pb_passive_width);
 			is_painted = true;
 		}
 	}

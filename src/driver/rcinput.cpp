@@ -201,27 +201,6 @@ bool CRCInput::checkdev_lnk(std::string lnk)
 bool CRCInput::checkpath(in_dev id)
 {
 	for (std::vector<in_dev>::iterator it = indev.begin(); it != indev.end(); ++it) {
-#ifdef BOXMODEL_CS_HD2
-		if ((id.type == DT_LNK) || ((*it).type == DT_LNK)) {
-			std::string check1, check2;
-			if (id.type == DT_LNK)
-				check1 = readLink(id.path);
-			else
-				check1 = id.path;
-
-			if ((*it).type == DT_LNK)
-				check2 = readLink((*it).path);
-			else
-				check2 = (*it).path;
-
-			if ((!check1.empty()) && (!check2.empty()) && (check1 == check2)) {
-				printf("[rcinput:%s] skipping already opened %s => %s\n", __func__, id.path.c_str(), check1.c_str());
-				return true;
-			}
-			else
-				return false;
-		}
-#endif
 		if ((*it).path == id.path) {
 			printf("[rcinput:%s] skipping already opened %s\n", __func__, id.path.c_str());
 			return true;
@@ -250,23 +229,23 @@ void CRCInput::open(bool recheck)
 
 	while ((dentry = readdir(dir)) != NULL)
 	{
-		if ((dentry->d_type != DT_CHR)
-#ifdef BOXMODEL_CS_HD2
-		&& (dentry->d_type != DT_LNK)
-#endif
-		) {
-			d_printf("[rcinput:%s] skipping '%s'\n", __func__, dentry->d_name);
-			continue;
-		}
-#ifdef BOXMODEL_CS_HD2
-		if ((dentry->d_type == DT_LNK) && (!checkdev_lnk("/dev/input/" + std::string(dentry->d_name)))) {
-			d_printf("[rcinput:%s] skipping '%s'\n", __func__, dentry->d_name);
-			continue;
-		}
-		id.type = dentry->d_type;
-#endif
-		d_printf("[rcinput:%s] considering '%s'\n", __func__, dentry->d_name);
 		id.path = "/dev/input/" + std::string(dentry->d_name);
+		/* hack: on hd2, the device is called "/dev/cs_ir",
+		   there are links in /dev/input: pointing to it nevis_ir and event0 (WTF???)
+		   so if nevis_ir points to cs_ir, accept it, even though it is a symlink...
+		   the rest of the code then uses coolstream specific parts if path == "nevis_ir"
+		   a better solution would be to simply mknod /dev/input/nevis_ir c 240 0, creating
+		   a second instance of /dev/cs_ir named /dv/input/nevis_ir (or to fix the driver
+		   to actually create a real input device */
+		if (dentry->d_type == DT_LNK &&
+		    id.path == "/dev/input/nevis_ir") {
+			if (readLink(id.path) != "/dev/cs_ir")
+				continue;
+		} else if (dentry->d_type != DT_CHR) {
+			d_printf("[rcinput:%s] skipping '%s'\n", __func__, dentry->d_name);
+			continue;
+		}
+		d_printf("[rcinput:%s] considering '%s'\n", __func__, dentry->d_name);
 		if (checkpath(id))
 			continue;
 		id.fd = ::open(id.path.c_str(), O_RDWR|O_NONBLOCK|O_CLOEXEC);
@@ -1699,7 +1678,11 @@ const char * CRCInput::getSpecialKeyName(const unsigned int key)
 			case RC_timeshift:
 				return "timeshift";
 			case RC_mode:
+#if HAVE_SPARK_HARDWARE
+				return "v.format";
+#else
 				return "mode";
+#endif
 			case RC_record:
 				return "record";
 			case RC_pause:
@@ -1730,8 +1713,44 @@ const char * CRCInput::getSpecialKeyName(const unsigned int key)
 				return "analog off";
 			case RC_www:
 				return "www";
+			case RC_find:
+				return "find";
+			case RC_pip:
+				return "pip";
+			case RC_archive:
+				return "archive";
+			case RC_slow:
+				return "slow";
+			case RC_fastforward:
+				return "fast";
 			case RC_playmode:
 				return "play mode";
+			case RC_usb:
+				return "usb";
+			case RC_timer:
+				return "time";
+			case RC_f1:
+				return "f1";
+			case RC_f2:
+				return "f2";
+			case RC_f3:
+				return "f3";
+			case RC_f4:
+				return "f4";
+			case RC_prog1:
+				return "prog1";
+			case RC_prog2:
+				return "prog2";
+			case RC_prog3:
+				return "prog3";
+			case RC_aux:
+#if HAVE_SPARK_HARDWARE
+				return "tv/sat";
+#else
+				return "aux";
+#endif
+			case RC_prog4:
+				return "prog4";
 			case RC_sub:
 				return "sub";
 			case RC_pos:
@@ -1740,8 +1759,8 @@ const char * CRCInput::getSpecialKeyName(const unsigned int key)
 				return "sleep";
 			case RC_media:
 				return "media";
-			case RC_archive:
-				return "archiv";
+			case RC_search:
+				return "search";
 			default:
 				printf("unknown key: %d (0x%x) \n", key, key);
 				return "unknown";
@@ -1770,8 +1789,17 @@ const char *CRCInput::getKeyNameC(const unsigned int key)
 **************************************************************************/
 int CRCInput::translate(int code)
 {
+	if (code == g_settings.key_help)
+		return RC_help;
 	switch(code)
 	{
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+		case KEY_EXIT:
+		case KEY_HOME:
+			return RC_home;
+		case KEY_FASTFORWARD:
+			return RC_forward;
+#endif
 		case 0x100: // FIXME -- needed?
 			return RC_up;
 		case 0x101: // FIXME -- needed?
@@ -1842,11 +1870,7 @@ void CRCInput::set_rc_hw(ir_protocol_t ir_protocol, unsigned int ir_address)
 	}
 	int fd = -1;
 	for (std::vector<in_dev>::iterator it = indev.begin(); it != indev.end(); ++it) {
-		if (((*it).path == "/dev/input/nevis_ir")
-#ifdef BOXMODEL_CS_HD2
-		    || ((*it).path == "/dev/input/input0")
-#endif
-		){
+		if ((*it).path == "/dev/input/nevis_ir") {
 			fd = (*it).fd;
 			break;
 		}

@@ -3563,7 +3563,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 			if (rec_mode == CRecordManager::RECMODE_OFF || rec_mode == CRecordManager::RECMODE_TSHIFT)
 				CRecordManager::getInstance()->Record(live_channel_id);
 			delete[] (unsigned char*) data;
-			return messages_return::handled | messages_return::cancel_all;
+			return messages_return::handled;
 		}
 		if(mode == mode_standby){
 			if((eventinfo->channel_id != live_channel_id) && !(SAME_TRANSPONDER(live_channel_id, eventinfo->channel_id)))
@@ -3576,7 +3576,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		}
 
 		delete[] (unsigned char*) data;
-		return messages_return::handled | messages_return::cancel_all;
+		return messages_return::handled;
 	}
 	else if( msg == NeutrinoMessages::RECORD_STOP) {
 #if HAVE_DUCKBOX_HARDWARE

@@ -520,7 +520,7 @@ int CEventList::exec(const t_channel_id channel_id, const std::string& channelna
 			showFunctionBar(evtlist[selected].channelID );
 			timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_EPG]);
 		}
-		else if (msg == (neutrino_msg_t)g_settings.key_channelList_cancel)
+		else if (msg == CRCInput::RC_home)
 		{
 			if(in_search) {
 				in_search = false;

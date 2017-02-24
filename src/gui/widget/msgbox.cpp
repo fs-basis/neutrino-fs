@@ -258,7 +258,7 @@ int CMsgBox::exec()
 		}
 #if 0
 		else if (((msg == CRCInput::RC_timeout && timeout > 0) ||
-			  (msg  == (neutrino_msg_t)g_settings.key_channelList_cancel)) &&
+			  (msg  == CRCInput::RC_home)) &&
 			  (mb_show_button & (mbCancel | mbBack)))
 		{
 			result = (mb_show_button & mbCancel) ? mbrCancel : (mb_show_button & mbOk) ? mbrOk: mbrBack;

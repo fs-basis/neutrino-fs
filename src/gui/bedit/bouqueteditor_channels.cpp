@@ -349,7 +349,7 @@ int CBEChannelWidget::exec(CMenuTarget* parent, const std::string & /*actionKey*
 			timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_EPG]);
 
 		if ((msg == CRCInput::RC_timeout) ||
-		    (msg == (neutrino_msg_t)g_settings.key_channelList_cancel))
+		    (msg == CRCInput::RC_home))
 		{
 			if (state == beDefault)
 			{

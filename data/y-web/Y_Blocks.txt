@@ -100,7 +100,6 @@ start-block~buttons_save_settings
 {=ini-set:%(CONFIGDIR)/neutrino.conf;key_bouquet_up;{=key_bouquet_up=}~cache=}
 {=ini-set:%(CONFIGDIR)/neutrino.conf;key_channelList_addrecord;{=key_channelList_addrecord=}~cache=}
 {=ini-set:%(CONFIGDIR)/neutrino.conf;key_channelList_addremind;{=key_channelList_addremind=}~cache=}
-{=ini-set:%(CONFIGDIR)/neutrino.conf;key_channelList_cancel;{=key_channelList_cancel=}~cache=}
 {=ini-set:%(CONFIGDIR)/neutrino.conf;key_channelList_pagedown;{=key_channelList_pagedown=}~cache=}
 {=ini-set:%(CONFIGDIR)/neutrino.conf;key_channelList_pageup;{=key_channelList_pageup=}~cache=}
 {=ini-set:%(CONFIGDIR)/neutrino.conf;key_channelList_reload;{=key_channelList_reload=}~cache=}

@@ -2129,7 +2129,7 @@ void CInfoViewer::show_Data (bool calledFromEvent)
 
 	if (info_CurrentNext.flags & CSectionsdClient::epgflags::has_current)
 	{
-		if (!calledFromEvent || info_CurrentNext.current_uniqueKey != last_curr_id)
+		if (/*!calledFromEvent ||*/ info_CurrentNext.current_uniqueKey != last_curr_id)
 		{
 			last_curr_id = info_CurrentNext.current_uniqueKey;
 			curr_time = runningStart;

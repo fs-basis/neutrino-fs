@@ -295,7 +295,7 @@ int CAdZapMenu::exec(CMenuTarget *parent, const std::string & actionKey)
 	if (actionKey.length() == 1)
 	{
 		g_settings.adzap_zapBackPeriod = actionKey[0] - '0';
-		for (int shortcut = 0; shortcut < 9; shortcut++)
+		for (int shortcut = 1; shortcut < 10; shortcut++)
 		{
 			bool selected = (g_settings.adzap_zapBackPeriod == shortcut);
 			forwarders[shortcut - 1]->setMarked(selected);
@@ -332,7 +332,7 @@ void CAdZapMenu::ShowMenu()
 	menu->addItem(new CMenuSeparator(CMenuSeparator::LINE | CMenuSeparator::STRING, LOCALE_ADZAP_SWITCHBACK));
 
 	neutrino_locale_t minute = LOCALE_ADZAP_MINUTE;
-	for (int shortcut = 0; shortcut < 9; shortcut++) {
+	for (int shortcut = 1; shortcut < 10; shortcut++) {
 		char actionKey[2];
 		actionKey[0] = '0' + shortcut;
 		actionKey[1] = 0;
@@ -364,7 +364,7 @@ bool CAdZapMenu::changeNotify(const neutrino_locale_t, void * data)
 {
 	int z = (*(int *)data);
 	g_settings.adzap_zapBackPeriod = z * 60;
-	for (int shortcut = 0; shortcut < 9; shortcut++)
+	for (int shortcut = 1; shortcut < 10; shortcut++)
 		forwarders[shortcut - 1]->setMarked(false);
 	nc->setMarked(true);
 	return false;

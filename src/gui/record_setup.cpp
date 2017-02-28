@@ -182,7 +182,7 @@ int CRecordSetup::showRecordSetup()
 	recordingSettings->addIntroItems(LOCALE_MAINSETTINGS_RECORDING);
 #if 0
 	//apply settings
-	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_SETUPNOW, true, NULL, this, "recording", CRCInput::RC_red);
+	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_SETUPNOW, true, NULL, this, "recording", CRCInput::RC_0);
 	mf->setHint("", LOCALE_MENU_HINT_RECORD_APPLY);
 	recordingSettings->addItem(mf);
 	recordingSettings->addItem(GenericMenuSeparatorLine);
@@ -224,7 +224,7 @@ int CRecordSetup::showRecordSetup()
 
 	//filename template
 	CKeyboardInput* filename_template = new CKeyboardInput(LOCALE_RECORDINGMENU_FILENAME_TEMPLATE, &g_settings.recording_filename_template, 0, NULL, NULL, LOCALE_RECORDINGMENU_FILENAME_TEMPLATE_HINT, LOCALE_RECORDINGMENU_FILENAME_TEMPLATE_HINT2);
-	CMenuForwarder* ft = new CMenuDForwarder(LOCALE_RECORDINGMENU_FILENAME_TEMPLATE, true, g_settings.recording_filename_template, filename_template, NULL, CRCInput::RC_1);
+	CMenuForwarder* ft = new CMenuDForwarder(LOCALE_RECORDINGMENU_FILENAME_TEMPLATE, true, g_settings.recording_filename_template, filename_template, NULL);
 	ft->setHint("", LOCALE_MENU_HINT_RECORD_FILENAME_TEMPLATE);
 	recordingSettings->addItem(ft);
 
@@ -247,28 +247,28 @@ int CRecordSetup::showRecordSetup()
 	//timeshift
 	CMenuWidget recordingTsSettings(LOCALE_MAINSETTINGS_RECORDING, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_RECORDSETUP_TIMESHIFT);
 	showRecordTimeShiftSetup(&recordingTsSettings);
-	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_TIMESHIFT, true, NULL, &recordingTsSettings, NULL, CRCInput::RC_green);
+	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_TIMESHIFT, true, NULL, &recordingTsSettings, NULL, CRCInput::RC_red);
 	mf->setHint("", LOCALE_MENU_HINT_RECORD_TIMESHIFT);
 	recordingSettings->addItem(mf);
 
 	//timersettings
 	CMenuWidget recordingTimerSettings(LOCALE_MAINSETTINGS_RECORDING, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_RECORDSETUP_TIMERSETTINGS);
 	showRecordTimerSetup(&recordingTimerSettings);
-	mf = new CMenuForwarder(LOCALE_TIMERSETTINGS_SEPARATOR, true, NULL, &recordingTimerSettings, NULL, CRCInput::RC_yellow);
+	mf = new CMenuForwarder(LOCALE_TIMERSETTINGS_SEPARATOR, true, NULL, &recordingTimerSettings, NULL, CRCInput::RC_green);
 	mf->setHint("", LOCALE_MENU_HINT_RECORD_TIMER);
 	recordingSettings->addItem(mf);
 
 	//audiosettings
 	CMenuWidget recordingaAudioSettings(LOCALE_MAINSETTINGS_RECORDING, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_RECORDSETUP_AUDIOSETTINGS);
 	showRecordAudioSetup(&recordingaAudioSettings);
-	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_APIDS, true, NULL, &recordingaAudioSettings, NULL, CRCInput::RC_blue);
+	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_APIDS, true, NULL, &recordingaAudioSettings, NULL, CRCInput::RC_yellow);
 	mf->setHint("", LOCALE_MENU_HINT_RECORD_APIDS);
 	recordingSettings->addItem(mf);
 
 	//datasettings
 	CMenuWidget recordingaDataSettings(LOCALE_MAINSETTINGS_RECORDING, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_RECORDSETUP_DATASETTINGS);
 	showRecordDataSetup(&recordingaDataSettings);
-	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_DATA_PIDS, true, NULL, &recordingaDataSettings, NULL,  CRCInput::RC_2);
+	mf = new CMenuForwarder(LOCALE_RECORDINGMENU_DATA_PIDS, true, NULL, &recordingaDataSettings, NULL, CRCInput::RC_blue);
 	mf->setHint("", LOCALE_MENU_HINT_RECORD_DATA);
 	recordingSettings->addItem(mf);
 

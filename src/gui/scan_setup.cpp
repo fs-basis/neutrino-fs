@@ -515,7 +515,7 @@ unsigned int CScanSetup::getSatMenuListWidth()
 int CScanSetup::showScanMenu()
 {
 	printf("[neutrino] CScanSetup call %s...\n", __FUNCTION__);
-	int shortcut = 1;
+	int shortcut = 0;
 	int w = getSatMenuListWidth();
 	printf("C: %d S: %d T: %d\n", CFEManager::getInstance()->haveCable(),CFEManager::getInstance()->haveSat(), CFEManager::getInstance()->haveTerr());
 
@@ -783,7 +783,7 @@ int CScanSetup::showScanMenuFrontendSetup()
 		CMenuWidget * rotorMenu = new CMenuWidget(LOCALE_SATSETUP_EXTENDED_MOTOR, NEUTRINO_ICON_SETTINGS, width);
 		rotorMenu->addIntroItems();
 
-		int shortcut = 1;
+		int shortcut = 0;
 		CMenuOptionChooser * mc = new CMenuOptionChooser(LOCALE_EXTRA_LADIRECTION,  (int *)&zapitCfg.gotoXXLaDirection, OPTIONS_SOUTH0_NORTH1_OPTIONS, OPTIONS_SOUTH0_NORTH1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcut++));
 		mc->setHint("", LOCALE_MENU_HINT_SCAN_LADIRECTION);
 		rotorMenu->addItem(mc);
@@ -868,7 +868,7 @@ void CScanSetup::setDiseqcOptions(int number)
 
 int CScanSetup::showFrontendSetup(int number)
 {
-	int shortcut = 1;
+	int shortcut = 0;
 	static int feselected = 0;
 
 	printf("[neutrino] CScanSetup::%s fe %d\n", __FUNCTION__, number);
@@ -1355,7 +1355,7 @@ void CScanSetup::addScanMenuTempSat(CMenuWidget *temp_sat, sat_config_t & satcon
 void CScanSetup::addScanMenuManualScan(CMenuWidget *manual_Scan, bool stest)
 {
 	printf("[neutrino] CScanSetup call %s...\n", __FUNCTION__);
-	int shortCut = 1;
+	int shortCut = 0;
 	CMenuForwarder * mf;
 
 	manual_Scan->addIntroItems();
@@ -1566,7 +1566,7 @@ void CScanSetup::addScanMenuAutoScan(CMenuWidget *auto_Scan)
 void CScanSetup::addScanMenuCable(CMenuWidget *menu)
 {
 	printf("[neutrino] CScanSetup call %s...\n", __FUNCTION__);
-	int shortCut = 1;
+	int shortCut = 0;
 	CMenuForwarder * mf;
 
 	menu->addIntroItems();

@@ -1372,7 +1372,7 @@ int CEventFinderMenu::showMenu(void)
 		m_search_channelname ="";
 	}
 
-	int shortcut = 1;
+	int shortcut = 0;
 
 	CKeyboardInput stringInput(LOCALE_EVENTFINDER_KEYWORD,m_search_keyword);
 

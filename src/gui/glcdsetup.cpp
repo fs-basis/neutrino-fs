@@ -182,7 +182,7 @@ void GLCD_Menu::GLCD_Menu_Settings()
 
 	m.addItem(new CMenuOptionChooser(LOCALE_GLCD_ENABLE, &g_settings.glcd_enable,
 				OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
-	int shortcut = 1;
+	int shortcut = 0;
 	m.addItem(GenericMenuSeparatorLine);
 	m.addItem(new CMenuOptionChooser(LOCALE_GLCD_SELECT_FG, &color_fg,
 				GLCD_COLOR_OPTIONS, GLCD_COLOR_OPTION_COUNT, true, this,

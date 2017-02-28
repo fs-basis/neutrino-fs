@@ -352,7 +352,7 @@ int CKeybindSetup::showKeySetup()
 	ms_number_format += g_Locale->getText(LOCALE_UNIT_SHORT_MILLISECOND);
 	CMenuOptionNumberChooser *cc;
 
-	int shortcut = 1;
+	int shortcut = 0;
 
 	cc = new CMenuOptionNumberChooser(LOCALE_KEYBINDINGMENU_LONGKEYPRESS_DURATION,
 		&g_settings.longkeypress_duration, true, LONGKEYPRESS_OFF, 9999, NULL,
@@ -422,7 +422,7 @@ int CKeybindSetup::showKeySetup()
 
 void CKeybindSetup::showKeyBindSetup(CMenuWidget *bindSettings)
 {
-	int shortcut = 1;
+	int shortcut = 0;
 
 	CMenuForwarder * mf;
 
@@ -494,7 +494,7 @@ void CKeybindSetup::showKeyBindSetup(CMenuWidget *bindSettings)
 	//Special keys
 	CMenuWidget* bindSettings_special = new CMenuWidget(LOCALE_KEYBINDINGMENU_HEAD, NEUTRINO_ICON_KEYBINDING, width, MN_WIDGET_ID_KEYSETUP_KEYBINDING_SPECIAL);
 	showKeyBindSpecialSetup(bindSettings_special);
-	mf = new CMenuDForwarder(LOCALE_KEYBINDINGMENU_SPECIAL_ACTIVE, true, NULL, bindSettings_special, NULL, CRCInput::convertDigitToKey(shortcut++));
+	mf = new CMenuDForwarder(LOCALE_KEYBINDINGMENU_SPECIAL_ACTIVE, true, NULL, bindSettings_special, NULL);
 	mf->setHint("", LOCALE_MENU_HINT_KEY_SPECIAL_ACTIVE);
 	bindSettings->addItem(mf);
 

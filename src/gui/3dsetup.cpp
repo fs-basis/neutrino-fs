@@ -178,7 +178,7 @@ int C3DSetup::show3DSetup()
 
 	m->addIntroItems(LOCALE_THREE_D_SETTINGS_GENERAL);
 
-	int shortcut = 1;
+	int shortcut = 0;
 
 	for (int i = 0; i < THREE_D_OPTIONS_COUNT; i++) {
 		tdl[i].cmf = new CMenuForwarder(THREE_D_OPTIONS[i].value, true, g_Locale->getText((mode3d == i) ? LOCALE_OPTIONS_ON : LOCALE_OPTIONS_OFF),

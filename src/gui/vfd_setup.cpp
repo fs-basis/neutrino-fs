@@ -133,7 +133,7 @@ int CVfdSetup::showSetup()
 	{
  		CMenuWidget * ledMenu = new CMenuWidget(LOCALE_LCDMENU_HEAD, NEUTRINO_ICON_LCD, width, MN_WIDGET_ID_VFDSETUP_LED_SETUP);
 		showLedSetup(ledMenu);
-		mf = new CMenuDForwarder(LOCALE_LEDCONTROLER_MENU, true, NULL, ledMenu, NULL, CRCInput::RC_red);
+		mf = new CMenuDForwarder(LOCALE_LEDCONTROLER_MENU, true, NULL, ledMenu, NULL, CRCInput::RC_0);
 		mf->setHint("", LOCALE_MENU_HINT_POWER_LEDS);
 		vfds->addItem(mf);
 	}
@@ -141,7 +141,7 @@ int CVfdSetup::showSetup()
 
 	if (CVFD::getInstance()->has_lcd) {
 		//vfd brightness menu
-		mf = new CMenuForwarder(LOCALE_LCDMENU_LCDCONTROLER, vfd_enabled, NULL, this, "brightness", CRCInput::RC_green);
+		mf = new CMenuForwarder(LOCALE_LCDMENU_LCDCONTROLER, vfd_enabled, NULL, this, "brightness", CRCInput::RC_red);
 		mf->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESS_SETUP);
 		vfds->addItem(mf);
 
@@ -150,7 +150,7 @@ int CVfdSetup::showSetup()
 			//backlight menu
 			CMenuWidget * blMenu = new CMenuWidget(LOCALE_LCDMENU_HEAD, NEUTRINO_ICON_LCD, width, MN_WIDGET_ID_VFDSETUP_BACKLIGHT);
 			showBacklightSetup(blMenu);
-			mf = new CMenuDForwarder(LOCALE_LEDCONTROLER_BACKLIGHT, true, NULL, blMenu, NULL, CRCInput::RC_yellow);
+			mf = new CMenuDForwarder(LOCALE_LEDCONTROLER_BACKLIGHT, true, NULL, blMenu, NULL, CRCInput::RC_green);
 			mf->setHint("", LOCALE_MENU_HINT_BACKLIGHT);
 			vfds->addItem(mf);
 		}

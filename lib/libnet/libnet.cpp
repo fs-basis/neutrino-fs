@@ -121,6 +121,7 @@ void	netGetIP(std::string &dev, std::string &ip, std::string &mask, std::string 
 	brdcast = std::string(tmp);
 
 	close(fd);
+	return;
 }
 #if 0
 //never used

@@ -127,6 +127,11 @@ int CLuaInstCCWindow::CCWindowNew(lua_State *L)
 	CLuaCCWindow **udata = (CLuaCCWindow **) lua_newuserdata(L, sizeof(CLuaCCWindow *));
 	*udata = new CLuaCCWindow();
 	(*udata)->w = new CComponentsWindow(x, y, dx, dy, name.c_str(), icon.c_str(), 0, shadow_mode, (fb_pixel_t)color_frame, (fb_pixel_t)color_body, (fb_pixel_t)color_shadow);
+	/* Ignore percent conversion of width and height
+	   to remain compatible with the Lua API */
+	(*udata)->w->setWidth(dx);
+	(*udata)->w->setHeight(dy);
+>>>>>>> cst/master
 
 	if (!show_header)
 		(*udata)->w->showHeader(false);

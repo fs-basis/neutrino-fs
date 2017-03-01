@@ -131,7 +131,6 @@ int CLuaInstCCWindow::CCWindowNew(lua_State *L)
 	   to remain compatible with the Lua API */
 	(*udata)->w->setWidth(dx);
 	(*udata)->w->setHeight(dy);
->>>>>>> cst/master
 
 	if (!show_header)
 		(*udata)->w->showHeader(false);

@@ -175,6 +175,7 @@ void CNeutrinoApp::InitMenuMain()
 	personalize.addItem(MENU_MAIN, media, &g_settings.personalize[SNeutrinoSettings::P_MAIN_MEDIA]);
 
 	CMenuForwarder * mf;
+
 	//games
 	bool show_games = g_Plugins->hasPlugin(CPlugins::P_TYPE_GAME);
 	mf = new CMenuForwarder(LOCALE_MAINMENU_GAMES, show_games, NULL, new CPluginList(LOCALE_MAINMENU_GAMES,CPlugins::P_TYPE_GAME));

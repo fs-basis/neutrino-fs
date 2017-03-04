@@ -94,7 +94,7 @@ class CComponentsFrmClock : public CComponentsForm, public CCTextScreen
 		CComponentsFrmClock( 	const int& x_pos = 1, const int& y_pos = 1,
 					Font * font = NULL,
 					const char* format_str = "%H:%M",
-					const char* secformat_str = NULL,
+					const char* secformat_str = "%H %M",
 					bool activ=false,
 					const int& interval_seconds = 1,
 					CComponentsForm *parent = NULL,

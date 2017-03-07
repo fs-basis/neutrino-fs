@@ -16,3 +16,8 @@ if ENABLE_UPNP
 SUBDIRS += \
 	libupnpclient
 endif
+
+if BOXTYPE_COOL
+SUBDIRS += \
+	hardware/coolstream
+endif

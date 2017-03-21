@@ -2260,7 +2260,6 @@ TIMER_START();
 	cs_register_messenger(CSSendMessage);
 
 	g_info.hw_caps  = get_hwcaps();
-	can_deepstandby = g_info.hw_caps->can_shutdown;
 
 	g_Locale        = new CLocaleManager;
 

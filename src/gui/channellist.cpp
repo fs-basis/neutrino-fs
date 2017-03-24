@@ -1953,27 +1953,28 @@ void CChannelList::paintItem(int pos, const bool firstpaint)
 		if ((*chanlist)[curr]->getChannelID() == CZapit::getInstance()->GetPipChannelID())
 			pip_icon = NEUTRINO_ICON_PIP;
 #endif
+#if 0
 		//set HD icon
 		const char *hd_icon = NULL;
 		if(chan->isHD() && g_settings.channellist_hdicon)
 			hd_icon = NEUTRINO_ICON_RESOLUTION_HD;
-
+#endif
 		//set webtv icon
 		const char *webtv_icon = NULL;
 		if (!chan->getUrl().empty())
 			webtv_icon = NEUTRINO_ICON_STREAMING;
-
+#if 0
 		//set scramble icon
 		const char *scramble_icon = NULL;
 		if (chan->scrambled)
 			scramble_icon = NEUTRINO_ICON_SCRAMBLED;
-
+#endif
 		//calculate and paint right status icons
 		int icon_w = 0;
 		int icon_h = 0;
 		int offset_right = OFFSET_INNER_MID;
 		int icon_x_right = x + width - 15 - offset_right;
-
+#if 0
 		if (hd_icon)
 		{
 			frameBuffer->getIconSize(hd_icon, &icon_w, &icon_h);
@@ -1983,7 +1984,8 @@ void CChannelList::paintItem(int pos, const bool firstpaint)
 				icon_x_right -= icon_w + OFFSET_INNER_MID;
 			}
 		}
-
+#endif
+#if 0
 		if (scramble_icon)
 		{
 			frameBuffer->getIconSize(scramble_icon, &icon_w, &icon_h);
@@ -1993,7 +1995,7 @@ void CChannelList::paintItem(int pos, const bool firstpaint)
 				icon_x_right -= icon_w + OFFSET_INNER_MID;
 			}
 		}
-
+#endif
 		if (webtv_icon)
 		{
 			frameBuffer->getIconSize(webtv_icon, &icon_w, &icon_h);

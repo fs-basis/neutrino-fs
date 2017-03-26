@@ -23,6 +23,7 @@
 	along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 #ifndef __framebuffer__
 #define __framebuffer__
 #include <config.h>
@@ -32,11 +33,13 @@
 #include <linux/vt.h>
 
 #include <string>
-#include <vector>
 #include <map>
+#include <vector>
 #include <sigc++/signal.h>
 #include <pthread.h>
+
 #include <linux/stmfb.h>
+
 #define fb_pixel_t uint32_t
 
 typedef struct fb_var_screeninfo t_fb_var_screeninfo;
@@ -77,7 +80,6 @@ class CFrameBuffer : public sigc::trackable
 {
 	friend class CFbAccel;
 	private:
-
 		CFrameBuffer();
 
 		struct rgbData
@@ -124,13 +126,11 @@ class CFrameBuffer : public sigc::trackable
 		int 	kd_mode;
 		struct	vt_mode vt_mode;
 		bool	active;
-		bool fb_no_check;
 		static	void switch_signal (int);
 		fb_fix_screeninfo fix;
 		bool locked;
 		std::map<std::string, rawIcon> icon_cache;
 		int cache_size;
-
 		void * int_convertRGB2FB(unsigned char *rgbbuff, unsigned long x, unsigned long y, int transp, bool alpha);
 		int m_transparent_default, m_transparent;
 
@@ -168,18 +168,20 @@ class CFrameBuffer : public sigc::trackable
 		fb_pixel_t * getBackBufferPointer() const;  // pointer to backbuffer
 		unsigned int getStride() const;             // size of a single line in the framebuffer (in bytes)
 		unsigned int getScreenWidth(bool real = false);
-		unsigned int getScreenHeight(bool real = false);
+		unsigned int getScreenHeight(bool real = false); 
 		unsigned int getScreenWidthRel(bool force_small = false);
 		unsigned int getScreenHeightRel(bool force_small = false);
 		unsigned int getScreenX();
 		unsigned int getScreenY();
-
+		
 		bool getActive() const;                     // is framebuffer active?
 		void setActive(bool enable);                     // is framebuffer active?
 
 		void setTransparency( int tr = 0 );
 		void setBlendMode(uint8_t mode = 1);
 		void setBlendLevel(int level);
+
+		void setMixerColor(uint32_t mixer_background);
 
 		//Palette stuff
 		void setAlphaFade(int in, int num, int tr);
@@ -201,7 +203,7 @@ class CFrameBuffer : public sigc::trackable
 		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col) { paintBoxRel(xa, ya, xb - xa, yb - ya, col); }
 		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col, int radius, int type) { paintBoxRel(xa, ya, xb - xa, yb - ya, col, radius, type); }
 
-		void paintBoxFrame(const int x, const int y, const int dx, const int dy, const int px, const fb_pixel_t col, const int radius = 0, int type = CORNER_ALL);
+		void paintBoxFrame(const int x, const int y, const int dx, const int dy, const int px, const fb_pixel_t col, const int rad = 0, int type = CORNER_ALL);
 		void paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col);
 
 		void paintVLine(int x, int ya, int yb, const fb_pixel_t col);
@@ -211,12 +213,12 @@ class CFrameBuffer : public sigc::trackable
 		void paintHLineRel(int x, int dx, int y, const fb_pixel_t col);
 
 		void setIconBasePath(const std::string & iconPath);
-		std::string getIconBasePath(){return iconBasePath;};
+		std::string getIconBasePath(){return iconBasePath;}
 		std::string getIconPath(std::string icon_name, std::string file_type = "png");
 
 		void getIconSize(const char * const filename, int* width, int *height);
 		/* h is the height of the target "window", if != 0 the icon gets centered in that window */
-		bool paintIcon (const std::string & filename, const int x, const int y,
+		bool paintIcon (const std::string & filename, const int x, const int y, 
 				const int h = 0, const unsigned char offset = 1, bool paint = true, bool paintBg = false, const fb_pixel_t colBg = 0);
 		bool paintIcon8(const std::string & filename, const int x, const int y, const unsigned char offset = 0);
 		void loadPal   (const std::string & filename, const unsigned char offset = 0, const unsigned char endidx = 255);
@@ -250,7 +252,7 @@ class CFrameBuffer : public sigc::trackable
 		bool Lock(void);
 		void Unlock(void);
 		bool Locked(void) { return locked; };
-		void waitForIdle(const char* func=NULL);
+		void waitForIdle(const char *func = NULL);
 		void* convertRGB2FB(unsigned char *rgbbuff, unsigned long x, unsigned long y, int transp = 0xFF);
 		void* convertRGBA2FB(unsigned char *rgbbuff, unsigned long x, unsigned long y);
 		void displayRGB(unsigned char *rgbbuff, int x_size, int y_size, int x_pan, int y_pan, int x_offs, int y_offs, bool clearfb = true, int transp = 0xFF);
@@ -258,8 +260,9 @@ class CFrameBuffer : public sigc::trackable
 		void blitBox2FB(const fb_pixel_t* boxBuf, uint32_t width, uint32_t height, uint32_t xoff, uint32_t yoff);
 
 		void mark(int x, int y, int dx, int dy);
+		void blit();
 
-		enum
+		enum 
 			{
 				TM_EMPTY  = 0,
 				TM_NONE   = 1,
@@ -283,7 +286,6 @@ class CFrameBuffer : public sigc::trackable
 		void getBorder(int &sx, int &sy, int &ex, int &ey);
 		void setBorderColor(fb_pixel_t col = 0);
 		fb_pixel_t getBorderColor(void);
-		void setMixerColor(uint32_t mixer_background);
 
 	private:
 		bool autoBlitStatus;
@@ -296,6 +298,7 @@ class CFrameBuffer : public sigc::trackable
 		void blitBPA2FB(unsigned char *mem, SURF_FMT fmt, int w, int h, int x = 0, int y = 0, int pan_x = -1, int pan_y = -1, int fb_x = -1, int fb_y = -1, int fb_w = -1, int fb_h = -1, int transp = false);
 		bool needAlign4Blit() { return false; };
 		uint32_t getWidth4FB_HW_ACC(const uint32_t x, const uint32_t w, const bool max=true);
+
 
 // ## AudioMute / Clock ######################################
 	private:
@@ -317,6 +320,7 @@ class CFrameBuffer : public sigc::trackable
 		typedef std::vector<fb_area_t> v_fbarea_t;
 		typedef v_fbarea_t::iterator fbarea_iterator_t;
 		v_fbarea_t v_fbarea;
+		bool fb_no_check;
 		bool do_paint_mute_icon;
 
 		bool _checkFbArea(int _x, int _y, int _dx, int _dy, bool prev);
@@ -335,9 +339,7 @@ class CFrameBuffer : public sigc::trackable
 		void setFbArea(int element, int _x=0, int _y=0, int _dx=0, int _dy=0);
 		void fbNoCheck(bool noCheck) { fb_no_check = noCheck; }
 		void doPaintMuteIcon(bool mode) { do_paint_mute_icon = mode; }
-		void blit();
 		sigc::signal<void> OnAfterSetPallette;
-		const char *fb_name;
 };
 
 #endif

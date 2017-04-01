@@ -145,6 +145,11 @@ neutrino_LDADD += -lgif
 else
 neutrino_LDADD += -lungif
 endif
+
+if ENABLE_FRIBIDI
+neutrino_LDADD += -lfribidi
+endif
+
 if ENABLE_LUA
 neutrino_LDADD += @LUA_LIBS@
 endif
@@ -194,5 +199,3 @@ endif
 
 neutrino_LDADD += \
 	@SWRESAMPLE_LIBS@
-
-neutrino_LDADD += -lfribidi

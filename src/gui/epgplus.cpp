@@ -408,7 +408,7 @@ void EpgPlus::ChannelEntry::paint(bool isSelected, time_t _selectedTime)
 	this->logo = new CComponentsChannelLogoScalable(this->x + OFFSET_INNER_MID, this->y, "", this->channel->channel_id);
 	this->logo->setHeight(this->font->getHeight(),true);
 
-	if (g_settings.channellist_show_channellogo)
+	if ((g_settings.channellist_show_channellogo) && this->logo->hasLogo())
 		this->logo->paint(false);
 	else
 		this->font->RenderString(this->x + OFFSET_INNER_MID, this->y + this->font->getHeight(),

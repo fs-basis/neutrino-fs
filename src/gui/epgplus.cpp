@@ -329,7 +329,10 @@ EpgPlus::ChannelEntry::ChannelEntry(const CZapitChannel * pchannel, int pindex, 
 	{
 		std::stringstream pdisplayName;
 		//pdisplayName << pindex + 1 << " " << pchannel->getName();
-		pdisplayName << pchannel->number << " " << pchannel->getName();
+		if (g_settings.channellist_show_numbers)
+			pdisplayName << pchannel->number << " " << pchannel->getName();
+		else
+			pdisplayName << pchannel->getName();
 
 		this->displayName = pdisplayName.str();
 	}

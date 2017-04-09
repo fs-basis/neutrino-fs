@@ -78,7 +78,7 @@ void CProgressWindow::Init(	signal<void, size_t, size_t, string> *statusSignal,
 
 	int w_item = width-2*x_item;
 	int h_item = 14;
-	int h_pbar = 20;
+	int h_pbar = max(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), h_item)/2;
 	w_bar_frame = 0;
 
 	//create status text object

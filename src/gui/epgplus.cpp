@@ -372,6 +372,12 @@ EpgPlus::ChannelEntry::~ChannelEntry()
 		delete this->detailsLine;
 		this->detailsLine = NULL;
 	}
+	
+	if (this->logo)
+	{
+		delete this->logo;
+		this->logo = NULL;
+	}
 }
 
 void EpgPlus::ChannelEntry::paint(bool isSelected, time_t _selectedTime)
@@ -379,7 +385,13 @@ void EpgPlus::ChannelEntry::paint(bool isSelected, time_t _selectedTime)
 	this->frameBuffer->paintBoxRel(this->x, this->y, this->width, this->font->getHeight(),
 					isSelected ? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENT_PLUS_0);
 
-	this->font->RenderString(this->x + OFFSET_INNER_MID, this->y + this->font->getHeight(),
+	this->logo = new CComponentsChannelLogoScalable(this->x + OFFSET_INNER_MID, this->y, "", this->channel->channel_id);
+	this->logo->setHeight(this->font->getHeight(),true);
+
+	if (g_settings.channellist_show_channellogo)
+		this->logo->paint(false);
+	else
+		this->font->RenderString(this->x + OFFSET_INNER_MID, this->y + this->font->getHeight(),
 					this->width - 2*OFFSET_INNER_MID, this->displayName, isSelected ? COL_MENUCONTENTSELECTED_TEXT : COL_MENUCONTENT_TEXT);
 
 	if (isSelected)

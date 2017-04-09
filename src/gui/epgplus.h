@@ -226,6 +226,7 @@ class EpgPlus
 
 				TCChannelEventEntries channelEventEntries;
 				CComponentsDetailsLine *detailsLine;
+				CComponentsChannelLogo *logo;
 		};
 
 		typedef std::vector<ChannelEntry*> TChannelEntries;

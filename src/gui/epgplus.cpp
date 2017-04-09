@@ -200,11 +200,21 @@ void EpgPlus::TimeLine::paintMark(time_t _startTime, int pduration, int px, int 
 	// paint new mark
 	time_t azeit;
 	time(&azeit);
-	if ((azeit > _startTime) && (azeit < _startTime + pduration))
+	if (((azeit > _startTime) && (azeit < _startTime + pduration)) && (g_settings.theme.progressbar_design_channellist != CProgressBar::PB_OFF))
 	{
 		CProgressBar pbbar = CProgressBar(px,this->y + this->font->getHeight(),pwidth,this->font->getHeight());
 		pbbar.setValues((azeit - _startTime),pduration);
-		pbbar.setActiveColor(COL_MENUCONTENTSELECTED_PLUS_0);
+		pbbar.setType(CProgressBar::PB_TIMESCALE);
+		pbbar.setDesign(g_settings.theme.progressbar_design_channellist);
+		pbbar.setCornerType(0);
+		pbbar.setStatusColors(COL_MENUCONTENTSELECTED_PLUS_0,COL_MENUCONTENT_PLUS_1);
+		int pb_frame = 0;
+		if (g_settings.theme.progressbar_design_channellist == CProgressBar::PB_MONO && !g_settings.theme.progressbar_gradient)
+		{
+			// add small frame to mono progressbars w/o gradient for a better visibility
+			pb_frame = 1;
+		}
+		pbbar.setFrameThickness(pb_frame);
 		pbbar.paint();
 	}
 	else

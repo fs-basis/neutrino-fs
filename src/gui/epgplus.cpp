@@ -449,8 +449,9 @@ void EpgPlus::ChannelEntry::paint(bool isSelected, time_t _selectedTime)
 	if ((g_settings.channellist_show_channellogo) && this->logo->hasLogo())
 	{
 		this->logo->setWidth(min(this->logo->getWidth(), this->width - 2*OFFSET_INNER_MID), true);
-		if (this->logo->getHeight() > this->font->getHeight())
-			this->logo->setHeight(this->font->getHeight(), true);
+		if (this->logo->getHeight() > this->font->getHeight() - OFFSET_INNER_MIN)
+			this->logo->setHeight(this->font->getHeight() - OFFSET_INNER_MIN, true);
+		this->logo->setYPos(this->y+(this->font->getHeight()-this->logo->getHeight())/2);
 		this->logo->paint(false);
 	}
 	else

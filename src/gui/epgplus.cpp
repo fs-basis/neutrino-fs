@@ -446,10 +446,13 @@ void EpgPlus::ChannelEntry::paint(bool isSelected, time_t _selectedTime)
 	int numberWidth = 0;
 
 	this->logo = new CComponentsChannelLogoScalable(xPos, this->y, "", this->channel->channel_id);
-	this->logo->setHeight(this->font->getHeight(),true);
-
 	if ((g_settings.channellist_show_channellogo) && this->logo->hasLogo())
+	{
+		this->logo->setWidth(min(this->logo->getWidth(), this->width - 2*OFFSET_INNER_MID), true);
+		if (this->logo->getHeight() > this->font->getHeight())
+			this->logo->setHeight(this->font->getHeight(), true);
 		this->logo->paint(false);
+	}
 	else
 	{
 		if (g_settings.channellist_show_numbers)

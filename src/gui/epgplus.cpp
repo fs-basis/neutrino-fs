@@ -117,7 +117,7 @@ void EpgPlus::Header::paint(const char * Name)
 	{
 		this->head->setDimensionsAll(this->x, this->y, this->width, this->font->getHeight());
 		this->head->setCaption(caption, CTextBox::NO_AUTO_LINEBREAK);
-		this->head->setContextButton(CComponentsHeader::CC_BTN_HELP);
+		//this->head->setContextButton(CComponentsHeader::CC_BTN_HELP);
 		this->head->enableClock(true, "%H:%M", "%H %M", true);
 		this->head->paint(CC_SAVE_SCREEN_NO);
 	}

@@ -249,8 +249,8 @@ public:
 	};
 	unsigned Size() { return (*chanlist).size(); }
 	ZapitChannelList &getChannels() { return channels; };
-	CComponentsHeader* getHeaderObject();
 	bool checkLockStatus(neutrino_msg_data_t data, bool pip = false);
+	CComponentsHeader* getHeaderObject();
 	void ResetModules();
 };
 #endif

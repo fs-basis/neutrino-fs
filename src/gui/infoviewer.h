@@ -80,7 +80,6 @@ class CInfoViewer
 	int            ChanNameX;
 	int            ChanNumWidth;
 	int            ChanWidth;
-	int            numbox_offset;
 
 	char	       strChanNum[10];
 	void           PaintChanNumber();
@@ -105,9 +104,8 @@ class CInfoViewer
 	CChannelEventList               evtlist;
 	CChannelEventList::iterator     eli;
 
-	int lastsnr, lastsig, lasttime;
+	int lasttime;
 	CProgressBar *timescale;
-	CSignalBox *sigbox;
 
 	bool casysChange;
 	bool channellogoChange;
@@ -116,7 +114,6 @@ class CInfoViewer
 	std::string _livestreamInfo1;
 	std::string _livestreamInfo2;
 
-	void paintBackground(int col_Numbox);
 	void paintHead();
 	void paintBody();
 	void show_Data( bool calledFromEvent = false );
@@ -211,7 +208,6 @@ class CInfoViewer
 
 	void    changePB();
 	void 	ResetPB();
-	void    showSNR();
 	void    Init(void);
 	bool    SDT_freq_update;
 	void	setUpdateTimer(uint64_t interval);
@@ -220,13 +216,4 @@ class CInfoViewer
 	void 	ResetModules(bool kill = false);
 	void	KillModules() {ResetModules(true); };
 };
-#if 0
-class CInfoViewerHandler : public CMenuTarget
-{
-	public:
-		int  exec( CMenuTarget* parent,  const std::string &actionkey);
-		int  doMenu();
-
-};
-#endif
 #endif

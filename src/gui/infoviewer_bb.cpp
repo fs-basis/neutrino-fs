@@ -80,14 +80,7 @@ CInfoViewerBB::CInfoViewerBB()
 	scrambledNoSig		= false;
 	scrambledNoSigSave	= false;
 	scrambledT		= 0;
-#if 0
-	if(!scrambledT) {
-		pthread_create(&scrambledT, NULL, scrambledThread, (void*) this) ;
-		pthread_detach(scrambledT);
-	}
-#endif
 	hddscale 		= NULL;
-	sysscale 		= NULL;
 	bbIconInfo[0].x = 0;
 	bbIconInfo[0].h = 0;
 	BBarY = 0;
@@ -316,34 +309,6 @@ void CInfoViewerBB::getBBButtonInfo()
 	}
 	if (br > MaxBr)
 		printf("[infoviewer_bb:%s#%d] width br (%d) > MaxBr (%d) count %d\n", __func__, __LINE__, br, MaxBr, count);
-#if 0
-	int Btns = 0;
-	// counting buttons
-	for (int i = 0; i < CInfoViewerBB::BUTTON_MAX; i++) {
-		if (bbButtonInfo[i].x != -1) {
-			Btns++;
-		}
-	}
-	bbButtonMaxX = g_InfoViewer->ChanInfoX + 10;
-
-	bbButtonInfo[CInfoViewerBB::BUTTON_RED].x = bbButtonMaxX;
-	bbButtonInfo[CInfoViewerBB::BUTTON_BLUE].x = minX - bbButtonInfo[CInfoViewerBB::BUTTON_BLUE].w;
-
-	int x1 = bbButtonInfo[CInfoViewerBB::BUTTON_RED].x + bbButtonInfo[CInfoViewerBB::BUTTON_RED].w;
-	int rest = bbButtonInfo[CInfoViewerBB::BUTTON_BLUE].x - x1;
-
-	if (Btns < 4) {
-		rest -= bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w;
-		bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x = x1 + rest / 2;
-	}
-	else {
-		rest -= bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w + bbButtonInfo[CInfoViewerBB::BUTTON_YELLOW].w;
-		rest = rest / 3;
-		bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x = x1 + rest;
-		bbButtonInfo[CInfoViewerBB::BUTTON_YELLOW].x = bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].x +
-								bbButtonInfo[CInfoViewerBB::BUTTON_GREEN].w + rest;
-	}
-#endif
 	bbButtonMaxX = g_InfoViewer->ChanInfoX + 10;
 	int step = MaxBr / 4;
 	if (count > 0) { /* avoid div-by-zero :-) */
@@ -389,9 +354,7 @@ void CInfoViewerBB::showBBButtons(bool paintFooter)
 	}
 
 	if (paint) {
-#if 1
 		paintFoot(g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX - g_InfoViewer->ChanInfoX);
-#else
 		fb_pixel_t *pixbuf = NULL;
 		int buf_x = bbIconMinX - 5;
 		int buf_y = BBarY;
@@ -409,7 +372,6 @@ void CInfoViewerBB::showBBButtons(bool paintFooter)
 				delete [] pixbuf;
 			}
 		}
-#endif
 		int last_x = minX;
 
 		for (i = BUTTON_MAX; i > 0;) {
@@ -457,8 +419,6 @@ void CInfoViewerBB::paintshowButtonBar()
 
 	paintFoot();
 
-	g_InfoViewer->showSNR();
-
 	// Buttons
 	showBBButtons();
 
@@ -467,9 +427,6 @@ void CInfoViewerBB::paintshowButtonBar()
 	showIcon_VTXT();
 	showIcon_DD();
 	showIcon_16_9();
-#if 0
-	scrambledCheck(true);
-#endif
 	showIcon_CA_Status(0);
 	showIcon_Resolution();
 	showIcon_Tuner();
@@ -500,7 +457,6 @@ void CInfoViewerBB::paintFoot(int w)
 
 void CInfoViewerBB::showIcon_SubT()
 {
-//	return;
 	if (!is_visible)
 		return;
 	bool have_sub = false;
@@ -569,14 +525,10 @@ void CInfoViewerBB::showIcon_Resolution()
 	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio)
 		return;
 	const char *icon_name = NULL;
-#if 0
-	if ((scrambledNoSig) || ((!fta) && (scrambledErr)))
-#else
 #if BOXMODEL_UFS910
 	if (!g_InfoViewer->chanready)
 #else
 	if (!g_InfoViewer->chanready || videoDecoder->getBlank())
-#endif
 #endif
 	{
 		icon_name = NEUTRINO_ICON_RESOLUTION_000;
@@ -646,19 +598,6 @@ void CInfoViewerBB::showIcon_Resolution()
 void CInfoViewerBB::showOne_CAIcon()
 {
 	std::string sIcon = "";
-#if 0
-	if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_radio) {
-		if (scrambledNoSig)
-			sIcon = NEUTRINO_ICON_SCRAMBLED2_BLANK;
-		else {
-			if (fta)
-				sIcon = NEUTRINO_ICON_SCRAMBLED2_GREY;
-			else
-				sIcon = (scrambledErr) ? NEUTRINO_ICON_SCRAMBLED2_RED : NEUTRINO_ICON_SCRAMBLED2;
-		}
-	}
-	else
-#endif
 		sIcon = (fta) ? NEUTRINO_ICON_SCRAMBLED2_GREY : NEUTRINO_ICON_SCRAMBLED2;
 	showBBIcons(CInfoViewerBB::ICON_CA, sIcon);
 }
@@ -703,17 +642,6 @@ void CInfoViewerBB::showSysfsHdd()
 		showBarSys(percent);
 
 		showBarHdd(cHddStat::getInstance()->getPercent());
-	}
-}
-
-void CInfoViewerBB::showBarSys(int percent)
-{
-	if (is_visible){
-		sysscale->reset();
-		sysscale->doPaintBg(false);
-		sysscale->setDimensionsAll(bbIconMinX, BBarY + InfoHeightY_Info / 2 - 2 - 6, hddwidth, 6);
-		sysscale->setValues(percent, 100);
-		sysscale->paint();
 	}
 }
 
@@ -930,7 +858,6 @@ void CInfoViewerBB::paint_ca_bar()
 	{
 		paintBoxRel(g_InfoViewer->ChanInfoX, g_InfoViewer->BoxEndY, ca_width , bottom_bar_offset, COL_INFOBAR_CASYSTEM_PLUS_0);
 	}
-#if 1
 	if (g_settings.infobar_casystem_dotmatrix)
 	{
 		int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.infobar_casystem_frame ? 24 : 0)) / 4;
@@ -944,7 +871,6 @@ void CInfoViewerBB::paint_ca_bar()
 			}
 		}
 	}
-#endif
 }
 
 void CInfoViewerBB::changePB()
@@ -954,27 +880,17 @@ void CInfoViewerBB::changePB()
 		hddscale = new CProgressBar();
 		hddscale->setType(CProgressBar::PB_REDRIGHT);
 	}
-
-	if (!sysscale) {
-		sysscale = new CProgressBar();
-		sysscale->setType(CProgressBar::PB_REDRIGHT);
-	}
 }
 
 void CInfoViewerBB::reset_allScala()
 {
 	hddscale->reset();
-	sysscale->reset();
-	//lasthdd = lastsys = -1;
 }
 
 void CInfoViewerBB::ResetModules()
 {
 	if (hddscale){
 		delete hddscale; hddscale = NULL;
-	}
-	if (sysscale){
-		delete sysscale; sysscale = NULL;
 	}
 	if (foot){
 		delete foot; foot = NULL;

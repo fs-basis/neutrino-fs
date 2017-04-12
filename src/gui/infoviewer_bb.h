@@ -105,7 +105,7 @@ class CInfoViewerBB
 		bool scrambledNoSig, scrambledNoSigSave;
 		pthread_t scrambledT;
 
-		CProgressBar *hddscale, *sysscale;
+		CProgressBar *hddscale;
 		CComponentsShapeSquare *foot, *ca_bar;
 		void paintFoot(int w = 0);
 		void showBBIcons(const int modus, const std::string & icon);

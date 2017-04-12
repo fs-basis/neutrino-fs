@@ -2503,7 +2503,8 @@ TIMER_START();
 	SHTDCNT::getInstance()->init();
 
 	cSysLoad::getInstance();
-	cHddStat::getInstance();
+	if ((g_settings.infobar_casystem_display < 2) && g_settings.infobar_show_sysfs_hdd)
+		cHddStat::getInstance();
 
 TIMER_STOP("################################## after all ##################################");
 	if (g_settings.softupdate_autocheck) {

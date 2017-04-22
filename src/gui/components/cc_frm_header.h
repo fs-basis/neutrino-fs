@@ -312,15 +312,15 @@ class CComponentsHeader : public CComponentsForm, public CCTextScreen
 		* @param[in]  	alignment
 		* 		@li optional alingment parameter as cc_logo_alignment_t (enum)\n
 		* 		Possible values are:\n
-		* 		CC_LOGO_RIGHT \n
-		* 		CC_LOGO_CENTER (default)\n
+		* 		CC_LOGO_RIGHT (default)\n
+		* 		CC_LOGO_CENTER \n
 		* 		CC_LOGO_RIGHT \n
 		* @param[in]  	dy
 		* 		@li optional logo height, default = -1 (auto)
 		*/
 		void setChannelLogo(	const uint64_t& channelId,
 					const std::string& channelName,
-					cc_logo_alignment_t alignment = CC_LOGO_CENTER,
+					cc_logo_alignment_t alignment = CC_LOGO_RIGHT,
 					const int& dy = -1)
 					{cch_logo.Id = channelId; cch_logo.Name = channelName, cch_logo.Align = alignment, cch_logo.dy_max = dy; initCCItems();}
 		/**Methode to get channel logo object for direct access to its properties and methodes

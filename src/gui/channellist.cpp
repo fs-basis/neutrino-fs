@@ -2181,7 +2181,6 @@ void CChannelList::paintHead()
 	}
 	else
 		logo_off = OFFSET_INNER_MID;
-
 	if(g_settings.channellist_show_channellogo){
 		//ensure to have clean background
 		header->getChannelLogoObject()->hide();
@@ -2189,7 +2188,7 @@ void CChannelList::paintHead()
 		header->getChannelLogoObject()->allowPaint(false);
 	}
 	header->paint(CC_SAVE_SCREEN_NO);
-	showChannelLogo();
+	//showChannelLogo();
 }
 
 CComponentsHeader* CChannelList::getHeaderObject()

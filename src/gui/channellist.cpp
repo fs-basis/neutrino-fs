@@ -547,6 +547,7 @@ bool CChannelList::updateSelection(int newpos)
 		liststart = (selected/listmaxshow)*listmaxshow;
 		if (oldliststart != liststart) {
 			paintBody();
+			showChannelLogo();
 			updateVfd();
 		} else {
 			paintItem(prev_selected - liststart);
@@ -2251,7 +2252,7 @@ void CChannelList::paintBody()
 		sbc = 1;
 
 	frameBuffer->paintBoxRel(x+ width- 13, ypos+ 2+ sbs*(sb-4)/sbc, 11, (sb-4)/sbc, COL_SCROLLBAR_ACTIVE_PLUS_0);
-	showChannelLogo();
+	//showChannelLogo();
 	if ((*chanlist).empty())
 		paintButtonBar(false);
 }
@@ -2686,6 +2687,7 @@ void CChannelList::deleteChannel(bool ask)
 
 	channelsChanged = true;
 	paintBody();
+	showChannelLogo();
 	updateVfd();
 }
 

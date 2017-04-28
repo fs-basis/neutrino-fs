@@ -1275,12 +1275,12 @@ void COsdSetup::showOsdChanlistSetup(CMenuWidget *menu_chanlist)
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_EXTENDED, &g_settings.theme.progressbar_design_channellist, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true, this);
 	mc->setHint("", LOCALE_MENU_HINT_CHANNELLIST_EXTENDED);
 	menu_chanlist->addItem(mc);
-#if 0
+
 	// hd-icon
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_HDICON, &g_settings.channellist_hdicon, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_CHANNELLIST_HDICON);
 	menu_chanlist->addItem(mc);
-#endif
+
 	// show infobox
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_SHOW_INFOBOX, &g_settings.channellist_show_infobox, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, channellistNotifier);
 	mc->setHint("", LOCALE_MENU_HINT_CHANNELLIST_SHOW_INFOBOX);

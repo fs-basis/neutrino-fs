@@ -1,5 +1,6 @@
 installdir = $(THEMESDIR)
 
 install_DATA = \
-	Frankenstone.theme \
+	Franken-White.theme \
+	Franken-Yellow.theme \
 	Neutrino-NI.theme

@@ -593,10 +593,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.timezone = configfile.getString("timezone", "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna");
 	//epg dir
 #if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 14);
+	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 0);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 0);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 35000);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 17500);
 	g_settings.epg_dir              = configfile.getString("epg_dir", "/var/epg");
 #else
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 14);

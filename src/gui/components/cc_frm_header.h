@@ -32,7 +32,7 @@
 #include "cc_frm_clock.h"
 #include <driver/colorgradient.h>
 
-#define DEFAULT_LOGO_ALIGN CComponentsHeader::CC_LOGO_RIGHT
+#define DEFAULT_LOGO_ALIGN CComponentsHeader::CC_LOGO_CENTER
 
 //! Sub class of CComponentsForm. Shows a header with prepared items.
 /*!
@@ -314,8 +314,8 @@ class CComponentsHeader : public CComponentsForm, public CCTextScreen
 		* @param[in]  	alignment
 		* 		@li optional alingment parameter as cc_logo_alignment_t (enum)\n
 		* 		Possible values are:\n
-		* 		CC_LOGO_RIGHT (default)\n
-		* 		CC_LOGO_CENTER \n
+		* 		CC_LOGO_RIGHT \n
+		* 		CC_LOGO_CENTER (default)\n
 		* 		CC_LOGO_RIGHT \n
 		* @param[in]  	dy
 		* 		@li optional logo height, default = -1 (auto)

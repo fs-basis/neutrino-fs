@@ -119,7 +119,7 @@ void EpgPlus::Header::paint(const char * Name)
 	if (this->head)
 	{
 		this->head->setDimensionsAll(this->x, this->y, this->width, this->font->getHeight());
-		this->head->setCaption(caption, CTextBox::NO_AUTO_LINEBREAK);
+		this->head->setCaption(caption);
 		this->head->paint(CC_SAVE_SCREEN_NO);
 	}
 }

@@ -301,7 +301,7 @@ void CComponentsHeader::initLogo()
 		int prev_id = logo_id - 1;
 
 		//right end
-		int x_logo_right = width - cch_logo_obj->getWidth();
+		int x_logo_right = width - cch_logo_obj->getWidth() -10;
 		if (!(cch_caption_align & CC_TITLE_RIGHT)){
 			if (cch_btn_obj)
 				x_logo_right -= cch_btn_obj->getWidth();

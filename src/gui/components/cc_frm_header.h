@@ -330,11 +330,7 @@ class CComponentsHeader : public CComponentsForm, public CCTextScreen, CCHeaderT
 		* 		Possible values are:\n
 		* 		CC_LOGO_RIGHT (default)\n
 		* 		CC_LOGO_CENTER \n
-<<<<<<< HEAD
-		* 		CC_LOGO_RIGHT \n
-=======
 		* 		CC_LOGO_LEFT \n
->>>>>>> DD/master
 		* @param[in]  	dy
 		* 		@li optional logo height, default = -1 (auto)
 		* @note 	In auto mode, logo use full height minus inner offset but not larger than original logo height.

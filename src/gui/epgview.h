@@ -53,7 +53,6 @@ class CEpgData
 		CComponentsHeader	*header;
 		CNaviBar 		*Bottombox;
 		CProgressBar 		*pb;
-		Font			*font_title;
 		std::string 		epg_date;
 		std::string 		epg_start;
 		std::string 		epg_end;

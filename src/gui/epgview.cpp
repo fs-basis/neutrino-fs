@@ -890,7 +890,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t* a_start
 	showTimerEventBar(true, isCurrentEPG(channel_id), mp_info);
 
 	frameBuffer->blit();
-	
+
 	if(header)
 		header->getClockObject()->setBlit();
 

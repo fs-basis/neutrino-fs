@@ -427,6 +427,10 @@ int ShowMsg2UTF(	const char * const Title,
 	msgBox.exec();
 	int  res = msgBox.getResult();
 	msgBox.hide();
+#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+	CFrameBuffer::getInstance()->blit();
+#endif
+	
 	return res;
 }
 

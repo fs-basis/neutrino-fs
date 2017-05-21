@@ -1907,11 +1907,13 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	}
 	else if (msg == CRCInput::RC_left)
 	{
+		hideDetailsLine();
 		if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
 			onSetFocusNext();
 	}
 	else if (msg == CRCInput::RC_right)
 	{
+		hideDetailsLine();
 		if (m_windowFocus == MB_FOCUS_BROWSER && m_settings.browserAdditional)
 			onSetFocusNext();
 	}
@@ -1925,6 +1927,7 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	}
 	else if (msg == CRCInput::RC_yellow)
 	{
+		hideDetailsLine();
 		onSetGUIWindowNext();
 	}
 	else if (msg == CRCInput::RC_blue)
@@ -2106,6 +2109,7 @@ void CMovieBrowser::markItem(CListFrame *list)
 
 void CMovieBrowser::scrollBrowserItem(bool next, bool page)
 {
+	hideDetailsLine();
 	if (next)
 		page ? m_pcBrowser->scrollPageDown(1) : m_pcBrowser->scrollLineDown(1);
 	else
@@ -2434,7 +2438,7 @@ void CMovieBrowser::onSetGUIWindow(MB_GUI gui)
 	TRACE("[mb]->onSetGUIWindow: gui %d -> %d\n", m_settings.gui, gui);
 	m_settings.gui = gui;
 
-	hideDetailsLine();
+	//hideDetailsLine(); //kann wenn keine probleme mehr entfernt werden
 
 	m_showMovieInfo = true;
 	if (gui == MB_GUI_MOVIE_INFO) {

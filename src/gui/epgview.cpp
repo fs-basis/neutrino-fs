@@ -847,8 +847,11 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t* a_start
 		header->setColorBody(COL_MENUHEAD_PLUS_0);
 		header->enableColBodyGradient(g_settings.theme.menu_Head_gradient, COL_MENUCONTENT_PLUS_0, g_settings.theme.menu_Head_gradient_direction);
 		header->enableClock(true, "%H:%M", "%H %M", true);
-	}else
+		header->getClockObject()->setBlit(false);
+	}else{
 		header->setDimensionsAll(sx, sy, ox, toph);
+		header->getClockObject()->setBlit(false);
+	}
 
 	header->setCaption(epgData.title);
 
@@ -887,6 +890,10 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t* a_start
 	showTimerEventBar(true, isCurrentEPG(channel_id), mp_info);
 
 	frameBuffer->blit();
+	
+	if(header)
+		header->getClockObject()->setBlit();
+
 	if ( doLoop )
 	{
 		neutrino_msg_t      msg = 0;
@@ -1510,7 +1517,7 @@ void CEpgData::showTimerEventBar (bool pshow, bool adzap, bool mp_info)
 			::paintButtons(x, y, w, c, &EpgButtons[fscr ? 0 : 1][1], w, h, "", false, COL_MENUFOOT_TEXT, adzap ? adzap_button.c_str() : NULL, 0);
 	}
 
-	frameBuffer->blit();
+	//frameBuffer->blit();
 }
 
 void CEpgData::ResetModules()

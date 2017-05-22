@@ -412,9 +412,6 @@ int ShowHint(const char * const Caption, const char * const Text, const int Widt
 	hintBox.paint();
 	res = hintBox.exec();
 	hintBox.hide();
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-	CFrameBuffer::getInstance()->blit();
-#endif
 
 	return res;
 }
@@ -459,9 +456,6 @@ int ShowHintS(const char * const Text, int timeout, bool show_background)
 	hint.paint();
 	res = hint.exec();
 	hint.hide();
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
-	CFrameBuffer::getInstance()->blit();
-#endif
 
 	return res;
 }

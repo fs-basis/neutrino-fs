@@ -79,7 +79,6 @@
 #include <system/hddstat.h>
 
 extern CPictureViewer * g_PicViewer;
-extern bool timeset;
 
 #define my_scandir scandir64
 #define my_alphasort alphasort64
@@ -90,7 +89,6 @@ typedef struct dirent64 dirent_struct;
 
 #define NUMBER_OF_MOVIES_LAST 40 // This is the number of movies shown in last recored and last played list
 #define MOVIE_SMSKEY_TIMEOUT 800
-#define BROWSERFRAMEHEIGHT 75
 
 #define MESSAGEBOX_BROWSER_ROW_ITEM_COUNT 22
 const CMenuOptionChooser::keyval MESSAGEBOX_BROWSER_ROW_ITEM[MESSAGEBOX_BROWSER_ROW_ITEM_COUNT] =
@@ -511,8 +509,6 @@ void CMovieBrowser::initFrames(void)
 		m_cBoxFrameBrowserList.iWidth =	m_cBoxFrame.iWidth / 3 * 2;
 	else
 		m_cBoxFrameBrowserList.iWidth =	m_cBoxFrame.iWidth;
-	if (m_settings.browserAdditional)
-		m_settings.browserFrameHeight = BROWSERFRAMEHEIGHT;
 	m_cBoxFrameBrowserList.iHeight = 	m_cBoxFrame.iHeight * m_settings.browserFrameHeight / 100;
 
 
@@ -935,11 +931,6 @@ int CMovieBrowser::exec(const char* path)
 				TRACE("[mb] Timerevent\n");
 				loop = false;
 			}
-			else if ((msg == NeutrinoMessages::EVT_TIMER) && (data == g_InfoViewer->sec_timer_id))
-			{
-				if (timeset)
-					refreshTitle();
-			}
 			else if (msg == CRCInput::RC_ok)
 			{
 				for (unsigned int i = 0; i < m_vMovieInfo.size(); i++) {
@@ -1029,7 +1020,6 @@ void CMovieBrowser::hide(void)
 	if (m_header)	{
 		delete m_header; m_header = NULL;
 	}
-
 	old_EpgId = 0;
 	framebuffer->paintBackground();
 	if (m_pcFilter != NULL)
@@ -1908,14 +1898,16 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	else if (msg == CRCInput::RC_left)
 	{
 		hideDetailsLine();
-		if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
-			onSetFocusNext();
+		//if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
+			//onSetFocusNext();
+			onSetGUIWindowPrev();
 	}
 	else if (msg == CRCInput::RC_right)
 	{
 		hideDetailsLine();
-		if (m_windowFocus == MB_FOCUS_BROWSER && m_settings.browserAdditional)
-			onSetFocusNext();
+		//if (m_windowFocus == MB_FOCUS_BROWSER && m_settings.browserAdditional)
+			//onSetFocusNext();
+			onSetGUIWindowNext();
 	}
 	else if (msg == CRCInput::RC_green)
 	{
@@ -1928,7 +1920,7 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	else if (msg == CRCInput::RC_yellow)
 	{
 		hideDetailsLine();
-		onSetGUIWindowNext();
+		onSetFocusNext();
 	}
 	else if (msg == CRCInput::RC_blue)
 	{
@@ -1988,7 +1980,6 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 
 				TRACE("[mb]->new sorting %d, %s\n", m_settings.sorting.item, g_Locale->getText(m_localizedItemName[m_settings.sorting.item]));
 
-				refreshTitle();
 				refreshBrowserList();
 				refreshMovieInfo();
 				refreshFoot();
@@ -2125,9 +2116,9 @@ bool CMovieBrowser::onButtonPressBrowserList(neutrino_msg_t msg)
 		scrollBrowserItem(false, false);
 	else if (msg == CRCInput::RC_down)
 		scrollBrowserItem(true, false);
-	else if ((msg == (neutrino_msg_t)g_settings.key_pageup) || (msg == CRCInput::RC_left))
+	else if (msg == CRCInput::RC_page_up)
 		scrollBrowserItem(false, true);
-	else if ((msg == (neutrino_msg_t)g_settings.key_pagedown) || (msg == CRCInput::RC_right))
+	else if (msg == CRCInput::RC_page_down)
 		scrollBrowserItem(true, true);
 	else if (msg == CRCInput::RC_play)
 		markItem(m_pcBrowser);
@@ -2149,9 +2140,9 @@ bool CMovieBrowser::onButtonPressLastPlayList(neutrino_msg_t msg)
 		m_pcLastPlay->scrollLineUp(1);
 	else if (msg == CRCInput::RC_down)
 		m_pcLastPlay->scrollLineDown(1);
-	else if (msg == (neutrino_msg_t)g_settings.key_pageup)
+	else if (msg == CRCInput::RC_page_up)
 		m_pcLastPlay->scrollPageUp(1);
-	else if (msg == (neutrino_msg_t)g_settings.key_pagedown)
+	else if (msg == CRCInput::RC_page_down)
 		m_pcLastPlay->scrollPageDown(1);
 	else if (msg == CRCInput::RC_play)
 		markItem(m_pcLastPlay);
@@ -2173,9 +2164,9 @@ bool CMovieBrowser::onButtonPressLastRecordList(neutrino_msg_t msg)
 		m_pcLastRecord->scrollLineUp(1);
 	else if (msg == CRCInput::RC_down)
 		m_pcLastRecord->scrollLineDown(1);
-	else if (msg == (neutrino_msg_t)g_settings.key_pageup)
+	else if (msg == CRCInput::RC_page_up)
 		m_pcLastRecord->scrollPageUp(1);
-	else if (msg == (neutrino_msg_t)g_settings.key_pagedown)
+	else if (msg == CRCInput::RC_page_down)
 		m_pcLastRecord->scrollPageDown(1);
 	else if (msg == CRCInput::RC_play)
 		markItem(m_pcLastRecord);
@@ -2201,11 +2192,11 @@ bool CMovieBrowser::onButtonPressFilterList(neutrino_msg_t msg)
 	{
 		m_pcFilter->scrollLineDown(1);
 	}
-	else if (msg == (neutrino_msg_t)g_settings.key_pageup)
+	else if (msg == CRCInput::RC_page_up)
 	{
 		m_pcFilter->scrollPageUp(1);
 	}
-	else if (msg == (neutrino_msg_t)g_settings.key_pagedown)
+	else if (msg == CRCInput::RC_page_down)
 	{
 		m_pcFilter->scrollPageDown(1);
 	}
@@ -2255,12 +2246,12 @@ bool CMovieBrowser::onButtonPressMovieInfoList(neutrino_msg_t msg)
 //	TRACE("[mb]->onButtonPressEPGInfoList %d\n",msg);
 	bool result = true;
 
-	if (msg == CRCInput::RC_up)
+	if (msg == CRCInput::RC_page_up)
 		if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
 			m_pcInfo2->scrollPageUp(1);
 		else
 			m_pcInfo1->scrollPageUp(1);
-	else if (msg == CRCInput::RC_down)
+	else if (msg == CRCInput::RC_page_down)
 		if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
 			m_pcInfo2->scrollPageDown(1);
 		else
@@ -3377,9 +3368,9 @@ bool CMovieBrowser::showMenu(bool calledExternally)
 				   It's just to align view to channellist's view.
 				*/
 				if (m_settings.browserAdditional)
-					m_settings.browserFrameHeight = BROWSERFRAMEHEIGHT;
+					m_settings.browserFrameHeight = 75;
 				else
-					m_settings.browserFrameHeight = BROWSERFRAMEHEIGHT -10;
+					m_settings.browserFrameHeight = 65;
 			}
 #endif
 			initFrames();

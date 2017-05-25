@@ -2127,9 +2127,9 @@ bool CMovieBrowser::onButtonPressBrowserList(neutrino_msg_t msg)
 		scrollBrowserItem(false, false);
 	else if (msg == CRCInput::RC_down)
 		scrollBrowserItem(true, false);
-	else if (msg == CRCInput::RC_page_up)
+	else if ((msg == (neutrino_msg_t)g_settings.key_pageup) || (msg == CRCInput::RC_left))
 		scrollBrowserItem(false, true);
-	else if (msg == CRCInput::RC_page_down)
+	else if ((msg == (neutrino_msg_t)g_settings.key_pagedown) || (msg == CRCInput::RC_right))
 		scrollBrowserItem(true, true);
 	else if (msg == CRCInput::RC_play)
 		markItem(m_pcBrowser);
@@ -2151,9 +2151,9 @@ bool CMovieBrowser::onButtonPressLastPlayList(neutrino_msg_t msg)
 		m_pcLastPlay->scrollLineUp(1);
 	else if (msg == CRCInput::RC_down)
 		m_pcLastPlay->scrollLineDown(1);
-	else if (msg == CRCInput::RC_page_up)
+	else if (msg == (neutrino_msg_t)g_settings.key_pageup)
 		m_pcLastPlay->scrollPageUp(1);
-	else if (msg == CRCInput::RC_page_down)
+	else if (msg == (neutrino_msg_t)g_settings.key_pagedown)
 		m_pcLastPlay->scrollPageDown(1);
 	else if (msg == CRCInput::RC_play)
 		markItem(m_pcLastPlay);
@@ -2175,9 +2175,9 @@ bool CMovieBrowser::onButtonPressLastRecordList(neutrino_msg_t msg)
 		m_pcLastRecord->scrollLineUp(1);
 	else if (msg == CRCInput::RC_down)
 		m_pcLastRecord->scrollLineDown(1);
-	else if (msg == CRCInput::RC_page_up)
+	else if (msg == (neutrino_msg_t)g_settings.key_pageup)
 		m_pcLastRecord->scrollPageUp(1);
-	else if (msg == CRCInput::RC_page_down)
+	else if (msg == (neutrino_msg_t)g_settings.key_pagedown)
 		m_pcLastRecord->scrollPageDown(1);
 	else if (msg == CRCInput::RC_play)
 		markItem(m_pcLastRecord);
@@ -2203,11 +2203,11 @@ bool CMovieBrowser::onButtonPressFilterList(neutrino_msg_t msg)
 	{
 		m_pcFilter->scrollLineDown(1);
 	}
-	else if (msg == CRCInput::RC_page_up)
+	else if (msg == (neutrino_msg_t)g_settings.key_pageup)
 	{
 		m_pcFilter->scrollPageUp(1);
 	}
-	else if (msg == CRCInput::RC_page_down)
+	else if (msg == (neutrino_msg_t)g_settings.key_pagedown)
 	{
 		m_pcFilter->scrollPageDown(1);
 	}
@@ -2257,12 +2257,12 @@ bool CMovieBrowser::onButtonPressMovieInfoList(neutrino_msg_t msg)
 //	TRACE("[mb]->onButtonPressEPGInfoList %d\n",msg);
 	bool result = true;
 
-	if (msg == CRCInput::RC_page_up)
+	if (msg == CRCInput::RC_up)
 		if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
 			m_pcInfo2->scrollPageUp(1);
 		else
 			m_pcInfo1->scrollPageUp(1);
-	else if (msg == CRCInput::RC_page_down)
+	else if (msg == CRCInput::RC_down)
 		if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
 			m_pcInfo2->scrollPageDown(1);
 		else

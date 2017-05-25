@@ -1930,7 +1930,6 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 	}
 	else if (msg == CRCInput::RC_yellow)
 	{
-		hideDetailsLine();
 		onSetFocusNext();
 	}
 	else if (msg == CRCInput::RC_blue)

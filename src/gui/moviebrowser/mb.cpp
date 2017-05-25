@@ -1906,14 +1906,14 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 		else
 			result = false;
 	}
-	else if (msg == CRCInput::RC_left)
+	else if (msg == (neutrino_msg_t)g_settings.key_bouquet_down /*CRCInput::RC_left*/)
 	{
 		hideDetailsLine();
 		//if (m_windowFocus == MB_FOCUS_MOVIE_INFO2 && m_settings.browserAdditional)
 			//onSetFocusNext();
 			onSetGUIWindowPrev();
 	}
-	else if (msg == CRCInput::RC_right)
+	else if (msg == (neutrino_msg_t)g_settings.key_bouquet_up /*CRCInput::RC_right*/)
 	{
 		hideDetailsLine();
 		//if (m_windowFocus == MB_FOCUS_BROWSER && m_settings.browserAdditional)
@@ -2127,9 +2127,9 @@ bool CMovieBrowser::onButtonPressBrowserList(neutrino_msg_t msg)
 		scrollBrowserItem(false, false);
 	else if (msg == CRCInput::RC_down)
 		scrollBrowserItem(true, false);
-	else if ((msg == (neutrino_msg_t)g_settings.key_pageup) || (msg == CRCInput::RC_left))
+	else if ((msg == (neutrino_msg_t)g_settings.key_pageup)/* || (msg == CRCInput::RC_left)*/)
 		scrollBrowserItem(false, true);
-	else if ((msg == (neutrino_msg_t)g_settings.key_pagedown) || (msg == CRCInput::RC_right))
+	else if ((msg == (neutrino_msg_t)g_settings.key_pagedown)/* || (msg == CRCInput::RC_right)*/)
 		scrollBrowserItem(true, true);
 	else if (msg == CRCInput::RC_play)
 		markItem(m_pcBrowser);

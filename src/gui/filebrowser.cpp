@@ -1223,6 +1223,7 @@ void CFileBrowser::paintItem(unsigned int pos)
 			case CFile::FILE_WAV:
 			case CFile::FILE_FLAC:
 			case CFile::FILE_AAC:
+			case CFile::FILE_PLAYLIST:
 				fileicon = NEUTRINO_ICON_MP3;
 				break;
 

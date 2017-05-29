@@ -97,7 +97,7 @@ static CComponentsPIP	*cc_minitv = NULL;
 extern CBouquetManager *g_bouquetManager;
 extern int old_b_id;
 static CComponentsHeader *header = NULL;
-extern bool timeset;
+//extern bool timeset;
 
 CChannelList::CChannelList(const char * const pName, bool phistoryMode, bool _vlist)
 {
@@ -2181,7 +2181,7 @@ void CChannelList::paintHead()
 
 	header->setCaption(header_txt, DEFAULT_TITLE_ALIGN, header_txt_col);
 
-	if (timeset) {
+//	if (timeset) {
 		if(!edit_state){
 			if (header->getContextBtnObject())
 				if (!header->getContextBtnObject()->empty())
@@ -2196,7 +2196,7 @@ void CChannelList::paintHead()
 				header->setContextButton(CComponentsHeader::CC_BTN_EXIT);
 			}
 		}
-	}
+//	}
 
 	if(g_settings.channellist_show_channellogo){
 		//ensure to have clean background

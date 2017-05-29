@@ -145,8 +145,10 @@ bool CComponentsTimer::stopTimer()
 	tm_enable = false;
 	stopThread();
 	if(tm_thread == 0)
+	{
+		OnTimer.clear();
 		return true;
-
+	}
 	return false;
 }
 

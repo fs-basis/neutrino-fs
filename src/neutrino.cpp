@@ -750,7 +750,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.recording_type = configfile.getInt32("recording_type", RECORDING_FILE);
 	g_settings.recording_stopsectionsd         = configfile.getBool("recording_stopsectionsd"            , false );
 	g_settings.recording_audio_pids_default    = configfile.getInt32("recording_audio_pids_default", TIMERD_APIDS_STD | TIMERD_APIDS_AC3 | TIMERD_APIDS_ALT);
-	g_settings.recording_zap_on_announce       = configfile.getBool("recording_zap_on_announce"      , false);
+	g_settings.recording_zap_on_announce       = configfile.getBool("recording_zap_on_announce"      , true);
 	g_settings.shutdown_timer_record_type      = configfile.getBool("shutdown_timer_record_type"      , false);
 
 	g_settings.recording_stream_vtxt_pid       = configfile.getBool("recordingmenu.stream_vtxt_pid"      , false);
@@ -832,7 +832,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.cacheTXT = configfile.getInt32( "cacheTXT",  0);
 	g_settings.minimode = configfile.getInt32( "minimode",  0);
 	g_settings.mode_clock = configfile.getInt32( "mode_clock",  0);
-	g_settings.zapto_pre_time = configfile.getInt32( "zapto_pre_time",  0);
+	g_settings.zapto_pre_time = configfile.getInt32( "zapto_pre_time",  1);
 	g_settings.spectrum         = configfile.getBool("spectrum"          , false);
 	g_settings.channellist_additional = configfile.getInt32("channellist_additional", 2);
 	g_settings.eventlist_additional = configfile.getInt32("eventlist_additional", 1);

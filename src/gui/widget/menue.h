@@ -514,6 +514,7 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		std::string		iconfile;
 
 		int			min_width;
+		int			mwidth_save;
 		int			width;
 		int			height;
 		int			hheight; // header

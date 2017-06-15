@@ -34,6 +34,7 @@ struct gradientData_t;
 class Font;
 class CComponentsForm;
 class CComponentsScrollBar;
+class CCButtonSelect;
 
 ///cc item types
 typedef enum
@@ -197,8 +198,8 @@ typedef struct button_label_cc
 				directKeys(1, CRCInput::RC_nokey){}
 } button_label_cc_struct;
 
-#define CC_WIDTH_MIN		16
-#define CC_HEIGHT_MIN		16
+#define CC_WIDTH_MIN		CFrameBuffer::getInstance()->scale2Res(16)
+#define CC_HEIGHT_MIN		CC_WIDTH_MIN
 
 #define CC_SHADOW_OFF 			0x0
 #define CC_SHADOW_RIGHT 		0x2

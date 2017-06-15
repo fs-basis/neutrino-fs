@@ -6,6 +6,7 @@
  *
  * License: GPL v2 or later
  */
+#include <config.h>
 #include "cs_api.h"
 #include <stdio.h>
 #include <string.h>
@@ -20,7 +21,10 @@ hw_caps_t *get_hwcaps(void) {
 	if (initialized)
 		return &caps;
 	int rev = cs_get_revision();
-	int chip = cs_get_chip_type();
+	int chip = 0;
+#ifdef BOXMODEL_CS_HD2
+	chip = cs_get_chip_type();
+#endif
 	caps.has_fan = (rev < 8 && CFEManager::getInstance()->getFE(0)->hasSat()); // only SAT-HD1 before rev 8 has fan
 	caps.has_HDMI = 1;
 	caps.has_SCART = (rev != 10);
@@ -75,6 +79,7 @@ hw_caps_t *get_hwcaps(void) {
 			strcpy(caps.boxname, "Trinity V2");
 			strcpy(caps.boxarch, "Kronos");
 		}
+		caps.can_set_display_brightness = 0;
 		break;
 	case 12:
 		strcpy(caps.boxname, "Zee2");
@@ -87,6 +92,7 @@ hw_caps_t *get_hwcaps(void) {
 	case 14:
 		strcpy(caps.boxname, "Trinity Duo");
 		strcpy(caps.boxarch, "Kronos");
+		caps.can_set_display_brightness = 0;
 		break;
 	default:
 		strcpy(caps.boxname, "UNKNOWN_BOX");

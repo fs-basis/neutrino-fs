@@ -144,7 +144,7 @@ class CInfoViewerBB
 		void ShowRecDirScale();
 		void showIcon_DD(void);
 		void showBBButtons(bool paintFooter = false);
-		void paintshowButtonBar();
+		void paintshowButtonBar(bool noTimer = false);
 		void getBBButtonInfo(void);
 		void reset_allScala(void);
 		void initBBOffset(void);

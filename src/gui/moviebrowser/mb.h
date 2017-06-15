@@ -56,7 +56,7 @@
 #include <driver/movieinfo.h>
 #include <driver/file.h>
 #include <driver/fb_window.h>
-#include <driver/pictureviewer/pictureviewer.h>
+#include <gui/widget/progresswindow.h>
 
 #define MAX_NUMBER_OF_BOOKMARK_ITEMS MI_MOVIE_BOOK_USER_MAX // we just use the same size as used in Movie info (MAX_NUMBER_OF_BOOKMARK_ITEMS is used for the number of menu items)
 #define MOVIEBROWSER_SETTINGS_FILE          CONFIGDIR "/moviebrowser.conf"
@@ -111,7 +111,7 @@ typedef struct
 class CMovieBrowser;
 
 // Priorities for Developmemt: P1: critical feature, P2: important feature, P3: for next release, P4: looks nice, lets see
-class CMovieBrowser : public CMenuTarget
+class CMovieBrowser : public CMenuTarget, public CProgressSignals
 {
 
 	public: // Variables /////////////////////////////////////////////////

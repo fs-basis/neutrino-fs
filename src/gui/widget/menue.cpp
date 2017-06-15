@@ -2336,15 +2336,9 @@ int CMenuSeparator::paint(bool selected)
 				name_start_x = x + dx - stringwidth - 2*OFFSET_INNER_MID;
 			else /* ALIGN_CENTER */
 				name_start_x = x + (dx >> 1) - (stringwidth >> 1);
-<<<<<<< HEAD
-
- 			frameBuffer->paintBoxRel(name_start_x-5, y, stringwidth+10, height, item_bgcolor);
-
-=======
 			
 			frameBuffer->paintBoxRel(name_start_x-OFFSET_INNER_SMALL, y, stringwidth+2*OFFSET_INNER_SMALL, height, item_bgcolor);
 			
->>>>>>> DD/master
 			paintItemCaption(selected);
 		}
 	}

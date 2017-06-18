@@ -117,7 +117,7 @@ CProgressBar* CProgressWindow::getProgressItem()
 		y_tmp += ccw_body->getCCItem(i)->getYPos() + ccw_body->getCCItem(i)->getHeight();
 		y_tmp += OFFSET_INNER_MID;
 	}
-	pBar->setDimensionsAll(OFFSET_INNER_MID, y_tmp, width-2*OFFSET_INNER_MID, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
+	pBar->setDimensionsAll(OFFSET_INNER_MID, y_tmp, width-2*OFFSET_INNER_MID, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()/2);
 	pBar->setColorBody(col_body);
 	pBar->setActiveColor(COL_PROGRESSBAR_ACTIVE_PLUS_0);
 	pBar->setFrameThickness(1);

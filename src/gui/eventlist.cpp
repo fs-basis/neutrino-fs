@@ -1467,10 +1467,6 @@ int CEventFinderMenu::showMenu(void)
 
 bool CEventFinderMenu::changeNotify(const neutrino_locale_t OptionName, void *)
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> DD/master
 	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_EVENTFINDER_SEARCH_WITHIN_LIST))
 	{
 		if (*m_search_list == CEventList::SEARCH_LIST_CHANNEL)

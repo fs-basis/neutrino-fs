@@ -827,7 +827,8 @@ void CEventList::paintItem(unsigned int pos, t_channel_id channel_idI)
 		// paint 2nd line text
 		g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(x + iw + OFFSET_INNER_MID, ypos + item_height, width - iw - 2*OFFSET_INNER_MID, evtlist[currpos].description, color);
 
-		showProgressBar(currpos);
+		if (i_radius)
+			showProgressBar(currpos);
 	}
 }
 
@@ -888,6 +889,8 @@ void CEventList::paintHead(t_channel_id _channel_id, std::string _channelname, s
 		header->set2ndColor(COL_MENUCONTENT_PLUS_0);
 		header->setDimensionsAll(x, y, full_width, header_height);
 		header->enableShadow(CC_SHADOW_RIGHT | CC_SHADOW_CORNER_TOP_RIGHT | CC_SHADOW_CORNER_BOTTOM_RIGHT, -1, true);
+	} else {
+		header->getClockObject()->setBlit(false);
 	}
 	//header->getClockObject()->setCorner(RADIUS_LARGE, CORNER_TOP_RIGHT);
 

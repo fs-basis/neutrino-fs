@@ -1324,11 +1324,11 @@ bool CAudioPlayerGui::openFilebrowser(void)
 				|| (files->getType() == CFile::FILE_MP3)
 				|| (files->getType() == CFile::FILE_WAV)
 #ifdef ENABLE_FFMPEGDEC
-				|| (files->getType() == CFile::FILE_AAC)
+					||  (files->getType() == CFile::FILE_AAC)
+					||  (files->getType() == CFile::FILE_FLV)
 #endif
-				|| (files->getType() == CFile::FILE_FLAC)
-				|| (files->getType() == CFile::FILE_FLV)
-			)
+					||  (files->getType() == CFile::FILE_FLAC)
+			   )
 			{
 				CAudiofileExt audiofile(files->Name,
 							files->getType());
@@ -1419,14 +1419,15 @@ bool CAudioPlayerGui::openFilebrowser(void)
 									CFile playlistItem;
 									playlistItem.Name = filename;
 									CFile::FileType fileType = playlistItem.getType();
-									if (
-										   fileType == CFile::FILE_CDR
-										|| fileType == CFile::FILE_MP3
-										|| fileType == CFile::FILE_OGG
-										|| fileType == CFile::FILE_WAV
-										|| fileType == CFile::FILE_FLAC
-										|| fileType == CFile::FILE_FLV
-									)
+									if (fileType == CFile::FILE_CDR
+											|| fileType == CFile::FILE_MP3
+											|| fileType == CFile::FILE_OGG
+											|| fileType == CFile::FILE_WAV
+											|| fileType == CFile::FILE_FLAC
+#ifdef ENABLE_FFMPEGDEC
+											|| fileType == CFile::FILE_FLV
+#endif
+									   )
 									{
 										CAudiofileExt audioFile(filename,fileType);
 										addToPlaylist(audioFile);

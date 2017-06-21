@@ -1267,7 +1267,6 @@ void CMenuWidget::setMenuPos(const int& menu_width)
 	int scr_y = frameBuffer->getScreenY();
 	int scr_w = frameBuffer->getScreenWidth();
 	int scr_h = frameBuffer->getScreenHeight();
-
 	int real_h = full_height + fbutton_height + hint_height;
 	int x_old = x;
 	int y_old = y;

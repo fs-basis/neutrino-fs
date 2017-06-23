@@ -1384,7 +1384,7 @@ void CTimerList::paintHead()
 	if (header == NULL)
 	{
 		header = new CComponentsHeader(x, y, width, header_height, LOCALE_TIMERLIST_NAME, NEUTRINO_ICON_TIMER, CComponentsHeader::CC_BTN_MENU | CComponentsHeader::CC_BTN_EXIT, NULL, CC_SHADOW_ON);
-		header->enableClock(true, " %d.%m.%Y - %H:%M ", NULL, false);
+		header->enableClock(true, " %d.%m.%Y  %H:%M ", NULL, false);
 	}
 	header->paint(CC_SAVE_SCREEN_NO);
 }
@@ -1426,8 +1426,8 @@ void CTimerList::paint()
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, g_Locale->getText(LOCALE_TIMERLIST_NAME));
 
 	paintHead();
-	frameBuffer->paintBoxRel(x, y + theight, width, height - theight - footerHeight, COL_MENUCONTENT_PLUS_0); //NI
-	paintFoot(); //NI
+	frameBuffer->paintBoxRel(x, y + header_height, width, height - header_height - footer_height, COL_MENUCONTENT_PLUS_0);
+	paintFoot();
 	for (unsigned int count=0; count<listmaxshow; count++)
 	{
 		paintItem(count);

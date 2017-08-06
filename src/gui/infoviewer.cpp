@@ -1832,7 +1832,7 @@ void CInfoViewer::killTitle()
 		if (infobar_txt) spacer += infobar_txt->getHeight();
 		killInfobarText();
 		//frameBuffer->paintBackgroundBox(BoxStartX, BoxStartY - spacer - 5, BoxEndX + OFFSET_SHADOW, bottom);
-		frameBuffer->paintBackground()
+		frameBuffer->paintBackground();
 		frameBuffer->blit();
 	}
 	showButtonBar = false;

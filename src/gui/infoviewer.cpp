@@ -301,7 +301,7 @@ void CInfoViewer::showRecordIcon (const bool show)
 
 		const int ChanName_X = BoxStartX + ChanWidth + OFFSET_SHADOW;
 		const int icon_space = 3;
-		const int box_posY = infobar_txt ? (infobar_txt->getHeight()*-1)-5: -5;
+		const int box_posY = infobar_txt ? (infobar_txt->getHeight()*-1)-10: -5;
 		int box_len = 0, rec_icon_posX = 0, ts_icon_posX = 0;
 
 		int rec_icon_w = 0, rec_icon_h = 0, ts_icon_w = 0, ts_icon_h = 0;
@@ -1831,7 +1831,8 @@ void CInfoViewer::killTitle()
 		}
 		if (infobar_txt) spacer += infobar_txt->getHeight();
 		killInfobarText();
-		frameBuffer->paintBackgroundBox(BoxStartX, BoxStartY - spacer - 5, BoxEndX + OFFSET_SHADOW, bottom);
+		//frameBuffer->paintBackgroundBox(BoxStartX, BoxStartY - spacer - 5, BoxEndX + OFFSET_SHADOW, bottom);
+		frameBuffer->paintBackground()
 		frameBuffer->blit();
 	}
 	showButtonBar = false;

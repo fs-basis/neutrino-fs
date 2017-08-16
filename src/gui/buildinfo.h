@@ -51,10 +51,10 @@ class CBuildInfo :  public CMenuTarget, public CComponentsWindow
 		Font* font;
 		void initVarBuildInfo();
 		void InitInfoItems();
-
-		bool HasData();
+		
+		bool GetData();
 	public:
-
+		
 		//type_id's for infos
 		enum
 		{

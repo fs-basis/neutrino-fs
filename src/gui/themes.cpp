@@ -432,10 +432,10 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.progressbar_timescale_yellow = configfile.getInt32("progressbar_timescale_yellow", 70);
 	t.progressbar_timescale_invert = configfile.getInt32("progressbar_timescale_invert", 0);
 
-	t.shadow_alpha = configfile.getInt32( "shadow_alpha", 0 );
-	t.shadow_red = configfile.getInt32( "shadow_red", 8 );
-	t.shadow_green = configfile.getInt32( "shadow_green", 8);
-	t.shadow_blue = configfile.getInt32( "shadow_blue", 8 );
+	t.shadow_alpha = configfile.getInt32( "shadow_alpha", 0x0A );
+	t.shadow_red = configfile.getInt32( "shadow_red", 0x1e );
+	t.shadow_green = configfile.getInt32( "shadow_green", 0x1e );
+	t.shadow_blue = configfile.getInt32( "shadow_blue", 0x1e );
 }
 
 void CThemes::move_userDir()

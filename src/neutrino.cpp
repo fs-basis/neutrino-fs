@@ -40,7 +40,6 @@
 #include <sys/stat.h>
 #include <signal.h>
 #include <sys/mount.h>
-#include <sys/types.h>
 #include <dirent.h>
 
 #include <fstream>
@@ -76,7 +75,6 @@
 #include "gui/bouquetlist.h"
 #include "gui/cam_menu.h"
 #include "gui/cec_setup.h"
-#include "gui/channellist.h"
 #include "gui/epgview.h"
 #include "gui/eventlist.h"
 #include "gui/favorites.h"
@@ -1202,7 +1200,11 @@ void CNeutrinoApp::upgradeSetup(const char * fname)
 		configfile.deleteKey("screen_width");
 		configfile.deleteKey("screen_height");
 	}
-
+	if (g_settings.version_pseudo < "20170913110000")
+	{
+		//remove easymenu
+		configfile.deleteKey("easymenu");
+	}
 	g_settings.version_pseudo = NEUTRINO_VERSION_PSEUDO;
 	configfile.setString("version_pseudo", g_settings.version_pseudo);
 
@@ -3046,7 +3048,7 @@ void CNeutrinoApp::RealRun()
 			else if( msg == CRCInput::RC_video ) {
 				//open moviebrowser via media player menu object
 				if (g_settings.recording_type != CNeutrinoApp::RECORDING_OFF)
-					CMediaPlayerMenu::getInstance()->exec(NULL,"movieplayer");
+					CMediaPlayerMenu::getInstance()->exec(NULL, "moviebrowser");
 			}
 			else if( msg == CRCInput::RC_play ) {
 				switch (g_settings.key_playbutton)
@@ -4732,7 +4734,7 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		hintBox->hide();
 		delete hintBox;
 	}
-	else if(actionKey=="nkplayback" ||  actionKey=="tsmoviebrowser" || actionKey=="fileplayback") {
+	else if(actionKey=="tsmoviebrowser" || actionKey=="fileplayback") {
 		frameBuffer->Clear();
 		if(mode == NeutrinoMessages::mode_radio )
 			frameBuffer->stopFrame();

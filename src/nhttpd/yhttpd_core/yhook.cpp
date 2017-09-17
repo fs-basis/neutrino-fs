@@ -12,7 +12,6 @@
 #include <zapit/zapit.h>
 // yhttpd
 #include "yhook.h"
-#include "ylogging.h"
 #include "helper.h"
 
 //=============================================================================

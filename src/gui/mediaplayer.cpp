@@ -86,8 +86,6 @@ CMediaPlayerMenu::~CMediaPlayerMenu()
 
 int CMediaPlayerMenu::exec(CMenuTarget* parent, const std::string &actionKey)
 {
-	printf("init mediaplayer menu in usage mode %d\n", usage_mode);
-
 	if (parent)
 		parent->hide();
 
@@ -126,13 +124,12 @@ int CMediaPlayerMenu::exec(CMenuTarget* parent, const std::string &actionKey)
 	return res;
 }
 
-
 //show selectable mediaplayer items
 int CMediaPlayerMenu::initMenuMedia(CMenuWidget *m, CPersonalizeGui *p)
 {
 	CPersonalizeGui *personalize = p;
-	CMenuWidget 	*media = m;
-
+	CMenuWidget *media = m;
+	
 	bool show = (personalize == NULL || media == NULL);
 
 	if (personalize == NULL)
@@ -225,18 +222,15 @@ int CMediaPlayerMenu::initMenuMedia(CMenuWidget *m, CPersonalizeGui *p)
 	{
  		//adding personalized items
 		personalize->addPersonalizedItems();
-
-		//add I_TYPE_MULTIMEDIA plugins
+		
+		//add PLUGIN_INTEGRATION_MULTIMEDIA plugins
 		unsigned int nextShortcut = (unsigned int)media->getNextShortcut();
-		media->integratePlugins(CPlugins::I_TYPE_MULTIMEDIA, nextShortcut, enabled);
+		media->integratePlugins(PLUGIN_INTEGRATION_MULTIMEDIA, nextShortcut, enabled);
 
 		res = media->exec(NULL, "");
 		delete media;
 		delete personalize;
 		delete pictureviewergui;
-#if ENABLE_UPNP
-		//delete upnpbrowsergui;
-#endif
 
 		setUsageMode();//set default usage_mode
 	}

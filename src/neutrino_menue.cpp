@@ -97,10 +97,9 @@ extern CCAMMenuHandler * g_CamHandler;
 
 const mn_widget_struct_t menu_widgets[MENU_MAX] =
 {
-	{LOCALE_MAINMENU_HEAD, 		NEUTRINO_ICON_MAINMENU, 	MENU_WIDTH},	/* 0 = MENU_MAIN*/
-	{LOCALE_MAINSETTINGS_HEAD, 	NEUTRINO_ICON_SETTINGS, 	MENU_WIDTH},	/* 1 = MENU_SETTINGS*/
-	{LOCALE_SERVICEMENU_HEAD,	NEUTRINO_ICON_SETTINGS, 	MENU_WIDTH} 	/* 2 = MENU_SERVICE*/
-//	{LOCALE_MAINMENU_SHUTDOWN_MENU,	NEUTRINO_ICON_BUTTON_POWER, 	MENU_WIDTH}, 	/* 3 = MENU_SHUTDOWN*/
+	{LOCALE_MAINMENU_HEAD, 		NEUTRINO_ICON_MAINMENU, 	MENU_WIDTH},	/* 0 = MENU_MAIN */
+	{LOCALE_MAINSETTINGS_HEAD, 	NEUTRINO_ICON_SETTINGS, 	MENU_WIDTH},	/* 1 = MENU_SETTINGS */
+	{LOCALE_SERVICEMENU_HEAD,	NEUTRINO_ICON_SETTINGS, 	MENU_WIDTH}	/* 2 = MENU_SERVICE */
 };
 
 //init all menues
@@ -122,16 +121,16 @@ void CNeutrinoApp::InitMenu()
 
 	personalize.addPersonalizedItems();
 
-	//add I_TYPE_SETTING plugins
+	//add PLUGIN_INTEGRATION_SETTING plugins
 	unsigned int nextShortcut;
 	CMenuWidget &menuSettings = personalize.getWidget(MENU_SETTINGS);
 	nextShortcut = (unsigned int)menuSettings.getNextShortcut();
-	menuSettings.integratePlugins(CPlugins::I_TYPE_SETTING, nextShortcut);
+	menuSettings.integratePlugins(PLUGIN_INTEGRATION_SETTING, nextShortcut);
 
-	//add I_TYPE_SERVICE plugins
+	//add PLUGIN_INTEGRATION_SERVICE plugins
 	CMenuWidget &menuService = personalize.getWidget(MENU_SERVICE);
 	nextShortcut = (unsigned int)menuService.getNextShortcut();
-	menuService.integratePlugins(CPlugins::I_TYPE_SERVICE, nextShortcut);
+	menuService.integratePlugins(PLUGIN_INTEGRATION_SERVICE, nextShortcut);
 }
 
 //init main menu
@@ -141,8 +140,6 @@ void CNeutrinoApp::InitMenuMain()
 
 	// Dynamic renumbering
 	personalize.setShortcut(0);
-
-	CMenuWidget &menu = personalize.getWidget(MENU_MAIN);
 
 	//top
 	personalize.addItem(MENU_MAIN, GenericMenuSeparator, NULL, false, CPersonalizeGui::PERSONALIZE_SHOW_NO);
@@ -174,8 +171,7 @@ void CNeutrinoApp::InitMenuMain()
 	media->setHint(NEUTRINO_ICON_HINT_MEDIA, LOCALE_MENU_HINT_MEDIA);
 	personalize.addItem(MENU_MAIN, media, &g_settings.personalize[SNeutrinoSettings::P_MAIN_MEDIA]);
 
-	CMenuForwarder * mf;
-
+	CMenuForwarder *mf;
 	//games
 	bool show_games = g_Plugins->hasPlugin(CPlugins::P_TYPE_GAME);
 	mf = new CMenuForwarder(LOCALE_MAINMENU_GAMES, show_games, NULL, new CPluginList(LOCALE_MAINMENU_GAMES,CPlugins::P_TYPE_GAME));
@@ -285,8 +281,8 @@ void CNeutrinoApp::InitMenuSettings()
 
 	// settings manager
 	mf = new CMenuForwarder(LOCALE_MAINSETTINGS_MANAGE, true, NULL, new CSettingsManager(), NULL, CRCInput::RC_green);
-	mf->setHint(NEUTRINO_ICON_HINT_MANAGE_SETTINGS, LOCALE_MENU_HINT_MANAGE_SETTINGS);
 	personalize.addItem(MENU_SETTINGS, mf, &g_settings.personalize[SNeutrinoSettings::P_MSET_SETTINGS_MANAGER], false, CPersonalizeGui::PERSONALIZE_SHOW_AS_ACCESS_OPTION);
+	mf->setHint(NEUTRINO_ICON_HINT_MANAGE_SETTINGS, LOCALE_MENU_HINT_MANAGE_SETTINGS);
 
 	// personalize
 	mf = new CMenuForwarder(LOCALE_PERSONALIZE_HEAD, true, NULL, &personalize, NULL, CRCInput::RC_yellow, NULL, NEUTRINO_ICON_LOCK);
@@ -408,7 +404,6 @@ void CNeutrinoApp::InitMenuService()
 
 	//bouquet edit
 	mf = new CMenuForwarder(LOCALE_BOUQUETEDITOR_NAME    , true, NULL, new CBEBouquetWidget(), NULL, CRCInput::RC_blue);
-
 	mf->setHint(NEUTRINO_ICON_HINT_BEDIT, LOCALE_MENU_HINT_BEDIT);
 	personalize.addItem(MENU_SERVICE, mf, &g_settings.personalize[SNeutrinoSettings::P_MSER_BOUQUET_EDIT]);
 
@@ -425,6 +420,7 @@ void CNeutrinoApp::InitMenuService()
 
 	//separator
 	personalize.addSeparator(MENU_SERVICE);
+
 
 	//restart neutrino
 	mf = new CMenuForwarder(LOCALE_SERVICEMENU_RESTART   , true, NULL, this, "restart", CRCInput::RC_standby);

@@ -298,11 +298,6 @@
 #define NEUTRINO_ICON_GREEN_9		"9-green"
 
 /* misc */
-<<<<<<< HEAD
-#define NEUTRINO_ICON_HINT_NKPLAY	"hint_nkplay"
-=======
-#define NEUTRINO_ICON_HINT_YTPLAY	"hint_ytplay"
->>>>>>> DD/master
 #define NEUTRINO_ICON_HINT_SPARK	"hint_spark"
 
 #define NEUTRINO_ICON_EPG		"epg"

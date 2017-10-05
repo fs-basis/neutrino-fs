@@ -78,7 +78,6 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in,
 	else
 		fp = fopen( in->Filename.c_str(), "r" );
 
-	FILE* fp = fopen( in->Filename.c_str(), "r" );
 	if ( fp == NULL )
 	{
 		fprintf( stderr, "Error opening file %s for decoding.\n",
@@ -106,6 +105,14 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in,
 				Status = COggDec::getInstance()->Decoder( fp, OutputFd, state,
 						&in->MetaData, t,
 						secondsToSkip );
+#if 0
+			else if (ftype(fp, "flv")) {
+				Status = CFfmpegDec::getInstance()->Decoder(fp, OutputFd, state,
+						&in->MetaData, t,
+						secondsToSkip );
+				in->MetaData.type = CFile::FILE_UNKNOWN;
+			}
+#endif
 			else
 				Status = CMP3Dec::getInstance()->Decoder( fp, OutputFd, state,
 						&in->MetaData, t,
@@ -132,6 +139,14 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in,
 			Status = CFlacDec::getInstance()->Decoder(fp, OutputFd, state,
 					&in->MetaData, t,
 					secondsToSkip );
+#endif
+#if 0
+		else if (in->FileType == CFile::FILE_FLV) {
+			Status = CFfmpegDec::getInstance()->Decoder(fp, OutputFd, state,
+					&in->MetaData, t,
+					secondsToSkip );
+			in->MetaData.type = CFile::FILE_UNKNOWN;
+		}
 #endif
 		else
 		{
@@ -217,6 +232,9 @@ bool CBaseDec::GetMetaDataBase(CAudiofile* const in, const bool nice)
 #ifndef ENABLE_FFMPEGDEC
 	if (in->FileType == CFile::FILE_MP3 || in->FileType == CFile::FILE_OGG
 			|| in->FileType == CFile::FILE_WAV || in->FileType == CFile::FILE_CDR
+#if 0
+			|| in->FileType == CFile::FILE_FLV
+#endif
 #ifdef ENABLE_FLAC
 			|| in->FileType == CFile::FILE_FLAC
 #endif
@@ -258,6 +276,18 @@ bool CBaseDec::GetMetaDataBase(CAudiofile* const in, const bool nice)
 			{
 				CFlacDec FlacDec;
 				Status = FlacDec.GetMetaData(fp, nice, &in->MetaData);
+			}
+#endif
+#if 0
+			else if (in->FileType == CFile::FILE_FLV)
+			{
+				struct stat st;
+				if (!fstat(fileno(fp), &st))
+					in->MetaData.filesize = st.st_size;
+				in->MetaData.type = in->FileType;
+
+				CFfmpegDec d;
+				Status = d.GetMetaData(fp, nice, &in->MetaData);
 			}
 #endif
 #else

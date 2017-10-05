@@ -69,6 +69,14 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in,
 										unsigned int* const secondsToSkip)
 {
 	RetCode Status = OK;
+	FILE* fp;
+
+	if ((in->FileType == CFile::STREAM_AUDIO) && (in->Filename.find(".flv") != std::string::npos))
+	{
+		fp = fopen( in->Filename.c_str(), "rc" );
+	}
+	else
+		fp = fopen( in->Filename.c_str(), "r" );
 
 	FILE* fp = fopen( in->Filename.c_str(), "r" );
 	if ( fp == NULL )

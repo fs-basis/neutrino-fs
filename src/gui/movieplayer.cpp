@@ -947,7 +947,7 @@ bool CMoviePlayerGui::luaGetUrl(const std::string &script, const std::string &fi
 		return false;
 	}
 
-	string errMsg = "";
+	std::string errMsg = "";
 	Json::Value root;
 	bool ok = parseJsonFromString(result_string, &root, &errMsg);
 	if (!ok) {
@@ -3036,7 +3036,7 @@ void CMoviePlayerGui::showSubtitle(neutrino_msg_data_t data)
 			size_t start = 0, end = 0;
 			/* split string with \N as newline */
 			std::string delim("\\N");
-			while ((end = str.find(delim, start)) != string::npos) {
+			while ((end = str.find(delim, start)) != std::string::npos) {
 				subtext.push_back(str.substr(start, end - start));
 				start = end + 2;
 			}
@@ -3326,7 +3326,7 @@ void CMoviePlayerGui::parsePlaylist(CFile *file)
 				std::string::iterator it;
 				std::string name_s = name;
 				for (it = name_s.begin() ; it < name_s.end() ; ++it){
-					bool found = illegalChars.find(*it) != string::npos;
+					bool found = illegalChars.find(*it) != std::string::npos;
 					if(found){
 						*it = ' ';
 					}

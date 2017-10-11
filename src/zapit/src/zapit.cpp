@@ -2260,14 +2260,16 @@ bool CZapit::StartPlayBack(CZapitChannel *thisChannel)
 		pcrDemux->Start();
 	}
 
-#if HAVE_AZBOX_HARDWARE
 	/* new (> 20130917) AZbox drivers switch to radio mode if audio is started first */
 	/* start video */
 	if (video_pid) {
-		videoDecoder->Start(0, thisChannel->getPcrPid(), thisChannel->getVideoPid());
 		videoDemux->Start();
-	}
+#if HAVE_AZBOX_HARDWARE
+		videoDecoder->Start(0, thisChannel->getPcrPid(), thisChannel->getVideoPid());
+#else
+		videoDecoder->Start(0, pcr_pid, video_pid);
 #endif
+	}
 
 	/* select audio output and start audio */
 	if (audio_pid) {
@@ -2276,13 +2278,6 @@ bool CZapit::StartPlayBack(CZapitChannel *thisChannel)
 		audioDecoder->Start();
 	}
 
-#if ! HAVE_AZBOX_HARDWARE
-	/* start video */
-	if (video_pid) {
-		videoDecoder->Start(0, pcr_pid, video_pid);
-		videoDemux->Start();
-	}
-#endif
 #ifdef USE_VBI
 	if(teletext_pid)
 		videoDecoder->StartVBI(teletext_pid);

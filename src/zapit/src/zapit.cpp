@@ -2280,7 +2280,7 @@ bool CZapit::StartPlayBack(CZapitChannel *thisChannel)
 	/* start video */
 	if (video_pid) {
 		videoDemux->Start();
-		videoDecoder->Start();
+		videoDecoder->Start(0, pcr_pid, video_pid);
 	}
 #endif
 #ifdef USE_VBI

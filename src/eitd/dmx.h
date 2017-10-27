@@ -70,7 +70,7 @@ protected:
 
 	inline bool isOpen(void) {
 		return (fd != -1); //FS
-#if 0
+
 #if HAVE_TRIPLEDRAGON
 		/* unfortunately, this is a bit complicated on TD :-( */
 		if (dmx == NULL)
@@ -81,7 +81,6 @@ protected:
 #else
 		return (dmx != NULL);
 #endif
-#endif //DD
 	}
 
 	int immediate_start(void); /* mutex must be locked before and unlocked after this method */

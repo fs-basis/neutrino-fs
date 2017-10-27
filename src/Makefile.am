@@ -191,6 +191,32 @@ bin_PROGRAMS += mdev_helper
 mdev_helper_SOURCES = mdev_helper.cpp
 endif
 
+if BOXTYPE_TRIPLE
+neutrino_LDADD += \
+	$(top_builddir)/src/lcddisplay/liblcddisplay.a
+endif
+
+if BOXMODEL_RASPI
+neutrino_LDADD += \
+	-L/opt/vc/lib/ -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt
+endif
+
+if BOXTYPE_COOL
+bin_PROGRAMS += uncooloff
+uncooloff_SOURCES = uncooloff.c
+# if BOXMODEL_CS_HD2
+# else
+# noinst_PROGRAMS = uncoolinit
+# uncoolinit_SOURCES = uncoolinit.cpp
+# uncoolinit_LDADD = \
+# 	@AVFORMAT_LIBS@ \
+# 	@AVCODEC_LIBS@ \
+# 	@BLURAY_LIBS@ \
+# 	-lcoolstream-mt -lca-sc -lnxp \
+# 	-lOpenThreads -lrt
+# endif
+endif
+
 if USE_STB_HAL
 neutrino_LDADD += \
 	-lstb-hal

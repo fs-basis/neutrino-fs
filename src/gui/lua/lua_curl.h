@@ -53,6 +53,7 @@ class CLuaInstCurl
 		~CLuaInstCurl() {};
 		static CLuaInstCurl* getInstance();
 		static void LuaCurlRegister(lua_State *L);
+		static std::string CurlUriInternal(std::string data, bool decode);
 
 	private:
 		static CLuaCurl *CurlCheckData(lua_State *L, int n);
@@ -63,6 +64,9 @@ class CLuaInstCurl
 #endif
 		static int CurlProgressFunc(void *p, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow);
 		static int CurlDownload(lua_State *L);
+		static int CurlEncodeUri(lua_State *L);
+		static int CurlDecodeUri(lua_State *L);
+		static int CurlSetUriData(lua_State *L);
 		static int CurlDelete(lua_State *L);
 };
 

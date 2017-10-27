@@ -468,10 +468,10 @@ void Font::paintFontPixel(fb_pixel_t *td, uint8_t src)
 		*td = colors[src];
 }
 
-const char *Font::RenderString(int x, int y, const int width, const char *text, const fb_pixel_t color, const int boxheight, const unsigned int flags)
+void Font::RenderString(int x, int y, const int width, const char *text, const fb_pixel_t color, const int boxheight, const unsigned int flags)
 {
 	if (!frameBuffer->getActive())
-		return "";
+		return;
 
 	const bool utf8_encoded = flags & IS_UTF8;
 #if HAVE_TRIPLEDRAGON
@@ -507,7 +507,7 @@ const char *Font::RenderString(int x, int y, const int width, const char *text, 
 	{
 		dprintf(DEBUG_NORMAL, "%s:FTC_Manager_LookupSize failed (0x%x)\n", __FUNCTION__, err);
 		pthread_mutex_unlock(&renderer->render_mutex);
-		return "";
+		return;
 	}
 	face = size->face;
 
@@ -681,12 +681,11 @@ const char *Font::RenderString(int x, int y, const int width, const char *text, 
 	//printf("RenderStat: %d %d %d \n", renderer->cacheManager->num_nodes, renderer->cacheManager->num_bytes, renderer->cacheManager->max_bytes);
 	pthread_mutex_unlock( &renderer->render_mutex );
 	frameBuffer->checkFbArea(x, y-height, width, height, false);
-	return text;
 }
 
-const char *Font::RenderString(int x, int y, const int width, const std::string & text, const fb_pixel_t color, const int boxheight, const unsigned int flags)
+void Font::RenderString(int x, int y, const int width, const std::string & text, const fb_pixel_t color, const int boxheight, const unsigned int flags)
 {
-	return RenderString(x, y, width, text.c_str(), color, boxheight, flags);
+	RenderString(x, y, width, text.c_str(), color, boxheight, flags);
 }
 
 int Font::getRenderWidth(const char *text, const bool utf8_encoded)

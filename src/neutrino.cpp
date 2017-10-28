@@ -552,7 +552,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
 	g_settings.radiotext_enable = configfile.getBool("radiotext_enable"          , true);
-	g_settings.radiotext_rass_dir = configfile.getString("radiotext_rass_dir", "/tmp/cache");
 	//audio
 	g_settings.audio_AnalogMode = configfile.getInt32( "audio_AnalogMode", 0 );
 	g_settings.audio_DolbyDigital    = configfile.getBool("audio_DolbyDigital"   , false);
@@ -1356,7 +1355,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_show_dd_available"  , g_settings.infobar_show_dd_available  );
 	configfile.setInt32("infobar_show_tuner"  , g_settings.infobar_show_tuner  );
 	configfile.setBool("radiotext_enable"          , g_settings.radiotext_enable);
-	configfile.setString("radiotext_rass_dir", g_settings.radiotext_rass_dir);
 	//audio
 	configfile.setInt32( "audio_AnalogMode", g_settings.audio_AnalogMode );
 	configfile.setBool("audio_DolbyDigital"   , g_settings.audio_DolbyDigital   );
@@ -4786,13 +4784,6 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		frameBuffer->Clear();
 		CMediaPlayerMenu * media = CMediaPlayerMenu::getInstance();
 		media->exec(NULL, actionKey);
-		return menu_return::RETURN_EXIT_ALL;
-	}
-	else if(actionKey=="rass") {
-		frameBuffer->Clear();
-		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
-		if (g_Radiotext)
-			g_Radiotext->RASS_interactive_mode();
 		return menu_return::RETURN_EXIT_ALL;
 	}
 	else if(actionKey=="restart") {

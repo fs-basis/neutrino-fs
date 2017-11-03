@@ -474,21 +474,6 @@ bool CFlashUpdate::checkVersion4Update()
 		}
 		hide();
 
-		//package install:
-		if (file_selected->getType() == CFile::FILE_PKG_PACKAGE){
-			COPKGManager opkg;
-			if (opkg.hasOpkgSupport()){
-				int msgres = ShowMsg(LOCALE_MESSAGEBOX_INFO, LOCALE_OPKG_WARNING_3RDPARTY_PACKAGES, CMsgBox::mbrNo, CMsgBox::mbYes | CMsgBox::mbNo, NEUTRINO_ICON_UPDATE, 700);
-				if (msgres == CMsgBox::mbrYes){
-					if (!opkg.installPackage(UpdatesBrowser.getSelectedFile()->Name))
-						DisplayErrorMessage(g_Locale->getText(LOCALE_OPKG_FAILURE_INSTALL));
-				}
-			}
-			else
-				DisplayInfoMessage(g_Locale->getText(LOCALE_MESSAGEBOX_FEATURE_NOT_SUPPORTED));
-			//!always leave here!
-			return false;
-		}
 #if HAVE_ARM_HARDWARE
 		//tgz package install:
 		else if (file_selected->getType() == CFile::FILE_TGZ_PACKAGE){

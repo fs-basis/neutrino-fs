@@ -84,6 +84,7 @@ TUXBOX_APPS_LIB_PKGCONFIG_CHECK(OGG,ogg)
 if test -z "$OGG_CFLAGS" ; then
 	TUXBOX_APPS_LIB_PKGCONFIG(OGG,ogg)
 fi
+TUXBOX_APPS_LIB_PKGCONFIG(SWRESAMPLE,libswresample)
 else
 TUXBOX_APPS_LIB_PKGCONFIG(SWRESAMPLE,libswresample)
 fi
@@ -142,8 +143,10 @@ if test "$BOXTYPE" = "coolstream" ||
    test "$BOXTYPE" = "duckbox" ||
    test "$BOXTYPE" = "generic" ||
    test "$BOXTYPE" = "tripledragon" ||
-   test "$BOXTYPE" = "spark" ||
-   test "$BOXTYPE" = "spark7162"; then
+   test "$BOXTYPE" = "duckbox" ||
+   test "$BOXTYPE" = "armbox" ||
+   test "$BOXTYPE" = "spark7162" ||
+   test "$BOXTYPE" = "spark"; then
 	AC_DEFINE(SCREENSHOT,1,[Define to 1 if the platform supports screenshots])
 fi
 

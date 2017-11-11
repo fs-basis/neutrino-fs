@@ -2536,18 +2536,6 @@ webtv.xml.add XML-Datei hinzufügen
 webtv.xml.del XML-Datei entfernen
 webtv.xml.reload XML-Dateien neu laden
 window_size Fenstergröße in %
-<<<<<<< HEAD
-=======
-wizard.initial_settings Grundeinstellungen gefunden
-wizard.install_settings Kanalliste für Astra 19.2°E installieren?
-wizard.setup Erste Installation
-wizard.setup_advanced Erweitert
-wizard.setup_easy Einfach
-wizard.setup_type Installationstyp
-wizard.setup_type_hint Wählen Sie einfache Grundeinstellungen oder erweiterte Auswahlmöglichkeiten für die Installation
-wizard.welcome_head Willkommen zur Ersteinrichtung Ihres Receivers!
-wizard.welcome_text Neutrino ist eine von der Tuxbox-Community entwickelte und gepflegte Benutzeroberfläche für Set-Top-Boxen und lebt von der Unterstützung der Nutzer und vielen freiwilligen beitragenden Helfern.\nSollten Sie Hilfe benötigen, Anregungen, Verbesserungsvorschläge oder Fehler bemerken,\nkönnen Sie sich gerne auf unseren Supportseiten melden oder Kontakt aufnehmen. Kontakt- bzw. Webaddressen entnehmen Sie bitte hierfür im Hauptmenü unter "Informationen". \nIn den folgenden Schritten wird Sie Neutrino durch die Ersteinrichtung führen.\nSicherheitshinweis:\n Ihre Set-Top-Box lässt sich auch per Webinterface steuern, um zum Beispiel die Timer-Verwaltung zu nutzen oder Live-TV im Web-Browser zu schauen.\nAchten Sie bitte darauf, dass Ihr Gerät nicht von aussen zugänglich ist,\nda sonst ein unbefugter Zugriff über das Internet nicht ausgeschlossen werden kann!\nNächster Schritt?
->>>>>>> DD/master
 word.from ab
 word.in in
 zapit.scantype Service-Auswahl

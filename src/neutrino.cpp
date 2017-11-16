@@ -684,6 +684,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #endif
 	g_settings.downloadcache_dir = configfile.getString( "downloadcache_dir", g_settings.network_nfs_recordingdir.c_str());
 	g_settings.last_webtv_dir = configfile.getString( "last_webtv_dir", CONFIGDIR);
+	g_settings.last_webradio_dir = configfile.getString( "last_webradio_dir", CONFIGDIR);
 
 	g_settings.temp_timeshift = configfile.getInt32( "temp_timeshift", 0 );
 	g_settings.auto_timeshift = configfile.getInt32( "auto_timeshift", 0 );
@@ -790,9 +791,20 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	   because of driver- or firmware-issues or so. Not sure.
 	   So let's avoid loading webradio_xml to get an empty webradio bouquet.
 	*/
-	std::string webradio_xml = configfile.getString("webradio_xml", WEBRADIO_XML);
-	if (file_size(webradio_xml.c_str()))
-		g_settings.webradio_xml.push_back(webradio_xml);
+	int webradio_count = configfile.getInt32("webradio_xml_count", 0);
+	if (webradio_count) {
+		for (int i = 0; i < webradio_count; i++) {
+			std::string k = "webradio_xml_" + to_string(i);
+			std::string webradio_xml = configfile.getString(k, "");
+			if (webradio_xml.empty())
+				continue;
+			g_settings.webradio_xml.push_back(webradio_xml);
+		}
+	} else {
+		std::string webradio_xml = configfile.getString("webradio_xml", WEBRADIO_XML);
+		if (file_size(webradio_xml.c_str()))
+			g_settings.webradio_xml.push_back(webradio_xml);
+	}
 #endif
 
 	loadKeys();
@@ -1480,6 +1492,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setString( "timeshiftdir", g_settings.timeshiftdir);
 	configfile.setString( "downloadcache_dir", g_settings.downloadcache_dir);
 	configfile.setString( "last_webtv_dir", g_settings.last_webtv_dir);
+	configfile.setString( "last_webradio_dir", g_settings.last_webradio_dir);
 	configfile.setBool  ("filesystem_is_utf8"                 , g_settings.filesystem_is_utf8             );
 
 	//recording (server + vcr)
@@ -1525,6 +1538,14 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		webtv_count++;
 	}
 	configfile.setInt32 ( "webtv_xml_count", g_settings.webtv_xml.size());
+
+	int webradio_count = 0;
+	for (std::list<std::string>::iterator it = g_settings.webradio_xml.begin(); it != g_settings.webradio_xml.end(); ++it) {
+		std::string k = "webradio_xml_" + to_string(webradio_count);
+		configfile.setString(k, *it);
+		webradio_count++;
+	}
+	configfile.setInt32 ( "webradio_xml_count", g_settings.webradio_xml.size());
 
 	saveKeys();
 

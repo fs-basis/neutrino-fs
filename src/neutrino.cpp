@@ -466,7 +466,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	g_settings.make_hd_list = configfile.getInt32("make_hd_list", 0);
 	g_settings.make_webtv_list = configfile.getInt32("make_webtv_list", 0);
-	g_settings.make_webradio_list = configfile.getInt32("make_webradio_list", 0s);
+	g_settings.make_webradio_list = configfile.getInt32("make_webradio_list", 0);
 	g_settings.make_new_list = configfile.getInt32("make_new_list", 1);
 	g_settings.make_removed_list = configfile.getInt32("make_removed_list", 1);
 	g_settings.keep_channel_numbers = configfile.getInt32("keep_channel_numbers", 0);

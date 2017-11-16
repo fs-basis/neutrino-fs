@@ -177,7 +177,7 @@ void CInfoViewerBB::getBBIconInfo()
 				iconView = checkBBIcon(g_settings.infobar_show_res ? NEUTRINO_ICON_RESOLUTION_HD : NEUTRINO_ICON_RESOLUTION_1280, &w, &h);
 			break;
 		case CInfoViewerBB::ICON_CA:
-			if (g_settings.infobar_casystem_display == 2 && neutrino->getMode() != NeutrinoMessages::mode_ts)
+			if (g_settings.infobar_casystem_display == 2)
 				iconView = checkBBIcon(NEUTRINO_ICON_SCRAMBLED2, &w, &h);
 			break;
 		case CInfoViewerBB::ICON_TUNER:

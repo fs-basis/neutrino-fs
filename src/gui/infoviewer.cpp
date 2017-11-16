@@ -1466,56 +1466,6 @@ void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::Cu
 	}
 }
 
-<<<<<<< HEAD
-=======
-void CInfoViewer::showSNR ()
-{
-	if (! is_visible)
-		return;
-	int renderFlag = ((g_settings.theme.infobar_gradient_top) ? Font::FULLBG : 0) | Font::IS_UTF8;
-	/* right now, infobar_show_channellogo == 3 is the trigger for signal bars etc.
-	   TODO: decouple this  */
-	if (!fileplay && !IS_WEBCHAN(current_channel_id) && ( g_settings.infobar_show_channellogo == 3 || g_settings.infobar_show_channellogo == 5 || g_settings.infobar_show_channellogo == 6 )) {
-		int y_freq = 2*g_SignalFont->getHeight();
-		if (!g_settings.infobar_sat_display)
-			y_freq -= g_SignalFont->getHeight()/2; //half line up to center freq vertically
-		int y_numbox = numbox->getYPos();
-		if ((newfreq && chanready) || SDT_freq_update) {
-			char freq[20];
-			newfreq = false;
-
-			std::string polarisation = "";
-			
-			if (CFrontend::isSat(CFEManager::getInstance()->getLiveFE()->getCurrentDeliverySystem()))
-				polarisation = transponder::pol(CFEManager::getInstance()->getLiveFE()->getPolarization());
-
-			int frequency = CFEManager::getInstance()->getLiveFE()->getFrequency();
-			snprintf (freq, sizeof(freq), "%d.%d MHz %s", frequency / 1000, frequency % 1000, polarisation.c_str());
-
-			int freqWidth = g_SignalFont->getRenderWidth(freq);
-			if (freqWidth > (ChanWidth - numbox_offset*2))
-				freqWidth = ChanWidth - numbox_offset*2;
-			g_SignalFont->RenderString(BoxStartX + numbox_offset + ((ChanWidth - freqWidth) / 2), y_numbox + y_freq - 3, ChanWidth - 2*numbox_offset, freq, SDT_freq_update ? COL_COLORED_EVENTS_TEXT:COL_INFOBAR_TEXT, 0, renderFlag);
-			SDT_freq_update = false;
-		}
-		if (sigbox == NULL){
-			int sigbox_offset = ChanWidth *10/100;
-			sigbox = new CSignalBox(BoxStartX + sigbox_offset, y_numbox+ChanHeight/2, ChanWidth - 2*sigbox_offset, ChanHeight/2, NULL, true, NULL, "S", "Q");
-			sigbox->setTextColor(COL_INFOBAR_TEXT);
-			sigbox->setActiveColor(COL_INFOBAR_PLUS_7);
-			sigbox->setPassiveColor(COL_INFOBAR_PLUS_3);
-			sigbox->setColorBody(numbox->getColorBody());
-			sigbox->doPaintBg(false);
-			sigbox->enableTboxSaveScreen(numbox->getColBodyGradientMode());
-		}
-		sigbox->setFrontEnd(CFEManager::getInstance()->getLiveFE());
-		sigbox->paint(CC_SAVE_SCREEN_NO);
-	}
-	if(showButtonBar)
-		infoViewerBB->showSysfsHdd();
-}
-
->>>>>>> DD/master
 void CInfoViewer::display_Info(const char *current, const char *next,
 			       bool starttimes, const int pb_pos,
 			       const char *runningStart, const char *runningRest,

@@ -45,7 +45,13 @@ typedef struct ZAPIT_start_arg
         uint32_t osd_resolution;
 	int volume;
 	std::list<std::string> *webtv_xml;
+	std::list<std::string> *webradio_xml;
 } Z_start_arg;
+
+enum {
+	MODE_WEBTV = 0,
+	MODE_WEBRADIO
+};
 
 typedef struct Zapit_config {
         int writeChannelsNames;
@@ -120,6 +126,7 @@ class CZapit : public OpenThreads::Thread
 		int volume_percent;
 
 		std::list<std::string> *webtv_xml;
+		std::list<std::string> *webradio_xml;
 
 		int currentMode;
 		bool playbackStopForced;
@@ -275,5 +282,8 @@ class CZapit : public OpenThreads::Thread
 		void unlockPlayBack(const bool sendpmt = true);
 		void Rezap();
 		std::list<std::string> *GetWebTVXML(void) { return webtv_xml; }
+		std::list<std::string> *GetWebRadioXML(void) { return webradio_xml; }
+		bool getUseChannelFilter();
+		void setMoviePlayer(bool enable);
 };
 #endif /* __zapit_h__ */

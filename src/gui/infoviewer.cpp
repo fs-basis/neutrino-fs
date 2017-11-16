@@ -748,9 +748,19 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 
 	if (fileplay) {
 		show_Data ();
-	}
-	else
-	{
+#if 0
+	} else if (IS_WEBCHAN(new_channel_id)) {
+		if (channel) {
+			const char *current = channel->getDesc().c_str();
+			const char *next = channel->getUrl().c_str();
+			if (!current) {
+				current = next;
+				next = "";
+			}
+			display_Info(current, next, false, 0, NULL, NULL, NULL, NULL, true, true);
+		}
+#endif
+	} else {
 		show_current_next(new_chan, epgpos);
 	}
 
@@ -758,7 +768,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 	showInfoFile();
 
 	// Radiotext
-	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio)
+	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio || CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webradio)
 	{
 		if ((g_settings.radiotext_enable) && (!recordModeActive) && (!calledFromNumZap))
 			showRadiotext();
@@ -795,6 +805,7 @@ void CInfoViewer::setInfobarTimeout(int timeout_ext)
 	switch (mode)
 	{
 		case NeutrinoMessages::mode_radio:
+		case NeutrinoMessages::mode_webradio:
 				timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR_RADIO] + timeout_ext);
 				break;
 		case NeutrinoMessages::mode_ts:
@@ -811,18 +822,24 @@ void CInfoViewer::setInfobarTimeout(int timeout_ext)
 bool CInfoViewer::showLivestreamInfo()
 {
 	CZapitChannel * cc = CZapit::getInstance()->GetCurrentChannel();
-	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv &&
-	    cc->getEpgID() == 0 && !cc->getScriptName().empty()) {
+	bool web_mode = (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv || CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webradio);
+	if (web_mode && cc->getEpgID() == 0)
+	{
 		std::string livestreamInfo1 = "";
 		std::string livestreamInfo2 = "";
-		std::string tmp1            = "";
-		CMoviePlayerGui::getInstance().getLivestreamInfo(&livestreamInfo1, &tmp1);
 
-		if (!(videoDecoder->getBlank())) {
-			int xres = 0, yres = 0, framerate = 0;
-			std::string tmp2;
-			videoDecoder->getPictureInfo(xres, yres, framerate);
-			switch (framerate) {
+		if (!cc->getScriptName().empty())
+		{
+			std::string tmp1 = "";
+			CMoviePlayerGui::getInstance().getLivestreamInfo(&livestreamInfo1, &tmp1);
+
+			if (!(videoDecoder->getBlank()))
+			{
+				int xres, yres, framerate;
+				std::string tmp2;
+				videoDecoder->getPictureInfo(xres, yres, framerate);
+				switch (framerate)
+				{
 				case 0:
 					tmp2 = "23.976fps";
 					break;
@@ -848,16 +865,55 @@ bool CInfoViewer::showLivestreamInfo()
 					tmp2 = "60fps";
 					break;
 				default:
-					framerate = 0;
 					tmp2 = g_Locale->getText(LOCALE_STREAMINFO_FRAMERATE_UNKNOWN);
 					break;
+				}
+				livestreamInfo2 = to_string(xres) + "x" + to_string(yres) + ", " + tmp2;
+				if (!tmp1.empty())
+					livestreamInfo2 += (std::string)", " + tmp1;
 			}
-			livestreamInfo2 = to_string(xres) + "x" + to_string(yres) + ", " + tmp2;
-			if (!tmp1.empty())
-				livestreamInfo2 += (std::string)", " + tmp1;
+		}
+		else
+		{
+			// try to get meta data
+			std::string artist = "";
+			std::string title = "";
+			std::vector<std::string> keys, values;
+			cPlayback *playback = CMoviePlayerGui::getInstance().getPlayback();
+			if (playback)
+				playback->GetMetadata(keys, values);
+			size_t count = keys.size();
+			if (count > 0)
+			{
+				for (size_t i = 0; i < count; i++)
+				{
+					std::string key = trim(keys[i]);
+					if (!strcasecmp("artist", key.c_str()))
+					{
+						artist = isUTF8(values[i]) ? values[i] : convertLatin1UTF8(values[i]);
+						continue;
+					}
+					if (!strcasecmp("title", key.c_str()))
+					{
+						title = isUTF8(values[i]) ? values[i] : convertLatin1UTF8(values[i]);
+						continue;
+					}
+				}
+			}
+			if (!artist.empty())
+			{
+				livestreamInfo1 = artist;
+			}
+			if (!title.empty())
+			{
+				if (!livestreamInfo1.empty())
+					livestreamInfo1 += " - ";
+				livestreamInfo1 += title;
+			}
 		}
 
-		if (livestreamInfo1 != _livestreamInfo1 || livestreamInfo2 != _livestreamInfo2) {
+		if (livestreamInfo1 != _livestreamInfo1 || livestreamInfo2 != _livestreamInfo2)
+		{
 			display_Info(livestreamInfo1.c_str(), livestreamInfo2.c_str(), false);
 			_livestreamInfo1 = livestreamInfo1;
 			_livestreamInfo2 = livestreamInfo2;
@@ -1290,7 +1346,7 @@ int CInfoViewer::handleMsg (const neutrino_msg_t msg, neutrino_msg_data_t data)
 					int duration = CMoviePlayerGui::getInstance().GetDuration();
 					snprintf(runningRest, sizeof(runningRest), "%d / %d %s", (curr_pos + 30000) / 60000, (duration - curr_pos + 30000) / 60000, unit_short_minute);
 					display_Info(NULL, NULL, false, CMoviePlayerGui::getInstance().file_prozent, NULL, runningRest);
-				} else if (!IS_WEBTV(current_channel_id)) {
+				} else if (!IS_WEBCHAN(current_channel_id)) {
 					show_Data(false);
 				}
 			}
@@ -1376,7 +1432,7 @@ void CInfoViewer::sendNoEpg(const t_channel_id for_channel_id)
 void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::CurrentNextInfo &info)
 {
 	/* to clear the oldinfo for channels without epg, call getEPG() with for_channel_id = 0 */
-	if (for_channel_id == 0 || IS_WEBTV(for_channel_id))
+	if (for_channel_id == 0 || IS_WEBCHAN(for_channel_id))
 	{
 		oldinfo.current_uniqueKey = 0;
 		return;
@@ -1410,6 +1466,56 @@ void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::Cu
 	}
 }
 
+<<<<<<< HEAD
+=======
+void CInfoViewer::showSNR ()
+{
+	if (! is_visible)
+		return;
+	int renderFlag = ((g_settings.theme.infobar_gradient_top) ? Font::FULLBG : 0) | Font::IS_UTF8;
+	/* right now, infobar_show_channellogo == 3 is the trigger for signal bars etc.
+	   TODO: decouple this  */
+	if (!fileplay && !IS_WEBCHAN(current_channel_id) && ( g_settings.infobar_show_channellogo == 3 || g_settings.infobar_show_channellogo == 5 || g_settings.infobar_show_channellogo == 6 )) {
+		int y_freq = 2*g_SignalFont->getHeight();
+		if (!g_settings.infobar_sat_display)
+			y_freq -= g_SignalFont->getHeight()/2; //half line up to center freq vertically
+		int y_numbox = numbox->getYPos();
+		if ((newfreq && chanready) || SDT_freq_update) {
+			char freq[20];
+			newfreq = false;
+
+			std::string polarisation = "";
+			
+			if (CFrontend::isSat(CFEManager::getInstance()->getLiveFE()->getCurrentDeliverySystem()))
+				polarisation = transponder::pol(CFEManager::getInstance()->getLiveFE()->getPolarization());
+
+			int frequency = CFEManager::getInstance()->getLiveFE()->getFrequency();
+			snprintf (freq, sizeof(freq), "%d.%d MHz %s", frequency / 1000, frequency % 1000, polarisation.c_str());
+
+			int freqWidth = g_SignalFont->getRenderWidth(freq);
+			if (freqWidth > (ChanWidth - numbox_offset*2))
+				freqWidth = ChanWidth - numbox_offset*2;
+			g_SignalFont->RenderString(BoxStartX + numbox_offset + ((ChanWidth - freqWidth) / 2), y_numbox + y_freq - 3, ChanWidth - 2*numbox_offset, freq, SDT_freq_update ? COL_COLORED_EVENTS_TEXT:COL_INFOBAR_TEXT, 0, renderFlag);
+			SDT_freq_update = false;
+		}
+		if (sigbox == NULL){
+			int sigbox_offset = ChanWidth *10/100;
+			sigbox = new CSignalBox(BoxStartX + sigbox_offset, y_numbox+ChanHeight/2, ChanWidth - 2*sigbox_offset, ChanHeight/2, NULL, true, NULL, "S", "Q");
+			sigbox->setTextColor(COL_INFOBAR_TEXT);
+			sigbox->setActiveColor(COL_INFOBAR_PLUS_7);
+			sigbox->setPassiveColor(COL_INFOBAR_PLUS_3);
+			sigbox->setColorBody(numbox->getColorBody());
+			sigbox->doPaintBg(false);
+			sigbox->enableTboxSaveScreen(numbox->getColBodyGradientMode());
+		}
+		sigbox->setFrontEnd(CFEManager::getInstance()->getLiveFE());
+		sigbox->paint(CC_SAVE_SCREEN_NO);
+	}
+	if(showButtonBar)
+		infoViewerBB->showSysfsHdd();
+}
+
+>>>>>>> DD/master
 void CInfoViewer::display_Info(const char *current, const char *next,
 			       bool starttimes, const int pb_pos,
 			       const char *runningStart, const char *runningRest,

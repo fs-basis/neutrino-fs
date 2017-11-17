@@ -35,7 +35,7 @@
 #include <OpenThreads/Mutex>
 #include <OpenThreads/ScopedLock>
 #include <sigc++/signal.h>
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+#if HAVE_SH4_HARDWARE
 #include <linux/stmfb.h>
 #include <bpamem.h>
 #endif
@@ -306,7 +306,7 @@ class CFrameBuffer : public sigc::trackable
 		virtual void ClearFB(void);
 		virtual void resChange(void);
 		virtual void blitArea(int src_width, int src_height, int fb_x, int fb_y, int width, int height);
-#if HAVE_SPARK_HARDWARE || HAVE_DUCKBOX_HARDWARE
+#if HAVE_SH4_HARDWARE
 		virtual void blitBPA2FB(unsigned char *mem, SURF_FMT fmt, int w, int h, int x = 0, int y = 0, int pan_x = -1, int pan_y = -1, int fb_x = -1, int fb_y = -1, int fb_w = -1, int fb_h = -1, bool transp = false);
 		virtual void blitBoxFB(int x0, int y0, int x1, int y1, fb_pixel_t color);
 		virtual void setMixerColor(uint32_t mixer_background);

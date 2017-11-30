@@ -3331,7 +3331,7 @@ bool CNeutrinoApp::wakeupFromStandby(void)
 {
 	bool alive = recordingstatus || CEpgScan::getInstance()->Running() ||
 		CStreamManager::getInstance()->StreamStatus();
-
+	{
 #if !HAVE_SPARK_HARDWARE
 		if(g_settings.ci_standby_reset) {
 			g_CamHandler->exec(NULL, "ca_ci_reset0");

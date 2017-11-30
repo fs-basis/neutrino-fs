@@ -124,7 +124,7 @@ int CWebRadioSetup::Show()
 
 	m->addIntroItems(LOCALE_WEBRADIO_HEAD, LOCALE_LIVESTREAM_HEAD);
 
-	bool _mode_webradio = (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webradio) &&
+	bool _mode_webradio = (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webradio) &&
 				(!CZapit::getInstance()->GetCurrentChannel()->getScriptName().empty());
 
 	CMenuForwarder *mf;

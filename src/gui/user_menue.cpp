@@ -186,8 +186,8 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 	else
 		menu->addItem(GenericMenuSeparator);
 
-	bool _mode_ts    = CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_ts;
-	bool _mode_webtv = (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv) &&
+	bool _mode_ts    = CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_ts;
+	bool _mode_webtv = (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webtv) &&
 				(!CZapit::getInstance()->GetCurrentChannel()->getScriptName().empty());
 
 	bool adzap_active = CAdZapMenu::getInstance()->isActive();
@@ -583,7 +583,7 @@ const char *CUserMenu::getUserMenuButtonName(int button, bool &active, bool retu
 			case SNeutrinoSettings::ITEM_NONE:
 			case SNeutrinoSettings::ITEM_BAR:
 			case SNeutrinoSettings::ITEM_LIVESTREAM_RESOLUTION:
-				if (mode == NeutrinoMessages::mode_webtv && !CZapit::getInstance()->GetCurrentChannel()->getScriptName().empty()) {
+				if (mode == NeutrinoModes::mode_webtv && !CZapit::getInstance()->GetCurrentChannel()->getScriptName().empty()) {
 					if(loc == NONEXISTANT_LOCALE && !text) {
 						CWebTVResolution webtvres;
 						std::string tmp = webtvres.getResolutionValue();
@@ -633,7 +633,7 @@ const char *CUserMenu::getUserMenuButtonName(int button, bool &active, bool retu
 				continue;
 			case SNeutrinoSettings::ITEM_AUDIO_SELECT:
 				if(loc == NONEXISTANT_LOCALE && !text) {
-					if (mode == NeutrinoMessages::mode_webtv)
+					if (mode == NeutrinoModes::mode_webtv)
 						text = CMoviePlayerGui::getInstance(true).CurrentAudioName().c_str(); // use instance_bg
 					else if (!g_RemoteControl->current_PIDs.APIDs.empty())
 						text = g_RemoteControl->current_PIDs.APIDs[

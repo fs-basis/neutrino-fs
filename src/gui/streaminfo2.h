@@ -42,7 +42,6 @@ class CStreamInfo2 : public CMenuTarget
 		CFrontend	*frontend;
 		CComponentsPIP	*pip;
 		CMoviePlayerGui	*mp;
-		COSDFader	fader;
 		int x;
 		int y;
 		int width;

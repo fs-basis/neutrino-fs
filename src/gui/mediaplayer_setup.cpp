@@ -101,6 +101,11 @@ int CMediaPlayerSetup::showMediaPlayerSetup()
 	mf->setHint(NEUTRINO_ICON_HINT_TVMODE /* FIXME */, LOCALE_MENU_HINT_WEBTV_SETUP);
 	mediaSetup->addItem(mf);
 
+	CWebRadioSetup rsetup;
+	mf = new CMenuForwarder(LOCALE_WEBRADIO_HEAD, true, NULL, &rsetup, "show_menu", CRCInput::RC_blue);
+	mf->setHint(NEUTRINO_ICON_HINT_RADIOMODE /* FIXME */, LOCALE_MENU_HINT_WEBRADIO_SETUP);
+	mediaSetup->addItem(mf);
+
 	mediaSetup->addItem(new CMenuSeparator(CMenuSeparator::LINE | CMenuSeparator::STRING, LOCALE_MAINMENU_MOVIEPLAYER));
 
 	CMovieBrowser msetup;

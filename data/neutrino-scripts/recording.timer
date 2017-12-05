@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Aufnahme Timer"
+echo -e "\033[01;32mAufnahme Timer......\033[00m"
 
 exit 0

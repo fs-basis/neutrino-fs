@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Standby aktiviert"
+echo -e "\033[01;32mStandby aktiviert......\033[00m"
 
 exit 0

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Scan wird gestartet"
+echo -e "\033[01;32mScan wird gestartet......\033[00m"
 
 exit 0

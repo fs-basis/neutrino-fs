@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Aufnahme wird gestartet"
+echo -e "\033[01;32mAufnahme wird gestartet......\033[00m"
 
 exit 0

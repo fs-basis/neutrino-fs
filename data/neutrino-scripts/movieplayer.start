@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Movieplayer wird gestartet"
+echo -e "\033[01;32mMovieplayer wird gestartet......\033[00m"
 
 exit 0

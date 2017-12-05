@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Deepstandby aktiviert"
+echo -e "\033[01;32mDeepstandby aktiviert......\033[00m"
 
 exit 0

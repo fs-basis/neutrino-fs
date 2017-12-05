@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Standby deaktiviert"
+echo -e "\033[01;32mStandby deaktiviert......\033[00m"
 
 exit 0

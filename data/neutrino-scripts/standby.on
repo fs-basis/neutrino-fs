@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Standby aktiviert"
+
+exit 0

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "AudioPlayer wird beendet"
+
+exit 0

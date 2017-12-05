@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "AudioPlayer wird gestartet"
+
+exit 0

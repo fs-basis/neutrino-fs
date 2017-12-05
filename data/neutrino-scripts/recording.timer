@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Aufnahme Timer"
+
+exit 0

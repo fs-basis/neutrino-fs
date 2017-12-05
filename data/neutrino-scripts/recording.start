@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Aufnahme wird gestartet"
+
+exit 0

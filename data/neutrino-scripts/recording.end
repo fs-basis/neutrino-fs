@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Aufnahme wird beendet"
+
+exit 0

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Scan wird beendet"
+
+exit 0

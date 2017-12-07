@@ -113,7 +113,6 @@
 #define NEUTRINO_ICON_PLAY_REPEAT_TRACK	"mp_play_repeat_track"
 #define NEUTRINO_ICON_REW		"mp_b-skip"
 #define NEUTRINO_ICON_FF 		"mp_f-skip"
-#define NEUTRINO_ICON_PROTECTING	"protecting"
 #define NEUTRINO_ICON_QUESTION		"question"
 #define NEUTRINO_ICON_RADIOTEXTGET	"radiotextget"
 #define NEUTRINO_ICON_RADIOTEXTWAIT	"radiotextwait"
@@ -135,7 +134,6 @@
 #define NEUTRINO_ICON_VIDEO		"video"
 #define NEUTRINO_ICON_VTXT		"vtxt"
 #define NEUTRINO_ICON_VTXT_GREY		"vtxt_gray"
-#define NEUTRINO_ICON_PARTITION		"partition"
 #define NEUTRINO_ICON_SUBT		"subt"
 #define NEUTRINO_ICON_SUBT_GREY		"subt_gray"
 #define NEUTRINO_ICON_AUTO_SHIFT	"ats"
@@ -180,7 +178,6 @@
 #define NEUTRINO_ICON_TMDB		"tmdb"
 #define NEUTRINO_ICON_PICTUREVIEWER	"pictureviewer"
 
-#define DUMMY_ICON			"dummy"
 
 /* sliders */
 #define NEUTRINO_ICON_SLIDER_BODY	"slider_body"
@@ -238,9 +235,6 @@
 #define NEUTRINO_ICON_HINT_KEYS		"hint_keys"
 #define NEUTRINO_ICON_HINT_A_PIC	"hint_a_pic"
 
-#define NEUTRINO_ICON_HINT_COLORS	"hint_colors"
-#define NEUTRINO_ICON_HINT_FONTS	"hint_fonts"
-
 /* service */
 #define NEUTRINO_ICON_HINT_SERVICE_SCAN	"hint_scan"
 #define NEUTRINO_ICON_HINT_RELOAD_CHANNELS	"hint_reload"
@@ -276,34 +270,9 @@
 #define NEUTRINO_ICON_CHECKMARK		"checkmark"
 #define NEUTRINO_ICON_WARNING		"warning"
 
-/* RASS */
-#define NEUTRINO_ICON_RED_0		"0-red"
-#define NEUTRINO_ICON_RED_1		"1-red"
-#define NEUTRINO_ICON_RED_2		"2-red"
-#define NEUTRINO_ICON_RED_3		"3-red"
-#define NEUTRINO_ICON_RED_4		"4-red"
-#define NEUTRINO_ICON_RED_5		"5-red"
-#define NEUTRINO_ICON_RED_6		"6-red"
-#define NEUTRINO_ICON_RED_7		"7-red"
-#define NEUTRINO_ICON_RED_8		"8-red"
-#define NEUTRINO_ICON_RED_9		"9-red"
-
-#define NEUTRINO_ICON_GREEN_0		"0-green"
-#define NEUTRINO_ICON_GREEN_1		"1-green"
-#define NEUTRINO_ICON_GREEN_2		"2-green"
-#define NEUTRINO_ICON_GREEN_3		"3-green"
-#define NEUTRINO_ICON_GREEN_4		"4-green"
-#define NEUTRINO_ICON_GREEN_5		"5-green"
-#define NEUTRINO_ICON_GREEN_6		"6-green"
-#define NEUTRINO_ICON_GREEN_7		"7-green"
-#define NEUTRINO_ICON_GREEN_8		"8-green"
-#define NEUTRINO_ICON_GREEN_9		"9-green"
 
 /* misc */
-#define NEUTRINO_ICON_HINT_SPARK	"hint_spark"
-
 #define NEUTRINO_ICON_EPG		"epg"
-
 #define NEUTRINO_ICON_BUTTON_LONGPRESS	"longpress"
 
 #endif /* __gui_widget_icons_h__ */

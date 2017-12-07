@@ -5,7 +5,6 @@ SUBDIRS = \
 	hints \
 	locale \
 	movieplayer \
-	own \
 	radar \
 	slider \
 	status \

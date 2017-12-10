@@ -120,7 +120,7 @@ CScanSettings::CScanSettings(void)
 	: configfile('\t')
 {
 	bouquetMode     = CZapitClient::BM_UPDATEBOUQUETS;
-	scanType = CServiceScan::SCAN_TVRADIO;
+	scanType = CServiceScan::SCAN_ALL;
 	satName = "none";
 	cableName = "none";
 }

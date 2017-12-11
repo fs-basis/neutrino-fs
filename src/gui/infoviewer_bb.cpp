@@ -105,7 +105,7 @@ void CInfoViewerBB::Init()
 		bbButtonInfo[i].x   = -1;
 	}
 
-	InfoHeightY_Info = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_FOOT]->getHeight() + 5;
+	InfoHeightY_Info = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_FOOT]->getHeight() + OFFSET_INNER_SMALL;
 	initBBOffset();
 
 	changePB();
@@ -145,7 +145,7 @@ void CInfoViewerBB::getBBIconInfo()
 	showBBIcons_width = 0;
 	BBarY 			= g_InfoViewer->BoxEndY + bottom_bar_offset;
 	BBarFontY 		= BBarY + InfoHeightY_Info - (InfoHeightY_Info - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_FOOT]->getHeight()) / 2; /* center in buttonbar */
-	bbIconMinX 		= g_InfoViewer->BoxEndX - OFFSET_INNER_MID -10;
+	bbIconMinX 		= g_InfoViewer->BoxEndX - OFFSET_INNER_MID - OFFSET_INNER_MID;
 	bool isRadioMode	= (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_radio || CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webradio);
 
 	for (int i = 0; i < CInfoViewerBB::ICON_MAX; i++) {
@@ -295,8 +295,8 @@ void CInfoViewerBB::getBBButtonInfo()
 	}
 	// Calculate position/size of buttons
 	minX = std::min(bbIconMinX, g_InfoViewer->ChanInfoX + (((g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX) * 75) / 100));
-	int MaxBr = (g_InfoViewer->BoxEndX - 10) - (g_InfoViewer->ChanInfoX + 10);
-	bbButtonMaxX = g_InfoViewer->ChanInfoX + 10;
+	int MaxBr = (g_InfoViewer->BoxEndX - OFFSET_INNER_MID) - (g_InfoViewer->ChanInfoX + OFFSET_INNER_MID);
+	bbButtonMaxX = g_InfoViewer->ChanInfoX + OFFSET_INNER_MID;
 	int br = 0, count = 0;
 	for (int i = 0; i < CInfoViewerBB::BUTTON_MAX; i++) {
 		{
@@ -357,7 +357,7 @@ void CInfoViewerBB::showBBButtons(bool paintFooter)
 	if (paint) {
 		paintFoot(g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX - g_InfoViewer->ChanInfoX);
 		fb_pixel_t *pixbuf = NULL;
-		int buf_x = bbIconMinX - 5;
+		int buf_x = bbIconMinX - OFFSET_INNER_SMALL;
 		int buf_y = BBarY;
 		int buf_w = g_InfoViewer->BoxEndX-buf_x;
 		int buf_h = InfoHeightY_Info;

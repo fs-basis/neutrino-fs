@@ -135,31 +135,31 @@ void CMsgBox::initButtons()
 	//assign button text, result values, direct keys and alternate keys
 	if (mb_show_button & mbOk){
 		btn.button = NEUTRINO_ICON_BUTTON_OKAY;
-		btn.text = BTN_TEXT(mbOk);
+		//btn.text = BTN_TEXT(mbOk);
 		btn.directKeys.clear();
 		btn.directKeys.push_back(CRCInput::RC_ok);
 		btn.btn_result = mbrOk;
 		btn.btn_alias = mbOk;
 		v_buttons.push_back(btn);
 	}
-	if (mb_show_button & mbNo){
-		btn.button = NEUTRINO_ICON_BUTTON_RED;
-		btn.text = BTN_TEXT(mbNo);
-		btn.directKeys.clear();
-		btn.directKeys.push_back(CRCInput::RC_red);
-		btn.directKeys.push_back(CRCInput::RC_home);
-		btn.btn_result = mbrNo;
-		btn.btn_alias = mbNo;
-		v_buttons.push_back(btn);
-	}
 	if (mb_show_button & mbYes){
-		btn.button = NEUTRINO_ICON_BUTTON_GREEN;
+		btn.button = NEUTRINO_ICON_BUTTON_RED;
 		btn.text = BTN_TEXT(mbYes);
 		btn.directKeys.clear();
-		btn.directKeys.push_back(CRCInput::RC_green);
+		btn.directKeys.push_back(CRCInput::RC_red);
 		btn.directKeys.push_back(CRCInput::RC_ok);
 		btn.btn_result = mbrYes;
 		btn.btn_alias = mbYes;
+		v_buttons.push_back(btn);
+	}
+	if (mb_show_button & mbNo){
+		btn.button = NEUTRINO_ICON_BUTTON_GREEN;
+		btn.text = BTN_TEXT(mbNo);
+		btn.directKeys.clear();
+		btn.directKeys.push_back(CRCInput::RC_green);
+		btn.directKeys.push_back(CRCInput::RC_home);
+		btn.btn_result = mbrNo;
+		btn.btn_alias = mbNo;
 		v_buttons.push_back(btn);
 	}
 	if (mb_show_button & mbCancel){

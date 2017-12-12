@@ -43,6 +43,8 @@ extern "C" {
 #include <global.h>
 #include <neutrino.h>
 
+#include <driver/abstime.h>
+#include <driver/fade.h>
 #include <driver/display.h>
 #include <driver/fontrenderer.h>
 #include <driver/rcinput.h>
@@ -66,7 +68,7 @@ extern cAudio * audioDecoder;
 
 extern CRemoteControl *g_RemoteControl;	/* neutrino.cpp */
 
-CStreamInfo2::CStreamInfo2 ()
+CStreamInfo2::CStreamInfo2() : fader(g_settings.theme.menu_Content_alpha)
 {
 	frameBuffer = CFrameBuffer::getInstance ();
 	pip = NULL;
@@ -362,9 +364,11 @@ int CStreamInfo2::exec (CMenuTarget * parent, const std::string &)
 
 	frontend = mp ? NULL : CFEManager::getInstance()->getLiveFE();
 
+	fader.StartFadeIn();
 	paint (paint_mode);
 	int res = doSignalStrengthLoop ();
 	hide ();
+	fader.StopFade();
 	return res;
 }
 
@@ -374,7 +378,9 @@ int CStreamInfo2::doSignalStrengthLoop ()
 #define BAR_HEIGHT 12
 	int res = menu_return::RETURN_REPAINT;
 
+	bool fadeout = false;
 	neutrino_msg_t msg;
+	neutrino_msg_t postmsg = 0;
 	uint64_t maxb, minb, lastb, tmp_rate;
 	unsigned int current_pmt_version= pmt_version;
 	int cnt = 0;
@@ -490,6 +496,29 @@ int CStreamInfo2::doSignalStrengthLoop ()
 			signal.old_ber = signal.ber;
 		}
 
+		g_RCInput->getMsg_us(&msg, &data, 0);
+
+		if ((msg == NeutrinoMessages::EVT_TIMER) && (data == fader.GetFadeTimer()))
+		{
+			if (fader.FadeDone())
+			{
+				break;
+			}
+			continue;
+		}
+		if (fadeout && msg == CRCInput::RC_timeout)
+		{
+			if (fader.StartFadeOut())
+			{
+				msg = 0;
+				continue;
+			}
+			else
+			{
+				break;
+			}
+		}
+
 		// switch paint mode
 		if (msg == CRCInput::RC_red || msg == CRCInput::RC_blue || msg == CRCInput::RC_green || msg == CRCInput::RC_yellow)
 		{
@@ -502,13 +531,13 @@ int CStreamInfo2::doSignalStrengthLoop ()
 		else if (msg == CRCInput::RC_setup || msg == CRCInput::RC_home)
 		{
 			res = menu_return::RETURN_EXIT_ALL;
-			break;
+			fadeout = true;
 		}
 		else if (CNeutrinoApp::getInstance()->listModeKey(msg))
 		{
-			g_RCInput->postMsg (msg, 0);
+			postmsg = msg;
 			res = menu_return::RETURN_EXIT_ALL;
-			break;
+			fadeout = true;
 		}
 		else if (msg == (neutrino_msg_t) g_settings.key_screenshot)
 		{
@@ -518,7 +547,7 @@ int CStreamInfo2::doSignalStrengthLoop ()
 
 		// -- any key --> abort
 		if (msg <= CRCInput::RC_MaxRC)
-			break;
+			fadeout = true;
 
 		// -- push other events
 		if (msg > CRCInput::RC_MaxRC && msg != CRCInput::RC_timeout)
@@ -528,6 +557,12 @@ int CStreamInfo2::doSignalStrengthLoop ()
 	delete signalbox;
 	signalbox = NULL;
 	ts_close ();
+
+	if (postmsg)
+	{
+		g_RCInput->postMsg(postmsg, 0);
+	}
+
 	return res;
 }
 
@@ -837,7 +872,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		// channel
 		r.key = g_Locale->getText (LOCALE_TIMERLIST_CHANNEL);
 		r.key += ": ";
-		r.val = (channel->getName()==channel->getRealname()) ? channel->getRealname().c_str():(channel->getName()+" << "+channel->getRealname()).c_str();
+		r.val = channel->getName().c_str();
 		r.col = COL_MENUCONTENT_TEXT;
 		v.push_back(r);
 
@@ -894,11 +929,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		}
 
 	}
-#if BOXMODEL_UFS910
-	if ((mp && IS_WEBCHAN(channel->getChannelID()) && CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webtv) || channel->getVideoPid())
-#else
 	if (((mp && IS_WEBCHAN(channel->getChannelID()) && CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webtv) || channel->getVideoPid()) && !(videoDecoder->getBlank()))
-#endif
 	{
 		 videoDecoder->getPictureInfo(xres, yres, framerate);
 		 if (yres == 1088)

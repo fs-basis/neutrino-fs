@@ -1072,7 +1072,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 			r.key += ": ";
 			snprintf(buf, sizeof(buf), "%llx.png", channel->getChannelID() & 0xFFFFFFFFFFFFULL);
 			r.val = buf;
-			r.col = COL_MENUCONTENT_TEXT;
+			r.col = COL_MENUHEAD_TEXT;
 			r.f   = g_Font[font_info];
 			v.push_back(r);
 		}

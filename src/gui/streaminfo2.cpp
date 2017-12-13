@@ -959,7 +959,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 			tmp_fps = (*it)["fps"];
 		}
 	}
-
+#if HAVE_ARM_HARDWARE
 	// osd resolution
 	r.key = g_Locale->getText(LOCALE_STREAMINFO_OSD_RESOLUTION);
 	r.key += ": ";
@@ -967,7 +967,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	r.val = buf;
 	r.col = COL_MENUCONTENT_TEXT;
 	v.push_back(r);
-
+#endif
 	// aspect ratio
 	r.key = g_Locale->getText (LOCALE_STREAMINFO_ARATIO);
 	r.key += ": ";
@@ -1103,7 +1103,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 					details.clear();
 				snprintf(buf, sizeof(buf), "0x%04X (%i)%s", i, i, details.c_str());
 				r.val = buf;
-				r.col = (li == g_RemoteControl->current_PIDs.PIDs.selected_apid) ? COL_MENUCONTENT_TEXT : COL_MENUCONTENTINACTIVE_TEXT;
+				r.col = (li == g_RemoteControl->current_PIDs.PIDs.selected_apid) ? COL_MENUHEAD_TEXT : COL_MENUCONTENTINACTIVE_TEXT;
 				v.push_back(r);
 			}
 		}
@@ -1116,24 +1116,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		r.key += ": ";
 		snprintf(buf, sizeof(buf), "%llx.png", channel->getChannelID() & 0xFFFFFFFFFFFFULL);
 		r.val = buf;
-		r.col = COL_MENUCONTENT_TEXT;
-		r.f   = g_Font[font_info];
-		v.push_back(r);
-		// onid
-		r.key = "ONid: ";
-		i = channel->getOriginalNetworkId();
-		snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
-		r.val = buf;
-		r.col = COL_MENUCONTENT_TEXT;
-		r.f   = g_Font[font_info];
-		v.push_back(r);
-
-		// sid
-		r.key = "Sid: ";
-		i = channel->getServiceId();
-		snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
-		r.val = buf;
-		r.col = COL_MENUCONTENT_TEXT;
+		r.col = COL_MENUHEAD_TEXT;
 		r.f   = g_Font[font_info];
 		v.push_back(r);
 
@@ -1143,7 +1126,25 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
 		r.val = buf;
 		r.col = COL_MENUCONTENT_TEXT;
-		r.f   = g_Font[font_info];
+		r.f   = g_Font[font_small];
+		v.push_back(r);
+
+		// onid
+		r.key = "ONid: ";
+		i = channel->getOriginalNetworkId();
+		snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
+		r.val = buf;
+		r.col = COL_MENUCONTENT_TEXT;
+		r.f   = g_Font[font_small];
+		v.push_back(r);
+
+		// sid
+		r.key = "Sid: ";
+		i = channel->getServiceId();
+		snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
+		r.val = buf;
+		r.col = COL_MENUCONTENT_TEXT;
+		r.f   = g_Font[font_small];
 		v.push_back(r);
 
 		// pmtpid
@@ -1153,7 +1154,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		snprintf(buf, sizeof(buf), "0x%04X (%i) [0x%02X]", i, i, pmt_version);
 		r.val = buf;
 		r.col = COL_MENUCONTENT_TEXT;
-		r.f   = g_Font[font_info];
+		r.f   = g_Font[font_small];
 		v.push_back(r);
 
 		//vtxtpid
@@ -1164,7 +1165,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 			snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
 			r.val = buf;
 			r.col = COL_MENUCONTENT_TEXT;
-			r.f   = g_Font[font_info];
+			r.f   = g_Font[font_small];
 			v.push_back(r);
 		}
 	}
@@ -1309,13 +1310,13 @@ void CStreamInfo2::paintCASystem(int xpos, int ypos)
 					col = COL_MENUCONTENTINACTIVE_TEXT;
 					int id;
 					if (1 == sscanf(casys[ca_id].substr(last_pos, pos - last_pos).c_str(), "%X", &id) && acaid == id)
-						col = COL_MENUCONTENT_TEXT;
+						col = COL_MENUHEAD_TEXT;
 				}
-				g_Font[font_info]->RenderString(xpos + width_txt, ypos, box_width, casys[ca_id].substr(last_pos, pos - last_pos), col);
+				g_Font[font_small]->RenderString(xpos + width_txt, ypos, box_width, casys[ca_id].substr(last_pos, pos - last_pos), col);
 				if (index == 0)
 					width_txt = spaceoffset;
 				else
-					width_txt += g_Font[font_info]->getRenderWidth(casys[ca_id].substr(last_pos, pos - last_pos))+10;
+					width_txt += g_Font[font_small]->getRenderWidth(casys[ca_id].substr(last_pos, pos - last_pos))+10;
 				index++;
 				if (index > 5)
 					break;

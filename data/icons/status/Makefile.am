@@ -1,6 +1,6 @@
 SUBDIRS = \
 	ca \
-	ca2 \
+	camd \
 	channel \
 	markers \
 	various

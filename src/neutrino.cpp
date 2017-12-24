@@ -3144,15 +3144,12 @@ void CNeutrinoApp::RealRun()
 					CMediaPlayerMenu::getInstance()->exec(NULL, "moviebrowser");
 					break;
 				case 1:
-					CMoviePlayerGui::getInstance().exec(NULL, "fileplayback_video");
+					CMoviePlayerGui::getInstance().exec(NULL, "fileplayback");
 					break;
 				case 2:
-					CMoviePlayerGui::getInstance().exec(NULL, "fileplayback_audio");
-					break;
-				case 3:
 					CMediaPlayerMenu::getInstance()->exec(NULL, "audioplayer");
 					break;
-				case 4:
+				case 3:
 					CMediaPlayerMenu::getInstance()->exec(NULL, "inetplayer");
 					break;
 				}
@@ -4814,7 +4811,7 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		hintBox->hide();
 		delete hintBox;
 	}
-	else if(actionKey=="tsmoviebrowser" || actionKey=="fileplayback_video" || actionKey=="fileplayback_audio") {
+	else if(actionKey=="tsmoviebrowser" || actionKey=="fileplayback") {
 		frameBuffer->Clear();
 		if (mode == NeutrinoModes::NeutrinoModes::mode_radio || mode == NeutrinoModes::NeutrinoModes::mode_webradio)
 			frameBuffer->stopFrame();

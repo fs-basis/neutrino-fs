@@ -698,10 +698,10 @@ void CInfoViewerBB::paint_ca_icon(int caid, const char *icon, int &icon_space_of
 	int py = g_InfoViewer->BoxEndY + (g_settings.infobar_casystem_frame ? 4 : 2); /* hand-crafted, should be automatic */
 	int px = 0;
 	static std::map<int, std::pair<int,const char*> > icon_map;
-	const int icon_space = 10, icon_number = 10;
+	const int icon_space = OFFSET_INNER_MID, icon_number = 11;
 
-	static int icon_offset[icon_number] = {0,0,0,0,0,0,0,0,0,0};
-	static int icon_sizeW [icon_number] = {0,0,0,0,0,0,0,0,0,0};
+	static int icon_offset[icon_number] = {0,0,0,0,0,0,0,0,0,0,0};
+	static int icon_sizeW [icon_number] = {0,0,0,0,0,0,0,0,0,0,0};
 	static bool init_flag = false;
 
 	if (!init_flag) {
@@ -710,8 +710,9 @@ void CInfoViewerBB::paint_ca_icon(int caid, const char *icon, int &icon_space_of
 		std::map<int, std::pair<int,const char*> >::const_iterator it;
 
 		icon_map[0x0E00] = std::make_pair(index++,"powervu");
-		icon_map[0x4A00] = std::make_pair(index++,"d");
+		icon_map[0x1000] = std::make_pair(index++,"tan");
 		icon_map[0x2600] = std::make_pair(index++,"biss");
+		icon_map[0x4A00] = std::make_pair(index++,"d");
 		icon_map[0x0600] = std::make_pair(index++,"ird");
 		icon_map[0x0100] = std::make_pair(index++,"seca");
 		icon_map[0x0500] = std::make_pair(index++,"via");
@@ -766,7 +767,7 @@ void CInfoViewerBB::paint_ca_icons(int notfirst)
 		return;
 	}
 
-	int caids[] = {  0x900, 0xD00, 0xB00, 0x1800, 0x0500, 0x0100, 0x600,  0x2600, 0x4a00, 0x0E00 };
+	int caids[] = {  0x900, 0xD00, 0xB00, 0x1800, 0x0500, 0x0100, 0x600, 0x4a00, 0x2600, 0x1000, 0x0E00 };
 	const char *white = "white";
 	const char *yellow = "yellow";
 	const char *green = "green";

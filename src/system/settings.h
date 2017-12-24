@@ -1087,6 +1087,9 @@ class CScanSettings
 		int		sat_TP_delsys;
 		int		sat_TP_mod;
 		int		sat_TP_pilot;
+		std::string	sat_TP_pli;
+		std::string	sat_TP_plc;
+		int		sat_TP_plm;
 
 		std::string	cableName;
 		int		cable_TP_mod;
@@ -1094,6 +1097,7 @@ class CScanSettings
 		std::string	cable_TP_freq;
 		std::string	cable_TP_rate;
 		int		cable_TP_delsys;
+		std::string	terrestrial_TP_pli;
 
 		std::string	terrestrialName;
 		std::string	terrestrial_TP_freq;

@@ -1649,8 +1649,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setString("softupdate_proxyusername" , g_settings.softupdate_proxyusername );
 	configfile.setString("softupdate_proxypassword" , g_settings.softupdate_proxypassword );
 
-	configfile.setString("backup_dir", g_settings.backup_dir);
-
 	configfile.setString("update_dir", g_settings.update_dir);
 
 	configfile.setString("font_file", g_settings.font_file);

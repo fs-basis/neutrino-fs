@@ -738,8 +738,6 @@ struct SNeutrinoSettings
 	int flashupdate_createimage_add_spare;
 	int flashupdate_createimage_add_kernel;
 
-	std::string	backup_dir;
-
 	std::string	update_dir;
 
 	//BouquetHandling

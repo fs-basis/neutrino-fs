@@ -49,7 +49,6 @@
 #define NEUTRINO_ICON_BUTTON_POWER	"power"
 
 #define NEUTRINO_ICON_BUTTON_OKAY	"ok"
-#define NEUTRINO_ICON_BUTTON_OKAY_SMALL	"ok_small"
 
 #define NEUTRINO_ICON_BUTTON_0		"0"
 #define NEUTRINO_ICON_BUTTON_1		"1"
@@ -62,11 +61,9 @@
 #define NEUTRINO_ICON_BUTTON_8		"8"
 #define NEUTRINO_ICON_BUTTON_9		"9"
 
-#define NEUTRINO_ICON_BUTTON_UP	"up"
-#define NEUTRINO_ICON_BUTTON_UP_SMALL	"up_small"
+#define NEUTRINO_ICON_BUTTON_UP		"up"
 #define NEUTRINO_ICON_BUTTON_RIGHT	"right"
 #define NEUTRINO_ICON_BUTTON_DOWN	"down"
-#define NEUTRINO_ICON_BUTTON_DOWN_SMALL	"down_small"
 #define NEUTRINO_ICON_BUTTON_LEFT	"left"
 
 #define NEUTRINO_ICON_BUTTON_BACKWARD	"btn_backward"
@@ -76,9 +73,6 @@
 #define NEUTRINO_ICON_BUTTON_RECORD_ACTIVE	"btn_record_active"
 #define NEUTRINO_ICON_BUTTON_RECORD_INACTIVE	"btn_record_inactive"
 #define NEUTRINO_ICON_BUTTON_STOP	"btn_stop"
-
-#define NEUTRINO_ICON_BUTTON_PLUS	"plus"
-#define NEUTRINO_ICON_BUTTON_MINUS	"minus"
 
 #define NEUTRINO_ICON_BLUE		"icon_blue"
 #define NEUTRINO_ICON_GREEN		"icon_green"
@@ -93,7 +87,6 @@
 #define NEUTRINO_ICON_DD		"dd"
 #define NEUTRINO_ICON_DD_AVAIL		"dd_avail"
 #define NEUTRINO_ICON_DD_GREY		"dd_gray"
-#define NEUTRINO_ICON_EPGINFO		"epginfo"
 #define NEUTRINO_ICON_ERROR		"error"
 #define NEUTRINO_ICON_FEATURES		"features"
 #define NEUTRINO_ICON_GAMES		"games"
@@ -117,7 +110,6 @@
 #define NEUTRINO_ICON_RADIOTEXTGET	"radiotextget"
 #define NEUTRINO_ICON_RADIOTEXTWAIT	"radiotextwait"
 #define NEUTRINO_ICON_RADIOTEXTOFF	"radiotextoff"
-#define NEUTRINO_ICON_RADIOMODE		"radiomode"
 #define NEUTRINO_ICON_RECORDING		"recording"
 #define NEUTRINO_ICON_REC		"rec"
 #define NEUTRINO_ICON_REC_GRAY		"rec_gray"
@@ -178,7 +170,6 @@
 #define NEUTRINO_ICON_TMDB		"tmdb"
 #define NEUTRINO_ICON_PICTUREVIEWER	"pictureviewer"
 
-
 /* sliders */
 #define NEUTRINO_ICON_SLIDER_BODY	"slider_body"
 #define NEUTRINO_ICON_SLIDER_INACTIVE	"slider_inactive"
@@ -191,6 +182,7 @@
 #define NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE "mute_zap_gray"
 
 /* menu hints */
+#define NEUTRINO_ICON_HINT_DEFAULT	"hint_default"
 #define NEUTRINO_ICON_HINT_BACK		"hint_back"
 #define NEUTRINO_ICON_HINT_NEXT		"hint_next"
 /* main menu */

@@ -58,20 +58,12 @@
 #include <pthread.h>
 #include <ctype.h>
 #include <config.h>
-#include <math.h>
-
 
 #include <global.h>
 #include <system/settings.h>
 #include <system/set_threadname.h>
 #include <neutrino.h>
 #include <gui/color.h>
-#include <system/set_threadname.h>
-#include <video.h>
-#include <libmd5sum/libmd5sum.h>
-#include <driver/rcinput.h>
-#include <driver/pictureviewer/pictureviewer.h>
-#include <OpenThreads/ScopedLock>
 
 #include "radiotext.h"
 #include "radiotools.h"
@@ -85,7 +77,10 @@ char RDS_PSText[12][9];
 
 // plugin audiorecorder service
 bool ARec_Receive = false, ARec_Record = false;
-
+/* DDT ??
+#define floor
+const char *DataDir = "./";
+*/
 // RDS-Chartranslation: 0x80..0xff
 unsigned char rds_addchar[128] = {
     0xe1, 0xe0, 0xe9, 0xe8, 0xed, 0xec, 0xf3, 0xf2,
@@ -360,7 +355,7 @@ void CRadioText::RadiotextDecode(unsigned char *mtext, int len)
 		}
 		// byte 9 = RT-Status bitcodet (0=AB-flagcontrol, 1-4=Transmission-Number, 5+6=Buffer-Config,
 		//				    ingnored, always 0x01 ?)
-//fprintf(stderr, "MEC=0x%02x DSN=0x%02x PSN=0x%02x MEL=%02d STATUS=0x%02x MFL=%02d\n", mtext[5], mtext[6], mtext[7], mtext[8], mtext[9], mtext[4]);
+fprintf(stderr, "MEC=0x%02x DSN=0x%02x PSN=0x%02x MEL=%02d STATUS=0x%02x MFL=%02d\n", mtext[5], mtext[6], mtext[7], mtext[8], mtext[9], mtext[4]);
 		char temptext[RT_MEL];
 		memset(temptext, 0x20, RT_MEL-1);
 		temptext[RT_MEL - 1] = '\0';
@@ -598,7 +593,6 @@ void CRadioText::RadiotextDecode(unsigned char *mtext, int len)
 			rtp_itoggle = false;
 			rtp_idiffs = 0;
 			RadioStatusMsg();
-//		AudioRecorderService();
 			}
 			RTP_TToggle = 0;
 		}
@@ -648,13 +642,9 @@ void CRadioText::RadioStatusMsg(void)
 		int ind = (RT_Index == 0) ? S_RtOsdRows - 1 : RT_Index - 1;
 		strcpy(temp, RT_Text[ind]);
 		printf("RadioStatusMsg = %s\n", temp);
-//		cStatus::MsgOsdTextItem(rtrim(temp), false);
 	}
 
 	if ((S_RtMsgItems == 1 || S_RtMsgItems >= 3) && ((S_RtOsdTags == 1 && RT_PlusShow) || S_RtOsdTags >= 2)) {
-//		struct tm tm_store;
-//		struct tm *ts = localtime_r(&RTP_Starttime, &tm_store);
-//		cStatus::MsgOsdProgramme(mktime(ts), RTP_Title, RTP_Artist, 0, NULL, NULL);
 		printf("RTP_Title = %s, RTP_Artist = %s\n", RTP_Title, RTP_Artist);
 	}
 }
@@ -662,9 +652,7 @@ void CRadioText::RadioStatusMsg(void)
 CRadioText::CRadioText(void)
 {
 	pid = 0;
-	memset(last_md5sum, 0, 16);
-	framebuffer = CFrameBuffer::getInstance();
-	//framebuffer->getIconSize(NEUTRINO_ICON_RED_1, &iconWidth, &iconHeight);
+	audioDemux = NULL;
 	init();
 
 	running = true;
@@ -673,10 +661,12 @@ CRadioText::CRadioText(void)
 
 CRadioText::~CRadioText(void)
 {
+	printf("CRadioText::~CRadioText\n");
 	running = false;
 	radiotext_stop();
 	cond.broadcast();
 	OpenThreads::Thread::join();
+	printf("CRadioText::~CRadioText done\n");
 }
 
 void CRadioText::init()
@@ -715,6 +705,7 @@ void CRadioText::init()
 
 void CRadioText::radiotext_stop(void)
 {
+	printf("CRadioText::radiotext_stop: ###################### pid 0x%x ######################\n", getPid());
 	if (getPid() != 0) {
 		mutex.lock();
 		pid = 0;
@@ -726,6 +717,7 @@ void CRadioText::radiotext_stop(void)
 
 void CRadioText::setPid(uint inPid)
 {
+	printf("CRadioText::setPid: ###################### old pid 0x%x new pid 0x%x ######################\n", pid, inPid);
 	if (pid != inPid) {
 		mutex.lock();
 		pid = inPid;
@@ -756,15 +748,18 @@ void CRadioText::run()
 			mutex.unlock();
 			audioDemux->Stop();
 			pidmutex.lock();
+			printf("CRadioText::run: ###################### waiting for pid.. ######################\n");
 			cond.wait(&pidmutex);
 			pidmutex.unlock();
 			mutex.lock();
 		}
 		if (pid && (current_pid != pid)) {
 			current_pid = pid;
+			printf("CRadioText::run: ###################### Setting PID 0x%x ######################\n", getPid());
 			audioDemux->Stop();
 			if (!audioDemux->pesFilter(getPid()) || !audioDemux->Start()) {
 				pid = 0;
+				printf("CRadioText::run: ###################### failed to start PES filter ######################\n");
 			}
 		}
 		mutex.unlock();
@@ -818,6 +813,5 @@ void CRadioText::run()
 #endif
 	delete audioDemux;
 	audioDemux = NULL;
+	printf("CRadioText::run: ###################### exit ######################\n");
 }
-
-static int seq[] = { 1000, 1100, 1110, 1111 };

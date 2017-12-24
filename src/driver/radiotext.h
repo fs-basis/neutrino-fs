@@ -53,7 +53,11 @@
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
-
+/* DDT ??
+extern const char *ConfigDir;
+extern const char *DataDir;
+extern char *ReplayFile;
+*/
 #define RT_MEL 65
 #define tr(a) a
 
@@ -75,11 +79,6 @@ private:
 	bool DividePes(unsigned char *data, int length, int *substart, int *subend);
 
 	uint pid;
-	unsigned char last_md5sum[16];
-
-	CFrameBuffer *framebuffer;
-	int iconWidth;
-	int iconHeight;
 
 	OpenThreads::Mutex mutex;
 	OpenThreads::Mutex pidmutex;
@@ -123,7 +122,6 @@ public:
 	int S_RtFgCol;
 	int S_RtDispl;
 	int S_RtMsgItems;
-//	uint32_t rt_color[9];
 	int S_Verbose;
 
 	// Radiotext
@@ -138,7 +136,6 @@ public:
 	int RT_OsdTOTemp;
 	char RDS_PTYN[9];
 	char *RT_Titel, *RTp_Titel;
-
 };
 
 // Radiotext-Memory
@@ -185,7 +182,7 @@ struct rtp_classes {
     char *phone_Studio;			// 40
     char *email_Hotline;		// 44
     char *email_Studio;			// 45
-// to be continued ...
+// to be continue...
 };
 
 #endif //__RADIO_AUDIO_H

@@ -44,9 +44,9 @@
 #include <driver/screen_max.h>
 #include <driver/display.h>
 #include <system/helpers.h>
+#include <system/debug.h>
 
 #include <sys/vfs.h>
-
 
 
 CSettingsManager::CSettingsManager(int wizard_mode)
@@ -62,7 +62,7 @@ CSettingsManager::~CSettingsManager()
 
 int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 {
-	printf("[neutrino] CSettingsManager %s: init...\n",__FUNCTION__);
+	dprintf(DEBUG_NORMAL, "[CSettingsManager]\t[%s - %d] actionKey = [%s]\n", __func__, __LINE__, actionKey.c_str());
 	int   res = menu_return::RETURN_REPAINT;
 
 	if (parent)

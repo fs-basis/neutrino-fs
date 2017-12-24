@@ -168,7 +168,7 @@ bool CFlashUpdate::checkOnlineVersion()
 	std::vector<CUpdateMenuTarget*> update_t_list;
 
 	CConfigFile _configfile('\t');
-	const char * versionString = (_configfile.loadConfig(TARGET_PREFIX "/.version")) ? (_configfile.getString( "version", "????????????????").c_str()) : "????????????????";
+	const char * versionString = (_configfile.loadConfig( "/.version")) ? (_configfile.getString( "version", "????????????????").c_str()) : "????????????????";
 #ifdef DEBUG
 	printf("[update] file %s\n", g_settings.softupdate_url_file.c_str());
 #endif
@@ -225,7 +225,7 @@ bool CFlashUpdate::selectHttpImage(void)
 
 	CConfigFile _configfile('\t');
 	std::string versionString = "????????????????";
-	if (_configfile.loadConfig(TARGET_PREFIX "/.version"))
+	if (_configfile.loadConfig("/.version"))
 		versionString = _configfile.getString("version", "????????????????");
 
 	CFlashVersionInfo curInfo(versionString.c_str());
@@ -663,6 +663,7 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 				c[0] = fgetc(f);
 				printf("[update] Current partition: %s\n", c);
 			}
+			fclose(f);
 		}
 
 		// select partition

@@ -142,6 +142,7 @@ endif
 if ENABLE_GRAPHLCD
 neutrino_LDADD += -lglcddrivers -lglcdgraphics -lusb-1.0
 endif
+
 if ENABLE_GIFLIB
 neutrino_LDADD += -lgif
 else
@@ -210,17 +211,6 @@ endif
 if BOXTYPE_COOL
 bin_PROGRAMS += shutdown_helper
 shutdown_helper_SOURCES = shutdown_helper.c
-# if BOXMODEL_CS_HD2
-# else
-# noinst_PROGRAMS = uncoolinit
-# uncoolinit_SOURCES = uncoolinit.cpp
-# uncoolinit_LDADD = \
-# 	@AVFORMAT_LIBS@ \
-# 	@AVCODEC_LIBS@ \
-# 	@BLURAY_LIBS@ \
-# 	-lcoolstream-mt -lca-sc -lnxp \
-# 	-lOpenThreads -lrt
-# endif
 endif
 
 if USE_STB_HAL

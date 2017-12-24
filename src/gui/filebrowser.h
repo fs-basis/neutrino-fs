@@ -221,7 +221,7 @@ class CFileBrowser
 		~CFileBrowser();
 
 		bool		exec(const char * const dirname);
-		bool		playlist_manager(CFileList &playlist, unsigned int playing, bool is_audio_player = false);
+		bool		playlist_manager(CFileList &playlist,unsigned int playing);
 		CFile		*getSelectedFile();
 
 		inline const CFileList & getSelectedFiles(void) const

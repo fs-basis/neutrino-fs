@@ -183,12 +183,10 @@ class CMoviePlayerGui : public CMenuTarget
 
 	/* playback from file */
 	bool is_file_player;
-	bool is_audio_player;
 	bool iso_file;
 	bool stopped;
 	CFileBrowser * filebrowser;
-	CFileFilter filefilter_video;
-	CFileFilter filefilter_audio;
+	CFileFilter tsfilefilter;
 	CFileList filelist;
 	CFileList::iterator filelist_it;
 	CFileList::iterator vzap_it;

@@ -430,15 +430,9 @@ struct SNeutrinoSettings
 
 		//movieplayer menu
 		P_MPLAYER_MBROWSER,
-<<<<<<< HEAD
-		P_MPLAYER_FILEPLAY,
-		P_MPLAYER_INETPLAY,
-=======
 		P_MPLAYER_FILEPLAY_VIDEO,
 		P_MPLAYER_FILEPLAY_AUDIO,
-		P_MPLAYER_YTPLAY,
 		P_MPLAYER_GUI_MOUNT,
->>>>>>> DD/master
 
 		//feature keys
 		P_FEAT_KEY_FAVORIT,

@@ -35,11 +35,6 @@
 #include <OpenThreads/Mutex>
 #include <OpenThreads/ScopedLock>
 #include <sigc++/signal.h>
-#if HAVE_SH4_HARDWARE
-#include <linux/stmfb.h>
-#include <bpamem.h>
-#endif
-
 #define fb_pixel_t uint32_t
 
 typedef struct fb_var_screeninfo t_fb_var_screeninfo;
@@ -141,6 +136,7 @@ class CFrameBuffer : public sigc::trackable
 		std::map<std::string, rawIcon> icon_cache;
 		int cache_size;
 
+		int *q_circle;
 		bool corner_tl, corner_tr, corner_bl, corner_br;
 
 		void * int_convertRGB2FB(unsigned char *rgbbuff, unsigned long x, unsigned long y, int transp, bool alpha);
@@ -153,8 +149,9 @@ class CFrameBuffer : public sigc::trackable
 		void paintShortHLineRelInternal(const int& x, const int& dx, const int& y, const fb_pixel_t& col);
 		int  limitRadius(const int& dx, const int& dy, int& radius);
 		void setCornerFlags(const int& type);
-		bool calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, const int& line, const int& radius,
-				const bool& tl, const bool& tr, const bool& bl, const bool& br, int &alpha);
+		void initQCircle();
+		inline int calcCornersOffset(const int& dy, const int& line, const int& radius, const int& type) { int ofs = 0; calcCorners(&ofs, NULL, NULL, dy, line, radius, type); return ofs; }
+		bool calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, const int& line, const int& radius, const int& type);
 
 	public:
 		///gradient direction
@@ -299,33 +296,6 @@ class CFrameBuffer : public sigc::trackable
 			};
 		void SetTransparent(int t){ m_transparent = t; }
 		void SetTransparentDefault(){ m_transparent = m_transparent_default; }
-		virtual void setBorder(int sx, int sy, int ex, int ey);
-		virtual void getBorder(int &sx, int &sy, int &ex, int &ey);
-		virtual void setBorderColor(fb_pixel_t col = 0);
-		virtual fb_pixel_t getBorderColor(void);
-		virtual void ClearFB(void);
-		virtual void resChange(void);
-		virtual void blitArea(int src_width, int src_height, int fb_x, int fb_y, int width, int height);
-#if HAVE_SH4_HARDWARE
-		virtual void blitBPA2FB(unsigned char *mem, SURF_FMT fmt, int w, int h, int x = 0, int y = 0, int pan_x = -1, int pan_y = -1, int fb_x = -1, int fb_y = -1, int fb_w = -1, int fb_h = -1, bool transp = false);
-		virtual void blitBoxFB(int x0, int y0, int x1, int y1, fb_pixel_t color);
-		virtual void setMixerColor(uint32_t mixer_background);
-#endif
-		bool OSDShot(const std::string &name);
-		enum Mode3D
-					{
-						Mode3D_off = 0,
-						Mode3D_SideBySide,
-						Mode3D_TopAndBottom,
-						Mode3D_Tile,
-						Mode3D_SIZE
-					};
-		enum Mode3D mode3D;
-		virtual void set3DMode(Mode3D);
-		virtual Mode3D get3DMode(void);
-		int sX, sY, eX, eY;
-		int startX, startY, endX, endY;
-		fb_pixel_t borderColor, borderColorOld;
 
 // ## AudioMute / Clock ######################################
 	private:

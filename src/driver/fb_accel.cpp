@@ -61,10 +61,7 @@ void CFbAccel::paintBoxRel(const int x, const int y, const int dx, const int dy,
 	int line = 0;
 	while (line < dy) {
 		int ofl, ofr;
-		int level;
-		if (calcCorners(NULL, &ofl, &ofr, dy, line, radius,
-				corner_tl, corner_tr, corner_bl, corner_br, level))
-		{
+		if (calcCorners(NULL, &ofl, &ofr, dy, line, radius, type)) {
 			int height = dy - ((corner_tl || corner_tr)?radius: 0 ) - ((corner_bl || corner_br) ? radius : 0);
 			paintRect(x, y + line, dx, height, col);
 			line += height;

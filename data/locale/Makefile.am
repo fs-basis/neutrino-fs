@@ -8,7 +8,7 @@ install_DATA  = $(locale)
 
 if MAINTAINER_MODE
 
-master.locale=english.locale
+master.locale=deutsch.locale
 
 locals: sort-locals work-locals locals.h locals_intern.h
 

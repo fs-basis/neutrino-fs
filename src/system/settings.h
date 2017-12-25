@@ -1096,7 +1096,6 @@ class CScanSettings
 		std::string	cable_TP_freq;
 		std::string	cable_TP_rate;
 		int		cable_TP_delsys;
-		std::string	terrestrial_TP_pli;
 
 		std::string	terrestrialName;
 		std::string	terrestrial_TP_freq;
@@ -1108,6 +1107,7 @@ class CScanSettings
 		int		terrestrial_TP_hierarchy;
 		int		terrestrial_TP_transmit_mode;
 		int		terrestrial_TP_delsys;
+		std::string	terrestrial_TP_pli;
 
 		CScanSettings();
 

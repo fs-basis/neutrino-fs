@@ -14,7 +14,7 @@
 use warnings;
 use strict;
 
-my $masterfilename = "english.locale";
+my $masterfilename = "deutsch.locale";
 
 $#ARGV == 0 || die("Usage: create-locals-work file.locale.");
 

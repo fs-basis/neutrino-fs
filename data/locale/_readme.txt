@@ -12,7 +12,7 @@ directory: /var/tuxbox/locale or /share/tuxbox/neutrino/locale
 
 Master file:
 ------------
-english.locale is considered the master file.
+deustch.locale is considered the master file.
 
 
 Verfication of .locale files:

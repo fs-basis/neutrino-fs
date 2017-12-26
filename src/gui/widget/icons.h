@@ -32,6 +32,7 @@
 #define NEUTRINO_ICON_BUTTON_RED	"rot"
 #define NEUTRINO_ICON_BUTTON_YELLOW	"gelb"
 
+/* Infoviewer */
 #define NEUTRINO_ICON_INFO_BLUE		"info_blue"
 #define NEUTRINO_ICON_INFO_GREEN	"info_green"
 #define NEUTRINO_ICON_INFO_RED		"info_red"

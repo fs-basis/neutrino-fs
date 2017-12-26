@@ -1401,7 +1401,7 @@ void CTimerList::paintFoot()
 			if (timer->eventType == CTimerd::TIMER_RECORD || timer->eventType == CTimerd::TIMER_ZAPTO)
 				TimerListButtons[4].button = NEUTRINO_ICON_BUTTON_INFO_SMALL;
 			else
-				TimerListButtons[4].button = NEUTRINO_ICON_BUTTON_DUMMY_SMALL;
+				TimerListButtons[4].button = NEUTRINO_ICON_BUTTON_INFO_SMALL;
 		}
 	}
 

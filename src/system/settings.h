@@ -675,7 +675,7 @@ struct SNeutrinoSettings
 	int channellist_show_numbers;
 	int repeat_blocker;
 	int repeat_genericblocker;
-#define LONGKEYPRESS_OFF 0
+#define LONGKEYPRESS_OFF 500
 	int longkeypress_duration;
 #if HAVE_SH4_HARDWARE
 	int accept_other_remotes;

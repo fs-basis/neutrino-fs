@@ -948,7 +948,9 @@ int CTimerList::show()
 		{
 			if (timerlist[selected].eventType == CTimerd::TIMER_RECORD )
 			{
+				header->getClockObject()->block();
 				RemoteBoxSelect();
+				header->getClockObject()->unblock();
 				if (exec(this,"send_remotetimer"))
 				{
 					res = menu_return::RETURN_EXIT_ALL;
@@ -1022,7 +1024,9 @@ int CTimerList::show()
 		}
 		else if (msg == CRCInput::RC_setup)
 		{
+			header->getClockObject()->block();
 			update = RemoteBoxSetup();
+			header->getClockObject()->unblock();
 		}
 		else if (msg == CRCInput::RC_yellow)
 		{
@@ -1384,7 +1388,7 @@ void CTimerList::paintHead()
 	if (header == NULL)
 	{
 		header = new CComponentsHeader(x, y, width, header_height, LOCALE_TIMERLIST_NAME, NEUTRINO_ICON_TIMER, CComponentsHeader::CC_BTN_MENU | CComponentsHeader::CC_BTN_EXIT, NULL, CC_SHADOW_ON);
-		header->enableClock(true, " %d.%m.%Y  %H:%M ", NULL, false);
+		header->enableClock(true, " %d.%m.%Y - %H:%M ", " %d.%m.%Y - %H %M ", true);
 	}
 	if(!header->isPainted())
 		header->paint(CC_SAVE_SCREEN_NO);

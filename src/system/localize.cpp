@@ -53,7 +53,7 @@
 //static const char * iso639filename = "/share/iso-codes/iso-639.tab";
 static const char * iso639filename = ISO_639_TAB;
 
-#define DEFAULT_LOCALE "english"
+#define DEFAULT_LOCALE "deutsch"
 
 std::map<std::string, std::string> iso639;
 std::map<std::string, std::string> iso639rev;

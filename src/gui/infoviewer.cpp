@@ -720,7 +720,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 		if ((!logo_ok && g_settings.infobar_show_channellogo < 2) || g_settings.infobar_show_channellogo == 2 || g_settings.infobar_show_channellogo == 4) // no logo in numberbox
 		{
 			// show number in numberbox
-			if (g_settings.channellist_show_numbers)
+			if (!fileplay && g_settings.channellist_show_numbers)
 				PaintChanNumber();
 			else
 				ChanNumWidth = 5;
@@ -789,7 +789,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 void CInfoViewer::PaintChanNumber()
 {
 	int ChanNumYPos = (BoxEndY + ChanNameY + header_height) /2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->getHeight() /2;
-	if (g_settings.channellist_show_numbers) {
+	if (!fileplay && g_settings.channellist_show_numbers) {
 		ChanNumWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->getRenderWidth(strChanNum) + OFFSET_INNER_SMALL;
 		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_NUMBER]->RenderString(
 			ChanInfoX + OFFSET_INNER_MID, ChanNumYPos,
@@ -1634,7 +1634,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		timescale->paint();
 
 	//and finally paint channelnumber (again)
-	if (g_settings.channellist_show_numbers)
+	if (!fileplay && g_settings.channellist_show_numbers)
 		PaintChanNumber();
 }
 

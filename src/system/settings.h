@@ -717,7 +717,6 @@ struct SNeutrinoSettings
 
 	//Software-update
 	int softupdate_mode;
-	std::string image_settings_backup_path;
 	std::string softupdate_url_file;
 	std::string softupdate_proxyserver;
 	std::string softupdate_proxyusername;
@@ -735,6 +734,8 @@ struct SNeutrinoSettings
 	int flashupdate_createimage_add_env;
 	int flashupdate_createimage_add_spare;
 	int flashupdate_createimage_add_kernel;
+
+	std::string	backup_dir;
 
 	std::string	update_dir;
 

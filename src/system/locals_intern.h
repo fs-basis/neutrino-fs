@@ -2321,6 +2321,7 @@ const char * locale_real_names[] =
 	"servicemenu.scants",
 	"servicemenu.update",
 	"settings.backup",
+	"settings.backup_dir",
 	"settings.backup_failed",
 	"settings.help",
 	"settings.menu_hints",

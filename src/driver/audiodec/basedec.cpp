@@ -43,6 +43,7 @@
 #ifdef ENABLE_FFMPEGDEC
 #include "ffmpegdec.h"
 #else
+#include "ffmpegdec.h"
 #include "cdrdec.h"
 #include "mp3dec.h"
 #include "oggdec.h"

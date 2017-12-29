@@ -1562,7 +1562,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
             txt_cur_event_rest = NULL;
         }
 
-        txt_cur_event = new CComponentsTextTransp(NULL, xStart, CurrInfoY - height, currTimeX - xStart - OFFSET_INNER_SMALL, height, current,
+        txt_cur_event = new CComponentsTextTransp(NULL, xStart, CurrInfoY - height, currTimeX - xStart, height, current,
                 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
                 CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
         txt_cur_event->paint(CC_SAVE_SCREEN_YES);
@@ -1607,7 +1607,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
             txt_next_in = NULL;
         }
 
-        txt_next_event = new CComponentsTextTransp(NULL, xStart, NextInfoY, nextTimeX - xStart - OFFSET_INNER_SMALL, height, next,
+        txt_next_event = new CComponentsTextTransp(NULL, xStart, NextInfoY, nextTimeX - xStart, height, next,
                 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
                 CComponentsText::FONT_STYLE_REGULAR, colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
         txt_next_event->paint(CC_SAVE_SCREEN_YES);

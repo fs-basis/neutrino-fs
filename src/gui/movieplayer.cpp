@@ -1676,7 +1676,8 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			{
 				videoDecoder->setBlank(false);
 				CScreenSaver::getInstance()->Stop();
-				if (msg <= CRCInput::RC_MaxRC)
+				if (msg == (neutrino_msg_t) g_settings.mpkey_stop)
+				//if (msg <= CRCInput::RC_MaxRC)
 				{
 					//ignore first keypress - just quit the screensaver and call infoviewer
 					g_RCInput->clearRCMsg();

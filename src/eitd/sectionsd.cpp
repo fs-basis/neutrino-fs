@@ -1490,20 +1490,8 @@ void CTimeThread::run()
 #else
 			int64_t start = time_monotonic_ms();
 			/* speed up shutdown by looping around Read() */
-			struct pollfd ufds;
-			ufds.events = POLLIN|POLLPRI|POLLERR;
-			DMX::lock();
-			ufds.fd = dmx->getFD();
-			DMX::unlock();
 			do {
-				ufds.revents = 0;
-				rc = ::poll(&ufds, 1, timeoutInMSeconds / 36);
-				if (running && rc == 1) {
-					DMX::lock();
-					if (ufds.fd == dmx->getFD())
-						rc = dmx->Read(static_buf, MAX_SECTION_LENGTH, timeoutInMSeconds / 12);
-					DMX::unlock();
-				}
+				rc = dmx->Read(static_buf, MAX_SECTION_LENGTH, timeoutInMSeconds / 12);
 			} while (running && rc == 0
 				 && (time_monotonic_ms() - start) < (int64_t)timeoutInMSeconds);
 #endif

@@ -45,7 +45,6 @@ class CMiscMenue : public CMenuTarget, CChangeObserver
 		CMenuOptionChooser * epg_read;
 		CMenuOptionChooser * epg_read_frequently;
 		CMenuOptionChooser * epg_scan;
-		CMenuOptionChooser * epg_enable_sdt;
 		CMenuOptionChooser * tmdb_onoff;
 		CMenuOptionChooser * shoutcast_onoff;
 		CMenuForwarder * epg_dir;

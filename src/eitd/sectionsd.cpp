@@ -59,6 +59,8 @@
 
 #include <compatibility.h>
 
+//#define ENABLE_SDT //FIXME
+
 //#define DEBUG_SDT_THREAD
 //#define DEBUG_TIME_THREAD
 
@@ -101,8 +103,6 @@ static bool xml_epg_filter;
 static bool messaging_zap_detected = false;
 /*static*/ bool dvb_time_update = false;
 
-
-static unsigned int enable_sdt = 0;
 //NTP-Config
 #define CONF_FILE CONFIGDIR "/neutrino.conf"
 
@@ -148,10 +148,12 @@ static CEitThread threadVSEIT("viasatThread", 0x39);
 static CFreeSatThread threadFSEIT;
 #endif
 
+#ifdef ENABLE_SDT
 #define TIME_SDT_NONEWDATA      15
 //#define RESTART_DMX_AFTER_TIMEOUTS 5
 #define TIME_SDT_SCHEDULED_PAUSE 2* 60* 60
 CSdtThread threadSDT;
+#endif
 
 #ifdef DEBUG_EVENT_LOCK
 static int64_t lockstart = 0;
@@ -166,12 +168,12 @@ inline void readLockServices(void)
 {
 	pthread_rwlock_rdlock(&servicesLock);
 }
-
+#ifdef ENABLE_SDT
 inline void writeLockServices(void)
 {
 	pthread_rwlock_wrlock(&servicesLock);
 }
-
+#endif
 inline void unlockServices(void)
 {
 	pthread_rwlock_unlock(&servicesLock);
@@ -850,8 +852,9 @@ static void wakeupAll()
 #ifdef ENABLE_FREESATEPG
 	threadFSEIT.change(0);
 #endif
-	if (threadSDT.isRunning())
+#ifdef ENABLE_SDT
 	threadSDT.change(0);
+#endif
 }
 
 static void commandPauseScanning(int connfd, char *data, const unsigned dataLength)
@@ -871,8 +874,9 @@ static void commandPauseScanning(int connfd, char *data, const unsigned dataLeng
 #ifdef ENABLE_FREESATEPG
 		threadFSEIT.request_pause();
 #endif
-		if (threadSDT.isRunning())
+#ifdef ENABLE_SDT
 		threadSDT.request_pause();
+#endif
 #endif
 		scanning = 0;
 		writeLockMessaging();
@@ -887,8 +891,9 @@ static void commandPauseScanning(int connfd, char *data, const unsigned dataLeng
 #ifdef ENABLE_FREESATEPG
 		threadFSEIT.request_unpause();
 #endif
-		if (threadSDT.isRunning())
+#ifdef ENABLE_SDT
 		threadSDT.request_unpause();
+#endif
 #endif
 		writeLockEvents();
 		delete myCurrentEvent;
@@ -972,9 +977,9 @@ static void commandserviceChanged(int connfd, char *data, const unsigned dataLen
 #ifdef ENABLE_FREESATEPG
 		threadFSEIT.setCurrentService(messaging_current_servicekey);
 #endif
-		if (threadSDT.isRunning())
+#ifdef ENABLE_SDT
 		threadSDT.setCurrentService(messaging_current_servicekey);
-
+#endif
 		if (time_trigger_last != (messaging_current_servicekey & 0xFFFFFFFF0000ULL)) {
 			time_trigger_last = messaging_current_servicekey & 0xFFFFFFFF0000ULL;
 			threadTIME.setCurrentService(messaging_current_servicekey);
@@ -1122,7 +1127,6 @@ static void commandSetConfig(int connfd, char *data, const unsigned /*dataLength
 	max_events = pmsg->epg_max_events;
 	epg_save_frequently = pmsg->epg_save_frequently;
 	epg_read_frequently = pmsg->epg_read_frequently;
-	enable_sdt = pmsg->enable_sdt;
 
 	unlockEvents();
 
@@ -1150,23 +1154,18 @@ static void commandSetConfig(int connfd, char *data, const unsigned /*dataLength
 	}
 
 	epg_dir= (std::string)&data[sizeof(struct sectionsd::commandSetConfig) + strlen(&data[sizeof(struct sectionsd::commandSetConfig)]) + 1];
-
-	if (enable_sdt)
-		threadSDT.Start();
-	else
-		threadSDT.Kill();
 }
 
 static void deleteSIexceptEPG()
 {
 	threadCN.dropCachedSectionIDs();
 	threadEIT.dropCachedSectionIDs();
-	if (threadSDT.isRunning()) {
+#ifdef ENABLE_SDT
 	writeLockServices();
 	mySIservicesOrderUniqueKey.clear();
 	unlockServices();
 	threadSDT.dropCachedSectionIDs();
-	}
+#endif
 }
 
 static void FreeMemory()
@@ -1978,6 +1977,7 @@ void CFreeSatThread::addFilters()
 }
 #endif
 
+#ifdef ENABLE_SDT
 static bool addService(const SIservice &s, const int is_actual)
 {
 	bool already_exists;
@@ -2086,6 +2086,7 @@ bool CSdtThread::addServices()
 	}
 	return is_new;
 }
+#endif
 
 /* helper function for the housekeeping-thread */
 static void print_meminfo(void)
@@ -2303,8 +2304,9 @@ printf("SIevent size: %d\n", (int)sizeof(SIevent));
 #ifdef ENABLE_FREESATEPG
 	threadFSEIT.Start();
 #endif
-	if (enable_sdt > 0)
+#ifdef ENABLE_SDT
 	threadSDT.Start();
+#endif
 
 	// housekeeping-Thread starten
 	rc = pthread_create(&threadHouseKeeping, 0, houseKeepingThread, 0);
@@ -2339,8 +2341,9 @@ printf("SIevent size: %d\n", (int)sizeof(SIevent));
 #ifdef ENABLE_VIASATEPG
 	threadVSEIT.StopRun();
 #endif
-	if (threadSDT.isRunning())
+#ifdef ENABLE_SDT
 	threadSDT.StopRun();
+#endif
 #ifdef ENABLE_FREESATEPG
 	threadFSEIT.StopRun();
 #endif
@@ -2371,10 +2374,10 @@ printf("SIevent size: %d\n", (int)sizeof(SIevent));
 	threadVSEIT.Stop();
 #endif
 
-	if (threadSDT.isRunning()) {
+#ifdef ENABLE_SDT
 	xprintf("join SDT\n");
 	threadSDT.Stop();
-	}
+#endif
 #ifdef ENABLE_FREESATEPG
 	xprintf("join FSEIT\n");
 	threadFSEIT.Stop();

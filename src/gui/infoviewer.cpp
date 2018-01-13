@@ -81,9 +81,6 @@ extern CBouquetList * bouquetList;       /* neutrino.cpp */
 extern CPictureViewer * g_PicViewer;
 extern cVideo * videoDecoder;
 
-
-#define LEFT_OFFSET 10
-
 event_id_t CInfoViewer::last_curr_id = 0, CInfoViewer::last_next_id = 0;
 
 static bool sortByDateTime (const CChannelEvent& a, const CChannelEvent& b)
@@ -97,7 +94,7 @@ CInfoViewer::CInfoViewer ()
 	: fader(g_settings.theme.infobar_alpha)
 {
 	header = body = rec = NULL;
-	txt_cur_start = txt_cur_event = txt_cur_event_rest = txt_next_start = txt_next_event = txt_next_in = NULL;
+	txt_curr_start = txt_curr_event = txt_curr_rest = txt_next_start = txt_next_event = txt_next_in = NULL;
 	timescale = NULL;
 	info_CurrentNext.current_zeit.startzeit = 0;
 	info_CurrentNext.current_zeit.dauer = 0;
@@ -516,7 +513,7 @@ void CInfoViewer::showMovieTitle(const int playState, const t_channel_id &Channe
 	if (g_settings.infobar_show_channellogo > 1)
 		ChannelLogoMode = showChannelLogo(current_channel_id, 0);
 	if (ChannelLogoMode == 0 || ChannelLogoMode == 3 || ChannelLogoMode == 4)
-		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(ChanInfoX + OFFSET_INNER_MID , ChanNameY + header_height,BoxEndX - (ChanInfoX + OFFSET_INNER_MID) - time_width - LEFT_OFFSET - OFFSET_INNER_SMALL - infoViewerBB->showBBIcons_width,ChannelName, COL_INFOBAR_TEXT, 0, renderFlag);
+		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(ChanInfoX + OFFSET_INNER_MID , ChanNameY + header_height,BoxEndX - (ChanInfoX + OFFSET_INNER_MID) - time_width - OFFSET_INNER_MID - OFFSET_INNER_SMALL - infoViewerBB->showBBIcons_width,ChannelName, COL_INFOBAR_TEXT, 0, renderFlag);
 
 	// show_Data
 	if (CMoviePlayerGui::getInstance().file_prozent > 100)
@@ -741,7 +738,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 			fb_pixel_t color = g_settings.theme.infobar_gradient_top ? COL_MENUHEAD_TEXT : COL_INFOBAR_TEXT;
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(
 				ChanInfoX + OFFSET_INNER_MID, ChanNameY + header_height,
-				BoxEndX - (ChanInfoX + OFFSET_INNER_MID) - time_width - LEFT_OFFSET - OFFSET_INNER_SMALL - infoViewerBB->showBBIcons_width,
+				BoxEndX - (ChanInfoX + OFFSET_INNER_MID) - time_width - OFFSET_INNER_MID - OFFSET_INNER_SMALL - infoViewerBB->showBBIcons_width,
 				ChannelName, color , 0, renderFlag);
 		}
 	}
@@ -806,16 +803,16 @@ void CInfoViewer::setInfobarTimeout(int timeout_ext)
 	{
 		case NeutrinoModes::mode_radio:
 		case NeutrinoModes::mode_webradio:
-				timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR_RADIO] + timeout_ext);
-				break;
+			timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR_RADIO] + timeout_ext);
+			break;
 		case NeutrinoModes::mode_ts:
 				timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR_MOVIE] + timeout_ext);
-				break;
+			break;
 		case NeutrinoModes::mode_tv:
 		case NeutrinoModes::mode_webtv:
 		default:
-				timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] + timeout_ext);
-				break;
+			timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] + timeout_ext);
+			break;
 	}
 }
 
@@ -1198,7 +1195,7 @@ void CInfoViewer::showSubchan ()
 
 void CInfoViewer::showFailure ()
 {
-	ShowHint (LOCALE_MESSAGEBOX_ERROR, g_Locale->getText (LOCALE_INFOVIEWER_NOTAVAILABLE), 430);	// UTF-8
+	ShowHint (LOCALE_MESSAGEBOX_ERROR, g_Locale->getText (LOCALE_INFOVIEWER_NOTAVAILABLE), 430);
 }
 
 void CInfoViewer::showMotorMoving (int duration)
@@ -1510,8 +1507,6 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		timescale->setPassiveColor(g_settings.infobar_progressbar ? COL_PROGRESSBAR_PASSIVE_PLUS_0 : COL_INFOBAR_PLUS_0);
 		timescale->enableShadow(!g_settings.infobar_progressbar ? CC_SHADOW_ON : CC_SHADOW_OFF, OFFSET_SHADOW/2);
 		timescale->setValues(pb_p, pb_w);
-
-		//printf("paintProgressBar(%d, %d, %d, %d)\n", BoxEndX - pb_w - OFFSET_SHADOW, ChanNameY - (pb_h + 10) , pb_w, pb_h);
 	}else{
 		if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
 			timescale->kill();
@@ -1541,45 +1536,45 @@ void CInfoViewer::display_Info(const char *current, const char *next,
     //current event
     if (current && update_current)
     {
-        if (txt_cur_start)
+        if (txt_curr_start)
         {
-            txt_cur_start->hide();
-            delete txt_cur_start;
-            txt_cur_start = NULL;
+            txt_curr_start->hide();
+            delete txt_curr_start;
+            txt_curr_start = NULL;
         }
 
-        if (txt_cur_event)
+        if (txt_curr_event)
         {
-            txt_cur_event->hide();
-            delete txt_cur_event;
-            txt_cur_event = NULL;
+            txt_curr_event->hide();
+            delete txt_curr_event;
+            txt_curr_event = NULL;
         }
 
-        if (txt_cur_event_rest)
+        if (txt_curr_rest)
         {
-            txt_cur_event_rest->hide();
-            delete txt_cur_event_rest;
-            txt_cur_event_rest = NULL;
+            txt_curr_rest->hide();
+            delete txt_curr_rest;
+            txt_curr_rest = NULL;
         }
 
-        txt_cur_event = new CComponentsTextTransp(NULL, xStart, CurrInfoY - height, currTimeX - xStart, height, current,
+        txt_curr_event = new CComponentsTextTransp(NULL, xStart, CurrInfoY - height, currTimeX - xStart, height, current,
                 CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
                 CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-        txt_cur_event->paint(CC_SAVE_SCREEN_YES);
+        txt_curr_event->paint(CC_SAVE_SCREEN_YES);
 
         if (runningStart)
         {
-            txt_cur_start = new CComponentsTextTransp(NULL, InfoX, CurrInfoY - height, info_time_width, height, runningStart,
+            txt_curr_start = new CComponentsTextTransp(NULL, InfoX, CurrInfoY - height, info_time_width, height, runningStart,
                     CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
                     CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-            txt_cur_start->paint(CC_SAVE_SCREEN_YES);
+            txt_curr_start->paint(CC_SAVE_SCREEN_YES);
         }
         if (runningRest)
         {
-            txt_cur_event_rest = new CComponentsTextTransp(NULL, currTimeX, CurrInfoY - height, currTimeW, height, runningRest,
+            txt_curr_rest = new CComponentsTextTransp(NULL, currTimeX, CurrInfoY - height, currTimeW, height, runningRest,
                     CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO],
                     CComponentsText::FONT_STYLE_REGULAR, colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
-            txt_cur_event_rest->paint(CC_SAVE_SCREEN_YES);
+            txt_curr_rest->paint(CC_SAVE_SCREEN_YES);
         }
     }
 
@@ -1984,12 +1979,12 @@ void CInfoViewer::setUpdateTimer(uint64_t interval)
 void CInfoViewer::ResetModules(bool kill)
 {
 	if (kill) {
-		if (txt_cur_event)
-			txt_cur_event->clearSavedScreen();
-		if (txt_cur_event_rest)
-			txt_cur_event_rest->clearSavedScreen();
-		if (txt_cur_start)
-			txt_cur_start->clearSavedScreen();
+		if (txt_curr_event)
+			txt_curr_event->clearSavedScreen();
+		if (txt_curr_rest)
+			txt_curr_rest->clearSavedScreen();
+		if (txt_curr_start)
+			txt_curr_start->clearSavedScreen();
 		if (txt_next_event)
 			txt_next_event->clearSavedScreen();
 		if (txt_next_in)
@@ -2008,12 +2003,12 @@ void CInfoViewer::ResetModules(bool kill)
 		delete clock;
 		clock = NULL;
 	}
-	delete txt_cur_start;
-	txt_cur_start = NULL;
-	delete txt_cur_event;
-	txt_cur_event = NULL;
-	delete txt_cur_event_rest;
-	txt_cur_event_rest = NULL;
+	delete txt_curr_start;
+	txt_curr_start = NULL;
+	delete txt_curr_event;
+	txt_curr_event = NULL;
+	delete txt_curr_rest;
+	txt_curr_rest = NULL;
 	delete txt_next_start;
 	txt_next_start = NULL;
 	delete txt_next_event;

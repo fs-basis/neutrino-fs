@@ -102,6 +102,7 @@ struct sectionsd
 //		std::string epg_dir;
 		int epg_save_frequently;
 		int epg_read_frequently;
+		int enable_sdt;
 	};
 
 };

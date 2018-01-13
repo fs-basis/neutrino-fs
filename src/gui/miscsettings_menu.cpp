@@ -76,6 +76,7 @@ CMiscMenue::CMiscMenue()
 	epg_read_now = NULL;
 	epg_read_frequently = NULL;
 	epg_dir = NULL;
+	epg_enable_sdt = NULL;
 }
 
 CMiscMenue::~CMiscMenue()
@@ -423,6 +424,9 @@ void CMiscMenue::showMiscSettingsMenuEpg(CMenuWidget *ms_epg)
 	epg_read_now = new CMenuForwarder(LOCALE_MISCSETTINGS_EPG_READ_NOW, g_settings.epg_read, NULL, this, "epg_read_now");
 	epg_read_now->setHint("", LOCALE_MENU_HINT_EPG_READ_NOW);
 
+	epg_enable_sdt = new CMenuOptionChooser(LOCALE_MISCSETTINGS_EPG_ENABLESDT, &g_settings.enable_sdt,  OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
+	epg_enable_sdt->setHint("", LOCALE_MENU_HINT_EPG_ENABLESDT);
+
 	epg_cache = to_string(g_settings.epg_cache);
 	if (epg_cache.length() < 2)
 		epg_cache.insert(0, 2 - epg_cache.length(), ' ');
@@ -471,6 +475,7 @@ void CMiscMenue::showMiscSettingsMenuEpg(CMenuWidget *ms_epg)
 	ms_epg->addItem(epg_read_frequently);
 	ms_epg->addItem(epg_dir);
 	ms_epg->addItem(epg_read_now);
+	ms_epg->addItem(epg_enable_sdt);
 	ms_epg->addItem(GenericMenuSeparatorLine);
 	ms_epg->addItem(mf);
 	ms_epg->addItem(mf1);
@@ -644,6 +649,12 @@ bool CMiscMenue::changeNotify(const neutrino_locale_t OptionName, void * /*data*
 	{
 		g_settings.epg_save_frequently      = g_settings.epg_save ? g_settings.epg_save_frequently : 0;
 
+		CNeutrinoApp::getInstance()->SendSectionsdConfig();
+
+		ret = menu_return::RETURN_REPAINT;
+	}
+	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_MISCSETTINGS_EPG_ENABLESDT))
+	{
 		CNeutrinoApp::getInstance()->SendSectionsdConfig();
 
 		ret = menu_return::RETURN_REPAINT;

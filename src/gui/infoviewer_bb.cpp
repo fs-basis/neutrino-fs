@@ -355,7 +355,9 @@ void CInfoViewerBB::showBBButtons(bool paintFooter)
 	}
 
 	if (paint) {
+#if 1
 		paintFoot(g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX - g_InfoViewer->ChanInfoX);
+#else
 		fb_pixel_t *pixbuf = NULL;
 		int buf_x = bbIconMinX - OFFSET_INNER_SMALL;
 		int buf_y = BBarY;
@@ -373,6 +375,7 @@ void CInfoViewerBB::showBBButtons(bool paintFooter)
 				delete [] pixbuf;
 			}
 		}
+#endif
 		int last_x = minX;
 
 		for (i = BUTTON_MAX; i > 0;) {
@@ -401,7 +404,7 @@ void CInfoViewerBB::showBBIcons(const int modus, const std::string & icon)
 		return;
 	if ((modus >= CInfoViewerBB::ICON_SUBT) && (modus < CInfoViewerBB::ICON_MAX) && (bbIconInfo[modus].x != -1) && (is_visible)) {
 		frameBuffer->paintIcon(icon, bbIconInfo[modus].x - g_InfoViewer->time_width, g_InfoViewer->ChanNameY + 8,
-				       InfoHeightY_Info, 1, true, !g_settings.theme.infobar_gradient_top, COL_INFOBAR_BUTTONS_BACKGROUND);
+				       InfoHeightY_Info, 1, true, !g_settings.theme.infobar_gradient_bottom, COL_INFOBAR_BUTTONS_BACKGROUND);
 	}
 }
 
@@ -867,6 +870,7 @@ void CInfoViewerBB::paint_ca_bar()
 	{
 		paintBoxRel(g_InfoViewer->ChanInfoX, g_InfoViewer->BoxEndY, ca_width , bottom_bar_offset, COL_INFOBAR_CASYSTEM_PLUS_0);
 	}
+#if 1
 	if (g_settings.infobar_casystem_dotmatrix)
 	{
 		int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.infobar_casystem_frame ? 24 : 0)) / 4;
@@ -880,6 +884,7 @@ void CInfoViewerBB::paint_ca_bar()
 			}
 		}
 	}
+#endif
 }
 
 void CInfoViewerBB::changePB()

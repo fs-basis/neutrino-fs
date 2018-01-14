@@ -1533,6 +1533,7 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 	bool colored_event_C = (g_settings.theme.colored_events_infobar == 1);
 	bool colored_event_N = (g_settings.theme.colored_events_infobar == 2);
 
+#if 1
     //current event
     if (current && update_current)
     {
@@ -1623,6 +1624,83 @@ void CInfoViewer::display_Info(const char *current, const char *next,
             txt_next_in->paint(CC_SAVE_SCREEN_YES);
         }
     }
+#else
+	bool restore = false;
+	if (txt_curr_event){
+		if (txt_curr_rest && txt_curr_rest->isPainted() && txt_curr_event && txt_curr_event->isPainted())
+			restore = true;
+	}
+
+	//current event
+	if (current && update_current){
+		if (txt_curr_event == NULL)
+			txt_curr_event = new CComponentsTextTransp(NULL, xStart, CurrInfoY - height, currTimeX - xStart, height);
+		else
+			txt_curr_event->setDimensionsAll(xStart, CurrInfoY - height, currTimeX - xStart, height);
+
+		txt_curr_event->setText(current, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+		if (txt_curr_event->isPainted())
+			txt_curr_event->hide();
+		txt_curr_event->paint(CC_SAVE_SCREEN_YES);
+
+		if (runningStart && starttimes){
+			if (txt_curr_start == NULL)
+				txt_curr_start = new CComponentsTextTransp(NULL, InfoX, CurrInfoY - height, info_time_width, height);
+			else
+				txt_curr_start->setDimensionsAll(InfoX, CurrInfoY - height, info_time_width, height);
+			txt_curr_start->setText(runningStart, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+			if (txt_curr_event->isPainted())
+				txt_curr_event->hide();
+			txt_curr_start->paint(CC_SAVE_SCREEN_YES);
+		}
+
+		if (runningRest){
+			if (txt_curr_rest == NULL)
+				txt_curr_rest = new CComponentsTextTransp(NULL, currTimeX, CurrInfoY - height, currTimeW, height);
+			else
+				txt_curr_rest->setDimensionsAll(currTimeX, CurrInfoY - height, currTimeW, height);
+			txt_curr_rest->setText(runningRest, CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_C ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+			if (txt_curr_rest->isPainted())
+				txt_curr_rest->hide();
+			txt_curr_rest->paint(CC_SAVE_SCREEN_YES);
+		}
+	}
+
+	//next event
+	if (next && update_next)
+	{
+		if (txt_next_event == NULL)
+			txt_next_event = new CComponentsTextTransp(NULL, xStart, NextInfoY, nextTimeX - xStart, height);
+		else
+			txt_next_event->setDimensionsAll(xStart, NextInfoY, nextTimeX - xStart, height);
+		txt_next_event->setText(next, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+		if (txt_next_event->isPainted())
+			txt_next_event->hide();
+		txt_next_event->paint(CC_SAVE_SCREEN_YES);
+
+		if (nextStart && starttimes){
+			if (txt_next_start == NULL)
+				txt_next_start = new CComponentsTextTransp(NULL, InfoX, NextInfoY, info_time_width, height);
+			else
+				txt_next_start->setDimensionsAll(InfoX, NextInfoY, info_time_width, height);
+			txt_next_start->setText(nextStart, CTextBox::NO_AUTO_LINEBREAK, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+			if (txt_next_start->isPainted())
+				txt_next_start->hide();
+			txt_next_start->paint(CC_SAVE_SCREEN_YES);
+		}
+
+		if (nextDuration){
+			if (txt_next_in == NULL)
+				txt_next_in = new CComponentsTextTransp(NULL, nextTimeX, NextInfoY, nextTimeW, height);
+			else
+				txt_next_in->setDimensionsAll(nextTimeX, NextInfoY, nextTimeW, height);
+			txt_next_in->setText(nextDuration, CTextBox::RIGHT, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO], colored_event_N ? COL_COLORED_EVENTS_TEXT : COL_INFOBAR_TEXT);
+			if (txt_next_in->isPainted())
+				txt_next_in->hide();
+			txt_next_in->paint(CC_SAVE_SCREEN_YES);
+		}
+	}
+#endif
 
 	//finally paint time scale
 	if (pb_pos > -1)
@@ -1833,11 +1911,11 @@ void CInfoViewer::killTitle()
 	{
 		is_visible = false;
 		infoViewerBB->is_visible = false;
-
+#if 1 //unused
 		int bottom = BoxEndY + OFFSET_SHADOW + infoViewerBB->bottom_bar_offset;
 		if (showButtonBar)
 			bottom += infoViewerBB->InfoHeightY_Info;
-
+#endif
 		if (infoViewerBB->getFooter())
 			infoViewerBB->getFooter()->kill();
 		if (infoViewerBB->getCABar())
@@ -1851,14 +1929,14 @@ void CInfoViewer::killTitle()
 				infobar_txt->kill();
 		}
 		header->kill();
-
+#if 1 //not really required to kill clock, header does this  <--- really ????
 		if (clock)
 		{
 			clock->kill();
 			delete clock;
 			clock = NULL;
 		}
-
+#endif
 		body->kill();
 
 		if (timescale)

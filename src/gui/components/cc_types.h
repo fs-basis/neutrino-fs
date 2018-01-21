@@ -29,7 +29,6 @@
 #include <system/localize.h>
 #include <driver/rcinput.h>
 #include <gui/color_custom.h>
-#include <sys/types.h>
 
 struct gradientData_t;
 class Font;

@@ -177,8 +177,8 @@ class CFrameBuffer : public sigc::trackable
 		unsigned int getStride() const;             // size of a single line in the framebuffer (in bytes)
 		unsigned int getScreenWidth(bool real = false);
 		unsigned int getScreenHeight(bool real = false); 
-		unsigned int getScreenWidthRel(bool force_small = false);
-		unsigned int getScreenHeightRel(bool force_small = false);
+		unsigned int getWindowWidth(bool force_small = false);
+		unsigned int getWindowHeight(bool force_small = false);
 		unsigned int getScreenX();
 		unsigned int getScreenY();
 		

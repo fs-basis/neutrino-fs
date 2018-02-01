@@ -97,7 +97,7 @@ static CComponentsPIP	*cc_minitv = NULL;
 extern CBouquetManager *g_bouquetManager;
 extern int old_b_id;
 static CComponentsHeader *header = NULL;
-//extern bool timeset;
+extern bool timeset;
 
 CChannelList::CChannelList(const char * const pName, bool phistoryMode, bool _vlist)
 {
@@ -2212,7 +2212,7 @@ void CChannelList::paintHead()
 		}else{
 			if (header->getClockObject()){
 				header->disableClock();
-				header->setContextButton(CComponentsHeader::CC_BTN_EXIT);
+				//header->setContextButton(CComponentsHeader::CC_BTN_EXIT);
 			}
 		}
 //	}

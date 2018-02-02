@@ -2212,7 +2212,7 @@ void CChannelList::paintHead()
 		}else{
 			if (header->getClockObject()){
 				header->disableClock();
-				//header->setContextButton(CComponentsHeader::CC_BTN_EXIT);
+				header->setContextButton(CComponentsHeader::CC_BTN_EXIT);
 			}
 		}
 //	}

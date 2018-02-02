@@ -336,7 +336,7 @@ void CComponentsHeader::initLogo()
 		*/
 		int x_logo = x_logo_left;
 		if (cch_logo.Align & CC_LOGO_RIGHT)
-			x_logo = x_logo_right - w_logo -OFFSET_INNER_MID;
+			x_logo = x_logo_right - w_logo;
 
 		if (cch_logo.Align & CC_LOGO_LEFT)
 			x_logo = x_logo_left;

@@ -109,7 +109,6 @@ void CFbAccelTD::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t
 	DFBResult err;
 	IDirectFBSurface *surf;
 	DFBSurfaceDescription dsc;
-	int pitch = width * sizeof(fb_pixel_t);
 
 	src.x = xp;
 	src.y = yp;
@@ -121,13 +120,12 @@ void CFbAccelTD::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t
 	dsc.width  = width;
 	dsc.height = height;
 	dsc.preallocated[0].data  = fbbuff;
-	dsc.preallocated[0].pitch = pitch;
+	dsc.preallocated[0].pitch = width * sizeof(fb_pixel_t);
 	err = dfb->CreateSurface(dfb, &dsc, &surf);
+	/* TODO: maybe we should not die if this fails? */
 	if (err != DFB_OK) {
-		/* probably width or height out of range... */
-		fprintf(stderr, LOGTAG "blit2FB: w:%d h:%d data:0x%p pitch:%d\n", width, height, fbbuff, pitch);
-		DirectFBError("dfb->CreateSurface(dfb, &dsc, &surf)", err);
-		return;
+		fprintf(stderr, LOGTAG "blit2FB: ");
+		DirectFBErrorFatal("dfb->CreateSurface(dfb, &dsc, &surf)", err);
 	}
 
 	if (transp)

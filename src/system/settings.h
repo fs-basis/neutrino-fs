@@ -230,7 +230,6 @@ struct SNeutrinoSettings
 	int infobar_show_channellogo;
 	int infobar_progressbar;
 	int infobar_casystem_display;
-	int infobar_casystem_dotmatrix;
 	int infobar_casystem_frame;
 	int scrambled_message;
 	int volume_pos;

@@ -876,21 +876,6 @@ void CInfoViewerBB::paint_ca_bar()
 	{
 		ca_bar->paint(CC_SAVE_SCREEN_NO);
 	}
-#if 1
-	if (g_settings.infobar_casystem_dotmatrix)
-	{
-		int xcnt = (g_InfoViewer->BoxEndX - g_InfoViewer->ChanInfoX - (g_settings.infobar_casystem_frame ? 24 : 0)) / 4;
-		int ycnt = (bottom_bar_offset - (g_settings.infobar_casystem_frame ? 14 : 0)) / 4;
-
-		for (int i = 0; i < xcnt; i++)
-		{
-			for (int j = 0; j < ycnt; j++)
-			{
-				frameBuffer->paintBoxRel((g_InfoViewer->ChanInfoX + (g_settings.infobar_casystem_frame ? 14 : 2)) + i*4, g_InfoViewer->BoxEndY + (g_settings.infobar_casystem_frame ? 4 : 2) + j*4, 2, 2, COL_INFOBAR_PLUS_1);
-			}
-		}
-	}
-#endif
 }
 
 void CInfoViewerBB::changePB()

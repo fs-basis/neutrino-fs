@@ -845,7 +845,6 @@ kerneloptions.hint.enabled_not_loaded Wenden Sie die Einstellungen an, um das Ke
 kerneloptions.modules Kernel-Module
 kerneloptions.reset Einstellungen zurücksetzen
 keybindingmenu.RC Fernbedienung abstimmen
-keybindingmenu.accept_other_remotes Andere Fernbedienungen akzeptieren
 keybindingmenu.addrecord Aufnahme-Timer hinzufügen
 keybindingmenu.addremind Umschalt-Timer hinzufügen
 keybindingmenu.allchannels_on_ok Kanalliste
@@ -998,7 +997,6 @@ mbkey.truncate Film kürzen
 menu.back Zurück
 menu.cancel Abbrechen
 menu.hint_a_pic Konfigurieren Sie den Audioplayer, den Bildbetrachter, den Movieplayer und mehr
-menu.hint_accept_other_remotes Deaktivieren um andere Fernbedienungen zu ignorieren
 menu.hint_adzap Der Werbezapper schaltet nach der eingestellten Zeit wieder auf den ursprünglichen Kanal zurück
 menu.hint_adzap_active Der Werbezapper ist aktiv. Mit einem erneuten Aufruf wird er deaktiviert.
 menu.hint_adzap_writedata Schreibe Daten über den Status des Werbezappers nach /tmp/adzap.data

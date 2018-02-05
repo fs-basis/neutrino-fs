@@ -656,9 +656,6 @@ struct SNeutrinoSettings
 	int repeat_genericblocker;
 #define LONGKEYPRESS_OFF 500
 	int longkeypress_duration;
-#if HAVE_SH4_HARDWARE
-	int accept_other_remotes;
-#endif
 	int remote_control_hardware;
 	int audiochannel_up_down_enable;
 

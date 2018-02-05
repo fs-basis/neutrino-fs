@@ -845,7 +845,6 @@ kerneloptions.hint.enabled_not_loaded Apply the settings to load the module.
 kerneloptions.modules Kernel modules
 kerneloptions.reset Reset settings
 keybindingmenu.RC Tune Remote-Control
-keybindingmenu.accept_other_remotes Accept other remote controls
 keybindingmenu.addrecord add record timer
 keybindingmenu.addremind add zapto timer
 keybindingmenu.allchannels_on_ok all-services
@@ -998,7 +997,6 @@ mbkey.truncate Truncate movie
 menu.back Back
 menu.cancel Cancel
 menu.hint_a_pic Configure audio player, picture viewer, movie player and more
-menu.hint_accept_other_remotes Disable to ignore other remote controls
 menu.hint_adzap AdZap will switch back to the current channel when the selected time is up
 menu.hint_adzap_active AdZap is active. With a new call it will be deactivated.
 menu.hint_adzap_writedata Write data according to adzap status to /tmp/adzap.data

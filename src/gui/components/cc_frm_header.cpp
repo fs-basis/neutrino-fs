@@ -307,7 +307,8 @@ void CComponentsHeader::initLogo()
 		 * FIXME: Workaround to fix next item in case of wrong order of items.
 		*/
 		if (next_item){
-			if (next_item->getItemType() == CC_ITEMTYPE_FRM_ICONFORM){
+			if (next_item->getItemType() == CC_ITEMTYPE_FRM_ICONFORM)
+			{
 				/* either clock is present
 				 * or in chanellist edit mode
 				 * possible button */

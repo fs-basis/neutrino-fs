@@ -336,7 +336,8 @@ void CDBoxInfoWidget::paint()
 	int ypos=y;
 
 	//paint head
-	std::string title(g_Locale->getText(LOCALE_EXTRA_DBOXINFO));
+//	std::string title(g_Locale->getText(LOCALE_EXTRA_DBOXINFO));
+	std::string title="FS Image Box-Info"; //FS
 #if 0
 	std::map<std::string,std::string> cpuinfo;
 	in.open("/proc/cpuinfo");
@@ -361,7 +362,7 @@ void CDBoxInfoWidget::paint()
 	}
 #endif
 	title += ": ";
-	title += g_info.hw_caps->boxvendor;
+//	title += g_info.hw_caps->boxvendor; //FS
 	title += " ";
 	title += g_info.hw_caps->boxname;
 	width = std::max(width, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(title, true) + 50);

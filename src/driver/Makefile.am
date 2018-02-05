@@ -45,11 +45,6 @@ libneutrino_driver_a_SOURCES = \
 	streamts.cpp \
 	volume.cpp
 
-if ENABLE_GRAPHLCD
-libneutrino_driver_a_SOURCES += \
-	nglcd.cpp
-endif
-
 if BOXTYPE_DUCKBOX
 libneutrino_driver_a_SOURCES += \
 	fb_generic_sti_ddt.cpp \

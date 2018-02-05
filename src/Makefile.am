@@ -139,10 +139,6 @@ neutrino_LDADD += \
 	nhttpd/yhttpd_core/libyhttpd.a
 endif
 
-if ENABLE_GRAPHLCD
-neutrino_LDADD += -lglcddrivers -lglcdgraphics -lusb-1.0
-endif
-
 if ENABLE_GIFLIB
 neutrino_LDADD += -lgif
 else

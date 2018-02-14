@@ -156,6 +156,7 @@ audiomenu.volume_adjustment Lautstärkeanpassung pro Kanal
 audiomenu.volume_adjustment_ac3 AC3-Tonspuren
 audiomenu.volume_adjustment_clear Gespeicherte Werte löschen
 audiomenu.volume_adjustment_pcm PCM-Tonspuren
+audiomenu.volume_last_used zuletzt verwendet
 audiomenu.volume_start Einschaltlautstärke
 audiomenu.volume_step Lautstärke Schrittweite
 audioplayer.add Hinzufügen
@@ -2411,15 +2412,15 @@ timing.numericzap Umschalten mit Zifferntasten
 timing.popup_messages Popup Meldungen
 timing.static_messages Interaktive Meldungen
 timing.volumebar Lautstärkeanzeige
+tmdb.api_key TMDb API Schlüssel
+tmdb.enabled TMDb-Unterstützung
+tmdb.info TMDb-Info
+tmdb.read_data Suche TMDb-Daten ...
 tunersetup.cable Kabel (DVB-C)
 tunersetup.hybrid Hybrid (DVB-C/T/T2)
 tunersetup.mode Betriebsmodus
 tunersetup.power 5V-Versorgung bei DVB-T/T2 Kanälen
 tunersetup.terr Terrestrisch (DVB-T/T2)
-tmdb.api_key TMDb API Schlüssel
-tmdb.enabled TMDb-Unterstützung
-tmdb.info TMDb-Info
-tmdb.read_data Suche TMDb-Daten ...
 unicable.lnb Unicable Eingang
 unicable.qrg Unicable Frequenz
 unicable.scr Unicable SCR

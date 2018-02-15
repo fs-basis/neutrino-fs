@@ -1491,8 +1491,7 @@ void CTimeThread::run()
 			int64_t start = time_monotonic_ms();
 			/* speed up shutdown by looping around Read() */
 			do {
-				if (DMX::isOpen())
-					rc = dmx->Read(static_buf, MAX_SECTION_LENGTH, timeoutInMSeconds / 12);
+				rc = dmx->Read(static_buf, MAX_SECTION_LENGTH, timeoutInMSeconds / 12);
 			} while (running && rc == 0
 				 && (time_monotonic_ms() - start) < (int64_t)timeoutInMSeconds);
 #endif

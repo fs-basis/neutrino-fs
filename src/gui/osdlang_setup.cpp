@@ -56,10 +56,8 @@
 
 
 
-COsdLangSetup::COsdLangSetup(int wizard_mode)
+COsdLangSetup::COsdLangSetup()
 {
-	is_wizard = wizard_mode;
-
 	width = 45;
 	tzNotifier = NULL;
 }
@@ -92,7 +90,6 @@ int COsdLangSetup::showLocalSetup()
 {
 	//main local setup
 	CMenuWidget *localSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_LANGUAGE, width, MN_WIDGET_ID_LANGUAGESETUP);
-	localSettings->setWizardMode(is_wizard);
 
 	//add subhead and back button
 	localSettings->addIntroItems(LOCALE_LANGUAGESETUP_HEAD);

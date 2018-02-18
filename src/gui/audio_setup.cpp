@@ -52,10 +52,8 @@
 extern CAudioSetupNotifier	* audioSetupNotifier;
 extern cAudio *audioDecoder;
 
-CAudioSetup::CAudioSetup(int wizard_mode)
+CAudioSetup::CAudioSetup()
 {
-	is_wizard = wizard_mode;
-
 	width = 40;
 	selected = -1;
 }
@@ -144,7 +142,6 @@ int CAudioSetup::showAudioSetup()
 	//menue init
 	CMenuWidget* audioSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS, width);
 	audioSettings->setSelected(selected);
-	audioSettings->setWizardMode(is_wizard);
 
 	//analog modes (stereo, mono l/r...)
 	CMenuOptionChooser * as_oj_analogmode 	= new CMenuOptionChooser(LOCALE_AUDIOMENU_ANALOG_MODE, &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier);

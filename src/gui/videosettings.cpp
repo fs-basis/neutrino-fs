@@ -79,11 +79,9 @@ extern cVideo *pipDecoder;
 extern int prev_video_mode;
 extern CRemoteControl * g_RemoteControl; /* neutrino.cpp */
 
-CVideoSettings::CVideoSettings(int wizard_mode)
+CVideoSettings::CVideoSettings()
 {
 	frameBuffer = CFrameBuffer::getInstance();
-
-	is_wizard = wizard_mode;
 
 	SyncControlerForwarder = NULL;
 	VcrVideoOutSignalOptionChooser = NULL;
@@ -104,7 +102,6 @@ CVideoSettings::~CVideoSettings()
 
 int CVideoSettings::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
 {
-	printf("[neutrino VideoSettings] %s: init video setup (Mode: %d)...\n",__FUNCTION__ , is_wizard);
 	int   res = menu_return::RETURN_REPAINT;
 
 	if (parent)
@@ -365,7 +362,6 @@ int CVideoSettings::showVideoSetup()
 	//init
 	CMenuWidget * videosetup = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS, width);
 	videosetup->setSelected(selected);
-	videosetup->setWizardMode(is_wizard);
 
 	CMenuOptionChooser::keyval_ext vmode_options[VIDEOMENU_VIDEOMODE_OPTION_COUNT];
 	int vmode_option_count = 0;

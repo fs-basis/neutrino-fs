@@ -52,7 +52,6 @@ class COsdLangSetup : public CMenuTarget, CChangeObserver
 {
 	private:
 		int  width;
-		int is_wizard;
 		CTZChangeNotifier * tzNotifier;
 
 		int showLocalSetup();
@@ -63,7 +62,7 @@ class COsdLangSetup : public CMenuTarget, CChangeObserver
 		bool changeNotify(const neutrino_locale_t, void *);
 
 	public:
-		COsdLangSetup(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
+		COsdLangSetup();
 		~COsdLangSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 		void showLanguageSetup(CMenuWidget *osdl_setup);

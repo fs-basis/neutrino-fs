@@ -88,8 +88,6 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 		/* flag to skip manual params update while in menu */
 		bool in_menu;
 
-		int is_wizard;
-
 		int r_system;
 
 		neutrino_locale_t satprov_locale;
@@ -124,7 +122,7 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 
 		void saveScanSetup();
 
-		CScanSetup(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
+		CScanSetup();
 
 		/* required to set display count of selected satellites, see: showFrontendSetup() */
 		void setOptionSatSelect(int fe_number, CMenuForwarder* menu_item);
@@ -133,7 +131,6 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 
 		static CScanSetup* getInstance();
 
-		void setWizardMode(int mode) {is_wizard = mode;};
 		void updateManualSettings();
 
 		int exec(CMenuTarget* parent, const std::string & actionKey = "");

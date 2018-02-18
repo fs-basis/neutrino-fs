@@ -931,13 +931,6 @@ struct SNeutrinoSettings
 		INFOBAR_PROGRESSBAR_ARRANGEMENT_BELOW_CH_NAME_SMALL = 2,
 		INFOBAR_PROGRESSBAR_ARRANGEMENT_BETWEEN_EVENTS = 3
 	}INFOBAR_PROGRESSBAR_ARRANGEMENT_TYPES;
-
-	enum WIZARD_MODES
-	{
-		WIZARD_OFF	= 0,
-		WIZARD_START	= 1,
-		WIZARD_ON	= 2
-	};
 };
 
 extern const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SETTINGS_MAX];

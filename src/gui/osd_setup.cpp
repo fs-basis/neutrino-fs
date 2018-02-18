@@ -81,7 +81,7 @@ extern std::string *sub_font_file;
 extern int sub_font_size;
 extern CTimeOSD *FileTimeOSD;
 
-COsdSetup::COsdSetup(int wizard_mode)
+COsdSetup::COsdSetup()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	colorSetupNotifier = new CColorSetupNotifier();
@@ -99,7 +99,6 @@ COsdSetup::COsdSetup(int wizard_mode)
 	mfWindowSize = NULL;
 	win_demo = NULL;
 	osd_menu_colors = NULL;
-	is_wizard = wizard_mode;
 
 	width = 40;
 	show_menu_hints = 0;
@@ -598,7 +597,6 @@ int COsdSetup::showOsdSetup()
 
 	//osd main menu
 	osd_menu = new CMenuWidget(LOCALE_MAINMENU_SETTINGS, NEUTRINO_ICON_COLORS, width, MN_WIDGET_ID_OSDSETUP);
-	osd_menu->setWizardMode(is_wizard);
 
 	//intro with subhead and back button
 	osd_menu->addIntroItems(LOCALE_MAINSETTINGS_OSD);

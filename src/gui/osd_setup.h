@@ -62,7 +62,6 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 		CGenericMenuActivate screensaverOptActivate;
 		CGenericMenuActivate gradentHeadDirection, gradentHintDirection, gradentInfobarTopDirection, gradentInfobarBodyDirection, gradentInfobarFootDirection;
 		int width;
-		int is_wizard;
 		int show_menu_hints;
 		int show_tuner_icon;
 
@@ -111,7 +110,7 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 			PRESET_LCD
 		};
 		
-		COsdSetup(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
+		COsdSetup();
 		~COsdSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 		bool changeNotify(const neutrino_locale_t OptionName, void * /*data*/);

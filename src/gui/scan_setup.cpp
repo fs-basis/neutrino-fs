@@ -366,10 +366,9 @@ const CMenuOptionChooser::keyval SATSETUP_SCANTP_PLM[SATSETUP_SCANTP_PLM_COUNT] 
 	{ 3, LOCALE_EXTRA_TP_PLM_UNK }
 };
 
-CScanSetup::CScanSetup(int wizard_mode)
+CScanSetup::CScanSetup()
 {
 	width = 40;
-	is_wizard = wizard_mode;
 
 	satOnOff	= NULL;
 	fautoScanAll	= NULL;
@@ -474,8 +473,6 @@ int CScanSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 		}
 		CScanTs scanTs(ALL_CABLE);
 		scanTs.exec(NULL, "manual");
-		if (is_wizard)
-			return menu_return::RETURN_EXIT_ALL;
 		return res;
 	}
 	if (actionKey == "fastdiseqc") {
@@ -514,8 +511,6 @@ int CScanSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 #endif
 				if (as == "fast") {
 					//scansettings.fst_update = 1;
-					if (is_wizard)
-						return menu_return::RETURN_EXIT_ALL;
 				}
 				return res;
 			}
@@ -523,7 +518,6 @@ int CScanSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 	}
 
 
-	printf("[neutrino] CScanSetup %s: init scan setup (Mode: %d)...\n",__FUNCTION__ , is_wizard);
 	CZapit::getInstance()->GetConfig(zapitCfg);
 	in_menu = true;
 	res = showScanMenu();
@@ -568,11 +562,10 @@ int CScanSetup::showScanMenu()
 	allow_start = !CRecordManager::getInstance()->RecordingStatus() || CRecordManager::getInstance()->TimeshiftOnly();
 
 	//main
-	CMenuWidget * settings = new CMenuWidget(/*is_wizard ? LOCALE_SERVICEMENU_SCANTS :*/ LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_SCAN_MAIN);
-	settings->setWizardMode(is_wizard);
+	CMenuWidget * settings = new CMenuWidget(LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_SCAN_MAIN);
 
 	//back
-	settings->addIntroItems(/*is_wizard ? NONEXISTANT_LOCALE : */ LOCALE_SERVICEMENU_SCANTS);
+	settings->addIntroItems(LOCALE_SERVICEMENU_SCANTS);
 	//----------------------------------------------------------------------
 #if 0
 	//save scan settings
@@ -776,7 +769,6 @@ int CScanSetup::showScanMenuFrontendSetup()
 	CZapit::getInstance()->GetConfig(zapitCfg);
 	CMenuWidget * setupMenu = new CMenuWidget(LOCALE_SATSETUP_FE_SETUP, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_SCAN_FE_SETUP);
 	setupMenu->addIntroItems();
-	setupMenu->setWizardMode(is_wizard);
 
 	int count = CFEManager::getInstance()->getFrontendCount();
 

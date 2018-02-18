@@ -569,7 +569,6 @@ void CMenuWidget::Init(const std::string &NameString, const std::string &Icon, c
 	//basic attributes
 	iconOffset 	= 0;
 	offx = offy 	= 0;
-	from_wizard 	= SNeutrinoSettings::WIZARD_OFF;
 	fade 		= true;
 	scrollbar_width	= 0;
 	savescreen	= false;
@@ -751,15 +750,6 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string &)
 	COSDFader fader(g_settings.theme.menu_Content_alpha);
 	if(fade)
 		fader.StartFadeIn();
-
-	if(from_wizard) {
-		for (unsigned int count = 0; count < items.size(); count++) {
-			if(items[count] == GenericMenuBack) {
-				items[count] = GenericMenuNext;
-				break;
-			}
-		}
-	}
 
 	checkHints();
 
@@ -1092,7 +1082,7 @@ void CMenuWidget::hide()
 
 void CMenuWidget::checkHints()
 {
-	brief_hints = (brief_hints || (from_wizard == SNeutrinoSettings::WIZARD_START));
+	brief_hints = (brief_hints );
 
 	GenericMenuBack->setHint("", NONEXISTANT_LOCALE);
 	GenericMenuNext->setHint("", NONEXISTANT_LOCALE);

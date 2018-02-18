@@ -64,11 +64,9 @@
 
 extern int pinghost (const std::string &hostname, std::string *ip = NULL);
 
-CNetworkSetup::CNetworkSetup(int wizard_mode)
+CNetworkSetup::CNetworkSetup()
 {
 	networkConfig = CNetworkConfig::getInstance();
-
-	is_wizard = wizard_mode;
 
 	width = 40;
 
@@ -222,7 +220,6 @@ int CNetworkSetup::showNetworkSetup()
 
 	//menue init
 	CMenuWidget* networkSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_NETWORK, width, MN_WIDGET_ID_NETWORKSETUP);
-	networkSettings->setWizardMode(is_wizard);
 
 	//apply button
 	CMenuForwarder *m0 = new CMenuForwarder(LOCALE_NETWORKMENU_SETUPNOW, true, NULL, this, "networkapply", CRCInput::RC_red);

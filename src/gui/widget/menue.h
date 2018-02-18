@@ -573,7 +573,6 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		unsigned int		current_page;
 		unsigned int		total_pages;
 		bool			exit_pressed;
-		int			from_wizard;
 		bool			fade;
 		bool			washidden;
 		int			nextShortcut;
@@ -625,7 +624,6 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		int getSelected()const { return selected; };
 		void move(int xoff, int yoff);
 		int getSelectedLine(void)const {return exit_pressed ? -1 : selected;};
-		void setWizardMode(int _from_wizard) { from_wizard = _from_wizard;};
 		void enableFade(bool _enable) { fade = _enable; };
 		void enableSaveScreen(bool enable);
 		void paintHint(int num);

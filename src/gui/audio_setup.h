@@ -39,15 +39,12 @@ class CAudioSetup : public CMenuTarget
 {
 	private:
 		int width, selected;
-		int is_wizard;
 
 		int showAudioSetup();
 
 	public:
-		CAudioSetup(int wizard_mode = SNeutrinoSettings::WIZARD_OFF);
+		CAudioSetup();
 		~CAudioSetup();
-
-		void setWizardMode(int mode) {is_wizard = mode;};
 
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };

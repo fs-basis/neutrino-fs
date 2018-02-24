@@ -1057,8 +1057,10 @@ int CTimerList::show()
 						ShowHint(LOCALE_MESSAGEBOX_INFO, LOCALE_EPGVIEWER_NOTFOUND);
 					if (res == menu_return::RETURN_EXIT_ALL)
 						loop = false;
-					else
-						paint();
+					else {
+						if (!update)
+							paint();
+					}
 				}
 			}
 		}

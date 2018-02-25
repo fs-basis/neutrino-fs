@@ -2179,7 +2179,7 @@ satsetup.fastscan_sd nur SD
 satsetup.fastscan_type Scantyp
 satsetup.fastscan_update Auto-Update
 satsetup.fe_mode Tuner Modus
-satsetup.fe_mode_independent Independent
+satsetup.fe_mode_independent Unabhängig / Einzeln
 satsetup.fe_mode_link_loop Loop
 satsetup.fe_mode_link_twin TWIN
 satsetup.fe_mode_master Master

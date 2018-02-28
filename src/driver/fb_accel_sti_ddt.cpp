@@ -59,8 +59,10 @@ static int backbuf_sz = 0;
 
 void CFbAccel::waitForIdle(void)
 {
+#if 0
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
 	ioctl(fb->fd, STMFBIO_SYNC_BLITTER);
+#endif
 }
 
 CFbAccel::CFbAccel(CFrameBuffer *_fb)

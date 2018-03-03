@@ -686,8 +686,8 @@ void CTimerManager::loadRecordingSafety()
 	}
 	else
 	{
-		m_extraTimeStart = config.getInt32 ("EXTRA_TIME_START",5);
-		m_extraTimeEnd  = config.getInt32 ("EXTRA_TIME_END",5);
+		m_extraTimeStart = config.getInt32 ("EXTRA_TIME_START",0);
+		m_extraTimeEnd  = config.getInt32 ("EXTRA_TIME_END",0);
 	}
 }
 

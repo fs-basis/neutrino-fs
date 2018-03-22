@@ -43,7 +43,7 @@
 #include <gui/plugins.h>
 #include <gui/sleeptimer.h>
 #include <gui/zapit_setup.h>
-#if HAVE_SH4_HARDWARE
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 #include <gui/kerneloptions.h>
 #endif
 
@@ -287,7 +287,7 @@ int CMiscMenue::showMiscSettingsMenu()
 	mf->setHint("", LOCALE_MENU_HINT_MISC_ONLINESERVICES);
 	misc_menue.addItem(mf);
 
-#if HAVE_SH4_HARDWARE
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	// kerneloptions
 	CKernelOptions kernelOptions;
 	mf = new CMenuForwarder(LOCALE_KERNELOPTIONS_HEAD, true, NULL, &kernelOptions, NULL, CRCInput::RC_4);

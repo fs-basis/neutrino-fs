@@ -846,6 +846,7 @@ const char * locale_real_names[] =
 	"imageinfo.date",
 	"imageinfo.dokumentation",
 	"imageinfo.forum",
+	"imageinfo.gui",
 	"imageinfo.head",
 	"imageinfo.homepage",
 	"imageinfo.image",

@@ -1868,6 +1868,7 @@ const char * locale_real_names[] =
 	"moviebrowser.menu_parental_lock_rate_head",
 	"moviebrowser.menu_save",
 	"moviebrowser.menu_save_all",
+	"moviebrowser.menu_settings",
 	"moviebrowser.menu_truncate",
 	"moviebrowser.option_browser",
 	"moviebrowser.reload_at_start",

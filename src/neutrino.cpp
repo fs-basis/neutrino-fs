@@ -2582,7 +2582,7 @@ TIMER_START();
 	if (! zapit_init)
 		DisplayErrorMessage("Zapit initialization failed. This is a fatal error, sorry.");
 
-#if !HAVE_SH4_HARDWARE
+##if !HAVE_SH4_HARDWARE || !HAVE_ARM_HARDWARE
 #ifndef ASSUME_MDEV
 	mkdir("/media/sda1", 0755);
 	mkdir("/media/sdb1", 0755);

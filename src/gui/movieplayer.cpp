@@ -1754,7 +1754,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			playback->RequestAbort();
 			filelist.clear();
 			repeat_mode = REPEAT_OFF;
-		} else if (msg == (neutrino_msg_t) g_settings.mpkey_play) {
+		} else if (msg == (neutrino_msg_t) g_settings.mpkey_play && handle_key_play) {
 			if (time_forced) {
 				time_forced = false;
 				FileTimeOSD->kill();
@@ -1798,7 +1798,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 				delete playlist;
 				enableOsdElements(MUTE);
 			}
-		} else if (msg == (neutrino_msg_t) g_settings.mpkey_pause) {
+		} else if (msg == (neutrino_msg_t) g_settings.mpkey_pause && handle_key_pause) {
 			if (time_forced) {
 				time_forced = false;
 				FileTimeOSD->kill();

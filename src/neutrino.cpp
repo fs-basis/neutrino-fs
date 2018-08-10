@@ -437,13 +437,13 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.srs_ref_volume = configfile.getInt32( "srs_ref_volume", 40);
 	g_settings.srs_nmgr_enable = configfile.getInt32( "srs_nmgr_enable", 0);
 #if HAVE_ARM_HARDWARE
-	g_settings.ac3_pass = configfile.getInt32( "ac3_pass", 0);
-	g_settings.dts_pass = configfile.getInt32( "dts_pass", 0);
+	g_settings.ac3_pass = configfile.getInt32( "ac3_pass", 1);
+	g_settings.dts_pass = configfile.getInt32( "dts_pass", 1);
 #else
 	g_settings.hdmi_dd = configfile.getInt32( "hdmi_dd", 0);
 	g_settings.spdif_dd = configfile.getInt32( "spdif_dd", 1);
 #endif // HAVE_ARM_HARDWARE
-	g_settings.analog_out = configfile.getInt32( "analog_out", 1);
+	g_settings.analog_out = configfile.getInt32( "analog_out", 0);
 	g_settings.avsync = configfile.getInt32( "avsync", 1);
 	g_settings.clockrec = configfile.getInt32( "clockrec", 1);
 	g_settings.video_dbdr = configfile.getInt32("video_dbdr", 0);

@@ -129,7 +129,8 @@ neutrino_LDADD = \
 	-lutil \
 	-lOpenThreads \
 	-lrt -lpthread \
-	-ldl -lblkid
+	-ldl -lblkid \
+	-lz
 
 if ENABLE_WEBIF
 neutrino_LDADD += \

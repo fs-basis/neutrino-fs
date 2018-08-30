@@ -94,6 +94,7 @@ CFbAccelARM::CFbAccelARM()
 	{
 		supportblendingflags = false;
 	}
+
 #ifdef FORCE_NO_BLENDING_ACCELERATION
 	/* hardware doesn't allow us to detect whether the opcode is working */
 	supportblendingflags = false;

@@ -1074,7 +1074,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 			r.key += ": ";
 			snprintf(buf, sizeof(buf), "%llx.png", channel->getChannelID() & 0xFFFFFFFFFFFFULL);
 			r.val = buf;
-			r.col = COL_MENUHEAD_TEXT;
+			r.col = COL_MENUCONTENT_TEXT;
 			r.f   = g_Font[font_info];
 			v.push_back(r);
 		}
@@ -1105,7 +1105,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 					details.clear();
 				snprintf(buf, sizeof(buf), "0x%04X (%i)%s", i, i, details.c_str());
 				r.val = buf;
-				r.col = (li == g_RemoteControl->current_PIDs.PIDs.selected_apid) ? COL_MENUHEAD_TEXT : COL_MENUCONTENTINACTIVE_TEXT;
+				r.col = (li == g_RemoteControl->current_PIDs.PIDs.selected_apid) ? COL_MENUCONTENT_TEXT : COL_MENUCONTENTINACTIVE_TEXT;
 				v.push_back(r);
 			}
 		}
@@ -1118,7 +1118,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		r.key += ": ";
 		snprintf(buf, sizeof(buf), "%llx.png", channel->getChannelID() & 0xFFFFFFFFFFFFULL);
 		r.val = buf;
-		r.col = COL_MENUHEAD_TEXT;
+		r.col = COL_MENUCONTENT_TEXT;
 		r.f   = g_Font[font_info];
 		v.push_back(r);
 
@@ -1315,7 +1315,7 @@ void CStreamInfo2::paintCASystem(int xpos, int ypos)
 					col = COL_MENUCONTENTINACTIVE_TEXT;
 					int id;
 					if (1 == sscanf(casys[ca_id].substr(last_pos, pos - last_pos).c_str(), "%X", &id) && acaid == id)
-						col = COL_MENUHEAD_TEXT;
+						col = COL_MENUCONTENT_TEXT;
 				}
 				g_Font[font_small]->RenderString(xpos + width_txt, ypos, box_width, casys[ca_id].substr(last_pos, pos - last_pos), col);
 				if (index == 0)

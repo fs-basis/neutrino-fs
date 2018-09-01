@@ -800,18 +800,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 			g_settings.webtv_xml.push_back(webtv_xml);
 	}
 
-	g_settings.web_epg.clear();
-	int webepg_count = configfile.getInt32("webepg_count", 0);
-	if (webepg_count) {
-		for (int i = 0; i < webepg_count; i++) {
-			std::string k = "webepg_" + to_string(i);
-			std::string web_epg = configfile.getString(k, "");
-			if (web_epg.empty())
-				continue;
-			g_settings.web_epg.push_back(web_epg);
-		}
-	}
-
 	g_settings.webradio_xml.clear();
 #ifndef BOXMODEL_CS_HD1
 	/*
@@ -834,6 +822,18 @@ int CNeutrinoApp::loadSetup(const char * fname)
 			g_settings.webradio_xml.push_back(webradio_xml);
 	}
 #endif
+
+	g_settings.xmltv_xml.clear();
+	int xmltv_count = configfile.getInt32("xmltv_xml_count", 0);
+	if (xmltv_count) {
+		for (int i = 0; i < xmltv_count; i++) {
+			std::string k = "xmltv_xml_" + to_string(i);
+			std::string xmltv_xml = configfile.getString(k, "");
+			if (xmltv_xml.empty())
+				continue;
+			g_settings.xmltv_xml.push_back(xmltv_xml);
+		}
+	}
 
 	loadKeys();
 
@@ -1576,14 +1576,13 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	}
 	configfile.setInt32 ( "webtv_xml_count", g_settings.webtv_xml.size());
 
-
-	int webepg_count = 0;
-	for (std::list<std::string>::iterator it = g_settings.web_epg.begin(); it != g_settings.web_epg.end(); ++it) {
-		std::string k = "webepg_" + to_string(webepg_count);
+	int xmltv_count = 0;
+	for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); ++it) {
+		std::string k = "xmltv_xml_" + to_string(xmltv_count);
 		configfile.setString(k, *it);
-		webepg_count++;
+		xmltv_count++;
 	}
-	configfile.setInt32 ( "webepg_count", g_settings.web_epg.size());
+	configfile.setInt32 ( "xmltv_xml_count", g_settings.xmltv_xml.size());
 
 	int webradio_count = 0;
 	for (std::list<std::string>::iterator it = g_settings.webradio_xml.begin(); it != g_settings.webradio_xml.end(); ++it) {
@@ -2764,7 +2763,7 @@ TIMER_STOP("################################## after all #######################
 		delete hintBox;
 	}
 
-	for (std::list<std::string>::iterator it = g_settings.webepg_xml.begin(); it != g_settings.webepg_xml.end(); ++it)
+	for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); ++it)
 		g_Sectionsd->readSIfromXMLTV((*it).c_str());
 
 	RealRun();

@@ -4,6 +4,9 @@ install_DATA = \
 	camd3_green.png \
 	camd3_white.png \
 	camd3_yellow.png \
+	cccam_green.png \
+	cccam_white.png \
+	cccam_yellow.png \
 	ci+_green.png \
 	ci+_white.png \
 	dec_card.png \

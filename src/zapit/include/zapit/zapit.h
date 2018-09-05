@@ -44,6 +44,7 @@ typedef struct ZAPIT_start_arg
         int video_mode;
         uint32_t osd_resolution;
 	int volume;
+        int ci_clock;
 	std::list<std::string> *webtv_xml;
 	std::list<std::string> *webradio_xml;
 } Z_start_arg;

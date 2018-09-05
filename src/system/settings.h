@@ -289,6 +289,7 @@ struct SNeutrinoSettings
 	int clockrec;
 	int rounded_corners;
 	int ci_standby_reset;
+	int ci_clock;
 	int ci_ignore_messages;
 	int ci_save_pincode;
 	int ci_check_live;

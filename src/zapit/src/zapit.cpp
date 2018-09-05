@@ -2567,6 +2567,7 @@ bool CZapit::Start(Z_start_arg *ZapStart_arg)
 	}
 
 	// set ci clock to ZapStart_arg->ci_clock
+	ca->SetTSClock(ZapStart_arg->ci_clock * 1000000);
 	ca->Start();
 
 	eventServer = new CEventServer;

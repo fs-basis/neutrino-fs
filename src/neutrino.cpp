@@ -470,7 +470,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #if HAVE_ARM_HARDWARE
 	g_settings.ci_clock = configfile.getInt32("ci_clock", 6);
 #else
-	g_settings.ci_clock = configfile.getInt32("ci_clock", 6);
+	g_settings.ci_clock = configfile.getInt32("ci_clock", 9);
 #endif
 	g_settings.ci_ignore_messages = configfile.getInt32("ci_ignore_messages", 0);
 	g_settings.ci_save_pincode = configfile.getInt32("ci_save_pincode", 0);

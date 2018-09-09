@@ -3288,7 +3288,7 @@ void CControlAPI::xmltvm3uCGI(CyhookHandler *hh)
 			for (int j = 0; j < (int) chanlist.size(); j++)
 			{
 				CZapitChannel *channel = chanlist[j];
-				std::string bouq_name = g_bouquetManager->Bouquets[i]->Name;
+				std::string bouq_name = g_bouquetManager->Bouquets[i]->bName;
 				std::string chan_id_short = string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, channel->getChannelID() & 0xFFFFFFFFFFFFULL);
 				result += "#EXTINF:-1 tvg-id=\"" + chan_id_short + "\"";
 				if (!NeutrinoAPI->getLogoFile(channel->getChannelID()).empty())

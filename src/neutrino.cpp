@@ -476,7 +476,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.ci_tuner = configfile.getInt32("ci_tuner", -1);
 
 	g_settings.make_hd_list = configfile.getInt32("make_hd_list", 0);
-	g_settings.make_webtv_list = configfile.getInt32("make_webtv_list", 0);
+	g_settings.make_webtv_list = configfile.getInt32("make_webtv_list", 1);
 	g_settings.make_webradio_list = configfile.getInt32("make_webradio_list", 0);
 	g_settings.make_new_list = configfile.getInt32("make_new_list", 1);
 	g_settings.make_removed_list = configfile.getInt32("make_removed_list", 1);
@@ -593,18 +593,21 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.language = configfile.getString("language", "");
 	g_settings.timezone = configfile.getString("timezone", "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna");
 	//epg dir
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
+#if BOXMODEL_UFS910
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 0);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 0);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 17500);
-	g_settings.epg_dir              = configfile.getString("epg_dir", "/var/epg");
 #else
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 14);
-	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 360);
+	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 3);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 1);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 30000);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 80000);
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
+	g_settings.epg_dir              = configfile.getString("epg_dir", "/var/epg");
+#else
 	g_settings.epg_dir              = configfile.getString("epg_dir", "/media/sda1/epg");
+#endif
 #endif
 	// NTP-Server for sectionsd
 	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "0.de.pool.ntp.org");

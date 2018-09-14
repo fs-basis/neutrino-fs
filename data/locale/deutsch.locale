@@ -2583,10 +2583,10 @@ webradio.xml.add XML-Datei hinzufügen
 webradio.xml.del XML-Datei entfernen
 webradio.xml.reload XML-Dateien neu laden
 webtv.head WebTV
-webtv.xml WebTV-XML-Dateien
-webtv.xml.add XML-Datei hinzufügen
-webtv.xml.del XML-Datei entfernen
-webtv.xml.reload XML-Dateien neu laden
+webtv.xml WebTV-Dateien
+webtv.xml.add WebTV-Datei hinzufügen
+webtv.xml.del WebTV-Datei entfernen
+webtv.xml.reload WebTV-Dateien neu laden
 window_size Fenstergröße in %
 word.from ab
 word.in in

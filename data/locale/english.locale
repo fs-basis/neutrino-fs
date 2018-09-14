@@ -2540,10 +2540,10 @@ webradio.xml.add Add XML file
 webradio.xml.del Remove XML file
 webradio.xml.reload Reload XML files
 webtv.head WebTV
-webtv.xml WebTV XML files
-webtv.xml.add Add XML file
-webtv.xml.del Remove XML file
-webtv.xml.reload Reload XML files
+webtv.xml WebTV files
+webtv.xml.add Add WebTV file
+webtv.xml.del Remove WebTV file
+webtv.xml.reload Reload WebTV files
 window_size Window size in %
 word.from from
 word.in in

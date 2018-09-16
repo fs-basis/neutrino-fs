@@ -257,7 +257,7 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string & /*acti
 		if (msg <= CRCInput::RC_MaxRC)
 			timeoutEnd = CRCInput::calcTimeoutEnd(*timeout_ptr);
 
-		if ((msg == CRCInput::RC_home)) //|| (msg == (neutrino_msg_t)g_settings.key_channelList_cancel) || (msg == CRCInput::RC_home))
+		if ((msg == CRCInput::RC_home))
 		{
 			loop = false;
 		}

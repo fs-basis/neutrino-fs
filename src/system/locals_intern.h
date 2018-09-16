@@ -1187,7 +1187,6 @@ const char * locale_real_names[] =
 	"menu.hint_key_binding",
 	"menu.hint_key_bouquetdown",
 	"menu.hint_key_bouquetup",
-	"menu.hint_key_cancel",
 	"menu.hint_key_channeldown",
 	"menu.hint_key_channellist",
 	"menu.hint_key_channelup",

@@ -863,7 +863,6 @@ keybindingmenu.bouquetdown bouquet back
 keybindingmenu.bouquethandling Bouquet-control
 keybindingmenu.bouquetlist_on_ok bouquet-list
 keybindingmenu.bouquetup next bouquet
-keybindingmenu.cancel close channellist
 keybindingmenu.channeldown channel down
 keybindingmenu.channellist Channellist
 keybindingmenu.channelup channel up

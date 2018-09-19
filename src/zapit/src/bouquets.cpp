@@ -1025,10 +1025,10 @@ void CBouquetManager::loadWebchannels(int mode)
 								CServiceManager::getInstance()->AddChannel(channel);
 #if HAVE_ARM_HARDWARE
 								if (!alogo.empty())
-									channel->setThrAlternateLogo(alogo);
+										channel->setThrAlternateLogo(alogo);
 #else
 								if (!alogo.empty())
-								channel->setAlternateLogo(downloadUrlToRandomFile(alogo));
+										channel->setAlternateLogo(downloadUrlToRandomFile(alogo));
 #endif
 								channel->flags = CZapitChannel::UPDATED;
 								if (gbouquet)

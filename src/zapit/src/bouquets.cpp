@@ -1028,7 +1028,7 @@ void CBouquetManager::loadWebchannels(int mode)
 									channel->setThrAlternateLogo(alogo);
 #else
 								if (!alogo.empty())
-								channel->setAlternateLogo(downloadUrlToRandomFile(alogo));
+									channel->setAlternateLogo(downloadUrlToRandomFile(alogo));
 #endif
 								channel->flags = CZapitChannel::UPDATED;
 								if (gbouquet)

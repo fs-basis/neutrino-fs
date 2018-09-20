@@ -427,7 +427,7 @@ void CZapitChannel::dumpBouquetXml(FILE * fd, bool bUser)
 
 void CZapitChannel::setThrAlternateLogo(const std::string &pLogo)
 {
-	//printf("CZapitChannel::setThrAlternateLogo: [%s]\n", pLogo.c_str());
+	printf("CZapitChannel::setAlternateLogo: [%s]\n", pLogo.c_str());
 
 	altlogo = pLogo;
 

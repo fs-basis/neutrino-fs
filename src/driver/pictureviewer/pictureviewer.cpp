@@ -573,8 +573,9 @@ bool CPictureViewer::GetLogoName(const uint64_t& channel_id, const std::string& 
 
 	std::string strLogoE2[2] = { "", "" };
 	CZapitChannel * cc = NULL;
-	if (CNeutrinoApp::getInstance()->channelList)
-		cc = CNeutrinoApp::getInstance()->channelList->getChannel(channel_id);
+	if (channel_id)
+		if (CNeutrinoApp::getInstance()->channelList)
+			cc = CNeutrinoApp::getInstance()->channelList->getChannel(channel_id);
 	if (cc) {
 		char fname[255];
 		snprintf(fname, sizeof(fname), "1_0_%X_%X_%X_%X_%X0000_0_0_0.png",
@@ -620,7 +621,7 @@ bool CPictureViewer::GetLogoName(const uint64_t& channel_id, const std::string& 
 	if (cc) {
 		if (!cc->getAlternateLogo().empty())
 		{
-			std::string lname = downloadUrlToRandomFile(cc->getAlternateLogo(), LOGODIR_TMP);
+			std::string lname = downloadUrlToLogo(cc->getAlternateLogo(), LOGODIR_TMP, cc->getChannelID());
 			tmp = lname;
 			cc->setAlternateLogo(lname);
 			goto found;
@@ -780,7 +781,7 @@ bool CPictureViewer::GetLogoName(const uint64_t& channel_id, const std::string& 
 		{
 			if (!cc->getAlternateLogo().empty())
 			{
-				std::string lname = downloadUrlToRandomFile(cc->getAlternateLogo(), LOGODIR_TMP);
+				std::string lname = downloadUrlToLogo(cc->getAlternateLogo(), LOGODIR_TMP, cc->getChannelID());
 				if (width && height)
 					getSize(lname.c_str(), width, height);
 				name = lname;

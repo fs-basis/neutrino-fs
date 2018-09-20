@@ -254,7 +254,11 @@ std::string  CNeutrinoYParser::func_get_bouquets_as_templatelist(CyhookHandler *
 			g_bouquetManager->Bouquets[i]->getRadioChannels(channels);
 		else
 			g_bouquetManager->Bouquets[i]->getTvChannels(channels);
+#if HAVE_DUCKBOX_HARDWARE
 		if(!channels.empty() && (!g_bouquetManager->Bouquets[i]->bHidden || do_show_hidden == "true") && g_bouquetManager->Bouquets[i]->bUser) {
+#else
+		if(!channels.empty() && (!g_bouquetManager->Bouquets[i]->bHidden || do_show_hidden == "true")) {
+#endif
 			yresult += string_printf(ytemplate.c_str(), i + 1, g_bouquetManager->Bouquets[i]->bName.c_str());
 			yresult += "\r\n";
 		}

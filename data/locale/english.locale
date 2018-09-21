@@ -2583,9 +2583,10 @@ webradio.xml.del Remove XML file
 webradio.xml.reload Reload XML files
 webtv.head WebTV
 webtv.xml WebTV files
-webtv.xml.add Add WebTV file
-webtv.xml.del Remove WebTV file
-webtv.xml.reload Reload WebTV files
+webtv.xml.add Add
+webtv.xml.del Remove
+webtv.xml.enter Enter
+webtv.xml.reload Reload
 window_size Window size in %
 word.from from
 word.in in

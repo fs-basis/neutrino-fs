@@ -1571,6 +1571,7 @@ menu.hint_volume_size Wählen Sie die Höhe der Lautstärkeanzeige
 menu.hint_webradio_setup Hier konfigurierte WebRadio-Kanäle finden Sie in der Kanalverwaltung.
 menu.hint_webtv_setup Hier konfigurierte WebTV-Kanäle finden Sie in der Kanalverwaltung.
 menu.hint_window_size Kanalliste, EPG-Infos und einige andere Fenster werden mit diesem Faktor skaliert
+menu.hint_xmltv_setup Hier konfigurieren Sie XMLTV-Dateien, die EPG-Daten enthalten
 menu.hint_zap_cycle Wählen Sie, ob nur innerhalb des aktiven Bouquets umgeschaltet werden kann
 menu.next Weiter
 messagebox.accept Wollen Sie die Änderungen beibehalten?
@@ -2590,6 +2591,12 @@ webtv.xml.reload Neu laden
 window_size Fenstergröße in %
 word.from ab
 word.in in
+xmltv.head XMLTV
+xmltv.xml XMLTV-Dateien
+xmltv.xml.add Hinzufügen
+xmltv.xml.del Entfernen
+xmltv.xml.enter Eintragen
+xmltv.xml.reload Neu laden
 zapit.scantype Service-Auswahl
 zapit.scantype.all Alle Services
 zapit.scantype.radio Nur Radio

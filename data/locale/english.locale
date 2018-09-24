@@ -206,6 +206,7 @@ audioplayer.shuffle Shuffle
 audioplayer.spectrum LCD spectrum
 audioplayer.stop Stop
 audioplayer.title_artist Title, artist
+audio.picture_head Audioplayer and Picture viewer
 bookmarkmanager.delete delete
 bookmarkmanager.name bookmarks
 bookmarkmanager.rename rename

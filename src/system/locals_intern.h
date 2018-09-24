@@ -233,6 +233,7 @@ const char * locale_real_names[] =
 	"audioplayer.spectrum",
 	"audioplayer.stop",
 	"audioplayer.title_artist",
+	"audio.picture_head",
 	"bookmarkmanager.delete",
 	"bookmarkmanager.name",
 	"bookmarkmanager.rename",

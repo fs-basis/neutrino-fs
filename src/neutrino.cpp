@@ -5130,7 +5130,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 
 	g_settings.key_list_start = tconfig.getInt32( "key_list_start", (unsigned int)CRCInput::RC_nokey );
 	g_settings.key_list_end = tconfig.getInt32( "key_list_end", (unsigned int)CRCInput::RC_nokey );
-#ifdef BOXMODEL_HD51
+#if BOXMODEL_HD51
 	g_settings.key_timeshift = tconfig.getInt32( "key_timeshift", CRCInput::RC_playpause_long ); // FIXME
 #elif BOXMODEL_VUSOLO4K
 	g_settings.key_timeshift = tconfig.getInt32( "key_timeshift", CRCInput::RC_playpause );
@@ -5160,9 +5160,12 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_zaphistory = tconfig.getInt32( "key_zaphistory",  CRCInput::RC_home );
 	g_settings.key_lastchannel = tconfig.getInt32( "key_lastchannel",  CRCInput::RC_0 );
 
-#ifdef BOXMODEL_HD51
+#if BOXMODEL_HD51
 	g_settings.key_bouquet_up = tconfig.getInt32( "key_bouquet_up",  CRCInput::RC_next);
 	g_settings.key_bouquet_down = tconfig.getInt32( "key_bouquet_down",  CRCInput::RC_prev);
+#elif HAVE_SH4_HARDWARE
+	g_settings.key_bouquet_up = tconfig.getInt32( "key_bouquet_up",  CRCInput::RC_page_up);
+	g_settings.key_bouquet_down = tconfig.getInt32( "key_bouquet_down",  CRCInput::RC_page_down);
 #else
 	g_settings.key_bouquet_up = tconfig.getInt32( "key_bouquet_up",  CRCInput::RC_right);
 	g_settings.key_bouquet_down = tconfig.getInt32( "key_bouquet_down",  CRCInput::RC_left);

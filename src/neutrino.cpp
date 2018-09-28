@@ -5131,13 +5131,8 @@ void CNeutrinoApp::loadKeys(const char * fname)
 
 	/* options */
 	g_settings.menu_left_exit = tconfig.getInt32( "menu_left_exit", 1 );
-#if BOXMODEL_HD51
-	g_settings.repeat_blocker = tconfig.getInt32("repeat_blocker", 250);
-	g_settings.repeat_genericblocker = tconfig.getInt32("repeat_genericblocker", 40);
-#else
 	g_settings.repeat_blocker = tconfig.getInt32("repeat_blocker", 450);
 	g_settings.repeat_genericblocker = tconfig.getInt32("repeat_genericblocker", 100);
-#endif
 	g_settings.longkeypress_duration = tconfig.getInt32("longkeypress_duration", 500); //LONGKEYPRESS_OFF);
 
 	g_settings.bouquetlist_mode = tconfig.getInt32( "bouquetlist_mode", 0 );

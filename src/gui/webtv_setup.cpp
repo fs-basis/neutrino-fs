@@ -212,7 +212,6 @@ int CWebTVSetup::Show()
 	}
 
 	delete m;
-
 	return res;
 }
 

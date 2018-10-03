@@ -538,7 +538,7 @@ void CPictureViewer::getSize(const char* name, int* width, int *height)
 	}
 }
 
-#if HAVE_SH4_HARDWARE
+#if defined (BOXMODEL_UFS910) || defined (BOXMODEL_UFS922)
 bool CPictureViewer::GetLogoName(const uint64_t& channel_id, const std::string& ChannelName, std::string & name, int *width, int *height)
 {
 	char strChanId[16];

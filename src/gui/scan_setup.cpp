@@ -1110,15 +1110,22 @@ int CScanSetup::showUnicableSetup()
 	int unicable_scr = fe_config.uni_scr;
 	int unicable_qrg = fe_config.uni_qrg;
 
-	CMenuOptionNumberChooser *uniscr = new CMenuOptionNumberChooser(LOCALE_UNICABLE_SCR, &unicable_scr, true, 0, dmode == DISEQC_UNICABLE ? 7 : 31);
+/*	CMenuOptionNumberChooser *uniscr = new CMenuOptionNumberChooser(LOCALE_UNICABLE_SCR, &unicable_scr, true, 0, dmode == DISEQC_UNICABLE ? 7 : 31); */
+	CIntInput		 *uniscr = new CIntInput(LOCALE_UNICABLE_SCR, &unicable_scr, dmode == DISEQC_UNICABLE ? 1 : 2, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE);
 	CIntInput		 *uniqrg = new CIntInput(LOCALE_UNICABLE_QRG, &unicable_qrg, 4, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE);
 
 	CMenuWidget *uni_setup = new CMenuWidget(LOCALE_SATSETUP_UNI_SETTINGS, NEUTRINO_ICON_SETTINGS, width);
 	uni_setup->addIntroItems();
 
-	uni_setup->addItem(uniscr);
-	CMenuForwarder *mf = new CMenuDForwarder(LOCALE_UNICABLE_QRG, true, uniqrg->getValue(), uniqrg);
+	CMenuForwarder *mf;
+	mf = new CMenuDForwarder(LOCALE_UNICABLE_SCR, true, uniscr->getValue(), uniscr);
 	uni_setup->addItem(mf);
+	mf = new CMenuDForwarder(LOCALE_UNICABLE_QRG, true, uniqrg->getValue(), uniqrg);
+	uni_setup->addItem(mf);
+
+/*	uni_setup->addItem(uniscr);
+	CMenuForwarder *mf = new CMenuDForwarder(LOCALE_UNICABLE_QRG, true, uniqrg->getValue(), uniqrg);
+	uni_setup->addItem(mf); */
 	res = uni_setup->exec(NULL, "");
 	delete uni_setup;
 	if (res) {

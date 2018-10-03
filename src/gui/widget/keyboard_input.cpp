@@ -72,7 +72,7 @@ static std::string keys_deutsch[2][KEY_ROWS][KEY_COLUMNS] =
 		{ "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "²", "³", "µ", " " }
 	}
 };
-
+/*
 static std::string keys_russian[2][KEY_ROWS][KEY_COLUMNS] =
 {
 	{
@@ -105,14 +105,16 @@ static std::string keys_arabic[2][KEY_ROWS][KEY_COLUMNS] =
 	}
 };
 #endif
+*/
 struct keyboard_layout keyboards[] =
 {
 	  { "English", "english", keys_english }
 	, { "Deutsch", "deutsch", keys_deutsch }
-	, { "Русский", "russkij", keys_russian }
+/*	, { "Русский", "russkij", keys_russian }
 #if 0
 	, { "Arabic" , "arabic" , keys_arabic  }
 #endif
+*/
 };
 #define LAYOUT_COUNT (sizeof(keyboards)/sizeof(struct keyboard_layout))
 

@@ -1091,6 +1091,7 @@ menu.hint_cec_mode CEC-Modus
 menu.hint_cec_standby CEC-Standby
 menu.hint_cec_view_on CEC view ON
 menu.hint_channellist_additional Definiert, ob zusätzliche Informationen im Hauptfenster angezeigt werden sollen
+menu.hint_channellist_enablesdt Die Service Description Table (SDT) Programmbeschreibungstabelle
 menu.hint_channellist_epg_align Legen Sie fest, wie der Text für das EPG in der Liste rechts vom Programmnamen ausgerichtet wird
 menu.hint_channellist_extended Bei aktivierter Funktion wird vor dem Sendernamen ein Balken eingeblendet, der den Sendungsfortschritt anzeigt
 menu.hint_channellist_fonts Ändern Sie die Schriftgrößen in der Kanalliste
@@ -1586,6 +1587,7 @@ messagebox.no Nein
 messagebox.ok OK
 messagebox.yes Ja
 miscsettings.channellist Kanalliste
+miscsettings.channellist_enablesdt Transponder Hintergrundaktualisierung
 miscsettings.channellist_epgtext_align Event-Text ausrichten
 miscsettings.channellogos Senderlogos
 miscsettings.colored_events Sendung hervorheben

@@ -835,7 +835,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.auto_cover = configfile.getInt32( "auto_cover",  0);
 
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
-	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/mnt/nfs/movie" );
+	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/mnt/nfs/screenshot" );
 #else
 	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/media/sda1/movie" );
 #endif

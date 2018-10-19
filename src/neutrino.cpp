@@ -1277,7 +1277,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "video_mixer_color", g_settings.video_mixer_color );
 #endif
 
-	configfile.setInt32( "current_volume", g_settings.current_volume );
+	if (!g_settings.hdmi_cec_volume)
+		configfile.setInt32( "current_volume", g_settings.current_volume );
 	configfile.setInt32( "current_volume_step", g_settings.current_volume_step );
 	configfile.setInt32( "start_volume", g_settings.start_volume );
 #if HAVE_SH4_HARDWARE
@@ -2942,13 +2943,6 @@ void CNeutrinoApp::RealRun()
 								showInfo();
 							break;
 						case SNeutrinoSettings::VOLUME:
-#if HAVE_ARM_HARDWARE
-							if (g_settings.hdmi_cec_volume)
-							{
-								(msg == (neutrino_msg_t) g_settings.key_volumeup || msg == CRCInput::RC_right) ? hdmi_cec::getInstance()->vol_up() : hdmi_cec::getInstance()->vol_down();
-							}
-							else
-#endif
 							g_volume->setVolume(msg);
 							break;
 						default: /* SNeutrinoSettings::ZAP */
@@ -3078,13 +3072,6 @@ void CNeutrinoApp::RealRun()
 							showInfo();
 						break;
 					case SNeutrinoSettings::VOLUME:
-#if HAVE_ARM_HARDWARE
-						if (g_settings.hdmi_cec_volume)
-						{
-							(msg == (neutrino_msg_t) g_settings.key_volumeup || msg == CRCInput::RC_right) ? hdmi_cec::getInstance()->vol_up() : hdmi_cec::getInstance()->vol_down();
-						}
-						else
-#endif
 						g_volume->setVolume(msg);
 						break;
 					default: /* SNeutrinoSettings::ZAP */
@@ -3641,13 +3628,6 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 	}
 	else if ((msg == CRCInput::RC_plus) || (msg == CRCInput::RC_minus))
 	{
-#if HAVE_ARM_HARDWARE
-		if (g_settings.hdmi_cec_volume)
-		{
-			(msg == (neutrino_msg_t) g_settings.key_volumeup || msg == CRCInput::RC_right) ? hdmi_cec::getInstance()->vol_up() : hdmi_cec::getInstance()->vol_down();
-		}
-		else
-#endif
 		g_volume->setVolume(msg);
 #if HAVE_DUCKBOX_HARDWARE
 		if((mode == NeutrinoModes::mode_tv) || (mode == NeutrinoModes::mode_radio)) {
@@ -3663,36 +3643,15 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		}
 		else {
 			//mute
-#if HAVE_ARM_HARDWARE
-			if (g_settings.hdmi_cec_volume)
-			{
-				hdmi_cec::getInstance()->toggle_mute();
-			}
-			else
-#endif
 			g_audioMute->AudioMute(!current_muted, true);
 		}
 		return messages_return::handled;
 	}
 	else if( msg == CRCInput::RC_mute_on ) {
-#if HAVE_ARM_HARDWARE
-		if (g_settings.hdmi_cec_volume)
-		{
-			hdmi_cec::getInstance()->toggle_mute();
-		}
-		else
-#endif
 		g_audioMute->AudioMute(true, true);
 		return messages_return::handled;
 	}
 	else if( msg == CRCInput::RC_mute_off ) {
-#if HAVE_ARM_HARDWARE
-		if (g_settings.hdmi_cec_volume)
-		{
-			hdmi_cec::getInstance()->toggle_mute();
-		}
-		else
-#endif
 		g_audioMute->AudioMute(false, true);
 		return messages_return::handled;
 	}

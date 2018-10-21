@@ -245,13 +245,14 @@ bool CCamManager::SetMode(t_channel_id channel_id, enum runmode mode, bool start
 #else
 			source = cDemux::GetSource(0);
 			demux = cDemux::GetSource(0);
-			INFO("PLAY: fe_num %d dmx_src %d", frontend ? frontend->getNumber() : -1, cDemux::GetSource(0));
+//			INFO("PLAY: fe_num %d dmx_src %d", frontend ? frontend->getNumber() : -1, cDemux::GetSource(0));
 #endif
+			INFO("PLAY: fe_num %d dmx_src %d", source, demux);
 			break;
 		case STREAM:
 		case RECORD:
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
-			INFO("RECORD/STREAM(%d): fe_num %d rec_dmx %d", mode, frontend ? frontend->getNumber() : -1, channel->getRecordDemux());
+//			INFO("RECORD/STREAM(%d): fe_num %d rec_dmx %d", mode, frontend ? frontend->getNumber() : -1, channel->getRecordDemux());
 			if(frontend)
 				source = frontend->getNumber();
 			demux = source;
@@ -259,10 +260,12 @@ bool CCamManager::SetMode(t_channel_id channel_id, enum runmode mode, bool start
 			source = channel->getRecordDemux();
 			demux = channel->getRecordDemux();
 #endif
+			INFO("RECORD/STREAM(%d): fe_num %d rec_dmx %d", mode, source, demux);
 			break;
 		case PIP:
 			source = channel->getRecordDemux();
 			demux = channel->getPipDemux();
+			INFO("PIP: fe_num %d dmx_src %d", source, demux);
 			break;
 	}
 

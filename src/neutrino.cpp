@@ -441,7 +441,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.ac3_pass = configfile.getInt32( "ac3_pass", 1);
 	g_settings.dts_pass = configfile.getInt32( "dts_pass", 1);
 #else
-	g_settings.hdmi_dd = configfile.getInt32( "hdmi_dd", 0);
+	g_settings.hdmi_dd = configfile.getInt32( "hdmi_dd", 2);
 	g_settings.spdif_dd = configfile.getInt32( "spdif_dd", 1);
 #endif // HAVE_ARM_HARDWARE
 	g_settings.analog_out = configfile.getInt32( "analog_out", 0);

@@ -2245,7 +2245,7 @@ bool CZapit::StartPlayBack(CZapitChannel *thisChannel)
 		audioDemux->pesFilter(audio_pid);
 	if (video_pid)
 		videoDemux->pesFilter(video_pid);
-	audioDecoder->SetSyncMode(AVSYNC_ENABLED);
+//	audioDecoder->SetSyncMode(AVSYNC_ENABLED);
 
 #if 0 //FIXME hack ?
 	if(thisChannel->getServiceType() == ST_DIGITAL_RADIO_SOUND_SERVICE) {
@@ -2258,16 +2258,14 @@ bool CZapit::StartPlayBack(CZapitChannel *thisChannel)
 		pcrDemux->Start();
 	}
 
+#if HAVE_AZBOX_HARDWARE
 	/* new (> 20130917) AZbox drivers switch to radio mode if audio is started first */
 	/* start video */
 	if (video_pid) {
-		videoDemux->Start();
-#if HAVE_AZBOX_HARDWARE
 		videoDecoder->Start(0, thisChannel->getPcrPid(), thisChannel->getVideoPid());
-#else
-		videoDecoder->Start(0, pcr_pid, video_pid);
-#endif
+		videoDemux->Start();
 	}
+#endif
 
 	/* select audio output and start audio */
 	if (audio_pid) {
@@ -2276,6 +2274,18 @@ bool CZapit::StartPlayBack(CZapitChannel *thisChannel)
 		audioDecoder->Start();
 	}
 
+#if ! HAVE_AZBOX_HARDWARE
+	/* start video */
+	if (video_pid) {
+	#if HAVE_COOL_HARDWARE
+		videoDecoder->Start(0, pcr_pid, video_pid);
+		videoDemux->Start();
+	#else
+		videoDemux->Start();
+		videoDecoder->Start(0, pcr_pid, video_pid);
+	#endif
+	}
+#endif
 #ifdef USE_VBI
 	if(teletext_pid)
 		videoDecoder->StartVBI(teletext_pid);
@@ -2314,14 +2324,13 @@ bool CZapit::StopPlayBack(bool send_pmt, bool blank)
 	audioDemux->Stop();
 	audioDecoder->Stop();
 #else
-	videoDecoder->Stop(false);
 	videoDemux->Stop();
 	audioDemux->Stop();
 	pcrDemux->Stop();
 	audioDecoder->Stop();
 
 	/* hack. if standby, dont blank video -> for paused timeshift */
-	//videoDecoder->Stop(standby ? false : blank);
+	videoDecoder->Stop(standby ? false : blank);
 #endif
 #ifdef USE_VBI
 	videoDecoder->StopVBI();

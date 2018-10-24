@@ -189,35 +189,49 @@ void CMoviePlayerGui::Init(void)
 	if (bookmarkmanager == NULL)
 		bookmarkmanager = new CBookmarkManager();
 
-	tsfilefilter.addFilter("ts");
-#if HAVE_TRIPLEDRAGON
-	tsfilefilter.addFilter("vdr");
-#else
-	tsfilefilter.addFilter("avi");
-	tsfilefilter.addFilter("mkv");
-	tsfilefilter.addFilter("wav");
-	tsfilefilter.addFilter("asf");
-	tsfilefilter.addFilter("aiff");
+	// video files
+	filefilter.addFilter("ts");
+#if !HAVE_TRIPLEDRAGON
+	filefilter.addFilter("asf");
+	filefilter.addFilter("avi");
+	filefilter.addFilter("mkv");
 #endif
-	tsfilefilter.addFilter("mpg");
-	tsfilefilter.addFilter("mpeg");
-	tsfilefilter.addFilter("m2p");
-	tsfilefilter.addFilter("mpv");
-	tsfilefilter.addFilter("vob");
-	tsfilefilter.addFilter("m2ts");
-	tsfilefilter.addFilter("mp4");
-	tsfilefilter.addFilter("mov");
-	tsfilefilter.addFilter("m3u");
-	tsfilefilter.addFilter("m3u8");
-	tsfilefilter.addFilter("pls");
-	tsfilefilter.addFilter("iso");
-#if HAVE_SH4_HARDWARE
-	tsfilefilter.addFilter("trp");
-	tsfilefilter.addFilter("vdr");
-	tsfilefilter.addFilter("mp3");
-	tsfilefilter.addFilter("flv");
-	tsfilefilter.addFilter("wmv");
-#endif
+	filefilter.addFilter("flv");
+	filefilter.addFilter("iso");
+	filefilter.addFilter("m2p");
+	filefilter.addFilter("m2ts");
+	filefilter.addFilter("mov");
+	filefilter.addFilter("mp4");
+	filefilter.addFilter("mpeg");
+	filefilter.addFilter("mpg");
+	filefilter.addFilter("mpv");
+	filefilter.addFilter("pls");
+	filefilter.addFilter("trp");
+	filefilter.addFilter("vdr");
+	filefilter.addFilter("vob");
+	filefilter.addFilter("wmv");
+	// video playlists
+	filefilter.addFilter("m3u");
+	filefilter.addFilter("m3u8");
+
+	// audio files
+	filefilter.addFilter("aac");
+	filefilter.addFilter("aif");
+	filefilter.addFilter("aiff");
+	filefilter.addFilter("cdr");
+	filefilter.addFilter("dts");
+	filefilter.addFilter("flac");
+	filefilter.addFilter("flv");
+	filefilter.addFilter("m2a");
+	filefilter.addFilter("m4a");
+	filefilter.addFilter("mp2");
+	filefilter.addFilter("mp3");
+	filefilter.addFilter("mpa");
+	filefilter.addFilter("ogg");
+	filefilter.addFilter("wav");
+	// audio playlists
+	filefilter.addFilter("m3u");
+	filefilter.addFilter("m3u8");
 
 	if (g_settings.network_nfs_moviedir.empty())
 		Path_local = "/";
@@ -229,7 +243,7 @@ void CMoviePlayerGui::Init(void)
 	else
 		filebrowser = new CFileBrowser();
 
-	filebrowser->Filter = &tsfilefilter;
+	filebrowser->Filter = &filefilter;
 	filebrowser->Hide_records = true;
 	filebrowser->Multi_Select = true;
 	filebrowser->Dirs_Selectable = true;

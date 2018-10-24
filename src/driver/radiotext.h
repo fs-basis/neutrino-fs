@@ -53,11 +53,11 @@
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
-/* DDT ??
+
 extern const char *ConfigDir;
 extern const char *DataDir;
 extern char *ReplayFile;
-*/
+
 #define RT_MEL 65
 #define tr(a) a
 

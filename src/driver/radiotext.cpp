@@ -77,10 +77,10 @@ char RDS_PSText[12][9];
 
 // plugin audiorecorder service
 bool ARec_Receive = false, ARec_Record = false;
-/* DDT ??
+
 #define floor
 const char *DataDir = "./";
-*/
+
 // RDS-Chartranslation: 0x80..0xff
 unsigned char rds_addchar[128] = {
     0xe1, 0xe0, 0xe9, 0xe8, 0xed, 0xec, 0xf3, 0xf2,

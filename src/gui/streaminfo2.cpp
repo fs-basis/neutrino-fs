@@ -803,6 +803,8 @@ struct row {
 void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 {
 	char buf[100];
+	bool has_vpid = false;
+	bool is_webchan = false;
 	int xres = 0, yres = 0, aspectRatio = 0, framerate = -1, i = 0;
 	// paint labels
 	int ypos1 = ypos;
@@ -813,7 +815,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		frameBuffer->paintBoxRel (0, ypos, box_width, box_h, COL_MENUCONTENT_PLUS_0);
 
 	CZapitChannel * channel = CZapit::getInstance()->GetCurrentChannel();
-	if (!channel)
+	if (!channel && !mp)
 		return;
 
 	ypos += iheight;
@@ -928,10 +930,22 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		}
 
 	}
+	if (channel)
+	{
+		has_vpid   = channel->getVideoPid();
+		is_webchan = IS_WEBCHAN(channel->getChannelID());
+	}
 #if BOXMODEL_UFS910
-	if ((mp && IS_WEBCHAN(channel->getChannelID()) && CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webtv) || channel->getVideoPid())
+	int _mode = CNeutrinoApp::getInstance()->getMode();
+	if ((has_vpid ||
+		(is_webchan && _mode == NeutrinoModes::mode_webtv) ||
+		_mode == NeutrinoModes::mode_ts))
 #else
-	if (((mp && IS_WEBCHAN(channel->getChannelID()) && CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webtv) || channel->getVideoPid()) && !(videoDecoder->getBlank()))
+	int _mode = CNeutrinoApp::getInstance()->getMode();
+	if ((has_vpid ||
+		(is_webchan && _mode == NeutrinoModes::mode_webtv) ||
+		_mode == NeutrinoModes::mode_ts) &&
+		!(videoDecoder->getBlank()))
 #endif
 	{
 		 videoDecoder->getPictureInfo(xres, yres, framerate);
@@ -1067,10 +1081,10 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		r.key = r.val = "";
 		v.push_back(r);
 
-		// picon
+		// channellogo
 		if (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webtv || CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webradio)
 		{
-			r.key = "Picon";
+			r.key = "Logo";
 			r.key += ": ";
 			snprintf(buf, sizeof(buf), "%llx.png", channel->getChannelID() & 0xFFFFFFFFFFFFULL);
 			r.val = buf;
@@ -1113,8 +1127,8 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		r.key = r.val = "";
 		v.push_back(r);
 
-		// picon
-		r.key = "Picon";
+		// channellogo
+		r.key = "Logo";
 		r.key += ": ";
 		snprintf(buf, sizeof(buf), "%llx.png", channel->getChannelID() & 0xFFFFFFFFFFFFULL);
 		r.val = buf;

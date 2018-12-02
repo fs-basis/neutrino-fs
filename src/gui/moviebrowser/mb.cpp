@@ -483,6 +483,7 @@ void CMovieBrowser::initGlobalSettings(void)
 	m_settings.browserRowWidth[8] = m_defaultRowWidth[m_settings.browserRowItem[8]];
 
 	m_settings.browserAdditional = 1;
+
 	m_settings.ts_only = 0;
 }
 
@@ -1481,20 +1482,6 @@ void CMovieBrowser::refreshDetailsLine(int pos)
 void CMovieBrowser::info_hdd_level(bool paint_hdd)
 {
 
-/*
-	struct statfs s;
-	long	blocks_percent_used =0;
-	static long tmp_blocks_percent_used = 0;
-	if (getSelectedFile() != NULL) {
-		if (::statfs(getSelectedFile()->Name.c_str(), &s) == 0) {
-			long blocks_used = s.f_blocks - s.f_bfree;
-			blocks_percent_used = (blocks_used * 1000 / (blocks_used + s.f_bavail) + 5)/10;
-		}
-	}
-
-	if (tmp_blocks_percent_used != blocks_percent_used || paint_hdd) {
-		tmp_blocks_percent_used = blocks_percent_used;
-*/
 	if (g_settings.infobar_show_sysfs_hdd && paint_hdd) {
 		const short pbw = 100;
 		const short border = m_cBoxFrameTitleRel.iHeight/4;

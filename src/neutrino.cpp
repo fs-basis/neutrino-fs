@@ -4281,6 +4281,8 @@ void CNeutrinoApp::ExitRun(int exit_code)
 		SDT_ReloadChannels();
 
 	dprintf(DEBUG_INFO, "exit\n");
+	OnShutDown();
+
 	StopSubtitles();
 	stopPlayBack();
 

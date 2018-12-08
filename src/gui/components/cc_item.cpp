@@ -196,7 +196,7 @@ void CComponentsItem::paintInit(bool do_save_bg)
 			v_fbdata.push_back({true, CC_FBDATA_TYPE_FRAME,	ix,		iy, 		dx, 		dy, 				col_frame_cur,		box_rad,	corner_type,				th, NULL, NULL, NULL, false});
 	}
 
-	dprintf(DEBUG_DEBUG, "\033[1;32m[CComponentsItem]\t[%s - %d], init and paint item type = %d  [%s]...\033[0m\n", __func__, __LINE__, cc_item_type.id, cc_item_type.name.c_str());
+	//dprintf(DEBUG_DEBUG, "\033[1;32m[CComponentsItem]\t[%s - %d], init and paint item type = %d  [%s]...\033[0m\n", __func__, __LINE__, cc_item_type.id, cc_item_type.name.c_str());
 	paintFbItems(do_save_bg);
 }
 

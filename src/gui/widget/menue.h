@@ -585,7 +585,7 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		unsigned int		item_start_y;
 		unsigned int		current_page;
 		unsigned int		total_pages;
-		bool			exit_pressed;
+		bool			no_action;
 		bool			fade;
 		bool			washidden;
 		int			nextShortcut;
@@ -636,7 +636,7 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		void initSelectable();
 		int getSelected()const { return selected; };
 		void move(int xoff, int yoff);
-		int getSelectedLine(void)const {return exit_pressed ? -1 : selected;};
+		int getSelectedLine(void)const {return no_action ? -1 : selected;};
 		void enableFade(bool _enable) { fade = _enable; };
 		void enableSaveScreen(bool enable);
 		void paintHint(int num);

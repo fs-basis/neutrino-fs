@@ -2111,12 +2111,11 @@ recordingmenu.vcr Videorekorder
 recordingmenu.vtxt_pid Teletext aufnehmen
 recordingmenu.zap_on_announce Umschalten bei Ankündigung
 recordtimer.announce Die Aufnahme beginnt in wenigen Minuten.
-remotebox_add Hinzufügen
+remotebox_add hinzufügen
 remotebox_channel_na Kanal auf Remote-Box nicht verfügbar
-remotebox_del Löschen
+remotebox_del löschen
 remotebox_head Remote-Boxen
-remotebox_mod Bearbeiten
-remotebox_onoff Ein/Aus
+remotebox_mod bearbeiten
 remotebox_pass Passwort
 remotebox_port Port
 remotebox_rbaddr Adresse

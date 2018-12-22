@@ -81,7 +81,7 @@
 #include <algorithm>
 #include <iconv.h>
 #include <libdvbsub/dvbsub.h>
-#include <audio.h>
+#include <hardware/audio.h>
 #include <gui/widget/stringinput_ext.h>
 #include <gui/screensetup.h>
 #include <gui/widget/msgbox.h>

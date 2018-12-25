@@ -70,7 +70,7 @@
 #include <sys/mount.h>
 #include <json/json.h>
 
-#include <video.h>
+#include <hardware/video.h>
 #include <libtuxtxt/teletext.h>
 #include <zapit/zapit.h>
 #include <system/set_threadname.h>
@@ -81,7 +81,7 @@
 #include <algorithm>
 #include <iconv.h>
 #include <libdvbsub/dvbsub.h>
-#include <audio.h>
+#include <hardware/audio.h>
 #ifdef ENABLE_GRAPHLCD
 #include <driver/nglcd.h>
 bool glcd_play = false;

@@ -483,6 +483,7 @@ void CMovieBrowser::initGlobalSettings(void)
 	m_settings.browserRowWidth[8] = m_defaultRowWidth[m_settings.browserRowItem[8]];
 
 	m_settings.browserAdditional = 1;
+
 	m_settings.ts_only = 0;
 }
 
@@ -788,7 +789,7 @@ int CMovieBrowser::exec(CMenuTarget* parent, const std::string & actionKey)
 			m_movieSelectionHandler->bookmarks.user[i].pos =0;
 		}
 	}
-	else if(actionKey == "show_menu")
+	else if (actionKey == "show_menu")
 	{
 		showMenu(true);
 		saveSettings(&m_settings);

@@ -1034,6 +1034,7 @@ void CInfoViewer::loop(bool show_dot)
 					hideIt =  true;
 
 				int rec_mode = CRecordManager::getInstance()->GetRecordMode();
+
 				/* hide, if record (not timeshift only) is running -> neutrino will show channel list */
 				if (rec_mode & CRecordManager::RECMODE_REC)
 					hideIt = true;

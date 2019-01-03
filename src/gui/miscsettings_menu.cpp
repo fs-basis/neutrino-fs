@@ -231,6 +231,8 @@ const CMenuOptionChooser::keyval_ext SLEEPTIMER_MIN_OPTIONS[SLEEPTIMER_MIN_OPTIO
 //show misc settings menue
 int CMiscMenue::showMiscSettingsMenu()
 {
+	int shortcut = 0;
+
 	//misc settings
 	fanNotifier = new CFanControlNotifier();
 	sectionsdConfigNotifier = new CSectionsdConfigNotifier();
@@ -272,7 +274,7 @@ int CMiscMenue::showMiscSettingsMenu()
 	//cec settings
 	CCECSetup cecsetup;
 	if (g_info.hw_caps->can_cec) {
-		mf = new CMenuForwarder(LOCALE_VIDEOMENU_HDMI_CEC, true, NULL, &cecsetup, NULL, CRCInput::RC_0);
+		mf = new CMenuForwarder(LOCALE_VIDEOMENU_HDMI_CEC, true, NULL, &cecsetup, NULL, CRCInput::convertDigitToKey(shortcut++));
 		mf->setHint("", LOCALE_MENU_HINT_MISC_CEC);
 		misc_menue.addItem(mf);
 	}
@@ -284,25 +286,25 @@ int CMiscMenue::showMiscSettingsMenu()
 		misc_menue.addItem(mf);
 	}
 	//channellist
-	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_CHANNELLIST, true, NULL, this, "channellist", CRCInput::RC_1);
+	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_CHANNELLIST, true, NULL, this, "channellist", CRCInput::convertDigitToKey(shortcut++));
 	mf->setHint("", LOCALE_MENU_HINT_MISC_CHANNELLIST);
 	misc_menue.addItem(mf);
 
 	//start channels
 	CZapitSetup zapitsetup;
-	mf = new CMenuForwarder(LOCALE_ZAPITSETUP_HEAD, true, NULL, &zapitsetup, NULL, CRCInput::RC_2);
+	mf = new CMenuForwarder(LOCALE_ZAPITSETUP_HEAD, true, NULL, &zapitsetup, NULL, CRCInput::convertDigitToKey(shortcut++));
 	mf->setHint("", LOCALE_MENU_HINT_MISC_ZAPIT);
 	misc_menue.addItem(mf);
 
 	// onlineservices
-	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_ONLINESERVICES, true, NULL, this, "onlineservices", CRCInput::RC_3);
+	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_ONLINESERVICES, true, NULL, this, "onlineservices", CRCInput::convertDigitToKey(shortcut++));
 	mf->setHint("", LOCALE_MENU_HINT_MISC_ONLINESERVICES);
 	misc_menue.addItem(mf);
 
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	// kerneloptions
 	CKernelOptions kernelOptions;
-	mf = new CMenuForwarder(LOCALE_KERNELOPTIONS_HEAD, true, NULL, &kernelOptions, NULL, CRCInput::RC_4);
+	mf = new CMenuForwarder(LOCALE_KERNELOPTIONS_HEAD, true, NULL, &kernelOptions, NULL, CRCInput::convertDigitToKey(shortcut++));
 	mf->setHint("", LOCALE_MENU_HINT_MISC_KERNELOPTIONS);
 	misc_menue.addItem(mf);
 #endif

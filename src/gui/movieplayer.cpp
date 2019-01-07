@@ -1411,7 +1411,7 @@ bool CMoviePlayerGui::PlayFileStart(void)
 		{
 			for (unsigned int i = 0; i < numpida; i++)
 				if (apids[i] == playback->GetAPid()) {
-				CZapit::getInstance()->SetVolumePercent((ac3flags[i] == 1) ? g_settings.audio_volume_percent_ac3 : g_settings.audio_volume_percent_pcm);
+				CZapit::getInstance()->SetVolumePercent((ac3flags[i] > 2) ? g_settings.audio_volume_percent_ac3 : g_settings.audio_volume_percent_pcm);
 				break;
 			}
 		}
@@ -3163,7 +3163,7 @@ bool CMoviePlayerGui::setAPID(unsigned int i) {
 		currentapid = apids[i];
 		currentac3 = ac3flags[i];
 		playback->SetAPid(currentapid, currentac3);
-		CZapit::getInstance()->SetVolumePercent((ac3flags[i] == 1) ? g_settings.audio_volume_percent_ac3 : g_settings.audio_volume_percent_pcm);
+		CZapit::getInstance()->SetVolumePercent((ac3flags[i] > 2) ? g_settings.audio_volume_percent_ac3 : g_settings.audio_volume_percent_pcm);
 	}
 	return (i < numpida);
 }

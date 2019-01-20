@@ -601,7 +601,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 0);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 17500);
 #else
-	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7;
+	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 8);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 3);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 90000);

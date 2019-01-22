@@ -281,7 +281,7 @@ record_error_msg_t CRecordInstance::Start(CZapitChannel * channel)
 	}
 #else
 	if(record == NULL)
-		record = new cRecord(channel->getRecordDemux() /*RECORD_DEMUX*/);
+		record = new cRecord(channel->getRecordDemux()/*RECORD_DEMUX*/);
 #endif
 
 	record->Open();

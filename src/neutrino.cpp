@@ -731,9 +731,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.last_webtv_dir = configfile.getString( "last_webtv_dir", CONFIGDIR);
 	g_settings.last_webradio_dir = configfile.getString( "last_webradio_dir", CONFIGDIR);
 
-	g_settings.temp_timeshift = configfile.getInt32( "temp_timeshift", 0 );
-	g_settings.auto_timeshift = configfile.getInt32( "auto_timeshift", 0 );
-	g_settings.auto_delete = configfile.getInt32( "auto_delete", 1 );
+	g_settings.timeshift_temp = configfile.getInt32( "timeshift_temp", 0 );
+	g_settings.timeshift_auto = configfile.getInt32( "timeshift_auto", 0 );
+	g_settings.timeshift_delete = configfile.getInt32( "timeshift_delete", 1 );
 
 	std::string timeshiftDir;
 	if(g_settings.timeshiftdir.empty()) {
@@ -750,7 +750,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	CRecordManager::getInstance()->SetTimeshiftDirectory(timeshiftDir.c_str());
 
-	if(g_settings.auto_delete) {
+	if(g_settings.timeshift_delete) {
 		if(g_settings.timeshiftdir == g_settings.network_nfs_recordingdir) {
 			DIR *d = opendir(timeshiftDir.c_str());
 			if(d){
@@ -1583,13 +1583,13 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setBool  ("shutdown_timer_record_type"          , g_settings.shutdown_timer_record_type    );
 
 	configfile.setBool  ("recordingmenu.stream_vtxt_pid"      , g_settings.recording_stream_vtxt_pid      );
+	configfile.setBool  ("recordingmenu.stream_subtitle_pids" , g_settings.recording_stream_subtitle_pids );
+	configfile.setBool  ("recordingmenu.stream_pmt_pid"       , g_settings.recording_stream_pmt_pid       );
+	configfile.setString("recordingmenu.filename_template"    , g_settings.recording_filename_template    );
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	configfile.setInt32 ("recording_bufsize"                  , g_settings.recording_bufsize);
 	configfile.setInt32 ("recording_bufsize_dmx"              , g_settings.recording_bufsize_dmx);
 #endif
-	configfile.setBool  ("recordingmenu.stream_subtitle_pids" , g_settings.recording_stream_subtitle_pids );
-	configfile.setBool  ("recordingmenu.stream_pmt_pid"       , g_settings.recording_stream_pmt_pid       );
-	configfile.setString("recordingmenu.filename_template"    , g_settings.recording_filename_template    );
 	configfile.setInt32 ("recording_choose_direct_rec_dir"    , g_settings.recording_choose_direct_rec_dir);
 	configfile.setBool  ("recording_epg_for_filename"         , g_settings.recording_epg_for_filename     );
 	configfile.setBool  ("recording_epg_for_end"              , g_settings.recording_epg_for_end          );
@@ -1638,11 +1638,13 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	configfile.setInt32 ("key_playbutton", g_settings.key_playbutton );
 	configfile.setInt32( "timeshift_pause", g_settings.timeshift_pause );
-	configfile.setInt32( "temp_timeshift", g_settings.temp_timeshift );
-	configfile.setInt32( "auto_timeshift", g_settings.auto_timeshift );
-	configfile.setInt32( "auto_delete", g_settings.auto_delete );
+	configfile.setInt32( "timeshift_temp", g_settings.timeshift_temp );
+	configfile.setInt32( "timeshift_auto", g_settings.timeshift_auto );
+	configfile.setInt32( "timeshift_delete", g_settings.timeshift_delete );
+
 	configfile.setInt32( "record_hours", g_settings.record_hours );
 	configfile.setInt32( "timeshift_hours", g_settings.timeshift_hours );
+
 	//printf("set: key_unlock =============== %d\n", g_settings.key_unlock);
 #if HAVE_SH4_HARDWARE
 	configfile.setInt32( "screenshot_png_compression", g_settings.screenshot_png_compression );
@@ -3193,7 +3195,7 @@ void CNeutrinoApp::RealRun()
 				if(g_RemoteControl->is_video_started) {
 					t_channel_id live_channel_id = CZapit::getInstance()->GetCurrentChannelID();
 					if(CRecordManager::getInstance()->RecordingStatus(live_channel_id))
-						CMoviePlayerGui::getInstance().exec(NULL, "rtimeshift");
+						CMoviePlayerGui::getInstance().exec(NULL, "timeshift_rewind");
 				}
 			}
 			else if( msg == CRCInput::RC_stop) {

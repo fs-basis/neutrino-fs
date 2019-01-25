@@ -498,13 +498,13 @@ struct SNeutrinoSettings
 	int recording_audio_pids_std;
 	int recording_audio_pids_alt;
 	int recording_audio_pids_ac3;
+	int recording_stream_vtxt_pid;
+	int recording_stream_subtitle_pids;
+	int recording_stream_pmt_pid;
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	int recording_bufsize;
 	int recording_bufsize_dmx;
 #endif
-	int recording_stream_vtxt_pid;
-	int recording_stream_subtitle_pids;
-	int recording_stream_pmt_pid;
 	int recording_choose_direct_rec_dir;
 	int recording_epg_for_filename;
 	int recording_epg_for_end;
@@ -517,6 +517,13 @@ struct SNeutrinoSettings
 	int timer_followscreenings;
 	std::string recording_filename_template;
 	int recording_already_found_check;
+
+	// timeshift
+	int timeshift_pause;
+	int timeshift_auto;
+	int timeshift_temp;
+	int timeshift_delete;
+	int timeshift_hours;
 
 	int filesystem_is_utf8;
 	// default plugin for ts-movieplayer (red button)
@@ -555,12 +562,7 @@ struct SNeutrinoSettings
 	int key_power_off;
 	int menu_left_exit;
 	int audio_run_player;
-	int timeshift_pause;
-	int auto_timeshift;
-	int temp_timeshift;
-	int auto_delete;
 	int record_hours;
-	int timeshift_hours;
 	int key_record;
 	int key_help;
 	int key_next43mode;

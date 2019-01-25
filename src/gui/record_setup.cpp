@@ -242,11 +242,15 @@ int CRecordSetup::showRecordSetup()
 
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	CMenuOptionNumberChooser *ch;
+
 	ch = new CMenuOptionNumberChooser(LOCALE_EXTRA_RECORD_BUFSIZE, &g_settings.recording_bufsize, true, 1, 25, NULL);
 	ch->setNumberFormat("%d MB");
+	//TODO: ch->setHint("", LOCALE_MENU_HINT_RECORD_BUFSIZE);
 	recordingSettings->addItem(ch);
+
 	ch = new CMenuOptionNumberChooser(LOCALE_EXTRA_RECORD_BUFSIZE_DMX, &g_settings.recording_bufsize_dmx, true, 1, 25, NULL);
 	ch->setNumberFormat("%d MB");
+	//TODO: ch->setHint("", LOCALE_MENU_HINT_RECORD_BUFSIZE_DMX);
 	recordingSettings->addItem(ch);
 #endif
 
@@ -395,15 +399,15 @@ void CRecordSetup::showRecordTimeShiftSetup(CMenuWidget *menu_ts)
 		mc->setHint("", LOCALE_MENU_HINT_RECORD_TIMESHIFT_PAUSE);
 		menu_ts->addItem(mc);
 
-		CMenuOptionNumberChooser * mn = new CMenuOptionNumberChooser(LOCALE_EXTRA_AUTO_TIMESHIFT, &g_settings.auto_timeshift, true, 0, 300, NULL);
+		CMenuOptionNumberChooser * mn = new CMenuOptionNumberChooser(LOCALE_EXTRA_TIMESHIFT_AUTO, &g_settings.timeshift_auto, true, 0, 300, NULL);
 		mn->setHint("", LOCALE_MENU_HINT_RECORD_TIMESHIFT_AUTO);
 		menu_ts->addItem(mn);
 
-		mc = new CMenuOptionChooser(LOCALE_EXTRA_AUTO_DELETE, &g_settings.auto_delete, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+		mc = new CMenuOptionChooser(LOCALE_EXTRA_TIMESHIFT_DELETE, &g_settings.timeshift_delete, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 		mc->setHint("", LOCALE_MENU_HINT_RECORD_TIMESHIFT_DELETE);
 		menu_ts->addItem(mc);
 
-		mc = new CMenuOptionChooser(LOCALE_EXTRA_TEMP_TIMESHIFT, &g_settings.temp_timeshift, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+		mc = new CMenuOptionChooser(LOCALE_EXTRA_TIMESHIFT_TEMP, &g_settings.timeshift_temp, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 		mc->setHint("", LOCALE_MENU_HINT_RECORD_TIMESHIFT_TEMP);
 		menu_ts->addItem(mc);
 

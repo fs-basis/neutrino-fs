@@ -464,7 +464,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.enabled_auto_modes[i] = configfile.getInt32(cfg_key, 1);
 	}
 
-	g_settings.rounded_corners = configfile.getInt32("rounded_corners", 1);
 	g_settings.ci_standby_reset = configfile.getInt32("ci_standby_reset", 0);
 #if HAVE_ARM_HARDWARE
 	g_settings.ci_clock = configfile.getInt32("ci_clock", 6);
@@ -1319,7 +1318,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		sprintf(cfg_key, "enabled_auto_mode_%d", i);
 		configfile.setInt32(cfg_key, g_settings.enabled_auto_modes[i]);
 	}
-	configfile.setInt32("rounded_corners", g_settings.rounded_corners);
 	configfile.setInt32("ci_standby_reset", g_settings.ci_standby_reset);
 	configfile.setInt32("ci_clock", g_settings.ci_clock);
 	configfile.setInt32("ci_ignore_messages", g_settings.ci_ignore_messages);

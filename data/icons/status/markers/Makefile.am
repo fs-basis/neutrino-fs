@@ -5,5 +5,4 @@ install_DATA = \
 	important.png \
 	marker_lock.png \
 	marker_radio.png \
-	marker_tv.png \
-	warning.png
+	marker_tv.png

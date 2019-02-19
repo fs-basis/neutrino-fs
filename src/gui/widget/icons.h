@@ -263,13 +263,11 @@
 /* plugins */
 #define NEUTRINO_ICON_HINT_PLUGIN	"hint_plugin"
 
-/* opkg manager */
-#define NEUTRINO_ICON_CHECKMARK		"checkmark"
-#define NEUTRINO_ICON_WARNING		"warning"
-
-
 /* misc */
 #define NEUTRINO_ICON_EPG		"epg"
+
+#define NEUTRINO_ICON_CHECKMARK		"checkmark"
+
 #define NEUTRINO_ICON_BUTTON_LONGPRESS	"longpress"
 
 #endif /* __gui_widget_icons_h__ */

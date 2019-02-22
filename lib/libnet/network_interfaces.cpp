@@ -372,5 +372,6 @@ bool setDhcpAttributes(const std::string &name, const bool automatic_start)
 	char hostname[100];
 	if(gethostname(hostname, sizeof(hostname)) == 0)
 		attribute["hostname"] = hostname;
+
 	return write_interface("/etc/network/interfaces", name, automatic_start, "inet", "dhcp", attribute);
 }

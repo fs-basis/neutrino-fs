@@ -177,6 +177,7 @@ void CNetworkConfig::commitConfig(void)
 			addLoopbackDevice("lo", true);
 			setDhcpAttributes(ifname, automatic_start);
 		}
+
 		copy_to_orig();
 
 	}

@@ -36,6 +36,7 @@ class CNetworkConfig
 	std::string orig_hostname;
 	bool        orig_inet_static;
 	std::string orig_ifname;
+
 	void copy_to_orig(void);
 	void init_vars(void);
 

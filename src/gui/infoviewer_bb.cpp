@@ -67,7 +67,9 @@ extern cVideo * videoDecoder;
 
 #define COL_INFOBAR_BUTTONS_BACKGROUND (COL_MENUFOOT_PLUS_0)
 
+#if !HAVE_ARM_HARDWARE
 #define NEUTRINO_ICON_LOGO "/logos/logo.png"
+#endif
 
 CInfoViewerBB::CInfoViewerBB()
 {
@@ -183,10 +185,12 @@ void CInfoViewerBB::getBBIconInfo()
 			if (CFEManager::getInstance()->getEnabledCount() > 1 && g_settings.infobar_show_tuner == 1 && !IS_WEBCHAN(g_InfoViewer->get_current_channel_id()) && CNeutrinoApp::getInstance()->getMode() != NeutrinoModes::mode_ts)
 				iconView = checkBBIcon(NEUTRINO_ICON_TUNER_1, &w, &h);
 			break;
+#if !HAVE_ARM_HARDWARE
 		case CInfoViewerBB::ICON_LOGO:
 			if ((access(NEUTRINO_ICON_LOGO, F_OK) == 0))
 				iconView = checkBBIcon(NEUTRINO_ICON_LOGO, &w, &h);
 			break;
+#endif
 		default:
 			break;
 		}
@@ -435,16 +439,20 @@ void CInfoViewerBB::paintshowButtonBar(bool noTimer/*=false*/)
 	paint_ca_icons(0);
 	showIcon_Resolution();
 	showIcon_Tuner();
+#if !HAVE_ARM_HARDWARE
 	showIcon_Logo();
+#endif
 	//showSysfsHdd();
 	if (g_settings.infobar_casystem_display < 2)
 		ShowRecDirScale();
 }
 
+#if !HAVE_ARM_HARDWARE
 void CInfoViewerBB::showIcon_Logo()
 {
 	showBBIcons(CInfoViewerBB::ICON_LOGO, NEUTRINO_ICON_LOGO);
 }
+#endif
 
 void CInfoViewerBB::paintFoot(int w)
 {

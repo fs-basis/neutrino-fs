@@ -141,7 +141,9 @@ class CInfoViewerBB
 		void showIcon_SubT();
 		void showIcon_Resolution();
 		void showIcon_Tuner(void);
+#if !HAVE_ARM_HARDWARE
 		void showIcon_Logo();
+#endif
 		void ShowRecDirScale();
 		void showIcon_DD(void);
 		void showBBButtons(bool paintFooter = false);

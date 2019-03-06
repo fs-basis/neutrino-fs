@@ -5,10 +5,15 @@ SUBDIRS = \
 	iso-codes \
 	license \
 	locale \
-	neutrino-scripts \
 	pictures \
 	scripts \
 	themes
+
+if BOXTYPE_ARMBOX
+SUBDIRS += neutrino-scripts-arm
+else
+SUBDIRS += neutrino-scripts
+endif
 
 if ENABLE_WEBIF
 SUBDIRS += y-web

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo -e "\033[01;32mAudioplayer wird beendet......\033[00m"
+
+echo passthrough > /proc/stb/audio/ac3
+echo passthrough > /proc/stb/audio/dts
+
+exit 0

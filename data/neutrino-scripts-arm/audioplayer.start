@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo -e "\033[01;32mAudioplayer wird gestartet......\033[00m"
+
+echo downmix > /proc/stb/audio/ac3
+echo downmix > /proc/stb/audio/dts
+
+exit 0

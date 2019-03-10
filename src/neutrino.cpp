@@ -5480,6 +5480,7 @@ void CNeutrinoApp::Cleanup()
 		g_FixedFont[i] = NULL;
 	}
 	delete g_SignalFont; g_SignalFont = NULL;
+	delete g_ShellFont; g_ShellFont = NULL;
 	printf("cleanup 2\n");fflush(stdout);
 	for(unsigned int i=0; i<g_settings.usermenu.size();++i){
 		delete g_settings.usermenu[i];

@@ -36,6 +36,10 @@
 
 #include "vfd_setup.h"
 
+#ifdef ENABLE_LCD4LINUX
+#include "gui/lcd4l_setup.h"
+#endif
+
 #include <global.h>
 #include <neutrino.h>
 #include <mymenu.h>
@@ -202,6 +206,14 @@ int CVfdSetup::showSetup()
 		oj->setHint("", LOCALE_MENU_HINT_VFD_NOTIFY_RCLOCK);
 		vfds->addItem(oj);
 	}
+
+
+#ifdef ENABLE_LCD4LINUX
+	{
+		vfds->addItem(GenericMenuSeparatorLine);
+		vfds->addItem(new CMenuForwarder(LOCALE_LCD4L_SUPPORT, ((access("/usr/bin/lcd4linux", F_OK) == 0) || (access("/var/bin/lcd4linux", F_OK) == 0)), NULL, new CLCD4lSetup(), NULL, CRCInput::RC_green));
+	}
+#endif
 
 	int res = vfds->exec(NULL, "");
 

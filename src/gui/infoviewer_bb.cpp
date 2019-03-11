@@ -868,7 +868,12 @@ void CInfoViewerBB::paint_ca_bar()
 	if (g_settings.infobar_casystem_frame)
 	{
 		if (ca_bar == NULL)
+		{
+			if (g_settings.osd_resolution == 1)
+			ca_bar = new CComponentsShapeSquare(g_InfoViewer->ChanInfoX + OFFSET_INNER_MID, g_InfoViewer->BoxEndY, ca_width - 2*OFFSET_INNER_MID, bottom_bar_offset - OFFSET_INNER_MID +4, NULL, CC_SHADOW_ON, COL_INFOBAR_CASYSTEM_PLUS_2, COL_INFOBAR_CASYSTEM_PLUS_0);
+			else
 			ca_bar = new CComponentsShapeSquare(g_InfoViewer->ChanInfoX + OFFSET_INNER_MID, g_InfoViewer->BoxEndY, ca_width - 2*OFFSET_INNER_MID, bottom_bar_offset - OFFSET_INNER_MID, NULL, CC_SHADOW_ON, COL_INFOBAR_CASYSTEM_PLUS_2, COL_INFOBAR_CASYSTEM_PLUS_0);
+		}
 	//ca_bar->setColorBody(COL_INFOBAR_CASYSTEM_PLUS_0);
 	ca_bar->enableColBodyGradient(g_settings.theme.infobar_gradient_bottom, COL_INFOBAR_BUTTONS_BACKGROUND, g_settings.theme.infobar_gradient_bottom_direction);
 	ca_bar->enableShadow(CC_SHADOW_ON, OFFSET_SHADOW/2, true);

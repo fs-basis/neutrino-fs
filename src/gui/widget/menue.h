@@ -518,6 +518,7 @@ class CMenuOptionStringChooser : public CMenuItem
 			*optionValuePtr = val;
 		}
 		std::string getOptionValue() { return *optionValuePtr; }
+		sigc::signal<void> OnAfterChangeOption;
 };
 
 class CMenuGlobal

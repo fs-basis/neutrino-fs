@@ -1492,14 +1492,14 @@ bool CMoviePlayerGui::PlayFileStart(void)
 
 bool CMoviePlayerGui::SetPosition(int pos, bool absolute)
 {
-	StopSubtitles();
+	StopSubtitles(true);
 	bool res = playback->SetPosition(pos, absolute);
 	if(is_file_player && res && speed == 0 && playstate == CMoviePlayerGui::PAUSE){
 		playstate = CMoviePlayerGui::PLAY;
 		speed = 1;
 		playback->SetSpeed(speed);
 	}
-	StartSubtitles();
+	StartSubtitles(true);
 	return res;
 }
 
@@ -2012,7 +2012,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			int pid = playback->GetFirstTeletextPid();
 			if (pid > -1) {
 				playback->SetTeletextPid(0);
-				StopSubtitles();
+				StopSubtitles(true);
 				if (g_settings.cacheTXT)
 					tuxtxt_stop();
 				playback->SetTeletextPid(pid);
@@ -2024,18 +2024,18 @@ void CMoviePlayerGui::PlayFileLoop(void)
 					CSubtitleChangeExec SubtitleChanger(playback);
 					SubtitleChanger.exec(NULL, currentttxsub);
 				}
-				StartSubtitles();
+				StartSubtitles(true);
 				frameBuffer->paintBackground();
 				//purge input queue
 				do
 					g_RCInput->getMsg(&msg, &data, 1);
 				while (msg != CRCInput::RC_timeout);
 			} else if (g_RemoteControl->current_PIDs.PIDs.vtxtpid) {
-				StopSubtitles();
+				StopSubtitles(true);
 				// The playback stream doesn't come with teletext.
 				tuxtx_main(g_RemoteControl->current_PIDs.PIDs.vtxtpid, 0, 2);
 				frameBuffer->paintBackground();
-				StartSubtitles();
+				StartSubtitles(true);
 				//purge input queue
 				do
 					g_RCInput->getMsg(&msg, &data, 1);
@@ -2046,12 +2046,12 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			bool restore = FileTimeOSD->IsVisible();
 			FileTimeOSD->kill();
 
-			StopSubtitles();
+			StopSubtitles(true);
 			if (msg == CRCInput::RC_epg)
 				g_EventList->exec(CNeutrinoApp::getInstance()->channelList->getActiveChannel_ChannelID(), CNeutrinoApp::getInstance()->channelList->getActiveChannelName());
 			else if (msg == NeutrinoMessages::SHOW_EPG)
 				g_EpgData->show(CNeutrinoApp::getInstance()->channelList->getActiveChannel_ChannelID());
-			StartSubtitles();
+			StartSubtitles(true);
 			if (restore)
 				FileTimeOSD->show(position);
 #if 0
@@ -2367,7 +2367,7 @@ void CMoviePlayerGui::getCurrentAudioName(bool /* file_player */, std::string &a
 void CMoviePlayerGui::selectAudioPid()
 {
 	CAudioSelectMenuHandler APIDSelector;
-	StopSubtitles();
+	StopSubtitles(true);
 	APIDSelector.exec(NULL, "-1");
 	StartSubtitles(true);
 #if 0

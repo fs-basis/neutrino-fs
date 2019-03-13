@@ -1878,6 +1878,6 @@ CFrameBuffer::Mode3D CFrameBuffer::get3DMode()
 	return Mode3D_off;
 }
 
-void CFrameBuffer::set3DMode(Mode3D m)
+void CFrameBuffer::set3DMode(Mode3D __attribute__ ((unused)) m)
 {
 }

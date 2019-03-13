@@ -53,6 +53,10 @@
 #include <hardware/video.h>
 #include <cs_api.h>
 
+#ifdef ENABLE_GRAPHLCD
+#include <driver/nglcd.h>
+#endif
+
 extern cVideo * videoDecoder;
 
 extern CPictureViewer * g_PicViewer;
@@ -1880,4 +1884,11 @@ CFrameBuffer::Mode3D CFrameBuffer::get3DMode()
 
 void CFrameBuffer::set3DMode(Mode3D m)
 {
+}
+
+void CFrameBuffer::blit()
+{
+#ifdef ENABLE_GRAPHLCD
+	nGLCD::Blit();
+#endif
 }

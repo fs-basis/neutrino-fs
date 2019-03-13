@@ -35,6 +35,9 @@
 
 
 #include "vfd_setup.h"
+#ifdef ENABLE_GRAPHLCD
+#include <gui/glcdsetup.h>
+#endif
 
 #ifdef ENABLE_LCD4LINUX
 #include "gui/lcd4l_setup.h"
@@ -207,11 +210,35 @@ int CVfdSetup::showSetup()
 		vfds->addItem(oj);
 	}
 
+#if !defined BOXMODEL_VUSOLO4K
+#if ENABLE_LCD4LINUX && ENABLE_GRAPHLCD
+	if (g_settings.glcd_enable != 0 && g_settings.lcd4l_support != 0) {
+		g_settings.glcd_enable = 0;
+		g_settings.lcd4l_support = 0;
+	}
+#endif
+#endif
 
 #ifdef ENABLE_LCD4LINUX
+#if !defined (BOXMODEL_VUSOLO4K) && defined (ENABLE_GRAPHLCD)
+	if (g_settings.glcd_enable == 0)
+#endif
 	{
 		vfds->addItem(GenericMenuSeparatorLine);
 		vfds->addItem(new CMenuForwarder(LOCALE_LCD4L_SUPPORT, ((access("/usr/bin/lcd4linux", F_OK) == 0) || (access("/var/bin/lcd4linux", F_OK) == 0)), NULL, new CLCD4lSetup(), NULL, CRCInput::RC_green));
+	}
+#endif
+
+#ifdef ENABLE_GRAPHLCD
+	GLCD_Menu glcdMenu;
+#ifdef ENABLE_LCD4LINUX
+#if !defined BOXMODEL_VUSOLO4K
+	if (g_settings.lcd4l_support == 0)
+#endif
+#endif
+	{
+		vfds->addItem(GenericMenuSeparatorLine);
+		vfds->addItem(new CMenuForwarder(LOCALE_GLCD_HEAD, true, NULL, &glcdMenu, NULL, CRCInput::RC_blue));
 	}
 #endif
 

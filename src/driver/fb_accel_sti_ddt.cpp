@@ -32,6 +32,9 @@
 
 #include <driver/fb_generic_sti_ddt.h>
 #include <driver/fb_accel_sti_ddt.h>
+#ifdef ENABLE_GRAPHLCD
+#include <driver/nglcd.h>
+#endif
 
 #include <stdio.h>
 #include <fcntl.h>
@@ -472,6 +475,9 @@ void CFbAccel::blitBoxFB(int x0, int y0, int x1, int y1, fb_pixel_t color)
 
 void CFbAccel::blit()
 {
+#ifdef ENABLE_GRAPHLCD
+	nGLCD::Blit();
+#endif
 	msync(lbb, DEFAULT_XRES * 4 * DEFAULT_YRES, MS_SYNC);
 
 	if (borderColor != borderColorOld || (borderColor != 0x00000000 && borderColor != 0xFF000000)) {

@@ -50,6 +50,11 @@ libneutrino_driver_a_SOURCES += \
 	lcd4l.cpp
 endif
 
+if ENABLE_GRAPHLCD
+libneutrino_driver_a_SOURCES += \
+	nglcd.cpp
+endif
+
 if BOXTYPE_DUCKBOX
 libneutrino_driver_a_SOURCES += \
 	fb_generic_sti_ddt.cpp \

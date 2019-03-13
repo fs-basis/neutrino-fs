@@ -119,7 +119,7 @@ libneutrino_gui_a_SOURCES += \
 	3dsetup.cpp
 endif
 
-if BOXTYPE_DUCKBOX
+if BOXTYPE_ARMBOX
 libneutrino_gui_a_SOURCES += \
 	3dsetup.cpp
 endif
@@ -132,6 +132,11 @@ endif
 if ENABLE_LCD4LINUX
 libneutrino_gui_a_SOURCES += \
 	lcd4l_setup.cpp
+endif
+
+if ENABLE_GRAPHLCD
+libneutrino_gui_a_SOURCES += \
+	glcdsetup.cpp
 endif
 
 if BOXTYPE_COOL

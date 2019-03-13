@@ -119,7 +119,7 @@ libneutrino_gui_a_SOURCES += \
 	3dsetup.cpp
 endif
 
-if BOXTYPE_ARMBOX
+if BOXTYPE_SH4S
 libneutrino_gui_a_SOURCES += \
 	3dsetup.cpp
 endif

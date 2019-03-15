@@ -5234,7 +5234,12 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_pip_setup = tconfig.getInt32( "key_pip_setup", CRCInput::RC_pos );
 	g_settings.key_pip_swap = tconfig.getInt32( "key_pip_swap", CRCInput::RC_recall );
 #endif
+
+#if HAVE ARM_HARDWARE
+	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_bookmarks );
+#else
 	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_games );
+#endif
 
 	g_settings.key_quickzap_up = tconfig.getInt32( "key_quickzap_up",  CRCInput::RC_up );
 	g_settings.key_quickzap_down = tconfig.getInt32( "key_quickzap_down",  CRCInput::RC_down );

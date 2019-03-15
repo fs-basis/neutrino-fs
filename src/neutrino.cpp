@@ -5099,8 +5099,10 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_pip_swap = tconfig.getInt32( "key_pip_swap", CRCInput::RC_recall );
 #endif
 
-#if HAVE ARM_HARDWARE
+#if BOXMODEL_HD51
 	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_bookmarks );
+#elif BOXMODEL_UFS913 || BOXMODEL_UFS912
+	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_archiv );
 #else
 	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_games );
 #endif

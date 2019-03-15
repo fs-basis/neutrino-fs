@@ -5102,7 +5102,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 #if BOXMODEL_HD51
 	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_bookmarks );
 #elif BOXMODEL_UFS913 || BOXMODEL_UFS912
-	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_archiv );
+	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_archive );
 #else
 	g_settings.key_current_transponder = tconfig.getInt32( "key_current_transponder", CRCInput::RC_games );
 #endif

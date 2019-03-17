@@ -238,7 +238,7 @@ int CVfdSetup::showSetup()
 #endif
 	{
 		vfds->addItem(GenericMenuSeparatorLine);
-		vfds->addItem(new CMenuForwarder(LOCALE_GLCD_HEAD, true, NULL, &glcdMenu, NULL, CRCInput::RC_blue));
+		vfds->addItem(new CMenuForwarder(LOCALE_GLCD_HEAD, true, NULL, &glcdMenu, NULL, CRCInput::RC_yellow));
 	}
 #endif
 

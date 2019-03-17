@@ -860,22 +860,18 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	//screen configuration
 	g_settings.osd_resolution      = (osd_resolution_tmp == -1) ? configfile.getInt32("osd_resolution", 0) : osd_resolution_tmp;
 	COsdHelpers::getInstance()->g_settings_osd_resolution_save = g_settings.osd_resolution;
-#if 0
 	g_settings.screen_StartX_crt_0 = configfile.getInt32("screen_StartX_crt_0",   80);
 	g_settings.screen_StartY_crt_0 = configfile.getInt32("screen_StartY_crt_0",   45);
 	g_settings.screen_EndX_crt_0   = configfile.getInt32("screen_EndX_crt_0"  , 1280 - g_settings.screen_StartX_crt_0 - 1);
 	g_settings.screen_EndY_crt_0   = configfile.getInt32("screen_EndY_crt_0"  ,  580 - g_settings.screen_StartY_crt_0 - 1);
-#endif
 	g_settings.screen_StartX_lcd_0 = configfile.getInt32("screen_StartX_lcd_0",   40);
 	g_settings.screen_StartY_lcd_0 = configfile.getInt32("screen_StartY_lcd_0",   25);
 	g_settings.screen_EndX_lcd_0   = configfile.getInt32("screen_EndX_lcd_0"  , 1280 - g_settings.screen_StartX_lcd_0 - 1);
 	g_settings.screen_EndY_lcd_0   = configfile.getInt32("screen_EndY_lcd_0"  ,  720 - g_settings.screen_StartY_lcd_0 - 1);
-#if 0
 	g_settings.screen_StartX_crt_1 = configfile.getInt32("screen_StartX_crt_1",   80);
 	g_settings.screen_StartY_crt_1 = configfile.getInt32("screen_StartY_crt_1",   45);
 	g_settings.screen_EndX_crt_1   = configfile.getInt32("screen_EndX_crt_1"  , 1920 - g_settings.screen_StartX_crt_1 - 1);
 	g_settings.screen_EndY_crt_1   = configfile.getInt32("screen_EndY_crt_1"  ,  870 - g_settings.screen_StartY_crt_1 - 1);
-#endif
 	g_settings.screen_StartX_lcd_1 = configfile.getInt32("screen_StartX_lcd_1",   40);
 	g_settings.screen_StartY_lcd_1 = configfile.getInt32("screen_StartY_lcd_1",   25);
 	g_settings.screen_EndX_lcd_1   = configfile.getInt32("screen_EndX_lcd_1"  , 1920 - g_settings.screen_StartX_lcd_1 - 1);
@@ -1133,14 +1129,12 @@ void CNeutrinoApp::setScreenSettings()
 		case 1:
 		    {
 			switch (g_settings.screen_preset) {
-#if 0
 				case COsdSetup::PRESET_CRT:
 					g_settings.screen_StartX = g_settings.screen_StartX_crt_1;
 					g_settings.screen_StartY = g_settings.screen_StartY_crt_1;
 					g_settings.screen_EndX   = g_settings.screen_EndX_crt_1;
 					g_settings.screen_EndY   = g_settings.screen_EndY_crt_1;
 					break;
-#endif
 				case COsdSetup::PRESET_LCD:
 				default:
 					g_settings.screen_StartX = g_settings.screen_StartX_lcd_1;
@@ -1156,14 +1150,12 @@ void CNeutrinoApp::setScreenSettings()
 		default:
 		    {
 			switch (g_settings.screen_preset) {
-#if 0
 				case COsdSetup::PRESET_CRT:
 					g_settings.screen_StartX = g_settings.screen_StartX_crt_0;
 					g_settings.screen_StartY = g_settings.screen_StartY_crt_0;
 					g_settings.screen_EndX   = g_settings.screen_EndX_crt_0;
 					g_settings.screen_EndY   = g_settings.screen_EndY_crt_0;
 					break;
-#endif
 				case COsdSetup::PRESET_LCD:
 				default:
 					g_settings.screen_StartX = g_settings.screen_StartX_lcd_0;
@@ -1613,22 +1605,18 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("screen_StartY_lcd_0", g_settings.screen_StartY_lcd_0);
 	configfile.setInt32("screen_EndX_lcd_0"  , g_settings.screen_EndX_lcd_0);
 	configfile.setInt32("screen_EndY_lcd_0"  , g_settings.screen_EndY_lcd_0);
-#if 0
 	configfile.setInt32("screen_StartX_crt_0", g_settings.screen_StartX_crt_0);
 	configfile.setInt32("screen_StartY_crt_0", g_settings.screen_StartY_crt_0);
 	configfile.setInt32("screen_EndX_crt_0"  , g_settings.screen_EndX_crt_0);
 	configfile.setInt32("screen_EndY_crt_0"  , g_settings.screen_EndY_crt_0);
-#endif
 	configfile.setInt32("screen_StartX_lcd_1", g_settings.screen_StartX_lcd_1);
 	configfile.setInt32("screen_StartY_lcd_1", g_settings.screen_StartY_lcd_1);
 	configfile.setInt32("screen_EndX_lcd_1"  , g_settings.screen_EndX_lcd_1);
 	configfile.setInt32("screen_EndY_lcd_1"  , g_settings.screen_EndY_lcd_1);
-#if 0
 	configfile.setInt32("screen_StartX_crt_1", g_settings.screen_StartX_crt_1);
 	configfile.setInt32("screen_StartY_crt_1", g_settings.screen_StartY_crt_1);
 	configfile.setInt32("screen_EndX_crt_1"  , g_settings.screen_EndX_crt_1);
 	configfile.setInt32("screen_EndY_crt_1"  , g_settings.screen_EndY_crt_1);
-#endif
 	configfile.setInt32("screen_preset"      , g_settings.screen_preset);
 
 	//Software-update
@@ -5640,13 +5628,11 @@ struct __key_rename {
 
 static struct __key_rename key_rename[] = {
 	{ "casystem_display",	"infobar_casystem_display" },
-	{ "casystem_frame",		"infobar_casystem_frame" },
-#if 0
+	{ "casystem_frame",	"infobar_casystem_frame" },
 	{ "screen_StartX_crt",	"screen_StartX_crt_0" },
 	{ "screen_StartY_crt",	"screen_StartY_crt_0" },
 	{ "screen_EndX_crt",	"screen_EndX_crt_0" },
 	{ "screen_EndY_crt",	"screen_EndY_crt_0" },
-#endif
 	{ "screen_StartX_lcd",	"screen_StartX_lcd_0" },
 	{ "screen_StartY_lcd",	"screen_StartY_lcd_0" },
 	{ "screen_EndX_lcd",	"screen_EndX_lcd_0" },

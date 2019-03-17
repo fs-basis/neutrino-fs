@@ -430,10 +430,10 @@ int COsdSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 	return res;
 }
 
-#define OSD_PRESET_OPTIONS_COUNT 1
+#define OSD_PRESET_OPTIONS_COUNT 2
 const CMenuOptionChooser::keyval_ext OSD_PRESET_OPTIONS[] =
 {
-//	{ COsdSetup::PRESET_CRT, NONEXISTANT_LOCALE, "CRT" },
+	{ COsdSetup::PRESET_CRT, NONEXISTANT_LOCALE, "CRT" },
 	{ COsdSetup::PRESET_LCD, NONEXISTANT_LOCALE, "LCD" }
 };
 
@@ -738,14 +738,14 @@ int COsdSetup::showOsdSetup()
 	osd_res->setHint("", LOCALE_MENU_HINT_OSD_RESOLUTION);
 	osd_menu->addItem(osd_res);
 #endif
-#if 0
+
 	//monitor
 	if (cs_get_revision() != 1) { /* 1 == Tripledragon */
 		mc = new CMenuOptionChooser(LOCALE_COLORMENU_OSD_PRESET, &g_settings.screen_preset, OSD_PRESET_OPTIONS, OSD_PRESET_OPTIONS_COUNT, true, this);
 		mc->setHint("", LOCALE_MENU_HINT_OSD_PRESET);
 		osd_menu->addItem(mc);
 	}
-#endif
+
 #if 0
 	// round corners
 	mc = new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.theme.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true, this);

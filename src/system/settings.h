@@ -675,22 +675,18 @@ struct SNeutrinoSettings
 	int screen_StartY;
 	int screen_EndX;
 	int screen_EndY;
-#if 0
 	int screen_StartX_crt_0;
 	int screen_StartY_crt_0;
 	int screen_EndX_crt_0;
 	int screen_EndY_crt_0;
-#endif
 	int screen_StartX_lcd_0;
 	int screen_StartY_lcd_0;
 	int screen_EndX_lcd_0;
 	int screen_EndY_lcd_0;
-#if 0
 	int screen_StartX_crt_1;
 	int screen_StartY_crt_1;
 	int screen_EndX_crt_1;
 	int screen_EndY_crt_1;
-#endif
 	int screen_StartX_lcd_1;
 	int screen_StartY_lcd_1;
 	int screen_EndX_lcd_1;

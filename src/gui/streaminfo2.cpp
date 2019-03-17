@@ -1117,17 +1117,17 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 
 	if (!mp)
 	{
-		// onid
-		r.key = "ONID: ";
-		i = channel->getOriginalNetworkId();
+		// tsid
+		r.key = "TSID: ";
+		i = channel->getTransportStreamId();
 		snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
 		r.val = buf;
 		r.f   = g_FixedFont[font_small];
 		v.push_back(r);
 
-		// tsid
-		r.key = "TSID: ";
-		i = channel->getTransportStreamId();
+		// onid
+		r.key = "ONID: ";
+		i = channel->getOriginalNetworkId();
 		snprintf(buf, sizeof(buf), "0x%04X (%i)", i, i);
 		r.val = buf;
 		r.f   = g_FixedFont[font_small];

@@ -225,7 +225,7 @@ int CVfdSetup::showSetup()
 #endif
 	{
 		vfds->addItem(GenericMenuSeparatorLine);
-		vfds->addItem(new CMenuForwarder(LOCALE_LCD4L_SUPPORT, ((access("/usr/bin/lcd4linux", F_OK) == 0) || (access("/var/bin/lcd4linux", F_OK) == 0)), NULL, new CLCD4lSetup(), NULL, CRCInput::RC_yellow));
+		vfds->addItem(new CMenuForwarder(LOCALE_LCD4L_SUPPORT, ((access("/usr/bin/lcd4linux", F_OK) == 0) || (access("/var/bin/lcd4linux", F_OK) == 0)), NULL, new CLCD4lSetup(), NULL, CRCInput::RC_green));
 	}
 #endif
 
@@ -238,7 +238,7 @@ int CVfdSetup::showSetup()
 #endif
 	{
 		vfds->addItem(GenericMenuSeparatorLine);
-		vfds->addItem(new CMenuForwarder(LOCALE_GLCD_HEAD, true, NULL, &glcdMenu, NULL, CRCInput::RC_blue));
+		vfds->addItem(new CMenuForwarder(LOCALE_GLCD_HEAD, true, NULL, &glcdMenu, NULL, CRCInput::RC_yellow));
 	}
 #endif
 

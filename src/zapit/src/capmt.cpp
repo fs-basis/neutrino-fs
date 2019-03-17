@@ -255,7 +255,7 @@ bool CCamManager::SetMode(t_channel_id channel_id, enum runmode mode, bool start
 //			INFO("RECORD/STREAM(%d): fe_num %d rec_dmx %d", mode, frontend ? frontend->getNumber() : -1, channel->getRecordDemux());
 			if(frontend)
 				source = frontend->getNumber();
-			demux = source;
+				demux = source;
 #else
 			source = channel->getRecordDemux();
 			demux = channel->getRecordDemux();

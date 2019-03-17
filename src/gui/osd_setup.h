@@ -106,7 +106,7 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 
 		enum
 		{
-			PRESET_CRT,
+//			PRESET_CRT,
 			PRESET_LCD
 		};
 		

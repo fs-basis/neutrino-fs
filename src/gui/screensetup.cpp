@@ -157,12 +157,15 @@ int CScreenSetup::exec(CMenuTarget* parent, const std::string &action)
 				g_settings.screen_StartY_lcd_0 = g_settings.screen_StartY_int;
 				g_settings.screen_EndX_lcd_0 = g_settings.screen_EndX_int;
 				g_settings.screen_EndY_lcd_0 = g_settings.screen_EndY_int;
-			} else {
+			}
+#if 0
+			else {
 				g_settings.screen_StartX_crt_0 = g_settings.screen_StartX_int;
 				g_settings.screen_StartY_crt_0 = g_settings.screen_StartY_int;
 				g_settings.screen_EndX_crt_0 = g_settings.screen_EndX_int;
 				g_settings.screen_EndY_crt_0 = g_settings.screen_EndY_int;
 			}
+#endif
 		}
 		return menu_return::RETURN_EXIT;
 	}
@@ -274,12 +277,14 @@ int CScreenSetup::exec(CMenuTarget* parent, const std::string &)
 					case 1:
 					    {
 						switch (g_settings.screen_preset) {
+#if 0
 							case COsdSetup::PRESET_CRT:
 								g_settings.screen_StartX_crt_1 = g_settings.screen_StartX;
 								g_settings.screen_StartY_crt_1 = g_settings.screen_StartY;
 								g_settings.screen_EndX_crt_1   = g_settings.screen_EndX;
 								g_settings.screen_EndY_crt_1   = g_settings.screen_EndY;
 								break;
+#endif
 							case COsdSetup::PRESET_LCD:
 							default:
 								g_settings.screen_StartX_lcd_1 = g_settings.screen_StartX;
@@ -295,12 +300,14 @@ int CScreenSetup::exec(CMenuTarget* parent, const std::string &)
 					default:
 					    {
 						switch (g_settings.screen_preset) {
+#if 0
 							case COsdSetup::PRESET_CRT:
 								g_settings.screen_StartX_crt_0 = g_settings.screen_StartX;
 								g_settings.screen_StartY_crt_0 = g_settings.screen_StartY;
 								g_settings.screen_EndX_crt_0   = g_settings.screen_EndX;
 								g_settings.screen_EndY_crt_0   = g_settings.screen_EndY;
 								break;
+#endif
 							case COsdSetup::PRESET_LCD:
 							default:
 								g_settings.screen_StartX_lcd_0 = g_settings.screen_StartX;

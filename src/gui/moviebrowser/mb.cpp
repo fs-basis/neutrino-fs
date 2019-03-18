@@ -1890,8 +1890,10 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 							if (tmdb->getSmallCover(cover_file))
 								refresh();
 					}
-					if (tmdb)
+					if (tmdb) {
+						tmdb->cleanup();
 						tmdb = NULL;
+					}
 				}
 			}
 		}

@@ -110,7 +110,7 @@ int CKeybindSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 	else if(actionKey == "savekeys") {
 		CFileBrowser fileBrowser;
 		fileBrowser.Dir_Mode = true;
-		if (fileBrowser.exec(g_settings.backup_dir.c_str()) == true) {
+		if (fileBrowser.exec("/swap") == true) {
 			std::string fname = "keys.conf";
 			CKeyboardInput * sms = new CKeyboardInput(LOCALE_EXTRA_SAVEKEYS, &fname);
 			sms->exec(NULL, "");

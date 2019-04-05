@@ -129,6 +129,11 @@ libneutrino_gui_a_SOURCES += \
 	3dsetup.cpp
 endif
 
+if BOXTYPE_MIPSBOX
+libneutrino_gui_a_SOURCES += \
+	3dsetup.cpp
+endif
+
 if BOXTYPE_COOL
 libneutrino_gui_a_SOURCES += \
 	streaminfo1.cpp

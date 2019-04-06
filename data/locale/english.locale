@@ -588,7 +588,7 @@ extra.zap_cycle Zap cycle
 extra.zapit_fe_no_same Different tuners when same transponder
 extra.zapit_fe_retries Tune retries
 extra.zapit_fe_timeout Tune timeout
-extra.zapit_hvoltage 18V for rotor moving 
+extra.zapit_hvoltage 18V for rotor moving
 extra.zapit_motor_speed Motor moving speed
 extra.zapit_scanpids Scan/Use pids
 extra.zapit_sdt_changed Channels changed, reload settings.
@@ -1316,7 +1316,7 @@ menu.hint_progressbar_active Change color of active progress bar part
 menu.hint_progressbar_color Change appearance of progress bars
 menu.hint_progressbar_gradient Add a vertical brightness gradient to progress bars
 menu.hint_progressbar_infobar_position Selects the options of progressbar in the infobar
-menu.hint_progressbar_passive Change color of passive progress bar part 
+menu.hint_progressbar_passive Change color of passive progress bar part
 menu.hint_progressbar_preview Use OK to change the current progressbar state
 menu.hint_progressbar_timescale_green Choose the green portion of colored progressbars
 menu.hint_progressbar_timescale_invert Select your preferred color gradient
@@ -1723,9 +1723,9 @@ moviebrowser.directories Directories
 moviebrowser.directories_additional Additional directories
 moviebrowser.edit_book Change bookmark
 moviebrowser.edit_book_name_info1 Enter new bookmark name
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_pos_info1 Enter new position (s)
-moviebrowser.edit_book_pos_info2 
+moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Enter new jump length (s)
 moviebrowser.edit_book_type_info2 <0: backward, >0: forward, 0: none
 moviebrowser.edit_serie Enter name of serie
@@ -1839,7 +1839,7 @@ moviebrowser.short_rating Vote
 moviebrowser.short_recorddate Date
 moviebrowser.short_serie Serie
 moviebrowser.short_size MB
-moviebrowser.short_spacer 
+moviebrowser.short_spacer
 moviebrowser.short_title Title
 moviebrowser.start_head Start movie from:
 moviebrowser.start_record_start Movie start

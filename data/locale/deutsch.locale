@@ -1723,7 +1723,7 @@ moviebrowser.directories Verzeichnisse
 moviebrowser.directories_additional Zusätzliche Verzeichnisse
 moviebrowser.edit_book Markierung ändern
 moviebrowser.edit_book_name_info1 Neuer Markierungsname
-moviebrowser.edit_book_name_info2 
+moviebrowser.edit_book_name_info2
 moviebrowser.edit_book_pos_info1 Neue Position (s)
 moviebrowser.edit_book_pos_info2
 moviebrowser.edit_book_type_info1 Neue Sprunglänge (s)
@@ -1839,7 +1839,7 @@ moviebrowser.short_rating Vote
 moviebrowser.short_recorddate Datum
 moviebrowser.short_serie Serie
 moviebrowser.short_size Größe
-moviebrowser.short_spacer 
+moviebrowser.short_spacer
 moviebrowser.short_title Titel
 moviebrowser.start_head Film starten von Position:
 moviebrowser.start_record_start Aufnahmestart

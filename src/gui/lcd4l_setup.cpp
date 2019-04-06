@@ -130,7 +130,7 @@ bool CLCD4lSetup::changeNotify(const neutrino_locale_t OptionName, void * /*data
 
 int CLCD4lSetup::show()
 {
-	int shortcut = 1;
+	int shortcut = 0;
 
 	int temp_lcd4l_dpf_type = g_settings.lcd4l_dpf_type;
 	int temp_lcd4l_skin = g_settings.lcd4l_skin;
@@ -184,11 +184,11 @@ int CLCD4lSetup::show()
 			break;
 	}
 
-	nc = new CMenuOptionNumberChooser(LOCALE_LCD4L_BRIGHTNESS, (int *)&g_settings.lcd4l_brightness, enable_brightness, 1, max_brightness, this);
+	nc = new CMenuOptionNumberChooser(LOCALE_LCD4L_BRIGHTNESS, (int *)&g_settings.lcd4l_brightness, enable_brightness, 1, max_brightness, this, CRCInput::convertDigitToKey(shortcut++));
 	nc->setHint("", LOCALE_MENU_HINT_LCD4L_BRIGHTNESS);
 	lcd4lSetup->addItem(nc);
 
-	nc = new CMenuOptionNumberChooser(LOCALE_LCD4L_BRIGHTNESS_STANDBY, (int *)&g_settings.lcd4l_brightness_standby, enable_brightness, 1, max_brightness, this);
+	nc = new CMenuOptionNumberChooser(LOCALE_LCD4L_BRIGHTNESS_STANDBY, (int *)&g_settings.lcd4l_brightness_standby, enable_brightness, 1, max_brightness, this, CRCInput::convertDigitToKey(shortcut++));
 	nc->setHint("", LOCALE_MENU_HINT_LCD4L_BRIGHTNESS_STANDBY);
 	lcd4lSetup->addItem(nc);
 

@@ -1129,7 +1129,7 @@ int CHDDMenuHandler::formatDevice(std::string dev)
 #ifndef ASSUME_MDEV
 	f = fopen("/proc/sys/kernel/hotplug", "w");
 	if(f) {
-		fprintf(f, "/sbin/mdev\n");
+		fprintf(f, "none\n");
 		fclose(f);
 	}
 #endif

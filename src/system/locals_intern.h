@@ -1285,6 +1285,7 @@ const char * locale_real_names[] =
 	"menu.hint_movieplayer_plugin",
 	"menu.hint_net_broadcast",
 	"menu.hint_net_dhcp",
+	"menu.hint_net_dropbear",
 	"menu.hint_net_gateway",
 	"menu.hint_net_hostname",
 	"menu.hint_net_if",

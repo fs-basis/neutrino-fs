@@ -159,7 +159,6 @@
 		<S i="70" t="d" on="85" s="192" frq="11992" n="NatGeo HD"/>
 		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV"/>
 		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky 1 HD"/>
-		<S i="91" t="10" on="85" s="192" frq="11798" n="Sky Arts HD"/>
 		<S i="6e" t="d" on="85" s="192" frq="11992" n="Sky Atlantic HD"/>
 		<S i="a" t="4" on="85" s="192" frq="12032" n="Sky Cinema"/>
 		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema HD"/>
@@ -175,7 +174,7 @@
 		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
 		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Hits"/>
 		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Hits HD"/>
-		<S i="204" t="4" on="85" s="192" frq="12032" n="Sky Cinema Nostalgie"/>
+		<S i="204" t="4" on="85" s="192" frq="12032" n="Sky Cinema High Chaparral"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>
@@ -247,7 +246,7 @@
 		<S i="1194" t="406" on="1" s="192" frq="11656" n="sportdigital HD"/>
 		<S i="8d" t="9" on="85" s="192" frq="11171" n="unknown (0x0009_0x008D)"/>
 		<S i="8e" t="9" on="85" s="192" frq="11171" n="unknown (0x0009_0x008E)"/>
-		<S i="26" t="f" on="85" s="192" frq="10921" n="unknown (0x000F_0x0026)"/>
+		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
 		<S i="1f" t="10" on="85" s="192" frq="11798" n="unknown (0x0010_0x001F)"/>
 	</Bouquet>
 	<Bouquet name="HD +">

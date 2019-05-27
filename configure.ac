@@ -355,6 +355,7 @@ data/pictures/Makefile
 data/pictures/backgrounds/Makefile
 data/pictures/screensaver/Makefile
 data/scripts/Makefile
+data/stb-startup/Makefile
 data/themes/Makefile
 data/y-web/Makefile
 data/y-web/images/Makefile

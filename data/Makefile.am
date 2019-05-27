@@ -16,6 +16,10 @@ else
 SUBDIRS += neutrino-scripts
 endif
 
+if BOXTYPE_ARMBOX
+SUBDIRS += stb-startup
+endif
+
 if ENABLE_WEBIF
 SUBDIRS += y-web
 endif

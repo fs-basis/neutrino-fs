@@ -3,7 +3,7 @@
 --
 -- Copyright 2018 - 2019 Markus Volk (f_l_k@t-online.de)
 -- Copyright 2018 Sven Hoefer, Don de Deckelwech
--- Redistribution and use in source and binary forms, with or without modification,
+-- Redistribution and use in source and binary forms, with or without modification, 
 -- are permitted provided that the following conditions are met:
 --
 -- Redistributions of source code must retain the above copyright notice, this list
@@ -52,7 +52,7 @@ end
 
 function mount(dev,destination)
 	local provider = fh:readlink("/bin/mount")
-	if not string.match(provider, "busybox") then
+	if (provider == nil) or not string.match(provider, "busybox") then
 		os.execute("mount -l " .. dev .. " " .. destination)
 	else
 		os.execute("mount " .. dev .. " " .. destination)
@@ -61,7 +61,7 @@ end
 
 function umount(path)
 	local provider = fh:readlink("/bin/umount")
-	if not string.match(provider, "busybox") then
+	if (provider == nil) or not string.match(provider, "busybox") then
 		os.execute("umount -l " .. path)
 	else
 		os.execute("umount " .. path)
@@ -178,6 +178,15 @@ end
 function has_gpt_layout()
 	if (devbase == "linuxrootfs") then
 		return false
+	end
+	return true
+end
+
+function has_boxmode()
+	for line in io.lines("/proc/cpuinfo") do
+		if line:match("bigfish") then
+			return false
+		end
 	end
 	return true
 end
@@ -362,7 +371,7 @@ function main()
 		elseif (msg == RC['blue']) then
 				root = 4
 			colorkey = true
-		elseif (msg == RC['setup']) then
+		elseif has_boxmode() and (msg == RC['setup']) then
 			chooser:hide()
 			menu = menu.new{name=locale[lang].options}
 			menu:addItem{type="back"}

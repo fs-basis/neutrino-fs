@@ -631,7 +631,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #endif
 #endif
 	// NTP-Server for sectionsd
-	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "2.europe.pool.ntp.org");
+	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "time.fu-berlin.de");
 	g_settings.network_ntprefresh   = configfile.getString("network_ntprefresh", "30" );
 	g_settings.network_ntpenable    = configfile.getBool("network_ntpenable", true);
 

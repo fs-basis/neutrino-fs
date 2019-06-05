@@ -90,6 +90,8 @@ typedef struct
 
 	/* these variables are used for the listframes */
 	int browserFrameHeight;
+	int browserFrameHeightGeneral;
+	int browserFrameHeightAdditional;
 	int browserRowNr;
 	MB_INFO_ITEM browserRowItem[MB_MAX_ROWS];
 	int browserRowWidth[MB_MAX_ROWS];
@@ -323,6 +325,8 @@ class CMovieBrowser : public CMenuTarget
 		void clearSelection();
 		bool supportedExtension(CFile &file);
 		bool addFile(CFile &file, int dirItNr);
+
+		void changeBrowserHeight(CMenuForwarder* fw1, CMenuForwarder* fw2);
 };
 
 // I tried a lot to use the menu.cpp as ListBox selection, and I got three solution which are all garbage.

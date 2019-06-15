@@ -139,8 +139,6 @@
 			<S i="75f6" n="GUÍA FÁCIL" v="a3" a="190" p="a3" pmt="430" tx="0" t="1" vt="0" s="0" num="770" f="4"/>
 		</TS>
 		<TS id="0423" on="0001" frq="10862000" inv="2" sr="23500000" fec="2" pol="0" mod="9" pli="0" plc="1" plm="0" sys="1">
-			<S i="1771" n="Colors" v="11f" a="120" p="11f" pmt="61" tx="0" t="1f" vt="6" s="1" num="1081" f="2"/>
-			<S i="1772" n="Rishtey Europe" v="13f" a="140" p="13f" pmt="62" tx="0" t="1f" vt="6" s="1" num="1089" f="2"/>
 		</TS>
 		<TS id="0424" on="0001" frq="10876000" inv="2" sr="22000000" fec="5" pol="1" mod="0" pli="0" plc="1" plm="0" sys="0">
 			<S i="7789" n="M. GOLF" v="a6" a="68" p="a6" pmt="401" tx="0" t="1" vt="0" s="1" num="808" f="4"/>
@@ -552,10 +550,6 @@
 			<S i="13fc" n="TSR Turkce" v="0" a="64f" p="64f" pmt="1cb" tx="0" t="2" vt="0" s="0" num="142" f="4"/>
 			<S i="1406" n="Russkij Perwyj R1" v="19c9" a="19d3" p="19c9" pmt="1a2a" tx="0" t="16" vt="1" s="0" num="1123" f="4"/>
 			<S i="140a" n="YOL TV" v="3fd" a="3fe" p="3fd" pmt="3fc" tx="0" t="1" vt="1" s="0" num="319" f="4"/>
-			<S i="1414" n="Peretz Int" v="1d4d" a="1d4e" p="1d4d" pmt="98" tx="0" t="1" vt="1" s="0" num="1087" f="2"/>
-			<S i="1415" n="Domashniy Int" v="1d6b" a="1d6c" p="1d6b" pmt="a2" tx="0" t="1" vt="1" s="0" num="1083" f="2"/>
-			<S i="1416" n="REN Int" v="ce" a="196" p="ce" pmt="25" tx="0" t="1" vt="1" s="0" num="1088" f="2"/>
-			<S i="1417" n="5 Int" v="1dac" a="1dad" p="1dac" pmt="1dab" tx="0" t="1" vt="1" s="0" num="1075" f="2"/>
 			<S i="1418" n="NTV Mir" v="146" a="19c" p="146" pmt="a9" tx="0" t="1" vt="0" s="0" num="1086" f="4"/>
 			<S i="1419" n="TVCI" v="200" a="1010" p="200" pmt="34" tx="0" t="1" vt="0" s="0" num="1093" f="4"/>
 			<S i="141a" n="STS Int" v="2d0" a="2da" p="2d0" pmt="2bc" tx="0" t="1" vt="1" s="0" num="924" f="4"/>
@@ -578,13 +572,6 @@
 		</TS>
 		<TS id="0406" on="0001" frq="11656000" inv="2" sr="22000000" fec="2" pol="1" mod="9" pli="0" plc="1" plm="0" sys="1">
 			<S i="1194" n="sportdigital HD" v="ff" a="100" p="ff" pmt="60" tx="0" t="19" vt="1" s="1" num="245" f="4"/>
-			<S i="11da" n="Colors" v="2df" a="2e0" p="2df" pmt="80" tx="0" t="16" vt="1" s="1" num="1080" f="2"/>
-			<S i="11db" n="Rishtey Europe" v="2ff" a="300" p="2ff" pmt="81" tx="0" t="16" vt="1" s="1" num="1090" f="2"/>
-			<S i="11dd" n="B4U Movies UK" v="33f" a="340" p="33f" pmt="83" tx="0" t="16" vt="1" s="1" num="1078" f="2"/>
-			<S i="11de" n="B4U Music UK" v="35f" a="360" p="35f" pmt="84" tx="0" t="16" vt="1" s="1" num="1079" f="2"/>
-			<S i="11e2" n="Aaj Tak UK" v="3df" a="3e0" p="3df" pmt="88" tx="0" t="16" vt="1" s="1" num="1077" f="2"/>
-			<S i="11e5" n="SET Asia" v="43f" a="440" p="43f" pmt="8b" tx="0" t="16" vt="1" s="1" num="1092" f="2"/>
-			<S i="11e6" n="MAX" v="45f" a="460" p="45f" pmt="8c" tx="0" t="16" vt="1" s="1" num="1084" f="2"/>
 		</TS>
 		<TS id="0407" on="0001" frq="11671000" inv="2" sr="22000000" fec="2" pol="0" mod="9" pli="0" plc="1" plm="0" sys="1">
 			<S i="14b4" n="SAT.1 HD Austria" v="ff" a="103" p="ff" pmt="60" tx="20" t="19" vt="1" s="1" num="1056" f="4"/>
@@ -1390,7 +1377,6 @@
 			<S i="1c7a" n="Sky News Intl" v="50a" a="8f2" p="50a" pmt="1c7a" tx="6d6" t="1" vt="0" s="0" num="1126" f="4"/>
 			<S i="1c7c" n="Radio neue Hoffnung" v="0" a="50c" p="50c" pmt="1c7c" tx="0" t="2" vt="0" s="0" num="106" f="4"/>
 			<S i="1c7e" n="IDS DOWNLOAD SVC" v="0" a="0" p="1fff" pmt="1c7e" tx="0" t="c" vt="0" s="0" num="1108" f="4"/>
-			<S i="1c81" n="Kathrein DVB SSU" t="c" s="0" num="1116" f="2"/>
 			<S i="1c83" n="Kathrein Download" v="0" a="0" p="1fff" pmt="1c83" tx="0" t="aa" vt="0" s="0" num="1115" f="4"/>
 			<S i="1c86" n="STB Telestar" v="0" a="0" p="1fff" pmt="1c86" tx="0" t="c" vt="0" s="0" num="1129" f="4"/>
 			<S i="1ee6" n="SGI_1111" v="0" a="0" p="1fff" pmt="1ee6" tx="0" t="c" vt="0" s="0" num="1125" f="4"/>

@@ -248,9 +248,6 @@
 		<S i="7b" t="9" on="85" s="192" frq="11171" n="TNT Serie HD"/>
 		<S i="65" t="9" on="85" s="192" frq="11171" n="Universal TV HD"/>
 		<S i="1194" t="406" on="1" s="192" frq="11656" n="sportdigital HD"/>
-		<S i="8d" t="9" on="85" s="192" frq="11171" n="unknown (0x0009_0x008D)"/>
-		<S i="8e" t="9" on="85" s="192" frq="11171" n="unknown (0x0009_0x008E)"/>
-		<S i="1f" t="10" on="85" s="192" frq="11798" n="unknown (0x0010_0x001F)"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
@@ -289,9 +286,6 @@
 		<S i="151c" t="455" on="1" s="192" frq="12574" n="pearl.tv HD Shop"/>
 		<S i="7da" t="449" on="1" s="192" frq="12344" n="PEARL TV 4K UHD"/>
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
-		<S i="1450" t="40d" on="1" s="192" frq="11023" n="Test UHD1"/>
-		<S i="145f" t="40d" on="1" s="192" frq="11023" n="Test UHD2"/>
-		<S i="145a" t="40d" on="1" s="192" frq="11023" n="Test UHD3"/>
 	</Bouquet>
 	<Bouquet name="Radio">
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>

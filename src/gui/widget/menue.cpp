@@ -585,6 +585,7 @@ void CMenuWidget::Init(const std::string &NameString, const std::string &Icon, c
 {
 	//pos
 	x = y		= 0;
+	w_pos_mode 	= MENU_POS_PRESET;
 
 	//caption and icon
 	nameString 	= NameString;
@@ -1395,8 +1396,10 @@ void CMenuWidget::setMenuPos(const int& menu_width)
 	int real_h = full_height + hint_h; // full_height includes footer_height : see calcSize
 	int x_old = x;
 	int y_old = y;
-	//configured positions 
-	switch(g_settings.menu_pos) 
+
+	//configured/custom positions
+	int menu_pos = w_pos_mode == MENU_POS_PRESET ? g_settings.menu_pos : w_pos_mode;
+	switch(menu_pos)
 	{
 		case MENU_POS_CENTER:
 			x = offx + scr_x + ((scr_w - menu_width ) >> 1 );

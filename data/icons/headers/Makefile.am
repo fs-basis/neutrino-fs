@@ -23,6 +23,7 @@ install_DATA = \
 	network.png \
 	personalize.png \
 	pictureviewer.png \
+	question.png \
 	recording.png \
 	settings.png \
 	shell.png \

@@ -6,8 +6,6 @@ install_DATA = \
 	ca.png \
 	epg.png \
 	hidden.png \
-	lock.png \
-	lock_passive.png \
 	mounted.png \
 	mute.png \
 	not_mounted.png \

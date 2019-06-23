@@ -22,8 +22,7 @@
  *
  */
 
-/* icon files */
-
+/* buttons */
 #define NEUTRINO_ICON_BUTTON_DUMMY		"dummy"
 #define NEUTRINO_ICON_BUTTON_DUMMY_SMALL	"dummy_small"
 
@@ -31,12 +30,6 @@
 #define NEUTRINO_ICON_BUTTON_GREEN	"gruen"
 #define NEUTRINO_ICON_BUTTON_RED	"rot"
 #define NEUTRINO_ICON_BUTTON_YELLOW	"gelb"
-
-/* Infoviewer */
-#define NEUTRINO_ICON_INFO_BLUE		"info_blue"
-#define NEUTRINO_ICON_INFO_GREEN	"info_green"
-#define NEUTRINO_ICON_INFO_RED		"info_red"
-#define NEUTRINO_ICON_INFO_YELLOW	"info_yellow"
 
 #define NEUTRINO_ICON_BUTTON_MENU	"menu"
 #define NEUTRINO_ICON_BUTTON_MENU_SMALL	"menu_small"
@@ -76,105 +69,47 @@
 #define NEUTRINO_ICON_BUTTON_RECORD_INACTIVE	"btn_record_inactive"
 #define NEUTRINO_ICON_BUTTON_STOP	"btn_stop"
 
+#define NEUTRINO_ICON_BUTTON_LONGPRESS	"longpress"
+
+#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE	"mute_zap_green"
+#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE	"mute_zap_gray"
+
+/* headers */
 #define NEUTRINO_ICON_BLUE		"icon_blue"
 #define NEUTRINO_ICON_GREEN		"icon_green"
 #define NEUTRINO_ICON_RED		"icon_red"
 #define NEUTRINO_ICON_YELLOW		"icon_yellow"
 
-#define NEUTRINO_ICON_16_9		"16_9"
-#define NEUTRINO_ICON_16_9_GREY		"16_9_gray"
 #define NEUTRINO_ICON_AUDIO		"audio"
-#define NEUTRINO_ICON_AUDIOPLAY		"audioplay"
+#define NEUTRINO_ICON_BOOKMARK_MANAGER	"bookmarkmanager"
 #define NEUTRINO_ICON_COLORS		"colors"
-#define NEUTRINO_ICON_DD		"dd"
-#define NEUTRINO_ICON_DD_AVAIL		"dd_avail"
-#define NEUTRINO_ICON_DD_GREY		"dd_gray"
 #define NEUTRINO_ICON_EDIT		"edit"
 #define NEUTRINO_ICON_ERROR		"error"
 #define NEUTRINO_ICON_FEATURES		"features"
 #define NEUTRINO_ICON_GAMES		"games"
 #define NEUTRINO_ICON_INFO		"information"
-#define NEUTRINO_ICON_IMPORTANT		"important"
 #define NEUTRINO_ICON_KEYBINDING	"keybinding"
+#define NEUTRINO_ICON_LANGUAGE		"language"
+#define NEUTRINO_ICON_LCD		"lcd"
 #define NEUTRINO_ICON_LOCK		"lock"
-#define NEUTRINO_ICON_LOCK_MARKER	"marker_lock"
-#define NEUTRINO_ICON_LOCK_PASSIVE	"lock_passive"
-#define NEUTRINO_ICON_HIDDEN		"hidden"
-#define NEUTRINO_ICON_MOUNTED		"mounted"
-#define NEUTRINO_ICON_MULTIMEDIA	"multimedia"
+#define NEUTRINO_ICON_MAINMENU		"mainmenue"
 #define NEUTRINO_ICON_MOVIEPLAYER	"icon_movieplayer"
-#define NEUTRINO_ICON_NOT_MOUNTED	"not_mounted"
-#define NEUTRINO_ICON_PAUSE		"mp_pause"
-#define NEUTRINO_ICON_PLAY 		"mp_play"
-#define NEUTRINO_ICON_PLAY_REPEAT_ALL 	"mp_play_repeat_all"
-#define NEUTRINO_ICON_PLAY_REPEAT_TRACK	"mp_play_repeat_track"
-#define NEUTRINO_ICON_REW		"mp_b-skip"
-#define NEUTRINO_ICON_FF 		"mp_f-skip"
+#define NEUTRINO_ICON_MULTIMEDIA	"multimedia"
+#define NEUTRINO_ICON_NETWORK		"network"
+#define NEUTRINO_ICON_PERSONALIZE	"personalize"
+#define NEUTRINO_ICON_PICTUREVIEWER	"pictureviewer"
 #define NEUTRINO_ICON_QUESTION		"question"
-#define NEUTRINO_ICON_RADIO_MARKER	"marker_radio"
-#define NEUTRINO_ICON_RADIOTEXTGET	"radiotextget"
-#define NEUTRINO_ICON_RADIOTEXTWAIT	"radiotextwait"
-#define NEUTRINO_ICON_RADIOTEXTOFF	"radiotextoff"
 #define NEUTRINO_ICON_RECORDING		"recording"
-#define NEUTRINO_ICON_REC		"rec"
-#define NEUTRINO_ICON_REC_GRAY		"rec_gray"
 #define NEUTRINO_ICON_SETTINGS		"settings"
 #define NEUTRINO_ICON_SHELL		"shell"
 #define NEUTRINO_ICON_STREAMING		"streaming"
 #define NEUTRINO_ICON_TIMER		"timer"
-#define NEUTRINO_ICON_TUNER_1		"tuner_1"
-#define NEUTRINO_ICON_TUNER_2		"tuner_2"
-#define NEUTRINO_ICON_TUNER_3		"tuner_3"
-#define NEUTRINO_ICON_TUNER_4		"tuner_4"
-#define NEUTRINO_ICON_TV_MARKER		"marker_tv"
 #define NEUTRINO_ICON_UPDATE		"softupdate"
 #define NEUTRINO_ICON_UPNP		"upnp"
 #define NEUTRINO_ICON_VIDEO		"video"
-#define NEUTRINO_ICON_VTXT		"vtxt"
-#define NEUTRINO_ICON_VTXT_GREY		"vtxt_gray"
-#define NEUTRINO_ICON_SUBT		"subt"
-#define NEUTRINO_ICON_SUBT_GREY		"subt_gray"
-#define NEUTRINO_ICON_AUTO_SHIFT	"ats"
-#define NEUTRINO_ICON_AUTO_SHIFT_GRAY	"ats_gray"
-#define NEUTRINO_ICON_NUMERIC_PAD	"numericpad"
-#define NEUTRINO_ICON_SCRAMBLED		"ca"
-#define NEUTRINO_ICON_SCRAMBLED2	"ca2"
-#define NEUTRINO_ICON_SCRAMBLED2_GREY	"ca2_gray"
-#define NEUTRINO_ICON_BOOKMARK_MANAGER	"bookmarkmanager"
-#define NEUTRINO_ICON_BORDER_UL		"border_ul"
-#define NEUTRINO_ICON_BORDER_LR		"border_lr"
-#define NEUTRINO_ICON_MAINMENU		"mainmenue"
-#define NEUTRINO_ICON_LANGUAGE		"language"
-#define NEUTRINO_ICON_NETWORK		"network"
-#define NEUTRINO_ICON_LCD		"lcd"
+
+/* volumebar */
 #define NEUTRINO_ICON_VOLUME		"volume"
-#define NEUTRINO_ICON_RCLOCK		"rclock"
-#define NEUTRINO_ICON_RESOLUTION_2160	"res_2160"
-#define NEUTRINO_ICON_RESOLUTION_1920	"res_1920"
-#define NEUTRINO_ICON_RESOLUTION_1080	"res_1080"
-#define NEUTRINO_ICON_RESOLUTION_1440	"res_1440"
-#define NEUTRINO_ICON_RESOLUTION_1280	"res_1280"
-#define NEUTRINO_ICON_RESOLUTION_720	"res_720"
-#define NEUTRINO_ICON_RESOLUTION_704	"res_704"
-#define NEUTRINO_ICON_RESOLUTION_576	"res_576"
-#define NEUTRINO_ICON_RESOLUTION_544	"res_544"
-#define NEUTRINO_ICON_RESOLUTION_528	"res_528"
-#define NEUTRINO_ICON_RESOLUTION_480	"res_480"
-#define NEUTRINO_ICON_RESOLUTION_382	"res_382"
-#define NEUTRINO_ICON_RESOLUTION_352	"res_352"
-#define NEUTRINO_ICON_RESOLUTION_288	"res_288"
-#define NEUTRINO_ICON_RESOLUTION_000	"res_000"
-#define NEUTRINO_ICON_RESOLUTION_UHD	"res_uhd"
-#define NEUTRINO_ICON_RESOLUTION_HD	"res_hd"
-#define NEUTRINO_ICON_RESOLUTION_SD	"res_sd"
-#define NEUTRINO_ICON_PERSONALIZE	"personalize"
-#define NEUTRINO_ICON_RECORDING_EVENT_MARKER	"rec_event_marker"
-#define NEUTRINO_ICON_ZAP		"zap"
-#define NEUTRINO_ICON_PIP		"pip"
-#define NEUTRINO_ICON_STAR_ON		"star-on"
-#define NEUTRINO_ICON_STAR_OFF		"star-off"
-#define NEUTRINO_ICON_TMDB		"tmdb"
-#define NEUTRINO_ICON_PICTUREVIEWER	"pictureviewer"
 
 /* sliders */
 #define NEUTRINO_ICON_SLIDER_BODY	"slider_body"
@@ -184,13 +119,11 @@
 #define NEUTRINO_ICON_SLIDER_BLUE	"slider_blue"
 #define NEUTRINO_ICON_SLIDER_ALPHA	"slider_alpha"
 
-#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE "mute_zap_green"
-#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE "mute_zap_gray"
-
 /* menu hints */
 #define NEUTRINO_ICON_HINT_DEFAULT	"hint_default"
 #define NEUTRINO_ICON_HINT_BACK		"hint_back"
 #define NEUTRINO_ICON_HINT_NEXT		"hint_next"
+
 /* main menu */
 #define NEUTRINO_ICON_HINT_TVRADIO_SWITCH	"hint_tvradio_switch"
 #define NEUTRINO_ICON_HINT_TVMODE	"hint_tvmode"
@@ -207,6 +140,7 @@
 #define NEUTRINO_ICON_HINT_INFO		"hint_info"
 #define NEUTRINO_ICON_HINT_CI		"hint_ci"
 #define NEUTRINO_ICON_HINT_ADZAP	"hint_adzap"
+
 /* media */
 #define NEUTRINO_ICON_HINT_APLAY	"hint_aplay"
 #define NEUTRINO_ICON_HINT_INET_RADIO	"hint_inetradio"
@@ -254,6 +188,9 @@
 #define NEUTRINO_ICON_HINT_RESTORE	"hint_restore"
 #define NEUTRINO_ICON_HINT_FACTORY	"hint_factory"
 
+/* plugins */
+#define NEUTRINO_ICON_HINT_PLUGIN	"hint_plugin"
+
 /* filetypes */
 #define NEUTRINO_ICON_FILE		"file"
 #define NEUTRINO_ICON_FOLDER		"folder"
@@ -261,14 +198,93 @@
 #define NEUTRINO_ICON_MP3		"mp3"
 #define NEUTRINO_ICON_PICTURE		"picture"
 
-/* plugins */
-#define NEUTRINO_ICON_HINT_PLUGIN	"hint_plugin"
-
-/* misc */
+/* markers + various */
+#define NEUTRINO_ICON_LOCK_MARKER	"marker_lock"
+#define NEUTRINO_ICON_LOCK_PASSIVE	"marker_lock_passive"
+#define NEUTRINO_ICON_RADIO_MARKER	"marker_radio"
+#define NEUTRINO_ICON_RECORDING_EVENT_MARKER	"rec_event_marker"
+#define NEUTRINO_ICON_ZAP		"zap"
+#define NEUTRINO_ICON_PIP		"pip"
+#define NEUTRINO_ICON_HIDDEN		"hidden"
+#define NEUTRINO_ICON_TV_MARKER		"marker_tv"
+#define NEUTRINO_ICON_SCRAMBLED		"ca"
+#define NEUTRINO_ICON_IMPORTANT		"important"
+#define NEUTRINO_ICON_CHECKMARK		"checkmark"
 #define NEUTRINO_ICON_EPG		"epg"
 
-#define NEUTRINO_ICON_CHECKMARK		"checkmark"
+#define NEUTRINO_ICON_MOUNTED		"mounted"
+#define NEUTRINO_ICON_NOT_MOUNTED	"not_mounted"
 
-#define NEUTRINO_ICON_BUTTON_LONGPRESS	"longpress"
+/* infoviewer */
+#define NEUTRINO_ICON_AUTO_SHIFT	"ats"
+#define NEUTRINO_ICON_AUTO_SHIFT_GRAY	"ats_gray"
+#define NEUTRINO_ICON_REC		"rec"
+#define NEUTRINO_ICON_REC_GRAY		"rec_gray"
+
+/* infoviewer button */
+#define NEUTRINO_ICON_INFO_BLUE"	info_blue"
+#define NEUTRINO_ICON_INFO_GREEN	"info_green"
+#define NEUTRINO_ICON_INFO_RED		"info_red"
+#define NEUTRINO_ICON_INFO_YELLOW	"info_yellow"
+
+/* infoviewer status */
+#define NEUTRINO_ICON_16_9		"16_9"
+#define NEUTRINO_ICON_16_9_GREY		"16_9_gray"
+#define NEUTRINO_ICON_DD_AVAIL		"dd_avail"
+#define NEUTRINO_ICON_DD		"dd"
+#define NEUTRINO_ICON_DD_GREY		"dd_gray"
+#define NEUTRINO_ICON_RADIOTEXTGET	"radiotextget"
+#define NEUTRINO_ICON_RADIOTEXTOFF	"radiotextoff"
+#define NEUTRINO_ICON_RADIOTEXTWAIT	"radiotextwait"
+#define NEUTRINO_ICON_RESOLUTION_000	"res_000"
+#define NEUTRINO_ICON_RESOLUTION_288	"res_288"
+#define NEUTRINO_ICON_RESOLUTION_352	"res_352"
+#define NEUTRINO_ICON_RESOLUTION_382	"res_382"
+#define NEUTRINO_ICON_RESOLUTION_480	"res_480"
+#define NEUTRINO_ICON_RESOLUTION_528	"res_528"
+#define NEUTRINO_ICON_RESOLUTION_544	"res_544"
+#define NEUTRINO_ICON_RESOLUTION_576	"res_576"
+#define NEUTRINO_ICON_RESOLUTION_704	"res_704"
+#define NEUTRINO_ICON_RESOLUTION_720	"res_720"
+#define NEUTRINO_ICON_RESOLUTION_1080	"res_1080"
+#define NEUTRINO_ICON_RESOLUTION_1280	"res_1280"
+#define NEUTRINO_ICON_RESOLUTION_1440	"res_1440"
+#define NEUTRINO_ICON_RESOLUTION_1920	"res_1920"
+#define NEUTRINO_ICON_RESOLUTION_2160	"res_2160"
+#define NEUTRINO_ICON_RESOLUTION_HD	"res_hd"
+#define NEUTRINO_ICON_RESOLUTION_SD	"res_sd"
+#define NEUTRINO_ICON_RESOLUTION_UHD	"res_uhd"
+#define NEUTRINO_ICON_SCRAMBLED2	"ca2"
+#define NEUTRINO_ICON_SCRAMBLED2_GREY	"ca2_gray"
+#define NEUTRINO_ICON_SUBT		"subt"
+#define NEUTRINO_ICON_SUBT_GREY		"subt_gray"
+#define NEUTRINO_ICON_TUNER_1		"tuner_1"
+#define NEUTRINO_ICON_TUNER_2		"tuner_2"
+#define NEUTRINO_ICON_TUNER_3		"tuner_3"
+#define NEUTRINO_ICON_TUNER_4		"tuner_4"
+#define NEUTRINO_ICON_VTXT		"vtxt"
+#define NEUTRINO_ICON_VTXT_GREY		"vtxt_gray"
+
+/* movieplayer */
+#define NEUTRINO_ICON_FF 		"mp_f-skip"
+#define NEUTRINO_ICON_PAUSE		"mp_pause"
+#define NEUTRINO_ICON_PLAY 		"mp_play"
+#define NEUTRINO_ICON_PLAY_REPEAT_ALL 	"mp_play_repeat_all"
+#define NEUTRINO_ICON_PLAY_REPEAT_TRACK	"mp_play_repeat_track"
+#define NEUTRINO_ICON_REW		"mp_b-skip"
+
+/* misc */
+#define NEUTRINO_ICON_RCLOCK		"rclock"
+#define NEUTRINO_ICON_AUDIOPLAY		"audioplay"
+
+#define NEUTRINO_ICON_BORDER_UL		"border_ul"
+#define NEUTRINO_ICON_BORDER_LR		"border_lr"
+
+#define NEUTRINO_ICON_NUMERIC_PAD	"numericpad"
+
+/* tmdb */
+#define NEUTRINO_ICON_STAR_ON		"star-on"
+#define NEUTRINO_ICON_STAR_OFF		"star-off"
+#define NEUTRINO_ICON_TMDB		"tmdb"
 
 #endif /* __gui_widget_icons_h__ */

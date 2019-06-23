@@ -78,7 +78,7 @@
 #define NEUTRINO_ICON_BLUE		"icon_blue"
 #define NEUTRINO_ICON_GREEN		"icon_green"
 #define NEUTRINO_ICON_RED		"icon_red"
-#define NEUTRINO_ICON_YELLOW		"icon_yellow"
+#define NEUTRINO_ICON_YELLOW	"icon_yellow"
 
 #define NEUTRINO_ICON_AUDIO		"audio"
 #define NEUTRINO_ICON_BOOKMARK_MANAGER	"bookmarkmanager"
@@ -222,7 +222,7 @@
 #define NEUTRINO_ICON_REC_GRAY		"rec_gray"
 
 /* infoviewer button */
-#define NEUTRINO_ICON_INFO_BLUE"	info_blue"
+#define NEUTRINO_ICON_INFO_BLUE		"info_blue"
 #define NEUTRINO_ICON_INFO_GREEN	"info_green"
 #define NEUTRINO_ICON_INFO_RED		"info_red"
 #define NEUTRINO_ICON_INFO_YELLOW	"info_yellow"

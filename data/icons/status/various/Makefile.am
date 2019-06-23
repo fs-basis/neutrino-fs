@@ -4,11 +4,8 @@ install_DATA = \
 	ats.png \
 	ats_gray.png \
 	ca.png \
-	epg.png \
 	hidden.png \
-	mounted.png \
 	mute.png \
-	not_mounted.png \
 	pip.png \
 	rclock.png \
 	rec.png \

@@ -1247,7 +1247,7 @@
 	</Bouquet>
 	<Bouquet name="[E019.2] Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
-		<S i="192" t="b" on="85" s="192" frq="12382" n="A&amp;E"/>
+		<S i="192" t="b" on="85" s="192" frq="12382" n="Crime + Investigation"/>
 		<S i="c8" t="3" on="85" s="192" frq="11720" n="BDL VoD"/>
 		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate-Uhse.TV HD"/>
 		<S i="201" t="b" on="85" s="192" frq="12382" n="Blue Movie"/>

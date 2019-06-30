@@ -1211,7 +1211,7 @@
 			<S i="016d" n="Blue Movie 3" v="12ff" a="1300" p="12ff" pmt="72" tx="0" t="d3" vt="1" s="1" num="126" f="4"/>
 			<S i="017d" n="Sky Sport 12 HD" t="19" s="1" num="209" f="4"/>
 			<S i="0182" n="Sky Sport 13 HD" t="19" s="1" num="210" f="4"/>
-			<S i="0192" n="A&amp;E" v="1ff" a="200" p="1ff" pmt="61" tx="0" t="16" vt="1" s="1" num="121" f="4"/>
+			<S i="0192" n="Crime + Investigation" v="1ff" a="200" p="1ff" pmt="61" tx="0" t="16" vt="1" s="1" num="121" f="4"/>
 			<S i="0193" n="Boomerang" v="4ff" a="500" p="4ff" pmt="64" tx="0" t="16" vt="1" s="1" num="127" f="4"/>
 			<S i="0194" n="Cartoon Network" v="6ff" a="700" p="6ff" pmt="66" tx="0" t="16" vt="1" s="1" num="128" f="4"/>
 			<S i="0201" n="Blue Movie" v="9ff" a="a00" p="9ff" pmt="69" tx="0" t="16" vt="1" s="1" num="123" f="4"/>

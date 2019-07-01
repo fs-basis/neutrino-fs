@@ -213,7 +213,7 @@
 #define NEUTRINO_ICON_EPG		"epg"
 
 #define NEUTRINO_ICON_MOUNTED		"marker_mounted"
-#define NEUTRINO_ICON_NOT_MOUNTED	"makrker_not_mounted"
+#define NEUTRINO_ICON_NOT_MOUNTED	"marker_not_mounted"
 
 /* infoviewer */
 #define NEUTRINO_ICON_AUTO_SHIFT	"ats"

@@ -312,7 +312,6 @@
 		<S i="6d6d" t="437" on="1" s="192" frq="11954" n="Dlf"/>
 		<S i="6d6c" t="437" on="1" s="192" frq="11954" n="Dlf Kultur"/>
 		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
-		<S i="ab" t="5" on="85" s="192" frq="12460" n="unknown (0x0005_0x00AB)"/>
 		<S i="6d6f" t="437" on="1" s="192" frq="11954" n="DRadio DokDeb"/>
 		<S i="ac" t="5" on="85" s="192" frq="12460" n="egoFM"/>
 		<S i="a1" t="7" on="85" s="192" frq="12148" n="ERF Plus"/>
@@ -342,7 +341,6 @@
 		<S i="6f42" t="445" on="1" s="192" frq="12266" n="KIRAKA"/>
 		<S i="ad" t="5" on="85" s="192" frq="12460" n="Klassik Radio"/>
 		<S i="6f25" t="445" on="1" s="192" frq="12266" n="rbbKultur"/>
-		<S i="a3" t="7" on="85" s="192" frq="12148" n="unknown (0x0007_0x00A3)"/>
 		<S i="6f12" t="445" on="1" s="192" frq="12266" n="MDR AKTUELL"/>
 		<S i="6f10" t="445" on="1" s="192" frq="12266" n="MDR JUMP"/>
 		<S i="6f13" t="445" on="1" s="192" frq="12266" n="MDR KLASSIK"/>
@@ -432,8 +430,6 @@
 		<S i="23d7" t="44a" on="1" s="192" frq="12363" n="TSF JAZZ"/>
 		<S i="13fc" t="403" on="1" s="192" frq="11612" n="TSR Turkce"/>
 		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
-		<S i="ae" t="5" on="85" s="192" frq="12460" n="unknown (0x0005_0x00AE)"/>
-		<S i="af" t="5" on="85" s="192" frq="12460" n="unknown (0x0005_0x00AF)"/>
 		<S i="23e0" t="44a" on="1" s="192" frq="12363" n="VIRGIN RADIO"/>
 		<S i="101a" t="451" on="35" s="192" frq="12515" n="VRT Radio1"/>
 		<S i="101b" t="451" on="35" s="192" frq="12515" n="VRT Radio2"/>

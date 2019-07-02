@@ -109,6 +109,7 @@
 #endif
 #include "gui/themes.h"
 #include "gui/timerlist.h"
+#include "gui/components/cc_item_progressbar.h"
 
 #if HAVE_SH4_HARDWARE
 #include "gui/screensetup.h"
@@ -4327,6 +4328,9 @@ void CNeutrinoApp::ExitRun(int exit_code)
 	dprintf(DEBUG_INFO, "exit\n");
 	OnShutDown();
 
+	//cleanup progress bar cache
+	CProgressBarCache::pbcClear();
+
 	StopSubtitles();
 	stopPlayBack();
 
@@ -4986,6 +4990,9 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 	else if(actionKey=="restart") {
 		//usage of slots from any classes
 		OnBeforeRestart();
+
+		//cleanup progress bar cache
+		CProgressBarCache::pbcClear();
 
 		if (recordingstatus)
 			DisplayErrorMessage(g_Locale->getText(LOCALE_SERVICEMENU_RESTART_REFUSED_RECORDING));

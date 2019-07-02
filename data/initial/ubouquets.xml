@@ -275,6 +275,7 @@
 		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
 		<S i="30d7" t="413" on="1" s="192" frq="11112" n="Eurosport 2 HD Xtra"/>
+		<S i="7d0" t="449" on="1" s="192" frq="12344" n="INSIGHT TV UHD"/>
 	</Bouquet>
 	<Bouquet name="Sparten">
 		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
@@ -341,7 +342,7 @@
 		<S i="6f42" t="445" on="1" s="192" frq="12266" n="KIRAKA"/>
 		<S i="ad" t="5" on="85" s="192" frq="12460" n="Klassik Radio"/>
 		<S i="6f25" t="445" on="1" s="192" frq="12266" n="rbbKultur"/>
-		<S i="a3" t="7" on="85" s="192" frq="12148" n="Life Channel CH"/>
+		<S i="a3" t="7" on="85" s="192" frq="12148" n="unknown (0x0007_0x00A3)"/>
 		<S i="6f12" t="445" on="1" s="192" frq="12266" n="MDR AKTUELL"/>
 		<S i="6f10" t="445" on="1" s="192" frq="12266" n="MDR JUMP"/>
 		<S i="6f13" t="445" on="1" s="192" frq="12266" n="MDR KLASSIK"/>

@@ -376,12 +376,12 @@ data/scripts/Makefile
 data/webradio/Makefile
 data/webtv/Makefile
 data/themes/Makefile
+data/zapit/Makefile
 data/y-web/Makefile
 data/y-web/images/Makefile
 data/y-web/languages/Makefile
 data/y-web/scripts/Makefile
 data/y-web/styles/Makefile
-data/zapit/Makfile
 lib/Makefile
 lib/connection/Makefile
 lib/hardware/coolstream/Makefile

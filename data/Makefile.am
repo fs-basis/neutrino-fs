@@ -11,9 +11,6 @@ SUBDIRS = \
 	themes \
 	zapit
 
-#	webtv \
-#	webradio \
-
 if BOXTYPE_ARMBOX
 SUBDIRS += neutrino-scripts-arm
 else

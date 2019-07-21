@@ -123,7 +123,6 @@
 	</Bouquet>
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
-		<S i="192" t="b" on="85" s="192" frq="12382" n="Crime + Investigation"/>
 		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate-Uhse.TV HD"/>
 		<S i="201" t="b" on="85" s="192" frq="12382" n="Blue Movie"/>
 		<S i="159" t="b" on="85" s="192" frq="12382" n="Blue Movie 1"/>
@@ -132,6 +131,7 @@
 		<S i="193" t="b" on="85" s="192" frq="12382" n="Boomerang"/>
 		<S i="194" t="b" on="85" s="192" frq="12382" n="Cartoon Network"/>
 		<S i="18" t="4" on="85" s="192" frq="12032" n="Classica"/>
+		<S i="192" t="b" on="85" s="192" frq="12382" n="Crime + Investigation"/>
 		<S i="84" t="9" on="85" s="192" frq="11171" n="DAZN 1 Bar HD"/>
 		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 Bar HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>
@@ -139,16 +139,6 @@
 		<S i="8a" t="3" on="85" s="192" frq="11720" n="Disney Junior HD"/>
 		<S i="1c" t="3" on="85" s="192" frq="11720" n="Disney XD"/>
 		<S i="80" t="b" on="85" s="192" frq="12382" n="E! Entertainm. HD"/>
-		<S i="6d" t="b" on="85" s="192" frq="12382" n="Eurosport 2 HD"/>
-		<S i="10e" t="6" on="85" s="192" frq="11914" n="Eurosport360HD 1"/>
-		<S i="118" t="d" on="85" s="192" frq="11992" n="Eurosport360HD 2"/>
-		<S i="122" t="c" on="85" s="192" frq="12304" n="Eurosport360HD 3"/>
-		<S i="12c" t="9" on="85" s="192" frq="11171" n="Eurosport360HD 4"/>
-		<S i="136" t="4" on="85" s="192" frq="12032" n="Eurosport360HD 5"/>
-		<S i="140" t="2" on="85" s="192" frq="11758" n="Eurosport360HD 6"/>
-		<S i="14a" t="6" on="85" s="192" frq="11914" n="Eurosport360HD 7"/>
-		<S i="154" t="10" on="85" s="192" frq="11798" n="Eurosport360HD 8"/>
-		<S i="104" t="b" on="85" s="192" frq="12382" n="Eurosport360HD 9"/>
 		<S i="7c" t="c" on="85" s="192" frq="12304" n="Fox HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
 		<S i="71" t="b" on="85" s="192" frq="12382" n="History HD"/>
@@ -189,6 +179,24 @@
 		<S i="14b" t="2" on="85" s="192" frq="11758" n="Sky Select 9"/>
 		<S i="fe" t="3" on="85" s="192" frq="11720" n="Sky Select Event A"/>
 		<S i="14e" t="2" on="85" s="192" frq="11758" n="Sky Select Event B"/>
+		<S i="75" t="c" on="85" s="192" frq="12304" n="Sky Serien &amp; Shows HD"/>
+		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
+		<S i="31" t="d" on="85" s="192" frq="11992" n="Spiegel TV Wissen"/>
+		<S i="7e" t="c" on="85" s="192" frq="12304" n="SYFY HD"/>
+		<S i="88" t="b" on="85" s="192" frq="12382" n="TNT Comedy HD"/>
+		<S i="8c" t="4" on="85" s="192" frq="12032" n="TNT Film HD"/>
+		<S i="7b" t="9" on="85" s="192" frq="11171" n="TNT Serie HD"/>
+		<S i="65" t="9" on="85" s="192" frq="11171" n="Universal TV HD"/>
+		<S i="6d" t="b" on="85" s="192" frq="12382" n="Eurosport 2 HD"/>
+		<S i="10e" t="6" on="85" s="192" frq="11914" n="Eurosport360HD 1"/>
+		<S i="118" t="d" on="85" s="192" frq="11992" n="Eurosport360HD 2"/>
+		<S i="122" t="c" on="85" s="192" frq="12304" n="Eurosport360HD 3"/>
+		<S i="12c" t="9" on="85" s="192" frq="11171" n="Eurosport360HD 4"/>
+		<S i="136" t="4" on="85" s="192" frq="12032" n="Eurosport360HD 5"/>
+		<S i="140" t="2" on="85" s="192" frq="11758" n="Eurosport360HD 6"/>
+		<S i="14a" t="6" on="85" s="192" frq="11914" n="Eurosport360HD 7"/>
+		<S i="154" t="10" on="85" s="192" frq="11798" n="Eurosport360HD 8"/>
+		<S i="104" t="b" on="85" s="192" frq="12382" n="Eurosport360HD 9"/>
 		<S i="dd" t="4" on="85" s="192" frq="12032" n="Sky Sport 1"/>
 		<S i="de" t="2" on="85" s="192" frq="11758" n="Sky Sport 2"/>
 		<S i="107" t="3" on="85" s="192" frq="11720" n="Sky Sport 3"/>
@@ -211,11 +219,17 @@
 		<S i="148" t="6" on="85" s="192" frq="11914" n="Sky Sport 9 HD"/>
 		<S i="152" t="10" on="85" s="192" frq="11798" n="Sky Sport 10 HD"/>
 		<S i="102" t="b" on="85" s="192" frq="12382" n="Sky Sport 11 HD"/>
-		<S i="17d" t="b" on="85" s="192" frq="12382" n="Sky Sport 12 HD"/>
-		<S i="182" t="b" on="85" s="192" frq="12382" n="Sky Sport 13 HD"/>
-		<S i="187" t="d" on="85" s="192" frq="11992" n="Sky Sport 14 HD"/>
-		<S i="1e" t="2" on="85" s="192" frq="11758" n="Sky Sport Austria"/>
-		<S i="8f" t="9" on="85" s="192" frq="11171" n="Sky Sport Austria HD"/>
+		<S i="17d" t="3" on="85" s="192" frq="11720" n="Sky Sport 12 HD"/>
+		<S i="182" t="3" on="85" s="192" frq="11720" n="Sky Sport 13 HD"/>
+		<S i="187" t="b" on="85" s="192" frq="12382" n="Sky Sport 14 HD"/>
+		<S i="1e" t="2" on="85" s="192" frq="11758" n="Sky Sport Austria 1"/>
+		<S i="145" t="3" on="85" s="192" frq="11720" n="Sky Sport Austria 2"/>
+		<S i="150" t="2" on="85" s="192" frq="11758" n="Sky Sport Austria 3"/>
+		<S i="ff" t="3" on="85" s="192" frq="11720" n="Sky Sport Austria 4"/>
+		<S i="8f" t="9" on="85" s="192" frq="11171" n="Sky Sport Austria 1 HD"/>
+		<S i="149" t="6" on="85" s="192" frq="11914" n="Sky Sport Austria 2 HD"/>
+		<S i="153" t="10" on="85" s="192" frq="11798" n="Sky Sport Austria 3 HD"/>
+		<S i="103" t="b" on="85" s="192" frq="12382" n="Sky Sport Austria 4 HD"/>
 		<S i="df" t="4" on="85" s="192" frq="12032" n="Sky Sport Bundesliga 1"/>
 		<S i="106" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 2"/>
 		<S i="110" t="2" on="85" s="192" frq="11758" n="Sky Sport Bundesliga 3"/>
@@ -237,16 +251,9 @@
 		<S i="151" t="10" on="85" s="192" frq="11798" n="Sky Sport Bundesliga 9 HD"/>
 		<S i="101" t="b" on="85" s="192" frq="12382" n="Sky Sport Bundesliga 10 HD"/>
 		<S i="228" t="10" on="85" s="192" frq="11798" n="Sky Sport Bundesliga UHD"/>
+		<S i="229" t="10" on="85" s="192" frq="11798" n="Sky Sport UHD"/>
 		<S i="25" t="f" on="85" s="192" frq="10921" n="Sky Sport News"/>
 		<S i="6c" t="c" on="85" s="192" frq="12304" n="Sky Sport News HD"/>
-		<S i="229" t="10" on="85" s="192" frq="11798" n="Sky Sport UHD"/>
-		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
-		<S i="31" t="d" on="85" s="192" frq="11992" n="Spiegel TV Wissen"/>
-		<S i="7e" t="c" on="85" s="192" frq="12304" n="SYFY HD"/>
-		<S i="88" t="b" on="85" s="192" frq="12382" n="TNT Comedy HD"/>
-		<S i="8c" t="4" on="85" s="192" frq="12032" n="TNT Film HD"/>
-		<S i="7b" t="9" on="85" s="192" frq="11171" n="TNT Serie HD"/>
-		<S i="65" t="9" on="85" s="192" frq="11171" n="Universal TV HD"/>
 		<S i="1194" t="406" on="1" s="192" frq="11656" n="sportdigital HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
@@ -274,6 +281,7 @@
 		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
 		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
+		<S i="6d" t="b" on="85" s="192" frq="12382" n="Eurosport 2 HD"/>
 		<S i="30d7" t="413" on="1" s="192" frq="11112" n="Eurosport 2 HD Xtra"/>
 		<S i="7d0" t="449" on="1" s="192" frq="12344" n="INSIGHT TV UHD"/>
 	</Bouquet>

@@ -245,6 +245,9 @@ class CMoviePlayerGui : public CMenuTarget
 	void clearSubtitle();
 	void selectChapter();
 #endif
+#if HAVE_ARM_HARDWARE
+	void selectChapter();
+#endif
 	void selectAutoLang();
 	void parsePlaylist(CFile *file);
 	bool mountIso(CFile *file);

@@ -183,7 +183,7 @@ void CInfoViewerBB::getBBIconInfo()
 			break;
 		case CInfoViewerBB::ICON_TUNER:
 			if (CFEManager::getInstance()->getEnabledCount() > 1 && g_settings.infobar_show_tuner == 1 && !IS_WEBCHAN(g_InfoViewer->get_current_channel_id()) && CNeutrinoApp::getInstance()->getMode() != NeutrinoModes::mode_ts)
-#if0
+#if 0
 				iconView = checkBBIcon(NEUTRINO_ICON_TUNER_1, &w, &h);
 #endif
 				iconView = checkBBIcon("tuner_1", &w, &h);

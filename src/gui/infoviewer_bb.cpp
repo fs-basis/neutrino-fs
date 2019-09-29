@@ -737,7 +737,7 @@ void CInfoViewerBB::paint_ca_icon(int caid, const char *icon, int &icon_space_of
 		icon_map[0x1800] = std::make_pair(index++,"nagra");
 		icon_map[0x0B00] = std::make_pair(index++,"conax");
 		icon_map[0x0D00] = std::make_pair(index++,"cw");
-		icon_map[0x0900] = std::make_pair(index++  ,"nds");
+		icon_map[0x0900] = std::make_pair(index++,"nds");
 		icon_map[0x5600] = std::make_pair(index  ,"vmx");
 
 		for (it=icon_map.begin(); it!=icon_map.end(); ++it) {
@@ -786,7 +786,7 @@ void CInfoViewerBB::paint_ca_icons(int notfirst)
 		return;
 	}
 
-	int caids[] = { 0x5600, 0x0900, 0x0D00, 0x0B00, 0x1800, 0x0500, 0x0100, 0x1700, 0x0600, 0x4a00, 0x2600, 0x1000, 0x0E00 };
+	int caids[] = { 0x5600, 0x0900, 0x0D00, 0x0B00, 0x1800, 0x0500, 0x0100, 0x1700, 0x0600, 0x4A00, 0x2600, 0x1000, 0x0E00 };
 	const char *white = "white";
 	const char *yellow = "yellow";
 	const char *green = "green";

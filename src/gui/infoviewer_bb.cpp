@@ -719,6 +719,7 @@ void CInfoViewerBB::paint_ca_icon(int caid, const char *icon, int &icon_space_of
 
 	static int icon_offset[icon_number] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
 	static int icon_sizeW [icon_number] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+
 	static bool init_flag = false;
 
 	if (!init_flag) {
@@ -778,6 +779,7 @@ void CInfoViewerBB::paint_ca_icons(int notfirst)
 {
 	if (g_settings.infobar_casystem_display == 3)
 		return;
+
 	if(NeutrinoModes::mode_ts == CNeutrinoApp::getInstance()->getMode() && !CMoviePlayerGui::getInstance().timeshift){
 		if (g_settings.infobar_casystem_display == 2) {
 			fta = true;

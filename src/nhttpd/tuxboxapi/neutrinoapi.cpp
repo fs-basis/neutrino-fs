@@ -506,7 +506,7 @@ std::string CNeutrinoAPI::getCryptInfoAsString(void)
 	std::stringstream out;
 	std::string casys[13]=	{"Irdeto:","Betacrypt:","Seca:","Viaccess:","Nagra:","Conax: ","Cryptoworks:","Videoguard:","Biss:","DreCrypt:","PowerVU:","Tandberg:","Verimatrix:"};
 
-	int caids[] =		{ 0x600, 0x1700, 0x0100, 0x0500, 0x1800, 0xB00, 0xD00, 0x900, 0x2600, 0x4a00, 0x0E00, 0x1000, 0x5600 };	
+	int caids[] =		{ 0x600, 0x1700, 0x0100, 0x0500, 0x1800, 0xB00, 0xD00, 0x900, 0x2600, 0x4a00, 0x0E00, 0x1000, 0x5600 };
 
 	OpenThreads::ScopedPointerLock<OpenThreads::Mutex> lock(pmutex);
 	CZapitChannel * channel = CZapit::getInstance()->GetCurrentChannel();

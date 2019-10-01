@@ -23,10 +23,6 @@
 		<S i="33ac" t="3eb" on="1" s="192" frq="11244" n="ATV HD"/>
 		<S i="33a7" t="3eb" on="1" s="192" frq="11244" n="ATV2"/>
 		<S i="3332" t="45b" on="1" s="192" frq="12663" n="sixx Austria"/>
-		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV Music 24"/>
-		<S i="6fef" t="436" on="1" s="192" frq="11973" n="MTV Dance"/>
-		<S i="6fee" t="436" on="1" s="192" frq="11973" n="MTV Hits"/>
-		<S i="6ff3" t="436" on="1" s="192" frq="11973" n="MTV ROCKS"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="VH1"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="VH1 Classic"/>
 		<S i="7008" t="436" on="1" s="192" frq="11973" n="NICK/MTV+"/>
@@ -128,16 +124,14 @@
 		<S i="159" t="b" on="85" s="192" frq="12382" n="Blue Movie 1"/>
 		<S i="163" t="b" on="85" s="192" frq="12382" n="Blue Movie 2"/>
 		<S i="16d" t="b" on="85" s="192" frq="12382" n="Blue Movie 3"/>
-		<S i="193" t="b" on="85" s="192" frq="12382" n="Boomerang"/>
+		<S i="1c" t="3" on="85" s="192" frq="11720" n="Boomerang"/>
 		<S i="194" t="b" on="85" s="192" frq="12382" n="Cartoon Network"/>
 		<S i="18" t="4" on="85" s="192" frq="12032" n="Classica"/>
 		<S i="192" t="b" on="85" s="192" frq="12382" n="Crime + Investigation"/>
 		<S i="84" t="9" on="85" s="192" frq="11171" n="DAZN 1 Bar HD"/>
 		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 Bar HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>
-		<S i="6f" t="d" on="85" s="192" frq="11992" n="Disney Cinemagic HD"/>
 		<S i="8a" t="3" on="85" s="192" frq="11720" n="Disney Junior HD"/>
-		<S i="1c" t="3" on="85" s="192" frq="11720" n="Disney XD"/>
 		<S i="80" t="b" on="85" s="192" frq="12382" n="E! Entertainm. HD"/>
 		<S i="7c" t="c" on="85" s="192" frq="12304" n="Fox HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
@@ -166,6 +160,7 @@
 		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Hits"/>
 		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Hits HD"/>
 		<S i="204" t="4" on="85" s="192" frq="12032" n="Sky Cinema Nostalgie"/>
+		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>
@@ -253,8 +248,7 @@
 		<S i="229" t="10" on="85" s="192" frq="11798" n="Sky Sport UHD"/>
 		<S i="25" t="f" on="85" s="192" frq="10921" n="Sky Sport News"/>
 		<S i="6c" t="c" on="85" s="192" frq="12304" n="Sky Sport News HD"/>
-		<S i="1194" t="406" on="1" s="192" frq="11656" n="sportdigital HD"/>
-		<S i="75" t="c" on="85" s="192" frq="12304" n="unknown (0x000C_0x0075)"/>
+		<S i="1194" t="406" on="1" s="192" frq="11656" n="SPORTDIGITAL FUSSBALL HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
@@ -293,6 +287,7 @@
 		<S i="1086" t="3ee" on="1" s="192" frq="11288" n="QVC UHD"/>
 		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
 		<S i="151c" t="455" on="1" s="192" frq="12574" n="pearl.tv HD Shop"/>
+		<S i="7da" t="449" on="1" s="192" frq="12344" n="QVC2 UHD"/>
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
 	</Bouquet>
 	<Bouquet name="Radio">

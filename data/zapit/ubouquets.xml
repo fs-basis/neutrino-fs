@@ -119,7 +119,7 @@
 	</Bouquet>
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
-		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate-Uhse.TV HD"/>
+		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate Uhse HD"/>
 		<S i="201" t="b" on="85" s="192" frq="12382" n="Blue Movie"/>
 		<S i="159" t="b" on="85" s="192" frq="12382" n="Blue Movie 1"/>
 		<S i="163" t="b" on="85" s="192" frq="12382" n="Blue Movie 2"/>
@@ -137,8 +137,8 @@
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
 		<S i="71" t="b" on="85" s="192" frq="12382" n="History HD"/>
 		<S i="191" t="9" on="85" s="192" frq="11171" n="Jukebox"/>
-		<S i="13" t="4" on="85" s="192" frq="12032" n="Junior"/>
-		<S i="196" t="4" on="85" s="192" frq="12032" n="Kinowelt TV"/>
+		<S i="13" t="2" on="85" s="192" frq="11758" n="Junior"/>
+		<S i="196" t="2" on="85" s="192" frq="11758" n="Kinowelt TV"/>
 		<S i="a8" t="b" on="85" s="192" frq="12382" n="Motorvision TV"/>
 		<S i="76" t="6" on="85" s="192" frq="11914" n="Nat Geo Wild HD"/>
 		<S i="70" t="d" on="85" s="192" frq="11992" n="NatGeo HD"/>
@@ -161,7 +161,7 @@
 		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Hits HD"/>
 		<S i="204" t="4" on="85" s="192" frq="12032" n="Sky Cinema Nostalgie"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
-		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi"/>
+		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>
 		<S i="105" t="3" on="85" s="192" frq="11720" n="Sky Select 2"/>

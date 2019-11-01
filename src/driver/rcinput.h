@@ -168,6 +168,7 @@ class CRCInput
 		bool		*timer_wakeup;
 		__u16 rc_last_key;
 		OpenThreads::Mutex mutex;
+		OpenThreads::Mutex timer_mutex;
 
 		void open(bool recheck = false);
 		bool checkpath(in_dev id);
@@ -233,7 +234,7 @@ class CRCInput
 			RC_tv		= KEY_TV,
 			RC_radio	= KEY_RADIO,
 			RC_text		= KEY_TEXT,
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUZERO4K || BOXMODEL_VUDUO
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K || BOXMODEL_VUZERO4K || BOXMODEL_VUDUO || BOXMODEL_VUUNO4KSE || BOXMODEL_VUUNO4K
 			RC_info		= 0xFFFE,
 			RC_epg		= KEY_INFO,
 #else
@@ -281,7 +282,7 @@ class CRCInput
 			RC_bookmarks	= KEY_BOOKMARKS,
 			RC_program	= KEY_PROGRAM,
 			RC_playpause	= KEY_PLAYPAUSE,
-#if BOXMODEL_HD51 || BOXMODEL_HD60
+#if BOXMODEL_HD51 || BOXMODEL_HD60 || BOXMODEL_H7
 			RC_playpause_long = KEY_PLAYPAUSE_LONG,
 #endif
 

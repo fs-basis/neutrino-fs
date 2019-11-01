@@ -345,7 +345,7 @@ void CFrontend::getFEInfo(void)
 	if (ret == 0) {
 		for (uint32_t i = 0; i < prop[0].u.buffer.len; i++) {
 			if (i >= MAX_DELSYS) {
-				printf("ERROR: too many delivery systems on frontend %d/%d", adapter, fenumber);
+				printf("ERROR: too many delivery systems on frontend %d/%d\n", adapter, fenumber);
 				break;
 			}
 
@@ -369,11 +369,15 @@ void CFrontend::getFEInfo(void)
 				deliverySystemMask |= DVB_S2;
 				isMultistream = info.caps & FE_CAN_MULTISTREAM;
 				break;
+			case SYS_DVBS2X:
+				deliverySystemMask |= DVB_S2X;
+				isMultistream = info.caps & FE_CAN_MULTISTREAM;
+				break;
 			case SYS_DTMB:
 				deliverySystemMask |= DTMB;
 				break;
 			default:
-				printf("ERROR: too many delivery systems on frontend %d/%d", adapter, fenumber);
+				printf("ERROR: delivery system unknown on frontend %d/%d (delivery_system: %d)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i]);
 				continue;
 			}
 
@@ -389,6 +393,7 @@ void CFrontend::getFEInfo(void)
 		case FE_QPSK:
 			deliverySystemMask |= DVB_S;
 			deliverySystemMask |= DVB_S2;
+			deliverySystemMask |= DVB_S2X;
 			break;
 		case FE_OFDM:
 			deliverySystemMask |= DVB_T;
@@ -941,6 +946,7 @@ void CFrontend::getDelSys(delivery_system_t delsys, int f, int m, const char *&f
 		mod = "QPSK";
 		break;
 	case DVB_S2:
+	case DVB_S2X:
 		sys = "DVB-S2";
 		switch (m) {
 		case QPSK:
@@ -948,6 +954,15 @@ void CFrontend::getDelSys(delivery_system_t delsys, int f, int m, const char *&f
 			break;
 		case PSK_8:
 			mod = "8PSK";
+			break;
+		case APSK_8:
+			mod = "8APSK";
+			break;
+		case APSK_16:
+			mod = "16APSK";
+			break;
+		case APSK_32:
+			mod = "32APSK";
 			break;
 		default:
 			printf("[frontend] unknown modulation %d!\n", m);
@@ -1076,6 +1091,9 @@ fe_delivery_system_t CFrontend::getFEDeliverySystem(delivery_system_t Delsys)
 	case DVB_S2:
 		delsys = SYS_DVBS2;
 		break;
+	case DVB_S2X:
+		delsys = SYS_DVBS2X;
+		break;
 	case DVB_T:
 		delsys = SYS_DVBT;
 		break;
@@ -1165,6 +1183,9 @@ uint32_t CFrontend::getXMLDeliverySystem(delivery_system_t delsys)
 	case ISDBT:
 		delnr = 11;
 		break;
+	case DVB_S2X:
+		delnr = 12;
+		break;
 	default:
 		printf("%s: unknown delivery system (%d)\n", __FUNCTION__, delsys);
 		delnr = 0;
@@ -1222,7 +1243,7 @@ bool CFrontend::buildProperties(const FrontendParameters *feparams, struct dtv_p
 	case FEC_2_3:
 		fec = FEC_2_3;
 		if (feparams->delsys == DVB_S2 && feparams->modulation == PSK_8)
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K || BOXMODEL_VUZERO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_VUUNO4K
 			pilot = PILOT_AUTO;
 #else
 			pilot = PILOT_ON;
@@ -1231,7 +1252,11 @@ bool CFrontend::buildProperties(const FrontendParameters *feparams, struct dtv_p
 	case FEC_3_4:
 		fec = FEC_3_4;
 		if (feparams->delsys == DVB_S2 && feparams->modulation == PSK_8)
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K || BOXMODEL_VUZERO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_VUUNO4K
+			pilot = PILOT_AUTO;
+#else
 			pilot = PILOT_ON;
+#endif
 		break;
 	case FEC_4_5:
 		fec = FEC_4_5;
@@ -1239,7 +1264,11 @@ bool CFrontend::buildProperties(const FrontendParameters *feparams, struct dtv_p
 	case FEC_5_6:
 		fec = FEC_5_6;
 		if (feparams->delsys == DVB_S2 && feparams->modulation == PSK_8)
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K || BOXMODEL_VUZERO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_VUUNO4K
+			pilot = PILOT_AUTO;
+#else
 			pilot = PILOT_ON;
+#endif
 		break;
 	case FEC_6_7:
 		fec = FEC_6_7;
@@ -1253,7 +1282,11 @@ bool CFrontend::buildProperties(const FrontendParameters *feparams, struct dtv_p
 	case FEC_3_5:
 		fec = FEC_3_5;
 		if (feparams->delsys == DVB_S2 && feparams->modulation == PSK_8)
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K || BOXMODEL_VUZERO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_VUUNO4K
+			pilot = PILOT_AUTO;
+#else
 			pilot = PILOT_ON;
+#endif
 		break;
 	case FEC_9_10:
 		fec = FEC_9_10;
@@ -1293,6 +1326,7 @@ bool CFrontend::buildProperties(const FrontendParameters *feparams, struct dtv_p
 	switch (feparams->delsys) {
 	case DVB_S:
 	case DVB_S2:
+	case DVB_S2X:
 		if (feparams->delsys == DVB_S2) {
 			nrOfProps	= FE_DVBS2_PROPS;
 			memcpy(cmdseq.props, dvbs2_cmdargs, sizeof(dvbs2_cmdargs));
@@ -1713,7 +1747,7 @@ uint32_t CFrontend::sendEN50494TuningCommand(const uint32_t frequency, const int
 		}
 		fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_18);
 		usleep(20 * 1000);		/* en50494 says: >4ms and < 22 ms */
-		sendDiseqcCommand(&cmd, 120);	/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms) */
+		sendDiseqcCommand(&cmd, 80);	/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms) */
 		fop(ioctl, FE_SET_VOLTAGE, unicable_lowvolt);
 	}
 	return ret;
@@ -1750,7 +1784,7 @@ uint32_t CFrontend::sendEN50607TuningCommand(const uint32_t frequency, const int
 				high_band;					/* high_band  == 0x01 */
 			fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_18);
 			usleep(20 * 1000);					/* en50494 says: >4ms and < 22 ms */
-			sendDiseqcCommand(&cmd, 120);				/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms) */
+			sendDiseqcCommand(&cmd, 80);				/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms) */
 			fop(ioctl, FE_SET_VOLTAGE, unicable_lowvolt);
 		}
 		return ret;
@@ -1810,6 +1844,7 @@ int CFrontend::setParameters(transponder *TP, bool nowait)
 	switch (feparams.delsys) {
 	case DVB_S:
 	case DVB_S2:
+	case DVB_S2X:
 		if (freq < lnbSwitch) {
 			high_band = false;
 			freq_offset = lnbOffsetLow;

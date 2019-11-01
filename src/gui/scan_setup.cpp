@@ -105,11 +105,12 @@ const CMenuOptionChooser::keyval SATSETUP_DISEQC_OPTIONS[SATSETUP_DISEQC_OPTION_
 //	{ SMATV_REMOTE_TUNING,	LOCALE_SATSETUP_SMATVREMOTE }
 };
 
-#define SATSETUP_SCANTP_DELSYS_COUNT	5
+#define SATSETUP_SCANTP_DELSYS_COUNT	6
 const CMenuOptionChooser::keyval SATSETUP_SCANTP_DELSYS[SATSETUP_SCANTP_DELSYS_COUNT] =
 {
 	{ DVB_S,		LOCALE_EXTRA_TP_DELSYS_DVBS },
 	{ DVB_S2,		LOCALE_EXTRA_TP_DELSYS_DVBS2 },
+	{ DVB_S2X,		LOCALE_EXTRA_TP_DELSYS_DVBS2X },
 	{ DSS,			LOCALE_EXTRA_TP_DELSYS_DSS },
 	{ ISDBS,		LOCALE_EXTRA_TP_DELSYS_ISDBS },
 	{ TURBO,		LOCALE_EXTRA_TP_DELSYS_TURBO }
@@ -257,11 +258,14 @@ const CMenuOptionChooser::keyval TERRSETUP_SCANTP_TRANSMIT_MODE[TERRSETUP_SCANTP
 	{ TRANSMISSION_MODE_AUTO,  LOCALE_EXTRA_TP_TRANSMIT_MODE_AUTO  }
 };
 
-#define SATSETUP_SCANTP_MOD_COUNT 3
+#define SATSETUP_SCANTP_MOD_COUNT 6
 const CMenuOptionChooser::keyval SATSETUP_SCANTP_MOD[SATSETUP_SCANTP_MOD_COUNT] =
 {
 	{ QPSK,     LOCALE_EXTRA_TP_MOD_4    },
 	{ PSK_8,    LOCALE_EXTRA_TP_MOD_8    },
+	{ APSK_8,   LOCALE_EXTRA_TP_MOD_8A   },
+	{ APSK_16,  LOCALE_EXTRA_TP_MOD_16A  },
+	{ APSK_32,  LOCALE_EXTRA_TP_MOD_32A  },
 	{ QAM_AUTO, LOCALE_EXTRA_TP_MOD_AUTO }
 };
 
@@ -454,7 +458,16 @@ int CScanSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 	}
 	else if((loc = actionKey.find("config_frontend", 0)) != std::string::npos)
 	{
-		int number = actionKey.at(15) - '0';
+//		int number = actionKey.at(15) - '0';
+
+		std::string actionKey_tmp;
+		for (int i = 15; i < actionKey.length(); ++i) {
+			int test = actionKey.at(i) - '0';
+			actionKey_tmp += to_string(test);
+//			printf("[neutrino] >>>>>>>>> %s (%d) <<<<<<<<<\n", actionKey_tmp.c_str(), test);
+		}
+		int number = atoi(actionKey_tmp.c_str());
+
 		printf("[neutrino] CScanSetup::%s %s, fe %d\n", __FUNCTION__, actionKey.c_str(), number);
 		return showFrontendSetup(number);
 	}

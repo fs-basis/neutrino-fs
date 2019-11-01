@@ -94,6 +94,10 @@ install_DATA += rc_ax_hd51.png \
 		rc_mutant_hd51.png
 endif
 
+if BOXMODEL_H7
+install_DATA += rc_zgemma_h7.png
+endif
+
 if BOXMODEL_VUSOLO4K
 install_DATA += rc_vu_solo4k.png
 endif
@@ -102,11 +106,23 @@ if BOXMODEL_VUDUO4K
 install_DATA += rc_vu_solo4k.png
 endif
 
+if BOXMODEL_VUULTIMO4K
+install_DATA += rc_vu_solo4k.png
+endif
+
 if BOXMODEL_VUDUO
 install_DATA += rc_vu_solo4k.png
 endif
 
 if BOXMODEL_VUZERO4K
+install_DATA += rc_vu_solo4k.png
+endif
+
+if BOXMODEL_VUUNO4KSE
+install_DATA += rc_vu_solo4k.png
+endif
+
+if BOXMODEL_VUUNO4K
 install_DATA += rc_vu_solo4k.png
 endif
 

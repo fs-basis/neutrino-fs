@@ -260,6 +260,7 @@
 		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>
 		<S i="5273" t="41d" on="1" s="192" frq="10773" n="Comedy Central HD"/>
 		<S i="ef10" t="421" on="1" s="192" frq="10832" n="RTL HD"/>
+		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
 		<S i="ef15" t="421" on="1" s="192" frq="10832" n="RTLII HD"/>
 		<S i="2eaf" t="411" on="1" s="192" frq="11082" n="NITRO HD"/>
 		<S i="2e9b" t="411" on="1" s="192" frq="11082" n="SUPER RTL HD"/>
@@ -277,6 +278,8 @@
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
 		<S i="6d" t="b" on="85" s="192" frq="12382" n="Eurosport 2 HD"/>
 		<S i="30d7" t="413" on="1" s="192" frq="11112" n="Eurosport 2 HD Xtra"/>
+		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
+		<S i="183a" t="40b" on="1" s="192" frq="10994" n="Travelxp 4k"/>
 		<S i="7d0" t="449" on="1" s="192" frq="12344" n="INSIGHT TV UHD"/>
 	</Bouquet>
 	<Bouquet name="Sparten">
@@ -285,10 +288,8 @@
 		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
 		<S i="1013" t="451" on="35" s="192" frq="12515" n="Planet"/>
 		<S i="1086" t="3ee" on="1" s="192" frq="11288" n="QVC UHD"/>
-		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
 		<S i="151c" t="455" on="1" s="192" frq="12574" n="pearl.tv HD Shop"/>
 		<S i="7da" t="449" on="1" s="192" frq="12344" n="QVC2 UHD"/>
-		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
 	</Bouquet>
 	<Bouquet name="Radio">
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>

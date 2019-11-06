@@ -160,7 +160,7 @@
 		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Hits"/>
 		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Hits HD"/>
 		<S i="204" t="4" on="85" s="192" frq="12032" n="Sky Cinema Nostalgie"/>
-		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
+		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Adventure HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>
@@ -249,6 +249,9 @@
 		<S i="25" t="f" on="85" s="192" frq="10921" n="Sky Sport News"/>
 		<S i="6c" t="c" on="85" s="192" frq="12304" n="Sky Sport News HD"/>
 		<S i="1194" t="406" on="1" s="192" frq="11656" n="SPORTDIGITAL FUSSBALL HD"/>
+		<S i="1197" t="406" on="1" s="192" frq="11656" n="EDGEsport"/>
+		<S i="1196" t="406" on="1" s="192" frq="11656" n="ESport1 HD"/>
+		<S i="1195" t="406" on="1" s="192" frq="11656" n="Sport1+ HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>

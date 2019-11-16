@@ -81,8 +81,11 @@ class CInfoViewer
 	int            ChanNumWidth;
 	int            ChanWidth;
 
-	char	       strChanNum[10];
+	char           strChanNum[10];
 	void           PaintChanNumber();
+	int            analogclock_size;
+	int            analogclock_offset;
+	fb_pixel_t*    analogclock_buf;
 
 	CSectionsdClient::CurrentNextInfo info_CurrentNext;
 	CSectionsdClient::CurrentNextInfo oldinfo;
@@ -123,6 +126,7 @@ class CInfoViewer
 			  const char *nextStart = NULL, const char *nextDuration = NULL,
 			  bool update_current = true, bool update_next = true);
 	void initClock();
+	void showAnalogClock(int posx,int posy,int dia);
 	void showRecordIcon(const bool show);
 	void showIcon_Tuner() const;
 

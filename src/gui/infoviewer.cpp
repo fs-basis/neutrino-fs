@@ -520,7 +520,8 @@ void CInfoViewer::showMovieTitle(const int playState, const t_channel_id &Channe
 			showAnalogClock(BoxEndX - analogclock_offset - analogclock_size/2, BoxEndY - analogclock_offset - analogclock_size/2, analogclock_size/2);
 		else
 			clock->paint(CC_SAVE_SCREEN_NO);
-	}	showRecordIcon (show_dot);
+	}
+	showRecordIcon (show_dot);
 	show_dot = !show_dot;
 
 	if (!zap_mode)
@@ -1944,62 +1945,6 @@ void CInfoViewer::killInfobarText()
 	}
 }
 
-void CInfoViewer::showAnalogClock(int posx,int posy,int dia)
-{
-	int ts,tm,th,sx,sy,mx,my,hx,hy;
-	double pi = 3.1415926535897932384626433832795, sAngleInRad, mAngleInRad, mAngleSave, hAngleInRad;
-
-	time_t now = time(0);
-	struct tm *tm_p = localtime(&now);
-
-	ts = tm_p->tm_sec;
-	tm = tm_p->tm_min;
-	th = tm_p->tm_hour;
-
-	sAngleInRad = ((6 * ts) * (2*pi / 360));
-	sAngleInRad -= pi/2;
-
-	sx = int((dia * 0.9 * cos(sAngleInRad)));
-	sy = int((dia * 0.9 * sin(sAngleInRad)));
-
-	mAngleInRad = ((6 * tm) * (2*pi / 360));
-	mAngleSave = mAngleInRad;
-	mAngleInRad -= pi/2;
-
-	mx = int((dia * 0.7 * cos(mAngleInRad)));
-	my = int((dia * 0.7 * sin(mAngleInRad)));
-
-	hAngleInRad = ((30 * th)* (2*pi / 360));
-	hAngleInRad += mAngleSave / 12;
-	hAngleInRad -= pi/2;
-
-	hx = int((dia * 0.45 * cos(hAngleInRad)));
-	hy = int((dia * 0.45 * sin(hAngleInRad)));
-
-	if (analogclock_buf == NULL) {
-		std::string clock_face = frameBuffer->getIconPath("a_clock");
-		g_PicViewer->DisplayImage(clock_face, posx-dia, posy-dia, 2*dia, 2*dia);
-
-		analogclock_buf = new fb_pixel_t[2*dia * 2*dia];
-		frameBuffer->SaveScreen(posx-dia, posy-dia, 2*dia, 2*dia, analogclock_buf);
-	}
-	else
-		frameBuffer->RestoreScreen(posx-dia, posy-dia, 2*dia, 2*dia, analogclock_buf);
-
-	frameBuffer->paintLine(posx,posy-2,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy-1,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy+1,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy+2,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
-
-	frameBuffer->paintLine(posx,posy-2,posx+mx,posy+my,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy-1,posx+mx,posy+my,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy,posx+mx,posy+my,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy+1,posx+mx,posy+my,COL_MENUHEAD_TEXT);
-	frameBuffer->paintLine(posx,posy+2,posx+mx,posy+my,COL_MENUHEAD_TEXT);
-
-	frameBuffer->paintLine(posx,posy,posx+sx,posy+sy,COL_COLORED_EVENTS_TEXT);
-}
 
 void CInfoViewer::showInfoFile()
 {
@@ -2208,6 +2153,65 @@ void CInfoViewer::setUpdateTimer(uint64_t interval)
 	g_RCInput->killTimer(lcdUpdateTimer);
 	if (interval)
 		lcdUpdateTimer = g_RCInput->addTimer(interval, false);
+}
+
+void CInfoViewer::showAnalogClock(int posx,int posy,int dia)
+{
+	int ts,tm,th,sx,sy,mx,my,hx,hy;
+	double pi = 3.1415926535897932384626433832795, sAngleInRad, mAngleInRad, mAngleSave, hAngleInRad;
+
+	time_t now = time(0);
+	struct tm *tm_p = localtime(&now);
+
+	ts = tm_p->tm_sec;
+	tm = tm_p->tm_min;
+	th = tm_p->tm_hour;
+
+	sAngleInRad = ((6 * ts) * (2*pi / 360));
+	sAngleInRad -= pi/2;
+
+	sx = int((dia * 0.9 * cos(sAngleInRad)));
+	sy = int((dia * 0.9 * sin(sAngleInRad)));
+
+	mAngleInRad = ((6 * tm) * (2*pi / 360));
+	mAngleSave = mAngleInRad;
+	mAngleInRad -= pi/2;
+
+	mx = int((dia * 0.7 * cos(mAngleInRad)));
+	my = int((dia * 0.7 * sin(mAngleInRad)));
+
+	hAngleInRad = ((30 * th)* (2*pi / 360));
+	hAngleInRad += mAngleSave / 12;
+	hAngleInRad -= pi/2;
+
+	hx = int((dia * 0.45 * cos(hAngleInRad)));
+	hy = int((dia * 0.45 * sin(hAngleInRad)));
+
+	if (analogclock_buf == NULL) {
+		std::string clock_face = frameBuffer->getIconPath("a_clock");
+		g_PicViewer->DisplayImage(clock_face, posx-dia, posy-dia, 2*dia, 2*dia);
+
+		analogclock_buf = new fb_pixel_t[2*dia * 2*dia];
+		frameBuffer->SaveScreen(posx-dia, posy-dia, 2*dia, 2*dia, analogclock_buf);
+	}
+	else
+		frameBuffer->RestoreScreen(posx-dia, posy-dia, 2*dia, 2*dia, analogclock_buf);
+
+	frameBuffer->paintLine(posx,posy-3,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy-2,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy-1,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy+1,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy+2,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy+3,posx+hx,posy+hy,COL_MENUHEAD_TEXT);
+
+	frameBuffer->paintLine(posx,posy-2,posx+mx,posy+my,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy-1,posx+mx,posy+my,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy,posx+mx,posy+my,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy+1,posx+mx,posy+my,COL_MENUHEAD_TEXT);
+	frameBuffer->paintLine(posx,posy+2,posx+mx,posy+my,COL_MENUHEAD_TEXT);
+
+	frameBuffer->paintLine(posx,posy,posx+sx,posy+sy,COL_COLORED_EVENTS_TEXT);
 }
 
 void CInfoViewer::ResetModules(bool kill)

@@ -169,7 +169,6 @@ int CVfdSetup::showSetup()
 			vfds->addItem(oj);
 		}
 
-#if !BOXMODEL_H7 && !BOXMODEL_BRE2ZE4K // Dirty, fix me
 		//info line options
 		oj = new CMenuOptionChooser(LOCALE_LCD_INFO_LINE, &g_settings.lcd_info_line, LCD_INFO_OPTIONS, LCD_INFO_OPTION_COUNT, vfd_enabled);
 		oj->setHint("", LOCALE_MENU_HINT_VFD_INFOLINE);
@@ -197,7 +196,6 @@ int CVfdSetup::showSetup()
 			vfds->addItem(oj);
 		}
 #endif
-#endif // Drirty end
 
 		//notify rc-lock
 		oj = new CMenuOptionChooser(LOCALE_LCDMENU_NOTIFY_RCLOCK, &g_settings.lcd_notify_rclock, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, vfd_enabled);

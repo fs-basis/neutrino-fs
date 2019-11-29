@@ -497,11 +497,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.backlight_tv = configfile.getInt32( "backlight_tv", 1);
 	g_settings.backlight_standby = configfile.getInt32( "backlight_standby", 0);
 	g_settings.backlight_deepstandby = configfile.getInt32( "backlight_deepstandby", 0);
-#if BOXMODEL_BRE2ZE4K || BOXMODEL_H7 // Dirty, fix me
-	g_settings.lcd_scroll = configfile.getInt32( "lcd_scroll", 0);
-#else
 	g_settings.lcd_scroll = configfile.getInt32( "lcd_scroll", 1);
-#endif
 	g_settings.lcd_notify_rclock = configfile.getInt32("lcd_notify_rclock", 1);
 
 	g_settings.hdd_fs = configfile.getInt32( "hdd_fs", 0);
@@ -1002,11 +998,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.lcd_setting[i] = configfile.getInt32(lcd_setting[i].name, lcd_setting[i].default_value);
 	g_settings.lcd_setting_dim_time = configfile.getString("lcd_dim_time","0");
 	g_settings.lcd_setting_dim_brightness = configfile.getInt32("lcd_dim_brightness", 0);
-#if BOXMODEL_BRE2ZE4K || BOXMODEL_H7 // Dirty fix me
-	g_settings.lcd_info_line = configfile.getInt32("lcd_info_line", 1);//channel name or clock
-#else
 	g_settings.lcd_info_line = configfile.getInt32("lcd_info_line", 0);//channel name or clock
-#endif
 #if HAVE_SH4_HARDWARE
 	g_settings.lcd_vfd_scroll = configfile.getInt32("lcd_vfd_scroll", 0);
 #endif

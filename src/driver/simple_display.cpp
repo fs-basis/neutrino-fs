@@ -228,9 +228,6 @@ void CLCD::setlcdparameter(void)
 void CLCD::showServicename(std::string name, bool)
 {
 	if (g_info.hw_caps->display_type == HW_DISPLAY_LED_NUM)
-				showTime();
-		if (g_settings.lcd_info_line)
-			switch_name_time_cnt = 10;
 		return;
 
 	servicename = name;

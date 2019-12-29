@@ -128,6 +128,7 @@
 #include <system/setting_helpers.h>
 #include <system/settings.h>
 #include <system/helpers.h>
+#include <system/proc_tools.h>
 #include <system/sysload.h>
 
 #include <timerdclient/timerdclient.h>
@@ -4310,24 +4311,28 @@ void CNeutrinoApp::ExitRun(int exit_code)
 	{
 		if (timer_minutes)
 		{
-			time_t t = timer_minutes * 60;
-			struct tm *tm = localtime(&t);
-			char date[30];
-			strftime(date, sizeof(date), "%c", tm);
-			printf("wakeup_time: %s (%ld)\n", date, timer_minutes * 60);
-
 			/* prioritize proc filesystem */
-			if (access("/proc/stb/fp/wakeup_time", F_OK) == 0)
-			{
-				FILE *f = fopen("/proc/stb/fp/wakeup_time","w");
-				if (f)
-				{
-					fprintf(f, "%ld\n", timer_minutes * 60);
-					fclose(f);
-				}
-				else
-					perror("fopen /proc/stb/fp/wakeup_time");
-			}
+
+			time_t t = timer_minutes * 60;
+			struct tm *lt = localtime(&t);
+			char date[30];
+			strftime(date, sizeof(date), "%c", lt);
+			printf("wakeup time : %s (%ld)\n", date, timer_minutes * 60);
+
+			proc_put("/proc/stb/fp/wakeup_time", timer_minutes * 60);
+
+			t = time(NULL);
+			lt = localtime(&t);
+			strftime(date, sizeof(date), "%c", lt);
+			printf("current time: %s (%ld)\n", date, t);
+
+			proc_put("/proc/stb/fp/rtc", t);
+
+			struct tm *gt = gmtime(&t);
+			int offset = (lt->tm_hour - gt->tm_hour) * 3600;
+			printf("rtc_offset  : %d\n", offset);
+
+			proc_put("/proc/stb/fp/rtc_offset", offset);
 		}
 
 		/* not platform specific */

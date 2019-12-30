@@ -646,7 +646,7 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 		void move(int xoff, int yoff);
 		int getSelectedLine(void)const {return no_action ? -1 : selected;};
 		void enableFade(bool _enable) { fade = _enable; };
-		void enableSaveScreen(bool enable);
+		void enableSaveScreen(bool enable = true);
 		void paintHint(int num);
 		void paintHint(){hint_painted = false;}
 		enum 

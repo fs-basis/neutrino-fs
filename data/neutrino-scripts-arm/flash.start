@@ -4,9 +4,3 @@ if pidof vsftpd > /dev/null; then
 	echo "Kill vsftpd"
 	killall vsftpd
 fi
-
-#if pidof ushare > /dev/null; then
-#	echo "Kill ushare"
-#	trap "" INT
-#	kill -INT `pidof ushare`
-#fi

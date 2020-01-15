@@ -30,5 +30,4 @@ install_DATA = \
 	softupdate.png \
 	streaming.png \
 	timer.png \
-	upnp.png \
 	video.png

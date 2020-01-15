@@ -10,8 +10,3 @@ fi
 #	trap "" INT
 #	kill -INT `pidof ushare`
 #fi
-
-#if [ -e /var/etc/.djmount ]; then
-#	echo "Kill djmount"
-#	fusermount -u /media/00upnp
-#fi

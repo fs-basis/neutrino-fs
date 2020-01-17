@@ -400,18 +400,18 @@
 		<S i="23ed" t="44a" on="1" s="192" frq="12363" n="DATA SERVICE R7"/>
 		<S i="23f3" t="44a" on="1" s="192" frq="12363" n="DATA SERVICE R9"/>
 		<S i="23ef" t="44a" on="1" s="192" frq="12363" n="DATA SYSTEM[98]"/>
-		<S i="251b" t="43c" on="1" s="192" frq="12090" n="DATASYSTEM"/>
-		<S i="270f" t="43e" on="1" s="192" frq="12129" n="DATASYSTEM"/>
 		<S i="22c3" t="438" on="1" s="192" frq="12012" n="DATASYSTEM"/>
 		<S i="1af4" t="3fe" on="1" s="192" frq="11538" n="DATASYSTEM"/>
-		<S i="238b" t="442" on="1" s="192" frq="12207" n="DATASYSTEM"/>
+		<S i="270f" t="43e" on="1" s="192" frq="12129" n="DATASYSTEM"/>
+		<S i="251b" t="43c" on="1" s="192" frq="12090" n="DATASYSTEM"/>
 		<S i="24b7" t="440" on="1" s="192" frq="12168" n="DATASYSTEM"/>
-		<S i="225f" t="44c" on="1" s="192" frq="12402" n="DATASYSTEM"/>
+		<S i="238b" t="442" on="1" s="192" frq="12207" n="DATASYSTEM"/>
 		<S i="1a2b" t="444" on="1" s="192" frq="12246" n="DATASYSTEM"/>
+		<S i="225f" t="44c" on="1" s="192" frq="12402" n="DATASYSTEM"/>
+		<S i="2007" t="434" on="1" s="192" frq="11934" n="DATASYSTEM"/>
+		<S i="19c7" t="44e" on="1" s="192" frq="12441" n="DATASYSTEM"/>
 		<S i="1fa3" t="42e" on="1" s="192" frq="11817" n="DATASYSTEM"/>
 		<S i="1b58" t="3fc" on="1" s="192" frq="11509" n="DATASYSTEM"/>
-		<S i="19c7" t="44e" on="1" s="192" frq="12441" n="DATASYSTEM"/>
-		<S i="2007" t="434" on="1" s="192" frq="11934" n="DATASYSTEM"/>
 		<S i="21fb" t="448" on="1" s="192" frq="12324" n="DATASYSTEM R9"/>
 		<S i="23a2" t="44a" on="1" s="192" frq="12363" n="DEUTSCHE GRAMMOPHON+"/>
 		<S i="23d4" t="44a" on="1" s="192" frq="12363" n="DIAGNOSTIC TECHNIQUE"/>
@@ -1170,6 +1170,7 @@
 		<S i="445e" t="453" on="1" s="192" frq="12545" n="kabel eins"/>
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
 		<S i="4465" t="453" on="1" s="192" frq="12545" n="kabel eins Doku"/>
+		<S i="ef79" t="3f9" on="1" s="192" frq="11464" n="Kabel Eins Doku HD"/>
 		<S i="ef76" t="3f9" on="1" s="192" frq="11464" n="kabel eins HD"/>
 		<S i="ef8a" t="3f9" on="1" s="192" frq="11464" n="kabel eins HD Austria"/>
 		<S i="14c0" t="407" on="1" s="192" frq="11671" n="kabel1 Doku austria"/>

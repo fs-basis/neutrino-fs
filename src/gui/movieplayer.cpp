@@ -273,9 +273,6 @@ void CMoviePlayerGui::Init(void)
 void CMoviePlayerGui::cutNeutrino()
 {
 
-	if (playing)
-		return;
-
 #ifdef ENABLE_CHANGE_OSD_RESOLUTION
 	COsdHelpers *coh     = COsdHelpers::getInstance();
 	currentVideoSystem   = coh->getVideoSystem();
@@ -321,10 +318,6 @@ void CMoviePlayerGui::cutNeutrino()
 
 void CMoviePlayerGui::restoreNeutrino()
 {
-
-	if (!playing)
-		return;
-
 #ifdef ENABLE_CHANGE_OSD_RESOLUTION
 	if ((currentVideoSystem > -1) &&
 	    (g_settings.video_Mode == VIDEO_STD_AUTO) &&

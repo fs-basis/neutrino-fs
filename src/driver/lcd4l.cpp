@@ -642,6 +642,10 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 					Logo = ICONSDIR "/" NEUTRINO_ICON_MOVIEPLAYER ICONSEXT;
 			}
 		}
+		else if (parseID == NeutrinoModes::mode_upnp)
+		{
+			Service = g_Locale->getText(LOCALE_UPNPBROWSER_HEAD);
+		}
 		else if (parseID == NeutrinoModes::mode_standby)
 		{
 			Service = "STANDBY";

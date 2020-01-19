@@ -1308,7 +1308,7 @@ menu.hint_net_proxy If you use proxy to access internet\nconfigure it here for o
 menu.hint_net_proxypass Proxy user password\nif authorization required
 menu.hint_net_proxyserver Proxy server name
 menu.hint_net_proxyuser Proxy user name\nif authorization required
-menu.hint_net_services Configure network services:\nTelnet, ftp, uPnp
+menu.hint_net_services Configure network services
 menu.hint_net_setupnow Apply current settings
 menu.hint_net_setuponstartup Start network at boot time
 menu.hint_net_show Show current network settings

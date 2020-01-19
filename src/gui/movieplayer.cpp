@@ -268,6 +268,9 @@ void CMoviePlayerGui::Init(void)
 
 void CMoviePlayerGui::cutNeutrino()
 {
+	printf("%s: playing %d isUPNP %d\n", __func__, playing, isUPNP);
+	if (playing)
+		return;
 
 #ifdef ENABLE_CHANGE_OSD_RESOLUTION
 	COsdHelpers *coh     = COsdHelpers::getInstance();
@@ -280,6 +283,8 @@ void CMoviePlayerGui::cutNeutrino()
 	if (!isWebChannel)
 		g_InfoViewer->setUpdateTimer(1000 * 1000);
 
+	if (isUPNP)
+		return;
 
 #if 0
 	CZapit::getInstance()->setMoviePlayer(true);// let CCamManager::SetMode know, the call is from MoviePlayer
@@ -314,6 +319,10 @@ void CMoviePlayerGui::cutNeutrino()
 
 void CMoviePlayerGui::restoreNeutrino()
 {
+	printf("%s: playing %d isUPNP %d\n", __func__, playing, isUPNP);
+	if (!playing)
+		return;
+
 #ifdef ENABLE_CHANGE_OSD_RESOLUTION
 	if ((currentVideoSystem > -1) &&
 	    (g_settings.video_Mode == VIDEO_STD_AUTO) &&
@@ -333,6 +342,8 @@ void CMoviePlayerGui::restoreNeutrino()
 	CZapit::getInstance()->SetVolume(CZapit::getInstance()->GetVolume());
 #endif
 
+	if (isUPNP)
+		return;
 #if ! HAVE_COOL_HARDWARE
 	g_Zapit->unlockPlayBack();
 #else
@@ -406,6 +417,11 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 		is_file_player = true;
 		PlayFile();
 	}
+	else if (actionKey == "upnp") {
+		isUPNP = true;
+		is_file_player = true;
+		PlayFile();
+	}
 	else if (actionKey == "http") {
 		isHTTP = true;
 		is_file_player = true;
@@ -422,7 +438,7 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 		return menu_return::RETURN_REPAINT;
 	}
 
-	while(!isHTTP && SelectFile()) {
+	while(!isHTTP && !isUPNP && SelectFile()) {
 		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
 		CVFD::getInstance()->showServicename(file_name.c_str());
 		if (timeshift != TSHIFT_MODE_OFF) {
@@ -606,6 +622,7 @@ void CMoviePlayerGui::ClearFlags()
 	isBookmark = false;
 	isHTTP = false;
 	isLuaPlay = false;
+	isUPNP = false;
 	isWebChannel = false;
 	is_file_player = false;
 	timeshift = TSHIFT_MODE_OFF;
@@ -1490,7 +1507,7 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 	if ((msg == CRCInput::RC_right) || msg == (neutrino_msg_t) g_settings.key_quickzap_up)
 	{
 		//printf("CMoviePlayerGui::%s: CRCInput::RC_right or g_settings.key_quickzap_up\n", __func__);
-		if (isLuaPlay)
+		if (isLuaPlay || isUPNP)
 		{
 			playstate = CMoviePlayerGui::STOPPED;
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_NEXT;
@@ -1517,7 +1534,7 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 	else if ((msg == CRCInput::RC_left) || msg == (neutrino_msg_t) g_settings.key_quickzap_down)
 	{
 		//printf("CMoviePlayerGui::%s: CRCInput::RC_left or g_settings.key_quickzap_down\n", __func__);
-		if (isLuaPlay)
+		if (isLuaPlay || isUPNP)
 		{
 			playstate = CMoviePlayerGui::STOPPED;
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_PREV;
@@ -2479,7 +2496,7 @@ void CMoviePlayerGui::handleMovieBrowser(neutrino_msg_t msg, int /*position*/)
 			if (p_movie_info->length == 0) {
 				p_movie_info->length = (float)duration / 60 / 1000 + 0.5;
 			}
-			if (!isHTTP)
+			if (!isHTTP && !isUPNP)
 				cMovieInfo.saveMovieInfo(*p_movie_info);
 			//p_movie_info->fileInfoStale(); //TODO: we might to tell the Moviebrowser that the movie info has changed, but this could cause long reload times  when reentering the Moviebrowser
 		}
@@ -2590,7 +2607,7 @@ void CMoviePlayerGui::handleMovieBrowser(neutrino_msg_t msg, int /*position*/)
 			new_bookmark.length = play_sec - new_bookmark.pos;
 			TRACE("[mp] commercial length: %d\r\n", new_bookmark.length);
 			if (cMovieInfo.addNewBookmark(p_movie_info, new_bookmark) == true) {
-				if (!isHTTP)
+				if (!isHTTP && !isUPNP)
 					cMovieInfo.saveMovieInfo(*p_movie_info);	/* save immediately in xml file */
 			}
 			new_bookmark.pos = 0;	// clear again, since this is used as flag for bookmark activity
@@ -2601,7 +2618,7 @@ void CMoviePlayerGui::handleMovieBrowser(neutrino_msg_t msg, int /*position*/)
 			new_bookmark.pos = play_sec;
 			TRACE("[mp] loop length: %d\r\n", new_bookmark.length);
 			if (cMovieInfo.addNewBookmark(p_movie_info, new_bookmark) == true) {
-				if (!isHTTP)
+				if (!isHTTP && !isUPNP)
 					cMovieInfo.saveMovieInfo(*p_movie_info);	/* save immediately in xml file */
 				jump_not_until = play_sec + 5;	// avoid jumping for this time
 			}
@@ -2671,7 +2688,7 @@ void CMoviePlayerGui::handleMovieBrowser(neutrino_msg_t msg, int /*position*/)
 				new_bookmark.pos = play_sec;
 				new_bookmark.length = 0;
 				if (cMovieInfo.addNewBookmark(p_movie_info, new_bookmark) == true)
-					if (!isHTTP)
+					if (!isHTTP && !isUPNP)
 						cMovieInfo.saveMovieInfo(*p_movie_info);	/* save immediately in xml file */
 				new_bookmark.pos = 0;	// clear again, since this is used as flag for bookmark activity
 			} else if (cSelectedMenuBookStart[3].selected == true) {
@@ -2688,13 +2705,13 @@ void CMoviePlayerGui::handleMovieBrowser(neutrino_msg_t msg, int /*position*/)
 				/* Moviebrowser movie start bookmark */
 				p_movie_info->bookmarks.start = play_sec;
 				TRACE("[mp] New movie start pos: %d\r\n", p_movie_info->bookmarks.start);
-				if (!isHTTP)
+				if (!isHTTP && !isUPNP)
 					cMovieInfo.saveMovieInfo(*p_movie_info);	/* save immediately in xml file */
 			} else if (cSelectedMenuBookStart[6].selected == true) {
 				/* Moviebrowser movie end bookmark */
 				p_movie_info->bookmarks.end = play_sec;
 				TRACE("[mp]  New movie end pos: %d\r\n", p_movie_info->bookmarks.end);
-				if (!isHTTP)
+				if (!isHTTP && !isUPNP)
 					cMovieInfo.saveMovieInfo(*p_movie_info);	/* save immediately in xml file */
 			}
 		}

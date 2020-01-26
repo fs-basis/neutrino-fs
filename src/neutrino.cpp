@@ -1447,17 +1447,11 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		sprintf(cfg_key, "enabled_auto_mode_%d", i);
 		configfile.setInt32(cfg_key, g_settings.enabled_auto_modes[i]);
 	}
-<<<<<<< HEAD
-=======
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 	configfile.setInt32( "zappingmode", g_settings.zappingmode);
 #endif
 
-	configfile.setInt32( "cpufreq", g_settings.cpufreq);
-	configfile.setInt32( "standby_cpufreq", g_settings.standby_cpufreq);
-
->>>>>>> DD/master
 	configfile.setInt32("ci_standby_reset", g_settings.ci_standby_reset);
 	for (unsigned int i = 0; i < cCA::GetInstance()->GetNumberCISlots(); i++) {
 		sprintf(cfg_key, "ci_clock_%d", i);

@@ -164,8 +164,8 @@ CInfoClock      *InfoClock;
 CTimeOSD	*FileTimeOSD;
 int allow_flash = 1;
 Zapit_config zapitCfg;
-char zapit_lat[20]="#";
-char zapit_long[20]="#";
+char zapit_lat[21]="#";
+char zapit_long[21]="#";
 bool autoshift = false;
 uint32_t scrambled_timer;
 #if ENABLE_FASTSCAN
@@ -465,6 +465,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		sprintf(cfg_key, "enabled_auto_mode_%d", i);
 		g_settings.enabled_auto_modes[i] = configfile.getInt32(cfg_key, 1);
 	}
+
+#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+	g_settings.zappingmode = configfile.getInt32( "zappingmode", 0);
+#endif
 
 	g_settings.ci_standby_reset = configfile.getInt32("ci_standby_reset", 0);
 
@@ -1372,6 +1376,11 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		sprintf(cfg_key, "enabled_auto_mode_%d", i);
 		configfile.setInt32(cfg_key, g_settings.enabled_auto_modes[i]);
 	}
+
+#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+	configfile.setInt32( "zappingmode", g_settings.zappingmode);
+#endif
+
 	configfile.setInt32("ci_standby_reset", g_settings.ci_standby_reset);
 	for (unsigned int i = 0; i < cCA::GetInstance()->GetNumberCISlots(); i++) {
 		sprintf(cfg_key, "ci_clock_%d", i);
@@ -2800,6 +2809,10 @@ TIMER_START();
 	cSysLoad::getInstance();
 	if ((g_settings.infobar_casystem_display < 2) && g_settings.infobar_show_sysfs_hdd)
 		cHddStat::getInstance();
+
+#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+	videoDecoder->SetControl(VIDEO_CONTROL_ZAPPING_MODE, g_settings.zappingmode);
+#endif
 
 TIMER_STOP("################################## after all ##################################");
 	if (g_settings.softupdate_autocheck) {

@@ -2579,6 +2579,11 @@ videomenu.videoformat_149 14:9
 videomenu.videoformat_169 16:9
 videomenu.videoformat_43 4:3
 videomenu.videomode Digital video mode
+videomenu.zappingmode Zap mode
+videomenu.zappingmode_mute black screen
+videomenu.zappingmode_hold hold screen
+videomenu.zappingmode_mutetilllock black screen till locked
+videomenu.zappingmode_holdtilllock hold screen till locked
 webradio.head WebRadio
 webradio.xml WebRadio XML files
 webradio.xml.add Add XML file

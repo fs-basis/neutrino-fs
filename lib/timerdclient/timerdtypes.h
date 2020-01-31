@@ -34,7 +34,7 @@
 
 #define REMINDER_MESSAGE_MAXLEN 31
 #define EXEC_PLUGIN_NAME_MAXLEN 256
-#define RECORD_DIR_MAXLEN 1024
+#define RECORD_DIR_MAXLEN 1025
 #define EPG_TITLE_MAXLEN 51
 
 #define TIMERD_APIDS_CONF 0x00
@@ -165,7 +165,7 @@ class CTimerd
 			char              remotebox_name[25];
 			int               rem_pre;
 			int               rem_post;
-			
+
 			bool operator< (const responseGetTimer& a) const
 			{
 				return this->alarmTime < a.alarmTime ;

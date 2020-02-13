@@ -306,7 +306,7 @@
 			<S i="7585" n="UNK (0x0412_0x7585)" t="1" s="1" num="878" f="4"/>
 			<S i="7586" n="UNK (0x0412_0x7586)" t="1" s="1" num="879" f="4"/>
 			<S i="7587" n="UNK (0x0412_0x7587)" t="1" s="1" num="880" f="4"/>
-			<S i="7588" n="UNK (0x0412_0x7588)" t="1" s="1" num="881" f="1"/>
+			<S i="7588" n="UNK (0x0412_0x7588)" t="1" s="1" num="881" f="4"/>
 		</TS>
 		<TS id="0413" on="0001" frq="11112000" inv="2" sr="22000000" fec="2" pol="0" mod="9" pli="0" plc="1" plm="0" sys="1">
 			<S i="30d4" n="SAT.1 Gold HD" t="19" s="1" num="273" f="4"/>
@@ -322,7 +322,6 @@
 			<S i="7885" n="TCM HD" t="19" s="1" num="854" f="4"/>
 			<S i="7888" n="TNT HD" t="19" s="1" num="867" f="4"/>
 			<S i="7889" n="NG WILD HD" t="19" s="1" num="839" f="4"/>
-			<S i="788a" n="UNK (0x0414_0x788A)" t="1" s="1" num="882" f="2"/>
 			<S i="788b" n="DISNEY CH HD" t="19" s="1" num="750" f="4"/>
 			<S i="788c" n="#0 HD" t="19" s="1" num="696" f="4"/>
 			<S i="788d" n="CAZAyPESCA HD" t="19" s="1" num="740" f="4"/>
@@ -393,7 +392,7 @@
 			<S i="78b6" n="M.Seriesmania HD" t="19" s="1" num="1050" f="4"/>
 			<S i="78b7" n="M. GOLF HD" t="19" s="1" num="1046" f="4"/>
 			<S i="78b8" n="COSMO HD" t="19" s="1" num="691" f="4"/>
-			<S i="78b9" n="UNK (0x03EC_0x78B9)" t="1" s="1" num="1102" f="1"/>
+			<S i="78b9" n="UNK (0x03EC_0x78B9)" t="1" s="1" num="1102" f="4"/>
 			<S i="78be" n="UNK (0x03EC_0x78BE)" t="1" s="1" num="1103" f="4"/>
 			<S i="78c0" n="COMEDYCENTRALHD" t="19" s="1" num="1100" f="4"/>
 		</TS>
@@ -586,8 +585,8 @@
 			<S i="1a47" n="RTVi Archive" t="1" s="1" num="974" f="4"/>
 			<S i="1a48" n="Mir24" t="1" s="1" num="966" f="4"/>
 			<S i="1a49" n="Russian Music Box" t="1" s="1" num="975" f="4"/>
-			<S i="1a4a" n="1+1 International" t="1" s="1" num="954" f="1"/>
-			<S i="1a4b" n="Souz" t="1" s="1" num="977" f="1"/>
+			<S i="1a4a" n="1+1 International" t="1" s="1" num="954" f="4"/>
+			<S i="1a4b" n="Souz" t="1" s="1" num="977" f="4"/>
 		</TS>
 		<TS id="0401" on="0001" frq="11582000" inv="2" sr="22000000" fec="2" pol="0" mod="9" pli="0" plc="1" plm="0" sys="1">
 			<S i="2855" n="BR Fernsehen Süd HD" t="19" s="0" num="37" f="4"/>
@@ -1028,7 +1027,6 @@
 			<S i="708a" n="RTL2 Austria" t="1" s="0" num="1133" f="4"/>
 			<S i="708f" n="SUPER RTL A" t="1" s="0" num="1135" f="4"/>
 			<S i="7094" n="VOXup" t="1" s="0" num="105" f="4"/>
-			<S i="7099" n="RTL CH" t="1" s="0" num="682" f="2"/>
 			<S i="79e0" n="Eurosport 1 Deutschland" t="1" s="0" num="1152" f="4"/>
 			<S i="79ea" n="HSE24 EXTRA" t="1" s="0" num="1156" f="4"/>
 			<S i="79f4" n="EURONEWS FRENCH SD" t="1" s="0" num="930" f="4"/>
@@ -1172,7 +1170,6 @@
 			<S i="238e" n="AUDIO PRIMO" t="2" s="1" num="2" f="4"/>
 			<S i="238f" n="DOWNLOAD R7 G5+ SAGEM" t="c0" s="1" num="528" f="4"/>
 			<S i="2390" n="MES VIDEOS" t="c9" s="1" num="590" f="4"/>
-			<S i="2394" n="UNK (0x044A_0x2394)" t="1" s="1" num="669" f="2"/>
 			<S i="2395" n="SUD RADIO" t="2" s="0" num="130" f="4"/>
 			<S i="2396" n="UNK (0x044A_0x2396)" t="1" s="1" num="670" f="4"/>
 			<S i="2397" n="BFM BUSINESS" t="2" s="0" num="12" f="4"/>

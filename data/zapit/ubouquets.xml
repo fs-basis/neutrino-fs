@@ -308,7 +308,6 @@
 		<S i="23b7" t="44a" on="1" s="192" frq="12363" n="BBC ARABIC"/>
 		<S i="23b6" t="44a" on="1" s="192" frq="12363" n="BBCW SERVICE"/>
 		<S i="23ee" t="44a" on="1" s="192" frq="12363" n="BEUR FM"/>
-		<S i="2397" t="44a" on="1" s="192" frq="12363" n="UNK (0x044A_0x2397)"/>
 		<S i="6ef7" t="445" on="1" s="192" frq="12266" n="BR Heimat"/>
 		<S i="6ef3" t="445" on="1" s="192" frq="12266" n="BR-KLASSIK"/>
 		<S i="6f20" t="445" on="1" s="192" frq="12266" n="Bremen Eins"/>
@@ -411,7 +410,6 @@
 		<S i="23cb" t="44a" on="1" s="192" frq="12363" n="RFI INTERNAT"/>
 		<S i="23df" t="44a" on="1" s="192" frq="12363" n="RFM"/>
 		<S i="23d0" t="44a" on="1" s="192" frq="12363" n="RIRE &amp; CHANSONS"/>
-		<S i="23cf" t="44a" on="1" s="192" frq="12363" n="UNK (0x044A_0x23CF)"/>
 		<S i="113b" t="404" on="1" s="192" frq="11627" n="RNE RADIO 1"/>
 		<S i="113c" t="404" on="1" s="192" frq="11627" n="RNE RADIO 3"/>
 		<S i="113d" t="404" on="1" s="192" frq="11627" n="RNE RADIO 4"/>

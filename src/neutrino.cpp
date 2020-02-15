@@ -4359,7 +4359,7 @@ void CNeutrinoApp::ExitRun(int exit_code)
 {
 	bool do_exiting = true;
 	CRecordManager::getInstance()->StopAutoRecord();
-	if(CRecordManager::getInstance()->RecordingStatus() /*|| cYTCache::getInstance()->isActive()*/) 
+	if(CRecordManager::getInstance()->RecordingStatus())
 	{
 		do_exiting = (ShowMsg(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECORDING_QUERY, CMsgBox::mbrNo,
 					CMsgBox::mbYes | CMsgBox::mbNo, NULL, 450, DEFAULT_TIMEOUT, true) == CMsgBox::mbrYes);

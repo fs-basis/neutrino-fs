@@ -1040,10 +1040,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	//Movie-Player
 	g_settings.movieplayer_repeat_on = configfile.getInt32("movieplayer_repeat_on", CMoviePlayerGui::REPEAT_OFF);
-<<<<<<< HEAD
-=======
 
->>>>>>> DD/master
 #ifdef TMDB_API_KEY
 	g_settings.tmdb_api_key = TMDB_API_KEY;
 #else
@@ -4919,11 +4916,7 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		hintBox->hide();
 		delete hintBox;
 	}
-<<<<<<< HEAD
 	else if(actionKey=="tsmoviebrowser" || actionKey=="fileplayback") {
-=======
-	else if(actionKey=="tsmoviebrowser" || actionKey=="fileplayback_video" || actionKey=="fileplayback_audio") {
->>>>>>> DD/master
 		frameBuffer->Clear();
 		if (mode == NeutrinoModes::NeutrinoModes::mode_radio || mode == NeutrinoModes::NeutrinoModes::mode_webradio)
 			frameBuffer->stopFrame();

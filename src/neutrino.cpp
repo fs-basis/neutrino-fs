@@ -1040,6 +1040,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	//Movie-Player
 	g_settings.movieplayer_repeat_on = configfile.getInt32("movieplayer_repeat_on", CMoviePlayerGui::REPEAT_OFF);
+<<<<<<< HEAD
+=======
+
+>>>>>>> DD/master
 #ifdef TMDB_API_KEY
 	g_settings.tmdb_api_key = TMDB_API_KEY;
 #else
@@ -4250,7 +4254,7 @@ void CNeutrinoApp::ExitRun(int exit_code)
 {
 	bool do_exiting = true;
 	CRecordManager::getInstance()->StopAutoRecord();
-	if(CRecordManager::getInstance()->RecordingStatus() /*|| cYTCache::getInstance()->isActive()*/) 
+	if(CRecordManager::getInstance()->RecordingStatus())
 	{
 		do_exiting = (ShowMsg(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECORDING_QUERY, CMsgBox::mbrNo,
 					CMsgBox::mbYes | CMsgBox::mbNo, NULL, 450, DEFAULT_TIMEOUT, true) == CMsgBox::mbrYes);
@@ -4915,7 +4919,11 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		hintBox->hide();
 		delete hintBox;
 	}
+<<<<<<< HEAD
 	else if(actionKey=="tsmoviebrowser" || actionKey=="fileplayback") {
+=======
+	else if(actionKey=="tsmoviebrowser" || actionKey=="fileplayback_video" || actionKey=="fileplayback_audio") {
+>>>>>>> DD/master
 		frameBuffer->Clear();
 		if (mode == NeutrinoModes::NeutrinoModes::mode_radio || mode == NeutrinoModes::NeutrinoModes::mode_webradio)
 			frameBuffer->stopFrame();

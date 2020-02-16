@@ -96,9 +96,11 @@ const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SE
 	{"personalize_media_upnp"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 
 	//media menu->movieplayer
-	{"personalize_mplayer_mbrowser"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
-	{"personalize_mplayer_fileplay"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
-
+	{"personalize_mplayer_mbrowswer"	, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
+	{"personalize_mplayer_fileplay_video"	, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
+	{"personalize_mplayer_fileplay_audio"	, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
+	{"personalize_mplayer_gui_mount"	, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
+	
 	//key
 	{"personalize_feat_key_fav"		, CPersonalizeGui::PERSONALIZE_FEAT_KEY_GREEN},
 	{"personalize_feat_key_timerlist"	, CPersonalizeGui::PERSONALIZE_FEAT_KEY_YELLOW},

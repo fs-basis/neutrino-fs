@@ -430,7 +430,9 @@ struct SNeutrinoSettings
 
 		//movieplayer menu
 		P_MPLAYER_MBROWSER,
-		P_MPLAYER_FILEPLAY,
+		P_MPLAYER_FILEPLAY_VIDEO,
+		P_MPLAYER_FILEPLAY_AUDIO,
+		P_MPLAYER_GUI_MOUNT,
 
 		//feature keys
 		P_FEAT_KEY_FAVORIT,
@@ -945,7 +947,7 @@ struct SNeutrinoSettings
 		ITEM_CLOCK = 19,
 		ITEM_GAMES = 20,
 		ITEM_SCRIPTS = 21,
-		ITEM_FILEPLAY = 22,
+		ITEM_FILEPLAY_VIDEO = 22,
 		ITEM_TOOLS = 23,
 		ITEM_LUA = 24,
 		ITEM_HDDMENU = 25,
@@ -957,7 +959,8 @@ struct SNeutrinoSettings
 		ITEM_ADZAP = 31,
 		ITEM_TUNER_RESTART = 32,
 		ITEM_THREE_D_MODE = 33,
-		ITEM_MAX   // MUST be always the last in the list
+		ITEM_FILEPLAY_AUDIO = 34,
+		ITEM_MAX // MUST be always the last in the list
 	} USER_ITEM;
 
 	typedef struct {

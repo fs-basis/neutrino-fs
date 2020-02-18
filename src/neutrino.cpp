@@ -738,9 +738,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.network_nfs[i].mount_options2 = configfile.getString("network_nfs_mount_options2_" + i_str, "nolock,rsize=32768,wsize=32768" );
 		g_settings.network_nfs[i].mac = configfile.getString("network_nfs_mac_" + i_str, "11:22:33:44:55:66");
 	}
-	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/mnt/nfs/music" );
+	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/mnt/nfs/audio" );
 	g_settings.network_nfs_picturedir = configfile.getString( "network_nfs_picturedir", "/mnt/nfs/pictures" );
-	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/mnt/nfs/movie" );
+	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/mnt/nfs/video" );
 	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/mnt/nfs/movie" );
 	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/mnt/nfs/timeshift" );
 #else

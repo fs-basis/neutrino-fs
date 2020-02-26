@@ -209,16 +209,6 @@ AC_ARG_ENABLE(flac,
 	AC_DEFINE(ENABLE_FLAC, 1, [enable FLAC support]))
 AM_CONDITIONAL(ENABLE_FLAC, test "$enable_flac" = "yes")
 
-AC_ARG_ENABLE(upnp,
-	AS_HELP_STRING([--enable-upnp], [enable UPNP support @<:@default=yes@:>@]),
-	[enable_upnp="$enableval"],
-	[enable_upnp="yes"])
-
-if test "$enable_upnp" = "yes"; then
-	AC_DEFINE(ENABLE_UPNP, 1, [enable UPNP support])
-fi
-AM_CONDITIONAL(ENABLE_UPNP, test "$enable_upnp" = "yes")
-
 AC_ARG_ENABLE(webif,
 	AS_HELP_STRING(--disable-webif,disable webif),
 	,[enable_webif=yes])
@@ -392,7 +382,6 @@ lib/libeventserver/Makefile
 lib/libmd5sum/Makefile
 lib/libnet/Makefile
 lib/libtuxtxt/Makefile
-lib/libupnpclient/Makefile
 lib/luaclient/Makefile
 lib/sectionsdclient/Makefile
 lib/timerdclient/Makefile

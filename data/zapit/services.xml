@@ -876,7 +876,7 @@
 		<TS id="0004" on="0085" frq="12032000" inv="2" sr="27500000" fec="11" pol="0" mod="0" pli="0" plc="1" plm="0" sys="1">
 			<S i="000a" n="Sky Cinema" t="16" s="1" num="144" f="4"/>
 			<S i="0012" n="Sky Select" t="16" s="0" num="161" f="4"/>
-			<S i="0014" n="Sky Cinema In Love" t="16" s="1" num="153" f="4"/>
+			<S i="0014" n="Sky Cinema Emotion" t="16" s="1" num="153" f="4"/>
 			<S i="0017" n="Sky Krimi HD" t="19" s="1" num="160" f="4"/>
 			<S i="008c" n="TNT Film HD" t="19" s="1" num="177" f="4"/>
 			<S i="00dd" n="Sky Sport 1" t="16" s="1" num="190" f="4"/>

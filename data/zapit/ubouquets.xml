@@ -23,6 +23,7 @@
 		<S i="33ac" t="3eb" on="1" s="192" frq="11244" n="ATV HD"/>
 		<S i="33a7" t="3eb" on="1" s="192" frq="11244" n="ATV2"/>
 		<S i="3332" t="45b" on="1" s="192" frq="12663" n="sixx Austria"/>
+		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV Music 24"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="VH1"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="VH1 Classic"/>
 		<S i="7008" t="436" on="1" s="192" frq="11973" n="NICK/MTV+"/>
@@ -155,7 +156,7 @@
 		<S i="9" t="3" on="85" s="192" frq="11720" n="Sky Cinema Action"/>
 		<S i="74" t="9" on="85" s="192" frq="11171" n="Sky Cinema Action HD"/>
 		<S i="8" t="3" on="85" s="192" frq="11720" n="Sky Cinema Comedy"/>
-		<S i="14" t="4" on="85" s="192" frq="12032" n="Sky Cinema In Love"/>
+		<S i="14" t="4" on="85" s="192" frq="12032" n="Sky Cinema Emotion"/>
 		<S i="197" t="4" on="85" s="192" frq="12032" n="Sky Cinema Family"/>
 		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
 		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Hits"/>

@@ -335,7 +335,7 @@ void CImageInfo::InitInfoData()
 	image_info_t creator	= {LOCALE_IMAGEINFO_CREATOR,	config.getString("creator", "n/a")};
 	v_info.push_back(creator);
 
-	image_info_t gui	= {LOCALE_IMAGEINFO_GUI, config.getString("gui", PACKAGE_NAME)};
+	image_info_t gui	= {LOCALE_IMAGEINFO_GUI, config.getString("gui", "Tuxbox-Neutrino")};
 	v_info.push_back(gui);
 
 #ifdef VCS

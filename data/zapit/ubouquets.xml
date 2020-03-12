@@ -147,22 +147,20 @@
 		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV"/>
 		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky 1 HD"/>
 		<S i="6e" t="d" on="85" s="192" frq="11992" n="Sky Atlantic HD"/>
-		<S i="a" t="4" on="85" s="192" frq="12032" n="Sky Cinema"/>
-		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema HD"/>
-		<S i="b" t="6" on="85" s="192" frq="11914" n="Sky Cinema +1"/>
-		<S i="86" t="b" on="85" s="192" frq="12382" n="Sky Cinema +1 HD"/>
-		<S i="2b" t="6" on="85" s="192" frq="11914" n="Sky Cinema +24"/>
-		<S i="87" t="b" on="85" s="192" frq="12382" n="Sky Cinema +24 HD"/>
+		<S i="a" t="4" on="85" s="192" frq="12032" n="Sky Cinema Premieren"/>
+		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren HD"/>
+		<S i="2b" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren +24"/>
+		<S i="87" t="b" on="85" s="192" frq="12382" n="Sky Cinema Premieren +24 HD"/>
 		<S i="9" t="3" on="85" s="192" frq="11720" n="Sky Cinema Action"/>
 		<S i="74" t="9" on="85" s="192" frq="11171" n="Sky Cinema Action HD"/>
-		<S i="8" t="3" on="85" s="192" frq="11720" n="Sky Cinema Comedy"/>
-		<S i="14" t="4" on="85" s="192" frq="12032" n="Sky Cinema Emotion"/>
+		<S i="8" t="3" on="85" s="192" frq="11720" n="Sky Cinema Fun"/>
 		<S i="197" t="4" on="85" s="192" frq="12032" n="Sky Cinema Family"/>
 		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
-		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Hits"/>
-		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Hits HD"/>
-		<S i="204" t="4" on="85" s="192" frq="12032" n="Sky Cinema Nostalgie"/>
+		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Best Of"/>
+		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Best Of HD"/>
+		<S i="204" t="6" on="85" s="192" frq="11914" n="Sky Cinema Classics"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
+		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>
@@ -254,6 +252,7 @@
 		<S i="1197" t="406" on="1" s="192" frq="11656" n="EDGEsport"/>
 		<S i="1196" t="406" on="1" s="192" frq="11656" n="eSPORTS1"/>
 		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
+		<S i="75" t="c" on="85" s="192" frq="12304" n="Sky Serien &amp; Shows HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
@@ -288,6 +287,18 @@
 		<S i="183a" t="40b" on="1" s="192" frq="10994" n="Travelxp 4k"/>
 		<S i="7d0" t="449" on="1" s="192" frq="12344" n="INSIGHT TV UHD"/>
 	</Bouquet>
+	<Bouquet name="IP TV">
+		<S u="https://www.youtube.com/user/startv/videos?view=2&amp;flow=grid" n="StarTV"/>
+		<S u="https://tv.si/ts/MTVDANCE/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Dance"/>
+		<S u="https://tv.si/ts/MTVHITS/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Hits"/>
+		<S u="http://unilivemtveu-lh.akamaihd.net/i/mtvmusic24_1@134926/index_3500_av-b.m3u8" n="MTV Music 24 (720p) "/>
+		<S u="https://tv.si/ts/MTVROCKS/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Rocks"/>
+		<S u="https://tv.si/ts/MTVHD/stream_iptv_4000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Live HD"/>
+		<S u="http://unilivemtveu-lh.akamaihd.net/i/mtvno_1@346424/index_3500_av-b.m3u8" n="MTV Norwegen (720p)"/>
+		<S u="http://unilivemtveu-lh.akamaihd.net/i/mtvde_1@134922/index_3500_av-b.m3u8" n="MTV Deutschland (720p)"/>
+		<S u="https://5856e1a25f71a.streamlock.net/easycast9-live/_definst_/mp4:livestreamhd5/playlist.m3u8" n="eoTV HD"/>
+		<S u="https://leipzig.iptv-playoutcenter.de/leipzig/leipzigfernsehen.stream_1/playlist.m3u8" n="Leipzig Fernsehen"/>
+	</Bouquet>
 	<Bouquet name="Sparten">
 		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
@@ -298,6 +309,12 @@
 		<S i="7da" t="449" on="1" s="192" frq="12344" n="QVC ZWEI UHD"/>
 	</Bouquet>
 	<Bouquet name="Radio">
+		<S i="113b" t="404" on="1" s="192" frq="11627" n="RNE RADIO 1"/>
+		<S i="113c" t="404" on="1" s="192" frq="11627" n="RNE RADIO 3"/>
+		<S i="113d" t="404" on="1" s="192" frq="11627" n="RNE RADIO 4"/>
+		<S i="113e" t="404" on="1" s="192" frq="11627" n="RNE RADIO 5 TODO NOTICIAS"/>
+		<S i="113f" t="404" on="1" s="192" frq="11627" n="RNE RADIO CLASICA"/>
+		<S i="1140" t="404" on="1" s="192" frq="11627" n="RNE RADIO EXTERIOR DE ESPAÑA"/>
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>
 		<S i="238e" t="44a" on="1" s="192" frq="12363" n="AUDIO PRIMO"/>
 		<S i="6ef4" t="445" on="1" s="192" frq="12266" n="B5 aktuell"/>
@@ -411,12 +428,6 @@
 		<S i="23cb" t="44a" on="1" s="192" frq="12363" n="RFI INTERNAT"/>
 		<S i="23df" t="44a" on="1" s="192" frq="12363" n="RFM"/>
 		<S i="23d0" t="44a" on="1" s="192" frq="12363" n="RIRE &amp; CHANSONS"/>
-		<S i="113b" t="404" on="1" s="192" frq="11627" n="RNE RADIO 1"/>
-		<S i="113c" t="404" on="1" s="192" frq="11627" n="RNE RADIO 3"/>
-		<S i="113d" t="404" on="1" s="192" frq="11627" n="RNE RADIO 4"/>
-		<S i="113e" t="404" on="1" s="192" frq="11627" n="RNE RADIO 5 TODO NOTICIAS"/>
-		<S i="113f" t="404" on="1" s="192" frq="11627" n="RNE RADIO CLASICA"/>
-		<S i="1140" t="404" on="1" s="192" frq="11627" n="RNE RADIO EXTERIOR DE ESPAÑA"/>
 		<S i="a0" t="7" on="85" s="192" frq="12148" n="ROCK ANTENNE"/>
 		<S i="23cd" t="44a" on="1" s="192" frq="12363" n="RTL"/>
 		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>

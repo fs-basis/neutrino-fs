@@ -284,7 +284,6 @@
 		<S i="6d" t="b" on="85" s="192" frq="12382" n="Eurosport 2 HD"/>
 		<S i="30d7" t="413" on="1" s="192" frq="11112" n="Eurosport 2 HD Xtra"/>
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
-		<S i="183a" t="40b" on="1" s="192" frq="10994" n="Travelxp 4k"/>
 		<S i="7d0" t="449" on="1" s="192" frq="12344" n="INSIGHT TV UHD"/>
 	</Bouquet>
 	<Bouquet name="IP TV">

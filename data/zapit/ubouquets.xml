@@ -286,18 +286,6 @@
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
 		<S i="7d0" t="449" on="1" s="192" frq="12344" n="INSIGHT TV UHD"/>
 	</Bouquet>
-	<Bouquet name="IP TV">
-		<S u="https://www.youtube.com/user/startv/videos?view=2&amp;flow=grid" n="StarTV"/>
-		<S u="https://tv.si/ts/MTVDANCE/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Dance"/>
-		<S u="https://tv.si/ts/MTVHITS/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Hits"/>
-		<S u="http://unilivemtveu-lh.akamaihd.net/i/mtvmusic24_1@134926/index_3500_av-b.m3u8" n="MTV Music 24 (720p) "/>
-		<S u="https://tv.si/ts/MTVROCKS/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Rocks"/>
-		<S u="https://tv.si/ts/MTVHD/stream_iptv_4000k.m3u8?#User-Agent=AppleCoreMedia" n="MTV Live HD"/>
-		<S u="http://unilivemtveu-lh.akamaihd.net/i/mtvno_1@346424/index_3500_av-b.m3u8" n="MTV Norwegen (720p)"/>
-		<S u="http://unilivemtveu-lh.akamaihd.net/i/mtvde_1@134922/index_3500_av-b.m3u8" n="MTV Deutschland (720p)"/>
-		<S u="https://5856e1a25f71a.streamlock.net/easycast9-live/_definst_/mp4:livestreamhd5/playlist.m3u8" n="eoTV HD"/>
-		<S u="https://leipzig.iptv-playoutcenter.de/leipzig/leipzigfernsehen.stream_1/playlist.m3u8" n="Leipzig Fernsehen"/>
-	</Bouquet>
 	<Bouquet name="Sparten">
 		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>

@@ -118,6 +118,7 @@
 		<S i="32dd" t="45d" on="1" s="192" frq="12692" n="n-tv Austria"/>
 		<S i="30" t="5" on="85" s="192" frq="12460" n="N24 DOKU"/>
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
+		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="Krone TV"/>
 	</Bouquet>
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
@@ -133,7 +134,8 @@
 		<S i="84" t="9" on="85" s="192" frq="11171" n="DAZN 1 Bar HD"/>
 		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 Bar HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>
-		<S i="8a" t="3" on="85" s="192" frq="11720" n="Disney Junior HD"/>
+		<S i="8a" t="3" on="85" s="192" frq="11720" n="Nick. Jr."/>
+		<S i="1b" t="d" on="85" s="192" frq="11992" n="Nicktoons"/>
 		<S i="80" t="b" on="85" s="192" frq="12382" n="E! Entertainm. HD"/>
 		<S i="7c" t="c" on="85" s="192" frq="12304" n="Fox HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
@@ -145,7 +147,7 @@
 		<S i="76" t="6" on="85" s="192" frq="11914" n="Nat Geo Wild HD"/>
 		<S i="70" t="d" on="85" s="192" frq="11992" n="NatGeo HD"/>
 		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV"/>
-		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky 1 HD"/>
+		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky One HD"/>
 		<S i="6e" t="d" on="85" s="192" frq="11992" n="Sky Atlantic HD"/>
 		<S i="a" t="4" on="85" s="192" frq="12032" n="Sky Cinema Premieren"/>
 		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren HD"/>
@@ -253,6 +255,7 @@
 		<S i="1196" t="406" on="1" s="192" frq="11656" n="eSPORTS1"/>
 		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
 		<S i="75" t="c" on="85" s="192" frq="12304" n="Sky Serien &amp; Shows HD"/>
+		<S i="1b" t="d" on="85" s="192" frq="11992" n="Nicktoons"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>

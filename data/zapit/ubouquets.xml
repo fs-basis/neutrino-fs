@@ -255,7 +255,6 @@
 		<S i="1196" t="406" on="1" s="192" frq="11656" n="eSPORTS1"/>
 		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
 		<S i="75" t="c" on="85" s="192" frq="12304" n="Sky Serien &amp; Shows HD"/>
-		<S i="1b" t="d" on="85" s="192" frq="11992" n="Nicktoons"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>

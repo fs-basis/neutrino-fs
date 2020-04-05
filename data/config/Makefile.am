@@ -9,4 +9,3 @@ install_DATA = \
 	settingsupdate.conf \
 	terrestrial.xml \
 	tobackup.conf
-

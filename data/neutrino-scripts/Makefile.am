@@ -1,12 +1,11 @@
-
 installdir = $(CONFIGDIR)
-install_DATA = flash.start
 
-install_DATA += \
+install_DATA = \
 	audioplayer.end \
 	audioplayer.start \
 	deepstandby.off \
 	deepstandby.on \
+	flash.start \
 	inactivity.on \
 	movieplayer.end \
 	movieplayer.start \

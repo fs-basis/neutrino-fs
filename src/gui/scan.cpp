@@ -59,8 +59,8 @@
 
 extern cVideo * videoDecoder;
 
-#define NEUTRINO_SCAN_START_SCRIPT	CONFIGDIR "/scan.start"
-#define NEUTRINO_SCAN_STOP_SCRIPT	CONFIGDIR "/scan.stop"
+#define NEUTRINO_SCAN_START_SCRIPT	CONTROLDIR "/scan.start"
+#define NEUTRINO_SCAN_STOP_SCRIPT	CONTROLDIR "/scan.stop"
 
 #define BAR_BORDER 2
 #define BAR_WIDTH 150

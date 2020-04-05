@@ -12,9 +12,9 @@ SUBDIRS = \
 	zapit
 
 if BOXTYPE_ARMBOX
-SUBDIRS += neutrino-scripts-arm
+SUBDIRS += control-arm
 else
-SUBDIRS += neutrino-scripts
+SUBDIRS += control
 endif
 
 if ENABLE_WEBIF

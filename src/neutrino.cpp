@@ -5361,7 +5361,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_zaphistory = tconfig->getInt32( "key_zaphistory",  CRCInput::RC_home );
 	g_settings.key_lastchannel = tconfig->getInt32( "key_lastchannel",  CRCInput::RC_0 );
 
-#if BOXMODEL_HD51
+#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
 	g_settings.key_bouquet_up = tconfig->getInt32( "key_bouquet_up",  CRCInput::RC_next);
 	g_settings.key_bouquet_down = tconfig->getInt32( "key_bouquet_down",  CRCInput::RC_prev);
 #elif HAVE_SH4_HARDWARE

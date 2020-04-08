@@ -5411,7 +5411,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	/* options */
 	g_settings.menu_left_exit = tconfig->getInt32( "menu_left_exit", 1 );
 #if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
-	g_settings.repeat_blocker = tconfig->getInt32("repeat_blocker", 250);
+	g_settings.repeat_blocker = tconfig->getInt32("repeat_blocker", 300);
 #else // #elif  HAVE_SH4_HARDWARE || HAVE_MIPS_HARDWARE
 	g_settings.repeat_blocker = tconfig->getInt32("repeat_blocker", 350);
 #endif

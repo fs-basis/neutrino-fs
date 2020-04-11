@@ -1078,7 +1078,7 @@
 			<S i="0069" n="Sky Sport Bundesliga 1 HD" t="19" s="1" num="234" f="4"/>
 			<S i="006b" n="Sky Cinema Best Of HD" t="19" s="1" num="157" f="4"/>
 			<S i="006c" n="Sky Sport News HD" t="19" s="0" num="247" f="4"/>
-			<S i="0075" n="Sky Serien &amp; Shows HD" t="19" s="1" num="252" f="4"/>
+			<S i="0075" n="sky comedy HD" v="4ff" a="0" p="4ff" pmt="64" tx="0" t="19" vt="1" s="1" num="252" f="4"/>
 			<S i="007c" n="Fox HD" t="19" s="1" num="135" f="4"/>
 			<S i="007e" n="SYFY HD" t="19" s="1" num="176" f="4"/>
 			<S i="011f" n="Sky Sport Bundesliga 4 HD" t="19" s="1" num="237" f="4"/>
@@ -1086,11 +1086,11 @@
 			<S i="0122" n="Eurosport360HD 3" t="19" s="1" num="184" f="4"/>
 			<S i="0320" n="STEST1" t="16" s="1" num="1141" f="4"/>
 			<S i="0321" n="STEST2" t="16" s="1" num="1142" f="4"/>
-			<S i="0f9d" n="Pace TDS 866 NSD" t="c" s="0" num="1138" f="4"/>
-			<S i="0f9e" n="Pace TDS 866 NSDX" t="c" s="0" num="1139" f="4"/>
-			<S i="0fb1" n="Pace TDS 865 NSDX" t="c" s="0" num="1137" f="4"/>
-			<S i="0fbc" n="Pace TDS 865 NSD" t="c" s="0" num="1136" f="4"/>
-			<S i="0fc3" n="Humax PR-HD3000S" t="c" s="0" num="1133" f="4"/>
+			<S i="0f9d" n="Pace TDS 866 NSD" t="c" s="0" num="1138" f="2"/>
+			<S i="0f9e" n="Pace TDS 866 NSDX" t="c" s="0" num="1139" f="2"/>
+			<S i="0fb1" n="Pace TDS 865 NSDX" t="c" s="0" num="1137" f="2"/>
+			<S i="0fbc" n="Pace TDS 865 NSD" t="c" s="0" num="1136" f="2"/>
+			<S i="0fc3" n="Humax PR-HD3000S" t="c" s="0" num="1133" f="2"/>
 		</TS>
 		<TS id="0448" on="0001" frq="12324000" inv="2" sr="29700000" fec="2" pol="1" mod="9" pli="0" plc="1" plm="0" sys="1">
 			<S i="219b" n="CANAL+" t="1f" s="1" num="508" f="4"/>

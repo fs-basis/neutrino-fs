@@ -573,7 +573,7 @@
 		<S i="14b" t="2" on="85" s="192" frq="11758" n="Sky Select 9"/>
 		<S i="fe" t="3" on="85" s="192" frq="11720" n="Sky Select Event A"/>
 		<S i="14e" t="2" on="85" s="192" frq="11758" n="Sky Select Event B"/>
-		<S i="75" t="c" on="85" s="192" frq="12304" n="Sky Serien &amp; Shows HD"/>
+		<S i="75" t="c" on="85" s="192" frq="12304" n="sky comedy HD"/>
 		<S i="dab" t="10" on="85" s="192" frq="11798" n="Sky service config"/>
 		<S i="dd" t="4" on="85" s="192" frq="12032" n="Sky Sport 1"/>
 		<S i="81" t="6" on="85" s="192" frq="11914" n="Sky Sport 1 HD"/>

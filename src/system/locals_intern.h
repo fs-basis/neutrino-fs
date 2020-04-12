@@ -2234,6 +2234,7 @@ const char * locale_real_names[] =
 	"satsetup.fe_mode_master",
 	"satsetup.fe_mode_unused",
 	"satsetup.fe_setup",
+	"satsetup.fe_tuner",
 	"satsetup.lofh",
 	"satsetup.lofl",
 	"satsetup.lofs",

@@ -163,6 +163,7 @@
 		<S i="204" t="6" on="85" s="192" frq="11914" n="Sky Cinema Classics"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
+		<S i="75" t="c" on="85" s="192" frq="12304" n="sky comedy HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>
@@ -254,7 +255,6 @@
 		<S i="1197" t="406" on="1" s="192" frq="11656" n="EDGEsport"/>
 		<S i="1196" t="406" on="1" s="192" frq="11656" n="eSPORTS1"/>
 		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
-		<S i="75" t="c" on="85" s="192" frq="12304" n="sky comedy HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
@@ -293,9 +293,6 @@
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
 		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
 		<S i="1013" t="451" on="35" s="192" frq="12515" n="Planet"/>
-		<S i="1086" t="3ee" on="1" s="192" frq="11288" n="QVC UHD"/>
-		<S i="151c" t="455" on="1" s="192" frq="12574" n="pearl.tv HD Shop"/>
-		<S i="7da" t="449" on="1" s="192" frq="12344" n="QVC ZWEI UHD"/>
 	</Bouquet>
 	<Bouquet name="Radio">
 		<S i="113b" t="404" on="1" s="192" frq="11627" n="RNE RADIO 1"/>

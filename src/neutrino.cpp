@@ -742,7 +742,11 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.recording_type = configfile.getInt32("recording_type", RECORDING_FILE);
 	g_settings.recording_stopsectionsd         = configfile.getBool("recording_stopsectionsd"            , false );
 	g_settings.recording_audio_pids_default    = configfile.getInt32("recording_audio_pids_default", TIMERD_APIDS_STD | TIMERD_APIDS_AC3 | TIMERD_APIDS_ALT);
+#if BOXMODEL_BRE2ZE4k
+	g_settings.recording_zap_on_announce       = configfile.getBool("recording_zap_on_announce"      , true);
+#else
 	g_settings.recording_zap_on_announce       = configfile.getBool("recording_zap_on_announce"      , false);
+#endif
 	g_settings.shutdown_timer_record_type      = configfile.getBool("shutdown_timer_record_type"      , false);
 
 	g_settings.recording_stream_vtxt_pid       = configfile.getBool("recordingmenu.stream_vtxt_pid"      , false);
@@ -5264,9 +5268,11 @@ void CNeutrinoApp::loadKeys(const char * fname)
 
 	/* options */
 	g_settings.menu_left_exit = tconfig->getInt32( "menu_left_exit", 1 );
-#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
+#if BOXMODEL_HD51
 	g_settings.repeat_blocker = tconfig->getInt32("repeat_blocker", 300);
-#else // #elif  HAVE_SH4_HARDWARE || HAVE_MIPS_HARDWARE
+#elif  BOXMODEL_BRE2ZE4K
+	g_settings.repeat_blocker = tconfig->getInt32("repeat_blocker", 200);
+#else
 	g_settings.repeat_blocker = tconfig->getInt32("repeat_blocker", 350);
 #endif
 	g_settings.repeat_genericblocker = tconfig->getInt32("repeat_genericblocker", 100);

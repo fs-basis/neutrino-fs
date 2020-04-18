@@ -2,7 +2,6 @@ installdir = $(FONTDIR)
 
 install_DATA = \
 	HandelGotD.ttf \
-	micron.ttf \
 	neutrino.ttf \
 	tuxtxt.ttf
 

@@ -255,7 +255,6 @@
 		<S i="1197" t="406" on="1" s="192" frq="11656" n="EDGEsport"/>
 		<S i="1196" t="406" on="1" s="192" frq="11656" n="eSPORTS1"/>
 		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
-		<S i="6ffb" t="436" on="1" s="192" frq="11973" n="Nick.Jr."/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>

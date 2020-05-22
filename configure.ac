@@ -214,9 +214,17 @@ AC_ARG_ENABLE(webif,
 	,[enable_webif=yes])
 
 AM_CONDITIONAL(ENABLE_WEBIF,test "$enable_webif" = "yes")
-
 if test "$enable_webif" = "yes"; then
 	AC_DEFINE(ENABLE_WEBIF,1,[include webif])
+fi
+
+AC_ARG_ENABLE(arm-acc,
+	AS_HELP_STRING(--disable-arm-acc,disable arm hardware acceleration),
+	,[enable_arm_acc=yes])
+
+AM_CONDITIONAL(ENABLE_ARM_ACC,test "$enable_arm_acc" = "yes")
+if test "$enable_arm_acc" = "yes"; then
+	AC_DEFINE(ENABLE_ARM_ACC,1,[enable arm hardware acceleration])
 fi
 
 AC_ARG_ENABLE(extupdate,

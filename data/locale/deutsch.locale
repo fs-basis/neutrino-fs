@@ -1461,7 +1461,6 @@ menu.hint_scan_satsetup Konfigurieren Sie das LNB für ihre gewählten Satellite
 menu.hint_scan_savesettings Speichert die Tuner- und Suchlauf-Einstellungen.\nDiese bleiben für einen neuen Suchlauf erhalten
 menu.hint_scan_scantype Wählen Sie, welche Kanal-Typen Sie durchsuchen möchten
 menu.hint_scan_setup_fe Konfigurieren Sie ihre ausgewählten Tuner
-menu.hint_uni_setup Konfiguration Unikabel Frequenz, Userband und Pin
 menu.hint_scan_start Startet die Kanalsuche mit den angegebenen Parametern.\nMit der Taste 'Exit' kann abgebrochen werden
 menu.hint_scan_test Testen Sie das Signal für diesen Transponder
 menu.hint_scan_tpselect Wählen Sie einen einzelnen Transponder für den Suchlauf
@@ -1529,6 +1528,7 @@ menu.hint_tmdb_enabled Schaltet die TMDb-Unterstützung (themoviedb.org) ein bzw
 menu.hint_tools Werkzeuge ausführen
 menu.hint_tvmode Schaltet zum TV-Modus
 menu.hint_tvradio_switch Schaltet zwischen TV- und Radio-Modus um
+menu.hint_uni_setup Konfiguration Unikabel Frequenz, Userband und Pin
 menu.hint_vfd Frontdisplay und Power-LEDs
 menu.hint_vfd_brightness Definiert die Helligkeit im TV-Betrieb
 menu.hint_vfd_brightness_setup Konfiguriert die Helligkeit des Frontdisplays für verschiedene Modi

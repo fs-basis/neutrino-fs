@@ -1522,6 +1522,7 @@ menu.hint_scan_satfind_start Start Satellite finder
 menu.hint_scan_satscan Scan selected satellite
 menu.hint_scan_satselect Select satellite
 menu.hint_scan_satsetup Configure satellites options
+menu.hint_uni_setup Configuration of unicable frequency, user band and pin
 menu.hint_scan_savesettings Save tuner config and scan settings\nAlso saved, if you start service scan
 menu.hint_scan_scantype Select, which channel types to scan
 menu.hint_scan_setup_fe Configure selected frontend options

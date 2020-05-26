@@ -1549,6 +1549,7 @@ const char * locale_real_names[] =
 	"menu.hint_scan_satscan",
 	"menu.hint_scan_satselect",
 	"menu.hint_scan_satsetup",
+	"menu.hint_uni_setup",
 	"menu.hint_scan_savesettings",
 	"menu.hint_scan_scantype",
 	"menu.hint_scan_setup_fe",

@@ -118,7 +118,7 @@
 		<S i="32dd" t="45d" on="1" s="192" frq="12692" n="n-tv Austria"/>
 		<S i="30" t="5" on="85" s="192" frq="12460" n="N24 DOKU"/>
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
-		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="Krone TV"/>
+		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
 	</Bouquet>
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
@@ -163,7 +163,7 @@
 		<S i="204" t="6" on="85" s="192" frq="11914" n="Sky Cinema Classics"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
-		<S i="75" t="c" on="85" s="192" frq="12304" n="sky comedy HD"/>
+		<S i="75" t="c" on="85" s="192" frq="12304" n="Sky Serien &amp; Shows HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>
@@ -407,7 +407,7 @@
 		<S i="23ea" t="44a" on="1" s="192" frq="12363" n="RADIO NOTRE DAME"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
 		<S i="3177" t="459" on="1" s="192" frq="12633" n="Radio Regenbogen"/>
-		<S i="3178" t="459" on="1" s="192" frq="12633" n="radioB2 SCHLAGER"/>
+		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
 		<S i="6f27" t="445" on="1" s="192" frq="12266" n="rbb 88.8"/>
 		<S i="6f28" t="445" on="1" s="192" frq="12266" n="radioeins"/>
 		<S i="7598" t="422" on="1" s="192" frq="10847" n="RADIOS ESP"/>
@@ -418,7 +418,7 @@
 		<S i="23cd" t="44a" on="1" s="192" frq="12363" n="RTL"/>
 		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>
 		<S i="23e2" t="44a" on="1" s="192" frq="12363" n="RTL2"/>
-		<S i="3172" t="459" on="1" s="192" frq="12633" n="SCHLAGER-RADIO"/>
+		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
 		<S i="23e3" t="44a" on="1" s="192" frq="12363" n="SKYROCK"/>
 		<S i="6f2d" t="445" on="1" s="192" frq="12266" n="SR 1 Europawelle"/>
 		<S i="6f2e" t="445" on="1" s="192" frq="12266" n="SR 2 KulturRadio"/>

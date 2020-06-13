@@ -295,12 +295,6 @@
 		<S i="1013" t="451" on="35" s="192" frq="12515" n="Planet"/>
 	</Bouquet>
 	<Bouquet name="Radio">
-		<S i="113b" t="404" on="1" s="192" frq="11627" n="RNE RADIO 1"/>
-		<S i="113c" t="404" on="1" s="192" frq="11627" n="RNE RADIO 3"/>
-		<S i="113d" t="404" on="1" s="192" frq="11627" n="RNE RADIO 4"/>
-		<S i="113e" t="404" on="1" s="192" frq="11627" n="RNE RADIO 5 TODO NOTICIAS"/>
-		<S i="113f" t="404" on="1" s="192" frq="11627" n="RNE RADIO CLASICA"/>
-		<S i="1140" t="404" on="1" s="192" frq="11627" n="RNE RADIO EXTERIOR DE ESPAÑA"/>
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>
 		<S i="238e" t="44a" on="1" s="192" frq="12363" n="AUDIO PRIMO"/>
 		<S i="6ef4" t="445" on="1" s="192" frq="12266" n="B5 aktuell"/>
@@ -346,7 +340,6 @@
 		<S i="6f05" t="445" on="1" s="192" frq="12266" n="hr3"/>
 		<S i="6f06" t="445" on="1" s="192" frq="12266" n="hr4"/>
 		<S i="6f24" t="445" on="1" s="192" frq="12266" n="Inforadio"/>
-		<S i="316b" t="459" on="1" s="192" frq="12633" n="Inselradio"/>
 		<S i="b1" t="5" on="85" s="192" frq="12460" n="JAM FM"/>
 		<S i="23d9" t="44a" on="1" s="192" frq="12363" n="JAZZ RADIO"/>
 		<S i="6f42" t="445" on="1" s="192" frq="12266" n="Die Maus"/>

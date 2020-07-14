@@ -163,7 +163,7 @@
 		<S i="204" t="6" on="85" s="192" frq="11914" n="Sky Cinema Classics"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
-		<S i="75" t="c" on="85" s="192" frq="12304" n="Sky Serien &amp; Shows HD"/>
+		<S i="75" t="4" on="85" s="192" frq="12032" n="Sky Serien &amp; Shows HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="12" t="4" on="85" s="192" frq="12032" n="Sky Select"/>
 		<S i="fb" t="3" on="85" s="192" frq="11720" n="Sky Select 1"/>

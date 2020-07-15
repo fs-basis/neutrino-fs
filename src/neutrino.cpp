@@ -64,7 +64,7 @@
 #include <driver/display.h>
 #include <driver/radiotext.h>
 #include <driver/scanepg.h>
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 #include "gui/3dsetup.h"
 #endif
 

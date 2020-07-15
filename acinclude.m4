@@ -356,7 +356,7 @@ AC_ARG_WITH(boxtype,
 			BOXTYPE="duckbox"
 			BOXMODEL="$withval"
 		;;
-		hd51|hd60|hd61|bre2ze4k|h7|osmio4k|osmio4kplus)
+		hd51|bre2ze4k|h7)
 			BOXTYPE="armbox"
 			BOXMODEL="$withval"
 		;;
@@ -406,7 +406,7 @@ AS_HELP_STRING([], [valid for generic: raspi]),
 				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
 			fi
 		;;
-		hd51|hd60|hd61|bre2ze4k|h7|osmio4k|osmio4kplus)
+		hd51|bre2ze4k|h7)
 			if test "$BOXTYPE" = "armbox"; then
 				BOXMODEL="$withval"
 			else
@@ -462,12 +462,8 @@ AM_CONDITIONAL(BOXMODEL_IPBOX55, test "$BOXMODEL" = "ipbox55")
 AM_CONDITIONAL(BOXMODEL_TF7700, test "$BOXMODEL" = "tf7700")
 
 AM_CONDITIONAL(BOXMODEL_HD51, test "$BOXMODEL" = "hd51")
-AM_CONDITIONAL(BOXMODEL_HD60, test "$BOXMODEL" = "hd60")
-AM_CONDITIONAL(BOXMODEL_HD61, test "$BOXMODEL" = "hd61")
 AM_CONDITIONAL(BOXMODEL_BRE2ZE4K, test "$BOXMODEL" = "bre2ze4k")
 AM_CONDITIONAL(BOXMODEL_H7, test "$BOXMODEL" = "h7")
-AM_CONDITIONAL(BOXMODEL_OSMIO4K, test "$BOXMODEL" = "osmio4k")
-AM_CONDITIONAL(BOXMODEL_OSMIO4KPLUS, test "$BOXMODEL" = "osmio4kplus")
 
 AM_CONDITIONAL(BOXMODEL_RASPI, test "$BOXMODEL" = "raspi")
 
@@ -539,23 +535,15 @@ elif test "$BOXMODEL" = "bre2ze4k"; then
 	AC_DEFINE(BOXMODEL_BRE2ZE4K, 1, [bre2ze4k])
 elif test "$BOXMODEL" = "hd51"; then
 	AC_DEFINE(BOXMODEL_HD51, 1, [hd51])
-elif test "$BOXMODEL" = "hd60"; then
-	AC_DEFINE(BOXMODEL_HD60, 1, [hd60])
-elif test "$BOXMODEL" = "hd61"; then
-	AC_DEFINE(BOXMODEL_HD61, 1, [hd61])
 elif test "$BOXMODEL" = "h7"; then
 	AC_DEFINE(BOXMODEL_H7, 1, [h7])
-elif test "$BOXMODEL" = "osmio4k"; then
-	AC_DEFINE(BOXMODEL_OSMIO4K, 1, [osmio4k])
-elif test "$BOXMODEL" = "osmio4kplus"; then
-	AC_DEFINE(BOXMODEL_OSMIO4KPLUS, 1, [osmio4kplus])
 elif test "$BOXMODEL" = "raspi"; then
 	AC_DEFINE(BOXMODEL_RASPI, 1, [raspberry pi])
 fi
 
 # Support Boxmodel with OSD-Resolution
 case "$BOXMODEL" in
-	bre2ze4k|hd51|h7|osmio4k|osmio4kplus)
+	bre2ze4k|hd51|h7)
 		AC_DEFINE(ENABLE_CHANGE_OSD_RESOLUTION, 1, [enable to change osd resolution])
 	;;
 esac

@@ -274,11 +274,7 @@ typedef enum {
 	DMX_SOURCE_FRONT23,
 #endif
 #endif
-#if BOXMODEL_VUPLUS_ARM
-	DMX_SOURCE_DVR0   = 32,
-#else
 	DMX_SOURCE_DVR0   = 16,
-#endif
 	DMX_SOURCE_DVR1,
 	DMX_SOURCE_DVR2,
 	DMX_SOURCE_DVR3

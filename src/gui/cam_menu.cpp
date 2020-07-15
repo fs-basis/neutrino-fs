@@ -54,28 +54,11 @@
 #include <zapit/zapit.h>
 #include <driver/abstime.h>
 
-#if BOXMODEL_VUPLUS_ALL
-#define CI_CLOCK_OPTION_COUNT 3
-static const CMenuOptionChooser::keyval CI_CLOCK_OPTIONS[CI_CLOCK_OPTION_COUNT] = {
-	{  6, LOCALE_CI_CLOCK_NORMAL },
-	{  7, LOCALE_CI_CLOCK_HIGH },
-	{ 12, LOCALE_CI_CLOCK_EXTRA_HIGH }
-};
-#define CI_DELAY_OPTION_COUNT 5
-static const CMenuOptionChooser::keyval_ext CI_DELAY_OPTIONS[CI_DELAY_OPTION_COUNT] = {
-	{  16, NONEXISTANT_LOCALE, "16"  },
-	{  32, NONEXISTANT_LOCALE, "32"  },
-	{  64, NONEXISTANT_LOCALE, "64"  },
-	{ 128, NONEXISTANT_LOCALE, "128" },
-	{ 256, NONEXISTANT_LOCALE, "256" }
-};
-#else
 #define CI_CLOCK_OPTION_COUNT 2
 static const CMenuOptionChooser::keyval CI_CLOCK_OPTIONS[CI_CLOCK_OPTION_COUNT] = {
 	{ 6, LOCALE_CI_CLOCK_NORMAL },
 	{ 7, LOCALE_CI_CLOCK_HIGH }
 };
-#endif
 
 void CCAMMenuHandler::init(void)
 {
@@ -134,10 +117,7 @@ int CCAMMenuHandler::doMainMenu()
 
 	int CiSlots = ca ? ca->GetNumberCISlots() : 0;
 	if(CiSlots) {
-#if BOXMODEL_VUPLUS_ALL
-		cammenu->addItem(new CMenuOptionChooser(LOCALE_CI_DELAY, &g_settings.ci_delay, CI_DELAY_OPTIONS, CI_DELAY_OPTION_COUNT, true, this));
-#endif
-		cammenu->addItem(new CMenuOptionChooser(LOCALE_CI_RESET_STANDBY, &g_settings.ci_standby_reset, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	cammenu->addItem(new CMenuOptionChooser(LOCALE_CI_RESET_STANDBY, &g_settings.ci_standby_reset, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	}
 	cammenu->addItem(new CMenuOptionChooser(LOCALE_CI_CHECK_LIVE_SLOT, &g_settings.ci_check_live, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
 
@@ -188,9 +168,6 @@ int CCAMMenuHandler::doMainMenu()
 #if !HAVE_SH4_HARDWARE
 			cammenu->addItem(new CMenuOptionNumberChooser(LOCALE_CI_CLOCK, &g_settings.ci_clock[i], true, 6, 12, this));
 #endif
-#endif
-#if BOXMODEL_VUPLUS_ALL
-			cammenu->addItem(new CMenuOptionChooser(LOCALE_CI_RPR, &g_settings.ci_rpr[i], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
 #endif
 			cammenu->addItem(new CMenuOptionChooser(LOCALE_CI_IGNORE_MSG, &g_settings.ci_ignore_messages[i], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 			cammenu->addItem(new CMenuOptionChooser(LOCALE_CI_SAVE_PINCODE, &g_settings.ci_save_pincode[i], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
@@ -586,21 +563,6 @@ int CCAMMenuHandler::doMenu(int slot, CA_SLOT_TYPE slotType)
 
 bool CCAMMenuHandler::changeNotify(const neutrino_locale_t OptionName, void * Data)
 {
-#if BOXMODEL_VUPLUS_ALL
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_CI_DELAY)) {
-		printf("CCAMMenuHandler::changeNotify: ci_delay %d\n", g_settings.ci_delay);
-		ca->SetCIDelay(g_settings.ci_delay);
-		return true;
-	}
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_CI_RPR)) {
-		for (unsigned int i = 0; i < ca->GetNumberCISlots(); i++) {
-			printf("CCAMMenuHandler::changeNotify: ci_rpr[%d] %d\n", i, g_settings.ci_rpr[i]);
-			ca->SetCIRelevantPidsRouting(g_settings.ci_rpr[i], i);
-		}
-		return true;
-	}
-	else
-#endif
 	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_CI_CLOCK)) {
 		for (unsigned int i = 0; i < ca->GetNumberCISlots(); i++) {
 			printf("CCAMMenuHandler::changeNotify: ci_clock[%d] %d\n", i, g_settings.ci_clock[i]);

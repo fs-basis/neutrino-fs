@@ -77,7 +77,7 @@
 
 #include <cs_api.h>
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 #include <hardware/video.h>
 extern cVideo * videoDecoder;
 #endif
@@ -118,7 +118,7 @@ extern int allow_flash;
 #define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd999"
 #else
 // TODO: move this mess below to libstb-hal
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 #define FILEBROWSER_UPDATE_FILTER      "tgz"
 #define MTD_OF_WHOLE_IMAGE              999
 #define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd999"
@@ -360,7 +360,7 @@ bool CFlashUpdate::selectHttpImage(void)
 		}
 	}
 #endif
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	if (gotImage && (filename.substr(filename.find_last_of(".") + 1) == "tgz" || filename.substr(filename.find_last_of(".") + 1) == "zip"))
 	{
 		// manipulate fileType for tgz- or zip-packages
@@ -446,7 +446,7 @@ bool CFlashUpdate::checkVersion4Update()
 		if (allow_flash)
 		{
 			UpdatesFilter.addFilter(FILEBROWSER_UPDATE_FILTER);
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 			UpdatesFilter.addFilter("zip");
 #endif
 		}
@@ -481,7 +481,7 @@ bool CFlashUpdate::checkVersion4Update()
 		}
 		hide();
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 		//tgz or zip package install:
 		if (file_selected->getType() == CFile::FILE_TGZ_PACKAGE || file_selected->getType() == CFile::FILE_ZIP_PACKAGE) {
 			fileType = 'Z';
@@ -625,7 +625,7 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 		sleep(2);
 		ft.reboot();
 	}
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	else if (fileType == 'Z') // flashing image with ofgwrite
 	{
 		bool flashing = false;

@@ -65,6 +65,7 @@
 #include <driver/radiotext.h>
 #include <driver/scanepg.h>
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
+#include "gui/3dsetup"
 #endif
 
 #include "gui/adzap.h"

@@ -333,7 +333,7 @@ static void clear_queue()
 	pthread_mutex_unlock(&packetMutex);
 }
 
-#if HAVE_SH4_HARDWARE
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 #if HAVE_ARM_HARDWARE
 extern "C" void dvbsub_ass_clear(void);
 extern "C" void dvbsub_ass_write(AVCodecContext *c, AVSubtitle *sub, int pid);

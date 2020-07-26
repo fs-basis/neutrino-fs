@@ -814,7 +814,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	//recording (server + vcr)
 	g_settings.recording_type = configfile.getInt32("recording_type", RECORDING_FILE);
 	g_settings.recording_stopsectionsd         = configfile.getBool("recording_stopsectionsd"            , false );
-	g_settings.recording_audio_pids_default    = configfile.getInt32("recording_audio_pids_default", TIMERD_APIDS_STD | TIMERD_APIDS_AC3 | TIMERD_APIDS_ALT);
+	g_settings.recording_audio_pids_default    = configfile.getInt32("recording_audio_pids_default", TIMERD_APIDS_ALL);
 	g_settings.recording_zap_on_announce       = configfile.getBool("recording_zap_on_announce"      , true);
 	g_settings.shutdown_timer_record_type      = configfile.getBool("shutdown_timer_record_type"      , false);
 
@@ -863,8 +863,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		}
 	} else {
 		std::string webtv_xml = configfile.getString("webtv_xml", WEBTV_XML);
-		if (file_size(webtv_xml.c_str()))
+		if (file_size(webtv_xml.c_str())) {
 			g_settings.webtv_xml.push_back(webtv_xml);
+			g_settings.deleteKey("webtv_xml");
+		}
 	}
 
 	g_settings.webradio_xml.clear();
@@ -885,8 +887,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		}
 	} else {
 		std::string webradio_xml = configfile.getString("webradio_xml", WEBRADIO_XML);
-		if (file_size(webradio_xml.c_str()))
+		if (file_size(webradio_xml.c_str())) {
 			g_settings.webradio_xml.push_back(webradio_xml);
+			configfile.deleteKey("webradio_xml");
+		}
 	}
 #endif
 

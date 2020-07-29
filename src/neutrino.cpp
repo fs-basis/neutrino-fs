@@ -68,6 +68,10 @@
 #include "gui/3dsetup.h"
 #endif
 
+#if !HAVE_GENERIC_HARDWARE
+#include "gui/psisetup.h"
+#endif
+
 #include "gui/adzap.h"
 #include "gui/audiomute.h"
 #include "gui/audioplayer.h"
@@ -416,9 +420,17 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.hdmi_cec_view_on = configfile.getInt32("hdmi_cec_view_on", 0); // default off
 	g_settings.hdmi_cec_standby = configfile.getInt32("hdmi_cec_standby", 0); // default off
 	g_settings.hdmi_cec_volume = configfile.getInt32("hdmi_cec_volume", 0);
+
+#if HAVE_ARM_HARDWARE || HAVE_SH4_HARDWARE
 #if HAVE_SH4_HARDWARE
 	g_settings.hdmi_cec_broadcast = configfile.getInt32("hdmi_cec_broadcast", 0); // default off
 	g_settings.video_mixer_color = configfile.getInt32("video_mixer_color", 0xff000000);
+#endif
+	g_settings.psi_contrast = configfile.getInt32("video_psi_contrast", 128);
+	g_settings.psi_saturation = configfile.getInt32("video_psi_saturation", 128);
+	g_settings.psi_brightness = configfile.getInt32("video_psi_brightness", 128);
+	g_settings.psi_tint = configfile.getInt32("video_psi_tint", 128);
+	g_settings.psi_step = configfile.getInt32("video_psi_step", 2);
 #endif
 
 	g_settings.video_Format = configfile.getInt32("video_Format", DISPLAY_AR_16_9);
@@ -1392,9 +1404,17 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "hdmi_cec_view_on", g_settings.hdmi_cec_view_on );
 	configfile.setInt32( "hdmi_cec_standby", g_settings.hdmi_cec_standby );
 	configfile.setInt32( "hdmi_cec_volume", g_settings.hdmi_cec_volume );
+
+#if HAVE_ARM_HARDWARE || HAVE_SH4_HARDWARE
 #if HAVE_SH4_HARDWARE
 	configfile.setInt32( "hdmi_cec_broadcast", g_settings.hdmi_cec_broadcast );
 	configfile.setInt32( "video_mixer_color", g_settings.video_mixer_color );
+#endif
+	configfile.setInt32( "video_psi_contrast", g_settings.psi_contrast );
+	configfile.setInt32( "video_psi_saturation", g_settings.psi_saturation );
+	configfile.setInt32( "video_psi_brightness", g_settings.psi_brightness );
+	configfile.setInt32( "video_psi_tint", g_settings.psi_tint );
+	configfile.setInt32( "video_psi_step", g_settings.psi_step );
 #endif
 
 	if (!g_settings.hdmi_cec_volume)
@@ -2893,6 +2913,7 @@ TIMER_START();
 
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 	C3DSetup::getInstance()->exec(NULL, "zapped");
+	CPSISetup::getInstance()->blankScreen(false);
 #endif
 	SHTDCNT::getInstance()->init();
 

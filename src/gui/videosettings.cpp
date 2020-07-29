@@ -47,6 +47,7 @@
 #include <gui/widget/msgbox.h>
 #include <gui/osd_setup.h>
 #include <gui/osd_helpers.h>
+#include <gui/psisetup.h>
 #if HAVE_SH4_HARDWARE
 #include <gui/widget/colorchooser.h>
 #endif
@@ -463,10 +464,8 @@ int CVideoSettings::showVideoSetup()
 			if (VIDEOMENU_VIDEOMODE_OPTIONS[i].key != -1)
 				videomodes.addItem(new CMenuOptionChooser(VIDEOMENU_VIDEOMODE_OPTIONS[i].valname, &g_settings.enabled_video_modes[i], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, &anotify));
 
-#if defined (BOXMODEL_UFS910)
 		vs_videomodes_fw = new CMenuForwarder(LOCALE_VIDEOMENU_ENABLED_MODES, true, NULL, &videomodes, NULL, CRCInput::RC_mode);
 		vs_videomodes_fw->setHint("", LOCALE_MENU_HINT_VIDEO_MODES);
-#endif
 
 #ifdef BOXMODEL_CS_HD2
 		automodes.addIntroItems(LOCALE_VIDEOMENU_ENABLED_MODES_AUTO);
@@ -530,6 +529,33 @@ int CVideoSettings::showVideoSetup()
 	CMenuForwarder *mf;
 	CMenuOptionNumberChooser *mc;
 
+	CPSISetup *psiSetup = CPSISetup::getInstance();
+
+	videosetup->addItem(GenericMenuSeparatorLine);
+	mf = new CMenuForwarder(LOCALE_VIDEOMENU_PSI, true, NULL, psiSetup, NULL, CRCInput::RC_red);
+	mf->setHint("", LOCALE_MENU_HINT_VIDEO_PSI);
+	videosetup->addItem(mf);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_STEP, (int *)&g_settings.psi_step, true, 1, 100, NULL);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_PSI_STEP);
+	videosetup->addItem(mc);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_CONTRAST, (int *)&g_settings.psi_contrast, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_CONTRAST);
+	videosetup->addItem(mc);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_SATURATION, (int *)&g_settings.psi_saturation, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_SATURATION);
+	videosetup->addItem(mc);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_BRIGHTNESS, (int *)&g_settings.psi_brightness, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_BRIGHTNESS);
+	videosetup->addItem(mc);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_TINT, (int *)&g_settings.psi_tint, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_TINT);
+	videosetup->addItem(mc);
+
 	videosetup->addItem(GenericMenuSeparatorLine);
 
 	mf = new CMenuForwarder(LOCALE_THREE_D_SETTINGS, true, NULL, CNeutrinoApp::getInstance(), "3dmode", CRCInput::RC_green);
@@ -577,6 +603,44 @@ int CVideoSettings::showVideoSetup()
 	CMenuOptionChooser * zm = new CMenuOptionChooser(LOCALE_VIDEOMENU_ZAPPINGMODE, &g_settings.zappingmode, VIDEOMENU_ZAPPINGMODE_OPTIONS, VIDEOMENU_ZAPPINGMODE_OPTION_COUNT, true, this, CRCInput::RC_yellow);
 	zm->setHint("", LOCALE_MENU_HINT_VIDEO_ZAPPINGMODE);
 	videosetup->addItem(zm);
+#endif
+
+#if HAVE_ARM_HARDWARE
+	videosetup->addItem(GenericMenuSeparatorLine);
+
+	CPSISetup *psiSetup = CPSISetup::getInstance();
+
+#if 0
+	CMenuOptionNumberChooser *mc;
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_STEP, (int *)&g_settings.psi_step, true, 1, 100, NULL);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_PSI_STEP);
+	videosetup->addItem(mc);
+#endif
+
+	mf = new CMenuForwarder(LOCALE_VIDEOMENU_PSI, true, NULL, psiSetup, NULL);
+	mf->setHint("", LOCALE_MENU_HINT_VIDEO_PSI);
+	videosetup->addItem(mf);
+
+#if 0
+	videosetup->addItem(GenericMenuSeparator);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_CONTRAST, (int *)&g_settings.psi_contrast, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_CONTRAST);
+	videosetup->addItem(mc);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_SATURATION, (int *)&g_settings.psi_saturation, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_SATURATION);
+	videosetup->addItem(mc);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_BRIGHTNESS, (int *)&g_settings.psi_brightness, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_BRIGHTNESS);
+	videosetup->addItem(mc);
+
+	mc = new CMenuOptionNumberChooser(LOCALE_VIDEOMENU_PSI_TINT, (int *)&g_settings.psi_tint, true, 0, 255, psiSetup);
+	mc->setHint("", LOCALE_MENU_HINT_VIDEO_TINT);
+	videosetup->addItem(mc);
+#endif
 #endif
 
 	int res = videosetup->exec(NULL, "");

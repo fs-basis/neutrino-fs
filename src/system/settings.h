@@ -912,6 +912,7 @@ struct SNeutrinoSettings
 
 	//movieplayer
 	int   movieplayer_repeat_on;
+	int movieplayer_display_playtime;
 	std::string tmdb_api_key;
 	int tmdb_enabled;
 

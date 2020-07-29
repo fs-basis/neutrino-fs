@@ -1113,6 +1113,11 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	//Movie-Player
 	g_settings.movieplayer_repeat_on = configfile.getInt32("movieplayer_repeat_on", CMoviePlayerGui::REPEAT_OFF);
+#if BOXMODEL_BRE2ZE4K || BOXMODEL_H7 //lcd on BRE2ZE4K or H7 can only display Numbers
+	g_settings.movieplayer_display_playtime = configfile.getInt32("movieplayer_display_playtime", 1);
+#else
+	g_settings.movieplayer_display_playtime = configfile.getInt32("movieplayer_display_playtime", 0);
+#endif
 
 #ifdef TMDB_API_KEY
 	g_settings.tmdb_api_key = TMDB_API_KEY;
@@ -1875,6 +1880,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	//Movie-Player
 	configfile.setInt32( "movieplayer_repeat_on", g_settings.movieplayer_repeat_on );
+	configfile.setInt32( "movieplayer_display_playtime", g_settings.movieplayer_display_playtime );
 #ifndef TMDB_API_KEY
 	configfile.setString( "tmdb_api_key", g_settings.tmdb_api_key );
 #endif

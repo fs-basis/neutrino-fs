@@ -124,7 +124,7 @@ int CMediaPlayerSetup::showMediaPlayerSetup()
 	mf->setHint(NEUTRINO_ICON_HINT_MB, LOCALE_MENU_HINT_MOVIEBROWSER_SETUP);
 	mediaSetup->addItem(mf);
 
-	mediaSetup->addItem(GenericMenuSeparator);
+//	mediaSetup->addItem(GenericMenuSeparator);
 
 	CMenuOptionChooser *mc;
 	mc = new CMenuOptionChooser(LOCALE_MOVIEPLAYER_DISPLAY_PLAYTIME, &g_settings.movieplayer_display_playtime, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_info.hw_caps->display_xres >= 8);

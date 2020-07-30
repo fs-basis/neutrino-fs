@@ -1285,6 +1285,7 @@ menu.hint_misc_zapit Verwaltung der Start-Kanäle für den TV/Radio-Modus
 menu.hint_movie Wiedergabe von Filmen
 menu.hint_moviebrowser_fonts Ändern Sie die Schriftgrößen im Moviebrowser (Meine Aufnahmen)
 menu.hint_moviebrowser_setup Auswahl- und Anzeigeoptionen einstellen.
+menu.hint_movieplayer_display_playtime Zeigt während der Wiedergabe die Spielzeit anstatt des Fimtitels im VFD
 menu.hint_movieplayer_plugin Wählen Sie ein Plugin, das mit einer Schnellstart-Taste im Movieplayer-Modus gestartet wird
 menu.hint_net_broadcast Ändern Sie die Broadcast-Adresse.\nWenn Sie unsicher sind, verwenden Sie zuletzt .255
 menu.hint_net_dhcp Verwenden Sie einen DHCP-Server für die automatische Vergabe einer IP-Adresse im Netzwerk
@@ -1555,6 +1556,9 @@ menu.hint_video_mode Wählen Sie den Modus des Ausgangssignals für den HDMI-Ans
 menu.hint_video_modes Definiert, welche Videosysteme mit der VF-Taste der Fernbedienung ausgewählt werden können
 menu.hint_video_modes_auto Definiert, welche Videosysteme automatisch ausgewählt werden können
 menu.hint_video_pip Bild in Bild Größe und Position
+menu.hint_video_psi On-Screen-Menü zur Änderung von Farbe, Kontrast und mehr
+menu.hint_video_psi_step Setzt die Schrittweite für das On-Screen-Menü
+menu.hint_video_saturation Ändert die Farbsättigung
 menu.hint_video_scart_mode Wählen Sie den Modus des Ausgangssignals für den SCART-Anschluss
 menu.hint_video_sdosd Aktivieren/Deaktivieren der OSD Anzeige am Analogausgang (Scart, Cinch)
 menu.hint_video_three_d Ändert die kanalspezifischen 3D-Einstellungen
@@ -1890,6 +1894,7 @@ movieplayer.bookmarkname Bookmark Name
 movieplayer.bookmarkname_hint1 Geben Sie den Namen für das neue Lesezeichen ein
 movieplayer.bookmarkname_hint2
 movieplayer.chapters Kapitel
+movieplayer.display_playtime Zeige Spielzeit im VFD/LCD
 movieplayer.fileplayback_audio Multiformat-Audio
 movieplayer.fileplayback_video Multiformat-Video
 movieplayer.head Movieplayer
@@ -2564,6 +2569,14 @@ videomenu.panscan Pan & Scan
 videomenu.panscan2 14:9 Pan & Scan
 videomenu.pip PiP Setup
 videomenu.pip_error PiP Startfehler
+videomenu.psi Farbeinstellungen
+videomenu.psi.brightness Helligkeit
+videomenu.psi.contrast Kontrast
+videomenu.psi.reset Standard
+videomenu.psi.saturation Sättigung
+videomenu.psi.step Videoregler-Schrittweite
+videomenu.psi.tint Farbton
+videomenu.saturation Sättigung
 videomenu.scart Scart
 videomenu.screensetup Bildbereich
 videomenu.sdosd SD OSD

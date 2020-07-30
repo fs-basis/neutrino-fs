@@ -569,6 +569,7 @@ int CVideoSettings::showVideoSetup()
 	mf->setHint("", LOCALE_MENU_HINT_VIDEO_MASK);
 	videosetup->addItem(mf);
 #endif
+#endif
 
 #ifdef ENABLE_PIP
 	CPipSetup pip;

@@ -2323,6 +2323,7 @@ void CMoviePlayerGui::callInfoViewer(bool init_vzap_it)
 		updateLcd(false); // force title
 		g_InfoViewer->showMovieTitle(playstate, mi->epgId >>16, channelName, mi->epgTitle, mi->epgInfo1,
 			duration, position, repeat_mode, init_vzap_it ? 0 /*IV_MODE_DEFAULT*/ : 1 /*IV_MODE_VIRTUAL_ZAP*/);
+		//unlink("/tmp/cover.jpg");
 		return;
 	}
 

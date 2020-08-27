@@ -2223,22 +2223,20 @@ void CFrontend::setDiseqc(int sat_no, const uint8_t pol, const uint32_t frequenc
 
 			delay = 100;	// delay for 1.0 after 1.1 command
 			cmd.msg[2] = 0x39;	/* port group = uncommited switches */
-#if 0
 			/* new code */
 			sat_no &= 0x0F;
 			cmd.msg[3] = 0xF0 | sat_no;
-			sendDiseqcCommand(&cmd, delay);
+			sendDiseqcCommand(&cmd, delay);	
 			cmd.msg[2] = 0x38;	/* port group = commited switches */
 			cmd.msg[3] = 0xF0 | ((pol & 1) ? 0 : 2) | (high_band ? 1 : 0);
-			sendDiseqcCommand(&cmd, delay);
-#endif
+			sendDiseqcCommand(&cmd, delay);	
+#if 0			/* old code */
 #if 1
-			/* old code */
 			/* for 16 inputs */
 			cmd.msg[3] = 0xF0 | ((sat_no / 4) & 0x03);
 			//send the command to setup second uncommited switch and
 			// wait 100 ms.
-			sendDiseqcCommand(&cmd, 100);
+			sendDiseqcCommand(&cmd, 100);	
 #else
 			/* for 64 inputs */
 			uint8_t cascade_input[16] = {0xF0, 0xF4, 0xF8, 0xFC, 0xF1, 0xF5, 0xF9, 0xFD, 0xF2, 0xF6, 0xFA,
@@ -2249,9 +2247,10 @@ void CFrontend::setDiseqc(int sat_no, const uint8_t pol, const uint32_t frequenc
 			cmd.msg[3] &= 0xCF;
 			sendDiseqcCommand(&cmd, 100);	/* send the command to setup second uncommited switch and wait 100 ms !!! */
 #endif
+#endif
 		}
 
-		if (config.diseqcType >= DISEQC_1_0) {	/* DISEQC 1.0 or 1.1 */
+		if (config.diseqcType == DISEQC_1_0) {	/* DISEQC 1.0 */
 			usleep(delay * 1000);
 			//cmd.msg[0] |= 0x01;	/* repeated transmission */
 			cmd.msg[2] = 0x38;	/* port group = commited switches */

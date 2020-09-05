@@ -337,7 +337,7 @@ void CDBoxInfoWidget::paint()
 
 	//paint head
 //	std::string title(g_Locale->getText(LOCALE_EXTRA_DBOXINFO));
-	std::string title="FS Image Box-Info"; //FS
+	std::string title="Box-Info"; //FS
 #if 0
 	std::map<std::string,std::string> cpuinfo;
 	in.open("/proc/cpuinfo");

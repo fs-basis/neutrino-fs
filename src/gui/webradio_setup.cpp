@@ -32,6 +32,7 @@
 #include <driver/framebuffer.h>
 #include <gui/movieplayer.h>
 #include <gui/widget/hintbox.h>
+#include <gui/widget/keyboard_input.h>
 #include <zapit/zapit.h>
 #include <neutrino_menue.h>
 #include "webradio_setup.h"
@@ -44,10 +45,11 @@ CWebRadioSetup::CWebRadioSetup()
 	changed = false;
 }
 
-#define CWebRadioSetupFooterButtonCount 3
+#define CWebRadioSetupFooterButtonCount 4
 static const struct button_label CWebRadioSetupFooterButtons[CWebRadioSetupFooterButtonCount] = {
 	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_WEBRADIO_XML_DEL },
 	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_WEBRADIO_XML_ADD },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_WEBTV_XML_ENTER },
 	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_WEBRADIO_XML_RELOAD }
 };
 
@@ -55,39 +57,67 @@ int CWebRadioSetup::exec(CMenuTarget* parent, const std::string & actionKey)
 {
 	int res = menu_return::RETURN_REPAINT;
 
-	if(actionKey == "d" /* delete */) {
+	if(actionKey == "d" /* delete */)
+	{
 		selected = m->getSelected();
-		if (selected >= item_offset) {
+		if (selected >= item_offset)
+		{
 			m->removeItem(selected);
-		    m->hide();
+			m->hide();
 			selected = m->getSelected();
 			changed = true;
 		}
 		return res;
 	}
-	if(actionKey == "c" /* change */) {
-		CFileBrowser fileBrowser;
-		CFileFilter fileFilter;
-		fileFilter.addFilter("xml");
-		fileBrowser.Filter = &fileFilter;
+	if(actionKey == "c" /* change */)
+	{
 		selected = m->getSelected();
 		CMenuItem* item = m->getItem(selected);
 		CMenuForwarder *f = static_cast<CMenuForwarder*>(item);
 		std::string dirname(f->getName());
-		dirname = dirname.substr(0, dirname.rfind('/'));
-		if (fileBrowser.exec(dirname.c_str())) {
-			f->setName(fileBrowser.getSelectedFile()->Name);
-			g_settings.last_webradio_dir = dirname;
-			changed = true;
+		if (strstr(dirname.c_str(), "://"))
+		{
+			std::string entry = dirname;
+
+			CKeyboardInput *e = new CKeyboardInput(LOCALE_WEBTV_XML_ENTER, &entry, 50);
+			e->exec(this, "");
+			delete e;
+
+			if (entry.compare(dirname) != 0)
+			{
+				f->setName(entry);
+				changed = true;
+			}
+		}
+		else
+		{
+			CFileBrowser fileBrowser;
+			CFileFilter fileFilter;
+			fileFilter.addFilter("xml");
+			fileFilter.addFilter("tv");
+			fileFilter.addFilter("m3u");
+			fileBrowser.Filter = &fileFilter;
+
+			dirname = dirname.substr(0, dirname.rfind('/'));
+			if (fileBrowser.exec(dirname.c_str()))
+			{
+				f->setName(fileBrowser.getSelectedFile()->Name);
+				g_settings.last_webradio_dir = dirname;
+				changed = true;
+			}
 		}
 		return res;
 	}
-	if(actionKey == "a" /* add */) {
+	if(actionKey == "a" /* add */)
+	{
 		CFileBrowser fileBrowser;
 		CFileFilter fileFilter;
 		fileFilter.addFilter("xml");
+		fileFilter.addFilter("tv");
+		fileFilter.addFilter("m3u");
 		fileBrowser.Filter = &fileFilter;
-		if (fileBrowser.exec(g_settings.last_webradio_dir.c_str()) == true) {
+		if (fileBrowser.exec(g_settings.last_webradio_dir.c_str()) == true)
+		{
 			std::string s = fileBrowser.getSelectedFile()->Name;
 			m->addItem(new CMenuForwarder(s, true, NULL, this, "c"));
 			g_settings.last_webradio_dir = s.substr(0, s.rfind('/')).c_str();
@@ -95,11 +125,29 @@ int CWebRadioSetup::exec(CMenuTarget* parent, const std::string & actionKey)
 		}
 		return res;
 	}
-	if(actionKey == "r" /* reload */) {
+	if (actionKey == "e" /* enter */)
+	{
+		std::string tpl = "http://xxx.xxx.xxx.xxx/control/xmltv.m3u?mode=radio";
+		std::string entry = tpl;
+
+		CKeyboardInput *e = new CKeyboardInput(LOCALE_WEBTV_XML_ENTER, &entry, 52);
+		e->exec(this, "");
+		delete e;
+
+		if (entry.compare(tpl) != 0)
+		{
+			m->addItem(new CMenuForwarder(entry, true, NULL, this, "c"));
+			changed = true;
+		}
+		return res;
+	}
+	if(actionKey == "r" /* reload */)
+	{
 		changed = true;
 		return menu_return::RETURN_EXIT_ALL;
 	}
-	if (actionKey == "script_path") {
+	if (actionKey == "script_path")
+	{
 		const char *action_str = "ScriptPath";
 		chooserDir(g_settings.livestreamScriptPath, false, action_str);
 		return res;
@@ -120,6 +168,7 @@ int CWebRadioSetup::Show()
 	m = new CMenuWidget(LOCALE_MAINMENU_SETTINGS, NEUTRINO_ICON_AUDIOPLAY, width, MN_WIDGET_ID_WEBTVSETUP);
 	m->addKey(CRCInput::RC_red, this, "d");
 	m->addKey(CRCInput::RC_green, this, "a");
+	m->addKey(CRCInput::RC_yellow, this, "e");
 	m->addKey(CRCInput::RC_blue, this, "r");
 
 	m->addIntroItems(LOCALE_WEBRADIO_HEAD, LOCALE_LIVESTREAM_HEAD);

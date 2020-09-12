@@ -2663,10 +2663,10 @@ videomenu.zappingmode_hold Standbild
 videomenu.zappingmode_mutetilllock Schwarzes Bild bis lock
 videomenu.zappingmode_holdtilllock Standbild bis lock
 webradio.head WebRadio
-webradio.xml WebRadio-XML-Dateien
-webradio.xml.add XML-Datei hinzufügen
-webradio.xml.del XML-Datei entfernen
-webradio.xml.reload XML-Dateien neu laden
+webradio.xml WebRadio-Dateien
+webradio.xml.add Hinzufügen
+webradio.xml.del Entfernen
+webradio.xml.reload Neu laden
 webtv.head WebTV
 webtv.xml WebTV-Dateien
 webtv.xml.add Hinzufügen

@@ -2663,10 +2663,10 @@ videomenu.zappingmode_hold Hold screen
 videomenu.zappingmode_mutetilllock Black screen till locked
 videomenu.zappingmode_holdtilllock Hold screen till locked
 webradio.head WebRadio
-webradio.xml WebRadio XML files
-webradio.xml.add Add XML file
-webradio.xml.del Remove XML file
-webradio.xml.reload Reload XML files
+webradio.xml WebRadio Files
+webradio.xml.add Add
+webradio.xml.del Remove
+webradio.xml.reload Reload
 webtv.head WebTV
 webtv.xml WebTV files
 webtv.xml.add Add

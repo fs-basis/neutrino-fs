@@ -191,15 +191,20 @@ int CWebRadioSetup::Show()
 
 	int res = m->exec(NULL, "");
 	m->hide();
-	if (changed) {
-			g_settings.webradio_xml.clear();
-			for (int i = item_offset; i < m->getItemsCount(); i++) {
-				CMenuItem *item = m->getItem(i);
-				CMenuForwarder *f = static_cast<CMenuForwarder*>(item);
-				g_settings.webradio_xml.push_back(f->getName());
-			}
-			g_Zapit->reinitChannels();
-			changed = false;
+	if (changed)
+	{
+		CHintBox hint(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RELOAD_HINT);
+		hint.paint();
+		g_settings.webradio_xml.clear();
+		for (int i = item_offset; i < m->getItemsCount(); i++)
+		{
+			CMenuItem *item = m->getItem(i);
+			CMenuForwarder *f = static_cast<CMenuForwarder*>(item);
+			g_settings.webradio_xml.push_back(f->getName());
+		}
+		g_Zapit->reinitChannels();
+		changed = false;
+		hint.hide();
 	}
 
 	delete m;

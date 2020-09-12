@@ -767,8 +767,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/media/sda1/timeshift" );
 #endif
 	g_settings.downloadcache_dir = configfile.getString( "downloadcache_dir", g_settings.network_nfs_recordingdir.c_str());
-	g_settings.last_webtv_dir = configfile.getString( "last_webtv_dir", CONFIGDIR);
-	g_settings.last_webradio_dir = configfile.getString( "last_webradio_dir", CONFIGDIR);
+	g_settings.last_webtv_dir = configfile.getString( "last_webtv_dir", WEBTVDIR_VAR);
+	g_settings.last_webradio_dir = configfile.getString( "last_webradio_dir", WEBTVDIR_VAR);
 
 	g_settings.timeshift_temp = configfile.getInt32( "timeshift_temp", 0 );
 	g_settings.timeshift_auto = configfile.getInt32( "timeshift_auto", 0 );

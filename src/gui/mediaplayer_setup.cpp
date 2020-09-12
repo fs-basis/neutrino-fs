@@ -45,8 +45,8 @@
 
 #include <gui/audioplayer_setup.h>
 #include <gui/pictureviewer_setup.h>
-#include <gui/webtv_setup.h>
 #include <gui/webradio_setup.h>
+#include <gui/webtv_setup.h>
 #include <gui/xmltv_setup.h>
 #include <gui/moviebrowser/mb.h>
 

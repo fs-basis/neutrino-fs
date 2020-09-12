@@ -797,7 +797,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		std::string webtv_xml = configfile.getString("webtv_xml", WEBTV_XML);
 		if (file_size(webtv_xml.c_str())) {
 			g_settings.webtv_xml.push_back(webtv_xml);
-			g_settings.deleteKey("webtv_xml");
+			configfile.deleteKey("webtv_xml");
 		}
 	}
 

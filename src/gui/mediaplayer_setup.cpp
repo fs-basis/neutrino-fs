@@ -85,7 +85,7 @@ int CMediaPlayerSetup::showMediaPlayerSetup()
 	mediaSetup->setSelected(selected);
 
 	// intros
-	mediaSetup->addIntroItems(LOCALE_MAINMENU_MEDIA);
+	mediaSetup->addIntroItems(LOCALE_MAINSETTINGS_MULTIMEDIA);
 
 	CMenuForwarder *mf;
 

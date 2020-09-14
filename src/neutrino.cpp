@@ -1621,14 +1621,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	}
 	configfile.setInt32 ( "webtv_xml_count", g_settings.webtv_xml.size());
 
-	int xmltv_count = 0;
-	for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); ++it) {
-		std::string k = "xmltv_xml_" + to_string(xmltv_count);
-		configfile.setString(k, *it);
-		xmltv_count++;
-	}
-	configfile.setInt32 ( "xmltv_xml_count", g_settings.xmltv_xml.size());
-
 	int webradio_count = 0;
 	for (std::list<std::string>::iterator it = g_settings.webradio_xml.begin(); it != g_settings.webradio_xml.end(); ++it) {
 		std::string k = "webradio_xml_" + to_string(webradio_count);
@@ -1636,6 +1628,14 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		webradio_count++;
 	}
 	configfile.setInt32 ( "webradio_xml_count", g_settings.webradio_xml.size());
+
+	int xmltv_count = 0;
+	for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); ++it) {
+		std::string k = "xmltv_xml_" + to_string(xmltv_count);
+		configfile.setString(k, *it);
+		xmltv_count++;
+	}
+	configfile.setInt32 ( "xmltv_xml_count", g_settings.xmltv_xml.size());
 
 	saveKeys();
 

@@ -192,7 +192,7 @@ void CStreamInfo2::analyzeStream(AVFormatContext *avfc, unsigned int idx)
 	m["codec_type"] = codecType;
 	m["codec_type"][0] ^= 'a' ^ 'A';
 
-	m["pid"] = std::to_string(st->id);
+	m["pid"] = to_string(st->id);
 
 #if (LIBAVFORMAT_VERSION_MAJOR > 57) || ((LIBAVFORMAT_VERSION_MAJOR == 57) && (LIBAVFORMAT_VERSION_MINOR > 32))
 	if (st->sample_aspect_ratio.num && av_cmp_q(st->sample_aspect_ratio, st->codecpar->sample_aspect_ratio))
@@ -617,7 +617,7 @@ void CStreamInfo2::paint_signal_fe_box(int _x, int _y, int w, int h)
 			tname += g_Locale->getText(LOCALE_MAINMENU_MOVIEPLAYER);
 	}
 	else
-		tname += std::to_string(1 + frontend->getNumber()) + ": " + frontend->getName();
+		tname += to_string(1 + frontend->getNumber()) + ": " + frontend->getName();
 
 	g_FixedFont[font_small]->RenderString(_x, _y + sheight, w, tname, COL_MENUCONTENT_TEXT);
 
@@ -769,7 +769,7 @@ void CStreamInfo2::SignalRenderHead(std::string head, int _x, int _y, fb_pixel_t
 void CStreamInfo2::SignalRenderStr(unsigned int value, int _x, int _y)
 {
 	frameBuffer->paintBoxRel(_x, _y - sheight, sig_text_w, sheight, COL_MENUCONTENT_PLUS_0);
-	std::string val = std::to_string(value);
+	std::string val = to_string(value);
 	int tw = g_FixedFont[font_small]->getRenderWidth(val);
 	g_FixedFont[font_small]->RenderString(_x + (sig_text_w - tw)/2, _y, tw, val, COL_MENUCONTENT_TEXT);
 }
@@ -1182,7 +1182,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		{
 			r.key = li ? "" : "Audio PID(s): ";
 			i = g_RemoteControl->current_PIDs.APIDs[li].pid;
-			std::string strpid = std::to_string(i);
+			std::string strpid = to_string(i);
 			std::string details(" ");
 			for (std::vector<std::map<std::string, std::string> >::iterator it = streamdata.begin(); it != streamdata.end(); ++it)
 			{

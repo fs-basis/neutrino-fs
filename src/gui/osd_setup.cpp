@@ -1071,7 +1071,7 @@ private:
 protected:
 
 	std::string getOption(fb_pixel_t * bgcol __attribute__((unused)) = NULL) {
-		return std::to_string(configfile->getInt32(locale_real_names[name], defaultvalue));
+		return to_string(configfile->getInt32(locale_real_names[name], defaultvalue));
 	}
 
 	virtual bool changeNotify(const neutrino_locale_t OptionName, void * Data)

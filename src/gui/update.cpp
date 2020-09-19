@@ -779,13 +779,13 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 
 		for (int i = 1; i < 4+1; i++)
 		{
-			bool active = !strcmp(c, std::to_string(i).c_str());
-			std::string m_title = "Partition " + std::to_string(i);
+			bool active = !strcmp(c, to_string(i).c_str());
+			std::string m_title = "Partition " + to_string(i);
 #if BOXMODEL_VUPLUS_ARM
 			// own partition blocked, because fix needed for flashing own partition
-			mf = new CMenuForwarder(m_title, !active, NULL, selector, std::to_string(i).c_str(), CRCInput::convertDigitToKey(i));
+			mf = new CMenuForwarder(m_title, !active, NULL, selector, to_string(i).c_str(), CRCInput::convertDigitToKey(i));
 #else
-			mf = new CMenuForwarder(m_title, true, NULL, selector, std::to_string(i).c_str(), CRCInput::convertDigitToKey(i));
+			mf = new CMenuForwarder(m_title, true, NULL, selector, to_string(i).c_str(), CRCInput::convertDigitToKey(i));
 #endif
 			mf->iconName_Info_right = active ? NEUTRINO_ICON_CHECKMARK : NULL;
 			m.addItem(mf, active);
@@ -801,11 +801,11 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 		int restart = CMsgBox::mbNo;
 
 		std::string ofgwrite_options("");
-		if (selected > 0 && strcmp(c, std::to_string(selected).c_str()))
+		if (selected > 0 && strcmp(c, to_string(selected).c_str()))
 		{
 			flashing = true;
 			// align ofgwrite options
-			ofgwrite_options = "-m" + std::to_string(selected);
+			ofgwrite_options = "-m" + to_string(selected);
 			dprintf(DEBUG_NORMAL, "[update] ofgwrite_options: %s\n", ofgwrite_options.c_str());
 
 			// start selected partition?
@@ -815,16 +815,16 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 				if(g_settings.hdmi_cec_standby){
 					videoDecoder->SetCECMode((VIDEO_HDMI_CEC_MODE)0);
 				}
-				std::string startup_new = "/boot/STARTUP_" + std::to_string(selected);
+				std::string startup_new = "/boot/STARTUP_" + to_string(selected);
 				dprintf(DEBUG_NORMAL, "[update] Start selected partition %d (%s)\n", selected, startup_new.c_str());
 #ifndef DRYRUN
 				CFileHelpers fh;
 				fh.copyFile(startup_new.c_str(), "/boot/STARTUP");
 #endif
 			}
-		} else if (selected > 0 && strcmp(c, std::to_string(selected).c_str()) == 0) {
+		} else if (selected > 0 && strcmp(c, to_string(selected).c_str()) == 0) {
 			flashing = true;
-			ofgwrite_options = "-m" + std::to_string(selected);
+			ofgwrite_options = "-m" + to_string(selected);
 		}
 		if (flashing)
 			ShowHint(LOCALE_MESSAGEBOX_INFO, LOCALE_FLASHUPDATE_START_OFGWRITE);
@@ -942,7 +942,7 @@ bool CFlashExpert::checkSize(int mtd, std::string &backupFile)
 			__func__, backupMaxSize, btotal, bused, bsize);
 
 	if (backupMaxSize < backupRequiredSize) {
-		snprintf(errMsg, sizeof(errMsg)-1, g_Locale->getText(LOCALE_FLASHUPDATE_READ_NO_AVAILABLE_SPACE), path.c_str(), std::to_string(backupMaxSize).c_str(), std::to_string(backupRequiredSize).c_str());
+		snprintf(errMsg, sizeof(errMsg)-1, g_Locale->getText(LOCALE_FLASHUPDATE_READ_NO_AVAILABLE_SPACE), path.c_str(), to_string(backupMaxSize).c_str(), to_string(backupRequiredSize).c_str());
 		ShowHint(LOCALE_MESSAGEBOX_ERROR, errMsg);
 		return false;
 	}

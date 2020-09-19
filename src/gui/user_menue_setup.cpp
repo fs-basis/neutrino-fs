@@ -129,7 +129,7 @@ CUserMenuSetup::CUserMenuSetup(neutrino_locale_t menue_title, int menue_button)
 		const char *loc = g_Locale->getText(usermenu_items[i].value);
 		if (usermenu_items[i].show)
 			options.push_back(loc);
-		keys[loc] = std::to_string(usermenu_items[i].key);
+		keys[loc] = to_string(usermenu_items[i].key);
 		vals[keys[loc]] = loc;
 	}
 
@@ -249,7 +249,7 @@ int CUserMenuSetup::showSetup()
 
 	const char *delim = "";
 	g_settings.usermenu[button]->items = "";
-	std::string none = std::to_string(SNeutrinoSettings::ITEM_NONE);
+	std::string none = to_string(SNeutrinoSettings::ITEM_NONE);
 	for (int count = item_offset; count < items_end; count++) {
 		std::string lk = keys[static_cast<CMenuOptionStringChooser*>(ums->getItem(count))->getOptionValue()];
 		if (lk == none)

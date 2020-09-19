@@ -140,7 +140,7 @@ bool cTmdb::GetMovieDetails(std::string lang, bool second)
 			minfo.media_type = elements[use_result].get("media_type","").asString();
 		}
 		if (minfo.id > -1) {
-			url = urlapi+minfo.media_type+"/"+ std::to_string(minfo.id)+"?api_key="+key+"&language="+lang+"&append_to_response=credits";
+			url = urlapi+minfo.media_type+"/"+to_string(minfo.id)+"?api_key="+key+"&language="+lang+"&append_to_response=credits";
 			if(!(GetData(url, &root)))
 				return false;
 
@@ -193,19 +193,19 @@ std::string cTmdb::CreateEPGText()
 {
 	std::string epgtext;
 	epgtext += "\n";
-	epgtext += "Vote: "+minfo.vote_average.substr(0,3)+"/10 Votecount: "+ std::to_string(minfo.vote_count)+"\n";
+	epgtext += "Vote: "+minfo.vote_average.substr(0,3)+"/10 Votecount: "+to_string(minfo.vote_count)+"\n";
 	epgtext += "\n";
 	epgtext += minfo.overview+"\n";
 	epgtext += "\n";
 	if (minfo.media_type == "tv")
 		epgtext += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH)+": "+minfo.runtimes+"\n";
 	else
-		epgtext += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH)+": "+ std::to_string(minfo.runtime)+"\n";
+		epgtext += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH)+": "+to_string(minfo.runtime)+"\n";
 	epgtext += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_GENRE)+": "+minfo.genres+"\n";
 	epgtext += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE) +" : "+ minfo.original_title+"\n";
 	epgtext += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION)+" : "+ minfo.release_date.substr(0,4) +"\n";
 	if (minfo.media_type == "tv")
-		epgtext += "Seasons/Episodes: "+ std::to_string(minfo.seasons)+"/"+ std::to_string(minfo.episodes)+"\n";
+		epgtext += "Seasons/Episodes: "+to_string(minfo.seasons)+"/"+to_string(minfo.episodes)+"\n";
 	if (!minfo.cast.empty())
 		epgtext += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ACTORS)+":\n"+ minfo.cast+"\n";
 	return epgtext;
@@ -237,9 +237,9 @@ void cTmdb::selectResult(Json::Value elements, int results, int &use_result)
 	for (int i = 0; i != counter; i++)
 	{
 		if (elements[i].get("media_type","").asString() == "movie")
-			mf = new CMenuForwarder(elements[i].get("title","").asString(), true, NULL, selector, std::to_string(i).c_str());
+			mf = new CMenuForwarder(elements[i].get("title","").asString(), true, NULL, selector, to_string(i).c_str());
 		else
-			mf = new CMenuForwarder(elements[i].get("name","").asString(), true, NULL, selector, std::to_string(i).c_str());
+			mf = new CMenuForwarder(elements[i].get("name","").asString(), true, NULL, selector, to_string(i).c_str());
 		m->addItem(mf);
 	}
 

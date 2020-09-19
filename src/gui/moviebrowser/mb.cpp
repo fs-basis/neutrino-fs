@@ -633,8 +633,8 @@ bool CMovieBrowser::loadSettings(MB_SETTINGS* settings)
 
 	for (int i = 0; i < MB_MAX_DIRS; i++)
 	{
-		settings->storageDir[i] = configfile.getString("mb_dir_" + std::to_string(i), "");
-		settings->storageDirUsed[i] = configfile.getInt32("mb_dir_used" + std::to_string(i), false);
+		settings->storageDir[i] = configfile.getString("mb_dir_" + to_string(i), "");
+		settings->storageDirUsed[i] = configfile.getInt32("mb_dir_used" + to_string(i), false);
 	}
 	/* these variables are used for the listframes */
 	settings->browserFrameHeightGeneral = configfile.getInt32("mb_browserFrameHeightGeneral", 65);
@@ -643,8 +643,8 @@ bool CMovieBrowser::loadSettings(MB_SETTINGS* settings)
 	settings->browserRowNr = configfile.getInt32("mb_browserRowNr", 0);
 	for (int i = 0; i < MB_MAX_ROWS && i < settings->browserRowNr; i++)
 	{
-		settings->browserRowItem[i] = (MB_INFO_ITEM)configfile.getInt32("mb_browserRowItem_" + std::to_string(i), MB_INFO_MAX_NUMBER);
-		settings->browserRowWidth[i] = configfile.getInt32("mb_browserRowWidth_" + std::to_string(i), 50);
+		settings->browserRowItem[i] = (MB_INFO_ITEM)configfile.getInt32("mb_browserRowItem_" + to_string(i), MB_INFO_MAX_NUMBER);
+		settings->browserRowWidth[i] = configfile.getInt32("mb_browserRowWidth_" + to_string(i), 50);
 	}
 	settings->browserAdditional = configfile.getInt32("mb_browserAdditional", 1);
 	return (result);
@@ -681,8 +681,8 @@ bool CMovieBrowser::saveSettings(MB_SETTINGS* settings)
 
 	for (int i = 0; i < MB_MAX_DIRS; i++)
 	{
-		configfile.setString("mb_dir_" + std::to_string(i), settings->storageDir[i]);
-		configfile.setInt32("mb_dir_used" + std::to_string(i), settings->storageDirUsed[i]); // do not save this so far
+		configfile.setString("mb_dir_" + to_string(i), settings->storageDir[i]);
+		configfile.setInt32("mb_dir_used" + to_string(i), settings->storageDirUsed[i]); // do not save this so far
 	}
 	/* these variables are used for the listframes */
 	configfile.setInt32("mb_browserFrameHeightGeneral", settings->browserFrameHeightGeneral);
@@ -691,8 +691,8 @@ bool CMovieBrowser::saveSettings(MB_SETTINGS* settings)
 	configfile.setInt32("mb_browserRowNr",settings->browserRowNr);
 	for (int i = 0; i < MB_MAX_ROWS && i < settings->browserRowNr; i++)
 	{
-		configfile.setInt32("mb_browserRowItem_" + std::to_string(i), settings->browserRowItem[i]);
-		configfile.setInt32("mb_browserRowWidth_" + std::to_string(i), settings->browserRowWidth[i]);
+		configfile.setInt32("mb_browserRowItem_" + to_string(i), settings->browserRowItem[i]);
+		configfile.setInt32("mb_browserRowWidth_" + to_string(i), settings->browserRowWidth[i]);
 	}
 		configfile.setInt32("mb_browserAdditional", settings->browserAdditional);
 
@@ -1965,8 +1965,8 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 			m.addIntroItems();
 
 			// add PREVPLAYDATE/RECORDDATE sort buttons to footer
-			m.addKey(CRCInput::RC_red, selector, std::to_string(MB_INFO_PREVPLAYDATE).c_str());
-			m.addKey(CRCInput::RC_green, selector, std::to_string(MB_INFO_RECORDDATE).c_str());
+			m.addKey(CRCInput::RC_red, selector, to_string(MB_INFO_PREVPLAYDATE).c_str());
+			m.addKey(CRCInput::RC_green, selector, to_string(MB_INFO_RECORDDATE).c_str());
 
 			button_label footerButtons[] = {
 				{ NEUTRINO_ICON_BUTTON_RED,	LOCALE_MOVIEBROWSER_INFO_PREVPLAYDATE},
@@ -1989,7 +1989,7 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 						continue;
 
 					if (m_settings.browserRowItem[row] == i)
-						m.addItem(new CMenuForwarder(g_Locale->getText(m_localizedItemName[i]), true, NULL, selector, std::to_string(i).c_str(), CRCInput::convertDigitToKey(directkey++)));
+						m.addItem(new CMenuForwarder(g_Locale->getText(m_localizedItemName[i]), true, NULL, selector, to_string(i).c_str(), CRCInput::convertDigitToKey(directkey++)));
 				}
 			}
 
@@ -3667,7 +3667,7 @@ bool CMovieBrowser::getMovieInfoItem(MI_MOVIE_INFO& movie_info, MB_INFO_ITEM ite
 				if (s || e)
 					b += ",";
 				b += "U[";
-				b += std::to_string(counter);
+				b += to_string(counter);
 				b += "]";
 			}
 

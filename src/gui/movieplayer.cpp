@@ -503,15 +503,15 @@ void CMoviePlayerGui::updateLcd(bool display_playtime)
 		ss -= mm * 60;
 
 		if (g_info.hw_caps->display_xres >= 8)
-			lcd = std::to_string(hh/10) + std::to_string(hh%10) + ":" + std::to_string(mm/10) + std::to_string(mm%10) + ":" + std::to_string(ss/10) + std::to_string(ss%10);
+			lcd = to_string(hh/10) + to_string(hh%10) + ":" + to_string(mm/10) + to_string(mm%10) + ":" + to_string(ss/10) + to_string(ss%10);
 		else
 		{
 			std::string colon = g_info.hw_caps->display_has_colon ? ":" : "";
 			if (hh < 1) {
-				lcd = std::to_string(mm/10) + std::to_string(mm%10) + colon + std::to_string(ss/10) + std::to_string(ss%10);
+				lcd = to_string(mm/10) + to_string(mm%10) + colon + to_string(ss/10) + to_string(ss%10);
 			}
 			else {
-				lcd = std::to_string(hh/10) + std::to_string(hh%10) + colon + std::to_string(mm/10) + std::to_string(mm%10);
+				lcd = to_string(hh/10) + to_string(hh%10) + colon + to_string(mm/10) + to_string(mm%10);
 			}
 		}
 
@@ -2012,7 +2012,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			ss -= hh * 3600;
 			int mm = ss/60;
 			ss -= mm * 60;
-			std::string Value = std::to_string(hh/10) + std::to_string(hh%10) + ":" + std::to_string(mm/10) + std::to_string(mm%10) + ":" + std::to_string(ss/10) + std::to_string(ss%10);
+			std::string Value = to_string(hh/10) + to_string(hh%10) + ":" + to_string(mm/10) + to_string(mm%10) + ":" + to_string(ss/10) + to_string(ss%10);
 			CTimeInput jumpTime (LOCALE_MPKEY_GOTO, &Value, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, NULL, &cancel);
 			jumpTime.exec(NULL, "");
 			jumpTime.hide();
@@ -3249,7 +3249,7 @@ std::string CMoviePlayerGui::getAPIDDesc(unsigned int i)
 	if (i < numpida)
 		getAudioName(apids[i], apidtitle);
 	if (apidtitle.empty() || apidtitle == "und" )
-		apidtitle = "Stream " + std::to_string((int)i);
+		apidtitle = "Stream " + to_string((int)i);
 	addAudioFormat(i, apidtitle);
 	return apidtitle;
 }
@@ -3275,7 +3275,7 @@ unsigned int CMoviePlayerGui::getAPIDCount(void)
 	playback->FindAllPids(apids, ac3flags, &numpida, language);
 	for (unsigned int i = 0; i < numpida; i++) {
 		if (language[i].empty() || language[i] == "und" )
-			language[i] = "Stream " + std::to_string(i);
+			language[i] = "Stream " + to_string(i);
 		language[i] = getISO639Description(language[i].c_str());
 		addAudioFormat(i, language[i]);
 	}

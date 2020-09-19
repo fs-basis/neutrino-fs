@@ -544,17 +544,17 @@ int CNeutrinoApp::loadSetup(const char * fname)
 			timer_rb.online = false;
 			timer_rb.port = 0;
 			std::string k;
-			k = "timer_remotebox_ip_" + std::to_string(i);
+			k = "timer_remotebox_ip_" + to_string(i);
 			timer_rb.rbaddress = configfile.getString(k, "");
 			if (timer_rb.rbaddress.empty())
 				continue;
-			k = "timer_remotebox_port_" + std::to_string(i);
+			k = "timer_remotebox_port_" + to_string(i);
 			timer_rb.port = configfile.getInt32(k, 80);
-			k = "timer_remotebox_user_" + std::to_string(i);
+			k = "timer_remotebox_user_" + to_string(i);
 			timer_rb.user = configfile.getString(k, "");
-			k = "timer_remotebox_pass_" + std::to_string(i);
+			k = "timer_remotebox_pass_" + to_string(i);
 			timer_rb.pass = configfile.getString(k, "");
-			k = "timer_remotebox_rbname_" + std::to_string(i);
+			k = "timer_remotebox_rbname_" + to_string(i);
 			timer_rb.rbname = configfile.getString(k, "");
 			if (timer_rb.rbname.empty())
 				timer_rb.rbname = timer_rb.rbaddress;
@@ -667,7 +667,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	//network
 	for(int i=0 ; i < NETWORK_NFS_NR_OF_ENTRIES ; i++) {
-		std::string i_str(std::to_string(i));
+		std::string i_str(to_string(i));
 		g_settings.network_nfs[i].ip = configfile.getString("network_nfs_ip_" + i_str, "");
 		g_settings.network_nfs[i].dir = configfile.getString("network_nfs_dir_" + i_str, "");
 		g_settings.network_nfs[i].local_dir = configfile.getString("network_nfs_local_dir_" + i_str, "");
@@ -787,7 +787,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	int webtv_count = configfile.getInt32("webtv_xml_count", 0);
 	if (webtv_count) {
 		for (int i = 0; i < webtv_count; i++) {
-			std::string k = "webtv_xml_" + std::to_string(i);
+			std::string k = "webtv_xml_" + to_string(i);
 			std::string webtv_xml = configfile.getString(k, "");
 			if (webtv_xml.empty())
 				continue;
@@ -811,7 +811,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	int webradio_count = configfile.getInt32("webradio_xml_count", 0);
 	if (webradio_count) {
 		for (int i = 0; i < webradio_count; i++) {
-			std::string k = "webradio_xml_" + std::to_string(i);
+			std::string k = "webradio_xml_" + to_string(i);
 			std::string webradio_xml = configfile.getString(k, "");
 			if (webradio_xml.empty())
 				continue;
@@ -830,7 +830,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	int xmltv_count = configfile.getInt32("xmltv_xml_count", 0);
 	if (xmltv_count) {
 		for (int i = 0; i < xmltv_count; i++) {
-			std::string k = "xmltv_xml_" + std::to_string(i);
+			std::string k = "xmltv_xml_" + to_string(i);
 			std::string xmltv_xml = configfile.getString(k, "");
 			if (xmltv_xml.empty())
 				continue;
@@ -1084,9 +1084,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.epg_search_history_size = g_settings.epg_search_history_max;
 	g_settings.epg_search_history.clear();
 	for(int i = 0; i < g_settings.epg_search_history_size; i++) {
-		std::string s = configfile.getString("epg_search_history_" + std::to_string(i));
+		std::string s = configfile.getString("epg_search_history_" + to_string(i));
 		if (!s.empty())
-			g_settings.epg_search_history.push_back(configfile.getString("epg_search_history_" + std::to_string(i), ""));
+			g_settings.epg_search_history.push_back(configfile.getString("epg_search_history_" + to_string(i), ""));
 	}
 	g_settings.epg_search_history_size = g_settings.epg_search_history.size();
 
@@ -1114,7 +1114,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	} else {
 		bool unknown = configfile.getUnknownKeyQueryedFlag();
 		for (unsigned int i = 0; ; i++) {
-			std::string name = (i < 4) ? usermenu_default[i].name : std::to_string(i);
+			std::string name = (i < 4) ? usermenu_default[i].name : to_string(i);
 			std::string usermenu_key("usermenu_key_");
 			usermenu_key += name;
 			int uk = configfile.getInt32(usermenu_key, CRCInput::RC_nokey);
@@ -1447,15 +1447,15 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	int timer_remotebox_itemcount = 0;
 	for (std::vector<timer_remotebox_item>::iterator it = g_settings.timer_remotebox_ip.begin(); it != g_settings.timer_remotebox_ip.end(); ++it) {
 		std::string k;
-		k = "timer_remotebox_ip_" + std::to_string(timer_remotebox_itemcount);
+		k = "timer_remotebox_ip_" + to_string(timer_remotebox_itemcount);
 		configfile.setString(k, it->rbaddress);
-		k = "timer_remotebox_rbname_" + std::to_string(timer_remotebox_itemcount);
+		k = "timer_remotebox_rbname_" + to_string(timer_remotebox_itemcount);
 		configfile.setString(k, it->rbname);
-		k = "timer_remotebox_user_" + std::to_string(timer_remotebox_itemcount);
+		k = "timer_remotebox_user_" + to_string(timer_remotebox_itemcount);
 		configfile.setString(k, it->user);
-		k = "timer_remotebox_pass_" + std::to_string(timer_remotebox_itemcount);
+		k = "timer_remotebox_pass_" + to_string(timer_remotebox_itemcount);
 		configfile.setString(k, it->pass);
-		k = "timer_remotebox_port_" + std::to_string(timer_remotebox_itemcount);
+		k = "timer_remotebox_port_" + to_string(timer_remotebox_itemcount);
 		configfile.setInt32(k, it->port);
 		timer_remotebox_itemcount++;
 	}
@@ -1615,7 +1615,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	int webtv_count = 0;
 	for (std::list<std::string>::iterator it = g_settings.webtv_xml.begin(); it != g_settings.webtv_xml.end(); ++it) {
-		std::string k = "webtv_xml_" + std::to_string(webtv_count);
+		std::string k = "webtv_xml_" + to_string(webtv_count);
 		configfile.setString(k, *it);
 		webtv_count++;
 	}
@@ -1623,7 +1623,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	int webradio_count = 0;
 	for (std::list<std::string>::iterator it = g_settings.webradio_xml.begin(); it != g_settings.webradio_xml.end(); ++it) {
-		std::string k = "webradio_xml_" + std::to_string(webradio_count);
+		std::string k = "webradio_xml_" + to_string(webradio_count);
 		configfile.setString(k, *it);
 		webradio_count++;
 	}
@@ -1631,7 +1631,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	int xmltv_count = 0;
 	for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); ++it) {
-		std::string k = "xmltv_xml_" + std::to_string(xmltv_count);
+		std::string k = "xmltv_xml_" + to_string(xmltv_count);
 		configfile.setString(k, *it);
 		xmltv_count++;
 	}
@@ -1806,7 +1806,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("epg_search_history_size", g_settings.epg_search_history_size);
 	std::list<std::string>:: iterator it = g_settings.epg_search_history.begin();
 	for(int i = 0; i < g_settings.epg_search_history_size; i++, ++it)
-		configfile.setString("epg_search_history_" + std::to_string(i), *it);
+		configfile.setString("epg_search_history_" + to_string(i), *it);
 
 	// USERMENU
 	//---------------------------------------
@@ -1816,7 +1816,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 			if (i < 4)
 				name = usermenu_default[i].name;
 			else
-				name = std::to_string(count++);
+				name = to_string(count++);
 			std::string usermenu_key("usermenu_key_");
 			usermenu_key += name;
 			configfile.setInt32(usermenu_key, g_settings.usermenu[i]->key);

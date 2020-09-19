@@ -361,7 +361,7 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 					neutrino_msg_t d_key = g_Plugins->getKey(count);
 					//printf("[neutrino usermenu] plugin %d, set key %d...\n", count, g_Plugins->getKey(count));
 					keyhelper.get(&key,&icon, d_key);
-					menu_item = new CMenuForwarder(g_Plugins->getName(count), true, NULL, CPluginsExec::getInstance(), std::to_string(count).c_str(), key, icon);
+					menu_item = new CMenuForwarder(g_Plugins->getName(count), true, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), key, icon);
 					menu_item->setHint(g_Plugins->getHintIcon(count), g_Plugins->getDescription(count));
 
 					menu->addItem(menu_item, false);
@@ -520,7 +520,7 @@ bool CUserMenu::showUserMenu(neutrino_msg_t msg)
 				if (pname && (std::string(pname) == *it) && !g_Plugins->isHidden(count)) {
 					neutrino_msg_t d_key = g_Plugins->getKey(count);
 					keyhelper.get(&key,&icon, d_key);
-					menu_item = new CMenuForwarder(g_Plugins->getName(count), true, NULL, CPluginsExec::getInstance(), std::to_string(count).c_str(), key, icon);
+					menu_item = new CMenuForwarder(g_Plugins->getName(count), true, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), key, icon);
 					menu_item->setHint(g_Plugins->getHintIcon(count), g_Plugins->getDescription(count));
 					break;
 				}
@@ -602,7 +602,7 @@ const char *CUserMenu::getUserMenuButtonName(int button, bool &active, bool retu
 							videoDecoder->getPictureInfo(xres, yres, framerate);
 							if (xres && yres)
 							{
-								std::string res = std::to_string(xres) + "x" + std::to_string(yres);
+								std::string res = to_string(xres) + "x" + to_string(yres);
 								if (res.compare(tmp))
 								{
 									tmp = " (" + res + ")";

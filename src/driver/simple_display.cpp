@@ -240,7 +240,7 @@ void CLCD::showServicename(std::string name, const int num, bool)
 		std::string s;
 		if (num > 0) // dont show channel 0 at boot
 		{
-			s = std::to_string(servicenumber);
+			s = to_string(servicenumber);
 			while ((int)s.length() < g_info.hw_caps->display_xres) {
 				s = " " + s;
 			}
@@ -578,7 +578,7 @@ void CLCD::setBrightness(int dimm)
 		close(fd);
 	}
 #elif HAVE_ARM_HARDWARE
-	std::string value = std::to_string(255/15*dimm);
+	std::string value = to_string(255/15*dimm);
 	if (access("/proc/stb/lcd/oled_brightness", F_OK) == 0)
 		proc_put("/proc/stb/lcd/oled_brightness", value.c_str(), value.length());
 	else if (access("/proc/stb/fp/oled_brightness", F_OK) == 0)
@@ -627,7 +627,7 @@ void CLCD::setScrollMode(int scroll_repeats)
 		proc_put("/proc/stb/lcd/initial_scroll_delay", "1000");
 		proc_put("/proc/stb/lcd/final_scroll_delay", "1000");
 		proc_put("/proc/stb/lcd/scroll_delay", "150");
-		proc_put("/proc/stb/lcd/scroll_repeats", std::to_string(scroll_repeats).c_str());
+		proc_put("/proc/stb/lcd/scroll_repeats", to_string(scroll_repeats).c_str());
 	}
 	else
 	{

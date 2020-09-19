@@ -1061,7 +1061,7 @@ void CMenuWidget::integratePlugins(int integration, const unsigned int shortcut,
 			}
 			printf("[neutrino] integratePlugins: add %s\n", g_Plugins->getName(count));
 			neutrino_msg_t dk = (shortcut != CRCInput::RC_nokey) ? CRCInput::convertDigitToKey(sc++) : CRCInput::RC_nokey;
-			CMenuForwarder *fw_plugin = new CMenuForwarder(g_Plugins->getName(count), enabled, NULL, CPluginsExec::getInstance(), std::to_string(count).c_str(), dk);
+			CMenuForwarder *fw_plugin = new CMenuForwarder(g_Plugins->getName(count), enabled, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), dk);
 			fw_plugin->setHint(g_Plugins->getHintIcon(count), g_Plugins->getDescription(count));
 			addItem(fw_plugin);
 		}
@@ -1713,7 +1713,7 @@ int CMenuOptionNumberChooser::exec(CMenuTarget*)
 	bool wantsRepaint = false;
 	if(observ && !luaAction.empty()) {
 		// optionValue is int*
-		wantsRepaint = observ->changeNotify(luaState, luaAction, luaId, (void *) std::to_string(*optionValue).c_str());
+		wantsRepaint = observ->changeNotify(luaState, luaAction, luaId, (void *) to_string(*optionValue).c_str());
 	} else if(observ)
 		wantsRepaint = observ->changeNotify(name, optionValue);
 
@@ -1994,7 +1994,7 @@ int CMenuOptionChooser::exec(CMenuTarget*)
 				l_option = options[count].valname;
 			else
 				l_option = g_Locale->getText(options[count].value);
-			CMenuForwarder *mn_option = new CMenuForwarder(l_option, true, NULL, selector, std::to_string(count).c_str());
+			CMenuForwarder *mn_option = new CMenuForwarder(l_option, true, NULL, selector, to_string(count).c_str());
 			mn_option->setItemButton(NEUTRINO_ICON_BUTTON_OKAY, true /*for selected item*/);
 			menu->addItem(mn_option, selected);
 		}
@@ -2175,7 +2175,7 @@ int CMenuOptionStringChooser::exec(CMenuTarget* parent)
 		for(unsigned int count = 0; count < options.size(); count++)
 		{
 			bool selected = optionValuePtr && (options[count] == *optionValuePtr);
-			CMenuForwarder *mn_option = new CMenuForwarder(options[count], true, NULL, selector, std::to_string(count).c_str());
+			CMenuForwarder *mn_option = new CMenuForwarder(options[count], true, NULL, selector, to_string(count).c_str());
 			mn_option->setItemButton(NEUTRINO_ICON_BUTTON_OKAY, true /*for selected item*/);
 			menu->addItem(mn_option, selected);
 		}

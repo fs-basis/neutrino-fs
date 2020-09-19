@@ -1,6 +1,6 @@
 define(ver_major, 3)
-define(ver_minor, 7)
-define(ver_micro, 7)
+define(ver_minor, 8)
+define(ver_micro, 0)
 
 AC_INIT(Neutrino, ver_major.ver_minor.ver_micro)
 AM_INIT_AUTOMAKE([nostdinc foreign])
@@ -230,19 +230,20 @@ AC_ARG_ENABLE(lua,
 
 if test "$enable_lua" = "yes"; then
 	AC_DEFINE(ENABLE_LUA, 1, [include Lua support])
-	PKG_CHECK_MODULES([LUA], [lua >= 5.2], [
-		echo "lua >= 5.2 found"
-	], [
-		PKG_CHECK_MODULES([LUA], [lua5.2 >= 5.2], [
-			echo "lua5.2 found"
-		], [
+	PKG_CHECK_MODULES(LUA, lua, LLUA="yes", LLUA="no")
+	PKG_CHECK_MODULES(luajit, luajit, LLUAJIT="yes", LLUAJIT="no")
+		if test "x$LLUAJIT" = "xyes"; then
+			LUA_LIBS="-lluajit-5.1"
+			AC_DEFINE(LUA_COMPAT_5_2, 1, [needed for build with lua 5.1])
+		elif test "x$LLUA" = "xyes"; then
+			LUA_LIBS="-llua"
+			AC_DEFINE(LUA_COMPAT_5_2, 0, [needed for build with lua 5.1])
+		else
 			echo "lualib not found, assuming static lua in linker path..."
 			LUA_LIBS="-llua -ldl"
 			AC_DEFINE(STATIC_LUAPOSIX, 1, [Define to 1 for static lua build.])
-		])
-	])
-	# hack...
-	AC_DEFINE(LUA_COMPAT_5_2, 1, [does not really belong in config.h, but is needed for build with lua 5.3+])
+			AC_DEFINE(LUA_COMPAT_5_2, 0, [needed for build with lua 5.1])
+		fi
 fi
 AM_CONDITIONAL(ENABLE_LUA, test "$enable_lua" = "yes")
 

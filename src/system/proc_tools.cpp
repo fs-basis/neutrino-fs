@@ -43,32 +43,32 @@ int proc_put(const char *path, std::string value)
 
 int proc_put(const char *path, int value)
 {
-	return proc_put(path, to_string(value).c_str());
+	return proc_put(path, std::to_string(value).c_str());
 }
 
 int proc_put(const char *path, unsigned int value)
 {
-	return proc_put(path, to_string(value).c_str());
+	return proc_put(path, std::to_string(value).c_str());
 }
 
 int proc_put(const char *path, long value)
 {
-	return proc_put(path, to_string(value).c_str());
+	return proc_put(path, std::to_string(value).c_str());
 }
 
 int proc_put(const char *path, unsigned long value)
 {
-	return proc_put(path, to_string(value).c_str());
+	return proc_put(path, std::to_string(value).c_str());
 }
 
 int proc_put(const char *path, long long value)
 {
-	return proc_put(path, to_string(value).c_str());
+	return proc_put(path, std::to_string(value).c_str());
 }
 
 int proc_put(const char *path, unsigned long long value)
 {
-	return proc_put(path, to_string(value).c_str());
+	return proc_put(path, std::to_string(value).c_str());
 }
 
 int proc_put(const char *path, bool state)

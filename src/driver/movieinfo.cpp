@@ -79,7 +79,7 @@ static void XML_ADD_TAG_UNSIGNED(std::string &_xml_text_, const char *_tag_name_
 	_xml_text_ += "\t\t<";
 	_xml_text_ += _tag_name_;
 	_xml_text_ += ">";
-	_xml_text_ += to_string(_tag_content_);
+	_xml_text_ += std::to_string(_tag_content_);
 	_xml_text_ += "</";
 	_xml_text_ += _tag_name_;
 	_xml_text_ += ">\n";
@@ -90,7 +90,7 @@ static void XML_ADD_TAG_LONG(std::string &_xml_text_, const char *_tag_name_, ui
 	_xml_text_ += "\t\t<";
 	_xml_text_ += _tag_name_;
 	_xml_text_ += ">";\
-	_xml_text_ += to_string(_tag_content_);
+	_xml_text_ += std::to_string(_tag_content_);
 	_xml_text_ += "</";
 	_xml_text_ += _tag_name_;
 	_xml_text_ += ">\n";
@@ -120,11 +120,11 @@ bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, MI_MOVIE_INFO * mo
 		for (unsigned int i = 0; i < movie_info->audioPids.size(); i++) // pids.APIDs.size()
 		{
 			*extMessage += "\t\t\t<" MI_XML_TAG_AUDIO " " MI_XML_TAG_PID "=\"";
-			*extMessage += to_string(movie_info->audioPids[i].AudioPid);
+			*extMessage += std::to_string(movie_info->audioPids[i].AudioPid);
 			*extMessage += "\" " MI_XML_TAG_ATYPE "=\"";
-			*extMessage += to_string(movie_info->audioPids[i].atype);
+			*extMessage += std::to_string(movie_info->audioPids[i].atype);
 			*extMessage += "\" " MI_XML_TAG_SELECTED "=\"";
-			*extMessage += to_string(movie_info->audioPids[i].selected);
+			*extMessage += std::to_string(movie_info->audioPids[i].selected);
 			*extMessage += "\" " MI_XML_TAG_NAME "=\"";
 			*extMessage += ZapitTools::UTF8_to_UTF8XML(movie_info->audioPids[i].AudioPidName.c_str());
 			*extMessage += "\"/>\n";
@@ -154,9 +154,9 @@ bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, MI_MOVIE_INFO * mo
 		if (movie_info->bookmarks.user[i].pos != 0 || i == 0) {
 			// encode any valid book, at least 1
 			*extMessage += "\t\t\t<" MI_XML_TAG_BOOKMARK_USER " " MI_XML_TAG_BOOKMARK_USER_POS "=\"";
-			*extMessage += to_string(movie_info->bookmarks.user[i].pos);
+			*extMessage += std::to_string(movie_info->bookmarks.user[i].pos);
 			*extMessage += "\" " MI_XML_TAG_BOOKMARK_USER_TYPE "=\"";
-			*extMessage += to_string(movie_info->bookmarks.user[i].length);
+			*extMessage += std::to_string(movie_info->bookmarks.user[i].length);
 			*extMessage += "\" " MI_XML_TAG_BOOKMARK_USER_NAME "=\"";
 			*extMessage += ZapitTools::UTF8_to_UTF8XML(movie_info->bookmarks.user[i].name.c_str());
 			*extMessage += "\"/>\n";

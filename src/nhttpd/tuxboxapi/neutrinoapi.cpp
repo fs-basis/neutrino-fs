@@ -543,7 +543,7 @@ std::string CNeutrinoAPI::GetRemoteBoxIP(std::string _rbname)
 			if (!it->user.empty() && !it->pass.empty())
 				c_url += it->user + ":" + it->pass +"@";
 			c_url += it->rbaddress;
-			c_url += ":" + to_string(it->port);
+			c_url += ":" + std::to_string(it->port);
 			break;
 		}
 	}
@@ -568,9 +568,9 @@ void CNeutrinoAPI::SendAllTimers(std::string url, bool force)
 			r_url = "http://";
 			r_url += url;
 			r_url += "/control/timer?action=new";
-			r_url += "&alarm=" + to_string((int)timer->alarmTime + pre);
-			r_url += "&stop=" + to_string((int)timer->stopTime - post);
-			r_url += "&announce=" + to_string((int)timer->announceTime + pre);
+			r_url += "&alarm=" + std::to_string((int)timer->alarmTime + pre);
+			r_url += "&stop=" + std::to_string((int)timer->stopTime - post);
+			r_url += "&announce=" + std::to_string((int)timer->announceTime + pre);
 			r_url += "&channel_id=" + string_printf(PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS, timer->channel_id);
 			r_url += "&aj=on";
 			r_url += "&rs=on";

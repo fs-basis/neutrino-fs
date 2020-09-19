@@ -138,7 +138,7 @@ void CBookmarkManager::readBookmarkFile() {
 
 		while (bookmarkcount-- > 0)
 		{
-			std::string bookmarkstring = "bookmark" + to_string(bookmarkcount) + ".";
+			std::string bookmarkstring = "bookmark" + std::to_string(bookmarkcount) + ".";
 			std::string bookmarkname = bookmarkfile.getString(bookmarkstring + "name", "");
 			std::string bookmarkurl = bookmarkfile.getString(bookmarkstring + "url", "");
 			std::string bookmarktime = bookmarkfile.getString(bookmarkstring + "time", "");
@@ -156,7 +156,7 @@ void CBookmarkManager::writeBookmarkFile() {
 	unsigned int bookmarkcount = 0;
 	for (std::vector<CBookmark>::const_iterator it = bookmarks.begin(); it != bookmarks.end(); ++it, bookmarkcount++)
 	{
-		std::string bookmarkstring = "bookmark" + to_string(bookmarkcount) + ".";
+		std::string bookmarkstring = "bookmark" + std::to_string(bookmarkcount) + ".";
 		bookmarkfile.setString(bookmarkstring + "name", it->getName());
 		bookmarkfile.setString(bookmarkstring + "url", it->getUrl());
 		bookmarkfile.setString(bookmarkstring + "time", it->getTime());

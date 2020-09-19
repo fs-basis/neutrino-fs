@@ -529,11 +529,11 @@ void CScreenSetup::saveBorders()
 
 void CScreenSetup::updateCoords()
 {
-	coord[0] = "(" + to_string(x_coord[0]) + "," + to_string(y_coord[0]) + ")";
+	coord[0] = "(" + std::to_string(x_coord[0]) + "," + std::to_string(y_coord[0]) + ")";
 	if (coord_abs)
-		coord[1] = "(" + to_string(x_coord[1]) + "," + to_string(y_coord[1]) + ")";
+		coord[1] = "(" + std::to_string(x_coord[1]) + "," + std::to_string(y_coord[1]) + ")";
 	else
-		coord[1] = "(" + to_string(screenwidth - x_coord[1]) + "," + to_string(screenheight - y_coord[1]) + ")";
+		coord[1] = "(" + std::to_string(screenwidth - x_coord[1]) + "," + std::to_string(screenheight - y_coord[1]) + ")";
 }
 #else
 void CScreenSetup::paintBorder( int pselected )

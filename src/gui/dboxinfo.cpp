@@ -308,7 +308,7 @@ void CDBoxInfoWidget::paint()
 	for (int i = 0; i < frontend_count; i++) {
 		CFrontend *fe = CFEManager::getInstance()->getFE(i);
 		if (fe) {
-			std::string s = to_string(i) + ": " + fe->getName();
+			std::string s = std::to_string(i) + ": " + fe->getName();
 			satWidth = std::max(satWidth, fm->getRenderWidth(s));
 		}
 	}
@@ -470,7 +470,7 @@ void CDBoxInfoWidget::paint()
 	for (int i = 0; i < frontend_count; i++) {
 		CFrontend *fe = CFEManager::getInstance()->getFE(i);
 		if (fe) {
-			std::string s = to_string(i) + ": " + fe->getName();
+			std::string s = std::to_string(i) + ": " + fe->getName();
 			fm->RenderString(x+ 10, ypos+ mheight, width - 10, s, COL_MENUCONTENT_TEXT);
 			ypos += mheight;
 		}
@@ -514,7 +514,7 @@ void CDBoxInfoWidget::paint()
 					tmp = bytes2string(memstat[row][MEMINFO_FREE]);
 					break;
 				case 4:
-					tmp = to_string(memstat[row][MEMINFO_TOTAL] ? (memstat[row][MEMINFO_USED] * 100) / memstat[row][MEMINFO_TOTAL] : 0) + "%";
+					tmp = std::to_string(memstat[row][MEMINFO_TOTAL] ? (memstat[row][MEMINFO_USED] * 100) / memstat[row][MEMINFO_TOTAL] : 0) + "%";
 					break;
 			}
 			mpOffset = offsets[column];
@@ -581,7 +581,7 @@ void CDBoxInfoWidget::paint()
 						tmp = bytes2string(bytes_free, false);
 						break;
 					case 4:
-						tmp = to_string(percent_used) + "%";
+						tmp = std::to_string(percent_used) + "%";
 						break;
 					}
 					int space = 0;

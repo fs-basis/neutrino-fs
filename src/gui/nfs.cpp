@@ -270,9 +270,9 @@ int CNFSMountGui::menuEntry(int nr)
 	CMACInput macInput(LOCALE_RECORDINGMENU_SERVER_MAC, &g_settings.network_nfs[nr].mac, LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
 	CMenuForwarder *macInput_fwd = new CMenuForwarder(LOCALE_RECORDINGMENU_SERVER_MAC, true, NULL, &macInput);
 
-	CMenuForwarder *refreshMAC_fwd = new CMenuForwarder(LOCALE_NFS_REFRESH_MAC, true, NULL, this, ("refreshMAC" + to_string(nr)).c_str(), CRCInput::RC_yellow);
+	CMenuForwarder *refreshMAC_fwd = new CMenuForwarder(LOCALE_NFS_REFRESH_MAC, true, NULL, this, ("refreshMAC" + std::to_string(nr)).c_str(), CRCInput::RC_yellow);
 
-	CMenuForwarder *mountnow_fwd = new CMenuForwarder(LOCALE_NFS_MOUNTNOW, !(CFSMounter::isMounted(g_settings.network_nfs[nr].local_dir)), NULL, this, ("domount" + to_string(nr)).c_str(), CRCInput::RC_red);
+	CMenuForwarder *mountnow_fwd = new CMenuForwarder(LOCALE_NFS_MOUNTNOW, !(CFSMounter::isMounted(g_settings.network_nfs[nr].local_dir)), NULL, this, ("domount" + std::to_string(nr)).c_str(), CRCInput::RC_red);
 
 	mountnow_fwd->setItemButton(NEUTRINO_ICON_BUTTON_OKAY, true);
 	COnOffNotifier notifier(CFSMounter::NFS);
@@ -282,7 +282,7 @@ int CNFSMountGui::menuEntry(int nr)
 	mountMenuEntryW.addItem(new CMenuOptionChooser(LOCALE_NFS_TYPE, &g_settings.network_nfs[nr].type, NFS_TYPE_OPTIONS, NFS_TYPE_OPTION_COUNT, typeEnabled, &notifier));
 	mountMenuEntryW.addItem(new CMenuForwarder(LOCALE_NFS_IP      , true, g_settings.network_nfs[nr].ip,        &ipInput ));
 	mountMenuEntryW.addItem(new CMenuForwarder(LOCALE_NFS_DIR     , true, g_settings.network_nfs[nr].dir,       &dirInput));
-	mountMenuEntryW.addItem(new CMenuForwarder(LOCALE_NFS_LOCALDIR, true, g_settings.network_nfs[nr].local_dir, this, ("dir" + to_string(nr)).c_str()));
+	mountMenuEntryW.addItem(new CMenuForwarder(LOCALE_NFS_LOCALDIR, true, g_settings.network_nfs[nr].local_dir, this, ("dir" + std::to_string(nr)).c_str()));
 	mountMenuEntryW.addItem(automountInput);
 	mountMenuEntryW.addItem(options1_fwd);
 	mountMenuEntryW.addItem(options2_fwd);

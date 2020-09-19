@@ -484,7 +484,7 @@ int CScanSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 		std::string actionKey_tmp;
 		for (unsigned int i = 15; i < actionKey.length(); ++i) {
 			int test = actionKey.at(i) - '0';
-			actionKey_tmp += to_string(test);
+			actionKey_tmp += std::to_string(test);
 //			printf("[neutrino] >>>>>>>>> %s (%d) <<<<<<<<<\n", actionKey_tmp.c_str(), test);
 		}
 		int number = atoi(actionKey_tmp.c_str());
@@ -909,7 +909,7 @@ int CScanSetup::showScanMenuFrontendSetup()
 
 static std::string rotationSpeed2str(int i)
 {
-	return to_string(i/10) + g_Locale->getText(LOCALE_UNIT_DECIMAL) + to_string(i%10) + "°/" + g_Locale->getText(LOCALE_UNIT_SHORT_SECOND);
+	return std::to_string(i/10) + g_Locale->getText(LOCALE_UNIT_DECIMAL) + std::to_string(i%10) + "°/" + g_Locale->getText(LOCALE_UNIT_SHORT_SECOND);
 }
 
 static struct CMenuOptionChooser::keyval_ext twin_doptions[2];
@@ -2044,25 +2044,25 @@ void CScanSetup::updateManualSettings()
 			// CFrontend *frontend = CFEManager::getInstance()->getLiveFE();
 			// FIXME: should this be live fe current delsys or delsys from tuned TP
 			if (CFrontend::isSat(tI->second.feparams.delsys)) {
-				scansettings.sat_TP_freq = to_string(tI->second.feparams.frequency);
-				scansettings.sat_TP_rate = to_string(tI->second.feparams.symbol_rate);
+				scansettings.sat_TP_freq = std::to_string(tI->second.feparams.frequency);
+				scansettings.sat_TP_rate = std::to_string(tI->second.feparams.symbol_rate);
 				scansettings.sat_TP_fec = tI->second.feparams.fec_inner;
 				scansettings.sat_TP_pol = tI->second.feparams.polarization;
 				scansettings.sat_TP_delsys = tI->second.feparams.delsys;
 				scansettings.sat_TP_mod = tI->second.feparams.modulation;
 				scansettings.satName = CServiceManager::getInstance()->GetSatelliteName(channel->getSatellitePosition());
-				scansettings.sat_TP_pli = to_string(tI->second.feparams.plp_id);
-				scansettings.sat_TP_plc = to_string(tI->second.feparams.pls_code);
+				scansettings.sat_TP_pli = std::to_string(tI->second.feparams.plp_id);
+				scansettings.sat_TP_plc = std::to_string(tI->second.feparams.pls_code);
 				scansettings.sat_TP_plm = tI->second.feparams.pls_mode;
 			} else if (CFrontend::isCable(tI->second.feparams.delsys)) {
-				scansettings.cable_TP_freq = to_string(tI->second.feparams.frequency);
-				scansettings.cable_TP_rate = to_string(tI->second.feparams.symbol_rate);
+				scansettings.cable_TP_freq = std::to_string(tI->second.feparams.frequency);
+				scansettings.cable_TP_rate = std::to_string(tI->second.feparams.symbol_rate);
 				scansettings.cable_TP_fec = tI->second.feparams.fec_inner;
 				scansettings.cable_TP_mod = tI->second.feparams.modulation;
 				scansettings.cable_TP_delsys = tI->second.feparams.delsys;
 				scansettings.cableName = CServiceManager::getInstance()->GetSatelliteName(channel->getSatellitePosition());
 			} else if (CFrontend::isTerr(tI->second.feparams.delsys)) {
-				scansettings.terrestrial_TP_freq = to_string(tI->second.feparams.frequency);
+				scansettings.terrestrial_TP_freq = std::to_string(tI->second.feparams.frequency);
 				scansettings.terrestrial_TP_bw = tI->second.feparams.bandwidth;
 				scansettings.terrestrial_TP_constel = tI->second.feparams.modulation;
 				scansettings.terrestrial_TP_hierarchy = tI->second.feparams.hierarchy;
@@ -2070,7 +2070,7 @@ void CScanSetup::updateManualSettings()
 				scansettings.terrestrial_TP_transmit_mode = tI->second.feparams.transmission_mode;
 				scansettings.terrestrial_TP_coderate_HP = tI->second.feparams.code_rate_HP;
 				scansettings.terrestrial_TP_coderate_LP = tI->second.feparams.code_rate_LP;
-				scansettings.terrestrial_TP_pli = to_string(tI->second.feparams.plp_id);
+				scansettings.terrestrial_TP_pli = std::to_string(tI->second.feparams.plp_id);
 
 				scansettings.terrestrialName = CServiceManager::getInstance()->GetSatelliteName(channel->getSatellitePosition());
 			}
@@ -2087,7 +2087,7 @@ void CScanSetup::setOptionSatSelect(int fe_number, CMenuForwarder* menu_item)
 			continue;
 		count++;
 	}
-	std::string count_of = to_string(count) + char(0x2f) + to_string(satmap.size());
+	std::string count_of = std::to_string(count) + char(0x2f) + std::to_string(satmap.size());
 	menu_item->setOption(count_of);
 }
 
@@ -2169,25 +2169,25 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &actionkey)
 
 		tmpI->second.dump("CTPSelectHandler::exec: selected TP:");
 		if (CFrontend::isSat(tmpI->second.feparams.delsys)) {
-			scansettings.sat_TP_freq = to_string(tmpI->second.feparams.frequency);
-			scansettings.sat_TP_rate = to_string(tmpI->second.feparams.symbol_rate);
+			scansettings.sat_TP_freq = std::to_string(tmpI->second.feparams.frequency);
+			scansettings.sat_TP_rate = std::to_string(tmpI->second.feparams.symbol_rate);
 			scansettings.sat_TP_fec = tmpI->second.feparams.fec_inner;
 			scansettings.sat_TP_pol = tmpI->second.feparams.polarization;
 			scansettings.sat_TP_delsys = tmpI->second.feparams.delsys;
 			scansettings.sat_TP_mod = tmpI->second.feparams.modulation;
 			scansettings.sat_TP_pilot = tmpI->second.feparams.pilot;
-			scansettings.sat_TP_pli = to_string(tmpI->second.feparams.plp_id);
-			scansettings.sat_TP_plc = to_string(tmpI->second.feparams.pls_code);
+			scansettings.sat_TP_pli = std::to_string(tmpI->second.feparams.plp_id);
+			scansettings.sat_TP_plc = std::to_string(tmpI->second.feparams.pls_code);
 			scansettings.sat_TP_plm = tmpI->second.feparams.pls_mode;
 		}
 		else if (CFrontend::isCable(tmpI->second.feparams.delsys)) {
-			scansettings.cable_TP_freq = to_string(tmpI->second.feparams.frequency);
-			scansettings.cable_TP_rate = to_string(tmpI->second.feparams.symbol_rate);
+			scansettings.cable_TP_freq = std::to_string(tmpI->second.feparams.frequency);
+			scansettings.cable_TP_rate = std::to_string(tmpI->second.feparams.symbol_rate);
 			scansettings.cable_TP_fec = tmpI->second.feparams.fec_inner;
 			scansettings.cable_TP_mod = tmpI->second.feparams.modulation;
 		}
 		else if (CFrontend::isTerr(tmpI->second.feparams.delsys)) {
-			scansettings.terrestrial_TP_freq = to_string(tmpI->second.feparams.frequency);
+			scansettings.terrestrial_TP_freq = std::to_string(tmpI->second.feparams.frequency);
 			scansettings.terrestrial_TP_bw = tmpI->second.feparams.bandwidth;
 			scansettings.terrestrial_TP_constel = tmpI->second.feparams.modulation;
 			scansettings.terrestrial_TP_hierarchy = tmpI->second.feparams.hierarchy;
@@ -2195,7 +2195,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &actionkey)
 			scansettings.terrestrial_TP_transmit_mode = tmpI->second.feparams.transmission_mode;
 			scansettings.terrestrial_TP_coderate_HP = tmpI->second.feparams.code_rate_HP;
 			scansettings.terrestrial_TP_coderate_LP = tmpI->second.feparams.code_rate_LP;
-			scansettings.terrestrial_TP_pli = to_string(tmpI->second.feparams.plp_id);
+			scansettings.terrestrial_TP_pli = std::to_string(tmpI->second.feparams.plp_id);
 			//scansettings.terrestrialName = CServiceManager::getInstance()->GetSatelliteName(channel->getSatellitePosition());
 		}
 	}

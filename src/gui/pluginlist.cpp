@@ -102,7 +102,7 @@ int CPluginList::exec(CMenuTarget* parent, const std::string &actionKey)
 		if ((g_Plugins->getType(count) & pluginlisttype) && !g_Plugins->isHidden(count) && (g_Plugins->getIntegration(count) == PLUGIN_INTEGRATION_DISABLED)) {
 			neutrino_msg_t d_key = g_Plugins->getKey(count);
 			keyhelper.get(&key, &dummy, d_key);
-			CMenuForwarder *f = new CMenuForwarder(std::string(g_Plugins->getName(count)), true, NULL, this, to_string(count).c_str(), key);
+			CMenuForwarder *f = new CMenuForwarder(std::string(g_Plugins->getName(count)), true, NULL, this, std::to_string(count).c_str(), key);
 			f->setHint(g_Plugins->getHintIcon(count), g_Plugins->getDescription(count));
 			m.addItem(f);
 		}

@@ -45,7 +45,7 @@
 
 static std::string rateFormat(int i)
 {
-	return to_string(i/10) + "," + to_string(i%10);
+	return std::to_string(i/10) + "," + std::to_string(i%10);
 }
 
 bool sortDirection = 0;

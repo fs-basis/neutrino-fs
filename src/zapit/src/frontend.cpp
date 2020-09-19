@@ -332,7 +332,7 @@ void CFrontend::getFEInfo(void)
 		bool found = false;
 		while (getline(in, line))
 		{
-			if (line.find("NIM Socket "+to_string(fenumber)+":") !=std::string::npos)
+			if (line.find("NIM Socket " + std::to_string(fenumber) + ":") != std::string::npos)
 				found = true;
 
 			if ((line.find("Name:") != std::string::npos) && found)

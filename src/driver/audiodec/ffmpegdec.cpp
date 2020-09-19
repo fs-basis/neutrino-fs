@@ -555,7 +555,7 @@ bool CFfmpegDec::SetMetaData(FILE *_in, CAudioMetaData* m, bool save_cover)
 			if (save_cover && (avc->streams[i]->disposition & AV_DISPOSITION_ATTACHED_PIC)) {
 				mkdir(COVERDIR_TMP, 0755);
 				std::string cover(COVERDIR_TMP);
-				cover += "/cover_" + to_string(cover_count++) + ".jpg";
+				cover += "/cover_" + std::to_string(cover_count++) + ".jpg";
 				FILE *f = fopen(cover.c_str(), "wb");
 				if (f) {
 					AVPacket *pkt = &avc->streams[i]->attached_pic;

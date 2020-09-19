@@ -2476,7 +2476,7 @@ std::string CChannelList::MaxChanNr()
 	{
 		n = std::max(n, (*it)->number);
 	}
-	return to_string(n);
+	return std::to_string(n);
 }
 
 void CChannelList::paintPig(int _x, int _y, int w, int h)

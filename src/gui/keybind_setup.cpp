@@ -132,9 +132,9 @@ int CKeybindSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 				remote_code_old = remote_code;
 				CHintBox *Hint;
 				std::string Text = g_Locale->getText(LOCALE_KEYBINDINGMENU_REMOTECONTROL_CODE);
-				Text += " > " + to_string(remote_code) + "\n";
+				Text += " > " + std::to_string(remote_code) + "\n";
 				Text += g_Locale->getText(LOCALE_KEYBINDINGMENU_REMOTECONTROL_CODE_MSG1);
-				Text += " " + to_string(remote_code) + "\n";
+				Text += " " + std::to_string(remote_code) + "\n";
 				Text += g_Locale->getText(LOCALE_KEYBINDINGMENU_REMOTECONTROL_CODE_MSG2);
 				Hint = new CHintBox(LOCALE_KEYBINDINGMENU_REMOTECONTROL_CODE_SAVE, Text.c_str());
 				Hint->paint();
@@ -146,7 +146,7 @@ int CKeybindSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 				system("killall evremote2");
 				usleep(300000);
 				system("/bin/evremote2 10 120 > /dev/null &");
-				std::string vfd_msg = "RC Code: " + to_string(remote_code);
+				std::string vfd_msg = "RC Code: " + std::to_string(remote_code);
 				sleep(1);
 				CVFD::getInstance()->repaintIcons();
 				CVFD::getInstance()->ShowText(vfd_msg.c_str());

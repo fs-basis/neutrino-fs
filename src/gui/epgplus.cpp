@@ -390,7 +390,7 @@ EpgPlus::ChannelEntry::ChannelEntry(const CZapitChannel * pchannel, int pindex, 
 	this->displayName = "";
 	if (pchannel != NULL)
 	{
-		this->displayNumber = to_string(pchannel->number);
+		this->displayNumber = std::to_string(pchannel->number);
 		this->displayName = pchannel->getName();
 	}
 
@@ -785,7 +785,7 @@ void EpgPlus::createChannelEntries(int selectedChannelEntryIndex)
 	{
 		n = std::max(n, (*It)->channel->number);
 	}
-	channelNumberOffset = ChannelEntry::font->getRenderWidth(to_string(n));
+	channelNumberOffset = ChannelEntry::font->getRenderWidth(std::to_string(n));
 }
 
 void EpgPlus::init()

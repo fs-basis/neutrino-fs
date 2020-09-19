@@ -1515,7 +1515,7 @@ int CHDDDestExec::exec(CMenuTarget* /*parent*/, const std::string&)
 					sleep_seconds *= 5;
 		}
 		if (sleep_seconds)
-			my_system(3, hdidle, "-i", to_string(sleep_seconds).c_str());
+			my_system(3, hdidle, "-i", std::to_string(sleep_seconds).c_str());
 	}
 
 	struct stat stat_buf;

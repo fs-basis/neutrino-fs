@@ -523,7 +523,7 @@ void CLuaInstance::runScript(const char *fileName, std::vector<std::string> *arg
 	//CFrameBuffer::getInstance()->autoBlit(false);
 //#endif
 	if (result_code)
-		*result_code = to_string(status);
+		*result_code = std::to_string(status);
 	if (result_string && lua_isstring(lua, -1))
 		*result_string = std::string(lua_tostring(lua, -1));
 	if (status)

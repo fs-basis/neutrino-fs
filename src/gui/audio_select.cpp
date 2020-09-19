@@ -101,7 +101,7 @@ int CAudioSelectMenuHandler::exec(CMenuTarget* parent, const std::string &action
 				return menu_return::RETURN_NONE;
 			perc_val[sel]++;
 		}
-		perc_str[sel] = to_string(perc_val[sel]) + "%";
+		perc_str[sel] = std::to_string(perc_val[sel]) + "%";
 
 #if !HAVE_SH4_HARDWARE
 		int vol =  CZapit::getInstance()->GetVolume();
@@ -180,7 +180,7 @@ int CAudioSelectMenuHandler::doMenu ()
 			is_ac3[i] = g_RemoteControl->current_PIDs.APIDs[i].is_ac3;
 			perc_val[i] = CZapit::getInstance()->GetPidVolume(chan, apid[i], is_ac3[i]);
 		}
-		perc_str[i] = to_string(perc_val[i]) + "%";
+		perc_str[i] = std::to_string(perc_val[i]) + "%";
 
 		CMenuForwarder *fw = new CMenuForwarder(is_mp ? mp->getAPIDDesc(i).c_str() : g_RemoteControl->current_PIDs.APIDs[i].desc,
 				true, perc_str[i], this, "s", CRCInput::convertDigitToKey(i + 1));

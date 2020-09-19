@@ -319,7 +319,7 @@ void CStreamInfo2::paint_signal_fe_box(int _x, int _y, int w, int h)
 			tname += g_Locale->getText(LOCALE_MAINMENU_MOVIEPLAYER);
 	}
 	else
-		tname += to_string(1 + frontend->getNumber()) + ": " + frontend->getName();
+		tname += std::to_string(1 + frontend->getNumber()) + ": " + frontend->getName();
 
 #if 0
 	int tuner = 1 + frontend->getNumber();

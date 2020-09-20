@@ -622,10 +622,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 0);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 17500);
 #else
-	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
+	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 14);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 0);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 0);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 40000);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 80000);
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.epg_dir              = configfile.getString("epg_dir", "/mnt/nfs/epg");
 #else

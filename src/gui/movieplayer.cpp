@@ -2255,6 +2255,9 @@ void CMoviePlayerGui::callInfoViewer(bool init_vzap_it)
 		return;
 	}
 
+	if(duration <= 0)
+		UpdatePosition();
+
 	std::vector<std::string> keys, values;
 	playback->GetMetadata(keys, values);
 	size_t count = keys.size();
@@ -2281,9 +2284,6 @@ void CMoviePlayerGui::callInfoViewer(bool init_vzap_it)
 	}
 
 	if (p_movie_info) {
-
-		if(duration <= 0)
-			UpdatePosition();
 
 		MI_MOVIE_INFO *mi;
 		mi = p_movie_info;

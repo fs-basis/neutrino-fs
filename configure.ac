@@ -149,7 +149,6 @@ if test "$BOXTYPE" = "coolstream" ||
    test "$BOXTYPE" = "tripledragon" ||
    test "$BOXTYPE" = "duckbox" ||
    test "$BOXTYPE" = "armbox" ||
-   test "$BOXTYPE" = "mipsbox" ||
    test "$BOXTYPE" = "spark7162" ||
    test "$BOXTYPE" = "spark"; then
 	AC_DEFINE(SCREENSHOT, 1, [Define to 1 if the platform supports screenshots])
@@ -207,15 +206,6 @@ AC_ARG_ENABLE(arm-acc,
 AM_CONDITIONAL(ENABLE_ARM_ACC,test "$enable_arm_acc" = "yes")
 if test "$enable_arm_acc" = "yes"; then
 	AC_DEFINE(ENABLE_ARM_ACC,1,[enable arm hardware acceleration])
-fi
-
-AC_ARG_ENABLE(mips-acc,
-	AS_HELP_STRING(--disable-mips-acc,disable mips hardware acceleration),
-	,[enable_mips_acc=yes])
-
-AM_CONDITIONAL(ENABLE_MIPS_ACC,test "$enable_mips_acc" = "yes")
-if test "$enable_mips_acc" = "yes"; then
-	AC_DEFINE(ENABLE_MIPS_ACC,1,[enable mips hardware acceleration])
 fi
 
 AC_ARG_ENABLE(extupdate,

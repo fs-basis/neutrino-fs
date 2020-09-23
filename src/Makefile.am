@@ -186,10 +186,6 @@ if BOXTYPE_ARMBOX
 neutrino_LDADD += -lass
 endif
 
-if BOXTYPE_MIPSBOX
-neutrino_LDADD += -lass
-endif
-
 bin_PROGRAMS += drivertool
 drivertool_SOURCES = drivertool.c
 bin_PROGRAMS += dt

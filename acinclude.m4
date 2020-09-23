@@ -315,7 +315,7 @@ _TUXBOX_APPS_LIB_PKGCONFIG($1,$2)
 
 AC_DEFUN([TUXBOX_BOXTYPE], [
 AC_ARG_WITH(boxtype,
-	AS_HELP_STRING([--with-boxtype], [valid values: tripledragon, coolstream, spark, azbox, generic, armbox, duckbox, spark7162, mipsbox]),
+	AS_HELP_STRING([--with-boxtype], [valid values: tripledragon, coolstream, spark, azbox, generic, armbox, duckbox, spark7162]),
 	[case "${withval}" in
 		tripledragon|coolstream|azbox|generic|armbox)
 			BOXTYPE="$withval"
@@ -435,7 +435,6 @@ AM_CONDITIONAL(BOXTYPE_SPARK, test "$BOXTYPE" = "spark")
 AM_CONDITIONAL(BOXTYPE_GENERIC, test "$BOXTYPE" = "generic")
 AM_CONDITIONAL(BOXTYPE_DUCKBOX, test "$BOXTYPE" = "duckbox")
 AM_CONDITIONAL(BOXTYPE_ARMBOX, test "$BOXTYPE" = "armbox")
-AM_CONDITIONAL(BOXTYPE_MIPSBOX, test "$BOXTYPE" = "mipsbox")
 
 AM_CONDITIONAL(BOXMODEL_CS_HD1, test "$BOXMODEL" = "hd1")
 AM_CONDITIONAL(BOXMODEL_CS_HD2, test "$BOXMODEL" = "hd2")

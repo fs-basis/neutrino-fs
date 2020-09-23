@@ -66,6 +66,7 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 		CGenericMenuActivate msettings;
 
 		CMenuOptionChooser * linkfe;
+		std::string modestr[4];
 
 		/* variables for selected frontend */
 		/* diseqc mode */

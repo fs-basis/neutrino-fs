@@ -1489,7 +1489,6 @@ menu.hint_sms_movie If enabled, numeric buttons in moviebrowser used to search m
 menu.hint_soft_restart Restart Neutrino without reboot
 menu.hint_softupdate_check Check online update, download and flash firmware
 menu.hint_softupdate_check_local Select and flash firmware from local file
-menu.hint_softupdate_createimage_menu Backup of current software, including all settings
 menu.hint_softupdate_expert Separate partitions from the flash. Read and write to the flash
 menu.hint_softupdate_expert_read Separate partitions (U-Boot, Splash, Kernel, SystemFS) from the flash read
 menu.hint_softupdate_expert_write Separate partitions (Splash, Kernel, SystemFS) write to the flash

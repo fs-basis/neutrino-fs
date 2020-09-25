@@ -654,7 +654,6 @@ filesystem.is.utf8 file system
 filesystem.is.utf8.option.iso8859.1 ISO-8859-1
 filesystem.is.utf8.option.utf8 UTF-8
 flashupdate.actionreadflash reading
-flashupdate.apply_settings Import current settings into new image?
 flashupdate.autocheck Auto-check updates on boot
 flashupdate.cantopenfile can't open file
 flashupdate.cantopenmtd can't open MTD
@@ -695,19 +694,11 @@ flashupdate.install_package Install downloadad pack?
 flashupdate.md5check checking image
 flashupdate.md5sumerror image has errors
 flashupdate.menu_apply_kernel Flashing kernel
-flashupdate.menu_apply_settings Allow apply settings
 flashupdate.mkfs_create_image Create backup
 flashupdate.mkfs_preparing_files Preparing files and directories
 flashupdate.mkfs_using_sumtool Using sumtool
 flashupdate.msgbox Found the following new file:\nDate: %s, %s\nBaseImage: %s\nType: %s\n\nDo you want to download and install this version now?
 flashupdate.mtdselector Partition-Selector
-flashupdate.namemode1 Filename settingsfile
-flashupdate.namemode1_default <org.name>+settings.img
-flashupdate.namemode1_hostname_time <hostname>+<time>+settings.img
-flashupdate.namemode1_orgname_time <org.name>+<time>+settings.img
-flashupdate.namemode2 Filename backup
-flashupdate.namemode2_default <partition>+<time>.img
-flashupdate.namemode2_hostname_time <partition>+<time>+<hostname>.img
 flashupdate.new_found New image found !
 flashupdate.new_notfound No new images found
 flashupdate.noversion Version check is only supported via online updates.\nAre you sure that you want to continue?

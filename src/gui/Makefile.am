@@ -136,11 +136,6 @@ libneutrino_gui_a_SOURCES += \
 	streaminfo2.cpp
 endif
 
-if ENABLE_EXTUPDATE
-libneutrino_gui_a_SOURCES += \
-	update_ext.cpp
-endif
-
 if ENABLE_TESTING
 libneutrino_gui_a_SOURCES += \
 	test_menu.cpp

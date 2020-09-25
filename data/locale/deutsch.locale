@@ -662,18 +662,6 @@ flashupdate.checkupdate_local Lokales Update
 flashupdate.choose_partition Partition wählen
 flashupdate.copy_image Kopiere Image in den Arbeitsspeicher
 flashupdate.copy_settings Einstellungen ins neue Image übernehmen?
-flashupdate.createimage Image speichern
-flashupdate.createimage_add_env 'env' hinzufügen
-flashupdate.createimage_add_kernel 'kernel' hinzufügen
-flashupdate.createimage_add_root1 Partition 'root1' sichern
-flashupdate.createimage_add_spare 'spare' hinzufügen
-flashupdate.createimage_add_u_boot 'u-boot' hinzufügen
-flashupdate.createimage_add_uldr 'uldr' hinzufügen
-flashupdate.createimage_add_var Datenpartition 'var' sichern
-flashupdate.createimage_menu Aktuelle Software sichern
-flashupdate.createimage_options Einstellungen
-flashupdate.createimage_other Image für %s STB erstellen
-flashupdate.createimage_warning Nachfolgend wird ein Image für die %s STB erstellt.\nDieses Image wird auch nur auf einer %s STB lauffähig sein!\n \nTrotzdem fortsetzten?
 flashupdate.currentversion_sep Installierte Version
 flashupdate.currentversiondate Datum
 flashupdate.currentversiontime Uhrzeit

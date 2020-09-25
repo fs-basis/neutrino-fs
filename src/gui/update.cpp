@@ -473,7 +473,6 @@ bool CFlashUpdate::checkVersion4Update()
 			//!always leave here!
 			return true;
 		}
-
 #endif
 		//set internal filetype
 		char const * ptr = rindex(filename.c_str(), '.');
@@ -879,6 +878,7 @@ int CFlashExpert::showMTDSelector(const std::string & actionkey)
 	for(int lx=0;lx<mtdInfo->getMTDCount();lx++) {
 		char sActionKey[20];
 		bool enabled = true;
+
 		// disable write uboot
 		if ((actionkey == "writemtd") && (lx == mtdInfo->findMTDNumberFromName("U-Boot")))
 			enabled = false;

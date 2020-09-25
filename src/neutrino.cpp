@@ -373,13 +373,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.softupdate_autocheck = configfile.getBool("softupdate_autocheck" , false);
 
 	// video
-#if HAVE_TRIPLEDRAGON
-	int vid_Mode_default = VIDEO_STD_PAL;
-#else
 	int vid_Mode_default = VIDEO_STD_720P50;
 	if (getenv("NEUTRINO_DEFAULT_SCART") != NULL)
 		vid_Mode_default = VIDEO_STD_PAL;
-#endif
 	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
 #ifdef ANALOG_MODE
 	g_settings.analog_mode1 = configfile.getInt32("analog_mode1", (int)ANALOG_MODE(BOTH,SD,RGB)); // default RGB
@@ -1135,12 +1131,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		erg = 2;
 	}
 
-#ifdef BOXMODEL_CS_HD2
-	g_settings.brightness = configfile.getInt32("brightness", 0);
-	g_settings.contrast = configfile.getInt32("contrast", 0);
-	g_settings.saturation = configfile.getInt32("saturation", 0);
-	g_settings.enable_sd_osd = configfile.getInt32("enable_sd_osd", 1);
-#endif
 #ifdef ENABLE_PIP
 	g_settings.pip_x = configfile.getInt32("pip_x", 50);
 	g_settings.pip_y = configfile.getInt32("pip_y", 50);
@@ -1826,11 +1816,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("window_size", g_settings.window_size);
 	configfile.setInt32("window_width", g_settings.window_width);
 	configfile.setInt32("window_height", g_settings.window_height);
-#ifdef BOXMODEL_CS_HD2
-	configfile.setInt32("brightness", g_settings.brightness );
-	configfile.setInt32("contrast", g_settings.contrast );
-	configfile.setInt32("enable_sd_osd", g_settings.enable_sd_osd );
-#endif
+
 #ifdef ENABLE_PIP
 	configfile.setInt32("pip_x", g_settings.pip_x);
 	configfile.setInt32("pip_y", g_settings.pip_y);
@@ -2455,33 +2441,8 @@ void CNeutrinoApp::InitSectiondClient()
 	g_Sectionsd->registerEvent(CSectionsdClient::EVT_WRITE_SI_FINISHED, 222, NEUTRINO_UDS_NAME);
 }
 
-#if HAVE_COOL_HARDWARE
-#include <cs_frontpanel.h>
-#endif
-
 void wake_up(bool &wakeup)
 {
-#if HAVE_COOL_HARDWARE
-#ifndef FP_IOCTL_CLEAR_WAKEUP_TIMER
-#define FP_IOCTL_CLEAR_WAKEUP_TIMER 10
-#endif
-
-#define FP_IOCTL_SET_RTC         0x101
-#define FP_IOCTL_GET_RTC         0x102
-
-	int fd = open("/dev/display", O_RDONLY);
-	if (fd < 0) {
-		perror("/dev/display");
-	} else {
-		fp_wakeup_data_t wk;
-		memset(&wk, 0, sizeof(wk));
-		int ret = ioctl(fd, IOC_FP_GET_WAKEUP, &wk);
-		if(ret >= 0)
-			wakeup = ((wk.source == FP_WAKEUP_SOURCE_TIMER) /* || (wk.source == WAKEUP_SOURCE_PWLOST)*/);
-		close(fd);
-	}
-#endif
-
 	/* prioritize proc filesystem */
 	if (access("/proc/stb/fp/was_timer_wakeup", F_OK) == 0)
 	{
@@ -2528,9 +2489,6 @@ int CNeutrinoApp::run(int argc, char **argv)
 TIMER_START();
 	cs_api_init();
 	cs_register_messenger(CSSendMessage);
-#if defined(HAVE_COOL_HARDWARE) && defined(ENABLE_CHANGE_OSD_RESOLUTION)
-	cs_new_auto_videosystem();
-#endif
 
 	g_info.hw_caps = get_hwcaps();
 
@@ -2643,22 +2601,6 @@ TIMER_START();
 
 #if ENABLE_FASTSCAN
 	CheckFastScan();
-#endif
-
-#if HAVE_COOL_HARDWARE
-	// dirty part of hw_caps - specify some details after zapit start
-	if (strcmp(g_info.hw_caps->boxname, "HD1") == 0)
-	{
-		// only SAT-HD1 has fan
-		if (!CFEManager::getInstance()->getFE(0)->hasSat())
-			g_info.hw_caps->has_fan = 0;
-	}
-	if (strcmp(g_info.hw_caps->boxname, "Neo") == 0)
-	{
-		// detecting Neo Twin by counting frontends
-		if (CFEManager::getInstance()->getFrontendCount() > 1)
-			strcpy(g_info.hw_caps->boxname, "Neo Twin");
-	}
 #endif
 
 	//timer start
@@ -4329,33 +4271,7 @@ void CNeutrinoApp::ExitRun(int exit_code)
 	printf("timer_minutes: %ld\n", timer_minutes);
 	int leds = 0;
 	int bright = 0;
-#if HAVE_COOL_HARDWARE
-	if (exit_code == CNeutrinoApp::EXIT_SHUTDOWN)
-	{
-		leds = 0x40;
-		switch (g_settings.led_deep_mode)
-		{
-			case 0:
-				leds = 0x0; // leds off
-				break;
-			case 1:
-				leds = 0x60; // led1 on, led2 on
-				break;
-			case 2:
-				leds = 0x20; // led1 on, led2 off
-				break;
-			case 3:
-				leds = 0x40; // led1 off, led2 on
-				break;
-			default:
-				break;
-		}
-		if (leds && g_settings.led_blink && timer_minutes)
-			leds |= 0x80;
-	}
-	if (cs_get_revision() != 10)
-		bright = g_settings.lcd_setting[SNeutrinoSettings::LCD_DEEPSTANDBY_BRIGHTNESS];
-#endif
+
 	if (exit_code != CNeutrinoApp::EXIT_REBOOT)
 	{
 		if (timer_minutes)
@@ -4535,22 +4451,12 @@ void CNeutrinoApp::scartMode( bool bOnOff )
 		frameBuffer->paintBackground();
 
 		//g_Controld->setScartMode( 1 );
-#if HAVE_TRIPLEDRAGON
-		/* would this hurt on Coolstream? */
-		videoDecoder->Stop(true);
-		videoDecoder->Standby(true);
-#endif
 		CVFD::getInstance()->setMode(CVFD::MODE_SCART);
 		lastMode = mode;
 		mode = NeutrinoModes::mode_scart;
 	} else {
 		// SCART AUS
 		//g_Controld->setScartMode( 0 );
-#if HAVE_TRIPLEDRAGON
-		/* could actually go into radioMode() and tvMode()? */
-		videoDecoder->Standby(false);
-		videoDecoder->Start();
-#endif
 		mode = NeutrinoModes::mode_unknown;
 		//re-set mode
 		if( lastMode == NeutrinoModes::mode_radio || lastMode == NeutrinoModes::mode_webradio) {
@@ -5614,11 +5520,6 @@ void CNeutrinoApp::Cleanup()
 	printf("cleanup 5\n");fflush(stdout);
 	delete CEitManager::getInstance();
 	printf("cleanup 6\n");fflush(stdout);
-#if HAVE_COOL_HARDWARE
-	//delete CVFD::getInstance();
-
-	comp_malloc_stats(NULL);
-#endif
 #endif
 }
 

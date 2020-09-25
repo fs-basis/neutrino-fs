@@ -96,7 +96,6 @@
 #include "gui/scan_setup.h"
 #include "gui/screensaver.h"
 #include "gui/sleeptimer.h"
-#include "gui/update_ext.h"
 #include "gui/update.h"
 #include "gui/videosettings.h"
 #include "gui/audio_select.h"
@@ -1024,13 +1023,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.softupdate_mode = configfile.getInt32( "softupdate_mode", 1 );
 	g_settings.apply_kernel = configfile.getBool("apply_kernel" , false);
 	g_settings.apply_settings = configfile.getBool("apply_settings" , false);
-#if ENABLE_EXTUPDATE
-	g_settings.softupdate_name_mode_apply = configfile.getInt32( "softupdate_name_mode_apply", CExtUpdate::SOFTUPDATE_NAME_DEFAULT);
-	g_settings.softupdate_name_mode_backup = configfile.getInt32( "softupdate_name_mode_backup", CExtUpdate::SOFTUPDATE_NAME_DEFAULT);
-#else
 	g_settings.softupdate_name_mode_apply = 0;
 	g_settings.softupdate_name_mode_backup = 0; /* unused, but still initialize it */
-#endif
 
 	g_settings.flashupdate_createimage_add_var    = configfile.getInt32( "flashupdate_createimage_add_var",    1);
 	g_settings.flashupdate_createimage_add_root1  = configfile.getInt32( "flashupdate_createimage_add_root1",  0);

@@ -236,11 +236,6 @@ if test "$enable_mips_acc" = "yes"; then
 	AC_DEFINE(ENABLE_MIPS_ACC,1,[enable mips hardware acceleration])
 fi
 
-AC_ARG_ENABLE(extupdate,
-	AS_HELP_STRING([--enable-extupdate], [enable extended update routine @<:@default=no@:>@]),
-	AC_DEFINE(ENABLE_EXTUPDATE, 1, [enable extended update routine]))
-AM_CONDITIONAL(ENABLE_EXTUPDATE, test "$enable_extupdate" = "yes")
-
 AC_ARG_ENABLE(lua,
 	AS_HELP_STRING([--enable-lua], [enable Lua support @<:@default=yes@:>@]),
 	[enable_lua="$enableval"],

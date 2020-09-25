@@ -35,7 +35,6 @@
 #endif
 
 #include <gui/update.h>
-#include <gui/update_ext.h>
 
 #include <global.h>
 #include <neutrino.h>
@@ -594,17 +593,6 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 
 	if (fileType <= '9') // flashing image
 	{
-#if ENABLE_EXTUPDATE
-#ifndef BOXMODEL_CS_HD2
-		if (g_settings.apply_settings) {
-			if (ShowMsg(LOCALE_MESSAGEBOX_INFO, LOCALE_FLASHUPDATE_APPLY_SETTINGS, CMsgBox::mbrYes, CMsgBox::mbYes | CMsgBox::mbNo, NEUTRINO_ICON_UPDATE) == CMsgBox::mbrYes)
-				if (!CExtUpdate::getInstance()->applySettings(filename, CExtUpdate::MODE_SOFTUPDATE)) {
-					hide();
-					return menu_return::RETURN_REPAINT;
-				}
-		}
-#endif
-#endif
 
 #ifdef DRYRUN
 		if (1)
@@ -1035,24 +1023,6 @@ void CFlashExpert::readmtd(int preadmtd)
 	std::string timeStr  = getNowTimeStr("_%Y%m%d_%H%M");
 	std::string tankStr  = "";
 
-#if ENABLE_EXTUPDATE
-#ifdef BOXMODEL_CS_HD2
-	int eSize = CMTDInfo::getInstance()->getMTDEraseSize(CMTDInfo::getInstance()->findMTDsystem());
-	if (preadmtd == 0) {
-		if (createimage_other == 0) {
-			if (eSize == 0x40000) tankStr = ".256k";
-			if (eSize == 0x20000) tankStr = "";
-		}
-		else if (createimage_other == 1) {
-			if (eSize == 0x40000) tankStr = "";
-			if (eSize == 0x20000) tankStr = ".256k";
-		}
-	}
-#endif
-	if (g_settings.softupdate_name_mode_backup == CExtUpdate::SOFTUPDATE_NAME_HOSTNAME_TIME)
-		filename = (std::string)g_settings.update_dir + "/" + mtdInfo->getMTDName(preadmtd) + timeStr + "_" + hostName + tankStr + ".img";
-	else
-#endif
 		filename = (std::string)g_settings.update_dir + "/" + mtdInfo->getMTDName(preadmtd) + timeStr + tankStr + ".img";
 
 #ifdef BOXMODEL_CS_HD2
@@ -1194,12 +1164,6 @@ int CFlashExpert::showMTDSelector(const std::string & actionkey)
 		sprintf(sActionKey, "%s%d", actionkey.c_str(), lx);
 		mtdselector->addItem(new CMenuForwarder(mtdInfo->getMTDName(lx).c_str(), enabled, NULL, this, sActionKey, CRCInput::convertDigitToKey(shortcut++)));
 	}
-#if ENABLE_EXTUPDATE
-#ifndef BOXMODEL_CS_HD2
-	if (actionkey == "writemtd")
-		mtdselector->addItem(new CMenuForwarder("systemFS with settings", true, NULL, this, "writemtd10", CRCInput::convertDigitToKey(shortcut++)));
-#endif
-#endif
 	int res = mtdselector->exec(NULL,"");
 	delete mtdselector;
 	return res;
@@ -1268,13 +1232,6 @@ int CFlashExpert::exec(CMenuTarget* parent, const std::string & actionKey)
 			selectedMTD = iWritemtd;
 			showFileSelector("");
 		} else {
-#if ENABLE_EXTUPDATE
-			if(selectedMTD == 10) {
-				std::string aK = actionKey;
-				CExtUpdate::getInstance()->applySettings(aK, CExtUpdate::MODE_EXPERT);
-			}
-			else
-#endif
 			if (selectedMTD == -1) {
 				writemtd(actionKey, MTD_OF_WHOLE_IMAGE);
 			} else {

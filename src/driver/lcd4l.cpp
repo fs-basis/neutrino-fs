@@ -1024,7 +1024,7 @@ std::string CLCD4l::hexStr(unsigned char* data)
 bool CLCD4l::GetLogoName(uint64_t channel_id, std::string channel_name, std::string &logo)
 {
 #if 0
-	return g_PicViewer->GetLogoName(channel_id, channel_name, logo);
+	return g_PicViewer->GetLogoName(channel_id, channel_name, logo, NULL, NULL, g_settings.lcd4l_logodir);
 #endif
 #if 1
 	int h, i, j;

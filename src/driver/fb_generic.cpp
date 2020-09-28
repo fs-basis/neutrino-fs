@@ -1894,3 +1894,7 @@ CFrameBuffer::Mode3D CFrameBuffer::get3DMode()
 void CFrameBuffer::set3DMode(Mode3D __attribute__ ((unused)) m)
 {
 }
+
+void CFrameBuffer::blit()
+{
+}

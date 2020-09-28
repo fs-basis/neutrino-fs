@@ -52,8 +52,10 @@
 #include <eitd/sectionsd.h>
 #include <hardware/video.h>
 
+#if 0
 #include <driver/pictureviewer/pictureviewer.h>
 extern CPictureViewer * g_PicViewer;
+#endif
 
 #include "lcd4l.h"
 
@@ -1021,8 +1023,10 @@ std::string CLCD4l::hexStr(unsigned char* data)
 
 bool CLCD4l::GetLogoName(uint64_t channel_id, std::string channel_name, std::string &logo)
 {
-	return g_PicViewer->GetLogoName(channel_id, channel_name, logo);
 #if 0
+	return g_PicViewer->GetLogoName(channel_id, channel_name, logo);
+#endif
+#if 1
 	int h, i, j;
 	char str_channel_id[16];
 	char *upper_name, *lower_name, *p;

@@ -838,7 +838,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/var/tuxbox/plugins" );
-	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", "/logos" );
+	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", "/swap/logos" );
 #else
 	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/media/sda1/plugins" );
 	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", "/media/sda1/logos" );

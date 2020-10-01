@@ -283,6 +283,7 @@
 		<S i="1013" t="451" on="35" s="192" frq="12515" n="Planet"/>
 	</Bouquet>
 	<Bouquet name="Radio">
+		<S i="10d7" t="418" on="1" s="192" frq="11186" n="Radio Maryja"/>
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>
 		<S i="238e" t="44a" on="1" s="192" frq="12363" n="AUDIO PRIMO"/>
 		<S i="6ef4" t="445" on="1" s="192" frq="12266" n="B5 aktuell"/>
@@ -383,7 +384,6 @@
 		<S i="1c79" t="457" on="1" s="192" frq="12604" n="Radio Horeb"/>
 		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
-		<S i="10d7" t="418" on="1" s="192" frq="11186" n="Radio Maryja"/>
 		<S i="1c7c" t="457" on="1" s="192" frq="12604" n="Radio neue Hoffnung"/>
 		<S i="23ea" t="44a" on="1" s="192" frq="12363" n="RADIO NOTRE DAME"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>

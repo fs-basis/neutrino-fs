@@ -30,10 +30,6 @@ AM_CPPFLAGS = \
 	@LUA_CFLAGS@ \
 	@HWLIB_CFLAGS@
 
-if BOXTYPE_TRIPLE
-SUBDIRS += lcddisplay
-endif
-
 if USE_PUGIXML
 PUGIXML_LIBS = -lpugixml
 endif

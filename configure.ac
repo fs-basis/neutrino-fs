@@ -365,8 +365,6 @@ src/nhttpd/tuxboxapi/Makefile
 src/nhttpd/yhttpd_core/Makefile
 src/nhttpd/yhttpd_mods/Makefile
 src/system/Makefile
-src/system/mtdutils/Makefile
-src/system/mtdutils/lib/Makefile
 src/timerd/Makefile
 src/zapit/Makefile
 src/zapit/lib/Makefile

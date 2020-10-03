@@ -864,12 +864,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	}
 
 	g_settings.webradio_xml.clear();
-#ifndef BOXMODEL_CS_HD1
-	/*
-	   Coolstream's HD1 generation can't play audiostreams via movieplayer
-	   because of driver- or firmware-issues or so. Not sure.
-	   So let's avoid loading webradio_xml to get an empty webradio bouquet.
-	*/
 	int webradio_count = configfile.getInt32("webradio_xml_count", 0);
 	if (webradio_count) {
 		for (int i = 0; i < webradio_count; i++) {
@@ -886,7 +880,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 			configfile.deleteKey("webradio_xml");
 		}
 	}
-#endif
 
 	g_settings.xmltv_xml.clear();
 	int xmltv_count = configfile.getInt32("xmltv_xml_count", 0);

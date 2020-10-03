@@ -20,7 +20,3 @@ endif
 if ENABLE_WEBIF
 SUBDIRS += y-web
 endif
-
-if BOXTYPE_TRIPLE
-SUBDIRS += lcd
-endif

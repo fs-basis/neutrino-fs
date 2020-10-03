@@ -1514,7 +1514,7 @@ void CTimeThread::run()
 				rc = dmx->Read(static_buf, MAX_SECTION_LENGTH, timeoutInMSeconds / 12);
 			} while (running && rc == 0
 				 && (time_monotonic_ms() - start) < (int64_t)timeoutInMSeconds);
-#endif
+
 			debug(DEBUG_ERROR, "%s: get DVB time ch 0x%012" PRIx64 " rc: %d neutrino_sets_time %d",
 				name.c_str(), current_service, rc, messaging_neutrino_sets_time);
 			if (rc > 0) {

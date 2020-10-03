@@ -159,7 +159,6 @@ CMoviePlayerGui::~CMoviePlayerGui()
 	filelist.clear();
 }
 
-#if !HAVE_COOL_HARDWARE
 // used by libdvbsub/dvbsub.cpp
 void getPlayerPts(int64_t *pts)
 {
@@ -167,7 +166,6 @@ void getPlayerPts(int64_t *pts)
 	if (playback)
 		playback->GetPts((uint64_t &) *pts);
 }
-#endif
 
 void CMoviePlayerGui::Init(void)
 {
@@ -326,11 +324,10 @@ void CMoviePlayerGui::restoreNeutrino()
 
 	playing = false;
 
-#if ! HAVE_COOL_HARDWARE
 	g_Zapit->unlockPlayBack();
-#else
-	CZapit::getInstance()->EnablePlayback(true);
-#endif
+
+//	CZapit::getInstance()->EnablePlayback(true);
+
 	printf("%s: restore mode %x\n", __func__, m_LastMode);fflush(stdout);
 #if 0
 	if (m_LastMode == NeutrinoModes::mode_tv)
@@ -448,9 +445,7 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 			break;
 		}
 		do {
-#if ! HAVE_COOL_HARDWARE
 			is_file_player = true;
-#endif
 			PlayFile();
 		}
 		while (repeat_mode || filelist_it != filelist.end());
@@ -1595,11 +1590,6 @@ void CMoviePlayerGui::PlayFileLoop(void)
 {
 	bool first_start = true;
 	bool update_lcd = true;
-#if HAVE_COOL_HARDWARE
-	int eof = 0;
-	int eof2 = 0;
-	int position_tmp = 0;
-#endif
 	bool at_eof = !(playstate >= CMoviePlayerGui::PLAY);;
 	keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_NORMAL;
 
@@ -1647,43 +1637,12 @@ void CMoviePlayerGui::PlayFileLoop(void)
 #ifdef DEBUG
 				printf("CMoviePlayerGui::%s: spd %d pos %d/%d (%d, %d%%)\n", __func__, speed, position, duration, duration-position, file_prozent);
 #endif
-#if HAVE_COOL_HARDWARE
-				/* in case ffmpeg report incorrect values */
-				if(file_prozent > 89 && (playstate == CMoviePlayerGui::PLAY) && (speed == 1)){
-					if(position_tmp != position){
-						position_tmp = position ;
-						eof2 = 0;
-					}else{
-						if (++eof2 > 12) {
-							at_eof = true;
-							break;
-						}
-					}
-				}
-				else{
-					eof2 = 0;
-				}
-				int posdiff = duration - position;
-				if ((posdiff >= 0) && (posdiff < 2000) && timeshift == TSHIFT_MODE_OFF)
-				{
-					int delay = (filelist_it != filelist.end() || repeat_mode != REPEAT_OFF) ? 5 : 10;
-					if (++eof > delay) {
-						at_eof = true;
-						break;
-					}
-				}
-				else
-					eof = 0;
-#endif
-
 			}
-#if ! HAVE_COOL_HARDWARE
 			else
 			{
 				at_eof = true;
 				break;
 			}
-#endif
 			handleMovieBrowser(0, position);
 			if (playstate == CMoviePlayerGui::STOPPED)
 				at_eof = true;

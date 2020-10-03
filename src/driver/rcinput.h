@@ -42,16 +42,6 @@
 #include <OpenThreads/Mutex>
 #include <OpenThreads/ScopedLock>
 
-#ifdef BOXMODEL_CS_HD2
-#ifdef HAVE_COOLSTREAM_CS_IR_GENERIC_H
-#include <cs_ir_generic.h>
-#endif
-#else
-#ifdef HAVE_COOLSTREAM_NEVIS_IR_H
-#include <nevis_ir.h>
-#endif
-#endif
-
 #ifndef KEY_OK
 #define KEY_OK           0x160
 #endif

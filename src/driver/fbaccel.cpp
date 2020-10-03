@@ -68,6 +68,10 @@ void CFbAccel::waitForIdle(void)
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
 	ioctl(fb->fd, STMFBIO_SYNC_BLITTER);
 }
+#else
+void CFbAccel::waitForIdle(void)
+{
+}
 #endif
 
 CFbAccel::CFbAccel(CFrameBuffer *_fb)

@@ -1818,16 +1818,6 @@ int CRCInput::translate(int code)
 		case KEY_VIDEO:
 			return RC_favorites;
 #endif
-#ifdef HAVE_AZBOX_HARDWARE
-		case KEY_HOME:
-			return RC_favorites;
-		case KEY_TV:
-			return RC_stop;
-		case KEY_RADIO:
-			return RC_record;
-		case KEY_PLAY:
-			return RC_pause;
-#endif
 		default:
 			break;
 	}

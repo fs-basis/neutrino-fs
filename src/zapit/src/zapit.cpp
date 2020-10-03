@@ -2254,15 +2254,9 @@ bool CZapit::StartPlayBack(CZapitChannel *thisChannel)
 		pcrDemux->Start();
 	}
 
-	/* new (> 20130917) AZbox drivers switch to radio mode if audio is started first */
-	/* start video */
 	if (video_pid) {
 		videoDemux->Start();
-#if HAVE_AZBOX_HARDWARE
-		videoDecoder->Start(0, thisChannel->getPcrPid(), thisChannel->getVideoPid());
-#else
 		videoDecoder->Start(0, pcr_pid, video_pid);
-#endif
 	}
 
 	/* select audio output and start audio */
@@ -2300,16 +2294,6 @@ bool CZapit::StopPlayBack(bool send_pmt, bool __attribute__ ((unused)) blank)
 	if (playbackStopForced)
 		return false;
 
-#if HAVE_AZBOX_HARDWARE
-	pcrDemux->Stop();
-
-	if (current_channel && current_channel->getVideoPid()) {
-		videoDemux->Stop();
-		videoDecoder->Stop(standby ? false : true);
-	}
-	audioDemux->Stop();
-	audioDecoder->Stop();
-#else
 	videoDecoder->Stop(false);
 	videoDemux->Stop();
 	audioDemux->Stop();
@@ -2318,7 +2302,6 @@ bool CZapit::StopPlayBack(bool send_pmt, bool __attribute__ ((unused)) blank)
 
 	/* hack. if standby, dont blank video -> for paused timeshift */
 	//videoDecoder->Stop(standby ? false : blank);
-#endif
 #ifdef USE_VBI
 	videoDecoder->StopVBI();
 #endif

@@ -969,31 +969,6 @@ void CFbAccel::blit()
 }
 #endif
 
-#elif HAVE_AZBOX_HARDWARE
-
-#ifndef FBIO_WAITFORVSYNC
-#define FBIO_WAITFORVSYNC _IOW('F', 0x20, __u32)
-#endif
-#ifndef FBIO_BLIT
-#define FBIO_BLIT 0x22
-#define FBIO_SET_MANUAL_BLIT _IOW('F', 0x21, __u8)
-#endif
-static bool autoblit = getenv("AZBOX_KERNEL_BLIT") ? true : false;
-void CFbAccel::blit()
-{
-	if (autoblit)
-		return;
-	// blit
-	if (ioctl(fb->fd, FBIO_BLIT) < 0)
-		perror("CFbAccel FBIO_BLIT");
-#if 0
-	// sync bliter
-	int c = 0;
-	if( ioctl(fd, FBIO_WAITFORVSYNC, &c) < 0 )
-		perror("FBIO_WAITFORVSYNC");
-#endif
-}
-
 #else
 /* not azbox and not spark -> no blit() needed */
 void CFbAccel::blit()
@@ -1230,50 +1205,6 @@ int CFbAccel::setMode(void)
 {
 	int fd = fb->fd;
 	t_fb_var_screeninfo *si = &fb->screeninfo;
-#if HAVE_AZBOX_HARDWARE
-	// set auto blit if AZBOX_KERNEL_BLIT environment variable is set
-	unsigned char tmp = getenv("AZBOX_KERNEL_BLIT") ? 0 : 1;
-	if (ioctl(fd, FBIO_SET_MANUAL_BLIT, &tmp) < 0)
-		perror("FBIO_SET_MANUAL_BLIT");
-
-	const unsigned int nxRes = DEFAULT_XRES;
-	const unsigned int nyRes = DEFAULT_YRES;
-	const unsigned int nbpp  = DEFAULT_BPP;
-	si->xres_virtual = si->xres = nxRes;
-	si->yres_virtual = (si->yres = nyRes) * 2;
-	si->height = 0;
-	si->width = 0;
-	si->xoffset = si->yoffset = 0;
-	si->bits_per_pixel = nbpp;
-
-	si->transp.offset = 24;
-	si->transp.length = 8;
-	si->red.offset = 16;
-	si->red.length = 8;
-	si->green.offset = 8;
-	si->green.length = 8;
-	si->blue.offset = 0;
-	si->blue.length = 8;
-
-	if (ioctl(fd, FBIOPUT_VSCREENINFO, si) < 0) {
-		// try single buffering
-		si->yres_virtual = si->yres = nyRes;
-		if (ioctl(fd, FBIOPUT_VSCREENINFO, si) < 0)
-		perror("FBIOPUT_VSCREENINFO");
-		printf("FB: double buffering not available.\n");
-	}
-	else
-		printf("FB: double buffering available!\n");
-
-	ioctl(fd, FBIOGET_VSCREENINFO, si);
-
-	if (si->xres != nxRes || si->yres != nyRes || si->bits_per_pixel != nbpp)
-	{
-		printf("SetMode failed: wanted: %dx%dx%d, got %dx%dx%d\n",
-		       nxRes, nyRes, nbpp,
-		       si->xres, si->yres, si->bits_per_pixel);
-	}
-#endif
 #if HAVE_SH4_HARDWARE
 	/* it's all fake... :-) */
 	si->xres = si->xres_virtual = DEFAULT_XRES;

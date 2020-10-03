@@ -269,28 +269,6 @@ if test "$BOXTYPE" != coolstream; then
 fi
 AM_CONDITIONAL(USE_STB_HAL, test "$BOXTYPE" != "coolstream")
 
-if test "$BOXTYPE" = "coolstream"; then
-	if test "$BOXMODEL" = "hd1"; then
-		if test -e ${srcdir}/lib/hardware/coolstream/hd1/libcoolstream/nevis_ir.h; then
-			AC_DEFINE(HAVE_COOLSTREAM_NEVIS_IR_H, 1, [Define to 1 if you have the <nevis_ir.h> header file.])
-		fi
-		HWLIB_CFLAGS='-I$(top_srcdir)/lib/hardware/coolstream/hd1/libcoolstream'
-	fi
-
-	if test "$BOXMODEL" = "hd2"; then
-		if test -e ${srcdir}/lib/hardware/coolstream/hd2/libcoolstream/cs_ir_generic.h; then
-			AC_DEFINE(HAVE_COOLSTREAM_CS_IR_GENERIC_H, 1, [Define to 1 if you have the <cs_ir_generic.h> header file.])
-		fi
-		if test -e ${srcdir}/lib/hardware/coolstream/hd2/libcoolstream/cs_frontpanel.h; then
-			AC_DEFINE(HAVE_COOLSTREAM_CS_FRONTPANEL_H, 1, [Define to 1 if you have the <cs_frontpanel.h> header file.])
-		fi
-		HWLIB_CFLAGS='-I$(top_srcdir)/lib/hardware/coolstream/hd2/libcoolstream'
-	fi
-
-	HWLIB_CFLAGS="$HWLIB_CFLAGS "'-I$(top_srcdir)/src/zapit/include/private'
-	HWLIB_CFLAGS="$HWLIB_CFLAGS "'-I$(top_srcdir)/lib/hardware/coolstream'
-fi
-
 # hack, so that framebuffer.h does not need to be included everywhere...
 AC_DEFINE(fb_pixel_t, uint32_t, [hack, so that framebuffer.h does not need to be included everywhere...])
 
@@ -360,7 +338,6 @@ data/y-web/scripts/Makefile
 data/y-web/styles/Makefile
 lib/Makefile
 lib/connection/Makefile
-lib/hardware/coolstream/Makefile
 lib/jsoncpp/Makefile
 lib/libconfigfile/Makefile
 lib/libdvbsub/Makefile

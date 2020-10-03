@@ -318,9 +318,6 @@ data/icons/status/various/Makefile
 data/icons/various/Makefile
 data/inetradio/Makefile
 data/iso-codes/Makefile
-data/lcd/Makefile
-data/lcd/clock/Makefile
-data/lcd/icons/Makefile
 data/license/Makefile
 data/locale/Makefile
 data/pictures/Makefile

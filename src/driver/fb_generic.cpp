@@ -129,20 +129,11 @@ CFrameBuffer* CFrameBuffer::getInstance()
 #if HAVE_SPARK_HARDWARE
 		frameBuffer = new CFbAccelSTi();
 #endif
-#if HAVE_COOL_HARDWARE
-#ifdef BOXMODEL_CS_HD1
-		frameBuffer = new CFbAccelCSHD1();
-#endif
-#ifdef BOXMODEL_CS_HD2
-		frameBuffer = new CFbAccelCSHD2();
-#endif
-#endif
+
 #if HAVE_GENERIC_HARDWARE
 		frameBuffer = new CFbAccelGLFB();
 #endif
-#if HAVE_TRIPLEDRAGON
-		frameBuffer = new CFbAccelTD();
-#endif
+
 #if HAVE_ARM_HARDWARE
 		frameBuffer = new CFbAccelARM();
 #endif

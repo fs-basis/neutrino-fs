@@ -155,9 +155,6 @@ bool CScreenShot::GetData()
 	bool res = false;
 	pthread_mutex_lock(&getData_mutex);
 
-#ifdef BOXMODEL_CS_HD1
-	CFrameBuffer::getInstance()->setActive(false);
-#endif
 	if (videoDecoder->getBlank())
 		get_video = false;
 
@@ -180,13 +177,6 @@ bool CScreenShot::GetData()
 	res = videoDecoder->GetScreenImage(pixel_data, xres, yres, get_video, get_osd, scale_to_video);
 #endif
 
-#ifdef BOXMODEL_CS_HD1
-	/* sort of hack. GXA used to transfer/convert live image to RGB,
-	 * so setup GXA back */
-	CFrameBuffer::getInstance()->setupGXA();
-	//CFrameBuffer::getInstance()->add_gxa_sync_marker();
-	CFrameBuffer::getInstance()->setActive(true);
-#endif
 	pthread_mutex_unlock(&getData_mutex);
 	if (!res) {
 		printf("[CScreenShot::%s:%d] GetScreenImage failed\n", __func__, __LINE__);
@@ -674,9 +664,6 @@ bool CScreenShot::GetData()
 	bool res = false;
 	pthread_mutex_lock(&getData_mutex);
 
-#ifdef BOXMODEL_CS_HD1
-	CFrameBuffer::getInstance()->setActive(false);
-#endif
 	if (videoDecoder->getBlank())
 		get_video = false;
 
@@ -698,13 +685,6 @@ bool CScreenShot::GetData()
 	res = videoDecoder->GetScreenImage(pixel_data, xres, yres, get_video, get_osd, scale_to_video);
 #endif
 
-#ifdef BOXMODEL_CS_HD1
-	/* sort of hack. GXA used to transfer/convert live image to RGB,
-	 * so setup GXA back */
-	CFrameBuffer::getInstance()->setupGXA();
-	CFrameBuffer::getInstance()->add_gxa_sync_marker();
-	CFrameBuffer::getInstance()->setActive(true);
-#endif
 	pthread_mutex_unlock(&getData_mutex);
 	if (!res) {
 		printf("[CScreenShot::%s:%d] GetScreenImage failed\n", __func__, __LINE__);

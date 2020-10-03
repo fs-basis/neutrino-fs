@@ -294,8 +294,6 @@ class CRCInput
 			RC_mute_off	= KEY_MUTEOFF,
 			RC_analog_on	= KEY_ANALOGON,
 			RC_analog_off	= KEY_ANALOGOFF,
-
-			/* tripledragon keys */
 			RC_eject	= KEY_EJECTCD,
 			RC_aux		= KEY_AUX,          /* 0x186 */
 			RC_timer	= KEY_TIME,
@@ -315,7 +313,6 @@ class CRCInput
 			RC_HW_COOLSTREAM	= 0,
 			RC_HW_DBOX		= 1,
 			RC_HW_PHILIPS		= 2,
-			RC_HW_TRIPLEDRAGON	= 3
 		};
 		void set_rc_hw(void);
 

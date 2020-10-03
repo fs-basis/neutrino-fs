@@ -906,7 +906,6 @@ keybindingmenu.remotecontrol_hardware_msg_part1 Die Fernbedienung wurde von '
 keybindingmenu.remotecontrol_hardware_msg_part2 ' auf '
 keybindingmenu.remotecontrol_hardware_msg_part3 ' geändert.\nIst dies korrekt?\nBitte die Auswahl innerhalb 15 Sekunden mit der neuen Fernbedienung\nbestätigen. Ansonsten wird die Auswahl zurückgesetzt.
 keybindingmenu.remotecontrol_hardware_philips Philips
-keybindingmenu.remotecontrol_hardware_tripledragon Triple Dragon
 keybindingmenu.repeatblock Anfangsverzögerung
 keybindingmenu.repeatblockgeneric Wiederholungsverzögerung
 keybindingmenu.sort Sortierreihenfolge ändern
@@ -1302,7 +1301,6 @@ menu.hint_next_brief Weiter zum nächsten Menü
 menu.hint_numeric_adjust Bei numerischer Programmwahl die Kanalliste am neu gewählten Programm ausrichten
 menu.hint_osd Farben, Schriftarten, Anzeigegröße, Ansichtsoptionen der Menüs und mehr
 menu.hint_osd_language Wählen Sie ihre Menü-Sprache
-menu.hint_osd_preset Wählen Sie zwischen Röhren-TV (CRT) oder Flachbildschirm (LCD)
 menu.hint_osd_resolution Wählen Sie eine OSD-Auflösung
 menu.hint_osd_timing Einblendzeit, die das OSD auf dem TV angezeigt wird
 menu.hint_other_fonts Ändern Sie andere Schriftgrößen

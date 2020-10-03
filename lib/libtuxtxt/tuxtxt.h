@@ -1402,6 +1402,3 @@ void eval_object(int iONr, tstCachedPage *pstCachedPage,
 					  unsigned char *pAPx, unsigned char *pAPy,
 					  unsigned char *pAPx0, unsigned char *pAPy0,
 					  tObjType ObjType, unsigned char* pagedata);
-
-
-#endif

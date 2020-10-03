@@ -42,8 +42,6 @@
 
 #if defined(HAVE_DBOX_HARDWARE)
 #define EVENTDEV "/dev/input/event0"
-#elif defined (HAVE_COOL_HARDWARE)
-#define EVENTDEV "/dev/input/input0"
 #else
 #endif
 #else

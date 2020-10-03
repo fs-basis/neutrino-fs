@@ -288,38 +288,8 @@ CVFD::CVFD()
 	fd = 1;
 #endif
 
-#ifdef BOXMODEL_CS_HD2
-	if (fd >= 0) {
-		int ret = ioctl(fd, IOC_FP_GET_DISPLAY_CAPS, &caps);
-		if (ret < 0) {
-			perror("IOC_FP_GET_DISPLAY_CAPS");
-			printf("VFD: please update driver!\n");
-			support_text	= true;
-			support_numbers	= true;
-		} else {
-			switch (caps.display_type) {
-			case FP_DISPLAY_TYPE_NONE:
-				has_lcd		= false;
-				has_led_segment	= false;
-				break;
-			case FP_DISPLAY_TYPE_LED_SEGMENT:
-				has_lcd		= false;
-				has_led_segment	= true;
-				break;
-			default:
-				has_lcd		= true;
-				has_led_segment	= false;
-				break;
-			}
-			support_text    = (caps.display_type != FP_DISPLAY_TYPE_LED_SEGMENT &&
-				           caps.text_support != FP_DISPLAY_TEXT_NONE);
-			support_numbers = caps.number_support;
-		}
-	}
-#else
 	support_text	= true;
 	support_numbers	= true;
-#endif
 }
 
 CVFD::~CVFD()
@@ -948,10 +918,6 @@ void CVFD::setMode(const MODES m, const char * const title)
 	if(fd < 0) return;
 
 	// Clear colon in display if it is still there
-#ifdef BOXMODEL_CS_HD2
-	if (support_numbers && has_led_segment)
-		ioctl(fd, IOC_FP_SET_COLON, 0x00);
-#endif
 
 	if(mode == MODE_AUDIO)
 		ShowIcon(FP_ICON_MP3, false);
@@ -1016,9 +982,7 @@ void CVFD::setMode(const MODES m, const char * const title)
 		ShowIcon(FP_ICON_COL1, true);
 		ShowIcon(FP_ICON_COL2, true);
 #endif
-#if ! HAVE_COOL_HARDWARE
 		ClearIcons();
-#endif
 		ShowIcon(FP_ICON_USB, false);
 		ShowIcon(FP_ICON_HDD, false);
 		showclock = true;
@@ -1314,14 +1278,6 @@ void CVFD::ShowNumber(int number)
 
 	if (number < 0)
 		return;
-	
-#ifdef BOXMODEL_CS_HD2
-	int ret = ioctl(fd, IOC_FP_SET_NUMBER, number);
-	if(ret < 0) {
-		support_numbers = false;
-		perror("IOC_FP_SET_NUMBER");
-	}
-#endif
 }
 
 #ifdef VFD_UPDATE

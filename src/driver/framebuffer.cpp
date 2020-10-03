@@ -52,9 +52,6 @@
 #include <global.h>
 #include <video.h>
 #include <cs_api.h>
-#ifdef HAVE_COOL_HARDWARE
-#include <cnxtfb.h>
-#endif
 
 extern cVideo * videoDecoder;
 
@@ -417,10 +414,6 @@ void CFrameBuffer::setTransparency( int /*tr*/ )
 #endif
 void CFrameBuffer::setBlendMode(uint8_t mode)
 {
-#ifdef HAVE_COOL_HARDWARE
-	if (ioctl(fd, FBIO_SETBLENDMODE, mode))
-		printf("FBIO_SETBLENDMODE failed.\n");
-#endif
 }
 
 void CFrameBuffer::setBlendLevel(int level)

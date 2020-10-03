@@ -198,11 +198,6 @@ bin_PROGRAMS += mdev_helper
 mdev_helper_SOURCES = mdev_helper.cpp
 endif
 
-if BOXTYPE_TRIPLE
-neutrino_LDADD += \
-	$(top_builddir)/src/lcddisplay/liblcddisplay.a
-endif
-
 if BOXMODEL_RASPI
 neutrino_LDADD += \
 	-L/opt/vc/lib/ -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt

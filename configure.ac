@@ -358,7 +358,6 @@ src/gui/components/Makefile
 src/gui/lua/Makefile
 src/gui/moviebrowser/Makefile
 src/gui/widget/Makefile
-src/lcddisplay/Makefile
 src/nhttpd/Makefile
 src/nhttpd/nhttpd.conf
 src/nhttpd/tuxboxapi/Makefile

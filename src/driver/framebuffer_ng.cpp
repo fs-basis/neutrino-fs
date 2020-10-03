@@ -53,10 +53,6 @@
 #include <linux/stmfb.h>
 #include <png.h>
 #endif
-#if HAVE_TRIPLEDRAGON
-#ifdef SCALE
-#undef SCALE
-#endif
 #include <tdgfx/stb04gfx.h>
 extern int gfxfd;
 #endif
@@ -456,32 +452,14 @@ void CFrameBuffer::setBlendLevel(int level)
 	if (ioctl(fd, STMFBIO_SET_VAR_SCREENINFO_EX, &v) < 0)
 		perror("[fb:setBlendLevel] STMFBIO");
 }
-#elif !HAVE_TRIPLEDRAGON
 void CFrameBuffer::setBlendMode(uint8_t mode)
 {
 	(void)mode;
-#ifdef HAVE_COOL_HARDWARE
-	if (ioctl(fd, FBIO_SETBLENDMODE, mode))
-		printf("FBIO_SETBLENDMODE failed.\n");
-#endif
 }
 
 void CFrameBuffer::setBlendLevel(int level)
 {
 	(void)level;
-#ifdef HAVE_COOL_HARDWARE
-	//printf("CFrameBuffer::setBlendLevel %d\n", level);
-	unsigned char value = 0xFF;
-	if((level >= 0) && (level <= 100))
-		value = convertSetupAlpha2Alpha(level);
-
-	if (ioctl(fd, FBIO_SETOPACITY, value))
-		printf("FBIO_SETOPACITY failed.\n");
-#ifndef BOXMODEL_CS_HD2
-	if(level == 100) // TODO: sucks.
-		usleep(20000);
-#endif
-#endif
 }
 #else
 /* TRIPLEDRAGON */

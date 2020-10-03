@@ -143,25 +143,6 @@ void CFbAccel::waitForIdle(void)
 	if (count > 2048) /* more than 2000 are unlikely, even for large BMP6 blits */
 		fprintf(stderr, "CFbAccel::waitForIdle: count is big (%d)!\n", count);
 }
-#elif HAVE_TRIPLEDRAGON
-#include <directfb.h>
-#include <tdgfx/stb04gfx.h>
-extern IDirectFB *dfb;
-extern IDirectFBSurface *dfbdest;
-extern int gfxfd;
-void CFbAccel::waitForIdle(void)
-{
-#if 0
-	struct timeval ts, te;
-	gettimeofday(&ts, NULL);
-#endif
-	/* does not work: DFBResult r = dfb->WaitForSync(dfb); */
-	ioctl(gfxfd, STB04GFX_ENGINE_SYNC);
-#if 0
-	gettimeofday(&te, NULL);
-	printf("STB04GFX_ENGINE_SYNC took %lld us\n", (te.tv_sec * 1000000LL + te.tv_usec) - (ts.tv_sec * 1000000LL + ts.tv_usec));
-#endif
-}
 #elif HAVE_SH4_HARDWARE
 
 static int bpafd = -1;
@@ -322,42 +303,12 @@ void CFbAccel::update()
 
 void CFbAccel::setColor(fb_pixel_t col)
 {
-#if HAVE_TRIPLEDRAGON
-	if (col == lastcol)
-		return;
-	char *c = (char *)&col;
-	dfbdest->SetColor(dfbdest, c[1], c[2], c[3], c[0]);
-	lastcol = col;
-#elif defined USE_NEVIS_GXA
-	if (col == lastcol)
-		return;
-	_write_gxa(gxa_base, GXA_FG_COLOR_REG, (unsigned int)col); /* setup the drawing color */
-	lastcol = col;
-#else
 	(void)col; /* avoid "unused parameter" compiler warning */
-#endif
 }
 
 void CFbAccel::paintRect(const int x, const int y, const int dx, const int dy, const fb_pixel_t col)
 {
-#if HAVE_TRIPLEDRAGON
-	setColor(col);
-	dfbdest->FillRectangle(dfbdest, x, y, dx, dy);
-#elif defined(USE_NEVIS_GXA)
-	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
-	unsigned int cmd = GXA_CMD_BLT | GXA_CMD_NOT_TEXT | GXA_CMD_NOT_ALPHA |
-			   GXA_SRC_BMP_SEL(6) | GXA_DST_BMP_SEL(2) | GXA_PARAM_COUNT(2);
-
-	_write_gxa(gxa_base, GXA_BG_COLOR_REG, (unsigned int)col); /* setup the drawing color */
-	_write_gxa(gxa_base, GXA_BMP6_TYPE_REG, (3 << 16) | (1 << 27)); /* 3 == 32bpp, 1<<27 == fill */
-	_write_gxa(gxa_base, cmd, GXA_POINT(x, y));	/* destination pos */
-	_write_gxa(gxa_base, cmd, GXA_POINT(dx, dy));	/* destination size */
-	_write_gxa(gxa_base, GXA_BG_COLOR_REG, (unsigned int)fb->backgroundColor);
-
-	/* the GXA seems to do asynchronous rendering, so we add a sync marker
-	   to which the fontrenderer code can synchronize */
-	add_gxa_sync_marker();
-#elif HAVE_SH4_HARDWARE
+#if HAVE_SH4_HARDWARE
 	if (dx <= 0 || dy <= 0)
 		return;
 
@@ -456,34 +407,14 @@ void CFbAccel::paintRect(const int x, const int y, const int dx, const int dy, c
 
 void CFbAccel::paintPixel(const int x, const int y, const fb_pixel_t col)
 {
-#if HAVE_TRIPLEDRAGON
-	setColor(col);
-	dfbdest->DrawLine(dfbdest, x, y, x, y);
-#elif defined (USE_NEVIS_GXA)
-	paintLine(x, y, x + 1, y, col);
-#else
 	fb_pixel_t *pos = fb->getFrameBufferPointer();
 	pos += (fb->stride / sizeof(fb_pixel_t)) * y;
 	pos += x;
 	*pos = col;
-#endif
 }
 
 void CFbAccel::paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col)
 {
-#if HAVE_TRIPLEDRAGON
-	setColor(col);
-	dfbdest->DrawLine(dfbdest, xa, ya, xb, yb);
-#elif defined(USE_NEVIS_GXA)
-	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
-	/* draw a single vertical line from point xa/ya to xb/yb */
-	unsigned int cmd = GXA_CMD_NOT_TEXT | GXA_SRC_BMP_SEL(2) | GXA_DST_BMP_SEL(2) | GXA_PARAM_COUNT(2) | GXA_CMD_NOT_ALPHA;
-
-	setColor(col);
-	_write_gxa(gxa_base, GXA_LINE_CONTROL_REG, 0x00000404);	/* X is major axis, skip last pixel */
-	_write_gxa(gxa_base, cmd, GXA_POINT(xb, yb));		/* end point */
-	_write_gxa(gxa_base, cmd, GXA_POINT(xa, ya));		/* start point */
-#else
 	int dx = abs (xa - xb);
 	int dy = abs (ya - yb);
 	if (dy == 0) /* horizontal line */
@@ -575,10 +506,8 @@ void CFbAccel::paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col)
 			paintPixel(x, y, col);
 		}
 	}
-#endif
 }
 
-#if !HAVE_TRIPLEDRAGON
 void CFbAccel::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t xoff, uint32_t yoff, uint32_t xp, uint32_t yp, bool transp)
 {
 #if !HAVE_SH4_HARDWARE
@@ -586,28 +515,7 @@ void CFbAccel::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t x
 	xc = (width > fb->xRes) ? fb->xRes : width;
 	yc = (height > fb->yRes) ? fb->yRes : height;
 #endif
-#ifdef USE_NEVIS_GXA
-	(void)transp;
-	u32 cmd;
-	void *uKva;
-
-	uKva = cs_phys_addr(fbbuff);
-	//printf("CFbAccel::blit2FB: data %x Kva %x\n", (int) fbbuff, (int) uKva);
-
-	if (uKva != NULL) {
-		OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
-		cmd = GXA_CMD_BLT | GXA_CMD_NOT_TEXT | GXA_SRC_BMP_SEL(1) | GXA_DST_BMP_SEL(2) | GXA_PARAM_COUNT(3);
-
-		_write_gxa(gxa_base, GXA_BMP1_TYPE_REG, (3 << 16) | width);
-		_write_gxa(gxa_base, GXA_BMP1_ADDR_REG, (unsigned int)uKva);
-
-		_write_gxa(gxa_base, cmd, GXA_POINT(xoff, yoff)); /* destination pos */
-		_write_gxa(gxa_base, cmd, GXA_POINT(xc, yc));     /* source width, FIXME real or adjusted xc, yc ? */
-		_write_gxa(gxa_base, cmd, GXA_POINT(xp, yp));     /* source pos */
-
-		return;
-	}
-#elif HAVE_SH4_HARDWARE
+#if HAVE_SH4_HARDWARE
 	int x, y, dw, dh;
 	x = xoff;
 	y = yoff;
@@ -721,22 +629,6 @@ void CFbAccel::blit2FB(void *fbbuff, uint32_t width, uint32_t height, uint32_t x
 	dfbdest->Blit(dfbdest, surf, &src, xoff, yoff);
 	surf->Release(surf);
 	return;
-}
-#endif
-
-#ifdef USE_NEVIS_GXA
-void CFbAccel::setupGXA()
-{
-	// We (re)store the GXA regs here in case DFB override them and was not
-	// able to restore them.
-	_write_gxa(gxa_base, GXA_BMP2_TYPE_REG, (3 << 16) | (unsigned int)fb->screeninfo.xres);
-	_write_gxa(gxa_base, GXA_BMP2_ADDR_REG, (unsigned int) fb->fix.smem_start);
-	_write_gxa(gxa_base, GXA_BLEND_CFG_REG, 0x00089064);
-	//	TODO check mono-flip, bit 8
-	_write_gxa(gxa_base, GXA_CFG_REG, 0x100 | (1 << 12) | (1 << 29));
-	_write_gxa(gxa_base, GXA_CFG2_REG, 0x1FF);
-	_write_gxa(gxa_base, GXA_BG_COLOR_REG, (unsigned int)fb->backgroundColor);
-	add_gxa_sync_marker();
 }
 #endif
 
@@ -1161,12 +1053,6 @@ bool CFbAccel::init(void)
 	lfb = reinterpret_cast<fb_pixel_t*>(glfb->getOSDBuffer()->data());
 #else
 	int fd;
-#if HAVE_TRIPLEDRAGON
-	/* kernel is too old for O_CLOEXEC :-( */
-	fd = open("/dev/fb0", O_RDWR);
-	if (fd != -1)
-		fcntl(fd, F_SETFD, FD_CLOEXEC);
-#else
 	fd = open("/dev/fb0", O_RDWR|O_CLOEXEC);
 #endif
 	if (fd < 0) {

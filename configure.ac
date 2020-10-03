@@ -140,12 +140,7 @@ TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-2.0)
 TUXBOX_APPS_LIB_PKGCONFIG(SWRESAMPLE,libswresample)
 TUXBOX_APPS_LIB_PKGCONFIG(SWSCALE,libswscale)
 
-if test "$BOXTYPE" = "coolstream"; then
-	TUXBOX_APPS_LIB_PKGCONFIG(BLURAY,libbluray)
-fi
-
-if test "$BOXTYPE" = "coolstream" ||
-   test "$BOXTYPE" = "generic" ||
+if test "$BOXTYPE" = "generic" ||
    test "$BOXTYPE" = "tripledragon" ||
    test "$BOXTYPE" = "duckbox" ||
    test "$BOXTYPE" = "armbox" ||
@@ -288,13 +283,12 @@ AC_ARG_WITH(stb-hal-build,
 	[STB_HAL_LIB="-L$withval"],
 	[STB_HAL_LIB=""])
 
-if test "$BOXTYPE" != coolstream; then
 	AC_DEFINE(USE_STB_HAL, 1, [use libstb-hal])
 	if test "$STB_HAL_INC" = ""; then
 		AC_MSG_ERROR([need libstb-hal includes path with --with-stb-hal-includes=...])
 	fi
 	HWLIB_CFLAGS="-I$STB_HAL_INC"
-fi
+
 AM_CONDITIONAL(USE_STB_HAL, test "$BOXTYPE" != "coolstream")
 
 # hack, so that framebuffer.h does not need to be included everywhere...

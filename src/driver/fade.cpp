@@ -29,10 +29,6 @@
 #include <driver/framebuffer.h>
 #include <unistd.h>
 
-#if HAVE_COOL_HARDWARE
-#include <cnxtfb.h>
-#endif
-
 COSDFader::COSDFader(unsigned char & alpha)
 	: max_alpha(alpha)
 {

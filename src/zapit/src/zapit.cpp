@@ -57,12 +57,6 @@
 #include <zapit/satconfig.h>
 #include <zapit/femanager.h>
 
-#if HAVE_COOL_HARDWARE
-#include <record_cs.h>
-#include <playback_cs.h>
-#include <pwrmngr.h>
-#endif
-
 #include <hardware/audio.h>
 #include <hardware/ca.h>
 #include <hardware/dmx.h>
@@ -610,11 +604,6 @@ bool CZapit::ZapIt(const t_channel_id channel_id, bool forupdate, bool startplay
 #ifdef ENABLE_PIP
 	if (transponder_change && (live_fe == pip_fe))
 		StopPip();
-#endif
-
-#ifdef BOXMODEL_CS_HD2
-	if (CCamManager::getInstance()->GetCITuner() < 0)
-		cCA::GetInstance()->SetTS((CA_DVBCI_TS_INPUT)live_fe->getNumber());
 #endif
 
 	if (current_channel->getServiceType() == ST_NVOD_REFERENCE_SERVICE) {

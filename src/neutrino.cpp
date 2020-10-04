@@ -431,10 +431,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.fan_speed = configfile.getInt32( "fan_speed", 1);
 	if(g_settings.fan_speed < 1) g_settings.fan_speed = 1;
 
-	g_settings.srs_enable = configfile.getInt32( "srs_enable", 0);
-	g_settings.srs_algo = configfile.getInt32( "srs_algo", 1);
-	g_settings.srs_ref_volume = configfile.getInt32( "srs_ref_volume", 40);
-	g_settings.srs_nmgr_enable = configfile.getInt32( "srs_nmgr_enable", 0);
 #if HAVE_ARM_HARDWARE
 	g_settings.ac3_pass = configfile.getInt32( "ac3_pass", 1);
 	g_settings.dts_pass = configfile.getInt32( "dts_pass", 1);
@@ -1340,10 +1336,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	configfile.setInt32( "fan_speed", g_settings.fan_speed);
 
-	configfile.setInt32( "srs_enable", g_settings.srs_enable);
-	configfile.setInt32( "srs_algo", g_settings.srs_algo);
-	configfile.setInt32( "srs_ref_volume", g_settings.srs_ref_volume);
-	configfile.setInt32( "srs_nmgr_enable", g_settings.srs_nmgr_enable);
 #if HAVE_ARM_HARDWARE
 	configfile.setInt32( "ac3_pass", g_settings.ac3_pass);
 	configfile.setInt32( "dts_pass", g_settings.dts_pass);
@@ -2566,7 +2558,7 @@ TIMER_START();
 	CZapit::getInstance()->GetConfig(zapitCfg);
 
 	// init audio settings
-	audioDecoder->SetSRS(g_settings.srs_enable, g_settings.srs_nmgr_enable, g_settings.srs_algo, g_settings.srs_ref_volume);
+
 	//audioDecoder->setVolume(g_settings.current_volume, g_settings.current_volume);
 #if HAVE_ARM_HARDWARE
 	audioDecoder->SetHdmiDD(g_settings.ac3_pass ? true : false);

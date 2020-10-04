@@ -1900,10 +1900,6 @@ void CRCInput::set_rc_hw(void)
 
 	switch(g_settings.remote_control_hardware)
 	{
-		case RC_HW_COOLSTREAM:
-			ir_protocol = IR_PROTOCOL_NECE;
-			ir_address  = 0xFF80;
-			break;
 		case RC_HW_DBOX:
 			ir_protocol = IR_PROTOCOL_NRC17;
 			ir_address  = 0x00C5;

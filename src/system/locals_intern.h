@@ -920,7 +920,6 @@ const char * locale_real_names[] =
 	"keybindingmenu.remotecontrol_code_not_save",
 	"keybindingmenu.remotecontrol_code_save",
 	"keybindingmenu.remotecontrol_hardware",
-	"keybindingmenu.remotecontrol_hardware_coolstream",
 	"keybindingmenu.remotecontrol_hardware_dbox",
 	"keybindingmenu.remotecontrol_hardware_msg_part1",
 	"keybindingmenu.remotecontrol_hardware_msg_part2",

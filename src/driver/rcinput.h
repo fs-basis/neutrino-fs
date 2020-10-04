@@ -300,9 +300,8 @@ class CRCInput
 		//rc-hardware definitions
 		enum
 		{
-			RC_HW_COOLSTREAM	= 0,
-			RC_HW_DBOX		= 1,
-			RC_HW_PHILIPS		= 2,
+			RC_HW_DBOX		= 0,
+			RC_HW_PHILIPS		= 1,
 		};
 		void set_rc_hw(void);
 

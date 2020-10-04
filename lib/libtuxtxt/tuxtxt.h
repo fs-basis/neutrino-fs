@@ -13,7 +13,7 @@
  *                   by Seddi <seddi@i-have-a-dreambox.com>                   *
  *                                                                            *
  *                                                                            *
- *      ported to Tripledragon, SPARK and AZbox 2010-2013 Stefan Seyfried     *
+ *      ported to SPARK and other Hardware 2010-2013 Stefan Seyfried     *
  ******************************************************************************/
 
 #define TUXTXT_CFG_STANDALONE 0  // 1:plugin only 0:use library

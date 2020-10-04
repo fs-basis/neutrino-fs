@@ -59,11 +59,6 @@ libneutrino_driver_a_SOURCES += \
 	simple_display.cpp
 endif
 
-if USE_STB_HAL
-AM_CPPFLAGS += \
-	@DIRECTFB_CFLAGS@
-endif
-
 #if BOXTYPE_SPARK
 #libneutrino_driver_a_SOURCES += \
 #	fb_accel_sti.cpp \

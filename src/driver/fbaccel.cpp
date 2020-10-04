@@ -751,7 +751,7 @@ void CFbAccel::blit()
 #endif
 
 #else
-/* not azbox and not spark -> no blit() needed */
+
 void CFbAccel::blit()
 {
 #if HAVE_GENERIC_HARDWARE
@@ -996,10 +996,6 @@ int CFbAccel::setMode(void)
 	}
 	fb->stride = _fix.line_length;
 #endif
-#endif
-#if HAVE_COOL_HARDWARE
-	if (ioctl(fd, FBIOBLANK, FB_BLANK_UNBLANK) < 0)
-		printf("screen unblanking failed\n");
 #endif
 	/* avoid compiler warnings on various platforms */
 	(void) fd;

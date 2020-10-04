@@ -46,9 +46,6 @@
 #include <global.h>
 #include <video.h>
 #include <cs_api.h>
-#ifdef HAVE_COOL_HARDWARE
-#include <cnxtfb.h>
-#endif
 #if HAVE_SH4_HARDWARE
 #include <linux/stmfb.h>
 #include <png.h>

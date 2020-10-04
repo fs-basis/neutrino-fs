@@ -451,7 +451,7 @@ void CFrameBuffer::setBlendLevel(int level)
 	(void)level;
 }
 #else
-/* TRIPLEDRAGON */
+
 void CFrameBuffer::setBlendMode(uint8_t mode)
 {
 	Stb04GFXOsdControl g;

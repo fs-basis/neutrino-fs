@@ -371,7 +371,7 @@ int CVideoSettings::showVideoSetup()
 		vs_chinch_ch->setHint("", LOCALE_MENU_HINT_VIDEO_CINCH_MODE);
 #endif
 	}
-	else if (g_info.hw_caps->has_SCART) /* TRIPLEDRAGON hack... :-) */
+	else if (g_info.hw_caps->has_SCART)
 	{
 		vs_scart_ch = new CMenuOptionChooser(LOCALE_VIDEOMENU_SCART, &g_settings.analog_mode1, VIDEOMENU_VIDEOSIGNAL_TD_OPTIONS, VIDEOMENU_VIDEOSIGNAL_TD_OPTION_COUNT, true, this);
 	}

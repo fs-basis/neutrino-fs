@@ -934,7 +934,6 @@ keybindingmenu.remotecontrol_code_msg2 at the same time, after that press the bu
 keybindingmenu.remotecontrol_code_not_save The remote control code has not been changed !
 keybindingmenu.remotecontrol_code_save Save new code
 keybindingmenu.remotecontrol_hardware Hardware
-keybindingmenu.remotecontrol_hardware_coolstream CST
 keybindingmenu.remotecontrol_hardware_dbox d-box Nokia (old)
 keybindingmenu.remotecontrol_hardware_msg_part1 The remote control has been changed from '
 keybindingmenu.remotecontrol_hardware_msg_part2 ' to '

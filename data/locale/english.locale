@@ -1516,7 +1516,6 @@ menu.hint_video_cinch_mode Select analog output mode for\ncomposite video out
 menu.hint_video_colorformat_analog Select color space for analog output (SCART/RCA)
 menu.hint_video_colorformat_hdmi Select color space for digital output (HDMI)
 menu.hint_video_contrast Change picture contrast
-menu.hint_video_dbdr MPEG2 enhancement filters
 menu.hint_video_format TV aspect ratio
 menu.hint_video_mask Define a channel-specific border to hide unwanted screen content
 menu.hint_video_mixer_color This color will be used for the background if there is no signal available.
@@ -2513,10 +2512,6 @@ videomenu.colorformat.yuv YUV
 videomenu.colorformat_analog Cinch/Scart
 videomenu.colorformat_hdmi HDMI
 videomenu.contrast Contrast
-videomenu.dbdr MPEG2 de-block/de-ring
-videomenu.dbdr_both de-block+de-ring
-videomenu.dbdr_deblock de-block
-videomenu.dbdr_none none
 videomenu.enabled_modes VF key enabled modes
 videomenu.fullscreen Full screen
 videomenu.hdmi_cec HDMI-CEC

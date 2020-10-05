@@ -2500,7 +2500,6 @@ videomenu.analog_sd_yprpb YPbPr (SD)
 videomenu.analog_sd_yprpb_cinch YPbPr on cinch (SD)
 videomenu.analog_sd_yprpb_scart YPbPr on scart (SD)
 videomenu.auto Auto
-videomenu.brightness Brightness
 videomenu.cinch Cinch
 videomenu.colorformat Color space
 videomenu.colorformat.cvbs CVBS
@@ -2511,7 +2510,6 @@ videomenu.colorformat.ycbcr444 YCbCr 4:4:4
 videomenu.colorformat.yuv YUV
 videomenu.colorformat_analog Cinch/Scart
 videomenu.colorformat_hdmi HDMI
-videomenu.contrast Contrast
 videomenu.enabled_modes VF key enabled modes
 videomenu.fullscreen Full screen
 videomenu.hdmi_cec HDMI-CEC
@@ -2539,10 +2537,8 @@ videomenu.psi.reset Default
 videomenu.psi.saturation Saturation
 videomenu.psi.step Video slider step size
 videomenu.psi.tint Tint
-videomenu.saturation Saturation
 videomenu.scart Scart
 videomenu.screensetup Screen Setup
-videomenu.sdosd SD OSD
 videomenu.sharpness Sharpness
 videomenu.tv-scart Video
 videomenu.vcrsignal VCR Output Signal Type

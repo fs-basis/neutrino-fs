@@ -311,8 +311,8 @@ void CMoviePlayerGui::restoreNeutrino()
 
 #ifdef ENABLE_CHANGE_OSD_RESOLUTION
 	if ((currentVideoSystem > -1) &&
-	    (g_settings.video_Mode == VIDEO_STD_AUTO) &&
-	    (g_settings.enabled_auto_modes[currentVideoSystem] == 1)) {
+	    (g_settings.video_Mode == VIDEO_STD_AUTO))
+		{
 		COsdHelpers *coh = COsdHelpers::getInstance();
 		if (currentVideoSystem != coh->getVideoSystem()) {
 			coh->setVideoSystem(currentVideoSystem, false);

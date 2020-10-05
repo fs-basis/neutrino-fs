@@ -60,7 +60,6 @@ void COsdHelpers::changeOsdResolution(uint32_t mode, bool automode/*=false*/, bo
 	int videoSystem = getVideoSystem();
 
 	if ((g_settings.video_Mode == VIDEO_STD_AUTO) &&
-	    (g_settings.enabled_auto_modes[videoSystem] == 1) &&
 	    (!isVideoSystem1080(videoSystem)))
 		modeNew = OSDMODE_720;
 

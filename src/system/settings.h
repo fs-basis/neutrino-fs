@@ -274,7 +274,6 @@ struct SNeutrinoSettings
 	int audio_volume_percent_pcm;
 
 	//video
-	int video_dbdr;
 	int hdmi_cec_mode;
 	int hdmi_cec_view_on;
 	int hdmi_cec_standby;

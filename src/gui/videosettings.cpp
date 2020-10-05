@@ -297,14 +297,6 @@ const CMenuOptionChooser::keyval VIDEOMENU_VIDEOFORMAT_OPTIONS[VIDEOMENU_VIDEOFO
 	{ DISPLAY_AR_14_9, LOCALE_VIDEOMENU_VIDEOFORMAT_149        }
 };
 
-#define VIDEOMENU_DBDR_OPTION_COUNT 3
-const CMenuOptionChooser::keyval VIDEOMENU_DBDR_OPTIONS[VIDEOMENU_DBDR_OPTION_COUNT] =
-{
-	{ 0, LOCALE_VIDEOMENU_DBDR_NONE },
-	{ 1, LOCALE_VIDEOMENU_DBDR_DEBLOCK },
-	{ 2, LOCALE_VIDEOMENU_DBDR_BOTH }
-};
-
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 #define VIDEOMENU_ZAPPINGMODE_OPTION_COUNT 4
 CMenuOptionChooser::keyval VIDEOMENU_ZAPPINGMODE_OPTIONS[VIDEOMENU_ZAPPINGMODE_OPTION_COUNT] =
@@ -385,17 +377,10 @@ int CVideoSettings::showVideoSetup()
 	CMenuOptionChooser * vs_videomodes_ch = new CMenuOptionChooser(LOCALE_VIDEOMENU_VIDEOMODE, &g_settings.video_Mode, vmode_options, vmode_option_count, true, this, CRCInput::RC_nokey, "", true);
 	vs_videomodes_ch->setHint("", LOCALE_MENU_HINT_VIDEO_MODE);
 
-	CMenuOptionChooser *vs_dbdropt_ch = NULL;
 	CMenuWidget videomodes(LOCALE_MAINSETTINGS_VIDEO, NEUTRINO_ICON_SETTINGS);
 
 	CAutoModeNotifier anotify;
 	CMenuForwarder *vs_videomodes_fw = NULL;
-	//dbdr options
-	if (system_rev != 0x01)	/* dbdr options only on COOLSTREAM */
-	{
-		vs_dbdropt_ch = new CMenuOptionChooser(LOCALE_VIDEOMENU_DBDR, &g_settings.video_dbdr, VIDEOMENU_DBDR_OPTIONS, VIDEOMENU_DBDR_OPTION_COUNT, true, this);
-		vs_dbdropt_ch->setHint("", LOCALE_MENU_HINT_VIDEO_DBDR);
-	}
 
 	//video system modes submenue
 	if (g_info.hw_caps->has_HDMI) /* does this make sense on a box without HDMI? */
@@ -439,8 +424,6 @@ int CVideoSettings::showVideoSetup()
 	videosetup->addItem(vs_43mode_ch);	  //4:3 mode
 	videosetup->addItem(vs_dispformat_ch);	  //display format
 	videosetup->addItem(vs_videomodes_ch);	  //video system
-	if (vs_dbdropt_ch != NULL)
-		videosetup->addItem(vs_dbdropt_ch);	  //dbdr options
 	if (vs_videomodes_fw != NULL)
 		videosetup->addItem(vs_videomodes_fw);	  //video modes submenue
 
@@ -556,7 +539,6 @@ void CVideoSettings::setVideoSettings()
 	pipDecoder->setAspectRatio(g_settings.video_Format, g_settings.video_43mode);
 #endif
 
-	videoDecoder->SetDBDR(g_settings.video_dbdr);
 	CAutoModeNotifier anotify;
 	anotify.changeNotify(NONEXISTANT_LOCALE, 0);
 #if HAVE_SH4_HARDWARE
@@ -614,10 +596,6 @@ bool CVideoSettings::changeNotify(const neutrino_locale_t OptionName, void * /* 
 	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_CINCH))
 	{
 		videoDecoder->SetVideoMode((analog_mode_t) g_settings.analog_mode2);
-	}
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_DBDR))
-	{
-		videoDecoder->SetDBDR(g_settings.video_dbdr);
 	}
 	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_VCRSIGNAL))
 	{

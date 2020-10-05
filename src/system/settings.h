@@ -283,7 +283,6 @@ struct SNeutrinoSettings
 	int hdmi_cec_broadcast;
 #endif
 	int enabled_video_modes[VIDEOMENU_VIDEOMODE_OPTION_COUNT];
-	int enabled_auto_modes[VIDEOMENU_VIDEOMODE_OPTION_COUNT];
 	int cpufreq;
 	int standby_cpufreq;
 	int make_hd_list;

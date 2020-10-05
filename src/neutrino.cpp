@@ -476,11 +476,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.enabled_video_modes[4] = 1; // 1080i 50Hz
 #endif
 
-	for (int i = 0; i < VIDEOMENU_VIDEOMODE_OPTION_COUNT; i++) {
-		sprintf(cfg_key, "enabled_auto_mode_%d", i);
-		g_settings.enabled_auto_modes[i] = configfile.getInt32(cfg_key, 1);
-	}
-
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 	g_settings.zappingmode = configfile.getInt32( "zappingmode", 0);
 #endif
@@ -1428,10 +1423,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	for(int i = 0; i < VIDEOMENU_VIDEOMODE_OPTION_COUNT; i++) {
 		sprintf(cfg_key, "enabled_video_mode_%d", i);
 		configfile.setInt32(cfg_key, g_settings.enabled_video_modes[i]);
-	}
-	for(int i = 0; i < VIDEOMENU_VIDEOMODE_OPTION_COUNT; i++) {
-		sprintf(cfg_key, "enabled_auto_mode_%d", i);
-		configfile.setInt32(cfg_key, g_settings.enabled_auto_modes[i]);
 	}
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE

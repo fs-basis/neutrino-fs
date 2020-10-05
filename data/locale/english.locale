@@ -1588,7 +1588,6 @@ menu.hint_video_mask Define a channel-specific border to hide unwanted screen co
 menu.hint_video_mixer_color This color will be used for the background if there is no signal available.
 menu.hint_video_mode HDMI output video mode
 menu.hint_video_modes VF key will cycle between enabled modes
-menu.hint_video_modes_auto Enable modes to auto-select based on content
 menu.hint_video_pip Picture in picture size and position
 menu.hint_video_psi On-screen menu for changing color, contrast and more
 menu.hint_video_psi_step Set the increment for the on-screen menu
@@ -2585,7 +2584,6 @@ videomenu.dbdr_both de-block+de-ring
 videomenu.dbdr_deblock de-block
 videomenu.dbdr_none none
 videomenu.enabled_modes VF key enabled modes
-videomenu.enabled_modes_auto Auto-select enabled modes
 videomenu.fullscreen Full screen
 videomenu.hdmi_cec HDMI-CEC
 videomenu.hdmi_cec_broadcast Send to all devices

@@ -194,7 +194,6 @@ struct SNeutrinoSettings
 	int video_Format;
 	int video_Mode;
 	int analog_mode1;
-	int analog_mode2;
 	int video_43mode;
 #if HAVE_SH4_HARDWARE
 	int hdmi_mode;

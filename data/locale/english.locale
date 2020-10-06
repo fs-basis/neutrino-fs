@@ -1523,7 +1523,6 @@ menu.hint_video_pip Picture in picture size and position
 menu.hint_video_psi On-screen menu for changing color, contrast and more
 menu.hint_video_psi_step Set the increment for the on-screen menu
 menu.hint_video_saturation Change picture saturation
-menu.hint_video_sdosd Enable/disable OSD display on SD output (scart, cinch)
 menu.hint_video_three_d Change the channel-specific 3D settings
 menu.hint_video_tint Change picture tint
 menu.hint_video_zappingmode Select black screen or still picture while zapping

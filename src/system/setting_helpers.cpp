@@ -596,13 +596,6 @@ int CDataResetNotifier::exec(CMenuTarget* /*parent*/, const std::string& actionK
 		CServiceManager::getInstance()->SatelliteList().clear();
 		CZapit::getInstance()->LoadSettings();
 		CZapit::getInstance()->GetConfig(zapitCfg);
-#ifdef BOXMODEL_CS_HD2
-		/* flag file to erase /var partition on factory reset,
-		   will be done by init scripts */
-		FILE * fp = fopen("/var_init/etc/.reset", "w");
-		if (fp)
-			fclose(fp);
-#endif
 		g_RCInput->postMsg( NeutrinoMessages::REBOOT, 0);
 		ret = menu_return::RETURN_EXIT_ALL;
 	}

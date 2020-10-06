@@ -1550,7 +1550,6 @@ const char * locale_real_names[] =
 	"menu.hint_video_psi",
 	"menu.hint_video_psi_step",
 	"menu.hint_video_saturation",
-	"menu.hint_video_scart_mode",
 	"menu.hint_video_sdosd",
 	"menu.hint_video_three_d",
 	"menu.hint_video_tint",

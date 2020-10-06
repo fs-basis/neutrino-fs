@@ -263,7 +263,6 @@ int CVideoSettings::showVideoSetup()
 	if (g_info.hw_caps->has_SCART)
 	{
 		vs_scart_ch = new CMenuOptionChooser(LOCALE_VIDEOMENU_SCART, &g_settings.analog_mode1, VIDEOMENU_VIDEOSIGNAL_TD_OPTIONS, VIDEOMENU_VIDEOSIGNAL_TD_OPTION_COUNT, true, this);
-		vs_scart_ch->sethint("", LOCALE_MENU_HINT_VIDEO_SCART_MODE);
 	}
 #endif
 

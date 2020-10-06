@@ -401,13 +401,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	if (getenv("NEUTRINO_DEFAULT_SCART") != NULL)
 		vid_Mode_default = VIDEO_STD_PAL;
 	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
-#ifdef ANALOG_MODE
-	g_settings.analog_mode1 = configfile.getInt32("analog_mode1", (int)ANALOG_MODE(BOTH,SD,RGB)); // default RGB
-	g_settings.analog_mode2 = configfile.getInt32("analog_mode2", (int)ANALOG_MODE(CINCH,SD,YPRPB)); // default YPBPR
-#else
 	g_settings.analog_mode1 = configfile.getInt32("analog_mode1", (int)ANALOG_SD_RGB_SCART); // default RGB
-	g_settings.analog_mode2 = configfile.getInt32("analog_mode2", (int)ANALOG_SD_YPRPB_CINCH); // default YPBPR
-#endif
+
 #if HAVE_SH4_HARDWARE
 	g_settings.hdmi_mode = configfile.getInt32("hdmi_mode", (int)COLORFORMAT_HDMI_RGB);
 #endif
@@ -1369,7 +1364,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	//video
 	configfile.setInt32( "video_Mode", g_settings.video_Mode );
 	configfile.setInt32( "analog_mode1", g_settings.analog_mode1 );
-	configfile.setInt32( "analog_mode2", g_settings.analog_mode2 );
+
 #if HAVE_SH4_HARDWARE
 	configfile.setInt32( "hdmi_mode", g_settings.hdmi_mode );
 #endif

@@ -1576,9 +1576,7 @@ menu.hint_vfd_scroll Enable or disable text scrolling on VFD
 menu.hint_vfd_statusline Choose what to display in short\nVFD/LCD status line
 menu.hint_video Video output, resolution, format\nAspect ratio, fast mode switch options
 menu.hint_video_43mode Display mode for 4:3 content\non 16:9 TV
-menu.hint_video_analog_mode Select analog output mode\nfor SCART and RCA connectors
 menu.hint_video_brightness Change picture brightness
-menu.hint_video_cinch_mode Select analog output mode for\ncomposite video out
 menu.hint_video_colorformat_analog Select color space for analog output (SCART/RCA)
 menu.hint_video_colorformat_hdmi Select color space for digital output (HDMI)
 menu.hint_video_contrast Change picture contrast
@@ -2550,23 +2548,11 @@ usermenu.title_yellow Video
 usermenus.head User menus
 video_mode_ok Is this video mode working ok ?
 videomenu.43mode 4:3 Content mode
-videomenu.analog_auto AUTO
-videomenu.analog_cvbs CVBS
-videomenu.analog_hd_rgb RGB (HD)
-videomenu.analog_hd_rgb_cinch RGB on cinch (HD)
-videomenu.analog_hd_rgb_scart RGB on scart (HD)
-videomenu.analog_hd_yprpb YPbPr(HD)
-videomenu.analog_hd_yprpb_cinch YPbPr on cinch (HD)
-videomenu.analog_hd_yprpb_scart YPbPr on scart (HD)
-videomenu.analog_mode Analog Video Output
 videomenu.analog_sd_rgb RGB (SD)
-videomenu.analog_sd_rgb_cinch RGB on cinch (SD)
 videomenu.analog_sd_rgb_scart RGB on scart (SD)
 videomenu.analog_sd_yprpb YPbPr (SD)
-videomenu.analog_sd_yprpb_cinch YPbPr on cinch (SD)
 videomenu.analog_sd_yprpb_scart YPbPr on scart (SD)
 videomenu.auto Auto
-videomenu.cinch Cinch
 videomenu.colorformat Color space
 videomenu.colorformat.cvbs CVBS
 videomenu.colorformat.rgb RGB

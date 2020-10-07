@@ -995,18 +995,6 @@ lcdmenu.statusline.both Lautstärke/Fortschritt
 lcdmenu.statusline.playtime Sendungsfortschritt
 lcdmenu.statusline.volume Lautstärke
 lcdmenu.vfd_scroll Laufschrift
-ledcontroler.backlight Hintergrundbeleuchtung Buttons
-ledcontroler.backlight.tv TV Modus
-ledcontroler.blink Blinke im Deep-Standby, wenn Timer aktiv
-ledcontroler.menu Power Button LEDs
-ledcontroler.mode.deepstandby Deep-Standby
-ledcontroler.mode.record Blinke bei Aufnahme
-ledcontroler.mode.standby Standby
-ledcontroler.mode.tv TV Betrieb
-ledcontroler.off LED1 und LED2 aus
-ledcontroler.on.all LED1 und LED2 an
-ledcontroler.on.led1 LED1 an
-ledcontroler.on.led2 LED2 an
 livestream.head Livestreams
 livestream.read_data Lese Daten ...
 livestream.resolution Auflösung
@@ -1286,11 +1274,6 @@ menu.hint_lcd4l_logodir Verzeichnis für Senderlogos\nBei ungültigem Eintrag Fa
 menu.hint_lcd4l_skin Auswahl der verfügbaren Darstellungsarten
 menu.hint_lcd4l_skin_radio Wechselt die Darstellungsart, wenn der Radio-Modus aktiviert wird
 menu.hint_lcd4l_support LCD4Linux aktivieren/deaktivieren\nUnterstützte Displays: Pearl DPF, Samsung DPF, VUPLUS4K, PNG
-menu.hint_leds_blink Die Power-LEDs blinken, wenn sich der Receiver im Deep-Standby befindet und ein Timer aktiv ist
-menu.hint_leds_deepstandby Definiert den Status der Power-LEDs im Deep-Standby
-menu.hint_leds_record Definiert, ob die Power-LEDs blinken sollen, wenn eine Aufnahme aktiv ist
-menu.hint_leds_standby Definiert den Status der Power-LEDs im Standby
-menu.hint_leds_tv Definiert den Status der Power-LEDs im TV-Modus
 menu.hint_load Laden der Einstellungen aus einer Datei
 menu.hint_longkeypress_duration Tasten, die länger als die angegebene Zeit betätigt werden, werden als "langer Tastendruck" behandelt.
 menu.hint_lua Plugins ausführen

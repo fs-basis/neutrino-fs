@@ -995,18 +995,6 @@ lcdmenu.statusline.both volume and playtime
 lcdmenu.statusline.playtime playtime
 lcdmenu.statusline.volume volume
 lcdmenu.vfd_scroll Scrolling
-ledcontroler.backlight Buttons backlight
-ledcontroler.backlight.tv TV mode
-ledcontroler.blink Blink in deep standby, if timer set
-ledcontroler.menu Power Button LEDs
-ledcontroler.mode.deepstandby Deep Standby
-ledcontroler.mode.record Blinke in Record
-ledcontroler.mode.standby Standby
-ledcontroler.mode.tv TV Mode
-ledcontroler.off LED1 and LED2 off
-ledcontroler.on.all LED1 and LED2 on
-ledcontroler.on.led1 LED1 on
-ledcontroler.on.led2 LED2 on
 livestream.head Live streams
 livestream.read_data Read data ...
 livestream.resolution Resolution
@@ -1286,11 +1274,6 @@ menu.hint_lcd4l_logodir Logo directory.\nFallback to default on invalid entry.
 menu.hint_lcd4l_skin Switch between modes
 menu.hint_lcd4l_skin_radio Switch the mode, when Radio-Mode is activated
 menu.hint_lcd4l_support Activate/deactivate LCD4Linux\nSupported displays: Pearl DPF, Samsung DPF, VUPLUS4K, PNG
-menu.hint_leds_blink Blinking LEDs in deep-standby
-menu.hint_leds_deepstandby LEDs state in deeps-standby mode
-menu.hint_leds_record LEDs state when box recording
-menu.hint_leds_standby LEDs state in soft-standby mode
-menu.hint_leds_tv Working LEDs state
 menu.hint_load Load GUI settings from file
 menu.hint_longkeypress_duration A key press will be considered as "long key press" if it's pressed longer than the specified time.
 menu.hint_lua Run Lua Plugins

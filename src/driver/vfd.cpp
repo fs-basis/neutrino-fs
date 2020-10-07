@@ -462,96 +462,6 @@ void CVFD::setlcdparameter(void)
 			last_toggle_state_power);
 }
 
-#if !HAVE_DUCKBOX_HARDWARE
-void CVFD::setled(int led1, int led2)
-{
-	int ret = -1;
-
-	if(led1 != -1){
-		ret = ioctl(fd, IOC_FP_LED_CTRL, led1);
-		if(ret < 0)
-			perror("IOC_FP_LED_CTRL");
-	}
-	if(led2 != -1){
-		ret = ioctl(fd, IOC_FP_LED_CTRL, led2);
-		if(ret < 0)
-			perror("IOC_FP_LED_CTRL");
-	}
-}
-
-void CVFD::setled(bool on_off)
-{
-	if(g_settings.led_rec_mode == 0)
-		return;
-
-	int led1 = -1, led2 = -1;
-	if(on_off){//on
-		switch(g_settings.led_rec_mode) {
-			case 1:
-				led1 = FP_LED_1_ON; led2 = FP_LED_2_ON;
-				break;
-			case 2:
-				led1 = FP_LED_1_ON;
-				break;
-			case 3:
-				led2 = FP_LED_2_ON;
-				break;
-			default:
-				break;
-	      }
-	}
-	else {//off
-		switch(g_settings.led_rec_mode) {
-			case 1:
-				led1 = FP_LED_1_OFF; led2 = FP_LED_2_OFF;
-				break;
-			case 2:
-				led1 = FP_LED_1_OFF;
-				break;
-			case 3:
-				led2 = FP_LED_2_OFF;
-				break;
-			default:
-				led1 = FP_LED_1_OFF; led2 = FP_LED_2_OFF;
-				break;
-	      }
-	}
-
-	setled(led1, led2);
-}
-
-void CVFD::setled(void)
-{
-	if(fd < 0) return;
-
-	int led1 = -1, led2 = -1;
-	int select = 0;
-
-	if(mode == MODE_MENU_UTF8 || mode == MODE_TVRADIO  )
-		  select = g_settings.led_tv_mode;
-	else if(mode == MODE_STANDBY)
-		  select = g_settings.led_standby_mode;
-
-	switch(select){
-		case 0:
-			led1 = FP_LED_1_OFF; led2 = FP_LED_2_OFF;
-			break;
-		case 1:
-			led1 = FP_LED_1_ON; led2 = FP_LED_2_ON;
-			break;
-		case 2:
-			led1 = FP_LED_1_ON; led2 = FP_LED_2_OFF;
-			break;
-		case 3:
-			led1 = FP_LED_1_OFF; led2 = FP_LED_2_ON;
-			break;
-		default:
-			break;
-	}
-	setled(led1, led2);
-}
-#endif
-
 void CVFD::showServicename(const std::string & name, int number) // UTF-8
 {
 	if(fd < 0) return;
@@ -618,25 +528,15 @@ void CVFD::showTime(bool force)
 			clearClock = 0;
 			if(has_lcd)
 				ShowIcon(FP_ICON_CAM1, false);
-#if !HAVE_DUCKBOX_HARDWARE
-			setled(false);//off
-#endif
 		} else {
 			clearClock = 1;
 			if(has_lcd)
 				ShowIcon(FP_ICON_CAM1, true);
-#if !HAVE_DUCKBOX_HARDWARE
-			setled(true);//on
-#endif
 		}
 	} else if(clearClock || (recstatus != tmp_recstatus)) { // in case icon ON after record stopped
 		clearClock = 0;
 		if(has_lcd)
 			ShowIcon(FP_ICON_CAM1, false);
-
-#if !HAVE_DUCKBOX_HARDWARE
-		setled();
-#endif
 	}
 
 	recstatus = tmp_recstatus;
@@ -1002,9 +902,6 @@ void CVFD::setMode(const MODES m, const char * const title)
 #endif // VFD_UPDATE
 	}
 	wake_up();
-#if !HAVE_DUCKBOX_HARDWARE
-	setled();
-#endif
 }
 
 void CVFD::setBrightness(int bright)

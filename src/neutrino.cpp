@@ -487,14 +487,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.power_standby = configfile.getInt32( "power_standby", 0);
 
 	//led
-	g_settings.led_tv_mode = configfile.getInt32( "led_tv_mode", 2);
-	g_settings.led_standby_mode = configfile.getInt32( "led_standby_mode", 3);
-	g_settings.led_deep_mode = configfile.getInt32( "led_deep_mode", 3);
-	g_settings.led_rec_mode = configfile.getInt32( "led_rec_mode", 1);
-	g_settings.led_blink = configfile.getInt32( "led_blink", 1);
-	g_settings.backlight_tv = configfile.getInt32( "backlight_tv", 1);
-	g_settings.backlight_standby = configfile.getInt32( "backlight_standby", 0);
-	g_settings.backlight_deepstandby = configfile.getInt32( "backlight_deepstandby", 0);
 	g_settings.lcd_scroll = configfile.getInt32( "lcd_scroll", 1);
 	g_settings.lcd_notify_rclock = configfile.getInt32("lcd_notify_rclock", 1);
 
@@ -1370,14 +1362,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "keep_channel_numbers", g_settings.keep_channel_numbers);
 	configfile.setInt32( "show_empty_favorites", g_settings.show_empty_favorites);
 	//led
-	configfile.setInt32( "led_tv_mode", g_settings.led_tv_mode);
-	configfile.setInt32( "led_standby_mode", g_settings.led_standby_mode);
-	configfile.setInt32( "led_deep_mode", g_settings.led_deep_mode);
-	configfile.setInt32( "led_rec_mode", g_settings.led_rec_mode);
-	configfile.setInt32( "led_blink", g_settings.led_blink);
-	configfile.setInt32( "backlight_tv", g_settings.backlight_tv);
-	configfile.setInt32( "backlight_standby", g_settings.backlight_standby);
-	configfile.setInt32( "backlight_deepstandby", g_settings.backlight_deepstandby);
 	configfile.setInt32( "lcd_scroll", g_settings.lcd_scroll);
 	configfile.setInt32( "lcd_notify_rclock", g_settings.lcd_notify_rclock);
 
@@ -2505,7 +2489,6 @@ TIMER_START();
 	CVFD::getInstance()->init(neutrinoFonts->fontDescr.filename.c_str(), neutrinoFonts->fontDescr.name.c_str());
 	CVFD::getInstance()->Clear();
 	CVFD::getInstance()->ShowText(start_text);
-	CVFD::getInstance()->setBacklight(g_settings.backlight_tv);
 #if !HAVE_DUCKBOX_HARDWARE
 	CVFD::getInstance()->setScrollMode(g_settings.lcd_scroll);
 #endif
@@ -4503,7 +4486,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 			CVFD::getInstance()->Clear();
 			CVFD::getInstance()->setMode(CVFD::MODE_STANDBY);
 		}
-		CVFD::getInstance()->setBacklight(g_settings.backlight_standby);
 
 		InfoClock->enableInfoClock(false);
 
@@ -4579,7 +4561,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 			perror(NEUTRINO_LEAVE_STANDBY_SCRIPT " failed");
 
 		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
-		CVFD::getInstance()->setBacklight(g_settings.backlight_tv);
 		CVFD::getInstance()->showVolume(g_settings.current_volume, true);
 
 		CZapit::getInstance()->EnablePlayback(true);
@@ -4957,7 +4938,6 @@ void stop_daemons(bool stopall, bool for_flash)
 	printf("zapit shutdown done\n");
 	if (!for_flash) {
 		CVFD::getInstance()->Clear();
-		CVFD::getInstance()->setBacklight(g_settings.backlight_deepstandby);
 	}
 
 	{

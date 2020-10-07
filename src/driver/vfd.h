@@ -119,9 +119,6 @@ class CVFD
 #if !HAVE_DUCKBOX_HARDWARE
 		void setled(void);
 		void setled(bool on_off);
-		void setBacklight(bool on_off);
-#else
-		void setBacklight(bool /*on_off*/) { };
 #endif
 		static CVFD* getInstance();
 		void init(const char * fontfile, const char * fontname);

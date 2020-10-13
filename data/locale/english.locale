@@ -1501,7 +1501,11 @@ menu.hint_video_format TV aspect ratio
 menu.hint_video_mask Define a channel-specific border to hide unwanted screen content
 menu.hint_video_mixer_color This color will be used for the background if there is no signal available.
 menu.hint_video_mode HDMI output video mode
+<<<<<<< HEAD
 menu.hint_video_modes VF key will cycle between enabled modes
+=======
+menu.hint_video_modes VF key will cycle between enabled modes 
+>>>>>>> DD/master
 menu.hint_video_pip Picture in picture size and position
 menu.hint_video_psi On-screen menu for changing color, contrast and more
 menu.hint_video_psi_step Set the increment for the on-screen menu

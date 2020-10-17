@@ -183,9 +183,6 @@ void CInfoViewerBB::getBBIconInfo()
 			break;
 		case CInfoViewerBB::ICON_TUNER:
 			if (CFEManager::getInstance()->getEnabledCount() > 1 && g_settings.infobar_show_tuner == 1 && !IS_WEBCHAN(g_InfoViewer->get_current_channel_id()) && CNeutrinoApp::getInstance()->getMode() != NeutrinoModes::mode_ts)
-#if 0
-				iconView = checkBBIcon(NEUTRINO_ICON_TUNER_1, &w, &h);
-#endif
 				iconView = checkBBIcon("tuner_1", &w, &h);
 			break;
 #if !HAVE_ARM_HARDWARE
@@ -361,27 +358,9 @@ void CInfoViewerBB::showBBButtons(bool paintFooter)
 	}
 
 	if (paint) {
-#if 1
+
 		paintFoot(g_InfoViewer->BoxEndX - g_InfoViewer->BoxStartX - g_InfoViewer->ChanInfoX);
-#else
-		fb_pixel_t *pixbuf = NULL;
-		int buf_x = bbIconMinX - OFFSET_INNER_SMALL;
-		int buf_y = BBarY;
-		int buf_w = g_InfoViewer->BoxEndX-buf_x;
-		int buf_h = InfoHeightY_Info;
-		if (paintFooter) {
-			pixbuf = new fb_pixel_t[buf_w * buf_h];
-//printf("\nbuf_x: %d, buf_y: %d, buf_w: %d, buf_h: %d, pixbuf: %p\n \n", buf_x, buf_y, buf_w, buf_h, pixbuf);
-			frameBuffer->SaveScreen(buf_x, buf_y, buf_w, buf_h, pixbuf);
-			paintFoot();
-			if (pixbuf != NULL) {
-				if (g_settings.theme.infobar_gradient_bottom)
-					frameBuffer->waitForIdle("CInfoViewerBB::showBBButtons");
-				frameBuffer->RestoreScreen(buf_x, buf_y, buf_w, buf_h, pixbuf);
-				delete [] pixbuf;
-			}
-		}
-#endif
+
 		int last_x = minX;
 
 		for (i = BUTTON_MAX; i > 0;) {
@@ -627,24 +606,7 @@ void CInfoViewerBB::showIcon_Tuner()
 {
 	if (CFEManager::getInstance()->getEnabledCount() <= 1 || !g_settings.infobar_show_tuner)
 		return;
-#if 0
-	std::string icon_name;
-	switch (CFEManager::getInstance()->getLiveFE()->getNumber()) {
-		case 1:
-			icon_name = NEUTRINO_ICON_TUNER_2;
-			break;
-		case 2:
-			icon_name = NEUTRINO_ICON_TUNER_3;
-			break;
-		case 3:
-			icon_name = NEUTRINO_ICON_TUNER_4;
-			break;
-		case 0:
-		default:
-			icon_name = NEUTRINO_ICON_TUNER_1;
-			break;
-	}
-#endif
+
 	char icon_name[12];
 	sprintf(icon_name, "tuner_%d", CFEManager::getInstance()->getLiveFE()->getNumber() + 1);
 	showBBIcons(CInfoViewerBB::ICON_TUNER, icon_name);

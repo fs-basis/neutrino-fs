@@ -221,17 +221,6 @@
 		<S i="14a" t="6" on="85" s="192" frq="11914" n="Eurosport360HD 7"/>
 		<S i="154" t="10" on="85" s="192" frq="11798" n="Eurosport360HD 8"/>
 		<S i="104" t="b" on="85" s="192" frq="12382" n="Eurosport360HD 9"/>
-		<S i="dd" t="4" on="85" s="192" frq="12032" n="Sky Sport 1"/>
-		<S i="de" t="2" on="85" s="192" frq="11758" n="Sky Sport 2"/>
-		<S i="107" t="3" on="85" s="192" frq="11720" n="Sky Sport 3"/>
-		<S i="111" t="2" on="85" s="192" frq="11758" n="Sky Sport 4"/>
-		<S i="11b" t="2" on="85" s="192" frq="11758" n="Sky Sport 5"/>
-		<S i="125" t="3" on="85" s="192" frq="11720" n="Sky Sport 6"/>
-		<S i="12f" t="3" on="85" s="192" frq="11720" n="Sky Sport 7"/>
-		<S i="139" t="3" on="85" s="192" frq="11720" n="Sky Sport 8"/>
-		<S i="143" t="3" on="85" s="192" frq="11720" n="Sky Sport 9"/>
-		<S i="14d" t="2" on="85" s="192" frq="11758" n="Sky Sport 10"/>
-		<S i="fd" t="3" on="85" s="192" frq="11720" n="Sky Sport 11"/>
 		<S i="81" t="6" on="85" s="192" frq="11914" n="Sky Sport 1 HD"/>
 		<S i="72" t="d" on="85" s="192" frq="11992" n="Sky Sport 2 HD"/>
 		<S i="10c" t="6" on="85" s="192" frq="11914" n="Sky Sport 3 HD"/>
@@ -246,24 +235,10 @@
 		<S i="17d" t="3" on="85" s="192" frq="11720" n="Sky Sport 12 HD"/>
 		<S i="182" t="3" on="85" s="192" frq="11720" n="Sky Sport 13 HD"/>
 		<S i="187" t="b" on="85" s="192" frq="12382" n="Sky Sport 14 HD"/>
-		<S i="1e" t="2" on="85" s="192" frq="11758" n="Sky Sport Austria 1"/>
-		<S i="145" t="3" on="85" s="192" frq="11720" n="Sky Sport Austria 2"/>
-		<S i="150" t="2" on="85" s="192" frq="11758" n="Sky Sport Austria 3"/>
-		<S i="ff" t="3" on="85" s="192" frq="11720" n="Sky Sport Austria 4"/>
 		<S i="8f" t="9" on="85" s="192" frq="11171" n="Sky Sport Austria 1 HD"/>
 		<S i="149" t="6" on="85" s="192" frq="11914" n="Sky Sport Austria 2 HD"/>
 		<S i="153" t="10" on="85" s="192" frq="11798" n="Sky Sport Austria 3 HD"/>
 		<S i="103" t="b" on="85" s="192" frq="12382" n="Sky Sport Austria 4 HD"/>
-		<S i="df" t="4" on="85" s="192" frq="12032" n="Sky Sport Bundesliga 1"/>
-		<S i="106" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 2"/>
-		<S i="110" t="2" on="85" s="192" frq="11758" n="Sky Sport Bundesliga 3"/>
-		<S i="11a" t="2" on="85" s="192" frq="11758" n="Sky Sport Bundesliga 4"/>
-		<S i="124" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 5"/>
-		<S i="12e" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 6"/>
-		<S i="138" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 7"/>
-		<S i="142" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 8"/>
-		<S i="14c" t="2" on="85" s="192" frq="11758" n="Sky Sport Bundesliga 9"/>
-		<S i="fc" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 10"/>
 		<S i="69" t="c" on="85" s="192" frq="12304" n="Sky Sport Bundesliga 1 HD"/>
 		<S i="10b" t="6" on="85" s="192" frq="11914" n="Sky Sport Bundesliga 2 HD"/>
 		<S i="115" t="d" on="85" s="192" frq="11992" n="Sky Sport Bundesliga 3 HD"/>
@@ -276,7 +251,6 @@
 		<S i="101" t="b" on="85" s="192" frq="12382" n="Sky Sport Bundesliga 10 HD"/>
 		<S i="228" t="10" on="85" s="192" frq="11798" n="Sky Sport Bundesliga UHD"/>
 		<S i="229" t="10" on="85" s="192" frq="11798" n="Sky Sport UHD"/>
-		<S i="25" t="f" on="85" s="192" frq="10921" n="Sky Sport News"/>
 		<S i="6c" t="c" on="85" s="192" frq="12304" n="Sky Sport News HD"/>
 		<S i="1194" t="406" on="1" s="192" frq="11656" n="SPORTDIGITAL FUSSBALL HD"/>
 		<S i="1197" t="406" on="1" s="192" frq="11656" n="EDGEsport"/>

@@ -33,47 +33,24 @@
 		<S i="1332" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Deutschland"/>
 		<S i="1331" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Oesterreich"/>
 		<S i="526c" t="41d" on="1" s="192" frq="10773" n="ANIXE HD"/>
-		<S i="6e3d" t="431" on="1" s="192" frq="12110" n="ARD-TEST-1"/>
-		<S i="7034" t="41b" on="1" s="192" frq="10744" n="arte"/>
-		<S i="6dce" t="44d" on="1" s="192" frq="11836" n="BR Fernsehen Nord"/>
-		<S i="6dcb" t="44d" on="1" s="192" frq="11836" n="BR Fernsehen Süd"/>
 		<S i="2856" t="401" on="1" s="192" frq="11582" n="BR Fernsehen Nord HD"/>
 		<S i="2855" t="401" on="1" s="192" frq="11582" n="BR Fernsehen Süd HD"/>
-		<S i="6f47" t="445" on="1" s="192" frq="12266" n="ARD-alpha"/>
 		<S i="2889" t="40f" on="1" s="192" frq="11053" n="ARD-alpha HD"/>
-		<S i="6dca" t="44d" on="1" s="192" frq="11836" n="Das Erste"/>
 		<S i="283d" t="3fb" on="1" s="192" frq="11494" n="Das Erste HD"/>
-		<S i="7031" t="41b" on="1" s="192" frq="10744" n="tagesschau24"/>
 		<S i="2887" t="40f" on="1" s="192" frq="11053" n="tagesschau24 HD"/>
-		<S i="7032" t="41b" on="1" s="192" frq="10744" n="ONE"/>
 		<S i="2888" t="40f" on="1" s="192" frq="11053" n="ONE HD"/>
-		<S i="6dcc" t="44d" on="1" s="192" frq="11836" n="hr-fernsehen"/>
 		<S i="2873" t="425" on="1" s="192" frq="10891" n="hr-fernsehen HD"/>
-		<S i="6e45" t="431" on="1" s="192" frq="12110" n="MDR S-Anhalt"/>
 		<S i="2871" t="425" on="1" s="192" frq="10891" n="MDR S-Anhalt HD"/>
-		<S i="6e44" t="431" on="1" s="192" frq="12110" n="MDR Sachsen"/>
 		<S i="2870" t="425" on="1" s="192" frq="10891" n="MDR Sachsen HD"/>
-		<S i="6e46" t="431" on="1" s="192" frq="12110" n="MDR Thüringen"/>
 		<S i="2872" t="425" on="1" s="192" frq="10891" n="MDR Thüringen HD"/>
-		<S i="6e41" t="431" on="1" s="192" frq="12110" n="NDR FS HH"/>
-		<S i="6e40" t="431" on="1" s="192" frq="12110" n="NDR FS MV"/>
-		<S i="6e42" t="431" on="1" s="192" frq="12110" n="NDR FS NDS"/>
-		<S i="6e43" t="431" on="1" s="192" frq="12110" n="NDR FS SH"/>
 		<S i="2859" t="401" on="1" s="192" frq="11582" n="NDR FS HH HD"/>
 		<S i="2858" t="401" on="1" s="192" frq="11582" n="NDR FS MV HD"/>
 		<S i="2857" t="401" on="1" s="192" frq="11582" n="NDR FS NDS HD"/>
 		<S i="285a" t="401" on="1" s="192" frq="11582" n="NDR FS SH HD"/>
-		<S i="7035" t="41b" on="1" s="192" frq="10744" n="phoenix"/>
-		<S i="6ee1" t="4b1" on="1" s="192" frq="12422" n="Radio Bremen TV"/>
 		<S i="288b" t="40f" on="1" s="192" frq="11053" n="Radio Bremen HD"/>
-		<S i="6e2d" t="431" on="1" s="192" frq="12110" n="rbb Brandenburg"/>
 		<S i="286e" t="425" on="1" s="192" frq="10891" n="rbb Brandenburg HD"/>
-		<S i="6e2e" t="431" on="1" s="192" frq="12110" n="rbb Berlin"/>
 		<S i="286f" t="425" on="1" s="192" frq="10891" n="rbb Berlin HD"/>
-		<S i="6f46" t="445" on="1" s="192" frq="12266" n="SR Fernsehen"/>
 		<S i="288a" t="40f" on="1" s="192" frq="11053" n="SR Fernsehen HD"/>
-		<S i="6dd1" t="44d" on="1" s="192" frq="11836" n="SWR Fernsehen BW"/>
-		<S i="6e47" t="431" on="1" s="192" frq="12110" n="SWR Fernsehen RP"/>
 		<S i="283f" t="3fb" on="1" s="192" frq="11494" n="SWR BW HD"/>
 		<S i="2840" t="3fb" on="1" s="192" frq="11494" n="SWR RP HD"/>
 		<S i="6f80" t="457" on="1" s="192" frq="12604" n="WDR HD Aachen"/>
@@ -89,11 +66,6 @@
 		<S i="6f81" t="457" on="1" s="192" frq="12604" n="WDR HD Wuppertal"/>
 		<S i="283e" t="3fb" on="1" s="192" frq="11494" n="arte HD"/>
 		<S i="285b" t="401" on="1" s="192" frq="11582" n="phoenix HD"/>
-		<S i="6d67" t="437" on="1" s="192" frq="11954" n="3sat"/>
-		<S i="6d68" t="437" on="1" s="192" frq="11954" n="KiKA"/>
-		<S i="6d66" t="437" on="1" s="192" frq="11954" n="ZDF"/>
-		<S i="6d6e" t="437" on="1" s="192" frq="11954" n="zdf_neo"/>
-		<S i="6d6b" t="437" on="1" s="192" frq="11954" n="ZDFinfo"/>
 		<S i="2b8e" t="3f2" on="1" s="192" frq="11347" n="3sat HD"/>
 		<S i="2b98" t="3f2" on="1" s="192" frq="11347" n="KiKA HD"/>
 		<S i="2b66" t="3f3" on="1" s="192" frq="11362" n="ZDF HD"/>

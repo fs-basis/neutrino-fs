@@ -1373,7 +1373,7 @@ bool CFrontend::buildProperties(const FrontendParameters *feparams, struct dtv_p
 	case FEC_3_5:
 		fec = FEC_3_5;
 		if ((feparams->delsys == DVB_S2 || feparams->delsys == DVB_S2X) && feparams->modulation == PSK_8)
-x			pilot = PILOT_ON;
+			pilot = PILOT_ON;
 		break;
 	case FEC_9_10:
 		fec = FEC_9_10;

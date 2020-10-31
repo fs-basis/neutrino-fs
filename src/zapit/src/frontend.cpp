@@ -263,7 +263,7 @@ void CFrontend::getFEInfo(void)
 	if (ret == 0) {
 		for (uint32_t i = 0; i < prop[0].u.buffer.len; i++) {
 			if (i >= MAX_DELSYS) {
-				printf("[fe%d/%d] ERROR! too many delivery systems\n", adapter, fenumber);
+				printf("[fe%d/%d] ERROR: too many delivery systems\n", adapter, fenumber);
 				break;
 			}
 
@@ -302,7 +302,7 @@ void CFrontend::getFEInfo(void)
 				printf("[fe%d/%d] add delivery system DTMB (delivery_system: %d)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i]);
 				break;
 			default:
-				printf("[fe%d/%d] ERROR! delivery system unknown (delivery_system: %d)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i]);
+				printf("[fe%d/%d] ERROR: delivery system unknown (delivery_system: %d)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i]);
 				continue;
 			}
 
@@ -398,14 +398,14 @@ void CFrontend::reset(void)
 void CFrontend::Lock()
 {
 	usecount++;
-	INFO("[fe%d/%d] usecount %d tp %" PRIx64, adapter, fenumber, usecount, getTsidOnid());
+	INFO("[fe%d/%d] usecount %d tp %" PRIx64 "\n", adapter, fenumber, usecount, getTsidOnid());
 }
 
 void CFrontend::Unlock()
 {
 	if(usecount > 0)
 		usecount--;
-	INFO("[fe%d/%d] usecount %d tp %" PRIx64, adapter, fenumber, usecount, getTsidOnid());
+	INFO("[fe%d/%d] usecount %d tp %" PRIx64 "\n", adapter, fenumber, usecount, getTsidOnid());
 }
 
 fe_code_rate_t CFrontend::getCFEC()
@@ -534,7 +534,7 @@ fe_code_rate_t CFrontend::getCodeRate(const uint8_t fec_inner, delivery_system_t
 			break;
 		default:
 			if (zapit_debug)
-				printf("No valid fec for DVB-S2/DVB-S2X set!\n");
+				printf("no valid fec for DVB-S2/DVB-S2X set!\n");
 			/* fall through */
 		case fAuto:
 			fec = FEC_AUTO;
@@ -723,7 +723,7 @@ uint32_t CFrontend::getBitErrorRate(void) const
 {
 	uint32_t ber = 0;
 	fop(ioctl, FE_READ_BER, &ber);
-	if (ber > 100000000)
+	if (ber > 100000000)	/* azbox minime driver has useless values around 500.000.000 */
 		ber = 0;
 
 	return ber;
@@ -797,13 +797,13 @@ struct dvb_frontend_event CFrontend::getEvent(void)
 				continue;
 
 			if (event.status & FE_HAS_LOCK) {
-				INFO("[fe%d/%d] ******** FE_HAS_LOCK: freq %lu", adapter, fenumber, (long unsigned int)event.parameters.frequency);
+				INFO("[fe%d/%d] ******** FE_HAS_LOCK: freq %lu\n", adapter, fenumber, (long unsigned int)event.parameters.frequency);
 				tuned = true;
 				break;
 			} else if (event.status & FE_TIMEDOUT) {
 				if(timedout < timer_msec)
 					timedout = timer_msec;
-				INFO("[fe%d/%d] ######## FE_TIMEDOUT (max %d)", adapter, fenumber, timedout);
+				INFO("[fe%d/%d] ######## FE_TIMEDOUT (max %d)\n", adapter, fenumber, timedout);
 				/*break;*/
 			} else {
 				if (event.status & FE_HAS_SIGNAL)
@@ -1869,7 +1869,7 @@ uint32_t CFrontend::sendEN50494TuningCommand(const uint32_t frequency, const int
 		}
 		fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_18);
 		usleep(20 * 1000);		/* en50494 says: >4ms and < 22 ms */
-		sendDiseqcCommand(&cmd, 80);	/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms) */
+		sendDiseqcCommand(&cmd, 80);	/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms)*/
 		fop(ioctl, FE_SET_VOLTAGE, unicable_lowvolt);
 	}
 	return ret;
@@ -1906,7 +1906,7 @@ uint32_t CFrontend::sendEN50607TuningCommand(const uint32_t frequency, const int
 				high_band;					/* high_band  == 0x01 */
 			fop(ioctl, FE_SET_VOLTAGE, SEC_VOLTAGE_18);
 			usleep(20 * 1000);					/* en50494 says: >4ms and < 22 ms */
-			sendDiseqcCommand(&cmd, 80);				/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms) */
+			sendDiseqcCommand(&cmd, 80);				/* en50494 says: >2ms and < 60 ms -- it seems we must add the lengthe of telegramm itself (~65ms)*/
 			fop(ioctl, FE_SET_VOLTAGE, unicable_lowvolt);
 		}
 		return ret;
@@ -2093,17 +2093,17 @@ void CFrontend::setDiseqc(int sat_no, const uint8_t pol, const uint32_t frequenc
 			/* new code */
 			sat_no &= 0x0F;
 			cmd.msg[3] = 0xF0 | sat_no;
-			sendDiseqcCommand(&cmd, delay);	
+			sendDiseqcCommand(&cmd, delay);
 			cmd.msg[2] = 0x38;	/* port group = commited switches */
 			cmd.msg[3] = 0xF0 | ((pol & 1) ? 0 : 2) | (high_band ? 1 : 0);
-			sendDiseqcCommand(&cmd, delay);	
+			sendDiseqcCommand(&cmd, delay);
 #if 0			/* old code */
 #if 1
 			/* for 16 inputs */
 			cmd.msg[3] = 0xF0 | ((sat_no / 4) & 0x03);
 			//send the command to setup second uncommited switch and
 			// wait 100 ms.
-			sendDiseqcCommand(&cmd, 100);	
+			sendDiseqcCommand(&cmd, 100);
 #else
 			/* for 64 inputs */
 			uint8_t cascade_input[16] = {0xF0, 0xF4, 0xF8, 0xFC, 0xF1, 0xF5, 0xF9, 0xFD, 0xF2, 0xF6, 0xFA,
@@ -2172,6 +2172,9 @@ void CFrontend::sendDiseqcReset(uint32_t ms)
 void CFrontend::sendDiseqcStandby(uint32_t ms)
 {
 	printf("[fe%d/%d] diseqc standby\n", adapter, fenumber);
+	if (config.diseqcType == DISEQC_UNICABLE)
+		sendEN50494TuningCommand(0, 0, 0, 2);
+	/* en50494 switches don't seem to be hurt by this */
 	if (config.diseqcType > DISEQC_ADVANCED)
 	{
 		/* use ODU_Power_OFF command for unicable or jess here

@@ -239,15 +239,10 @@
 		<S i="6ef1" t="445" on="1" s="192" frq="12266" n="Bayern 2"/>
 		<S i="6ef2" t="445" on="1" s="192" frq="12266" n="BAYERN 3"/>
 		<S i="6ef5" t="445" on="1" s="192" frq="12266" n="BAYERN plus"/>
-		<S i="23b7" t="44a" on="1" s="192" frq="12363" n="BBC ARABIC"/>
-		<S i="23b6" t="44a" on="1" s="192" frq="12363" n="BBCW SERVICE"/>
-		<S i="23ee" t="44a" on="1" s="192" frq="12363" n="BEUR FM"/>
 		<S i="6ef7" t="445" on="1" s="192" frq="12266" n="BR Heimat"/>
 		<S i="6ef3" t="445" on="1" s="192" frq="12266" n="BR-KLASSIK"/>
 		<S i="6f20" t="445" on="1" s="192" frq="12266" n="Bremen Eins"/>
 		<S i="6f22" t="445" on="1" s="192" frq="12266" n="Bremen Vier"/>
-		<S i="23e1" t="44a" on="1" s="192" frq="12363" n="CHERIE FM"/>
-		<S i="23dc" t="44a" on="1" s="192" frq="12363" n="CONTACT FM"/>
 		<S i="6f40" t="445" on="1" s="192" frq="12266" n="COSMO"/>
 		<S i="6f37" t="445" on="1" s="192" frq="12266" n="DASDING"/>
 		<S i="6d6d" t="437" on="1" s="192" frq="11954" n="Dlf"/>
@@ -257,18 +252,10 @@
 		<S i="ac" t="5" on="85" s="192" frq="12460" n="egoFM"/>
 		<S i="a1" t="7" on="85" s="192" frq="12148" n="ERF Plus"/>
 		<S i="a2" t="7" on="85" s="192" frq="12148" n="ERF Pop"/>
-		<S i="23ce" t="44a" on="1" s="192" frq="12363" n="EUROPE 1"/>
 		<S i="3174" t="459" on="1" s="192" frq="12633" n="HIT RADIO FFH"/>
 		<S i="316e" t="459" on="1" s="192" frq="12633" n="ffn"/>
-		<S i="23c3" t="44a" on="1" s="192" frq="12363" n="FIP"/>
 		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4"/>
-		<S i="23c7" t="44a" on="1" s="192" frq="12363" n="FRANCE BLEU"/>
-		<S i="23c6" t="44a" on="1" s="192" frq="12363" n="FRANCE CULTURE"/>
-		<S i="23c4" t="44a" on="1" s="192" frq="12363" n="FRANCE INFO"/>
-		<S i="23c5" t="44a" on="1" s="192" frq="12363" n="FRANCE INTER"/>
-		<S i="23c2" t="44a" on="1" s="192" frq="12363" n="FRANCE MUSIQUE"/>
 		<S i="6f29" t="445" on="1" s="192" frq="12266" n="Fritz"/>
-		<S i="23b4" t="44a" on="1" s="192" frq="12363" n="FUN RADIO"/>
 		<S i="3176" t="459" on="1" s="192" frq="12633" n="harmony.fm"/>
 		<S i="6f08" t="445" on="1" s="192" frq="12266" n="hr-iNFO"/>
 		<S i="6f03" t="445" on="1" s="192" frq="12266" n="hr1"/>
@@ -277,7 +264,6 @@
 		<S i="6f06" t="445" on="1" s="192" frq="12266" n="hr4"/>
 		<S i="6f24" t="445" on="1" s="192" frq="12266" n="Inforadio"/>
 		<S i="b1" t="5" on="85" s="192" frq="12460" n="JAM FM"/>
-		<S i="23d9" t="44a" on="1" s="192" frq="12363" n="JAZZ RADIO"/>
 		<S i="6f42" t="445" on="1" s="192" frq="12266" n="Die Maus"/>
 		<S i="ad" t="5" on="85" s="192" frq="12460" n="Klassik Radio"/>
 		<S i="6f25" t="445" on="1" s="192" frq="12266" n="rbbKultur"/>
@@ -289,8 +275,6 @@
 		<S i="6f0c" t="445" on="1" s="192" frq="12266" n="MDR SACHSEN DD"/>
 		<S i="6f11" t="445" on="1" s="192" frq="12266" n="MDR SPUTNIK"/>
 		<S i="6f0e" t="445" on="1" s="192" frq="12266" n="MDR THÜRINGEN EF"/>
-		<S i="239e" t="44a" on="1" s="192" frq="12363" n="MOSAIQUE RADIOS"/>
-		<S i="23c1" t="44a" on="1" s="192" frq="12363" n="MOUV&apos;"/>
 		<S i="6f18" t="445" on="1" s="192" frq="12266" n="N-JOY"/>
 		<S i="6f1c" t="445" on="1" s="192" frq="12266" n="NDR 1 Nieders. HAN"/>
 		<S i="6f1b" t="445" on="1" s="192" frq="12266" n="NDR 1 Radio MV SN"/>
@@ -304,9 +288,6 @@
 		<S i="6f1a" t="445" on="1" s="192" frq="12266" n="NDR1 Welle Nord KI"/>
 		<S i="6f21" t="445" on="1" s="192" frq="12266" n="Bremen Zwei"/>
 		<S i="1012" t="451" on="35" s="192" frq="12515" n="Nostalgie"/>
-		<S i="23dd" t="44a" on="1" s="192" frq="12363" n="NOSTALGIE"/>
-		<S i="23da" t="44a" on="1" s="192" frq="12363" n="NOVA"/>
-		<S i="23de" t="44a" on="1" s="192" frq="12363" n="NRJ"/>
 		<S i="3341" t="45b" on="1" s="192" frq="12663" n="OE1"/>
 		<S i="3342" t="45b" on="1" s="192" frq="12663" n="OE1 DD"/>
 		<S i="3345" t="45b" on="1" s="192" frq="12663" n="OE2 B"/>
@@ -319,11 +300,8 @@
 		<S i="3349" t="45b" on="1" s="192" frq="12663" n="OE2 V"/>
 		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W"/>
 		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3"/>
-		<S i="23d8" t="44a" on="1" s="192" frq="12363" n="OUI FM"/>
 		<S i="3175" t="459" on="1" s="192" frq="12633" n="planet radio"/>
 		<S i="6ef6" t="445" on="1" s="192" frq="12266" n="PULS"/>
-		<S i="23cc" t="44a" on="1" s="192" frq="12363" n="RADIO CLASSIQUE"/>
-		<S i="23db" t="44a" on="1" s="192" frq="12363" n="RADIO FG"/>
 		<S i="fde" t="451" on="35" s="192" frq="12515" n="Radio Freundes-Dienst"/>
 		<S i="3173" t="459" on="1" s="192" frq="12633" n="Radio Gloria"/>
 		<S i="3170" t="459" on="1" s="192" frq="12633" n="Radio HBR"/>
@@ -332,25 +310,17 @@
 		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
 		<S i="1c7c" t="457" on="1" s="192" frq="12604" n="Radio neue Hoffnung"/>
-		<S i="23ea" t="44a" on="1" s="192" frq="12363" n="RADIO NOTRE DAME"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
 		<S i="3177" t="459" on="1" s="192" frq="12633" n="Radio Regenbogen"/>
 		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
 		<S i="6f27" t="445" on="1" s="192" frq="12266" n="rbb 88.8"/>
 		<S i="6f28" t="445" on="1" s="192" frq="12266" n="radioeins"/>
 		<S i="7598" t="422" on="1" s="192" frq="10847" n="RADIOS ESP"/>
-		<S i="23cb" t="44a" on="1" s="192" frq="12363" n="RFI INTERNAT"/>
-		<S i="23df" t="44a" on="1" s="192" frq="12363" n="RFM"/>
-		<S i="23d0" t="44a" on="1" s="192" frq="12363" n="RIRE &amp; CHANSONS"/>
 		<S i="a0" t="7" on="85" s="192" frq="12148" n="ROCK ANTENNE"/>
-		<S i="23cd" t="44a" on="1" s="192" frq="12363" n="RTL"/>
 		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>
-		<S i="23e2" t="44a" on="1" s="192" frq="12363" n="RTL2"/>
 		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
-		<S i="23e3" t="44a" on="1" s="192" frq="12363" n="SKYROCK"/>
 		<S i="6f2d" t="445" on="1" s="192" frq="12266" n="SR 1 Europawelle"/>
 		<S i="6f2e" t="445" on="1" s="192" frq="12266" n="SR 2 KulturRadio"/>
-		<S i="2395" t="44a" on="1" s="192" frq="12363" n="SUD RADIO"/>
 		<S i="a9" t="7" on="85" s="192" frq="12148" n="sunshine live"/>
 		<S i="6f38" t="445" on="1" s="192" frq="12266" n="SWR Aktuell"/>
 		<S i="6f31" t="445" on="1" s="192" frq="12266" n="SWR1 BW"/>
@@ -359,10 +329,8 @@
 		<S i="6f34" t="445" on="1" s="192" frq="12266" n="SWR3"/>
 		<S i="6f35" t="445" on="1" s="192" frq="12266" n="SWR4 BW"/>
 		<S i="6f36" t="445" on="1" s="192" frq="12266" n="SWR4 RP"/>
-		<S i="23d7" t="44a" on="1" s="192" frq="12363" n="TSF JAZZ"/>
 		<S i="13fc" t="403" on="1" s="192" frq="11612" n="TSR Turkce"/>
 		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
-		<S i="23e0" t="44a" on="1" s="192" frq="12363" n="VIRGIN RADIO"/>
 		<S i="101a" t="451" on="35" s="192" frq="12515" n="VRT Radio1"/>
 		<S i="101b" t="451" on="35" s="192" frq="12515" n="VRT Radio2"/>
 		<S i="6f3c" t="445" on="1" s="192" frq="12266" n="WDR 2 Rheinland"/>

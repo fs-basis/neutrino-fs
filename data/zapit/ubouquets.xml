@@ -178,7 +178,7 @@
 		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
 		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
-		<S i="1013" t="451" on="35" s="192" frq="12515" n="Planet"/>
+		<S i="1013" t="451" on="35" s="192" frq="12515" n="doxx"/>
 	</Bouquet>
 	<Bouquet name="Sport">
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
@@ -230,7 +230,6 @@
 		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
 	</Bouquet>
 	<Bouquet name="Radio">
-		<S i="10d7" t="418" on="1" s="192" frq="11186" n="Radio Maryja"/>
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>
 		<S i="238e" t="44a" on="1" s="192" frq="12363" n="AUDIO PRIMO"/>
 		<S i="6ef4" t="445" on="1" s="192" frq="12266" n="B5 aktuell"/>
@@ -311,7 +310,6 @@
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
 		<S i="1c7c" t="457" on="1" s="192" frq="12604" n="Radio neue Hoffnung"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
-		<S i="3177" t="459" on="1" s="192" frq="12633" n="Radio Regenbogen"/>
 		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
 		<S i="6f27" t="445" on="1" s="192" frq="12266" n="rbb 88.8"/>
 		<S i="6f28" t="445" on="1" s="192" frq="12266" n="radioeins"/>

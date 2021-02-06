@@ -95,10 +95,6 @@
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
 		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate Uhse HD"/>
-		<S i="201" t="b" on="85" s="192" frq="12382" n="Blue Movie"/>
-		<S i="159" t="b" on="85" s="192" frq="12382" n="Blue Movie 1"/>
-		<S i="163" t="b" on="85" s="192" frq="12382" n="Blue Movie 2"/>
-		<S i="16d" t="b" on="85" s="192" frq="12382" n="Blue Movie 3"/>
 		<S i="1c" t="3" on="85" s="192" frq="11720" n="Boomerang"/>
 		<S i="194" t="b" on="85" s="192" frq="12382" n="Cartoon Network"/>
 		<S i="18" t="2" on="85" s="192" frq="11758" n="Classica"/>

@@ -658,8 +658,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.widget_fade = false;
 	g_settings.widget_fade           = configfile.getBool("widget_fade"          , false );
 
-	g_settings.osd_colorsettings_advanced_mode = configfile.getBool("osd_colorsettings_advanced_mode", false);
-
 #ifdef ENABLE_GRAPHLCD
 #if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE
 	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 1);
@@ -1485,8 +1483,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	//widget settings
 	configfile.setBool("widget_fade"          , g_settings.widget_fade          );
-
-	configfile.setBool("osd_colorsettings_advanced_mode", g_settings.osd_colorsettings_advanced_mode);
 
 #ifdef ENABLE_GRAPHLCD
 	configfile.setInt32("glcd_enable", g_settings.glcd_enable);

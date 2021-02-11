@@ -627,8 +627,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.widget_fade = false;
 	g_settings.widget_fade           = configfile.getBool("widget_fade"          , false );
 
-	g_settings.osd_colorsettings_advanced_mode = configfile.getBool("osd_colorsettings_advanced_mode", false);
-
 	//personalize
 	g_settings.personalize_pincode = configfile.getString( "personalize_pincode", "0000" );
 	for (int i = 0; i < SNeutrinoSettings::P_SETTINGS_MAX; i++)//settings.h, settings.cpp
@@ -1400,8 +1398,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	//widget settings
 	configfile.setBool("widget_fade"          , g_settings.widget_fade          );
-
-	configfile.setBool("osd_colorsettings_advanced_mode", g_settings.osd_colorsettings_advanced_mode);
 
 	//personalize
 	configfile.setString("personalize_pincode", g_settings.personalize_pincode);

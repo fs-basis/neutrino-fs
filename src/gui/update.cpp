@@ -622,7 +622,6 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 		// get active partition
 		char c[2] = {0};
 		FILE *f;
-
 		char line[1024];
 		char *pch;
 		// first check for hd51 new layout

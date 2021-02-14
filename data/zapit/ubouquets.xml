@@ -22,7 +22,7 @@
 		<S i="32d4" t="45d" on="1" s="192" frq="12692" n="ATV"/>
 		<S i="33ac" t="3eb" on="1" s="192" frq="11244" n="ATV HD"/>
 		<S i="33a7" t="3eb" on="1" s="192" frq="11244" n="ATV2"/>
-		<S i="3332" t="45b" on="1" s="192" frq="12663" n="sixx Austria"/>
+		<S i="14bd" t="407" on="1" s="192" frq="11671" n="sixx AUSTRIA"/>
 		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV Music 24"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="VH1"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
@@ -233,7 +233,7 @@
 		<S i="6ef0" t="445" on="1" s="192" frq="12266" n="Bayern 1"/>
 		<S i="6ef1" t="445" on="1" s="192" frq="12266" n="Bayern 2"/>
 		<S i="6ef2" t="445" on="1" s="192" frq="12266" n="BAYERN 3"/>
-		<S i="6ef5" t="445" on="1" s="192" frq="12266" n="BAYERN plus"/>
+		<S i="6ef5" t="445" on="1" s="192" frq="12266" n="BR Schlager"/>
 		<S i="6ef7" t="445" on="1" s="192" frq="12266" n="BR Heimat"/>
 		<S i="6ef3" t="445" on="1" s="192" frq="12266" n="BR-KLASSIK"/>
 		<S i="6f20" t="445" on="1" s="192" frq="12266" n="Bremen Eins"/>
@@ -269,7 +269,7 @@
 		<S i="6f0d" t="445" on="1" s="192" frq="12266" n="MDR S-ANHALT MD"/>
 		<S i="6f0c" t="445" on="1" s="192" frq="12266" n="MDR SACHSEN DD"/>
 		<S i="6f11" t="445" on="1" s="192" frq="12266" n="MDR SPUTNIK"/>
-		<S i="6f0e" t="445" on="1" s="192" frq="12266" n="MDR THÜRINGEN EF"/>
+		<S i="6f0e" t="445" on="1" s="192" frq="12266" n="MDR THÜR Mitte-W"/>
 		<S i="6f18" t="445" on="1" s="192" frq="12266" n="N-JOY"/>
 		<S i="6f1c" t="445" on="1" s="192" frq="12266" n="NDR 1 Nieders. HAN"/>
 		<S i="6f1b" t="445" on="1" s="192" frq="12266" n="NDR 1 Radio MV SN"/>

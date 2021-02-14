@@ -623,6 +623,44 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 		char c[2] = {0};
 		FILE *f;
 
+		char line[1024];
+		char *pch;
+		// first check for hd51 new layout
+		f = fopen("/sys/firmware/devicetree/base/chosen/bootargs", "r");
+		if (f)
+		{
+			if (fgets (line , sizeof(line), f) != NULL)
+			{
+				pch = strtok(line, " =");
+				while (pch != NULL)
+				{
+					if (strncmp("linuxrootfs", pch, 11) == 0)
+					{
+						strncpy(c, pch + 11, 1);
+						c[1] = '\0';
+						dprintf(DEBUG_NORMAL, "[update] Current partition: %s\n", c);
+						break;
+					}
+					pch = strtok(NULL, " =");
+				}
+			}
+			fclose(f);
+		}
+		// if no new layout
+		if (!atoi(c))
+		{
+			f = fopen("/sys/firmware/devicetree/base/chosen/kerneldev", "r");
+			if (f)
+			{
+				if (fseek(f, -2, SEEK_END) == 0)
+				{
+					c[0] = fgetc(f);
+					dprintf(DEBUG_NORMAL, "[update] Current partition: %s\n", c);
+				}
+				fclose(f);
+			}
+		}
+
 		// select partition
 		int selected = 0;
 		CMenuSelectorTarget *selector = new CMenuSelectorTarget(&selected);

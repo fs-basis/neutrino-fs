@@ -919,8 +919,8 @@ languagesetup.head Language and timezone
 languagesetup.osd OSD Language
 languagesetup.select OSD Language
 lcd_info_line show in infoline
-lcd_info_line_channel Channelname
-lcd_info_line_channel_no Channelnumber
+lcd_info_line_channelname Channelname
+lcd_info_line_channelnumber Channelnumber
 lcd_info_line_clock clock
 lcdcontroler.brightness Normal mode
 lcdcontroler.brightnessdeepstandby Deep standby

@@ -719,18 +719,18 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	}
 	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/mnt/nfs/audio" );
 	g_settings.network_nfs_picturedir = configfile.getString( "network_nfs_picturedir", "/mnt/nfs/pictures" );
-	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/mnt/nfs/video" );
-	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/mnt/nfs/movie" );
+	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/mnt/nfs/movie" );
+	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/mnt/nfs/reord" );
 	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/mnt/nfs/timeshift" );
 #else
 		g_settings.network_nfs[i].mount_options1 = configfile.getString("network_nfs_mount_options1_" + i_str, "ro,soft,udp" );
 		g_settings.network_nfs[i].mount_options2 = configfile.getString("network_nfs_mount_options2_" + i_str, "nolock,rsize=8192,wsize=8192" );
 		g_settings.network_nfs[i].mac = configfile.getString("network_nfs_mac_" + i_str, "11:22:33:44:55:66");
 	}
-	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/media/sda1/music" );
+	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/media/sda1/audio" );
 	g_settings.network_nfs_picturedir = configfile.getString( "network_nfs_picturedir", "/media/sda1/pictures" );
 	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/media/sda1/movie" );
-	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/media/sda1/movie" );
+	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/media/sda1/record" );
 	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/media/sda1/timeshift" );
 #endif
 	g_settings.downloadcache_dir = configfile.getString( "downloadcache_dir", g_settings.network_nfs_recordingdir.c_str());
@@ -811,7 +811,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.plugins_lua = configfile.getString( "plugins_lua", "" );
 
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
-	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/var/tuxbox/plugins" );
+	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/mnt/nfs/plugins" );
 	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", LOGODIR );
 #else
 	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/media/sda1/plugins" );
@@ -892,7 +892,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/mnt/nfs/screenshot" );
 #else
-	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/media/sda1/movie" );
+	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/media/sda1/screenshot" );
 #endif
 	g_settings.cacheTXT = configfile.getInt32( "cacheTXT",  0);
 	g_settings.minimode = configfile.getInt32( "minimode",  0);

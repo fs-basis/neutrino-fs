@@ -720,7 +720,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/mnt/nfs/audio" );
 	g_settings.network_nfs_picturedir = configfile.getString( "network_nfs_picturedir", "/mnt/nfs/pictures" );
 	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/mnt/nfs/movie" );
-	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/mnt/nfs/reord" );
+	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/mnt/nfs/record" );
 	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/mnt/nfs/timeshift" );
 #else
 		g_settings.network_nfs[i].mount_options1 = configfile.getString("network_nfs_mount_options1_" + i_str, "ro,soft,udp" );

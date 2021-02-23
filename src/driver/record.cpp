@@ -1651,12 +1651,7 @@ bool CRecordManager::RunStartScript(void)
 	if(RecordingStatus())
 		return false;
 
-	puts("[neutrino.cpp] executing " NEUTRINO_RECORDING_START_SCRIPT ".");
-	if (my_system(NEUTRINO_RECORDING_START_SCRIPT) != 0) {
-		perror(NEUTRINO_RECORDING_START_SCRIPT " failed");
-		return false;
-	}
-	return true;
+	return exec_controlscript(NEUTRINO_RECORDING_START_SCRIPT);
 }
 
 bool CRecordManager::RunStopScript(void)
@@ -1665,12 +1660,7 @@ bool CRecordManager::RunStopScript(void)
 	if(RecordingStatus())
 		return false;
 
-	puts("[neutrino.cpp] executing " NEUTRINO_RECORDING_ENDED_SCRIPT ".");
-	if (my_system(NEUTRINO_RECORDING_ENDED_SCRIPT) != 0) {
-		perror(NEUTRINO_RECORDING_ENDED_SCRIPT " failed");
-		return false;
-	}
-	return true;
+	return exec_controlscript(NEUTRINO_RECORDING_ENDED_SCRIPT);
 }
 
 /*

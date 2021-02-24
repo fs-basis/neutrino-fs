@@ -4812,7 +4812,7 @@ void stop_daemons(bool stopall, bool for_flash)
 		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
 		CVFD::getInstance()->ShowText("Stop daemons...");
 		g_settings.epg_scan_mode = CEpgScan::MODE_OFF;
-		my_system(NEUTRINO_ENTER_FLASH_SCRIPT);
+		exec_controlscript(NEUTRINO_ENTER_FLASH_SCRIPT);
 	}
 
 	InfoClock->enableInfoClock(false);

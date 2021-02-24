@@ -46,7 +46,7 @@
 #define MOVIEPLAYER_START_SCRIPT         "movieplayer.start"
 #define NEUTRINO_APP_START_SCRIPT "neutrino.start"
 #define NEUTRINO_ENTER_DEEPSTANDBY_SCRIPT "deepstandby.on"
-#define NEUTRINO_ENTER_FLASH_SCRIPT CONTROLDIR "/flash.start"
+#define NEUTRINO_ENTER_FLASH_SCRIPT "flash.start"
 #define NEUTRINO_ENTER_INACTIVITY_SCRIPT "inactivity.on"
 #define NEUTRINO_ENTER_STANDBY_SCRIPT   "standby.on"
 #define NEUTRINO_LEAVE_DEEPSTANDBY_SCRIPT "deepstandby.off"

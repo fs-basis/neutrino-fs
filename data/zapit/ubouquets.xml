@@ -26,7 +26,7 @@
 		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV Music 24"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="VH1"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
-		<S i="7008" t="436" on="1" s="192" frq="11973" n="NICK/MTV+"/>
+		<S i="7008" t="436" on="1" s="192" frq="11973" n="NICK/CC+1"/>
 		<S i="7004" t="436" on="1" s="192" frq="11973" n="Comedy Central"/>
 		<S i="3d" t="7" on="85" s="192" frq="12148" n="NICKELODEON AT"/>
 		<S i="3c" t="7" on="85" s="192" frq="12148" n="Comedy Central Austria"/>
@@ -53,17 +53,17 @@
 		<S i="288a" t="40f" on="1" s="192" frq="11053" n="SR Fernsehen HD"/>
 		<S i="283f" t="3fb" on="1" s="192" frq="11494" n="SWR BW HD"/>
 		<S i="2840" t="3fb" on="1" s="192" frq="11494" n="SWR RP HD"/>
-		<S i="6f80" t="457" on="1" s="192" frq="12604" n="WDR HD Aachen"/>
-		<S i="6ea6" t="4b1" on="1" s="192" frq="12422" n="WDR HD Bielefeld"/>
-		<S i="6f82" t="457" on="1" s="192" frq="12604" n="WDR HD Bonn"/>
-		<S i="6ea7" t="4b1" on="1" s="192" frq="12422" n="WDR HD Dortmund"/>
-		<S i="6f83" t="457" on="1" s="192" frq="12604" n="WDR HD Duisburg"/>
-		<S i="6ea8" t="4b1" on="1" s="192" frq="12422" n="WDR HD Düsseldorf"/>
-		<S i="6ea9" t="4b1" on="1" s="192" frq="12422" n="WDR HD Essen"/>
-		<S i="6ea5" t="4b1" on="1" s="192" frq="12422" n="WDR HD Köln"/>
-		<S i="6eaa" t="4b1" on="1" s="192" frq="12422" n="WDR HD Münster"/>
-		<S i="6eab" t="4b1" on="1" s="192" frq="12422" n="WDR HD Siegen"/>
-		<S i="6f81" t="457" on="1" s="192" frq="12604" n="WDR HD Wuppertal"/>
+		<S i="6ead" t="3fd" on="1" s="192" frq="11523" n="WDR HD Aachen"/>
+		<S i="6eae" t="3fd" on="1" s="192" frq="11523" n="WDR HD Bielefeld"/>
+		<S i="6eaf" t="3fd" on="1" s="192" frq="11523" n="WDR HD Bonn"/>
+		<S i="6eb0" t="3fd" on="1" s="192" frq="11523" n="WDR HD Dortmund"/>
+		<S i="6eb1" t="3fd" on="1" s="192" frq="11523" n="WDR HD Duisburg"/>
+		<S i="6eb2" t="3fd" on="1" s="192" frq="11523" n="WDR HD Düsseldorf"/>
+		<S i="6eb3" t="3fd" on="1" s="192" frq="11523" n="WDR HD Essen"/>
+		<S i="6eac" t="3fd" on="1" s="192" frq="11523" n="WDR HD Köln"/>
+		<S i="6eb4" t="3fd" on="1" s="192" frq="11523" n="WDR HD Münster"/>
+		<S i="6eb5" t="3fd" on="1" s="192" frq="11523" n="WDR HD Siegen"/>
+		<S i="6eb6" t="3fd" on="1" s="192" frq="11523" n="WDR HD Wuppertal"/>
 		<S i="283e" t="3fb" on="1" s="192" frq="11494" n="arte HD"/>
 		<S i="285b" t="401" on="1" s="192" frq="11582" n="phoenix HD"/>
 		<S i="2b8e" t="3f2" on="1" s="192" frq="11347" n="3sat HD"/>
@@ -168,7 +168,6 @@
 		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
 		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
-		<S i="7d0" t="449" on="1" s="192" frq="12344" n="INSIGHT TV UHD"/>
 	</Bouquet>
 	<Bouquet name="Sparten">
 		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
@@ -226,6 +225,7 @@
 		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
 	</Bouquet>
 	<Bouquet name="Radio">
+		<S i="1c7c" t="457" on="1" s="192" frq="12604" n="Radio neue Hoffnung"/>
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>
 		<S i="238e" t="44a" on="1" s="192" frq="12363" n="AUDIO PRIMO"/>
 		<S i="6ef4" t="445" on="1" s="192" frq="12266" n="B5 aktuell"/>
@@ -304,7 +304,6 @@
 		<S i="1c79" t="457" on="1" s="192" frq="12604" n="Radio Horeb"/>
 		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
-		<S i="1c7c" t="457" on="1" s="192" frq="12604" n="Radio neue Hoffnung"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
 		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
 		<S i="6f27" t="445" on="1" s="192" frq="12266" n="rbb 88.8"/>

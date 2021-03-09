@@ -4970,9 +4970,9 @@ void CNeutrinoApp::loadKeys(const char * fname)
 #endif
 
 #ifdef ENABLE_PIP
-	g_settings.key_pip_close = tconfig->getInt32( "key_pip_close", CRCInput::RC_help );
-	g_settings.key_pip_setup = tconfig->getInt32( "key_pip_setup", CRCInput::RC_pos );
-	g_settings.key_pip_swap = tconfig->getInt32( "key_pip_swap", CRCInput::RC_recall );
+	g_settings.key_pip_close = tconfig->getInt32( "key_pip_close", CRCInput::RC_next );
+	g_settings.key_pip_setup = tconfig->getInt32( "key_pip_setup", 1035 );
+	g_settings.key_pip_swap = tconfig->getInt32( "key_pip_swap", CRCInput::RC_prev );
 #endif
 
 #if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7

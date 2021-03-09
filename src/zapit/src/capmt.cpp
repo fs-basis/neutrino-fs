@@ -252,7 +252,7 @@ bool CCamManager::SetMode(t_channel_id channel_id, enum runmode mode, bool start
 			INFO("RECORD/STREAM(%d): fe_num %d rec_dmx %d", mode, source, demux);
 			break;
 		case PIP:
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 			source = frontend->getNumber();
 			demux = source;
 #else

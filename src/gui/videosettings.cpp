@@ -337,7 +337,7 @@ int CVideoSettings::showVideoSetup()
 #endif
 	CMenuForwarder *mf;
 	CMenuOptionNumberChooser *mc;
- 
+
 	int shortcut = 0;
 
 	CPSISetup *psiSetup = CPSISetup::getInstance();

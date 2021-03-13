@@ -1164,10 +1164,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 
 #ifdef ENABLE_PIP
-	g_settings.pip_x = configfile.getInt32("pip_x", 50);
-	g_settings.pip_y = configfile.getInt32("pip_y", 50);
-	g_settings.pip_width = configfile.getInt32("pip_width", 365);
-	g_settings.pip_height = configfile.getInt32("pip_height", 200);
+	g_settings.pip_x = configfile.getInt32("pip_x", 10);
+	g_settings.pip_y = configfile.getInt32("pip_y", 10);
+	g_settings.pip_width = configfile.getInt32("pip_width", 429);
+	g_settings.pip_height = configfile.getInt32("pip_height", 236);
 
 	g_settings.pip_radio_x = configfile.getInt32("pip_radio_x", g_settings.pip_x);
 	g_settings.pip_radio_y = configfile.getInt32("pip_radio_y", g_settings.pip_y);

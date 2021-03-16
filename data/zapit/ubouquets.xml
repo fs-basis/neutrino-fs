@@ -226,7 +226,6 @@
 		<S i="11" t="3" on="85" s="192" frq="11720" n="Sky Sport F1 HD"/>
 	</Bouquet>
 	<Bouquet name="Radio">
-		<S i="1c7c" t="457" on="1" s="192" frq="12604" n="Radio neue Hoffnung"/>
 		<S i="6f26" t="445" on="1" s="192" frq="12266" n="Antenne Brandenburg"/>
 		<S i="238e" t="44a" on="1" s="192" frq="12363" n="AUDIO PRIMO"/>
 		<S i="6ef4" t="445" on="1" s="192" frq="12266" n="B5 aktuell"/>

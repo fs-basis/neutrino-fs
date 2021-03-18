@@ -90,8 +90,7 @@ void CControlAPI::init(CyhookHandler *hh)
 		PLUGIN_DIRS[3].append("/scripts");
 		PLUGIN_DIRS[4]=GAMESDIR;
 		PLUGIN_DIRS[5]=g_settings.plugin_hdd_dir;
-		PLUGIN_DIRS[6]=PLUGINDIR_MNT;
-		PLUGIN_DIRS[7]=PLUGINDIR_VAR;
+		PLUGIN_DIRS[6]=PLUGINDIR_VAR;
 	}
 }
 

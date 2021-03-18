@@ -148,7 +148,6 @@ void CPlugins::loadPlugins()
 	sindex = 100;
 	scanDir(GAMESDIR);
 	scanDir(g_settings.plugin_hdd_dir.c_str());
-	scanDir(PLUGINDIR_MNT);
 	scanDir(PLUGINDIR_VAR);
 
 	sort (plugin_list.begin(), plugin_list.end());

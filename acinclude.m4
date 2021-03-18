@@ -150,9 +150,6 @@ TUXBOX_APPS_DIRECTORY_ONE(fontdir, FONTDIR, datadir, /share, /fonts,
 TUXBOX_APPS_DIRECTORY_ONE(fontdir_var, FONTDIR_VAR, localstatedir, /var, /tuxbox/fonts,
 	[--with-fontdir_var=PATH], [where to find fonts in /var])
 
-TUXBOX_APPS_DIRECTORY_ONE(gamesdir, GAMESDIR, localstatedir, /var, /tuxbox/games,
-	[--with-gamesdir=PATH], [where to find games])
-
 TUXBOX_APPS_DIRECTORY_ONE(libdir, LIBDIR, libdir, /lib, /tuxbox,
 	[--with-libdir=PATH], [where to find internal libs])
 
@@ -199,7 +196,6 @@ AC_SUBST(CONTROLDIR)
 AC_SUBST(DATADIR)
 AC_SUBST(FONTDIR)
 AC_SUBST(FONTDIR_VAR)
-AC_SUBST(GAMESDIR)
 AC_SUBST(LIBDIR)
 AC_SUBST(MNTDIR)
 AC_SUBST(PLUGINDIR_VAR)

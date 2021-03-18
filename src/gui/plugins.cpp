@@ -150,7 +150,6 @@ void CPlugins::loadPlugins()
 	scanDir(g_settings.plugin_hdd_dir.c_str());
 	scanDir(PLUGINDIR_MNT);
 	scanDir(PLUGINDIR_VAR);
-	scanDir(PLUGINDIR);
 
 	sort (plugin_list.begin(), plugin_list.end());
 }

@@ -159,9 +159,6 @@ TUXBOX_APPS_DIRECTORY_ONE(libdir, LIBDIR, libdir, /lib, /tuxbox,
 TUXBOX_APPS_DIRECTORY_ONE(plugindir_var, PLUGINDIR_VAR, localstatedir, /var, /tuxbox/plugins,
 	[--with-plugindir_var=PATH], [where to find plugins in /var])
 
-TUXBOX_APPS_DIRECTORY_ONE(plugindir_mnt, PLUGINDIR_MNT, mntdir, /mnt, /plugins,
-	[--with-plugindir_mnt=PATH], [where to find external plugins])
-
 TUXBOX_APPS_DIRECTORY_ONE(webtvdir_var, WEBTVDIR_VAR, localstatedir, /var, /tuxbox/webtv,
 	[--with-webtvdir_var=PATH], [where to find webtv content in /var])
 
@@ -206,7 +203,6 @@ AC_SUBST(GAMESDIR)
 AC_SUBST(LIBDIR)
 AC_SUBST(MNTDIR)
 AC_SUBST(PLUGINDIR_VAR)
-AC_SUBST(PLUGINDIR_MNT)
 AC_SUBST(WEBTVDIR_VAR)
 AC_SUBST(LOCALEDIR)
 AC_SUBST(LOCALEDIR_VAR)

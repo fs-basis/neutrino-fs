@@ -69,6 +69,9 @@ CMiscMenue::CMiscMenue()
 {
 	width = 50;
 
+	fanNotifier = NULL;
+	sectionsdConfigNotifier = NULL;
+
 	epg_save = NULL;
 	epg_save_standby = NULL;
 	epg_save_frequently = NULL;
@@ -76,6 +79,7 @@ CMiscMenue::CMiscMenue()
 	epg_read_now = NULL;
 	epg_read_frequently = NULL;
 	epg_dir = NULL;
+	epg_scan = NULL;
 }
 
 CMiscMenue::~CMiscMenue()
@@ -235,8 +239,8 @@ int CMiscMenue::showMiscSettingsMenu()
 	int shortcut = 0;
 
 	//misc settings
-	fanNotifier = new CFanControlNotifier();
-	sectionsdConfigNotifier = new CSectionsdConfigNotifier();
+	if (sectionsdConfigNotifier == NULL)
+		sectionsdConfigNotifier = new CSectionsdConfigNotifier();
 	CMenuWidget misc_menue(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_MISCSETUP);
 
 	misc_menue.addIntroItems(LOCALE_MISCSETTINGS_HEAD);
@@ -316,7 +320,9 @@ int CMiscMenue::showMiscSettingsMenu()
 	int res = misc_menue.exec(NULL, "");
 
 	delete fanNotifier;
+	fanNotifier = NULL;
 	delete sectionsdConfigNotifier;
+	sectionsdConfigNotifier = NULL;
 	return res;
 }
 
@@ -344,6 +350,8 @@ void CMiscMenue::showMiscSettingsMenuGeneral(CMenuWidget *ms_general)
 	//fan speed
 	if (g_info.hw_caps->has_fan)
 	{
+		if (fanNotifier == NULL)
+			fanNotifier = new CFanControlNotifier();
 #if defined (BOXMODEL_IPBOX9900) || defined (BOXMODEL_IPBOX99) || defined (BOXMODEL_DM8000)
 		CMenuOptionNumberChooser * mn = new CMenuOptionNumberChooser(LOCALE_FAN_SPEED, &g_settings.fan_speed, true, 0, 1, fanNotifier, CRCInput::RC_nokey, NULL, 0, 0, LOCALE_OPTIONS_OFF);
 #else

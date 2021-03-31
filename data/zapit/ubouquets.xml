@@ -124,6 +124,7 @@
 		<S i="9" t="3" on="85" s="192" frq="11720" n="Sky Cinema Action"/>
 		<S i="74" t="9" on="85" s="192" frq="11171" n="Sky Cinema Action HD"/>
 		<S i="8" t="3" on="85" s="192" frq="11720" n="Sky Cinema Fun"/>
+		<S i="e" t="2" on="85" s="192" frq="11758" n="Sky Comedy HD"/>
 		<S i="197" t="4" on="85" s="192" frq="12032" n="Sky Cinema Family"/>
 		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
 		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Best Of"/>
@@ -133,6 +134,7 @@
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
 		<S i="75" t="4" on="85" s="192" frq="12032" n="Sky Serien &amp; Shows HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
+		<S i="d" t="6" on="85" s="192" frq="11914" n="Sky Crime HD"/>
 		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
 		<S i="31" t="d" on="85" s="192" frq="11992" n="Spiegel TV Wissen"/>
 		<S i="7e" t="c" on="85" s="192" frq="12304" n="SYFY HD"/>
@@ -305,13 +307,13 @@
 		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
-		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
+		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
 		<S i="6f27" t="445" on="1" s="192" frq="12266" n="rbb 88.8"/>
 		<S i="6f28" t="445" on="1" s="192" frq="12266" n="radioeins"/>
 		<S i="7598" t="422" on="1" s="192" frq="10847" n="RADIOS ESP"/>
 		<S i="a0" t="7" on="85" s="192" frq="12148" n="ROCK ANTENNE"/>
 		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>
-		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio B2"/>
+		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
 		<S i="6f2d" t="445" on="1" s="192" frq="12266" n="SR 1 Europawelle"/>
 		<S i="6f2e" t="445" on="1" s="192" frq="12266" n="SR 2 KulturRadio"/>
 		<S i="a9" t="7" on="85" s="192" frq="12148" n="sunshine live"/>

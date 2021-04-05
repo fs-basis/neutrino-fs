@@ -239,6 +239,22 @@ Example:
 	bool pass_header = false;//pass headers to the data stream
 	tableLookup(L, "header", pass_header);
 
+	/* httpheader */
+	curl_slist* hlist = NULL;
+	lua_pushstring(L, "httpheader");
+	lua_gettable(L, -2);
+	if (lua_istable(L, -1)) {
+		for (lua_pushnil(L); lua_next(L, -2); lua_pop(L, 2)) {
+			lua_pushvalue(L, -2);
+			const char *val = lua_tostring(L, -2);
+			if (val){
+				hlist = curl_slist_append(hlist, val);
+			}
+		}
+	}
+	lua_pop(L, 1);
+	/* httpheader end*/
+
 	lua_Integer connectTimeout = 20;
 	tableLookup(L, "connectTimeout", connectTimeout);
 
@@ -310,7 +326,10 @@ Example:
 	curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, (silent)?1L:0L);
 	curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, (verbose)?1L:0L);
 	curl_easy_setopt(curl_handle, CURLOPT_HEADER, (pass_header)?1L:0L);
-
+	if (hlist) {
+		/* set our custom set of headers */
+		curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, hlist);
+	}
 	progressData pgd;
 
 	if (!silent) {
@@ -364,7 +383,8 @@ Example:
 		if ((res2 == CURLE_OK) && dredirect)
 			msg += std::string("\n	      redirect to: ") + dredirect;
 	}
-
+	if(hlist)
+		curl_slist_free_all(hlist);
 	curl_easy_cleanup(curl_handle);
 	if (toFile)
 		fclose(fp);

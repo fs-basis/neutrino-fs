@@ -412,14 +412,14 @@
 		<S i="23ed" t="44a" on="1" s="192" frq="12363" n="DATA SERVICE R7"/>
 		<S i="23f3" t="44a" on="1" s="192" frq="12363" n="DATA SERVICE R9"/>
 		<S i="23ef" t="44a" on="1" s="192" frq="12363" n="DATA SYSTEM[98]"/>
-		<S i="22c3" t="438" on="1" s="192" frq="12012" n="DATASYSTEM"/>
 		<S i="24b7" t="440" on="1" s="192" frq="12168" n="DATASYSTEM"/>
-		<S i="2007" t="434" on="1" s="192" frq="11934" n="DATASYSTEM"/>
+		<S i="22c3" t="438" on="1" s="192" frq="12012" n="DATASYSTEM"/>
 		<S i="238b" t="442" on="1" s="192" frq="12207" n="DATASYSTEM"/>
-		<S i="251b" t="43c" on="1" s="192" frq="12090" n="DATASYSTEM"/>
+		<S i="2007" t="434" on="1" s="192" frq="11934" n="DATASYSTEM"/>
 		<S i="1a2b" t="444" on="1" s="192" frq="12246" n="DATASYSTEM"/>
-		<S i="225f" t="44c" on="1" s="192" frq="12402" n="DATASYSTEM"/>
+		<S i="251b" t="43c" on="1" s="192" frq="12090" n="DATASYSTEM"/>
 		<S i="1fa3" t="42e" on="1" s="192" frq="11817" n="DATASYSTEM"/>
+		<S i="225f" t="44c" on="1" s="192" frq="12402" n="DATASYSTEM"/>
 		<S i="21fb" t="44a" on="1" s="192" frq="12363" n="DATASYSTEM R9"/>
 		<S i="23a2" t="44a" on="1" s="192" frq="12363" n="DEUTSCHE GRAMMOPHON+"/>
 		<S i="23d4" t="44a" on="1" s="192" frq="12363" n="DIAGNOSTIC TECHNIQUE"/>
@@ -977,7 +977,6 @@
 		<S i="314e" t="459" on="1" s="192" frq="12633" n="Maennersache TV"/>
 		<S i="313e" t="459" on="1" s="192" frq="12633" n="MB SAT - Test 8"/>
 		<S i="314d" t="459" on="1" s="192" frq="12633" n="MB SAT - Test1"/>
-		<S i="3164" t="459" on="1" s="192" frq="12633" n="MB SAT - Test2"/>
 		<S i="315e" t="459" on="1" s="192" frq="12633" n="MB SAT - Test3"/>
 		<S i="3166" t="459" on="1" s="192" frq="12633" n="MB SAT - Test4"/>
 		<S i="3167" t="459" on="1" s="192" frq="12633" n="MB SAT - Test5"/>
@@ -987,6 +986,7 @@
 		<S i="315a" t="459" on="1" s="192" frq="12633" n="nice"/>
 		<S i="3145" t="459" on="1" s="192" frq="12633" n="RAPS"/>
 		<S i="3146" t="459" on="1" s="192" frq="12633" n="rhein main tv"/>
+		<S i="3164" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
 		<S i="3152" t="459" on="1" s="192" frq="12633" n="SEX-Kontakte"/>
 		<S i="3155" t="459" on="1" s="192" frq="12633" n="Traumfrauen TV"/>
 		<S i="316e" t="459" on="1" s="192" frq="12633" n="ffn"/>
@@ -1074,7 +1074,7 @@
 		<S i="33fa" t="3ed" on="1" s="192" frq="11273" n="ORF2T HD"/>
 		<S i="33fb" t="3ed" on="1" s="192" frq="11273" n="ORF2V HD"/>
 		<S i="1330" t="3ef" on="1" s="192" frq="11303" n="ORF2W HD"/>
-		<S i="3464" t="3e9" on="1" s="192" frq="11214" n="Service 13412"/>
+		<S i="3464" t="3e9" on="1" s="192" frq="11214" n="Service13412"/>
 		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4"/>
 		<S i="3341" t="45b" on="1" s="192" frq="12663" n="OE1"/>
 		<S i="3342" t="45b" on="1" s="192" frq="12663" n="OE1 DD"/>
@@ -1154,6 +1154,16 @@
 		<S i="4462" t="453" on="1" s="192" frq="12545" n="unknown (0x0453_0x4462)"/>
 		<S i="445f" t="453" on="1" s="192" frq="12545" n="WELT"/>
 	</Bouquet>
+	<Bouquet name="[E019.2] Radio France">
+		<S i="23c3" t="446" on="1" s="192" frq="12285" n="FIP"/>
+		<S i="23c7" t="446" on="1" s="192" frq="12285" n="FRANCE BLEU"/>
+		<S i="23c6" t="446" on="1" s="192" frq="12285" n="FRANCE CULTURE"/>
+		<S i="23c4" t="446" on="1" s="192" frq="12285" n="FRANCE INFO"/>
+		<S i="23c5" t="446" on="1" s="192" frq="12285" n="FRANCE INTER"/>
+		<S i="23c2" t="446" on="1" s="192" frq="12285" n="FRANCE MUSIQUE"/>
+		<S i="23c1" t="446" on="1" s="192" frq="12285" n="MOUV"/>
+		<S i="23cb" t="446" on="1" s="192" frq="12285" n="RFI INTERNATIONAL"/>
+	</Bouquet>
 	<Bouquet name="[E019.2] Radio Maria Österreich">
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
 	</Bouquet>
@@ -1176,6 +1186,7 @@
 		<S i="3337" t="45b" on="1" s="192" frq="12663" n="ServusTV Oesterreich"/>
 	</Bouquet>
 	<Bouquet name="[E019.2] SES">
+		<S i="119a" t="406" on="1" s="192" frq="11656" n="ClipMyHorse.TV"/>
 		<S i="1197" t="406" on="1" s="192" frq="11656" n="EDGEsport"/>
 		<S i="1196" t="406" on="1" s="192" frq="11656" n="eSPORTS1"/>
 		<S i="1406" t="403" on="1" s="192" frq="11612" n="Kaufbei.tv"/>
@@ -1288,11 +1299,11 @@
 		<S i="197" t="4" on="85" s="192" frq="12032" n="Sky Cinema Family"/>
 		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
 		<S i="8" t="3" on="85" s="192" frq="11720" n="Sky Cinema Fun"/>
-		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="a" t="4" on="85" s="192" frq="12032" n="Sky Cinema Premieren"/>
 		<S i="2b" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren +24"/>
 		<S i="87" t="b" on="85" s="192" frq="12382" n="Sky Cinema Premieren +24 HD"/>
 		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren HD"/>
+		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
 		<S i="e" t="2" on="85" s="192" frq="11758" n="Sky Comedy HD"/>
 		<S i="d" t="6" on="85" s="192" frq="11914" n="Sky Crime HD"/>
@@ -1407,15 +1418,5 @@
 		<S i="6d6c" t="437" on="1" s="192" frq="11954" n="Dlf Kultur"/>
 		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
 		<S i="6d6f" t="437" on="1" s="192" frq="11954" n="DRadio DokDeb"/>
-	</Bouquet>
-	<Bouquet name="[E019.2] Radio France">
-		<S i="23c3" t="446" on="1" s="192" frq="12285" n="FIP"/>
-		<S i="23c7" t="446" on="1" s="192" frq="12285" n="FRANCE BLEU"/>
-		<S i="23c6" t="446" on="1" s="192" frq="12285" n="FRANCE CULTURE"/>
-		<S i="23c4" t="446" on="1" s="192" frq="12285" n="FRANCE INFO"/>
-		<S i="23c5" t="446" on="1" s="192" frq="12285" n="FRANCE INTER"/>
-		<S i="23c2" t="446" on="1" s="192" frq="12285" n="FRANCE MUSIQUE"/>
-		<S i="23c1" t="446" on="1" s="192" frq="12285" n="MOUV"/>
-		<S i="23cb" t="446" on="1" s="192" frq="12285" n="RFI INTERNATIONAL"/>
 	</Bouquet>
 </zapit>

@@ -118,7 +118,6 @@ class CTimerEvent_Record : public CTimerEvent
 	std::string recordingDir;
 	std::string epgTitle;
 	bool recordingSafety;
-	bool autoAdjustToEPG;
 	CTimerEvent_Record(time_t announceTime, time_t alarmTime, time_t stopTime,
 			   t_channel_id channel_id,
 			   t_event_id epg_id = 0,
@@ -126,7 +125,7 @@ class CTimerEvent_Record : public CTimerEvent
 			   unsigned char apids = TIMERD_APIDS_STD,
 			   CTimerd::CTimerEventRepeat evrepeat = CTimerd::TIMERREPEAT_ONCE,
 			   uint32_t repeatcount = 1, const std::string &recDir = "",
-			   bool _recordingSafety = true, bool _autoAdjustToEPG = true);
+			   bool _recordingSafety = true);
 	CTimerEvent_Record(CConfigFile *config, int iId);
 	virtual ~CTimerEvent_Record(){};
 	virtual CTimerd::CTimerEventTypes getEventType(void) const { return CTimerd::TIMER_RECORD; };
@@ -137,7 +136,6 @@ class CTimerEvent_Record : public CTimerEvent
 	virtual void Reschedule();
 	virtual void getEpgId();
 	virtual void Refresh();
-	virtual bool adjustToCurrentEPG();
 };
 
 class CTimerEvent_Zapto : public CTimerEvent_Record

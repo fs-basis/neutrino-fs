@@ -88,7 +88,6 @@ class CTimerd
 			t_channel_id  channel_id;
 			unsigned char apids;
 			bool          recordingSafety;
-			bool          autoAdjustToEPG;
 		};
 
 		struct TransferEventInfo
@@ -98,7 +97,6 @@ class CTimerd
 			t_channel_id  channel_id;
 			unsigned char apids;
 			bool          recordingSafety;
-			bool          autoAdjustToEPG;
 		};
 
 		struct TransferRecordingInfo : TransferEventInfo
@@ -119,7 +117,6 @@ class CTimerd
 						epg_id = e.epg_id;
 						epg_starttime = e.epg_starttime;
 						recordingSafety = e.recordingSafety;
-						autoAdjustToEPG = e.autoAdjustToEPG;
 					};
 				RecordingInfo& operator = (EventInfo& e)
 					{
@@ -128,7 +125,6 @@ class CTimerd
 						epg_id = e.epg_id;
 						epg_starttime = e.epg_starttime;
 						recordingSafety = e.recordingSafety;
-						autoAdjustToEPG = e.autoAdjustToEPG;
 						return *this;
 					}
 				unsigned char apids;

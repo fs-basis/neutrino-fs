@@ -2951,7 +2951,6 @@ void CControlAPI::doNewTimer(CyhookHandler *hh)
 	eventinfo.epg_starttime = atoi(hh->ParamList["start"].c_str());
 	eventinfo.apids = TIMERD_APIDS_CONF;
 	eventinfo.recordingSafety = (hh->ParamList["rs"] == "1") || (hh->ParamList["rs"] == "on");
-	eventinfo.autoAdjustToEPG = (hh->ParamList["aj"] == "1") || (hh->ParamList["aj"] == "on");
 
 	// channel by Id or name
 	if(!hh->ParamList["channel_id"].empty())

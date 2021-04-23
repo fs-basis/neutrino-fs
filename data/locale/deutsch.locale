@@ -340,7 +340,7 @@ colormenu.background Hintergrundfarbe
 colormenu.clock_textcolor Ziffernfarbe
 colormenu.fade Ein-/Ausblenden
 colormenu.font Verwendete Schriftart
-colormenu.font_sub Untertitel-Schriftart
+colormenu.font_sub Untertitel Schriftart
 colormenu.font_ttx Videotext Schriftart
 colormenu.menucolors Themes
 colormenu.osd_preset Bildschirm Auswahl

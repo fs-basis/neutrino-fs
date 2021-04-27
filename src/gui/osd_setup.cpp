@@ -688,12 +688,12 @@ int COsdSetup::showOsdSetup()
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_RADIOTEXT, &g_settings.radiotext_enable, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_RADIOTEXT);
 	osd_menu->addItem(mc);
-#if 0
+
 	// scrambled
 	mc = new CMenuOptionChooser(LOCALE_EXTRA_SCRAMBLED_MESSAGE, &g_settings.scrambled_message, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_SCRAMBLED_MESSAGE);
 	osd_menu->addItem(mc);
-#endif
+
 
 #ifdef ENABLE_CHANGE_OSD_RESOLUTION
 	// osd resolution
@@ -728,13 +728,6 @@ int COsdSetup::showOsdSetup()
 		mc = new CMenuOptionChooser(LOCALE_COLORMENU_OSD_PRESET, &g_settings.screen_preset, OSD_PRESET_OPTIONS, OSD_PRESET_OPTIONS_COUNT, true, this);
 		mc->setHint("", LOCALE_MENU_HINT_OSD_PRESET);
 		osd_menu->addItem(mc);
-
-#if 0
-	// round corners
-	mc = new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.theme.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true, this);
-	mc->setHint("", LOCALE_MENU_HINT_ROUNDED_CORNERS);
-	osd_menu->addItem(mc);
-#endif
 
 	// fade windows
 	mc = new CMenuOptionChooser(LOCALE_COLORMENU_FADE, &g_settings.widget_fade, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true );
@@ -1267,19 +1260,10 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	CMenuOptionChooser * mc;
 	//NI CMenuForwarder * mf;
 
-#if 0
-	// logo directory
-	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_INFOBAR_LOGO_HDD_DIR, true, g_settings.logo_hdd_dir, this, "logo_dir");
-	mf->setHint("", LOCALE_MENU_HINT_INFOBAR_LOGO_DIR);
-	menu_infobar->addItem(mf);
-#endif
-
-#if 1
 	// resolution
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_RES, &g_settings.infobar_show_res, INFOBAR_SHOW_RES_MODE_OPTIONS, INFOBAR_SHOW_RES_MODE_OPTION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_RES);
 	menu_infobar->addItem(mc);
-#endif
 
 	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
@@ -1291,15 +1275,13 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 
 	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
-#if 0
+#if 0 // enaable when use other infobar (DDT)
 	// display options
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_DISP, &g_settings.infobar_show_channellogo, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT, true);
 	mc->OnAfterChangeOption.connect(slot_ibar);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_LOGO);
 	menu_infobar->addItem(mc);
-#endif
 
-#if 0
 	// satellite/cable provider
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SAT_DISPLAY, &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->OnAfterChangeOption.connect(slot_ibar);
@@ -1367,17 +1349,11 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_ON_EPG);
 	menu_infobar->addItem(mc);
 
-#if 0
-	// radiotext
-	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_RADIOTEXT, &g_settings.radiotext_enable, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
-	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_RADIOTEXT);
-	menu_infobar->addItem(mc);
-
 	// DD icon
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_DD_AVAILABLE, &g_settings.infobar_show_dd_available, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_DD);
 	menu_infobar->addItem(mc);
-
+#if 0
 	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE | CMenuSeparator::STRING, LOCALE_MISCSETTINGS_PROGRESSBAR));
 	// progressbar position
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_PROGRESSBAR_INFOBAR_POSITION, &g_settings.infobar_progressbar, PROGRESSBAR_INFOBAR_POSITION_OPTIONS, PROGRESSBAR_INFOBAR_POSITION_COUNT, true);

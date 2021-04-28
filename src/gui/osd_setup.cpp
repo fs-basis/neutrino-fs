@@ -98,8 +98,6 @@ COsdSetup::COsdSetup()
 	width = 50;
 	show_menu_hints = 0;
 	show_tuner_icon = 0;
-
-	//NI
 	show_menu_hints_line = 0;
 }
 
@@ -624,7 +622,7 @@ int COsdSetup::showOsdSetup()
 	mf->setHint("", LOCALE_MENU_HINT_PROGRESSBAR);
 	osd_menu->addItem(mf);
 
-	//NI channellogos
+	//channellogos
 	CMenuWidget osd_menu_channellogos(LOCALE_MAINMENU_SETTINGS, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_OSDSETUP_CHANNELLOGOS);
 	showOsdChannellogosSetup(&osd_menu_channellogos);
 	mf = new CMenuForwarder(LOCALE_MISCSETTINGS_CHANNELLOGOS, true, NULL, &osd_menu_channellogos, NULL, CRCInput::convertDigitToKey(shortcut++));
@@ -811,10 +809,8 @@ void COsdSetup::showOsdMenueColorSetup(CMenuWidget *menu_colors)
 			NULL, colorSetupNotifier);
 	CColorChooser* chShadowColor = new CColorChooser(LOCALE_COLORMENU_SHADOW_COLOR, &t.shadow_red, &t.shadow_green, &t.shadow_blue,
 			&t.shadow_alpha, colorSetupNotifier);
-	//NI
 	CColorChooser* chProgressbar_passive = new CColorChooser(LOCALE_COLORMENU_PROGRESSBAR_PASSIVE, &t.progressbar_passive_red, &t.progressbar_passive_green, &t.progressbar_passive_blue,
 			NULL, colorSetupNotifier);
-	//NI
 	CColorChooser* chProgressbar_active = new CColorChooser(LOCALE_COLORMENU_PROGRESSBAR_ACTIVE, &t.progressbar_active_red, &t.progressbar_active_green, &t.progressbar_active_blue,
 			NULL, colorSetupNotifier);
 
@@ -1006,15 +1002,15 @@ void COsdSetup::showOsdMenueColorSetup(CMenuWidget *menu_colors)
 	mf->setHint("", LOCALE_MENU_HINT_COLORS_SHADOW);
 	menu_colors->addItem(mf);
 
-	//NI progressbar
+	// progressbar
 	menu_colors->addItem( new CMenuSeparator(CMenuSeparator::LINE | CMenuSeparator::STRING, LOCALE_MISCSETTINGS_PROGRESSBAR));
 
-	//NI - progressbar passive
+	// progressbar passive
 	mf = new CMenuDForwarder(LOCALE_COLORMENU_PROGRESSBAR_PASSIVE, true, NULL, chProgressbar_passive );
 	mf->setHint("", LOCALE_MENU_HINT_PROGRESSBAR_PASSIVE);
 	menu_colors->addItem(mf);
 
-	//NI - progressbar aktive
+	// progressbar aktive
 	mf = new CMenuDForwarder(LOCALE_COLORMENU_PROGRESSBAR_ACTIVE, true, NULL, chProgressbar_active );
 	mf->setHint("", LOCALE_MENU_HINT_PROGRESSBAR_ACTIVE);
 	menu_colors->addItem(mf);
@@ -1200,7 +1196,7 @@ void COsdSetup::showOsdMenusSetup(CMenuWidget *menu_menus)
 	mc->setHint("", LOCALE_MENU_HINT_MENU_HINTS);
 	submenu_menus->addItem(mc);
 
-	//NI menu hints line (details_line) should always be last entry here
+	// menu hints line (details_line) should always be last entry here
 	show_menu_hints_line = g_settings.show_menu_hints_line;
 	mc = new CMenuOptionChooser(LOCALE_SETTINGS_MENU_HINTS_LINE, &show_menu_hints_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
 	mc->setHint("", LOCALE_MENU_HINT_MENU_HINTS_LINE);
@@ -1216,7 +1212,7 @@ const CMenuOptionChooser::keyval HDD_STATFS_OPTIONS[HDD_STATFS_OPTION_COUNT] =
 };
 
 
-//NI channellogos
+//channellogos
 void COsdSetup::showOsdChannellogosSetup(CMenuWidget *menu_channellogos)
 {
 	menu_channellogos->addIntroItems(LOCALE_MISCSETTINGS_CHANNELLOGOS);
@@ -1252,24 +1248,21 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	sigc::slot0<void> slot_ibar = sigc::mem_fun(g_InfoViewer, &CInfoViewer::KillModules);
 
 	CMenuOptionChooser * mc;
-	//NI CMenuForwarder * mf;
+	//CMenuForwarder * mf;
 
-	// resolution
-	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_RES, &g_settings.infobar_show_res, INFOBAR_SHOW_RES_MODE_OPTIONS, INFOBAR_SHOW_RES_MODE_OPTION_COUNT, true);
-	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_RES);
+	// show on epg change
+	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW, &g_settings.infobar_show, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_ON_EPG);
 	menu_infobar->addItem(mc);
-
-	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
 	// buttons usertitle
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_BUTTONS_USERTITLE, &g_settings.infobar_buttons_usertitle, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_BUTTONS_USERTITLE);
 	menu_infobar->addItem(mc);
-	//menu_infobar->addItem(GenericMenuSeparator);
 
 	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
-#if 0 // enaable when use other infobar (DDT)
+#if 0 /* enable when use other infobar (DDT) */
 	// display options
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_DISP, &g_settings.infobar_show_channellogo, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT, true);
 	mc->OnAfterChangeOption.connect(slot_ibar);
@@ -1288,7 +1281,7 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_ANALOGCLOCK);
 	menu_infobar->addItem(mc);
 
-	//menu_infobar->addItem(GenericMenuSeparator);
+	menu_infobar->addItem(GenericMenuSeparator);
 
 	// CA system
 	casystemActivate.Clear(); //ensure empty activator object -> cleanup before add new items, prevents possible segfault!
@@ -1313,13 +1306,11 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	menu_infobar->addItem(mc);
 	casystemActivate.Add(mc);
 
-#if 1
 	// hdd statfs update
 	mc = new CMenuOptionChooser(LOCALE_HDD_STATFS, &g_settings.hdd_statfs_mode, HDD_STATFS_OPTIONS, HDD_STATFS_OPTION_COUNT, g_settings.infobar_show_sysfs_hdd);
 	mc->setHint("", LOCALE_MENU_HINT_HDD_STATFS);
 	menu_infobar->addItem(mc);
 	infobarHddNotifier->addItem(mc);
-#endif
 
 	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
@@ -1338,16 +1329,16 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_TUNER);
 	menu_infobar->addItem(mc);
 
-	// show on epg change
-	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW, &g_settings.infobar_show, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
-	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_ON_EPG);
+	// resolution
+	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_RES, &g_settings.infobar_show_res, INFOBAR_SHOW_RES_MODE_OPTIONS, INFOBAR_SHOW_RES_MODE_OPTION_COUNT, true);
+	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_RES);
 	menu_infobar->addItem(mc);
 
 	// DD icon
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_DD_AVAILABLE, &g_settings.infobar_show_dd_available, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_DD);
 	menu_infobar->addItem(mc);
-#if 0
+#if 0  /* enable when use other infobar (DDT) */
 	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE | CMenuSeparator::STRING, LOCALE_MISCSETTINGS_PROGRESSBAR));
 	// progressbar position
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_PROGRESSBAR_INFOBAR_POSITION, &g_settings.infobar_progressbar, PROGRESSBAR_INFOBAR_POSITION_OPTIONS, PROGRESSBAR_INFOBAR_POSITION_COUNT, true);
@@ -1401,7 +1392,7 @@ void COsdSetup::showOsdChanlistSetup(CMenuWidget *menu_chanlist)
 	menu_chanlist->addItem(mc);
 	channellistNotifier->addItem(mc);
 
-	//show channel logo
+	//show channellogo
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_SHOW_CHANNELLOGO, &g_settings.channellist_show_channellogo, OPTIONS_CHANNELLOGO_POSITION, OPTIONS_CHANNELLOGO_POSITION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_CHANNELLIST_SHOW_CHANNELLOGO);
 	menu_chanlist->addItem(mc);
@@ -1598,7 +1589,7 @@ bool COsdSetup::changeNotify(const neutrino_locale_t OptionName, void * data)
 		CVolumeHelper::getInstance()->refresh();
 		return false;
 	}
-	//NI menu_hints_line
+	// menu_hints_line
 	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_SETTINGS_MENU_HINTS_LINE))
 	{
 		submenu_menus->hide();

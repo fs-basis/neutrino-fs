@@ -563,32 +563,31 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	}
 	g_settings.timer_followscreenings = configfile.getInt32( "timer_followscreenings", CFollowScreenings::FOLLOWSCREENINGS_ON );
 
-	g_settings.infobar_sat_display   = false; //configfile.getBool("infobar_sat_display"  , false );
-	g_settings.infobar_show_channeldesc   = false; //configfile.getBool("infobar_show_channeldesc"  , false );
-	g_settings.infobar_subchan_disp_pos = configfile.getInt32("infobar_subchan_disp_pos"  , 0 );
+	g_settings.infobar_sat_display = configfile.getBool("infobar_sat_display" , false );
+	g_settings.infobar_show_channeldesc = configfile.getBool("infobar_show_channeldesc" , false );
+	g_settings.infobar_subchan_disp_pos = configfile.getInt32("infobar_subchan_disp_pos" , 0 );
 	g_settings.infobar_buttons_usertitle = configfile.getBool("infobar_buttons_usertitle", false );
 	g_settings.infobar_analogclock = configfile.getInt32("infobar_analogclock", 0);
 	g_settings.infobar_show = configfile.getInt32("infobar_show", configfile.getInt32("infobar_cn", 0));
-	g_settings.infobar_show_channellogo   = 2; //configfile.getInt32("infobar_show_channellogo"  , 2 );
-	g_settings.infobar_progressbar   = 3; //configfile.getInt32("infobar_progressbar"  , 3 ); // between epg
-	g_settings.infobar_casystem_display = configfile.getInt32("infobar_casystem_display", 1 );//discreet ca mode default
+	g_settings.infobar_show_channellogo = configfile.getInt32("infobar_show_channellogo"  , 2 );
+	g_settings.infobar_progressbar = configfile.getInt32("infobar_progressbar" , 3 );
+	g_settings.infobar_casystem_display = configfile.getInt32("infobar_casystem_display", 1 );
 	g_settings.infobar_casystem_frame = configfile.getInt32("infobar_casystem_frame", 1 );
-	g_settings.scrambled_message = configfile.getBool("scrambled_message", false ); // hardcoded menu point disable in osd_setup.cpp
 	g_settings.volume_pos = configfile.getInt32("volume_pos", CVolumeBar::VOLUMEBAR_POS_TOP_LEFT );
 	g_settings.volume_digits = configfile.getBool("volume_digits", true);
 	g_settings.volume_size = configfile.getInt32("volume_size", 26 );
 	g_settings.menu_pos = configfile.getInt32("menu_pos", CMenuWidget::MENU_POS_CENTER);
 	g_settings.show_menu_hints = configfile.getBool("show_menu_hints", false);
-	g_settings.infobar_show_sysfs_hdd   = configfile.getBool("infobar_show_sysfs_hdd"  , false );
+	g_settings.infobar_show_sysfs_hdd   = configfile.getBool("infobar_show_sysfs_hdd", false );
 	g_settings.show_mute_icon = configfile.getInt32("show_mute_icon" ,0);
 	g_settings.infobar_show_res = configfile.getInt32("infobar_show_res", 0 );
-	g_settings.infobar_show_dd_available = 1; //configfile.getInt32("infobar_show_dd_available", 1 );
+	g_settings.infobar_show_dd_available = configfile.getInt32("infobar_show_dd_available", 1 );
 
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
-	g_settings.radiotext_enable = configfile.getBool("radiotext_enable"          , true);
+	g_settings.radiotext_enable = configfile.getBool("radiotext_enable", true);
 	//audio
 	g_settings.audio_AnalogMode = configfile.getInt32( "audio_AnalogMode", 0 );
-	g_settings.audio_DolbyDigital    = configfile.getBool("audio_DolbyDigital"   , false);
+	g_settings.audio_DolbyDigital    = configfile.getBool("audio_DolbyDigital", false);
 
 	g_settings.auto_lang = configfile.getInt32( "auto_lang", 1 );
 	g_settings.auto_subs = configfile.getInt32( "auto_subs", 0 );
@@ -1400,7 +1399,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_progressbar"  , g_settings.infobar_progressbar  );
 	configfile.setInt32("infobar_casystem_display"  , g_settings.infobar_casystem_display  );
 	configfile.setInt32("infobar_casystem_frame"  , g_settings.infobar_casystem_frame  );
-	configfile.setBool("scrambled_message"  , g_settings.scrambled_message  );
 	configfile.setInt32("volume_pos"  , g_settings.volume_pos  );
 	configfile.setBool("volume_digits", g_settings.volume_digits);
 	configfile.setInt32("volume_size"  , g_settings.volume_size);
@@ -3495,18 +3493,6 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		}
 	}
 	if ((msg == NeutrinoMessages::EVT_TIMER)) {
-		if(data == scrambled_timer) {
-			scrambled_timer = 0;
-#if BOXMODEL_UFS910
-			if(g_settings.scrambled_message && videoDecoder->getPlayState()) {
-#else
-			if(g_settings.scrambled_message && videoDecoder->getBlank() && videoDecoder->getPlayState()) {
-#endif
-				const char * text = g_Locale->getText(LOCALE_SCRAMBLED_CHANNEL);
-				ShowHint (LOCALE_MESSAGEBOX_INFO, text, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(text) + 10, 5);
-			}
-			return messages_return::handled;
-		}
 #if ENABLE_FASTSCAN
 		if(data == fst_timer) {
 			g_RCInput->killTimer(fst_timer);
@@ -3520,6 +3506,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		}
 #endif
 	}
+
 	if (msg == NeutrinoMessages::SHOW_MAINMENU) {
 		showMainMenu();
 		return messages_return::handled;

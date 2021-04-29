@@ -1940,15 +1940,12 @@ nvodselector.head Subservices
 nvodselector.starttime Select starting time
 nvodselector.subservice Select subservice
 options.default Reset to defaults
-options.fb framebuffer
 options.hint_default Reset the values to their defaults
 options.ntp_off DVB
 options.ntp_on NTP
-options.null null
 options.off off
 options.on on
 options.on.without_messages Without msg
-options.serial serial
 osd.preset_screen_a Screen 1
 osd.preset_screen_b Screen 2
 parentallock.bouquetmode Bouquets are default

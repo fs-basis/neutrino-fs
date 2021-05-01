@@ -1313,6 +1313,8 @@ _remount:
 			}
 			snprintf(cmd, sizeof(cmd), "%s/audio", dst.c_str());
 			safe_mkdir(cmd);
+			snprintf(cmd, sizeof(cmd), "%s/backup", dst.c_str());
+			safe_mkdir(cmd);
 			snprintf(cmd, sizeof(cmd), "%s/epg", dst.c_str());
 			safe_mkdir(cmd);
 			snprintf(cmd, sizeof(cmd), "%s/movie", dst.c_str());

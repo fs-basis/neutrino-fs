@@ -95,8 +95,8 @@ class CColorKeyHelper
 
 		void reset(void)
 		{
-			number_key = 1;
-			for (int i= 0; i < COL_BUTTONMAX; i++ )
+			number_key = 0;
+			for (int i= -1; i < COL_BUTTONMAX; i++ )
 				color_key_used[i] = false;
 		};
 
@@ -136,11 +136,11 @@ class CColorKeyHelper
 				// there is still a available number_key
 				*msg = CRCInput::convertDigitToKey(number_key);
 				*icon = "";
-				if (number_key == 9)
+/*				if (number_key == 9)
 					number_key = 0;
 				else if (number_key == 0)
 					number_key = 10;
-				else
+				else */
 					number_key++;
 				result = true;
 			}

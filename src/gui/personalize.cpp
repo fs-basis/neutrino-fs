@@ -349,7 +349,7 @@ int CPersonalizeGui::ShowPersonalizationMenu()
 		string s(i_str.str());
 		string action_key = s;
 		string mn_name = v_widget[i]->getName();
-		p_mn[i] = new CMenuForwarder(mn_name.c_str(), true, NULL, this, action_key.c_str(), CRCInput::convertDigitToKey(i+1));
+		p_mn[i] = new CMenuForwarder(mn_name.c_str(), true, NULL, this, action_key.c_str(), CRCInput::convertDigitToKey(i+0));
 		pMenu->addItem(p_mn[i]);
 	}
 
@@ -544,7 +544,7 @@ void CPersonalizeGui::ShowPluginMenu(CMenuWidget* p_widget, std::string da[], in
 {
 	p_widget->addIntroItems(LOCALE_PERSONALIZE_PLUGINS);
 
-	uint  d_key = 1;
+	uint  d_key = 0;
 	int pcount = g_Plugins->getNumberOfPlugins();
 	for (int i = 0; i < pcount; i++)
 	{

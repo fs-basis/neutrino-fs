@@ -111,7 +111,7 @@ private:
 
 	void tvMode( bool rezap = true );
 	void radioMode( bool rezap = true );
-	void scartMode( bool bOnOff );
+	void AVInputMode( bool bOnOff );
 	void standbyMode( bool bOnOff, bool fromDeepStandby = false );
 	void getAnnounceEpgName(CTimerd::RecordingInfo * eventinfo, std::string &name);
 

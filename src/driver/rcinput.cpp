@@ -155,9 +155,6 @@ CRCInput::CRCInput(bool &_timer_wakeup)
 	rc_last_key =  KEY_MAX;
 	firstKey = true;
 	longPressEnd = 0;
-
-	//select and setup remote control hardware
-	set_rc_hw();
 }
 
 bool CRCInput::checkdev()

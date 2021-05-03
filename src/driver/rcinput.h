@@ -294,14 +294,6 @@ class CRCInput
 			RC_nokey	= 0xFFFFFFFE
 		};
 
-		//rc-hardware definitions
-		enum
-		{
-			RC_HW_DBOX		= 0,
-			RC_HW_PHILIPS		= 1,
-		};
-		void set_rc_hw(void);
-
 		void stopInput(const bool ext = false);
 		void restartInput(const bool ext = false);
 		bool isLocked(void);

@@ -173,9 +173,6 @@ class CRCInput
 		int checkTimers();
 		bool mayRepeat(uint32_t key, bool bAllowRepeatLR = false);
 		bool mayLongPress(uint32_t key, bool bAllowRepeatLR = false);
-#ifdef IOC_IR_SET_PRI_PROTOCOL
-		void set_rc_hw(ir_protocol_t ir_protocol, unsigned int ir_address);
-#endif
 	public:
 		//rc-code definitions
 		static const neutrino_msg_t RC_Repeat   = 0x0400;

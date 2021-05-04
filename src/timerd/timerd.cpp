@@ -324,7 +324,8 @@ bool timerd_parse_command(CBasicMessage::Header &rmsg, int connfd)
 						msgAddTimer.eventRepeat,
 						msgAddTimer.repeatCount,
 						recInfo.recordingDir,
-						recInfo.recordingSafety);
+						recInfo.recordingSafety,
+						recInfo.autoAdjustToEPG);
 					rspAddTimer.eventID = CTimerManager::getInstance()->addEvent(event);
 
 					break;

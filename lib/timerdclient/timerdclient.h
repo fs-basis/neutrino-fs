@@ -120,6 +120,7 @@ class CTimerdClient:private CBasicClient
 			eventInfo.epg_starttime = epg_starttime;
 			eventInfo.apids = apids;
 			eventInfo.recordingSafety = safety;
+			eventInfo.autoAdjustToEPG = autoAdjust;
 			strncpy(eventInfo.recordingDir, recDir.c_str(), RECORD_DIR_MAXLEN-1);
 			return addTimerEvent(CTimerd::TIMER_RECORD, &eventInfo, announcetime, alarmtime, stoptime, evrepeat, repeatcount,forceAdd);
 		};
@@ -133,6 +134,7 @@ class CTimerdClient:private CBasicClient
 			eventInfo.epg_starttime = epg_starttime;
 			eventInfo.apids = apids;
 			eventInfo.recordingSafety = false;
+			eventInfo.autoAdjustToEPG = false;
 			return addTimerEvent(CTimerd::TIMER_IMMEDIATE_RECORD, &eventInfo, 0, alarmtime, stoptime);
 		};
 

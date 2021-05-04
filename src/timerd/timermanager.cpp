@@ -1218,17 +1218,19 @@ CTimerEvent_Record::CTimerEvent_Record(time_t announce_Time, time_t alarm_Time, 
 				       time_t epg_starttime, unsigned char apids,
 				       CTimerd::CTimerEventRepeat evrepeat,
 				       uint32_t repeatcount, const std::string &recDir,
-				       bool _recordingSafety) :
+				       bool _recordingSafety, bool _autoAdjustToEPG) :
 	CTimerEvent(getEventType(), announce_Time, alarm_Time, stop_Time, evrepeat, repeatcount)
 {
 	eventInfo.epg_id = epg_id;
 	eventInfo.epg_starttime = epg_starttime;
 	eventInfo.channel_id = channel_id;
 	eventInfo.apids = apids;
+	eventInfo.autoAdjustToEPG = _autoAdjustToEPG;
 	eventInfo.recordingSafety = _recordingSafety;
 
 	recordingDir = recDir;
 	epgTitle="";
+	autoAdjustToEPG = _autoAdjustToEPG;
 	recordingSafety = _recordingSafety;
 	CShortEPGData epgdata;
 	if (CEitManager::getInstance()->getEPGidShort(epg_id, &epgdata))
@@ -1262,10 +1264,15 @@ CTimerEvent_Record::CTimerEvent_Record(CConfigFile *config, int iId):
 
 	recordingSafety = config->getInt32("RECORDING_SAFETY_"+id, true);
 	dprintf("read RECORDING_SAFETY_%s %d\n",id.c_str(), recordingSafety);
+
+	autoAdjustToEPG = config->getInt32("EPG_AUTO_ADJUST_"+id, true);
+	dprintf("read EPG_AUTO_ADJUST_TO_EPG_%s %d\n",id.c_str(), autoAdjustToEPG);
 }
 //------------------------------------------------------------
 void CTimerEvent_Record::fireEvent()
 {
+	if ((adjustToCurrentEPG()) && (alarmTime > time(NULL)))
+		return;
 	getEpgId();
 	CTimerd::RecordingInfo ri=eventInfo;
 	ri.eventID=eventID;
@@ -1280,6 +1287,8 @@ void CTimerEvent_Record::fireEvent()
 //------------------------------------------------------------
 void CTimerEvent_Record::announceEvent()
 {
+	if ((adjustToCurrentEPG()) && (announceTime > time(NULL)))
+		return;
 	Refresh();
 	CTimerd::RecordingInfo ri=eventInfo;
 	ri.eventID=eventID;
@@ -1331,6 +1340,9 @@ void CTimerEvent_Record::saveToConfig(CConfigFile *config)
 
 	config->setInt32("RECORDING_SAFETY_"+id, recordingSafety);
 	dprintf("set RECORDING_SAFETY_%s to %d\n",id.c_str(), recordingSafety);
+
+	config->setInt32("EPG_AUTO_ADJUST_"+id, autoAdjustToEPG);
+	dprintf("set EPG_AUTO_ADJUST_TO_EPG_%s to %d\n",id.c_str(), autoAdjustToEPG);
 }
 //------------------------------------------------------------
 void CTimerEvent_Record::Reschedule()
@@ -1373,7 +1385,58 @@ void CTimerEvent_Record::Refresh()
 		getEpgId();
 }
 //------------------------------------------------------------
+bool CTimerEvent_Record::adjustToCurrentEPG()
+{
+	if (!(access(CONFIGDIR"/.adjust", F_OK) == 0))
+		return false;
 
+	if (!autoAdjustToEPG)
+		return false;
+
+	printf("\x1B[31mInto %s for %d\n\x1B[0m",__func__,eventID);
+	CChannelEventList evtlist;
+	CEitManager::getInstance()->getEventsServiceKey(eventInfo.channel_id, evtlist);
+
+	int pre = 0, post = 0;
+	CTimerManager::getInstance()->getRecordingSafety(pre, post);
+
+	time_t _announceTime = announceTime;
+	time_t _alarmTime = alarmTime;
+	time_t _stopTime = stopTime;
+
+	if (recordingSafety) {
+		_alarmTime += pre;
+		_stopTime -= post;
+	}
+
+	// we check for a time in the middle of the recording without considering pre and post
+	time_t check_time=_alarmTime/2 + _stopTime/2;
+	for ( CChannelEventList::iterator e= evtlist.begin(); e != evtlist.end(); ++e )
+	{
+		if ( e->startTime <= check_time && (e->startTime + (int)e->duration) >= check_time)
+		{
+			_announceTime = e->startTime - (alarmTime - announceTime);
+			_alarmTime = e->startTime;
+			_stopTime = e->startTime + e->duration;
+			printf("\x1B[31mepg-event %s for Timer %d found\n\x1B[0m",e->description.c_str(),eventID);
+			break;
+		}
+	}
+
+	if (recordingSafety) {
+		_alarmTime -= pre;
+		_stopTime += post;
+	}
+
+	if ((_alarmTime != alarmTime) || (_announceTime != announceTime) || (_stopTime != stopTime)) {
+		alarmTime = _alarmTime; announceTime = _announceTime; stopTime = _stopTime;
+		printf("\x1B[31mdiff for Timer %d detected\n\x1B[0m",eventID);
+		if (CTimerManager::getInstance()->adjustEvent(eventID, _announceTime, _alarmTime, _stopTime))
+			return true;
+		}
+
+	return false;
+}
 //=============================================================
 // Zapto Event
 //=============================================================

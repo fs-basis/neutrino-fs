@@ -304,9 +304,6 @@ struct SNeutrinoSettings
 	int screensaver_random;
 	int screensaver_mode;
 
-	//vcr
-	int vcr_AutoSwitch;
-
 	//language
 	std::string language;
 	std::string timezone;

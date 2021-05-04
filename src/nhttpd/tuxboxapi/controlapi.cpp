@@ -208,7 +208,6 @@ const CControlAPI::TyCgiCall CControlAPI::yCgiCallList[]=
 	{"videoformat",		&CControlAPI::VideoFormatCGI,		"text/plain"},
 	{"videooutput",		&CControlAPI::VideoOutputCGI,		"text/plain"},
 	{"vcroutput",		&CControlAPI::VCROutputCGI,		"text/plain"},
-	{"avinputmode",		&CControlAPI::AVInputModeCGI,		"text/plain"},
 	{"audio",		&CControlAPI::AudioCGI,			"text/plain"},
 	{"crypt",		&CControlAPI::CryptCGI,			"text/plain"},
 	// timer
@@ -462,8 +461,6 @@ void CControlAPI::GetModeCGI(CyhookHandler *hh)
 			result = "tv";
 		else if (mode == NeutrinoModes::mode_radio)
 			result = "radio";
-		else if (mode == NeutrinoModes::mode_avinput)
-			result = "avinput";
 		else if (mode == NeutrinoModes::mode_standby)
 			result = "standby";
 		else if (mode == NeutrinoModes::mode_audio)
@@ -971,13 +968,6 @@ void CControlAPI::VideoOutputCGI(CyhookHandler *hh)
 
 //-----------------------------------------------------------------------------
 void CControlAPI::VCROutputCGI(CyhookHandler *hh)
-{
-// FIXME: not implemented
-	hh->SendOk();
-}
-
-//-----------------------------------------------------------------------------
-void CControlAPI::AVInputModeCGI(CyhookHandler *hh)
 {
 // FIXME: not implemented
 	hh->SendOk();

@@ -892,10 +892,6 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 								*data = (unsigned) p;
 								dont_delete_p = true;
 								break;
-							case CControldClient::EVT_VCRCHANGED :
-								*msg = NeutrinoMessages::EVT_VCRCHANGED;
-								*data = *(int*) p;
-								break;
 							case CControldClient::EVT_MODECHANGED :
 								*msg = NeutrinoMessages::EVT_MODECHANGED;
 								*data = *(int*) p;

@@ -24,7 +24,6 @@ function do_init()
 
 	val = "{=ini-get:%(CONFIGDIR)/neutrino.conf;video_csync;0~cache=}"
 		document.f.video_csync.value = val;
-	obj_set_radio_value('vcr_AutoSwitch', "{=ini-get:%(CONFIGDIR)/neutrino.conf;vcr_AutoSwitch;true~cache=}");
 //audio
 	val = "{=ini-get:%(CONFIGDIR)/neutrino.conf;audio_AnalogMode;0~cache=}";
 		document.f.audio_AnalogMode.selectedIndex = val;
@@ -113,13 +112,6 @@ function do_submit()
 					<input type="radio" name="vcroutput" value="0" disabled="disabled"/>CVBS&nbsp;
 					<input type="radio" name="vcroutput" value="2" disabled="disabled"/>S-Video
 					<input type="hidden" name="h_vcroutput"/>(*)
-				</td>
-			</tr>
-			<tr>
-				<td title="vcr_AutoSwitch: off/on">Scart-Eingang automatisch</td>
-				<td>
-					<input type="radio" name="vcr_AutoSwitch" value="false"/>NEIN&nbsp;
-					<input type="radio" name="vcr_AutoSwitch" value="true"/>JA
 				</td>
 			</tr>
 			<tr><td colspan="2" class="y_form_header">Audio</td></tr>

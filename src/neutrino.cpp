@@ -577,9 +577,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screensaver_random = configfile.getInt32("screensaver_random", 0);
 	g_settings.screensaver_mode = configfile.getInt32("screensaver_mode", CScreenSaver::SCR_MODE_IMAGE);
 
-	//vcr
-	g_settings.vcr_AutoSwitch = configfile.getBool("vcr_AutoSwitch"       , true );
-
 	//language
 	g_settings.language = configfile.getString("language", "");
 	g_settings.timezone = configfile.getString("timezone", "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna");
@@ -1343,9 +1340,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("screensaver_timeout", g_settings.screensaver_timeout);
 	configfile.setInt32("screensaver_random", g_settings.screensaver_random);
 	configfile.setInt32("screensaver_mode", g_settings.screensaver_mode);
-
-	//vcr
-	configfile.setBool("vcr_AutoSwitch"       , g_settings.vcr_AutoSwitch       );
 
 	//language
 	configfile.setString("language", g_settings.language);
@@ -3073,8 +3067,6 @@ void CNeutrinoApp::RealRun()
 				CTimerList Timerlist;
 				Timerlist.exec(NULL, "");
 			}
-			else if (msg == CRCInput::RC_aux)
-				AVInputMode(true);
 			else {
 				if (msg == CRCInput::RC_home)
 					CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
@@ -3083,19 +3075,10 @@ void CNeutrinoApp::RealRun()
 					handleMsg(msg, data);
 			}
 		}
-		else {
-			// mode == NeutrinoModes::mode_avinput
-			if (msg == CRCInput::RC_home || msg == CRCInput::RC_aux) {
-				if( mode == NeutrinoModes::mode_avinput ) {
-					// AVInput-Mode verlassen
-					AVInputMode(false);
-				}
-			}
 			else {
 				if (msg != CRCInput::RC_timeout)
 					handleMsg(msg, data);
 			}
-		}
 	}
 }
 
@@ -3590,17 +3573,6 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		//setVolume(msg, false, true);
 		return messages_return::handled;
 	}
-#ifdef HAVE_CONTROLD
-	else if( msg == NeutrinoMessages::EVT_VCRCHANGED ) {
-		if (g_settings.vcr_AutoSwitch) {
-			if( data != VCR_STATUS_OFF )
-				g_RCInput->postMsg( NeutrinoMessages::AVINPUT_ON, 0 );
-			else
-				g_RCInput->postMsg( NeutrinoMessages::AVINPUT_OFF, 0 );
-		}
-		return messages_return::handled | messages_return::cancel_info;
-	}
-#endif
 	else if( msg == NeutrinoMessages::EVT_MUTECHANGED ) {
 		//FIXME unused ?
 		return messages_return::handled;
@@ -3747,12 +3719,10 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		if( mode == NeutrinoModes::mode_standby ) {
 			standbyMode( false );
 		}
-		if( mode != NeutrinoModes::mode_avinput ) {
 			CTimerd::RecordingInfo * eventinfo = (CTimerd::RecordingInfo *) data;
 			std::string name = g_Locale->getText(LOCALE_ZAPTOTIMER_ANNOUNCE);
 			getAnnounceEpgName( eventinfo, name);
 			ShowHint( LOCALE_MESSAGEBOX_INFO, name.c_str() );
-		}
 		delete [] (unsigned char*) data;
 		return messages_return::handled;
 	}
@@ -3774,7 +3744,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 			CRecordManager::getInstance()->StopAutoRecord();
 			zapTo(eventinfo->channel_id);
 		}
-		if(( mode != NeutrinoModes::mode_avinput ) && ( mode != NeutrinoModes::mode_standby ) && g_settings.recording_startstop_msg) {
+		if(( mode != NeutrinoModes::mode_standby ) && g_settings.recording_startstop_msg) {
 			std::string name = g_Locale->getText(LOCALE_RECORDTIMER_ANNOUNCE);
 			getAnnounceEpgName(eventinfo, name);
 			ShowHint(LOCALE_MESSAGEBOX_INFO, name.c_str());
@@ -3783,7 +3753,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		return messages_return::handled;
 	}
 	else if( msg == NeutrinoMessages::ANNOUNCE_SLEEPTIMER) {
-		if( mode != NeutrinoModes::mode_avinput && mode != NeutrinoModes::mode_standby)
+		if( mode != NeutrinoModes::mode_standby)
 			skipSleepTimer = (ShowMsg(LOCALE_MESSAGEBOX_INFO, g_settings.shutdown_real ? LOCALE_SHUTDOWNTIMER_ANNOUNCE:LOCALE_SLEEPTIMERBOX_ANNOUNCE,CMsgBox::mbrNo, CMsgBox::mbYes | CMsgBox::mbNo, NULL, 450, 30, true) == CMsgBox::mbrYes);
 		return messages_return::handled;
 	}
@@ -3845,8 +3815,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		return messages_return::handled;
 	}
 	else if( msg == NeutrinoMessages::ANNOUNCE_SHUTDOWN) {
-		if( mode != NeutrinoModes::mode_avinput )
-			skipShutdownTimer = (ShowMsg(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWNTIMER_ANNOUNCE, CMsgBox::mbrNo, CMsgBox::mbYes | CMsgBox::mbNo, NULL, 450, 30) == CMsgBox::mbrYes);
+		skipShutdownTimer = (ShowMsg(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWNTIMER_ANNOUNCE, CMsgBox::mbrNo, CMsgBox::mbYes | CMsgBox::mbNo, NULL, 450, 30) == CMsgBox::mbrYes);
 	}
 	else if( msg == NeutrinoMessages::SHUTDOWN ) {
 		if(CStreamManager::getInstance()->StreamStatus())
@@ -3868,7 +3837,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		ExitRun(CNeutrinoApp::EXIT_REBOOT);
 	}
 	else if (msg == NeutrinoMessages::EVT_POPUP || msg == NeutrinoMessages::EVT_EXTMSG) {
-		if (mode != NeutrinoModes::mode_avinput && mode != NeutrinoModes::mode_standby) {
+		if (mode != NeutrinoModes::mode_standby) {
 			int timeout = DEFAULT_TIMEOUT;
 			std::string text = (char*)data;
 			std::string::size_type pos;
@@ -3903,8 +3872,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		{
 			text[pos] = '\n';
 		}
-		if( mode != NeutrinoModes::mode_avinput )
-			ShowMsg(LOCALE_TIMERLIST_TYPE_REMIND, text, CMsgBox::mbrBack, CMsgBox::mbBack, NEUTRINO_ICON_INFO); // UTF-8
+		ShowMsg(LOCALE_TIMERLIST_TYPE_REMIND, text, CMsgBox::mbrBack, CMsgBox::mbBack, NEUTRINO_ICON_INFO); // UTF-8
 		delete[] (unsigned char*) data;
 		return messages_return::handled;
 	}
@@ -3962,19 +3930,6 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 						g_RCInput->postMsg(NeutrinoMessages::EVT_ZAP_FAILED, data);
 				}
 			}
-		}
-	}
-	else if( msg == NeutrinoMessages::AVINPUT_ON ) {
-		if( mode != NeutrinoModes::mode_avinput ) {
-			AVInputMode( true );
-		}
-		else
-			CVFD::getInstance()->setMode(CVFD::MODE_AVINPUT);
-	}
-
-	else if( msg == NeutrinoMessages::AVINPUT_OFF ) {
-		if( mode == NeutrinoModes::mode_avinput ) {
-			AVInputMode( false );
 		}
 	}
 	else if (msg == NeutrinoMessages::EVT_START_PLUGIN) {
@@ -4275,34 +4230,6 @@ void CNeutrinoApp::tvMode( bool rezap )
 	audioDecoder->SetSyncMode((AVSYNC_TYPE)g_settings.avsync);
 }
 
-void CNeutrinoApp::AVInputMode(bool bOnOff)
-{
-	//printf( (bOnOff) ? "mode: avinput on\n" : "mode: avinput off\n" );
-
-	if (bOnOff) {
-		// AVInput AN
-		frameBuffer->useBackground(false);
-		frameBuffer->paintBackground();
-
-		CVFD::getInstance()->setMode(CVFD::MODE_AVINPUT);
-		lastMode = mode;
-		mode = NeutrinoModes::mode_avinput;
-	} else {
-		// AVInput AUS
-		mode = NeutrinoModes::mode_unknown;
-		//re-set mode
-		if( lastMode == NeutrinoModes::mode_radio || lastMode == NeutrinoModes::mode_webradio) {
-			radioMode(false);
-		}
-		else if( lastMode == NeutrinoModes::mode_tv || lastMode == NeutrinoModes::mode_webtv) {
-			tvMode(false);
-		}
-		else if( lastMode == NeutrinoModes::mode_standby ) {
-			standbyMode(true);
-		}
-	}
-}
-
 void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 {
 	//static bool wasshift = false;
@@ -4319,8 +4246,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 		cecsetup.setCECSettings(false);
 #endif
 		CVFD::getInstance()->ShowText("standby...");
-		if( mode == NeutrinoModes::mode_avinput ) {
-		}
 		g_InfoViewer->setUpdateTimer(0); // delete timer
 		StopSubtitles();
 		if(SDTreloadChannels && !CRecordManager::getInstance()->RecordingStatus()){
@@ -4605,10 +4530,6 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 	else if (actionKey=="radio")//used in mainmenu
 	{
 		switchTvRadioMode(NeutrinoModes::mode_radio);
-		returnval = menu_return::RETURN_EXIT_ALL;
-	}
-	else if (actionKey=="avinput") {
-		g_RCInput->postMsg( NeutrinoMessages::AVINPUT_ON, 0 );
 		returnval = menu_return::RETURN_EXIT_ALL;
 	}
 	else if (actionKey=="savesettings") {

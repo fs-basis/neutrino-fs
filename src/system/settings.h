@@ -232,6 +232,7 @@ struct SNeutrinoSettings
 	int fan_speed;
 	int infobar_show;
 	int infobar_show_channellogo;
+	int infobar_show_numbers;
 	int infobar_progressbar;
 	int infobar_casystem_display;
 	int infobar_casystem_frame;

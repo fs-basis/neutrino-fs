@@ -287,5 +287,6 @@
 #define NEUTRINO_ICON_STAR_ON		"star-on"
 #define NEUTRINO_ICON_STAR_OFF		"star-off"
 #define NEUTRINO_ICON_TMDB		"tmdb"
+#define NEUTRINO_ICON_TMDB_HEAD	"tmdb_head"
 
 #endif /* __gui_widget_icons_h__ */

@@ -534,7 +534,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	g_settings.infobar_sat_display = configfile.getBool("infobar_sat_display" , false );
 	g_settings.infobar_show_channeldesc = configfile.getBool("infobar_show_channeldesc" , false );
-	g_settings.infobar_show_numbers = configfile.getBool("infobar_show_numbers" , 0 );
+	g_settings.infobar_show_numbers = configfile.getInt32("infobar_show_numbers" , 0 );
 	g_settings.infobar_subchan_disp_pos = configfile.getInt32("infobar_subchan_disp_pos" , 0 );
 	g_settings.infobar_buttons_usertitle = configfile.getBool("infobar_buttons_usertitle", false );
 	g_settings.infobar_analogclock = configfile.getInt32("infobar_analogclock", 0);

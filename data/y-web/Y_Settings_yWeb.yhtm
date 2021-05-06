@@ -117,18 +117,10 @@ select {
 						<option value="-2">SPARK | (alt)</option>
 						<option value="-1">SPARK | (neu)</option>
 						<option value="0" selected="selected">{=L:automatic=}</option>
-						<option value="1">CST HD-1 | BSE</option>
-						<option value="2">CST HD-1plus | Neo</option>
-						<option value="3">CST HD-1plus | Zee/Neo2</option>
-						<option value="4">CST HD-1plus | Neo Twin</option>
-						<option value="5">CST HD-2 | Tank</option>
-						<option value="6">CST HD-2 | Trinity</option>
-						<option value="7">CST HD-2 | Link</option>
-						<option value="8">CST HD-2 | Trinity Duo</option>
-						<option value="9">AX | HD51</option>
-						<option value="10">Mutant | HD51</option>
-						<option value="11">Zgemma | H7</option>
-						<option value="12">WWIO | BRE2ZE 4k</option>
+						<option value="1">AX | HD51</option>
+						<option value="2">Mutant | HD51</option>
+						<option value="3">Zgemma | H7</option>
+						<option value="4">WWIO | BRE2ZE 4k</option>
 					</select>
 				</td>
 			</tr>

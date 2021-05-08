@@ -81,8 +81,7 @@ install_DATA =	accept.png \
 		zap.png
 
 if BOXMODEL_HD51
-install_DATA += rc_ax_hd51.png \
-		rc_mutant_hd51.png
+install_DATA += rc_ax_hd51.png
 endif
 
 if BOXMODEL_H7

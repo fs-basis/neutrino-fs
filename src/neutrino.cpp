@@ -3029,16 +3029,13 @@ void CNeutrinoApp::RealRun()
 					ShowMsg(LOCALE_MESSAGEBOX_ERROR, LOCALE_BOXMODE12_NOT_ACTIVATED, CMsgBox::mbrOk, CMsgBox::mbOk, NEUTRINO_ICON_ERROR);
 				else
 				{
-					if (!avinput_pip) {
-						if (CZapit::getInstance()->GetPipChannelID())
-							CZapit::getInstance()->StopPip();
+					if (CZapit::getInstance()->GetPipChannelID())
+						CZapit::getInstance()->StopPip();
+
+					if (!avinput_pip)
 						StartAVInputPiP();
-					} else {
-						if (CZapit::getInstance()->GetPipChannelID())
-							CZapit::getInstance()->StopPip();
-						else
-							StopAVInputPiP();
-					}
+					else
+						StopAVInputPiP();
 				}
 			}
 			else if (msg == (neutrino_msg_t) g_settings.key_pip_setup) {
@@ -4823,16 +4820,14 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 
 #ifdef ENABLE_PIP
 	else if (actionKey=="avinput_pip") {
-		if (!avinput_pip) {
-			if (CZapit::getInstance()->GetPipChannelID())
-				CZapit::getInstance()->StopPip();
+		if (CZapit::getInstance()->GetPipChannelID())
+			CZapit::getInstance()->StopPip();
+
+		if (!avinput_pip)
 			StartAVInputPiP();
-		} else {
-			if (CZapit::getInstance()->GetPipChannelID())
-				CZapit::getInstance()->StopPip();
-			else
-				StopAVInputPiP();
-		}
+		else
+			StopAVInputPiP();
+
 		returnval = menu_return::RETURN_EXIT_ALL;
 	}
 #endif

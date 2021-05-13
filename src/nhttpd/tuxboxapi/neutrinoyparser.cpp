@@ -855,7 +855,6 @@ std::string CNeutrinoYParser::func_get_boxtype(CyhookHandler *, std::string)
 
 	std::string boxname(g_info.hw_caps->boxname);
 
-
 	return boxvendor + " " + boxname;
 }
 //-------------------------------------------------------------------------

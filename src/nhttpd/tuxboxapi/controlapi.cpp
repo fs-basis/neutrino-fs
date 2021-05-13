@@ -837,7 +837,7 @@ void CControlAPI::InfoCGI(CyhookHandler *hh)
 
 void CControlAPI::HWInfoCGI(CyhookHandler *hh)
 {
-	static CNetAdapter netadapter; 
+	static CNetAdapter netadapter;
 	std::string eth_id = netadapter.getMacAddr();
 	std::transform(eth_id.begin(), eth_id.end(), eth_id.begin(), ::tolower);
 
@@ -1540,7 +1540,7 @@ void CControlAPI::GetBouquetsCGI(CyhookHandler *hh)
 		mode = CZapitClient::MODE_TV;
 	else if (hh->ParamList["mode"].compare("RADIO") == 0)
 		mode = CZapitClient::MODE_RADIO;
- 
+
 	std::string bouquet;
 	for (int i = 0, size = (int) g_bouquetManager->Bouquets.size(); i < size; i++) {
 		std::string item = "";
@@ -1744,7 +1744,7 @@ inline static bool sortByDateTime (const CChannelEvent& a, const CChannelEvent& 
 }
 extern const char * GetGenre(const unsigned char contentClassification); // UTF-8
 
-void CControlAPI::EpgSearchXMLCGI(CyhookHandler *hh) 
+void CControlAPI::EpgSearchXMLCGI(CyhookHandler *hh)
 {
 	SendFoundEvents(hh, true);
 }

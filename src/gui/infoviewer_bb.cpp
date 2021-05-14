@@ -146,7 +146,7 @@ void CInfoViewerBB::getBBIconInfo()
 	showBBIcons_width = 0;
 	BBarY 			= g_InfoViewer->BoxEndY + bottom_bar_offset;
 	BBarFontY 		= BBarY + InfoHeightY_Info - (InfoHeightY_Info - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_FOOT]->getHeight()) / 2; /* center in buttonbar */
-	bbIconMinX 		= g_InfoViewer->BoxEndX - OFFSET_INNER_MID - OFFSET_INNER_MID;
+	bbIconMinX 		= g_InfoViewer->BoxEndX - OFFSET_INNER_LARGE - OFFSET_INNER_MID;
 	bool isRadioMode	= (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_radio || CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webradio);
 
 	for (int i = 0; i < CInfoViewerBB::ICON_MAX; i++) {

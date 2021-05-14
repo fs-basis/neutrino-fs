@@ -168,7 +168,7 @@ std::string  CNeutrinoYParser::func_mount_get_list(CyhookHandler *, std::string)
 		ynr=itoa(i);
 		ysel = ((i==0) ? "checked=\"checked\"" : "");
 		yitype = Config->getInt32("network_nfs_type_"+ynr,0);
-		ytype = ( (yitype==0) ? "NFS" :((yitype==1) ? "CIFS" : "FTPFS") );
+		ytype = ( (yitype==0) ? "NFS" : "CIFS" );
 		yip = Config->getString("network_nfs_ip_"+ynr,"");
 		ydir = Config->getString("network_nfs_dir_"+ynr,"");
 		ylocal_dir = Config->getString("network_nfs_local_dir_"+ynr,"");
@@ -473,14 +473,14 @@ std::string CNeutrinoYParser::func_get_bouquets_with_epg(CyhookHandler *hh, std:
 					, channel->getChannelID() & 0xFFFFFFFFFFFFULL
 				);
 		}
-#if 0
+
 		yresult += string_printf("<a href=\"javascript:do_stream('" PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS "','%s')\">"
 				"<img src=\"/images/stream.png\" alt=\"Stream\" title=\"Stream\" />"
 				"</a>\n"
 				, channel->getChannelID()
 				, channel->getName().c_str()
 			);
-#endif
+
 		yresult += string_printf("\n&nbsp;&nbsp;<a href=\"/control/build_playlist?id=" PRINTF_CHANNEL_ID_TYPE_NO_LEADING_ZEROS "\"><img src=\"/images/vlc.png\" alt=\"VLC-Link\" style=\"border: 0px\" /></a>",channel->getChannelID());
 
 		yresult += "</td></tr></table>\n</td>\n</tr>\n";
@@ -801,7 +801,7 @@ std::string  CNeutrinoYParser::func_unmount_get_list(CyhookHandler *, std::strin
 		in >> ymount >> ylocal_dir >> yfstype;
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		yfstype = trim(yfstype);
-		if( (yfstype == "nfs") || (yfstype == "ftp") || (yfstype == "lufsd") )
+		if( (yfstype == "nfs") || (yfstype == "ftp") )
 		{
 			mounts=ylocal_dir +" on "+ ymount + " ("+yfstype+")";
 			ysel = ((j==0) ? "checked=\"checked\"" : "");

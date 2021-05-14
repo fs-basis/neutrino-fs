@@ -236,7 +236,7 @@ void CInfoViewer::start ()
 
 	initClock();
 	time_height = std::max(ChanHeight / 2, clock->getHeight());
-	time_width = clock->getWidth();
+	time_width = clock->getWidth(); // - OFFSET_INNER_MIN ?
 
 	analogclock_offset = !g_settings.infobar_analogclock ? 0 : OFFSET_INNER_MID;
 	analogclock_size   = !g_settings.infobar_analogclock ? 0 : InfoHeightY - 2*analogclock_offset;

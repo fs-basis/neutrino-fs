@@ -92,8 +92,6 @@ main.tools=Tools
 main.tools_desc=Mounts, WOL, Expert Tools
 main.settings=Settings
 main.settings_desc=Settings for Box, Web...
-main.extensions=Extensions
-main.extensions_desc=User Extensions ...
 main.info=Info
 main.info_desc=Information about yWeb
 

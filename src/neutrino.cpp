@@ -711,7 +711,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.network_nfs[i].dir = configfile.getString("network_nfs_dir_" + i_str, "");
 		g_settings.network_nfs[i].local_dir = configfile.getString("network_nfs_local_dir_" + i_str, "");
 		if (g_settings.network_nfs[i].local_dir.empty())
-			g_settings.network_nfs[i].local_dir = "/mnt/mnt" + i_str;
+			g_settings.network_nfs[i].local_dir = "/mnt/nfs" + i_str;
 		g_settings.network_nfs[i].automount = configfile.getInt32("network_nfs_automount_" + i_str, 0);
 		g_settings.network_nfs[i].type = configfile.getInt32("network_nfs_type_" + i_str, 0);
 		g_settings.network_nfs[i].username = configfile.getString("network_nfs_username_" + i_str, "" );

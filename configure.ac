@@ -198,7 +198,6 @@ if test "$enable_dynamicdemux" = "yes"; then
 	AC_DEFINE(DYNAMIC_DEMUX,1,[use dynamic demux])
 fi
 
-
 AC_ARG_ENABLE(arm-acc,
 	AS_HELP_STRING(--disable-arm-acc,disable arm hardware acceleration),
 	,[enable_arm_acc=yes])
@@ -239,6 +238,7 @@ AC_ARG_ENABLE(cleanup,
 AC_ARG_ENABLE(pip,
 	AS_HELP_STRING([--enable-pip], [enable picture in picture support @<:@default=no@:>@]),
 	AC_DEFINE(ENABLE_PIP, 1, [enable picture in picture support]))
+AM_CONDITIONAL(ENABLE_PIP, test "$enable_pip" = "yes")
 
 AC_ARG_ENABLE(testing,
 	AS_HELP_STRING([--enable-testing], [enable development code @<:@default=no@:>@]),

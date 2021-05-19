@@ -1041,7 +1041,6 @@ bool CLCD4l::GetLogoName(uint64_t channel_id, std::string channel_name, std::str
 	return g_PicViewer->GetLogoName(channel_id, channel_name, logo, NULL, NULL, g_settings.lcd4l_logodir);
 #endif
 
-#if 1
 	int h, i, j;
 	char str_channel_id[16];
 	char *upper_name, *lower_name, *p;
@@ -1056,7 +1055,7 @@ bool CLCD4l::GetLogoName(uint64_t channel_id, std::string channel_name, std::str
 
 	sprintf(str_channel_id, "%llx", channel_id & 0xFFFFFFFFFFFFULL);
 	// the directorys to search in
-	std::string strLogoDir[4] = { g_settings.lcd4l_logodir, LOGODIR_VAR, LOGODIR, g_settings.logo_hdd_dir };
+	std::string strLogoDir[4] = { g_settings.lcd4l_logodir };
 	// first the channelname, then the upper channelname, then the lower channelname, then the channel-id
 	std::string strLogoName[4] = { channel_name, (std::string)upper_name, (std::string)lower_name, (std::string)str_channel_id };
 	// first png, then jpg, then gif
@@ -1081,5 +1080,4 @@ bool CLCD4l::GetLogoName(uint64_t channel_id, std::string channel_name, std::str
 	}
 
 	return false;
-#endif
 }

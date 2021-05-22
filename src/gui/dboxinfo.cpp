@@ -342,10 +342,8 @@ void CDBoxInfoWidget::paint()
 	title += g_info.hw_caps->boxvendor;
 	title += " ";
 	title += g_info.hw_caps->boxname;
-#if !HAVE_DUCKBOX_HARDWARE
 	title += " ";
 	title += g_info.hw_caps->boxarch;
-#endif
 	width = std::max(width, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(title, true) + 50);
 
 	if (!header)

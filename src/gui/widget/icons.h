@@ -82,6 +82,7 @@
 
 #define NEUTRINO_ICON_AUDIO		"audio"
 #define NEUTRINO_ICON_BOOKMARK_MANAGER	"bookmarkmanager"
+#define NEUTRINO_IOCN_BOXINFO	"boxinfo"
 #define NEUTRINO_ICON_COLORS		"colors"
 #define NEUTRINO_ICON_EDIT		"edit"
 #define NEUTRINO_ICON_ERROR		"error"

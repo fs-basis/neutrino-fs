@@ -376,34 +376,14 @@ void CDBoxInfoWidget::paint()
 	int ypos=y;
 
 	//paint head
-	std::string title(g_Locale->getText(LOCALE_EXTRA_DBOXINFO));
-#if 0
-	std::map<std::string,std::string> cpuinfo;
-	in.open("/proc/cpuinfo");
-	if (in.is_open()) {
-		std::string line;
-		while (getline(in, line)) {
-			size_t colon = line.find_first_of(':');
-			if (colon != std::string::npos && colon > 1) {
-				std::string key = line.substr(0, colon - 1);
-				std::string val = line.substr(colon + 1);
-				cpuinfo[trim(key)] = trim(val);
-			}
-		}
-		in.close();
-	}
-	if (!cpuinfo["Hardware"].empty()) {
-		title += ": ";
-		title += cpuinfo["Hardware"];
-	} else if (!cpuinfo["machine"].empty()) {
-		title += ": ";
-		title + cpuinfo["machine"];
-	}
-#endif
-	title += ": ";
-//	title += g_info.hw_caps->boxvendor; //FS
+	std::string title; //(g_Locale->getText(LOCALE_EXTRA_DBOXINFO));
+
+//	title += ": ";
+	title += g_info.hw_caps->boxvendor;
 	title += " ";
 	title += g_info.hw_caps->boxname;
+	title += " ";
+	title += g_info.hw_caps->boxarch;
 	width = std::max(width, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(title, true) + 50);
 
 	if (!header)

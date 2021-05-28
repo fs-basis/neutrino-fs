@@ -2858,7 +2858,7 @@ void CNeutrinoApp::RealRun()
 					CRecordManager::getInstance()->StartTimeshift();
 			}
 #ifdef ENABLE_PIP
-			else if (msg == (neutrino_msg_t) g_settings.key_pip_close) {
+			else if ((msg == (neutrino_msg_t) g_settings.key_pip_close) && g_info.hw_caps->can_pip) {
 				int boxmode = getBoxMode();
 				if (boxmode > -1 && boxmode != 12)
 					ShowMsg(LOCALE_MESSAGEBOX_ERROR, LOCALE_BOXMODE12_NOT_ACTIVATED, CMsgBox::mbrOk, CMsgBox::mbOk, NEUTRINO_ICON_ERROR);
@@ -2871,11 +2871,11 @@ void CNeutrinoApp::RealRun()
 						StartPip(CZapit::getInstance()->GetCurrentChannelID());
 				}
 			}
-			else if (msg == (neutrino_msg_t) g_settings.key_pip_setup) {
+			else if ((msg == (neutrino_msg_t) g_settings.key_pip_setup) && g_info.hw_caps->can_pip) {
 				CPipSetup pipsetup;
 				pipsetup.exec(NULL, "");
 			}
-			else if (msg == (neutrino_msg_t) g_settings.key_pip_swap) {
+			else if ((msg == (neutrino_msg_t) g_settings.key_pip_swap) && g_info.hw_caps->can_pip) {
 				t_channel_id pip_channel_id = CZapit::getInstance()->GetPipChannelID();
 				t_channel_id live_channel_id = CZapit::getInstance()->GetCurrentChannelID();
 				if (pip_channel_id && (pip_channel_id != live_channel_id)) {
@@ -4186,7 +4186,8 @@ void CNeutrinoApp::tvMode( bool rezap )
 	}
 
 #ifdef ENABLE_PIP
-	pipDecoder->Pig(g_settings.pip_x, g_settings.pip_y,
+	if (g_info.hw_caps->can_pip)
+		pipDecoder->Pig(g_settings.pip_x, g_settings.pip_y,
 			g_settings.pip_width, g_settings.pip_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
 #endif
@@ -4407,7 +4408,8 @@ void CNeutrinoApp::radioMode( bool rezap)
 	}
 
 #ifdef ENABLE_PIP
-	pipDecoder->Pig(g_settings.pip_radio_x, g_settings.pip_radio_y,
+	if (g_info.hw_caps->can_pip)
+		pipDecoder->Pig(g_settings.pip_radio_x, g_settings.pip_radio_y,
 			g_settings.pip_radio_width, g_settings.pip_radio_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
 #endif
@@ -5150,10 +5152,15 @@ void CNeutrinoApp::getAnnounceEpgName(CTimerd::RecordingInfo * eventinfo, std::s
 bool CNeutrinoApp::StartPip(const t_channel_id channel_id)
 {
 	bool ret = false;
+	if (!g_info.hw_caps->can_pip) return ret;
+
 	CZapitChannel * channel = CServiceManager::getInstance()->FindChannel(channel_id);
 	if (!channel)
 		return ret;
 
+	if (!g_info.hw_caps->can_pip)
+		return ret;
+		
 	if (channel->getRecordDemux() == channel->getPipDemux())
 		CStreamManager::getInstance()->StopStream(channel_id);
 

@@ -2858,7 +2858,8 @@ void CNeutrinoApp::RealRun()
 					CRecordManager::getInstance()->StartTimeshift();
 			}
 #ifdef ENABLE_PIP
-			else if ((msg == (neutrino_msg_t) g_settings.key_pip_close) && g_info.hw_caps->can_pip) {
+			/* else if ((msg == (neutrino_msg_t) g_settings.key_pip_close) && g_info.hw_caps->can_pip) { */
+			else if (msg == (neutrino_msg_t) g_settings.key_pip_close) {
 				int boxmode = getBoxMode();
 				if (boxmode > -1 && boxmode != 12)
 					ShowMsg(LOCALE_MESSAGEBOX_ERROR, LOCALE_BOXMODE12_NOT_ACTIVATED, CMsgBox::mbrOk, CMsgBox::mbOk, NEUTRINO_ICON_ERROR);

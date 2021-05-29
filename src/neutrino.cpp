@@ -4188,9 +4188,11 @@ void CNeutrinoApp::tvMode( bool rezap )
 
 #ifdef ENABLE_PIP
 	if (g_info.hw_caps->can_pip)
+	{
 		pipDecoder->Pig(g_settings.pip_x, g_settings.pip_y,
 			g_settings.pip_width, g_settings.pip_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
+	}
 #endif
 #if 0
 	if(mode != NeutrinoModes::mode_ts /*&& autoshift*/) {
@@ -4410,9 +4412,11 @@ void CNeutrinoApp::radioMode( bool rezap)
 
 #ifdef ENABLE_PIP
 	if (g_info.hw_caps->can_pip)
+	{
 		pipDecoder->Pig(g_settings.pip_radio_x, g_settings.pip_radio_y,
 			g_settings.pip_radio_width, g_settings.pip_radio_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
+	}
 #endif
 	CRecordManager::getInstance()->StopAutoRecord();
 
@@ -5153,15 +5157,13 @@ void CNeutrinoApp::getAnnounceEpgName(CTimerd::RecordingInfo * eventinfo, std::s
 bool CNeutrinoApp::StartPip(const t_channel_id channel_id)
 {
 	bool ret = false;
-	if (!g_info.hw_caps->can_pip) return ret;
+	if (!g_info.hw_caps->can_pip)
+		return ret;
 
 	CZapitChannel * channel = CServiceManager::getInstance()->FindChannel(channel_id);
 	if (!channel)
 		return ret;
 
-	if (!g_info.hw_caps->can_pip)
-		return ret;
-		
 	if (channel->getRecordDemux() == channel->getPipDemux())
 		CStreamManager::getInstance()->StopStream(channel_id);
 

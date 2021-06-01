@@ -367,8 +367,9 @@ void CImageInfo::InitInfoData()
 	v_info.push_back(doc);
 	image_info_t forum	= {LOCALE_IMAGEINFO_FORUM,	config.getString("forum", "http://forum.tuxbox.org")};
 	v_info.push_back(forum);
+	image_info_t devs	= {LOCALE_IMAGEINFO_DEVELOPER,	config.getString("devs", "n/a")};
+	v_info.push_back(devs);
 }
-
 
 //prepare distribution infos
 void CImageInfo::InitInfos()
@@ -403,7 +404,7 @@ void CImageInfo::InitInfos()
 			cc_info->addCCItem(item);
 
 		//add an offset before homepage and license and at the end
-		if (v_info[i].caption == LOCALE_IMAGEINFO_CREATOR || v_info[i].caption == LOCALE_IMAGEINFO_FORUM){
+		if (v_info[i].caption == LOCALE_IMAGEINFO_CREATOR || v_info[i].caption == LOCALE_IMAGEINFO_DEVELOPER){
 			CComponentsShapeSquare *spacer = new CComponentsShapeSquare(1, y_tmp+=item_offset, 1, item_offset);
 			//spacer ist not visible!
 			spacer->allowPaint(false);

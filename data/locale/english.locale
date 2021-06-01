@@ -867,6 +867,7 @@ help_box_title Help
 imageinfo.api API:
 imageinfo.creator Creator:
 imageinfo.date Date:
+imageinfo.developer Developer:
 imageinfo.dokumentation Docs:
 imageinfo.forum Forum:
 imageinfo.gui GUI:

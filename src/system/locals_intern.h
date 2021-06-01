@@ -894,6 +894,7 @@ const char * locale_real_names[] =
 	"imageinfo.api",
 	"imageinfo.creator",
 	"imageinfo.date",
+	"imageinfo.developer",
 	"imageinfo.dokumentation",
 	"imageinfo.forum",
 	"imageinfo.gui",

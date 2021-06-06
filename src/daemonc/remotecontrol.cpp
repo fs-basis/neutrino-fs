@@ -257,6 +257,7 @@ int CRemoteControl::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data
 			else
 				g_RCInput->postMsg(NeutrinoMessages::EVT_PROGRAMLOCKSTATUS, info_CN.current_fsk, false);
 		}
+
 		return messages_return::handled;
 	}
 	else if ( msg == NeutrinoMessages::EVT_NEXTEPG )

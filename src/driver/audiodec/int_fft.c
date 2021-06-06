@@ -5,7 +5,6 @@
         fix_loud()      calculates the loudness of the signal, for
                         each freq point. Result is an integer array,
                         units are dB (values will be negative).
-        iscale()        scale an integer value by (numer/denom).
         fix_mpy()       perform fixed-point multiplication.
         Sinewave[1024]  sinewave normalized to 32767 (= 1.0).
         Loudampl[100]   Amplitudes for lopudnesses from 0 to -99 dB.
@@ -76,15 +75,6 @@ extern fixed Loudampl[N_LOUD];
 int db_from_ampl(fixed re, fixed im);
 fixed fix_mpy(fixed a, fixed b);
 
-/*
-        fix_fft() - perform fast Fourier transform.
-
-        if n>0 FFT is done, if n<0 inverse FFT is done
-        fr[n],fi[n] are real,imaginary arrays, INPUT AND RESULT.
-        size of data = 2**m
-        set inverse to 0=dft, 1=idft
-*/
-
 /*      window() - apply a Hanning window       */
 void window(fixed fr[], int n)
 {
@@ -98,14 +88,6 @@ void window(fixed fr[], int n)
         for(k-=j; i<n; ++i,k-=j)
                 FIX_MPY(fr[i],fr[i],16384-(Sinewave[k]>>1));
 }
-
-/*      fix_loud() - compute loudness of freq-spectrum components.
-        n should be ntot/2, where ntot was passed to fix_fft();
-        6 dB is added to account for the omitted alias components.
-        scale_shift should be the result of fix_fft(), if the time-series
-        was obtained from an inverse FFT, 0 otherwise.
-        loud[] is the loudness, in dB wrt 32767; will be +10 to -N_LOUD.
-*/
 
 /*      db_from_ampl() - find loudness (in dB) from
         the complex amplitude.
@@ -142,10 +124,6 @@ fixed fix_mpy(fixed a, fixed b)
         FIX_MPY(a,a,b);
         return a;
 }
-
-/*
-        iscale() - scale an integer value by (numer/denom)
-*/
 
 #if N_WAVE != 1024
         ERROR: N_WAVE != 1024

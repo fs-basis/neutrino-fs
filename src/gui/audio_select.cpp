@@ -184,7 +184,7 @@ int CAudioSelectMenuHandler::doMenu ()
 
 		CMenuForwarder *fw = new CMenuForwarder(is_mp ? mp->getAPIDDesc(i).c_str() : g_RemoteControl->current_PIDs.APIDs[i].desc,
 				true, perc_str[i], this, "s", CRCInput::convertDigitToKey(i+0));
-		fw->setItemButton(NEUTRINO_ICON_BUTTON_OKAY, true);
+		//fw->setItemButton(NEUTRINO_ICON_BUTTON_OKAY, true);
 		fw->setMarked(sel_apid == i);
 
 		AudioSelector->addItem(fw, sel_apid == i);

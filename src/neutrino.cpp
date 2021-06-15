@@ -1159,6 +1159,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		dprintf(DEBUG_NORMAL, "error while saving scan-settings!\n");
 	}
 
+	// clear configfile
+	configfile.clear();
+
 	//theme/color options
 	CThemes::setTheme(configfile);
 

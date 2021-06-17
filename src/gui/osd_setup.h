@@ -86,7 +86,7 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 		void showOsdScreensaverSetup(CMenuWidget *menu_screensaver);
 		void paintWindowSize(int w, int h);
 
- 		void AddFontSettingItem(CMenuWidget &font_Settings, const SNeutrinoSettings::FONT_TYPES number_of_fontsize_entry);
+		void AddFontSettingItem(CMenuWidget &font_Settings, const SNeutrinoSettings::FONT_TYPES number_of_fontsize_entry);
 		void resetRadioText();
 	public:
 		enum INFOBAR_CHANNEL_LOGO_POS_OPTIONS
@@ -109,7 +109,7 @@ class COsdSetup : public CMenuTarget, public CChangeObserver
 			PRESET_SCREEN_A,
 			PRESET_SCREEN_B
 		};
-		
+
 		COsdSetup();
 		~COsdSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);

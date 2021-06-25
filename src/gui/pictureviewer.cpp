@@ -188,6 +188,8 @@ int CPictureViewerGui::exec(CMenuTarget* parent, const std::string & actionKey)
 	if (parent)
 		parent->hide();
 
+	exec_controlscript(PICTUREVIEWER_START_SCRIPT);
+
 	// remember last mode
 	m_LastMode = CNeutrinoApp::getInstance()->getMode();
 	// tell neutrino we're in pic_mode
@@ -216,6 +218,8 @@ int CPictureViewerGui::exec(CMenuTarget* parent, const std::string & actionKey)
 		//g_Zapit->unlockPlayBack();
 		CZapit::getInstance()->EnablePlayback(true);
 	}
+
+	exec_controlscript(PICTUREVIEWER_END_SCRIPT);
 
 	// Restore previous background
 	if (usedBackground) {

@@ -66,8 +66,8 @@
 #include <driver/screen_max.h>
 #include <driver/display.h>
 
-
 #include <system/settings.h>
+#include <system/helpers.h>
 
 #include <algorithm>
 #include <sys/stat.h>

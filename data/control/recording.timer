@@ -1,5 +1,6 @@
 #!/bin/sh
-#echo "Timer-Aufnahme..." >> /tmp/test.txt
+
+echo -e "\033[01;32mAufnahme Timer.\033[00m"
 #if [ -e /dev/dbox/oled0 ]; then
 #	CVFD=/dev/dbox/oled0
 #else
@@ -24,8 +25,6 @@ if [ -f /var/etc/msettings.conf ]; then
 		echo "3" > /proc/sys/vm/drop_caches
 		touch /tmp/.ram_cleaner_pause
 	fi
-	echo -e "\033[01;31mRam Clean Stop......\033[00m"
 fi
 touch /tmp/.recording
-	echo -e "\033[01;32mAufnahme Timer......\033[00m"
 exit 0

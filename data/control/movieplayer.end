@@ -1,4 +1,6 @@
 #!/bin/sh
+
+echo -e "\033[01;32mMovieplayer beendet.\033[00m"
 # RAM-Cleaner starten
 if [ -f /var/etc/msettings.conf ]; then
 	if [ "$(grep -i "RAMCLEAN=" /var/etc/msettings.conf | cut -d "=" -f 2)" != "0" -a ! -e /tmp/.recording ]; then
@@ -6,7 +8,5 @@ if [ -f /var/etc/msettings.conf ]; then
 		echo "3" > /proc/sys/vm/drop_caches
 		rm -f /tmp/.ram_cleaner_pause
 	fi
-	echo -e "\033[01;31mRam Clean start......\033[00m"
 fi
-	echo -e "\033[01;32mMovieplayer wird beendet......\033[00m"
 exit 0

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-echo -e "\033[01;32m......\033[00m"
+echo -e "\033[01;32mNeutrino Start.\033[00m"
 exit 0

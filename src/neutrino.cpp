@@ -1230,8 +1230,10 @@ void CNeutrinoApp::setScreenSettings()
 /**************************************************************************************
 *          CNeutrinoApp -  saveSetup, save the application-settings                   *
 **************************************************************************************/
+#if 0
 extern font_sizes_struct neutrino_font[];
 extern const char * locale_real_names[]; /* #include <system/locals_intern.h> */
+#endif
 
 void CNeutrinoApp::saveSetup(const char * fname)
 {
@@ -1241,6 +1243,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		dprintf(DEBUG_NORMAL, "error while saving scan-settings!\n");
 	}
 
+#if 0
 	// read font settings
 	int fontsizes[SNeutrinoSettings::FONT_TYPE_COUNT];
 	for (int i = 0; i < SNeutrinoSettings::FONT_TYPE_COUNT; i++)
@@ -1256,6 +1259,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	{
 		configfile.setInt32(locale_real_names[neutrino_font[i].name], fontsizes[i]);
 	}
+#endif
 
 	//theme/color options
 	CThemes::setTheme(configfile);

@@ -24,7 +24,7 @@
 		<S i="33a7" t="3eb" on="1" s="192" frq="11244" n="ATV2"/>
 		<S i="14bd" t="407" on="1" s="192" frq="11671" n="sixx AUSTRIA"/>
 		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV"/>
-		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="VH1"/>
+		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
 		<S i="7008" t="436" on="1" s="192" frq="11973" n="NICK/CC+1"/>
 		<S i="7004" t="436" on="1" s="192" frq="11973" n="Comedy Central"/>
@@ -107,7 +107,7 @@
 		<S i="80" t="b" on="85" s="192" frq="12382" n="E! Entertainm. HD"/>
 		<S i="7c" t="c" on="85" s="192" frq="12304" n="Fox HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
-		<S i="71" t="b" on="85" s="192" frq="12382" n="History HD"/>
+		<S i="71" t="b" on="85" s="192" frq="12382" n="HISTORY Channel HD"/>
 		<S i="191" t="b" on="85" s="192" frq="12382" n="Jukebox"/>
 		<S i="13" t="2" on="85" s="192" frq="11758" n="Junior"/>
 		<S i="196" t="2" on="85" s="192" frq="11758" n="Kinowelt TV"/>
@@ -144,6 +144,7 @@
 		<S i="65" t="9" on="85" s="192" frq="11171" n="Universal TV HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
+		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
 		<S i="ef78" t="3f9" on="1" s="192" frq="11464" n="Pro7 MAXX HD"/>
 		<S i="ef74" t="3f9" on="1" s="192" frq="11464" n="SAT.1 HD"/>
@@ -228,8 +229,11 @@
 		<S i="11" t="3" on="85" s="192" frq="11720" n="Sky Sport F1 HD"/>
 	</Bouquet>
 	<Bouquet name="Radio">
-		<S i="6f26" t="445" on="1" s="192" frq="12266" n="alt_Antenne Brandenburg"/>
+		<S i="a1" t="7" on="85" s="192" frq="12148" n="ERF Plus"/>
+		<S i="a2" t="7" on="85" s="192" frq="12148" n="ERF Pop"/>
+		<S i="13fc" t="403" on="1" s="192" frq="11612" n="TSR Turkce"/>
 		<S i="238e" t="44a" on="1" s="192" frq="12363" n="AUDIO PRIMO"/>
+		<S i="6f26" t="445" on="1" s="192" frq="12266" n="alt_Antenne Brandenburg"/>
 		<S i="6ef4" t="445" on="1" s="192" frq="12266" n="alt_BR24"/>
 		<S i="6ef8" t="445" on="1" s="192" frq="12266" n="alt_BR24live"/>
 		<S i="6ef0" t="445" on="1" s="192" frq="12266" n="alt_Bayern 1"/>
@@ -247,8 +251,6 @@
 		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
 		<S i="6d6f" t="437" on="1" s="192" frq="11954" n="DRadio DokDeb"/>
 		<S i="ac" t="5" on="85" s="192" frq="12460" n="egoFM"/>
-		<S i="a1" t="7" on="85" s="192" frq="12148" n="ERF Plus"/>
-		<S i="a2" t="7" on="85" s="192" frq="12148" n="ERF Pop"/>
 		<S i="3174" t="459" on="1" s="192" frq="12633" n="HIT RADIO FFH"/>
 		<S i="316e" t="459" on="1" s="192" frq="12633" n="ffn"/>
 		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4"/>
@@ -324,7 +326,6 @@
 		<S i="6f34" t="445" on="1" s="192" frq="12266" n="alt_SWR3"/>
 		<S i="6f35" t="445" on="1" s="192" frq="12266" n="alt_SWR4 BW"/>
 		<S i="6f36" t="445" on="1" s="192" frq="12266" n="alt_SWR4 RP"/>
-		<S i="13fc" t="403" on="1" s="192" frq="11612" n="TSR Turkce"/>
 		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
 		<S i="101a" t="451" on="35" s="192" frq="12515" n="VRT Radio1"/>
 		<S i="101b" t="451" on="35" s="192" frq="12515" n="VRT Radio2"/>

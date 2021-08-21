@@ -1248,7 +1248,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("ci_check_live", g_settings.ci_check_live);
 	configfile.setInt32("ci_tuner", g_settings.ci_tuner);
 
-	for (unsigned int i = 0; i < g_info.hw_caps->has_CI; i++) {
+	for (int i = 0; i < g_info.hw_caps->has_CI; i++) {
 		sprintf(cfg_key, "ci_clock_%d", i);
 		configfile.setInt32(cfg_key, g_settings.ci_clock[i]);
 		sprintf(cfg_key, "ci_ignore_messages_%d", i);

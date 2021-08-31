@@ -540,15 +540,18 @@ std::string CyhookHandler::outObject(std::string _key, std::string _content, boo
 }
 
 //-----------------------------------------------------------------------------
-std::string CyhookHandler::outValue(std::string _content, bool compat) {
+std::string CyhookHandler::outValue(std::string _content, bool _xml_cdata) {
 	std::string result = "";
 	switch (outType) {
 	case xml:
-		if (compat)
-			result += "<![CDATA[";
-		result += convert_UTF8_To_UTF8_XML(utf8_check_is_valid(_content) ? _content.c_str() : iso_8859_1_to_utf8(_content).c_str());
-		if (compat)
-			result += "]]>";
+		if (_xml_cdata)
+		{
+			result = "<![CDATA[" + _content + "]]>";;
+		}
+		else
+		{
+			result = convert_UTF8_To_UTF8_XML(utf8_check_is_valid(_content) ? _content.c_str() : iso_8859_1_to_utf8(_content).c_str());
+		}
 		break;
 	case json:
 		result = json_convert_string(_content);

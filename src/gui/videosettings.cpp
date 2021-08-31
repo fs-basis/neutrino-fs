@@ -334,6 +334,8 @@ int CVideoSettings::showVideoSetup()
 	md->setHint("", LOCALE_MENU_HINT_VIDEO_MIXER_COLOR);
 	videosetup->addItem(md);
 #endif
+
+#if !HAVE_GENERIC_HARDWARE
 	CMenuForwarder *mf;
 	CMenuOptionNumberChooser *mc;
 
@@ -379,6 +381,7 @@ int CVideoSettings::showVideoSetup()
 	videosetup->addItem(mf);
 #endif
 
+#endif
 #ifdef ENABLE_PIP
 	CPipSetup pip;
 	CMenuForwarder * pipsetup = new CMenuForwarder(LOCALE_VIDEOMENU_PIP, g_info.hw_caps->can_pip, NULL, &pip, NULL, CRCInput::convertDigitToKey(shortcut++));

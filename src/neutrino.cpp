@@ -612,13 +612,13 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	//epg dir
 #if BOXMODEL_UFS910
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
-	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 0);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 17500);
-	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 0);
+	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 1);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 7500);
+	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 1);
 #else
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 14);
-	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 360);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 80000);
+	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 24);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 90000);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 1);
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.epg_dir              = configfile.getString("epg_dir", "/mnt/nfs/epg");

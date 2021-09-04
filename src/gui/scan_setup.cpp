@@ -1728,7 +1728,7 @@ void CScanSetup::addScanMenuCable(CMenuWidget *menu)
 int CScanSetup::addScanOptionsItems(CMenuWidget *options_menu, const int &shortcut)
 {
 	printf("[neutrino] CScanSetup call %s...\n", __FUNCTION__);
-	int shortCut = shortcut;
+	int shortCut = 0;
 
 	CMenuOptionChooser	*fec = NULL;
 	CMenuOptionChooser	*mod = NULL;
@@ -1845,7 +1845,7 @@ int CScanSetup::addScanOptionsItems(CMenuWidget *options_menu, const int &shortc
 int CScanSetup::addListFlagsItems(CMenuWidget *listflags_menu, const int &shortcut, bool manual)
 {
 	printf("[neutrino] CScanSetup call %s...\n", __FUNCTION__);
-	int shortCut = shortcut;
+	int shortCut = 0;
 
 	CMenuOptionChooser *useNit;
 	if (manual)

@@ -107,14 +107,16 @@
 		<S i="80" t="b" on="85" s="192" frq="12382" n="E! Entertainm. HD"/>
 		<S i="7c" t="c" on="85" s="192" frq="12304" n="Fox HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
+		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV"/>
 		<S i="71" t="b" on="85" s="192" frq="12382" n="HISTORY Channel HD"/>
 		<S i="191" t="b" on="85" s="192" frq="12382" n="Jukebox"/>
 		<S i="13" t="2" on="85" s="192" frq="11758" n="Junior"/>
-		<S i="196" t="2" on="85" s="192" frq="11758" n="Kinowelt TV"/>
+		<S i="196" t="b" on="85" s="192" frq="12382" n="Kinowelt TV"/>
 		<S i="a8" t="b" on="85" s="192" frq="12382" n="Motorvision TV"/>
 		<S i="76" t="6" on="85" s="192" frq="11914" n="Nat Geo Wild HD"/>
 		<S i="70" t="d" on="85" s="192" frq="11992" n="NatGeo HD"/>
-		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV"/>
+		<S i="10" t="3" on="85" s="192" frq="11720" n="Sky Documentaries HD"/>
+		<S i="f" t="2" on="85" s="192" frq="11758" n="Sky Nature HD"/>
 		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky One HD"/>
 		<S i="6e" t="d" on="85" s="192" frq="11992" n="Sky Atlantic HD"/>
 		<S i="a" t="4" on="85" s="192" frq="12032" n="Sky Cinema Premieren"/>
@@ -127,7 +129,7 @@
 		<S i="e" t="2" on="85" s="192" frq="11758" n="Sky Comedy HD"/>
 		<S i="197" t="4" on="85" s="192" frq="12032" n="Sky Cinema Family"/>
 		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
-		<S i="29" t="2" on="85" s="192" frq="11758" n="Sky Cinema Best Of"/>
+		<S i="29" t="4" on="85" s="192" frq="12032" n="Sky Cinema Best Of"/>
 		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Best Of HD"/>
 		<S i="204" t="6" on="85" s="192" frq="11914" n="Sky Cinema Classics"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
@@ -176,7 +178,7 @@
 		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
 		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
-		<S i="1013" t="451" on="35" s="192" frq="12515" n="doxx"/>
+		<S i="1013" t="451" on="35" s="192" frq="12515" n="Bergblick"/>
 	</Bouquet>
 	<Bouquet name="Sport">
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>

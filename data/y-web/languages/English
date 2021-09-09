@@ -215,6 +215,7 @@ set.menue.audio_player=Audioplayer
 set.menue.movieplayer=Movieplayer
 set.menue.pictureviewer=Picture Viewer
 set.menue.key_settings=Key Layout
+set.menue.xmltv=XMLTV
 
 ========Neutrino Settings - Recording
 set.rec.rec_dest=Recoring destination
@@ -357,6 +358,9 @@ set.timer.klack.url=Personal RSS TV-Planer URL
 set.timer.klack.security_code_desc=your klack security code to get your data without login
 set.timer.klack.security_code=Security Code
 set.timer.channel_name_replacelist=Channel name replace list
+
+============Settings XMLTV
+set.xmltv.header=XMLTV Settings
 
 ============ Tools Info
 tools.info.show_messages=Kernel Messages

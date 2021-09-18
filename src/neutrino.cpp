@@ -5063,8 +5063,7 @@ void stop_daemons(bool stopall, bool for_flash)
 	if (!for_flash) {
 		CVFD::getInstance()->Clear();
 	}
-
-	{
+	if(stopall && !for_flash) {
 		if (powerManager) {
 			/* if we were in standby, leave it otherwise, the next
 			   start of neutrino will fail in "_write_gxa" in

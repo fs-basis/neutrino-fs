@@ -4572,9 +4572,10 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 		exec_controlscript(NEUTRINO_ENTER_STANDBY_SCRIPT);
 
 		CEpgScan::getInstance()->Start(true);
+#if 0 // unused?!
 		bool alive = recordingstatus || CEpgScan::getInstance()->Running() ||
 			CStreamManager::getInstance()->StreamStatus();
-
+#endif
 		//fan speed
 		if (g_info.hw_caps->has_fan)
 			CFanControlNotifier::setSpeed(1);

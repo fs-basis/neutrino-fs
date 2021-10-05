@@ -605,9 +605,11 @@ struct SNeutrinoSettings
 	std::string screenshot_dir;
 
 	int key_current_transponder;
+#if ENABLE_PIP
 	int key_pip_close;
 	int key_pip_setup;
 	int key_pip_swap;
+#endif
 	int key_format_mode_active;
 	int key_pic_mode_active;
 	int key_pic_size_active;
@@ -626,6 +628,8 @@ struct SNeutrinoSettings
 	int mode_left_right_key_tv;
 
 	int spectrum;
+
+#if ENABLE_PIP
 	int pip_width;
 	int pip_height;
 	int pip_x;
@@ -634,6 +638,7 @@ struct SNeutrinoSettings
 	int pip_radio_height;
 	int pip_radio_x;
 	int pip_radio_y;
+#endif
 	int bigFonts;
 	int window_size;
 	int window_width;

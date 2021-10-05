@@ -72,9 +72,9 @@
 		<S i="2b7a" t="3f3" on="1" s="192" frq="11362" n="zdf_neo HD"/>
 		<S i="2ba2" t="3f2" on="1" s="192" frq="11347" n="ZDFinfo HD"/>
 		<S i="2ee3" t="441" on="1" s="192" frq="12188" n="RTL Television"/>
-		<S i="2f30" t="441" on="1" s="192" frq="12188" n="RTLplus"/>
-		<S i="2f3a" t="441" on="1" s="192" frq="12188" n="n-tv"/>
-		<S i="2ef4" t="441" on="1" s="192" frq="12188" n="RTL2"/>
+		<S i="2f30" t="441" on="1" s="192" frq="12188" n="RTLup"/>
+		<S i="2f3a" t="441" on="1" s="192" frq="12188" n="ntv"/>
+		<S i="2ef4" t="441" on="1" s="192" frq="12188" n="RTLZWEI"/>
 		<S i="2f08" t="441" on="1" s="192" frq="12188" n="SUPER RTL"/>
 		<S i="2efe" t="441" on="1" s="192" frq="12188" n="TOGGO plus"/>
 		<S i="2f1c" t="441" on="1" s="192" frq="12188" n="VOX"/>
@@ -87,7 +87,7 @@
 		<S i="33" t="21" on="85" s="192" frq="12480" n="TELE 5"/>
 		<S i="701" t="5" on="85" s="192" frq="12460" n="Disney Channel"/>
 		<S i="332f" t="45b" on="1" s="192" frq="12663" n="Welt der Wunder"/>
-		<S i="32dd" t="45d" on="1" s="192" frq="12692" n="n-tv Austria"/>
+		<S i="32dd" t="45d" on="1" s="192" frq="12692" n="ntv Austria"/>
 		<S i="30" t="5" on="85" s="192" frq="12460" n="N24 DOKU"/>
 		<S i="2775" t="409" on="1" s="192" frq="10964" n="BILD HD"/>
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
@@ -106,7 +106,7 @@
 		<S i="6ffb" t="436" on="1" s="192" frq="11973" n="Nick.Jr."/>
 		<S i="1b" t="d" on="85" s="192" frq="11992" n="Nicktoons"/>
 		<S i="80" t="b" on="85" s="192" frq="12382" n="E! Entertainm. HD"/>
-		<S i="7c" t="c" on="85" s="192" frq="12304" n="Fox HD"/>
+		<S i="7c" t="c" on="85" s="192" frq="12304" n="Sky Replay HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
 		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV"/>
 		<S i="71" t="b" on="85" s="192" frq="12382" n="HISTORY Channel HD"/>
@@ -141,9 +141,9 @@
 		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
 		<S i="31" t="d" on="85" s="192" frq="11992" n="Spiegel TV Wissen"/>
 		<S i="7e" t="c" on="85" s="192" frq="12304" n="SYFY HD"/>
-		<S i="88" t="b" on="85" s="192" frq="12382" n="TNT Comedy HD"/>
-		<S i="8c" t="4" on="85" s="192" frq="12032" n="TNT Film HD"/>
-		<S i="7b" t="9" on="85" s="192" frq="11171" n="TNT Serie HD"/>
+		<S i="88" t="b" on="85" s="192" frq="12382" n="Warner TV Comedy HD"/>
+		<S i="8c" t="4" on="85" s="192" frq="12032" n="Warner TV Film HD"/>
+		<S i="7b" t="9" on="85" s="192" frq="11171" n="Warner TV Serie HD"/>
 		<S i="65" t="9" on="85" s="192" frq="11171" n="Universal TV HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
@@ -159,7 +159,7 @@
 		<S i="5273" t="41d" on="1" s="192" frq="10773" n="Comedy Central HD"/>
 		<S i="ef10" t="421" on="1" s="192" frq="10832" n="RTL HD"/>
 		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
-		<S i="ef15" t="421" on="1" s="192" frq="10832" n="RTLII HD"/>
+		<S i="ef15" t="421" on="1" s="192" frq="10832" n="RTLZWEI HD"/>
 		<S i="2eaf" t="411" on="1" s="192" frq="11082" n="NITRO HD"/>
 		<S i="2e9b" t="411" on="1" s="192" frq="11082" n="SUPER RTL HD"/>
 		<S i="ef11" t="421" on="1" s="192" frq="10832" n="VOX HD"/>
@@ -167,7 +167,7 @@
 		<S i="2774" t="409" on="1" s="192" frq="10964" n="TLC HD"/>
 		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>
 		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
-		<S i="ef14" t="421" on="1" s="192" frq="10832" n="n-tv HD"/>
+		<S i="ef14" t="421" on="1" s="192" frq="10832" n="ntv HD"/>
 		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
 		<S i="2777" t="409" on="1" s="192" frq="10964" n="MTV HD"/>
 		<S i="14b7" t="407" on="1" s="192" frq="11671" n="PULS 4 HD Austria"/>

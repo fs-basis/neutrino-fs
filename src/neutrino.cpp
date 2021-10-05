@@ -4298,8 +4298,9 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 		standby_channel_id = CZapit::getInstance()->GetCurrentChannelID();
 
 		exec_controlscript(NEUTRINO_ENTER_STANDBY_SCRIPT);
-#if 0 // unused ?!
+
 		CEpgScan::getInstance()->Start(true);
+#if 0 // unused?!
 		bool alive = recordingstatus || CEpgScan::getInstance()->Running() ||
 			CStreamManager::getInstance()->StreamStatus();
 #endif

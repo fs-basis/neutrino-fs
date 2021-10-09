@@ -196,13 +196,13 @@ void * nhttpd_main_thread(void *data);
 
 //#define DISABLE_SECTIONSD
 
-extern cVideo * videoDecoder;
+extern cVideo *videoDecoder;
 #ifdef ENABLE_PIP
-extern cVideo *pipDecoder;
-extern cDemux *pipDemux;
+extern cVideo *pipVideoDecoder[3];
+extern cDemux *pipVideoDemux[3];
 #endif
 extern cDemux *videoDemux;
-extern cAudio * audioDecoder;
+extern cAudio *audioDecoder;
 cPowerManager *powerManager;
 
 #ifdef ENABLE_LCD4LINUX
@@ -211,7 +211,7 @@ void stop_lcd4l_support(void);
 void stop_daemons(bool stopall = true, bool for_flash = false);
 void stop_video(void);
 
-CAudioSetupNotifier	* audioSetupNotifier;
+CAudioSetupNotifier * audioSetupNotifier;
 CBouquetList   * bouquetList; // current list
 
 CBouquetList   * TVbouquetList;
@@ -4428,7 +4428,7 @@ void CNeutrinoApp::tvMode( bool rezap )
 #ifdef ENABLE_PIP
 	if (g_info.hw_caps->can_pip)
 	{
-		pipDecoder->Pig(g_settings.pip_x, g_settings.pip_y,
+		pipVideoDecoder[0]->Pig(g_settings.pip_x, g_settings.pip_y,
 			g_settings.pip_width, g_settings.pip_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
 	}
@@ -4702,7 +4702,7 @@ void CNeutrinoApp::radioMode( bool rezap)
 #ifdef ENABLE_PIP
 	if (g_info.hw_caps->can_pip)
 	{
-		pipDecoder->Pig(g_settings.pip_radio_x, g_settings.pip_radio_y,
+		pipVideoDecoder[0]->Pig(g_settings.pip_radio_x, g_settings.pip_radio_y,
 			g_settings.pip_radio_width, g_settings.pip_radio_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
 	}
@@ -4771,20 +4771,20 @@ void CNeutrinoApp::StartAVInputPiP() {
 	if (!g_info.hw_caps->can_pip)
 		return;
 
-	if (!pipDemux) {
-		pipDemux = new cDemux(1);
-		pipDemux->Open(DMX_VIDEO_CHANNEL);
-		if (!pipDecoder) {
-			pipDecoder = new cVideo(0, NULL, NULL, 1);
+	if (!pipVideoDemux[0]) {
+		pipVideoDemux[0] = new cDemux(1);
+		pipVideoDemux[0]->Open(DMX_VIDEO_CHANNEL);
+		if (!pipVideoDecoder[0]) {
+			pipVideoDecoder[0] = new cVideo(0, NULL, NULL, 1);
 		}
 	}
-	pipDemux->SetSource(1, 2);
-	pipDecoder->SetStreamType((VIDEO_FORMAT) 1);
-	pipDemux->Start();
-	pipDecoder->Start(0, 0, 0);
-	pipDecoder->open_AVInput_Device();
-	pipDecoder->Pig(g_settings.pip_x,g_settings.pip_y,g_settings.pip_width,g_settings.pip_height,g_settings.screen_width,g_settings.screen_height);
-	pipDecoder->ShowPig(1);
+	pipVideoDemux[0]->SetSource(1, 2);
+	pipVideoDecoder[0]->SetStreamType((VIDEO_FORMAT) 1);
+	pipVideoDemux[0]->Start();
+	pipVideoDecoder[0]->Start(0, 0, 0);
+	pipVideoDecoder[0]->open_AVInput_Device();
+	pipVideoDecoder[0]->Pig(g_settings.pip_x,g_settings.pip_y,g_settings.pip_width,g_settings.pip_height,g_settings.screen_width,g_settings.screen_height);
+	pipVideoDecoder[0]->ShowPig(1);
 	avinput_pip = true;
 }
 
@@ -4792,10 +4792,10 @@ void CNeutrinoApp::StopAVInputPiP() {
 	if (!g_info.hw_caps->can_pip)
 		return;
 
-	pipDecoder->ShowPig(0);
-	pipDemux->Stop();
-	pipDecoder->Stop();
-	pipDecoder->close_AVInput_Device();
+	pipVideoDecoder[0]->ShowPig(0);
+	pipVideoDemux[0]->Stop();
+	pipVideoDecoder[0]->Stop();
+	pipVideoDecoder[0]->close_AVInput_Device();
 	avinput_pip = false;
 }
 #endif

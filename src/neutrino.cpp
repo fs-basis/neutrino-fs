@@ -186,18 +186,19 @@ void * nhttpd_main_thread(void *data);
 
 //#define DISABLE_SECTIONSD
 
-extern cVideo * videoDecoder;
+extern cVideo *videoDecoder;
 #ifdef ENABLE_PIP
-extern cVideo *pipDecoder;
+extern cVideo *pipVideoDecoder[3];
+extern cDemux *pipVideoDemux[3];
 #endif
 extern cDemux *videoDemux;
-extern cAudio * audioDecoder;
+extern cAudio *audioDecoder;
 cPowerManager *powerManager;
 
 void stop_daemons(bool stopall = true, bool for_flash = false);
 void stop_video(void);
 
-CAudioSetupNotifier	* audioSetupNotifier;
+CAudioSetupNotifier * audioSetupNotifier;
 CBouquetList   * bouquetList; // current list
 
 CBouquetList   * TVbouquetList;
@@ -4202,7 +4203,7 @@ void CNeutrinoApp::tvMode( bool rezap )
 #ifdef ENABLE_PIP
 	if (g_info.hw_caps->can_pip)
 	{
-		pipDecoder->Pig(g_settings.pip_x, g_settings.pip_y,
+		pipVideoDecoder[0]->Pig(g_settings.pip_x, g_settings.pip_y,
 			g_settings.pip_width, g_settings.pip_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
 	}
@@ -4427,7 +4428,7 @@ void CNeutrinoApp::radioMode( bool rezap)
 #ifdef ENABLE_PIP
 	if (g_info.hw_caps->can_pip)
 	{
-		pipDecoder->Pig(g_settings.pip_radio_x, g_settings.pip_radio_y,
+		pipVideoDecoder[0]->Pig(g_settings.pip_radio_x, g_settings.pip_radio_y,
 			g_settings.pip_radio_width, g_settings.pip_radio_height,
 			frameBuffer->getScreenWidth(true), frameBuffer->getScreenHeight(true));
 	}

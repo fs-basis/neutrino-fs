@@ -38,7 +38,7 @@
 #define __USE_FILE_OFFSET64 1
 #endif
 #include "driver/file.h"
-#endif // LCD_UPDATE
+#endif // VFD_UPDATE
 
 #include <pthread.h>
 #include <string>
@@ -61,7 +61,7 @@ class CVFD
                         MODE_PROGRESSBAR,
                         MODE_PROGRESSBAR2,
                         MODE_INFOBOX
-#endif // LCD_UPDATE
+#endif // VFD_UPATE
 
 		};
 		enum AUDIOMODES

@@ -243,7 +243,7 @@ class CMoviePlayerGui : public CMenuTarget
 	void selectChapter();
 #endif
 #if HAVE_ARM_HARDWARE
-	void selectChapter();
+	int selectChapter();
 #endif
 	void selectAutoLang();
 	void parsePlaylist(CFile *file);

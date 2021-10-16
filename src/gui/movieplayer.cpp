@@ -396,7 +396,7 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 	else if (actionKey == "timeshift_rewind") {
 		timeshift = TSHIFT_MODE_REWIND;
 	}
-s	else if (actionKey == "netstream") {
+	else if (actionKey == "netstream") {
 		isHTTP = true;
 		p_movie_info = NULL;
 		is_file_player = true;

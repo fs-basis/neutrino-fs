@@ -235,13 +235,6 @@ class CMoviePlayerGui : public CMenuTarget
 	bool SelectFile();
 	void updateLcd(bool display_playtime = false);
 
-#if 0
-	void selectSubtitle();
-	bool convertSubtitle(std::string &text);
-	void showSubtitle(neutrino_msg_data_t data);
-	void clearSubtitle();
-	void selectChapter();
-#endif
 #if HAVE_ARM_HARDWARE
 	void selectChapter();
 #endif

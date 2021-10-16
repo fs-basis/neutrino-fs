@@ -135,7 +135,7 @@ int CCAMMenuHandler::doMainMenu()
 			char tmp[32];
 			snprintf(tmp, sizeof(tmp), "ca_ci%d", i);
 
-			cammenu->addItem(new CMenuForwarder(name1, true, NULL, this, tmp, CRCInput::RC_1 + cnt++));
+			cammenu->addItem(new CMenuForwarder(name1, true, NULL, this, tmp, CRCInput::RC_0 + cnt++));
 			snprintf(tmp, sizeof(tmp), "ca_ci_reset%d", i);
 			cammenu->addItem(new CMenuForwarder(LOCALE_CI_RESET, true, NULL, this, tmp));
 			memset(name1,0,sizeof(name1));
@@ -358,7 +358,7 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 				if(sublevel)
 					menu->addItem(new CMenuForwarder(convertDVBUTF8(pMenu->choice_item[i], strlen(pMenu->choice_item[i]), 0).c_str(), true, NULL, selector, cnt));
 				else
-					menu->addItem(new CMenuForwarder(convertDVBUTF8(pMenu->choice_item[i], strlen(pMenu->choice_item[i]), 0).c_str(), true, NULL, selector, cnt, CRCInput::convertDigitToKey(i+1)));
+					menu->addItem(new CMenuForwarder(convertDVBUTF8(pMenu->choice_item[i], strlen(pMenu->choice_item[i]), 0).c_str(), true, NULL, selector, cnt, CRCInput::convertDigitToKey(i+0)));
 			}
 			slen = strlen(pMenu->bottom);
 			if(slen) {

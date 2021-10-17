@@ -43,15 +43,15 @@
 #endif
 
 FT_Error LcdFontRenderClass::myFTC_Face_Requester(FTC_FaceID  face_id,
-                            FT_Library  library,
-                            FT_Pointer  request_data,
-                            FT_Face*    aface)
+	FT_Library  library,
+	FT_Pointer  request_data,
+	FT_Face    *aface)
 {
-	return ((LcdFontRenderClass*)request_data)->FTC_Face_Requester(face_id, aface);
+	return ((LcdFontRenderClass *)request_data)->FTC_Face_Requester(face_id, aface);
 }
 
 
-LcdFontRenderClass::LcdFontRenderClass(CLCDDisplay * fb)
+LcdFontRenderClass::LcdFontRenderClass(CLCDDisplay *fb)
 {
 	framebuffer = fb;
 
@@ -101,9 +101,9 @@ void LcdFontRenderClass::InitFontCache()
 	printf("\n");
 }
 
-FT_Error LcdFontRenderClass::FTC_Face_Requester(FTC_FaceID  face_id, FT_Face*    aface)
+FT_Error LcdFontRenderClass::FTC_Face_Requester(FTC_FaceID  face_id, FT_Face    *aface)
 {
-	fontListEntry *font=(fontListEntry *)face_id;
+	fontListEntry *font = (fontListEntry *)face_id;
 	if (!font)
 		return -1;
 
@@ -120,12 +120,12 @@ FT_Error LcdFontRenderClass::FTC_Face_Requester(FTC_FaceID  face_id, FT_Face*   
 
 FTC_FaceID LcdFontRenderClass::getFaceID(const char *family, const char *style)
 {
-	for (fontListEntry *f=font; f; f=f->next)
+	for (fontListEntry *f = font; f; f = f->next)
 	{
 		if ((!strcmp(f->family, family)) && (!strcmp(f->style, style)))
 			return (FTC_FaceID)f;
 	}
-	for (fontListEntry *f=font; f; f=f->next)
+	for (fontListEntry *f = font; f; f = f->next)
 	{
 		if (!strcmp(f->family, family))
 			return (FTC_FaceID)f;
@@ -145,7 +145,7 @@ FT_Error LcdFontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph
 }
 #endif
 
-const char * LcdFontRenderClass::AddFont(const char * const filename)
+const char *LcdFontRenderClass::AddFont(const char *const filename)
 {
 	dprintf(DEBUG_NORMAL, "LcdFontRenderClass::AddFont: adding font %s...\n", filename);
 
@@ -167,9 +167,9 @@ const char * LcdFontRenderClass::AddFont(const char * const filename)
 	n->style    = strdup(face->style_name);
 	FT_Done_Face(face);
 
-	n->next=font;
+	n->next = font;
 	dprintf(DEBUG_NORMAL, "LcdFontRenderClass::AddFont: OK (%s/%s)\n", n->family, n->style);
-	font=n;
+	font = n;
 
 	return n->style;
 }
@@ -183,23 +183,23 @@ LcdFontRenderClass::fontListEntry::~fontListEntry()
 
 LcdFont *LcdFontRenderClass::getFont(const char *family, const char *style, int size)
 {
-	FTC_FaceID id=getFaceID(family, style);
+	FTC_FaceID id = getFaceID(family, style);
 	if (!id)
 		return 0;
 	return new LcdFont(framebuffer, this, id, size);
 }
 
-LcdFont::LcdFont(CLCDDisplay * fb, LcdFontRenderClass *render, FTC_FaceID faceid, int isize)
+LcdFont::LcdFont(CLCDDisplay *fb, LcdFontRenderClass *render, FTC_FaceID faceid, int isize)
 {
 	framebuffer = fb;
-	renderer=render;
+	renderer = render;
 #ifdef FT_NEW_CACHE_API
-	font.face_id=faceid;
+	font.face_id = faceid;
 	font.width  = isize;
 	font.height = isize;
 	font.flags  = FT_LOAD_FORCE_AUTOHINT | FT_LOAD_MONOCHROME;
 #else
-	font.font.face_id=faceid;
+	font.font.face_id = faceid;
 	font.font.pix_width  = isize;
 	font.font.pix_height = isize;
 	font.image_type = ftc_image_mono;
@@ -212,9 +212,9 @@ FT_Error LcdFont::getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit)
 	return renderer->getGlyphBitmap(&font, glyph_index, sbit);
 }
 
-extern int UTF8ToUnicode(const char * &text, const bool utf8_encoded);	//defined in src/driver/fontrenderer.cpp
+extern int UTF8ToUnicode(const char*&text, const bool utf8_encoded);	//defined in src/driver/fontrenderer.cpp
 
-void LcdFont::RenderString(int x, int y, const int width, const char * text, const int color, const int selected, const bool utf8_encoded)
+void LcdFont::RenderString(int x, int y, const int width, const char *text, const int color, const int selected, const bool utf8_encoded)
 {
 	int err;
 	pthread_mutex_lock(&renderer->render_mutex);
@@ -230,29 +230,30 @@ void LcdFont::RenderString(int x, int y, const int width, const char * text, con
 
 	if ((err = FTC_Manager_LookupSize(renderer->cacheManager, &scaler, &size)) != 0)
 #else
-	if ((err=FTC_Manager_Lookup_Size(renderer->cacheManager, &font.font, &face, &size))!=0)
+	if ((err = FTC_Manager_Lookup_Size(renderer->cacheManager, &font.font, &face, &size)) != 0)
 #endif
 	{
-		dprintf(DEBUG_NORMAL, "LcdFont::RenderString: FTC_Manager_Lookup_Size failed! (%d)\n",err);
+		dprintf(DEBUG_NORMAL, "LcdFont::RenderString: FTC_Manager_Lookup_Size failed! (%d)\n", err);
 		pthread_mutex_unlock(&renderer->render_mutex);
 		return;
 	}
-	int left = x, step_y = (size->metrics.height >> 6 )*3/4 + 4;
+	int left = x, step_y = (size->metrics.height >> 6) * 3 / 4 + 4;
 
-	int pos =0;
+	int pos = 0;
 	for (; *text; text++)
 	{
 		pos++;
 		FTC_SBit glyph;
 		//if ((x + size->metrics.x_ppem > (left+width)) || (*text=='\n'))
-		if (x + size->metrics.x_ppem > (left+width))
-		{ //width clip
+		if (x + size->metrics.x_ppem > (left + width))
+		{
+			//width clip
 			break;
 		}
-		if (*text=='\n')
+		if (*text == '\n')
 		{
-		  x  = left;
-		  y += step_y;
+			x  = left;
+			y += step_y;
 		}
 
 		int unicode_value = UTF8ToUnicode(text, utf8_encoded);
@@ -267,41 +268,41 @@ void LcdFont::RenderString(int x, int y, const int width, const char * text, con
 #endif
 
 		if (!index)
-		  continue;
+			continue;
 		if (getGlyphBitmap(index, &glyph))
 		{
 			dprintf(DEBUG_NORMAL, "LcdFont::RenderString: failed to get glyph bitmap.\n");
 			continue;
 		}
 
-		int rx=x+glyph->left;
-		int ry=y-glyph->top;
-		if(pos==selected)
+		int rx = x + glyph->left;
+		int ry = y - glyph->top;
+		if (pos == selected)
 		{
-			framebuffer->draw_fill_rect(x-2,y-glyph->height-2, x+glyph->width+2, y+2, CLCDDisplay::PIXEL_INV );
+			framebuffer->draw_fill_rect(x - 2, y - glyph->height - 2, x + glyph->width + 2, y + 2, CLCDDisplay::PIXEL_INV);
 		}
 
-		for (int ay=0; ay<glyph->height; ay++)
+		for (int ay = 0; ay < glyph->height; ay++)
 		{
-			int ax=0;
-			int w=glyph->width;
+			int ax = 0;
+			int w = glyph->width;
 			int xpos = rx;
-			for (; ax<w; ax++)
+			for (; ax < w; ax++)
 			{
-				unsigned char c = glyph->buffer[ay*abs(glyph->pitch)+(ax>>3)];
-				if((c>>(7-(ax&7)))&1)
-				framebuffer->draw_point(xpos,ry, color);
+				unsigned char c = glyph->buffer[ay * abs(glyph->pitch) + (ax >> 3)];
+				if ((c >> (7 - (ax & 7))) & 1)
+					framebuffer->draw_point(xpos, ry, color);
 				xpos ++;
 			}
-		ry++;
+			ry++;
 		}
 
-		x+=glyph->xadvance+1;
+		x += glyph->xadvance + 1;
 	}
 	pthread_mutex_unlock(&renderer->render_mutex);
 }
 
-int LcdFont::getRenderWidth(const char * text, const bool utf8_encoded)
+int LcdFont::getRenderWidth(const char *text, const bool utf8_encoded)
 {
 	pthread_mutex_lock(&renderer->render_mutex);
 
@@ -323,7 +324,7 @@ int LcdFont::getRenderWidth(const char * text, const bool utf8_encoded)
 		pthread_mutex_unlock(&renderer->render_mutex);
 		return -1;
 	}
-	int x=0;
+	int x = 0;
 	for (; *text; text++)
 	{
 		FTC_SBit glyph;
@@ -336,7 +337,7 @@ int LcdFont::getRenderWidth(const char * text, const bool utf8_encoded)
 #ifdef FT_NEW_CACHE_API
 		int index = FT_Get_Char_Index(size->face, unicode_value);
 #else
-		int index=FT_Get_Char_Index(face, unicode_value);
+		int index = FT_Get_Char_Index(face, unicode_value);
 #endif
 
 		if (!index)
@@ -347,7 +348,7 @@ int LcdFont::getRenderWidth(const char * text, const bool utf8_encoded)
 			continue;
 		}
 
-		x+=glyph->xadvance+1;
+		x += glyph->xadvance + 1;
 	}
 	pthread_mutex_unlock(&renderer->render_mutex);
 	return x;

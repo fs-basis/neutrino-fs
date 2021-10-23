@@ -312,6 +312,10 @@ case "$BOXMODEL" in
 			AM_CONDITIONAL(ENABLE_PIP, test "$enable_pip" = "yes")
 		fi
 	;;
+	*)
+		[enable_quadpip="no"]
+		AC_MSG_WARN([--enable-quadpip not supported for $BOXMODEL -> now disabled])
+	;;
 esac
 AM_CONDITIONAL(ENABLE_QUADPIP, test "$enable_quadpip" = "yes")
 

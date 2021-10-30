@@ -342,6 +342,8 @@ void CMiscMenue::showMiscSettingsMenuGeneral(CMenuWidget *ms_general)
 	//fan speed
 	if (g_info.hw_caps->has_fan)
 	{
+		if (fanNotifier == NULL)
+			fanNotifier = new CFanControlNotifier();
 #if defined (BOXMODEL_IPBOX9900) || defined (BOXMODEL_IPBOX99)
 		CMenuOptionNumberChooser * mn = new CMenuOptionNumberChooser(LOCALE_FAN_SPEED, &g_settings.fan_speed, true, 0, 1, fanNotifier, CRCInput::RC_nokey, NULL, 0, 0, LOCALE_OPTIONS_OFF);
 #else

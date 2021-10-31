@@ -171,7 +171,7 @@ void CFollowScreenings::show()
 			forwarders.push_back(new CMenuForwarder(screening_date, true, NULL, this, actionstr, directKey, icon));
 			updateRightIcon(i, e->startTime, e->duration);
 			m.addItem(forwarders[i]);
-			directKey = CRCInput::convertDigitToKey(1 + i);
+			directKey = CRCInput::convertDigitToKey(i+0);
 			icon = NULL;
 		}
 		m.enableSaveScreen(true);

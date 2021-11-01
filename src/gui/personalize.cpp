@@ -349,7 +349,7 @@ int CPersonalizeGui::ShowPersonalizationMenu()
 		string s(i_str.str());
 		string action_key = s;
 		string mn_name = v_widget[i]->getName();
-		p_mn[i] = new CMenuForwarder(mn_name.c_str(), true, NULL, this, action_key.c_str(), CRCInput::convertDigitToKey(i+0));
+		p_mn[i] = new CMenuForwarder(mn_name.c_str(), true, NULL, this, action_key.c_str(), CRCInput::convertDigitToKey(i));
 		pMenu->addItem(p_mn[i]);
 	}
 

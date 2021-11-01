@@ -666,7 +666,7 @@ int CAudioPlayerGui::show()
 					static int old_select = 0;
 					char cnt[5];
 					CMenuWidget InputSelector(LOCALE_AUDIOPLAYER_LOAD_RADIO_STATIONS, NEUTRINO_ICON_AUDIO);
-					int count = 0;
+					int count = -1;
 					int select = -1;
 					CMenuSelectorTarget *InetRadioInputChanger = new CMenuSelectorTarget(&select);
 					// -- setup menue for inetradio input

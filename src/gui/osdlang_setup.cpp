@@ -229,7 +229,7 @@ void COsdLangSetup::showPrefMenu(CMenuWidget *prefMenu, CLangSelectNotifier *lan
 
 	for(int i = 0; i < 3; i++)
 	{
-		CMenuOptionStringChooser * langSelect = new CMenuOptionStringChooser(LOCALE_AUDIOMENU_PREF_LANG, &g_settings.pref_lang[i], true, langNotifier, CRCInput::convertDigitToKey(i+0), "", true);
+		CMenuOptionStringChooser * langSelect = new CMenuOptionStringChooser(LOCALE_AUDIOMENU_PREF_LANG, &g_settings.pref_lang[i], true, langNotifier, CRCInput::convertDigitToKey(i), "", true);
 		langSelect->setHint("", LOCALE_MENU_HINT_PREF_LANG);
 		langSelect->addOption("none");
 		std::map<std::string, std::string>::const_iterator it;

@@ -183,7 +183,7 @@ int CAudioSelectMenuHandler::doMenu ()
 		perc_str[i] = to_string(perc_val[i]) + "%";
 
 		CMenuForwarder *fw = new CMenuForwarder(is_mp ? mp->getAPIDDesc(i).c_str() : g_RemoteControl->current_PIDs.APIDs[i].desc,
-				true, perc_str[i], this, "s", CRCInput::convertDigitToKey(i+0));
+				true, perc_str[i], this, "s", CRCInput::convertDigitToKey(i));
 		//fw->setItemButton(NEUTRINO_ICON_BUTTON_OKAY, true);
 		fw->setMarked(sel_apid == i);
 

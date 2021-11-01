@@ -163,11 +163,6 @@ if test "$enable_lcd4linux" = "yes"; then
 	AC_DEFINE(ENABLE_LCD4LINUX, 1, [include Lcd4Linux support])
 fi
 
-AC_ARG_ENABLE(aitscan,
-	AS_HELP_STRING([--enable-aitscan], [enable Application Information Table support @<:@default=no@:>@]),
-	AC_DEFINE(ENABLE_AITSCAN, 1, [enable Application Information Table support]))
-AM_CONDITIONAL(ENABLE_AITSCAN, test "$enable_aitscan" = "yes")
-
 AC_ARG_ENABLE(keyboard-no-rc,
 	AS_HELP_STRING([--enable-keyboard-no-rc], [enable keyboard control, disable rc control @<:@default=no@:>@]),
 	AC_DEFINE(KEYBOARD_INSTEAD_OF_REMOTE_CONTROL, 1, [enable keyboard control, disable rc control]))

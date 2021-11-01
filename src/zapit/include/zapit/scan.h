@@ -31,7 +31,6 @@
 
 #include <zapit/femanager.h>
 #include <zapit/getservices.h>
-#include <zapit/fastscan.h>
 #include "bouquets.h"
 #include <OpenThreads/Thread>
 
@@ -43,9 +42,7 @@ class CServiceScan : public OpenThreads::Thread
 		typedef enum scan_type {
 			SCAN_PROVIDER,
 			SCAN_TRANSPONDER
-#if ENABLE_FASTSCAN
-			, SCAN_FAST
-#endif
+
 		} scan_type_t;
 		typedef enum scan_flags {
 			SCAN_NIT		= 0x01,
@@ -101,27 +98,6 @@ class CServiceScan : public OpenThreads::Thread
 		void CleanAllMaps();
 		//bool ReplaceTransponderParams(freq_id_t freq, t_satellite_position satellitePosition, FrontendParameters *feparams);
 
-#if ENABLE_FASTSCAN
-		/* fast scan */
-		std::map <t_channel_id, t_satellite_position> fast_services_sat;
-		std::map <t_channel_id, freq_id_t> fast_services_freq;
-		std::map <t_channel_id, int> fast_services_number;
-		std::list<std::vector<uint8_t> > fst_sections;
-		uint32_t tune_tp_index;
-
-		unsigned char fst_version;
-		bool quiet_fastscan;
-		void InitFastscanLnb(int id);
-		bool FastscanTune(int id);
-		bool ReadFst(unsigned short pid, unsigned short operator_id, bool one_section = false);
-		bool ParseFst(unsigned short pid, fast_scan_operator_t * op);
-		bool ParseFnt(unsigned short pid, unsigned short operator_id);
-		void process_logical_service_descriptor(const unsigned char * const buffer, const t_transport_stream_id transport_stream_id, const t_original_network_id original_network_id, t_satellite_position satellitePosition, freq_id_t freq);
-		void process_service_list_descriptor(const unsigned char * const buffer, const t_transport_stream_id transport_stream_id, const t_original_network_id original_network_id, t_satellite_position satellitePosition, freq_id_t freq);
-		void process_satellite_delivery_system_descriptor(const unsigned char * const buffer, FrontendParameters * feparams, t_satellite_position * satellitePosition);
-		bool ScanFast();
-		void ReportFastScan(FrontendParameters &feparams, t_satellite_position satellitePosition);
-#endif
 		void run();
 
 		CFrontend * frontend;
@@ -152,14 +128,6 @@ class CServiceScan : public OpenThreads::Thread
 		bool isFtaOnly() { return flags & SCAN_FTA; }
 		int GetFlags() { return flags; }
 		bool SatHaveChannels() { return satHaveChannels; }
-#if ENABLE_FASTSCAN
-		/* fast-scan */
-		bool TestDiseqcConfig(int num);
-		bool ReadFstVersion(int num);
-		unsigned char GetFstVersion() { return fst_version; }
-		void QuietFastScan(bool enable) { quiet_fastscan = enable; }
-		bool ScanFast(int num, bool reload = true);
-#endif
 };
 
 #endif /* __scan_h__ */

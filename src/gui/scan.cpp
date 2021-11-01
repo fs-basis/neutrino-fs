@@ -166,14 +166,6 @@ int CScanTs::exec(CMenuTarget* /*parent*/, const std::string & actionKey)
 	bool scan_all = actionKey == "all";
 	bool test = actionKey == "test";
 	bool manual = (actionKey == "manual") || test;
-	bool fast = (actionKey == "fast");
-#if !ENABLE_FASTSCAN
-	if (fast) {
-		/* popup message? But this *should* be impossible to happen anyway */
-		fprintf(stderr, "CScanTs::exec: fastscan disabled at build-time!\n");
-		return menu_return::RETURN_REPAINT;
-	}
-#endif
 
 	if (CFrontend::isSat(delsys))
 		pname = scansettings.satName;
@@ -275,9 +267,7 @@ int CScanTs::exec(CMenuTarget* /*parent*/, const std::string & actionKey)
 	memset(&sat, 0, sizeof(sat)); // valgrind
 	CZapitClient::ScanSatelliteList satList;
 	satList.clear();
-	if(fast) {
-	}
-	else if(manual || !scan_all) {
+	if(manual || !scan_all) {
 		sat.position = CServiceManager::getInstance()->GetSatellitePosition(pname);
 		strncpy(sat.satName, pname.c_str(), 49);
 		satList.push_back(sat);
@@ -311,12 +301,6 @@ int CScanTs::exec(CMenuTarget* /*parent*/, const std::string & actionKey)
 		testFunc();
 	} else if(manual)
 		success = g_Zapit->scan_TP(TP);
-	else if(fast) {
-#if ENABLE_FASTSCAN
-		CServiceScan::getInstance()->QuietFastScan(false);
-		success = CZapit::getInstance()->StartFastScan(scansettings.fast_type, scansettings.fast_op);
-#endif
-	}
 	else
 		success = g_Zapit->startScan(scan_flags);
 

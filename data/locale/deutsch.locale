@@ -1424,11 +1424,6 @@ menu.hint_scan_diseqc Wählen Sie das DiSEqC-Schalter-Eingangssignal für diesen
 menu.hint_scan_diseqcorder Wählen Sie die Reihenfolge für committed und uncommitted Kommandos
 menu.hint_scan_diseqcrepeat DiSEqC-Wiederholungen für kaskadierte Schaltungen
 menu.hint_scan_diseqctype Wählen Sie ihr DiSEqC-Protokoll\nMit 'Erweitert' können Sie ihre Anlage einbinden
-menu.hint_scan_fast Schnell-Suchlauf eines ausgewählten Anbieters\nWARNUNG: DiSEqC-Einstellung wird überschrieben
-menu.hint_scan_fastdiseqc Start DiSEqC-Autokonfiguration
-menu.hint_scan_fastprov Wählen Sie einen Anbieter (Provider) für den Suchlauf
-menu.hint_scan_fasttype Wählen Sie das Sendeformat
-menu.hint_scan_fastupdate Aktivieren/Deaktivieren Fastscan Auto-Update
 menu.hint_scan_fec Wählen Sie eine Transponder-FEC
 menu.hint_scan_felink Select tuner to link tuner to
 menu.hint_scan_femode Wählen Sie den Verbindungstyp für den zweiten Tuner
@@ -2189,25 +2184,6 @@ satsetup.diseqc_uncom_com Uncommitted/Committed
 satsetup.diseqcrepeat DiSEqC-Wiederholungen
 satsetup.extended DiSEqC-Einstellungen
 satsetup.extended_motor Motor-Einstellungen
-satsetup.fastscan_all SD und HD
-satsetup.fastscan_auto_diseqc Start automatische Diseqc Konfiguration
-satsetup.fastscan_auto_diseqc_wait Automatische Diseqc Konfiguration wird durchgeführt
-satsetup.fastscan_hd nur HD
-satsetup.fastscan_head Schnellscan
-satsetup.fastscan_prov Anbieter:
-satsetup.fastscan_prov_cd_hd CanalDigitaal (HD)
-satsetup.fastscan_prov_cd_sd CanalDigitaal (SD)
-satsetup.fastscan_prov_hda HD Austria
-satsetup.fastscan_prov_hello Hello
-satsetup.fastscan_prov_skylink_c Skylink Czech
-satsetup.fastscan_prov_skylink_s Skylink Slovak
-satsetup.fastscan_prov_telesat_b TéléSAT Belgium
-satsetup.fastscan_prov_telesat_l TéléSAT Luxemburg
-satsetup.fastscan_prov_tvv_hd TV Vlaanderen (HD)
-satsetup.fastscan_prov_tvv_sd TV Vlaanderen (SD)
-satsetup.fastscan_sd nur SD
-satsetup.fastscan_type Scantyp
-satsetup.fastscan_update Auto-Update
 satsetup.fe_mode Tuner Modus
 satsetup.fe_mode_independent Unabhängig / Einzeln
 satsetup.fe_mode_link_loop Loop

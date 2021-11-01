@@ -129,7 +129,6 @@ private:
 	void SetupFrameBuffer();
 	void CmdParser(int argc, char **argv);
 	void Cleanup();
-	void CheckFastScan(bool standby = false, bool reload = true);
 	CNeutrinoApp();
 
 public:

@@ -180,9 +180,6 @@ char zapit_lat[21]="#";
 char zapit_long[21]="#";
 bool autoshift = false;
 uint32_t scrambled_timer;
-#if ENABLE_FASTSCAN
-uint32_t fst_timer;
-#endif
 t_channel_id standby_channel_id = 0;
 
 //NEW
@@ -2577,10 +2574,6 @@ TIMER_START();
 	InitZapitClient();
 	g_Zapit->setStandby(false);
 
-#if ENABLE_FASTSCAN
-	CheckFastScan();
-#endif
-
 	//timer start
 	timer_wakeup = (timer_wakeup && g_settings.shutdown_timer_record_type);
 	g_settings.shutdown_timer_record_type = false;
@@ -3529,18 +3522,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		}
 	}
 	if ((msg == NeutrinoMessages::EVT_TIMER)) {
-#if ENABLE_FASTSCAN
-		if(data == fst_timer) {
-			g_RCInput->killTimer(fst_timer);
-			if (wakeupFromStandby()) {
-				CheckFastScan(true);
-				standbyToStandby();
-			} else if (mode == NeutrinoModes::mode_standby) {
-				fst_timer = g_RCInput->addTimer(30*1000*1000, true);
-			}
-			return messages_return::handled;
-		}
-#endif
+
 	}
 
 	if (msg == NeutrinoMessages::SHOW_MAINMENU) {
@@ -4260,12 +4242,6 @@ void CNeutrinoApp::ExitRun(int exit_code)
 		saveEpg(NeutrinoModes::mode_off);
 	}
 
-#if ENABLE_FASTSCAN
-	/* on shutdown force load new fst */
-	if (exit_code == CNeutrinoApp::EXIT_SHUTDOWN)
-		CheckFastScan(true, false);
-#endif
-
 	CVFD::getInstance()->setMode(CVFD::MODE_SHUTDOWN);
 
 	stop_daemons(true); // need here for timer_is_rec before saveSetup
@@ -4588,10 +4564,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 
 		// Active standby on
 		powerManager->SetStandby(false, false);
-#if ENABLE_FASTSCAN
-		if (scansettings.fst_update)
-			fst_timer = g_RCInput->addTimer(30*1000*1000, true);
-#endif
 	} else {
 		// Active standby off
 		powerManager->SetStandby(false, false);
@@ -4602,9 +4574,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 		CEpgScan::getInstance()->Stop();
 		CSectionsdClient::CurrentNextInfo dummy;
 		g_InfoViewer->getEPG(0, dummy);
-#if ENABLE_FASTSCAN
-		g_RCInput->killTimer(fst_timer);
-#endif
 
 #ifdef ENABLE_GRAPHLCD
 		nGLCD::StandbyMode(false);
@@ -5636,44 +5605,6 @@ void CNeutrinoApp::Cleanup()
 	printf("cleanup 6\n");fflush(stdout);
 #endif
 }
-
-#if ENABLE_FASTSCAN
-void CNeutrinoApp::CheckFastScan(bool standby, bool reload)
-{
-	if (scansettings.fst_update) {
-		g_Zapit->getMode();
-		INFO("fst version %02x (%s)", scansettings.fst_version, standby ? "force" : "check");
-		CServiceScan::getInstance()->QuietFastScan(true);
-		int new_fst = scansettings.fst_version;
-		if (!standby) {
-			if (CServiceScan::getInstance()->ReadFstVersion(scansettings.fast_op))
-				new_fst = CServiceScan::getInstance()->GetFstVersion();
-		}
-		if (standby || (new_fst != scansettings.fst_version)) {
-			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
-			CVFD::getInstance()->ShowText(g_Locale->getText(LOCALE_SATSETUP_FASTSCAN_HEAD));
-			CHintBox * fhintbox = NULL;
-			if (!standby) {
-				fhintbox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SATSETUP_FASTSCAN_HEAD));
-				fhintbox->paint();
-			}
-			if (CServiceScan::getInstance()->ScanFast(scansettings.fast_op, reload)) {
-				scanSettings.fst_version = CServiceScan::getInstance()->GetFstVersion();
-				scanSettings.saveSettings(NEUTRINO_SCAN_SETTINGS_FILE);
-			}
-			if (fhintbox){
-				fhintbox->hide(); delete fhintbox;
-			}
-			if (standby)
-				CVFD::getInstance()->setMode(CVFD::MODE_STANDBY);
-		}
-	}
-}
-#else
-void CNeutrinoApp::CheckFastScan(bool, bool)
-{
-}
-#endif
 
 bool CNeutrinoApp::adjustToChannelID(const t_channel_id channel_id)
 {

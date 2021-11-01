@@ -509,14 +509,6 @@ int CScanSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 		scanTs.exec(NULL, "manual");
 		return res;
 	}
-	if (actionKey == "fastdiseqc") {
-		printf("[neutrino] CScanSetup::%s: showFastscanDiseqcSetup()\n", __FUNCTION__);
-#ifdef ENABLE_FASTSCAN
-		return showFastscanDiseqcSetup();
-#else
-		return res;
-#endif
-	}
 	std::string scants_key[] = {"all", "manual", "test", "fast", "auto"/*doesn't exists in CScanTs!*/};
 
 	if (actionKey.size() > 1) {
@@ -538,14 +530,6 @@ int CScanSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 				//...then start scan
 				CScanTs scanTs(delsys);
 				scanTs.exec(NULL, scants_key[i]);
-#if 0
-				/* FIXME save fst version. other than fast scan will reset it to 0
-				   to disable fast scan updates */
-				scansettings.fst_version = CServiceScan::getInstance()->GetFstVersion();
-#endif
-				if (as == "fast") {
-					//scansettings.fst_update = 1;
-				}
 				return res;
 			}
 		}
@@ -648,14 +632,7 @@ int CScanSetup::showScanMenu()
 		fautoScanAll = new CMenuDForwarder(LOCALE_SATSETUP_AUTO_SCAN_ALL, true /*(dmode != NO_DISEQC)*/, NULL, autoScanAll, "", CRCInput::RC_yellow);
 		fautoScanAll->setHint("", LOCALE_MENU_HINT_SCAN_AUTOALL);
 		settings->addItem(fautoScanAll);
-#ifdef ENABLE_FASTSCAN
-		//fast scan
-		CMenuWidget * fastScanMenu = new CMenuWidget(LOCALE_SATSETUP_FASTSCAN_HEAD, NEUTRINO_ICON_SETTINGS, w, MN_WIDGET_ID_SCAN_FAST_SCAN);
-		addScanMenuFastScan(fastScanMenu);
-		mf = new CMenuDForwarder(LOCALE_SATSETUP_FASTSCAN_HEAD, true, NULL, fastScanMenu, "", CRCInput::RC_0);
-		mf->setHint("", LOCALE_MENU_HINT_SCAN_FAST);
-		settings->addItem(mf);
-#endif
+
 		//signal test
 		CMenuWidget * sTest = new CMenuWidget(LOCALE_SCANTS_TEST, NEUTRINO_ICON_SETTINGS, w/*width*/, MN_WIDGET_ID_SCAN_MANUAL_SCAN);
 		addScanMenuManualScan(sTest, true);
@@ -1554,94 +1531,6 @@ void CScanSetup::addScanMenuAutoScanAll(CMenuWidget *auto_ScanAll)
 	mf->setHint("", LOCALE_MENU_HINT_SCAN_START);
 	auto_ScanAll->addItem(mf);
 }
-
-#ifdef ENABLE_FASTSCAN
-#if 0
-#define FAST_SCAN_OPTIONS_COUNT 2
-const CMenuOptionChooser::keyval FAST_SCAN_OPTIONS[FAST_SCAN_OPTIONS_COUNT] =
-{
-	{ FAST_SCAN_SD, LOCALE_SATSETUP_FASTSCAN_SD },
-	{ FAST_SCAN_HD, LOCALE_SATSETUP_FASTSCAN_HD  }
-	/*{ FAST_SCAN_ALL, LOCALE_SATSETUP_FASTSCAN_ALL  }*/
-};
-#endif
-
-const CMenuOptionChooser::keyval FAST_SCAN_PROV_OPTIONS[] =
-{
-	{ OPERATOR_CD_SD, LOCALE_SATSETUP_FASTSCAN_PROV_CD_SD },
-	{ OPERATOR_CD_HD, LOCALE_SATSETUP_FASTSCAN_PROV_CD_HD },
-	{ OPERATOR_TVV_SD, LOCALE_SATSETUP_FASTSCAN_PROV_TVV_SD },
-	{ OPERATOR_TVV_HD, LOCALE_SATSETUP_FASTSCAN_PROV_TVV_HD },
-	{ OPERATOR_TELESAT_B, LOCALE_SATSETUP_FASTSCAN_PROV_TELESAT_B },
-	{ OPERATOR_TELESAT_L, LOCALE_SATSETUP_FASTSCAN_PROV_TELESAT_L },
-	{ OPERATOR_HD_AUSTRIA, LOCALE_SATSETUP_FASTSCAN_PROV_HDA },
-	{ OPERATOR_SKYLINK_C, LOCALE_SATSETUP_FASTSCAN_PROV_SKYLINK_C },
-	{ OPERATOR_SKYLINK_S, LOCALE_SATSETUP_FASTSCAN_PROV_SKYLINK_S },
-	{ OPERATOR_HELLO, LOCALE_SATSETUP_FASTSCAN_PROV_HELLO }
-};
-#define FAST_SCAN_PROV_OPTIONS_COUNT (sizeof(FAST_SCAN_PROV_OPTIONS)/sizeof(CMenuOptionChooser::keyval))
-
-//init fast scan menu
-void CScanSetup::addScanMenuFastScan(CMenuWidget *fast_ScanMenu)
-{
-	printf("[neutrino] CScanSetup call %s...\n", __FUNCTION__);
-	fast_ScanMenu->addIntroItems();
-
-	CMenuOptionChooser* fastProv = new CMenuOptionChooser(LOCALE_SATSETUP_FASTSCAN_PROV, (int *)&scansettings.fast_op, FAST_SCAN_PROV_OPTIONS, FAST_SCAN_PROV_OPTIONS_COUNT, true, NULL, CRCInput::RC_red, NULL, true);
-	fastProv->setHint("", LOCALE_MENU_HINT_SCAN_FASTPROV);
-	fast_ScanMenu->addItem(fastProv);
-#if 0
-	CMenuOptionChooser* fastType = new CMenuOptionChooser(LOCALE_SATSETUP_FASTSCAN_TYPE, (int *)&scansettings.fast_type, FAST_SCAN_OPTIONS, FAST_SCAN_OPTIONS_COUNT, true, NULL, CRCInput::RC_green, NULL, true);
-	fastType->setHint("", LOCALE_MENU_HINT_SCAN_FASTTYPE);
-	fast_ScanMenu->addItem(fastType);
-#endif
-	CMenuOptionChooser* fastUp = new CMenuOptionChooser(LOCALE_SATSETUP_FASTSCAN_UPDATE, (int *)&scansettings.fst_update, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::RC_green, NULL, true);
-	fastUp->setHint("", LOCALE_MENU_HINT_SCAN_FASTUPDATE);
-	fast_ScanMenu->addItem(fastUp);
-	fast_ScanMenu->addItem(GenericMenuSeparatorLine);
-
-	CMenuForwarder * mf = new CMenuForwarder(LOCALE_SATSETUP_FASTSCAN_AUTO_DISEQC, allow_start, NULL, this, "fastdiseqc", CRCInput::RC_yellow);
-	mf->setHint("", LOCALE_MENU_HINT_SCAN_FASTDISEQC);
-	fast_ScanMenu->addItem(mf);
-
-	mf = new CMenuForwarder(LOCALE_SCANTS_STARTNOW, allow_start, NULL, this, "sfast", CRCInput::RC_blue);
-	mf->setHint("", LOCALE_MENU_HINT_SCAN_START);
-	fast_ScanMenu->addItem(mf);
-}
-
-int CScanSetup::showFastscanDiseqcSetup()
-{
-	CHintBox hintbox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SATSETUP_FASTSCAN_AUTO_DISEQC_WAIT));
-	hintbox.paint();
-
-	CServiceScan::getInstance()->TestDiseqcConfig(scansettings.fast_op);
-	hintbox.hide();
-
-	CMenuWidget * sat_setup = new CMenuWidget(LOCALE_SATSETUP_DISEQC_INPUT, NEUTRINO_ICON_SETTINGS, width);
-	sat_setup->addIntroItems();
-
-	CFrontend * fe = CFEManager::getInstance()->getFE(0);
-	satellite_map_t & satmap = fe->getSatellites();
-	INFO("satmap size = %d", (int)satmap.size());
-	for (sat_iterator_t sit = satmap.begin(); sit != satmap.end(); ++sit)
-	{
-		if(!sit->second.configured)
-			continue;
-
-		std::string satname = CServiceManager::getInstance()->GetSatelliteName(sit->first);
-		CMenuOptionNumberChooser *diseqc = new CMenuOptionNumberChooser(satname, &sit->second.diseqc, true, -1, 15, this, CRCInput::RC_nokey, NULL, 1, -1, LOCALE_OPTIONS_OFF);
-		sat_setup->addItem(diseqc);
-	}
-	sat_setup->addItem(GenericMenuSeparatorLine);
-	CMenuForwarder * mf = new CMenuForwarder(LOCALE_SCANTS_STARTNOW, allow_start, NULL, this, "sfast", CRCInput::RC_yellow);
-	mf->setHint("", LOCALE_MENU_HINT_SCAN_START);
-	sat_setup->addItem(mf);
-
-	int res = sat_setup->exec(NULL, "");
-	delete sat_setup;
-	return res;
-}
-#endif /*ENABLE_FASTSCAN*/
 
 //init auto scan menu
 void CScanSetup::addScanMenuAutoScan(CMenuWidget *auto_Scan)

@@ -115,9 +115,7 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 
 		int addScanOptionsItems(CMenuWidget *options_menu, const int &shortcut = 1);
 		int addListFlagsItems(CMenuWidget *listflags_menu, const int &shortcut = 1, bool manual = false);
-#ifdef ENABLE_FASTSCAN
-		int showFastscanDiseqcSetup();
-#endif
+
 		void setDiseqcOptions(int number);
 
 		void saveScanSetup();
@@ -135,9 +133,6 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 
 		int exec(CMenuTarget* parent, const std::string & actionKey = "");
 		bool changeNotify(const neutrino_locale_t OptionName, void * /*data*/);
-#ifdef ENABLE_FASTSCAN
- 		void addScanMenuFastScan(CMenuWidget *fast_ScanMenu);
-#endif
 		void addScanMenuCable(CMenuWidget *menu);
 };
 

@@ -160,11 +160,6 @@ AC_ARG_ENABLE(viasatepg,
 	AS_HELP_STRING([--enable-viasatepg], [enable ViaSat EPG code @<:@default=no@:>@]),
 	AC_DEFINE(ENABLE_VIASATEPG, 1, [enable ViaSat EPG code]))
 
-AC_ARG_ENABLE(fastscan,
-	AS_HELP_STRING([--enable-fastscan], [enable fastscan code @<:@default=no@:>@]),
-	AC_DEFINE(ENABLE_FASTSCAN, 1, [enable fastscan code]))
-AM_CONDITIONAL(ENABLE_FASTSCAN, test "$enable_fastscan" = "yes")
-
 AC_ARG_ENABLE(giflib,
 	AS_HELP_STRING([--enable-giflib], [use giflib instead of libungif @<:@default=no@:>@]),
 	AC_DEFINE(ENABLE_GIFLIB, 1, [use giflib instead of libungif]))

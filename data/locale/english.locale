@@ -1351,11 +1351,6 @@ menu.hint_scan_diseqc Select diseqc switch input for\nthis satellite
 menu.hint_scan_diseqcorder Diseqc command order for cascaded switches
 menu.hint_scan_diseqcrepeat Diseqc repeat for cascaded switches
 menu.hint_scan_diseqctype Select your diseqc switch protocol\nwith 'advanced' you can use uncommited switches
-menu.hint_scan_fast CanalDigitaal/TéléSAT/TV Vlaanderen provider scan\nWARNING: diseqc config will be overwritten
-menu.hint_scan_fastdiseqc Start diseqc auto-configuration
-menu.hint_scan_fastprov Select provider to scan
-menu.hint_scan_fasttype Select fast scan type
-menu.hint_scan_fastupdate Enable/disable fast scan auto-update
 menu.hint_scan_fec Select transponder FEC
 menu.hint_scan_felink Select tuner to link tuner to
 menu.hint_scan_femode Select tuner connection type
@@ -2111,25 +2106,6 @@ satsetup.diseqc_uncom_com Uncommited/Commited
 satsetup.diseqcrepeat DiSEqC-repeats
 satsetup.extended DiSEqC-Settings
 satsetup.extended_motor Motor-Settings
-satsetup.fastscan_all SD and HD
-satsetup.fastscan_auto_diseqc Start auto-diseqc configuration
-satsetup.fastscan_auto_diseqc_wait Auto-diseqc configuration in progress
-satsetup.fastscan_hd HD only
-satsetup.fastscan_head Fast scan
-satsetup.fastscan_prov Provider
-satsetup.fastscan_prov_cd_hd CanalDigitaal (HD)
-satsetup.fastscan_prov_cd_sd CanalDigitaal (SD)
-satsetup.fastscan_prov_hda HD Austria
-satsetup.fastscan_prov_hello Hello
-satsetup.fastscan_prov_skylink_c Skylink Czech
-satsetup.fastscan_prov_skylink_s Skylink Slovak
-satsetup.fastscan_prov_telesat_b TéléSAT Belgium
-satsetup.fastscan_prov_telesat_l TéléSAT Luxemburg
-satsetup.fastscan_prov_tvv_hd TV Vlaanderen (HD)
-satsetup.fastscan_prov_tvv_sd TV Vlaanderen (SD)
-satsetup.fastscan_sd SD only
-satsetup.fastscan_type Scan type
-satsetup.fastscan_update Auto update
 satsetup.fe_mode Tuner mode
 satsetup.fe_mode_independent Independent
 satsetup.fe_mode_link_loop Loop

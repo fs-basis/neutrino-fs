@@ -33,11 +33,6 @@ libzapit_a_SOURCES = \
 	transponder.cpp \
 	zapit.cpp
 
-if ENABLE_FASTSCAN
-libzapit_a_SOURCES += \
-	fastscan.cpp
-endif
-
 bin_PROGRAMS = pzapit
 
 pzapit_SOURCES = \

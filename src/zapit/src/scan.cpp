@@ -63,9 +63,6 @@ CServiceScan::CServiceScan()
 	abort_scan = false;
 
 	cable_nid = 0;
-#ifdef ENABLE_FASTSCAN
-	fst_version = 0;
-#endif
 
 	frontend = CFEManager::getInstance()->getFE(0);
 }
@@ -116,22 +113,11 @@ void CServiceScan::run()
 
 	switch(scan_mode) {
 		case SCAN_PROVIDER:
-#if ENABLE_FASTSCAN
-			fst_version = 0;
-#endif
 			ScanProviders();
 			break;
 		case SCAN_TRANSPONDER:
-#if ENABLE_FASTSCAN
-			fst_version = 0;
-#endif
 			ScanTransponder();
 			break;
-#if ENABLE_FASTSCAN
-		case SCAN_FAST:
-			ScanFast();
-			break;
-#endif
 		default:
 			break;
 	}

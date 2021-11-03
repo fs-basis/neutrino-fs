@@ -55,7 +55,7 @@
 
 #if 0
 #include <driver/pictureviewer/pictureviewer.h>
-extern CPictureViewer * g_PicViewer;
+extern CPictureViewer *g_PicViewer;
 #endif
 
 #include "lcd4l.h"
@@ -153,7 +153,7 @@ void CLCD4l::StartLCD4l()
 	if (!thrLCD4l && (g_settings.lcd4l_support == 1 || g_settings.lcd4l_support == 2))
 	{
 		printf("[CLCD4l] %s: starting thread\n", __FUNCTION__);
-		pthread_create(&thrLCD4l, NULL, LCD4lProc, (void*) this);
+		pthread_create(&thrLCD4l, NULL, LCD4lProc, (void *) this);
 		pthread_detach(thrLCD4l);
 		lcd4linux(true);
 	}
@@ -250,12 +250,12 @@ void CLCD4l::Init()
 		mkdir(LCD_DATADIR, 0755);
 }
 
-void* CLCD4l::LCD4lProc(void* arg)
+void *CLCD4l::LCD4lProc(void *arg)
 {
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, 0);
 	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, 0);
 
-	CLCD4l *PLCD4l = static_cast<CLCD4l*>(arg);
+	CLCD4l *PLCD4l = static_cast<CLCD4l *>(arg);
 
 	PLCD4l->Init();
 
@@ -266,9 +266,9 @@ void* CLCD4l::LCD4lProc(void* arg)
 	bool NewParseID = false;
 
 	//printf("[CLCD4l] %s: starting loop\n", __FUNCTION__);
-	while(1)
+	while (1)
 	{
-		if ( (!access(PIDFILE, F_OK) == 0) && (!FirstRun) )
+		if ((!access(PIDFILE, F_OK) == 0) && (!FirstRun))
 		{
 			if (g_settings.lcd4l_support == 1) // automatic
 			{
@@ -321,9 +321,9 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 	/* ----------------------------------------------------------------- */
 
 	std::string fgcolor	= hexStr(&t.infobar_Text_red)
-				+ hexStr(&t.infobar_Text_green)
-				+ hexStr(&t.infobar_Text_blue)
-				+ hexStr(&t.infobar_Text_alpha);
+		+ hexStr(&t.infobar_Text_green)
+		+ hexStr(&t.infobar_Text_blue)
+		+ hexStr(&t.infobar_Text_alpha);
 
 	if (m_fgcolor.compare(fgcolor))
 	{
@@ -334,9 +334,9 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 	/* ----------------------------------------------------------------- */
 
 	std::string bgcolor	= hexStr(&t.infobar_red)
-				+ hexStr(&t.infobar_green)
-				+ hexStr(&t.infobar_blue)
-				+ hexStr(&t.infobar_alpha);
+		+ hexStr(&t.infobar_green)
+		+ hexStr(&t.infobar_blue)
+		+ hexStr(&t.infobar_alpha);
 
 	if (m_bgcolor.compare(bgcolor))
 	{
@@ -438,7 +438,7 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 
 	std::string DolbyDigital;
 	if ((g_RemoteControl->current_PIDs.PIDs.selected_apid < g_RemoteControl->current_PIDs.APIDs.size()) &&
-	    (g_RemoteControl->current_PIDs.APIDs[g_RemoteControl->current_PIDs.PIDs.selected_apid].is_ac3))
+		(g_RemoteControl->current_PIDs.APIDs[g_RemoteControl->current_PIDs.PIDs.selected_apid].is_ac3))
 		DolbyDigital = "yes";
 	else
 		DolbyDigital = g_RemoteControl->has_ac3 ? "available" : "no";
@@ -494,7 +494,7 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 	if (m_ModeRec != ModeRec)
 	{
 		WriteFile(MODE_REC, ModeRec ? "on" : "off");
-		std::string rec_icon ="";
+		std::string rec_icon = "";
 		if (ModeRec)
 			rec_icon = ICONSDIR "/" NEUTRINO_ICON_REC ICONSEXT;
 		else
@@ -573,7 +573,8 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 		fclose(f);
 	}
 
-	switch (ecm_caid & 0xFF00) {
+	switch (ecm_caid & 0xFF00)
+	{
 		case 0x0E00:
 			WriteFile(CRYPTSYSTEM, "powervu");
 			break;
@@ -643,7 +644,7 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 		else if (parseID == NeutrinoModes::mode_audio)
 		{
 			const CAudioMetaData meta = CAudioPlayer::getInstance()->getMetaData();
-			if ( (!meta.sc_station.empty()) && (CAudioPlayer::getInstance()->getState() != CBaseDec::STOP))
+			if ((!meta.sc_station.empty()) && (CAudioPlayer::getInstance()->getState() != CBaseDec::STOP))
 				Service = meta.sc_station;
 			else
 			{
@@ -705,8 +706,8 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 					if (ModeTshift && CMoviePlayerGui::getInstance().p_movie_info) /* show channel-logo */
 					{
 						if (!GetLogoName(CMoviePlayerGui::getInstance().p_movie_info->channelId,
-								 CMoviePlayerGui::getInstance().p_movie_info->channelName,
-								 Logo))
+								CMoviePlayerGui::getInstance().p_movie_info->channelName,
+								Logo))
 							Logo = ICONSDIR "/" NEUTRINO_ICON_PLAY ICONSEXT;
 					}
 					else /* show play-icon */
@@ -756,7 +757,8 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 		std::string Layout;
 
 		std::string DPF_Type;
-		switch (g_settings.lcd4l_dpf_type) {
+		switch (g_settings.lcd4l_dpf_type)
+		{
 			case 3:
 				DPF_Type = "PNG_";
 				break;
@@ -831,17 +833,20 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 		if (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webtv || CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webradio)
 		{
 			// FIXME: Doesn't work with timing.infobar_tv/radio=0
-			if (g_InfoViewer->get_livestreamInfo1() != "RESOLUTION=1x1") {
+			if (g_InfoViewer->get_livestreamInfo1() != "RESOLUTION=1x1")
+			{
 				Event = g_InfoViewer->get_livestreamInfo1();
 				Event += "\n" + g_InfoViewer->get_livestreamInfo2();
-			} else {
+			}
+			else
+			{
 				Event = g_InfoViewer->get_livestreamInfo2();
 			}
 		}
 
 		t_channel_id channel_id = parseID & 0xFFFFFFFFFFFFULL;
 
-		CZapitChannel * channel = CZapit::getInstance()->GetCurrentChannel();
+		CZapitChannel *channel = CZapit::getInstance()->GetCurrentChannel();
 		if (channel)
 			channel_id = channel->getEpgID();
 
@@ -897,11 +902,11 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 		else
 		{
 			const CAudioMetaData meta = CAudioPlayer::getInstance()->getMetaData();
-			if ( !meta.artist.empty() )
+			if (!meta.artist.empty())
 				Event += meta.artist;
-			if ( !meta.artist.empty() && !meta.title.empty() )
+			if (!meta.artist.empty() && !meta.title.empty())
 				Event += " - ";
-			if ( !meta.title.empty() )
+			if (!meta.title.empty())
 				Event += meta.title;
 
 			if (!meta.album.empty())
@@ -913,7 +918,7 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 			time_t total = meta.total_time;
 			time_t done = CAudioPlayer::getInstance()->getTimePlayed();
 
-			if ( (total > 0) && (done > 0) )
+			if ((total > 0) && (done > 0))
 			{
 				Progress = 100 * done / total;
 				snprintf(Duration, sizeof(Duration), "%ld:%02ld/%ld:%02ld", done / 60, done % 60, total / 60, total % 60);
@@ -953,13 +958,13 @@ void CLCD4l::ParseInfo(uint64_t parseID, bool newID, bool firstRun)
 		}
 
 		time_t sTime = time(NULL);
-		sTime -= (CMoviePlayerGui::getInstance().GetPosition()/1000);
+		sTime -= (CMoviePlayerGui::getInstance().GetPosition() / 1000);
 		tm_struct = localtime(&sTime);
 
 		snprintf(Start, sizeof(Start), "%02d:%02d", tm_struct->tm_hour, tm_struct->tm_min);
 
 		time_t eTime = time(NULL);
-		eTime +=(CMoviePlayerGui::getInstance().GetDuration()/1000) - (CMoviePlayerGui::getInstance().GetPosition()/1000);
+		eTime += (CMoviePlayerGui::getInstance().GetDuration() / 1000) - (CMoviePlayerGui::getInstance().GetPosition() / 1000);
 		tm_struct = localtime(&eTime);
 
 		snprintf(End, sizeof(End), "%02d:%02d", tm_struct->tm_hour, tm_struct->tm_min);
@@ -1094,11 +1099,11 @@ void CLCD4l::strReplace(std::string &orig, const std::string &fstr, const std::s
 	}
 }
 
-std::string CLCD4l::hexStr(unsigned char* data)
+std::string CLCD4l::hexStr(unsigned char *data)
 {
 	std::stringstream ss;
 	ss << std::hex;
-	for(int i=0; i<1; ++i)
+	for (int i = 0; i < 1; ++i)
 		ss << std::setw(2) << std::setfill('0') << (int)data[i];
 	return ss.str();
 }

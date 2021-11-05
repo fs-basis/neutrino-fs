@@ -451,7 +451,7 @@ void EpgPlus::ChannelEntry::paint(bool isSelected, time_t _selectedTime)
 	int xPos = this->x + OFFSET_INNER_MID;
 	int numberWidth = 0;
 
-	this->logo = new CComponentsChannelLogoScalable(xPos, this->y, "", this->channel->channel_id);
+	this->logo = new CComponentsChannelLogoScalable(xPos, this->y, this->channel->getName(), this->channel->channel_id);
 	if ((g_settings.channellist_show_channellogo) && this->logo->hasLogo())
 	{
 		this->logo->setWidth(std::min(this->logo->getWidth(), this->width - 2*OFFSET_INNER_MID), true);

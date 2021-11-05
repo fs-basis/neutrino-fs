@@ -389,11 +389,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	g_settings.video_Format = configfile.getInt32("video_Format", DISPLAY_AR_16_9);
 	g_settings.video_43mode = configfile.getInt32("video_43mode", DISPLAY_AR_MODE_LETTERBOX);
-	g_settings.current_volume = configfile.getInt32("current_volume", 100);
+	g_settings.current_volume = g_settings.hdmi_cec_volume ? 100 : configfile.getInt32("current_volume", 100);
 	g_settings.current_volume_step = configfile.getInt32("current_volume_step", 10);
-	g_settings.start_volume = configfile.getInt32("start_volume", -1);
-	if (g_settings.start_volume >= 0)
-		g_settings.current_volume = g_settings.hdmi_cec_volume ? 100 : g_settings.start_volume;
+	g_settings.start_volume = g_settings.hdmi_cec_volume ? 100 : configfile.getInt32("start_volume", -1);
 
 #if HAVE_SH4_HARDWARE
 	g_settings.audio_mixer_volume_analog = configfile.getInt32("audio_mixer_volume_analog", 50);
@@ -1203,10 +1201,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "video_psi_tint", g_settings.psi_tint );
 	configfile.setInt32( "video_psi_step", g_settings.psi_step );
 
-	if (!g_settings.hdmi_cec_volume)
-		configfile.setInt32( "current_volume", g_settings.current_volume );
+	configfile.setInt32( "current_volume", g_settings.hdmi_cec_volume ? 100 : g_settings.current_volume );
 	configfile.setInt32( "current_volume_step", g_settings.current_volume_step );
-	configfile.setInt32( "start_volume", g_settings.start_volume );
+	configfile.setInt32( "start_volume", g_settings.hdmi_cec_volume ? 100 : g_settings.start_volume );
 #if HAVE_SH4_HARDWARE
 	configfile.setInt32("audio_mixer_volume_analog", g_settings.audio_mixer_volume_analog);
 	configfile.setInt32("audio_mixer_volume_hdmi", g_settings.audio_mixer_volume_hdmi);
@@ -2389,7 +2386,7 @@ TIMER_START();
 	ZapStart_arg.uselastchannel = g_settings.uselastchannel;
 	ZapStart_arg.video_mode = g_settings.video_Mode;
 	memcpy(ZapStart_arg.ci_clock, g_settings.ci_clock, sizeof(g_settings.ci_clock));
-	ZapStart_arg.volume = g_settings.hdmi_cec_volume ? 100 : g_settings.current_volume;
+	ZapStart_arg.volume = g_settings.current_volume;
 	ZapStart_arg.webtv_xml = &g_settings.webtv_xml;
 	ZapStart_arg.webradio_xml = &g_settings.webradio_xml;
 

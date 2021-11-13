@@ -380,7 +380,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #else
 	g_settings.lcd4l_support = configfile.getInt32("lcd4l_support" , 0);
 #endif
-	g_settings.lcd4l_logodir = configfile.getString("lcd4l_logodir", "/swap/logo-lcd");
+	g_settings.lcd4l_logodir = configfile.getString("lcd4l_logodir", "/swap/lcd_logos");
 	g_settings.lcd4l_dpf_type = configfile.getInt32("lcd4l_dpf_type", 1);
 	g_settings.lcd4l_skin = configfile.getInt32("lcd4l_skin" , 1);
 	g_settings.lcd4l_skin_radio = configfile.getInt32("lcd4l_skin_radio" , 0);

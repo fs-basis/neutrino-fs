@@ -1146,7 +1146,15 @@ void COsdSetup::showOsdTimeoutSetup(CMenuWidget* menu_timeout)
 	menu_timeout->addItem(GenericMenuSeparatorLine);
 	menu_timeout->addItem(new CMenuForwarder(LOCALE_OPTIONS_DEFAULT, true, NULL, this, "osd.def", CRCInput::RC_red));
 }
-
+#if 1 /* use only FS */
+#define LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT 2
+const CMenuOptionChooser::keyval  LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS[LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT]=
+{
+	{ 0 , LOCALE_MISCSETTINGS_INFOBAR_DISP_0 },
+	{ 2 , LOCALE_MISCSETTINGS_INFOBAR_DISP_2 }
+};
+#endif
+#if 0 /* enable when use other infobar (DDT) */
 #define LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT 7
 const CMenuOptionChooser::keyval  LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS[LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT]=
 {
@@ -1158,6 +1166,7 @@ const CMenuOptionChooser::keyval  LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS[LOCAL
 	{ 5 , LOCALE_MISCSETTINGS_INFOBAR_DISP_5 },
 	{ 6 , LOCALE_MISCSETTINGS_INFOBAR_DISP_6 }
 };
+#endif
 
 #define PROGRESSBAR_INFOBAR_POSITION_COUNT 4
 const CMenuOptionChooser::keyval PROGRESSBAR_INFOBAR_POSITION_OPTIONS[PROGRESSBAR_INFOBAR_POSITION_COUNT]=
@@ -1260,13 +1269,12 @@ void COsdSetup::showOsdInfobarSetup(CMenuWidget *menu_infobar)
 
 	menu_infobar->addItem(new CMenuSeparator(CMenuSeparator::LINE));
 
-#if 0 /* enable when use other infobar (DDT) */
 	// display options
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_DISP, &g_settings.infobar_show_channellogo, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS, LOCALE_MISCSETTINGS_INFOBAR_DISP_OPTIONS_COUNT, true);
 	mc->OnAfterChangeOption.connect(slot_ibar);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_LOGO);
 	menu_infobar->addItem(mc);
-
+#if 0 /* enable when use other infobar (DDT) */
 	// satellite/cable provider
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SAT_DISPLAY, &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	mc->OnAfterChangeOption.connect(slot_ibar);

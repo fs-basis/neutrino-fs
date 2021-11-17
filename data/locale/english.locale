@@ -1636,9 +1636,9 @@ miscsettings.infobar_casystem_frame CA display with frame
 miscsettings.infobar_casystem_mini mini
 miscsettings.infobar_casystem_mode discreet
 miscsettings.infobar_disp Logo display
-miscsettings.infobar_disp_0 Channelname [Channelnumber]
+miscsettings.infobar_disp_0 Channelname
 miscsettings.infobar_disp_1 Channelnumber, Channelname [Logo]
-miscsettings.infobar_disp_2 Logo [Channelnumber]
+miscsettings.infobar_disp_2 Logo
 miscsettings.infobar_disp_3 Logo, Channelname [Signal]
 miscsettings.infobar_disp_4 Logo, Channelname [Channelnumber]
 miscsettings.infobar_disp_5 Logo [Signal]

@@ -1636,9 +1636,9 @@ miscsettings.infobar_casystem_frame CA-Anzeige mit Rahmen
 miscsettings.infobar_casystem_mini mini
 miscsettings.infobar_casystem_mode diskret
 miscsettings.infobar_disp Logo-Anzeige
-miscsettings.infobar_disp_0 Kanalname [Kanalnummer]
+miscsettings.infobar_disp_0 Kanalname
 miscsettings.infobar_disp_1 Kanalnummer, Kanalname [Logo]
-miscsettings.infobar_disp_2 Logo [Kanalnummer]
+miscsettings.infobar_disp_2 Logo
 miscsettings.infobar_disp_3 Logo, Kanalname [Signalbalken]
 miscsettings.infobar_disp_4 Logo, Kanalname [Kanalnummer]
 miscsettings.infobar_disp_5 Logo [Signalbalken]

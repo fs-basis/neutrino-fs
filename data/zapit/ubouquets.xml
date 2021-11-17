@@ -163,10 +163,12 @@
 		<S i="6fec" t="436" on="1" s="192" frq="11973" n="Comedy Central HD"/>
 		<S i="ef10" t="421" on="1" s="192" frq="10832" n="RTL HD"/>
 		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
+		<S i="ef16" t="421" on="1" s="192" frq="10832" n="RTLup HD"/>
 		<S i="ef15" t="421" on="1" s="192" frq="10832" n="RTLZWEI HD"/>
 		<S i="2eaf" t="411" on="1" s="192" frq="11082" n="NITRO HD"/>
 		<S i="2e9b" t="411" on="1" s="192" frq="11082" n="SUPER RTL HD"/>
 		<S i="ef11" t="421" on="1" s="192" frq="10832" n="VOX HD"/>
+		<S i="ef17" t="421" on="1" s="192" frq="10832" n="VOXup HD"/>
 		<S i="5274" t="41d" on="1" s="192" frq="10773" n="WELT HD"/>
 		<S i="2774" t="409" on="1" s="192" frq="10964" n="TLC HD"/>
 		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>

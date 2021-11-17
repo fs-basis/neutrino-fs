@@ -224,6 +224,8 @@ struct SNeutrinoSettings
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 	int zappingmode;
 #endif
+	int infobar_sat_display;
+	int infobar_show_channeldesc;
 	int infobar_subchan_disp_pos;
 	int infobar_buttons_usertitle;
 	int infobar_analogclock;

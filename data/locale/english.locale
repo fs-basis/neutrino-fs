@@ -1131,6 +1131,7 @@ menu.hint_infobar_default_logo Show standard logo if no logo available
 menu.hint_infobar_on_epg Show infobar on current EPG event change
 menu.hint_infobar_radiotext If available, radiotext will displayed in a separate window
 menu.hint_infobar_res Show channel resolution icons
+menu.hint_infobar_sat Show current satellite or cable provider
 menu.hint_infobar_setup Configure infobar options
 menu.hint_infobar_show_channelnumber Show channel number in Infobar
 menu.hint_infobar_textcolor Change infobar text color
@@ -1574,6 +1575,7 @@ miscsettings.infobar_gradient_bottom Gradient bottom
 miscsettings.infobar_gradient_top Gradient top
 miscsettings.infobar_logo_hdd_dir Logo directory
 miscsettings.infobar_default_logo Standard logo
+miscsettings.infobar_sat_display Satellite display on infobar
 miscsettings.infobar_show show Info on EPG change
 miscsettings.infobar_show_channelnumber Show channel numbers
 miscsettings.infobar_show_dd_available show DD availability

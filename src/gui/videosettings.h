@@ -48,7 +48,7 @@ class CVideoSettings : public CMenuWidget, CChangeObserver
 		std::vector<CMenuOptionChooser::keyval_ext> videomenu_43mode_options;
 		void Init43ModeOptions();
 
-public:
+	public:
 		CVideoSettings();
 		~CVideoSettings();
 
@@ -61,7 +61,7 @@ public:
 		void setVideoSettings();
 		void setupVideoSystem(bool do_ask);
 
-		int exec(CMenuTarget* parent, const std::string & actionKey);
+		int exec(CMenuTarget *parent, const std::string &actionKey);
 };
 #endif
 

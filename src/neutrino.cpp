@@ -4519,6 +4519,7 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		} else
 			tuxtxt_close();
 
+		usleep(300000);
 		hintBox.hide();
 	}
 	else if (actionKey=="recording") {
@@ -4530,6 +4531,7 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 
 		g_Plugins->loadPlugins();
 
+		usleep(300000);
 		hintBox.hide();
 	}
 	else if (actionKey=="restarttuner") {

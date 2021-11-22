@@ -2569,7 +2569,6 @@ const char * locale_real_names[] =
 	"videomenu.tv-scart",
 	"videomenu.vcrsignal",
 	"videomenu.videoformat",
-	"videomenu.videoformat_149",
 	"videomenu.videoformat_169",
 	"videomenu.videoformat_43",
 	"videomenu.videomode",

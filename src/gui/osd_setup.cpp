@@ -1236,13 +1236,14 @@ void COsdSetup::showOsdChannellogosSetup(CMenuWidget *menu_channellogos)
 	mc = new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_DEFAULT_LOGO, &g_settings.default_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
 	mc->setHint("", LOCALE_MENU_HINT_INFOBAR_DEFAULT_LOGO);
 	menu_channellogos->addItem(mc);
-
+#if 0
 	menu_channellogos->addItem(GenericMenuSeparatorLine);
 
 	// show channellogos
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_SHOW_CHANNELLOGO, &g_settings.channellist_show_channellogo, OPTIONS_CHANNELLOGO_POSITION, OPTIONS_CHANNELLOGO_POSITION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_CHANNELLIST_SHOW_CHANNELLOGO);
 	menu_channellogos->addItem(mc);
+#endif
 }
 
 //infobar
@@ -1403,7 +1404,7 @@ void COsdSetup::showOsdChanlistSetup(CMenuWidget *menu_chanlist)
 	menu_chanlist->addItem(mc);
 	channellistNotifier->addItem(mc);
 
-	// show channellogo
+	// show channellogos
 	mc = new CMenuOptionChooser(LOCALE_CHANNELLIST_SHOW_CHANNELLOGO, &g_settings.channellist_show_channellogo, OPTIONS_CHANNELLOGO_POSITION, OPTIONS_CHANNELLOGO_POSITION_COUNT, true);
 	mc->setHint("", LOCALE_MENU_HINT_CHANNELLIST_SHOW_CHANNELLOGO);
 	menu_chanlist->addItem(mc);

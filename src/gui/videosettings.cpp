@@ -409,7 +409,7 @@ int CVideoSettings::showVideoSetup()
 //	videosetup->addItem(GenericMenuSeparatorLine);
 
 	CMenuOptionChooser *hm = new CMenuOptionChooser(LOCALE_VIDEOMENU_HDMI_MODE, &g_settings.hdmimode, VIDEOMENU_HDMI_MODE_OPTIONS, VIDEOMENU_HDMI_MODE_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcut++));
-	zm->setHint("", LOCALE_MENU_HINT_VIDEO_HDMI_MODE);
+	hm->setHint("", LOCALE_MENU_HINT_VIDEO_HDMI_MODE);
 	videosetup->addItem(hm);
 
 #endif

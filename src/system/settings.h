@@ -222,6 +222,7 @@ struct SNeutrinoSettings
 	int record_safety_time_after;
 	int zapto_pre_time;
 #if HAVE_ARM_HARDWARE
+	int hdmimode;
 	int zappingmode;
 #endif
 	int infobar_sat_display;

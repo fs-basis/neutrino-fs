@@ -438,6 +438,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 #if HAVE_ARM_HARDWARE
 	g_settings.zappingmode = configfile.getInt32( "zappingmode", 0);
+	g_settings.hdmimode = configfile.getInt32("hdmimode", 0);
 #endif
 
 	// ci settings
@@ -1237,6 +1238,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 #if HAVE_ARM_HARDWARE
 	configfile.setInt32( "zappingmode", g_settings.zappingmode);
+	configfile.setInt32( "hdmimode" , g_settings.hdmimode);
 #endif
 
 	// ci settings
@@ -2574,6 +2576,7 @@ TIMER_START();
 
 #if HAVE_ARM_HARDWARE
 	videoDecoder->SetControl(VIDEO_CONTROL_ZAPPING_MODE, g_settings.zappingmode);
+	videoDecoder->SetHdmiMode((HDMI_MODE) g_settings.hdmimode);
 #endif
 
 TIMER_STOP("################################## after all ##################################");

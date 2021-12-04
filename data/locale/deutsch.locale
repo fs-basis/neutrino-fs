@@ -1558,7 +1558,6 @@ menu.hint_video_hdmi_mode Wählt das Farbprofil für die HDMI Ausgabe
 menu.hint_video_mask Definieren Sie einen kanalspezifischen Rahmen zum Ausblenden unerwünschter Inhalte am Bildschirmrand
 menu.hint_video_mixer_color Wenn kein Signal vorhanden ist, wird die gewählte Farbe als Hintergrundfarbe verwendet.
 menu.hint_video_mode Wählen Sie den Modus des Ausgangssignals für den HDMI-Anschluss
-menu.hint_video_modes Definiert, welche Videosysteme mit der VF-Taste der Fernbedienung ausgewählt werden können
 menu.hint_video_pip Bild in Bild Größe und Position
 menu.hint_video_psi On-Screen-Menü zur Änderung von Farbe, Kontrast und mehr
 menu.hint_video_psi_step Setzt die Schrittweite für das On-Screen-Menü
@@ -2509,7 +2508,6 @@ videomenu.colorformat.ycbcr444 YCbCr 4:4:4
 videomenu.colorformat.yuv YUV
 videomenu.colorformat_analog Cinch/Scart
 videomenu.colorformat_hdmi HDMI
-videomenu.enabled_modes Videosysteme auf der VF-Taste
 videomenu.fullscreen Vollbild
 videomenu.hdmi_cec HDMI-CEC
 videomenu.hdmi_cec_broadcast Senden an alle Geräte

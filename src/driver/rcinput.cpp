@@ -1616,9 +1616,9 @@ const char *CRCInput::getSpecialKeyName(const unsigned int key)
 		case RC_ok:
 			return "ok";
 		case RC_plus:
-			return "vol. inc";
+			return "vol. plus";
 		case RC_minus:
-			return "vol. dec";
+			return "vol. minus";
 		case RC_spkr:
 			return "mute";
 		case RC_help:

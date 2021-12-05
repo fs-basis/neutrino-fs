@@ -87,7 +87,6 @@ CVideoSettings::CVideoSettings()
 	frameBuffer = CFrameBuffer::getInstance();
 
 	SyncControlerForwarder = NULL;
-	VcrVideoOutSignalOptionChooser = NULL;
 
 	width = 35;
 	selected = -1;
@@ -487,9 +486,6 @@ bool CVideoSettings::changeNotify(const neutrino_locale_t OptionName, void *)
 	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_SCART))
 	{
 		videoDecoder->SetVideoMode((analog_mode_t) g_settings.analog_mode1);
-	}
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_VCRSIGNAL))
-	{
 	}
 	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_VIDEOFORMAT) ||
 		ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_43MODE))

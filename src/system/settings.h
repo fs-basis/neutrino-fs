@@ -607,11 +607,13 @@ struct SNeutrinoSettings
 	std::string screenshot_dir;
 
 	int key_current_transponder;
+
 #if ENABLE_PIP
 	int key_pip_close;
 	int key_pip_setup;
 	int key_pip_swap;
 #endif
+
 	int key_format_mode_active;
 	int key_pic_mode_active;
 	int key_pic_size_active;

@@ -645,7 +645,6 @@ struct SNeutrinoSettings
 
 	int spectrum;
 
-
 #if ENABLE_PIP
 	int pip_width;
 	int pip_height;

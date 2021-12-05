@@ -93,7 +93,7 @@ class CKeybindSetup : public CMenuTarget, public CChangeObserver
 			MBKEY_CUT,
 			MBKEY_TRUNCATE,
 			MBKEY_COVER,
-			
+
 			KEYBINDS_COUNT
 		};
 
@@ -112,12 +112,12 @@ class CKeybindSetup : public CMenuTarget, public CChangeObserver
 		void showKeyBindMoviebrowserSetup(CMenuWidget *bindSettings_mbrowser);
 		int getRemoteCode();
 		bool setRemoteCode(int code);
-		
-	public:				
+
+	public:
 		CKeybindSetup();
 		~CKeybindSetup();
-		int exec(CMenuTarget* parent, const std::string & actionKey);
-		bool changeNotify(const neutrino_locale_t OptionName, void * data);
+		int exec(CMenuTarget *parent, const std::string &actionKey);
+		bool changeNotify(const neutrino_locale_t OptionName, void *data);
 		static const char *getMoviePlayerButtonName(const neutrino_msg_t key, bool &active, bool return_title = false);
 };
 

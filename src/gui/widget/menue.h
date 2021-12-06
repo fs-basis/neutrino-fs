@@ -115,7 +115,6 @@ class CMenuItem : public  CComponentsSignals
 		int x, y, dx, offx, name_start_x;
 		bool used;
 		fb_pixel_t item_color, item_bgcolor;
-
 		bool initModeCondition(const int& stb_mode);
 		void initItemColors(const bool select_mode);
 		lua_State	*luaState;
@@ -653,7 +652,6 @@ class CMenuWidget : public CMenuTarget, public CComponentsSignals
 			MENU_POS_TOP_RIGHT	,
 			MENU_POS_BOTTOM_LEFT	,
 			MENU_POS_BOTTOM_RIGHT	,
-
 			MENU_POS_PRESET
 		};
 		void addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string &action);
@@ -673,7 +671,7 @@ class CPINProtection
 		virtual CMenuTarget* getParent() = 0;
 		neutrino_locale_t title, hint;
 	public:
-		CPINProtection(std::string &validpin)
+		CPINProtection(std::string &validpin): title( LOCALE_PINPROTECTION_HEAD),hint(NONEXISTANT_LOCALE)
 		{
 			validPIN = &validpin;
 		};

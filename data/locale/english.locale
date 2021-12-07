@@ -894,7 +894,6 @@ kerneloptions.reset Reset settings
 keybindingmenu.addrecord add record timer
 keybindingmenu.addremind add zapto timer
 keybindingmenu.bouquetdown bouquet back
-keybindingmenu.bouquethandling Bouquet-control
 keybindingmenu.bouquetup next bouquet
 keybindingmenu.channeldown channel down
 keybindingmenu.channellist Channellist

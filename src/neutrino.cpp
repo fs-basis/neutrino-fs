@@ -425,7 +425,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #endif // HAVE_ARM_HARDWARE
 	g_settings.analog_out = configfile.getInt32( "analog_out", 0);
 	g_settings.avsync = configfile.getInt32( "avsync", 1);
-	g_settings.clockrec = configfile.getInt32( "clockrec", 1);
 
 #if HAVE_ARM_HARDWARE
 	g_settings.zappingmode = configfile.getInt32( "zappingmode", 0);
@@ -1221,7 +1220,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 #endif
 	configfile.setInt32( "analog_out", g_settings.analog_out);
 	configfile.setInt32( "avsync", g_settings.avsync);
-	configfile.setInt32( "clockrec", g_settings.clockrec);
 
 #if HAVE_ARM_HARDWARE
 	configfile.setInt32( "zappingmode", g_settings.zappingmode);

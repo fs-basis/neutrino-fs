@@ -46,6 +46,6 @@ class CAudioSetup : public CMenuTarget
 		CAudioSetup();
 		~CAudioSetup();
 
-		int exec(CMenuTarget* parent, const std::string & actionKey);
+		int exec(CMenuTarget *parent, const std::string &actionKey);
 };
 #endif

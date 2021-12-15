@@ -444,11 +444,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.channel_mode_radio = g_settings.channel_mode_initial_radio;
 
 #if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
-	if (g_info.hw_caps->has_fan)
-	{
-		g_settings.fan_speed = configfile.getInt32( "fan_speed", 1);
-		if(g_settings.fan_speed < 1) g_settings.fan_speed = 1;
-	}
+	g_settings.fan_speed = configfile.getInt32( "fan_speed", 1);
+	if(g_settings.fan_speed < 1) g_settings.fan_speed = 1;
 #endif
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
@@ -1313,10 +1310,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "channel_mode_initial_radio", g_settings.channel_mode_initial_radio );
 
 #if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
-	if (g_info.hw_caps->has_fan)
-	{
-		configfile.setInt32( "fan_speed", g_settings.fan_speed);
-	}
+	configfile.setInt32( "fan_speed", g_settings.fan_speed);
 #endif
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
@@ -2602,11 +2596,7 @@ TIMER_START();
 
 #if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
 	//fan speed
-	if (g_info.hw_caps->has_fan)
-	{
-		dprintf(DEBUG_NORMAL, "g_info.has_fan: %d\n", g_info.hw_caps->has_fan);
-		CFanControlNotifier::setSpeed(g_settings.fan_speed);
-	}
+	CFanControlNotifier::setSpeed(g_settings.fan_speed);
 #endif
 	dvbsub_init();
 
@@ -4290,10 +4280,7 @@ void CNeutrinoApp::ExitRun(int exit_code)
 	g_RCInput = NULL;
 
 #if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
-	if (g_info.hw_caps->has_fan)
-	{
-		CFanControlNotifier::setSpeed(0);
-	}
+	CFanControlNotifier::setSpeed(0);
 #endif
 	delete CVFD::getInstance();
 	delete SHTDCNT::getInstance();
@@ -4544,11 +4531,8 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 			CStreamManager::getInstance()->StreamStatus();
 #endif
 #if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
-		//fan speed
-		if (g_info.hw_caps->has_fan)
-		{
-			CFanControlNotifier::setSpeed(1);
-		}
+	//fan speed
+	CFanControlNotifier::setSpeed(1);
 #endif
 		if (g_InfoViewer->is_visible)
 			g_InfoViewer->killTitle();
@@ -4594,11 +4578,8 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 #endif
 		frameBuffer->setActive(true);
 #if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
-		//fan speed
-		if (g_info.hw_caps->has_fan)
-		{
-			CFanControlNotifier::setSpeed(g_settings.fan_speed);
-		}
+	//fan speed
+	CFanControlNotifier::setSpeed(g_settings.fan_speed);
 #endif
 		exec_controlscript(NEUTRINO_LEAVE_STANDBY_SCRIPT);
 

@@ -4553,8 +4553,9 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 		if (recordingstatus)
 			DisplayErrorMessage(g_Locale->getText(LOCALE_SERVICEMENU_RESTART_REFUSED_RECORDING));
 		else {
-			CHint * hint = new CHint(LOCALE_SERVICEMENU_RESTART_HINT);
-			hint->paint();
+			CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO,
+				g_Locale->getText(LOCALE_SERVICEMENU_RESTART_HINT));
+			hintBox->paint();
 
 			saveSetup(NEUTRINO_SETTINGS_FILE);
 
@@ -4565,7 +4566,8 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 			delete g_fixedFontRenderer;
 			delete g_dynFontRenderer;
 
-			delete hint;
+			sleep(2);
+			delete hintBox;
 
 			stop_daemons(true);
 			stop_video();

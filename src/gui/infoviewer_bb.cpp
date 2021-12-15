@@ -607,7 +607,7 @@ void CInfoViewerBB::showIcon_Tuner()
 	if (CFEManager::getInstance()->getEnabledCount() <= 1 || !g_settings.infobar_show_tuner)
 		return;
 
-	char icon_name[12];
+	char icon_name[18];
 	sprintf(icon_name, "tuner_%d", CFEManager::getInstance()->getLiveFE()->getNumber() + 1);
 	showBBIcons(CInfoViewerBB::ICON_TUNER, icon_name);
 }

@@ -349,7 +349,6 @@ int CKeybindSetup::showKeySetup()
 
 void CKeybindSetup::showKeyBindSetup(CMenuWidget *bindSettings)
 {
-	int shortcut = 0;
 
 	CMenuForwarder *mf;
 

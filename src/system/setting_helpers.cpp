@@ -617,7 +617,7 @@ int CDataResetNotifier::exec(CMenuTarget* /*parent*/, const std::string& actionK
 	return ret;
 }
 
-#if HAVE_DUCKBOX_HARDWARE
+#if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
 void CFanControlNotifier::setSpeed(unsigned int speed)
 {
 	int cfd;
@@ -671,15 +671,6 @@ bool CFanControlNotifier::changeNotify(const neutrino_locale_t, void * data)
 {
 	unsigned int speed = * (int *) data;
 	setSpeed(speed);
-	return false;
-}
-#else
-void CFanControlNotifier::setSpeed(unsigned int __attribute__ ((unused)) speed)
-{
-}
-
-bool CFanControlNotifier::changeNotify(const neutrino_locale_t, void *)
-{
 	return false;
 }
 #endif

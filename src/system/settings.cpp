@@ -99,7 +99,7 @@ const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SE
 	{"personalize_mplayer_fileplay_video"	, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 	{"personalize_mplayer_fileplay_audio"	, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 	{"personalize_mplayer_gui_mount"	, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
-	
+
 	//key
 	{"personalize_feat_key_fav"		, CPersonalizeGui::PERSONALIZE_FEAT_KEY_GREEN},
 	{"personalize_feat_key_timerlist"	, CPersonalizeGui::PERSONALIZE_FEAT_KEY_YELLOW},
@@ -125,11 +125,11 @@ CScanSettings::CScanSettings(void)
 	cableName = "none";
 }
 
-bool CScanSettings::loadSettings(const char * const fileName)
+bool CScanSettings::loadSettings(const char *const fileName)
 {
 	bool ret = configfile.loadConfig(fileName);
 
-	bouquetMode = (CZapitClient::bouquetMode) configfile.getInt32("bouquetMode" , bouquetMode);
+	bouquetMode = (CZapitClient::bouquetMode) configfile.getInt32("bouquetMode", bouquetMode);
 	scanType = (CZapitClient::scanType) configfile.getInt32("scanType", scanType);
 
 	scan_fta_flag = configfile.getInt32("scan_fta_flag", 0);
@@ -172,7 +172,7 @@ bool CScanSettings::loadSettings(const char * const fileName)
 	terrestrial_TP_pli		= configfile.getString("terrestrial_TP_pli", "0");
 
 #if 1
-	if(sat_TP_fec == 4) sat_TP_fec = 5;
+	if (sat_TP_fec == 4) sat_TP_fec = 5;
 #endif
 
 	fast_type = configfile.getInt32("fast_type", 2);
@@ -184,7 +184,7 @@ bool CScanSettings::loadSettings(const char * const fileName)
 	return ret;
 }
 
-bool CScanSettings::saveSettings(const char * const fileName)
+bool CScanSettings::saveSettings(const char *const fileName)
 {
 	configfile.setInt32("bouquetMode", bouquetMode);
 	configfile.setInt32("scanType", scanType);
@@ -245,7 +245,7 @@ bool CScanSettings::saveSettings(const char * const fileName)
 	else
 		configfile.setString("terrestrial_TP_pli", terrestrial_TP_pli);
 
-	if(configfile.getModifiedFlag())
+	if (configfile.getModifiedFlag())
 		configfile.saveConfig(fileName);
 
 	return true;

@@ -50,13 +50,6 @@ typedef enum {
 #endif
 } diseqc_t;
 
-/* video display formats (cf. video_displayformat_t in driver/dvb/include/linux/dvb/video.h): */
-typedef enum {
-	ZAPIT_VIDEO_PAN_SCAN,       /* use pan and scan format */
-	ZAPIT_VIDEO_LETTER_BOX,     /* use letterbox format */
-	ZAPIT_VIDEO_CENTER_CUT_OUT  /* use center cut out format */
-} video_display_format_t;
-
 typedef enum {
 	ST_RESERVED,
 	ST_DIGITAL_TELEVISION_SERVICE,

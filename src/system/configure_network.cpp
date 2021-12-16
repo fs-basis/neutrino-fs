@@ -42,11 +42,11 @@ CNetworkConfig::CNetworkConfig()
 	inet_static = false;
 }
 
-CNetworkConfig* CNetworkConfig::getInstance()
+CNetworkConfig *CNetworkConfig::getInstance()
 {
-	static CNetworkConfig* network_config = NULL;
+	static CNetworkConfig *network_config = NULL;
 
-	if(!network_config)
+	if (!network_config)
 	{
 		network_config = new CNetworkConfig();
 		printf("[network config] Instance created\n");
@@ -82,7 +82,8 @@ void CNetworkConfig::init_vars(void)
 
 	/* FIXME its enough to read IP for dhcp only ?
 	 * static config should not be different from settings in etc/network/interfaces */
-	if(!inet_static) {
+	if (!inet_static)
+	{
 		netGetIP(ifname, ip, mask, _broadcast);
 		netmask = mask;
 		broadcast = _broadcast;
@@ -92,10 +93,10 @@ void CNetworkConfig::init_vars(void)
 	netGetMacAddr(ifname, addr);
 
 	std::stringstream mac_tmp;
-	for(int i=0;i<6;++i)
-		mac_tmp<<std::hex<<std::setfill('0')<<std::setw(2)<<(int)addr[i]<<':';
+	for (int i = 0; i < 6; ++i)
+		mac_tmp << std::hex << std::setfill('0') << std::setw(2) << (int)addr[i] << ':';
 
-	mac_addr = mac_tmp.str().substr(0,17);
+	mac_addr = mac_tmp.str().substr(0, 17);
 }
 
 void CNetworkConfig::copy_to_orig(void)
@@ -113,49 +114,50 @@ void CNetworkConfig::copy_to_orig(void)
 bool CNetworkConfig::modified_from_orig(void)
 {
 #ifdef DEBUG
-		if(orig_automatic_start != automatic_start)
-			printf("CNetworkConfig::modified_from_orig: automatic_start changed\n");
-		if(orig_address         != address        )
-			printf("CNetworkConfig::modified_from_orig: address changed\n");
-		if(orig_netmask         != netmask        )
-			printf("CNetworkConfig::modified_from_orig: netmask changed\n");
-		if(orig_broadcast       != broadcast      )
-			printf("CNetworkConfig::modified_from_orig: broadcast changed\n");
-		if(orig_gateway         != gateway        )
-			printf("CNetworkConfig::modified_from_orig: gateway changed\n");
-		if(orig_hostname        != hostname       )
-			printf("CNetworkConfig::modified_from_orig: hostname changed\n");
-		if(orig_inet_static     != inet_static    )
-			printf("CNetworkConfig::modified_from_orig: inet_static changed\n");
-		if(orig_ifname	      != ifname)
-			printf("CNetworkConfig::modified_from_orig: ifname changed\n");
+	if (orig_automatic_start != automatic_start)
+		printf("CNetworkConfig::modified_from_orig: automatic_start changed\n");
+	if (orig_address         != address)
+		printf("CNetworkConfig::modified_from_orig: address changed\n");
+	if (orig_netmask         != netmask)
+		printf("CNetworkConfig::modified_from_orig: netmask changed\n");
+	if (orig_broadcast       != broadcast)
+		printf("CNetworkConfig::modified_from_orig: broadcast changed\n");
+	if (orig_gateway         != gateway)
+		printf("CNetworkConfig::modified_from_orig: gateway changed\n");
+	if (orig_hostname        != hostname)
+		printf("CNetworkConfig::modified_from_orig: hostname changed\n");
+	if (orig_inet_static     != inet_static)
+		printf("CNetworkConfig::modified_from_orig: inet_static changed\n");
+	if (orig_ifname	      != ifname)
+		printf("CNetworkConfig::modified_from_orig: ifname changed\n");
 #endif
 	/* check for following changes with dhcp enabled trigger apply question on menu quit,
 	 * even if apply already done */
-	if (inet_static) {
-		if ((orig_address         != address        ) ||
-		    (orig_netmask         != netmask        ) ||
-		    (orig_broadcast       != broadcast      ) ||
-		    (orig_gateway         != gateway        ))
+	if (inet_static)
+	{
+		if ((orig_address         != address) ||
+			(orig_netmask         != netmask) ||
+			(orig_broadcast       != broadcast) ||
+			(orig_gateway         != gateway))
 			return 1;
 	}
 	return (
-		(orig_automatic_start != automatic_start) ||
-		(orig_hostname        != hostname       ) ||
-		(orig_inet_static     != inet_static    ) ||
-		(orig_ifname	      != ifname)
+			(orig_automatic_start != automatic_start) ||
+			(orig_hostname        != hostname) ||
+			(orig_inet_static     != inet_static) ||
+			(orig_ifname	      != ifname)
 		);
 
 #if 0
 	return (
-		(orig_automatic_start != automatic_start) ||
-		(orig_address         != address        ) ||
-		(orig_netmask         != netmask        ) ||
-		(orig_broadcast       != broadcast      ) ||
-		(orig_gateway         != gateway        ) ||
-		(orig_hostname        != hostname       ) ||
-		(orig_inet_static     != inet_static    ) ||
-		(orig_ifname	      != ifname)
+			(orig_automatic_start != automatic_start) ||
+			(orig_address         != address) ||
+			(orig_netmask         != netmask) ||
+			(orig_broadcast       != broadcast) ||
+			(orig_gateway         != gateway) ||
+			(orig_hostname        != hostname) ||
+			(orig_inet_static     != inet_static) ||
+			(orig_ifname	      != ifname)
 		);
 #endif
 }
@@ -164,7 +166,7 @@ void CNetworkConfig::commitConfig(void)
 {
 	if (modified_from_orig())
 	{
-		if(orig_hostname != hostname)
+		if (orig_hostname != hostname)
 			netSetHostname(hostname);
 
 		if (inet_static)
@@ -196,7 +198,8 @@ void CNetworkConfig::startNetwork(void)
 #endif
 	my_system(3, "/bin/sh", "-c", cmd.c_str());
 
-	if (!inet_static) {
+	if (!inet_static)
+	{
 		init_vars();
 	}
 	//mysystem((char *) "ifup",  (char *) "-v",  (char *) "eth0");

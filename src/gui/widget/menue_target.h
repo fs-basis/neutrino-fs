@@ -31,12 +31,22 @@ class CMenuTarget
 		std::string *valueString;
 		std::string valueStringTmp;
 	public:
-		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; }
-		virtual ~CMenuTarget(){}
-		virtual void hide(){}
-		virtual int exec(CMenuTarget* parent, const std::string & actionKey) = 0;
-		virtual std::string &getValue(void) { return *valueString; }
-		virtual fb_pixel_t getColor(void) { return 0; }
+		CMenuTarget()
+		{
+			valueStringTmp = std::string();
+			valueString = &valueStringTmp;
+		}
+		virtual ~CMenuTarget() {}
+		virtual void hide() {}
+		virtual int exec(CMenuTarget *parent, const std::string &actionKey) = 0;
+		virtual std::string &getValue(void)
+		{
+			return *valueString;
+		}
+		virtual fb_pixel_t getColor(void)
+		{
+			return 0;
+		}
 };
 
 

@@ -40,7 +40,6 @@ lib/sectionsdclient/sectionsdcontrol
 src/neutrino
 src/nhttpd/web/*.js.gz
 src/zapit/src/pzapit
-src/zapit/src/udpstreampes
 src/rcsim.h
 src/rcsim
 src/gui/version.h

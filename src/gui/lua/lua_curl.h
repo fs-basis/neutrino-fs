@@ -33,7 +33,8 @@ class CLuaCurl
 		~CLuaCurl() {};
 };
 
-struct progressData {
+struct progressData
+{
 	CURL *curl;
 	curl_off_t last_dlnow;
 };
@@ -41,7 +42,8 @@ struct progressData {
 class CLuaInstCurl
 {
 	public:
-		enum {
+		enum
+		{
 			LUA_CURL_OK              = 0,
 			LUA_CURL_ERR_HANDLE      = 1,
 			LUA_CURL_ERR_NO_URL      = 2,
@@ -51,7 +53,7 @@ class CLuaInstCurl
 
 		CLuaInstCurl() {};
 		~CLuaInstCurl() {};
-		static CLuaInstCurl* getInstance();
+		static CLuaInstCurl *getInstance();
 		static void LuaCurlRegister(lua_State *L);
 		static std::string CurlUriInternal(std::string data, bool decode);
 

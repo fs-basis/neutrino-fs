@@ -290,6 +290,11 @@ AC_ARG_ENABLE(testing,
 	AC_DEFINE(ENABLE_TESTING, 1, [enable development code]))
 AM_CONDITIONAL(ENABLE_TESTING, test "$enable_testing" = "yes")
 
+AC_ARG_ENABLE(fribidi,
+	AS_HELP_STRING([--enable-fribidi], [enable fribidi support @<:@default=no@:>@]),
+	AC_DEFINE(ENABLE_FRIBIDI, 1, [enable fribidi support]))
+AM_CONDITIONAL(ENABLE_FRIBIDI, test "$enable_fribidi" = "yes")
+
 AC_ARG_WITH(stb-hal-includes,
 	AS_HELP_STRING([--with-stb-hal-includes=PATH], [path for libstb-hal includes [[NONE]]]),
 	[STB_HAL_INC="$withval"],

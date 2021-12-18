@@ -2297,6 +2297,7 @@ streaminfo.head Technical informations
 streaminfo.osd_resolution OSD resolution
 streaminfo.resolution Resolution
 streaminfo.signal Tuner
+streaming.busy One or several recording processes are active.\nIf you encounter this message and no recording is active, please restart GUI.
 streaming.dir_not_writable The recording directory is not writable.\nRecording will not work.
 streaming.overflow Record buffer overflow, consider to stop some records
 streaming.slow System/hdd too slow, consider to stop some records

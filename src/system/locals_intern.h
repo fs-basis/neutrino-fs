@@ -2324,6 +2324,7 @@ const char *locale_real_names[] =
 	"streaminfo.osd_resolution",
 	"streaminfo.resolution",
 	"streaminfo.signal",
+	"streaming.busy",
 	"streaming.dir_not_writable",
 	"streaming.overflow",
 	"streaming.slow",

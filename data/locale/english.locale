@@ -2450,7 +2450,6 @@ zapit.scantype.tvradio tv and radio
 zapitsetup.channelmode Initial TV channel list
 zapitsetup.channelmode_radio Initial Radio channel list
 zapitsetup.head Start Channel Settings
-zapitsetup.info Start Channel
 zapitsetup.last_radio Radio Channel
 zapitsetup.last_tv TV Channel
 zapitsetup.last_use from last Channel

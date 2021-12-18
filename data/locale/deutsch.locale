@@ -2449,6 +2449,7 @@ zapit.scantype.tvradio Nur TV und Radio
 zapitsetup.channelmode Start-Kanalliste für TV
 zapitsetup.channelmode_radio Start-Kanalliste für Radio
 zapitsetup.head Startkanal-Verwaltung
+zapitsetup.info Startkanal
 zapitsetup.last_radio Radio Kanal
 zapitsetup.last_tv TV Kanal
 zapitsetup.last_use Kanal beim Runterfahren speichern

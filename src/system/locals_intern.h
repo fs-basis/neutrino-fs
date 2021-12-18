@@ -2476,6 +2476,7 @@ const char *locale_real_names[] =
 	"zapitsetup.channelmode",
 	"zapitsetup.channelmode_radio",
 	"zapitsetup.head",
+	"zapitsetup.info",
 	"zapitsetup.last_radio",
 	"zapitsetup.last_tv",
 	"zapitsetup.last_use",

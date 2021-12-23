@@ -788,9 +788,9 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.timeshift_pause = configfile.getInt32( "timeshift_pause", 0 );
 
 	g_settings.screenshot_count = configfile.getInt32( "screenshot_count",  1);
-	g_settings.screenshot_format = configfile.getInt32( "screenshot_format",  1);
+	g_settings.screenshot_format = configfile.getInt32( "screenshot_format", 0);
 	g_settings.screenshot_cover = configfile.getInt32( "screenshot_cover",  0);
-	g_settings.screenshot_mode = configfile.getInt32( "screenshot_mode",  0);
+	g_settings.screenshot_mode = configfile.getInt32( "screenshot_mode",  1);
 	g_settings.auto_cover = configfile.getInt32( "auto_cover",  0);
 
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
@@ -2792,7 +2792,7 @@ void CNeutrinoApp::RealRun()
 #ifdef SCREENSHOT
 			else if (msg == (neutrino_msg_t) g_settings.key_screenshot) {
 				for(int i = 0; i < g_settings.screenshot_count; i++) {
-#if HAVE_SH4_HARDWARE
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 					CVFD::getInstance()->ShowText("SCREENSHOT");
 					CHintBox *hintbox = NULL;
 					if (g_settings.screenshot_mode == 1)
@@ -2803,7 +2803,7 @@ void CNeutrinoApp::RealRun()
 					CScreenShot * sc = new CScreenShot("", (CScreenShot::screenshot_format_t)g_settings.screenshot_format);
 					sc->MakeFileName(CZapit::getInstance()->GetCurrentChannelID());
 					sc->Start();
-#if HAVE_SH4_HARDWARE
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 					if (hintbox) {
 						hintbox->hide();
 						delete hintbox;

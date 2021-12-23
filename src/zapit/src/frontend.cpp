@@ -295,7 +295,7 @@ void CFrontend::getFEInfo(void)
 				fe_can_multistream = info.caps & FE_CAN_MULTISTREAM;
 				printf("[fe%d/%d] add delivery system DVB-S2 (delivery_system: %d / Multistream: %s)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i], fe_can_multistream ? "yes" :"no");
 				break;
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 			case SYS_DVBS2X:
 				deliverySystemMask |= DVB_S2X;
 				fe_can_multistream = info.caps & FE_CAN_MULTISTREAM;

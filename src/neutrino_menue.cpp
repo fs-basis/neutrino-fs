@@ -194,7 +194,7 @@ void CNeutrinoApp::InitMenuMain()
 	mf = new CMenuForwarder(LOCALE_MAINMENU_GAMES, show_games, NULL, new CPluginList(LOCALE_MAINMENU_GAMES,CPlugins::P_TYPE_GAME));
 	mf->setHint(NEUTRINO_ICON_HINT_GAMES, LOCALE_MENU_HINT_GAMES);
 	personalize.addItem(MENU_MAIN, mf, &g_settings.personalize[SNeutrinoSettings::P_MAIN_GAMES]);
-#if 0
+
 	//tools
 	bool show_tools = g_Plugins->hasPlugin(CPlugins::P_TYPE_TOOL);
 	mf = new CMenuForwarder(LOCALE_MAINMENU_TOOLS, show_tools, NULL, new CPluginList(LOCALE_MAINMENU_TOOLS,CPlugins::P_TYPE_TOOL));
@@ -212,12 +212,6 @@ void CNeutrinoApp::InitMenuMain()
 	mf = new CMenuForwarder(LOCALE_MAINMENU_LUA, show_lua, NULL, new CPluginList(LOCALE_MAINMENU_LUA,CPlugins::P_TYPE_LUA));
 	mf->setHint(NEUTRINO_ICON_HINT_SCRIPTS, LOCALE_MENU_HINT_LUA);
 	personalize.addItem(MENU_MAIN, mf, &g_settings.personalize[SNeutrinoSettings::P_MAIN_LUA]);
-#else
-	bool show_plugins = g_Plugins->hasPlugin(CPlugins::P_TYPE_NO_GAME);
-	mf = new CMenuForwarder(LOCALE_PERSONALIZE_PLUGINS, show_plugins, NULL, new CPluginList(LOCALE_PERSONALIZE_PLUGINS, CPlugins::P_TYPE_NO_GAME));
-	mf->setHint(NEUTRINO_ICON_HINT_SCRIPTS, LOCALE_MENU_HINT_LUA);
-	personalize.addItem(MENU_MAIN, mf, &g_settings.personalize[SNeutrinoSettings::P_MAIN_LUA]);
-#endif
 
 	//separator
 	personalize.addSeparator(MENU_MAIN);

@@ -1594,7 +1594,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			}
 		}
 
-	if (msg == (neutrino_msg_t) g_settings.mpkey_stop) {
+		if (msg == (neutrino_msg_t) g_settings.mpkey_stop) {
 			playstate = CMoviePlayerGui::STOPPED;
 #if HAVE_SH4_HARDWARE
 			playback->RequestAbort();

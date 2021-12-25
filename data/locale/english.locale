@@ -2146,8 +2146,8 @@ screenshot.format Format
 screenshot.info Screenshot key is unused
 screenshot.menu Screenshot
 screenshot.plane.all OSD and Video
-screenshot.plane.osd OSD only
-screenshot.plane.video Video only
+screenshot.plane.osd OSD
+screenshot.plane.video Video
 screenshot.planes Screenshot mode
 screenshot.please_wait Creating video screenshot, please wait ...
 servicemenu.getplugins Reload plugins

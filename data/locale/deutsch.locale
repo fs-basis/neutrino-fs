@@ -2225,8 +2225,8 @@ screenshot.format Format
 screenshot.info Screenshot Taste ist nicht belegt
 screenshot.menu Screenshot
 screenshot.plane.all OSD und Video
-screenshot.plane.osd nur OSD
-screenshot.plane.video nur Video
+screenshot.plane.osd OSD
+screenshot.plane.video Video
 screenshot.planes Screenshot-Art
 screenshot.please_wait Erzeuge Video-Screenshot, bitte warten ...
 servicemenu.getplugins Plugins neu laden

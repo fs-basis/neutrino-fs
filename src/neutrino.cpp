@@ -317,22 +317,24 @@ const lcd_setting_struct_t lcd_setting[SNeutrinoSettings::LCD_SETTING_COUNT] =
 };
 
 static SNeutrinoSettings::usermenu_t usermenu_default[] = {
-	{ CRCInput::RC_red,             "2,3,4,13",                             "",     "red"           },
-	{ CRCInput::RC_green,           "6",                                    "",     "green"         },
-	{ CRCInput::RC_yellow,          "7,34",                                 "",     "yellow"        },
-	{ CRCInput::RC_blue,            "12,11,20,21,19,14,29,30,15",           "",     "blue"          },
+	{ CRCInput::RC_red,		"5,2,3,4,13",		"",	"red"		},
+	{ CRCInput::RC_green,		"6",			"",	"green"		},
+	{ CRCInput::RC_yellow,		"22",			"",	"yellow"	},
+	{ CRCInput::RC_blue,		"11,15,19,14,31",	"",	"blue"		},
+#if 0 // off
 #if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
-	{ CRCInput::RC_playpause,       "9",                                    "",     "5"             },
+	{ CRCInput::RC_playpause,	"9",			"",	"5"		},
 #else
-	{ CRCInput::RC_play,            "9",                                    "",     "5"             },
+	{ CRCInput::RC_play,		"9",			"",	"5"		},
 #endif
-	{ CRCInput::RC_audio,           "27",                                   "",     "6"             },
+	{ CRCInput::RC_audio,		"27",			"",	"6"		},
 #if HAVE_SPARK_HARDWARE
-	{ CRCInput::RC_timer,           "19",                                   "",     "7"             },
-	{ CRCInput::RC_usb,             "31",                                   "",     "6"             },
-	{ CRCInput::RC_archive,         "30",                                   "",     "4"             },
+	{ CRCInput::RC_timer,		"19",			"",	"7"		},
+	{ CRCInput::RC_usb,		"31",			"",	"6"		},
+	{ CRCInput::RC_archive,		"30",			"",	"4"		},
 #endif
-	{ CRCInput::RC_nokey,           "",                                     "",     ""              },
+#endif // off end
+	{ CRCInput::RC_nokey,		"",			"",	""		},
 };
 
 /**************************************************************************************

@@ -384,7 +384,7 @@ void CKeybindSetup::showKeyBindSetup(CMenuWidget *bindSettings)
 	//moviebrowser
 	CMenuWidget *bindSettings_mbrowser = new CMenuWidget(LOCALE_KEYBINDINGMENU_HEAD, NEUTRINO_ICON_KEYBINDING, width, MN_WIDGET_ID_KEYSETUP_KEYBINDING_MOVIEBROWSER);
 	showKeyBindMoviebrowserSetup(bindSettings_mbrowser);
-	mf = new CMenuDForwarder(LOCALE_MOVIEBROWSER_HEAD, true, NULL, bindSettings_mbrowser, NULL, CRCInput::RC_nokey);
+	mf = new CMenuDForwarder(LOCALE_MOVIEBROWSER_HEAD, true, NULL, bindSettings_mbrowser, NULL, CRCInput::RC_0);
 	mf->setHint("", LOCALE_MENU_HINT_KEY_MOVIEBROWSER);
 	bindSettings->addItem(mf);
 

@@ -188,7 +188,7 @@ int CSettingsManager::showMenu()
 	mset->addIntroItems(LOCALE_MAINSETTINGS_MANAGE);
 
 	CMenuForwarder * mf;
-	mf = new CMenuForwarder(LOCALE_RESET_SETTINGS, true, NULL, resetNotifier, "settings");
+	mf = new CMenuForwarder(LOCALE_RESET_SETTINGS, true, NULL, resetNotifier, "settings", CRCInput::RC_0);
 	mf->setHint(NEUTRINO_ICON_HINT_RESET, LOCALE_MENU_HINT_RESET);
 	mset->addItem(mf);
 

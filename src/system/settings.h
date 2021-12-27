@@ -409,7 +409,6 @@ struct SNeutrinoSettings
 		P_MEDIA_MENU,
 		P_MEDIA_AUDIO,
 		P_MEDIA_INETPLAY,
-		P_MEDIA_MPLAYER,
 		P_MEDIA_PVIEWER,
 
 		//movieplayer menu

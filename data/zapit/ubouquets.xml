@@ -26,16 +26,16 @@
 		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
-		<S i="7008" t="436" on="1" s="192" frq="11973" n="NICK/CC+1"/>
+		<S i="7008" t="436" on="1" s="192" frq="11973" n="Nick/Comedy Central+1"/>
 		<S i="7004" t="436" on="1" s="192" frq="11973" n="Comedy Central"/>
-		<S i="3d" t="7" on="85" s="192" frq="12148" n="NICKELODEON AT"/>
+		<S i="3d" t="7" on="85" s="192" frq="12148" n="Nick/Comedy Central Austria"/>
 		<S i="3c" t="7" on="85" s="192" frq="12148" n="Comedy Central Austria"/>
 		<S i="1332" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Deutschland"/>
 		<S i="1331" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Oesterreich"/>
 		<S i="526c" t="41d" on="1" s="192" frq="10773" n="ANIXE HD"/>
 		<S i="2856" t="401" on="1" s="192" frq="11582" n="BR Fernsehen Nord HD"/>
 		<S i="2855" t="401" on="1" s="192" frq="11582" n="BR Fernsehen Süd HD"/>
-		<S i="2889" t="40f" on="1" s="192" frq="11053" n="ARD-alpha HD"/>
+		<S i="2889" t="40f" on="1" s="192" frq="11053" n="ARD alpha HD"/>
 		<S i="283d" t="3fb" on="1" s="192" frq="11494" n="Das Erste HD"/>
 		<S i="2887" t="40f" on="1" s="192" frq="11053" n="tagesschau24 HD"/>
 		<S i="2888" t="40f" on="1" s="192" frq="11053" n="ONE HD"/>
@@ -139,7 +139,6 @@
 		<S i="204" t="6" on="85" s="192" frq="11914" n="Sky Cinema Classics"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
-		<S i="75" t="4" on="85" s="192" frq="12032" n="Sky Serien &amp; Shows HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="d" t="6" on="85" s="192" frq="11914" n="Sky Crime HD"/>
 		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
@@ -194,7 +193,7 @@
 		<S i="14a" t="3" on="85" s="192" frq="11720" n="Eurosport360HD 7"/>
 		<S i="154" t="10" on="85" s="192" frq="11798" n="Eurosport360HD 8"/>
 		<S i="104" t="b" on="85" s="192" frq="12382" n="Eurosport360HD 9"/>
-		<S i="81" t="6" on="85" s="192" frq="11914" n="Sky Sport 1 HD"/>
+		<S i="81" t="6" on="85" s="192" frq="11914" n="Sky Sport Premier League HD"/>
 		<S i="72" t="d" on="85" s="192" frq="11992" n="Sky Sport 2 HD"/>
 		<S i="10c" t="6" on="85" s="192" frq="11914" n="Sky Sport 3 HD"/>
 		<S i="116" t="2" on="85" s="192" frq="11758" n="Sky Sport 4 HD"/>
@@ -261,7 +260,7 @@
 		<S i="28ae" t="40f" on="1" s="192" frq="11053" n="NDR Info NDS"/>
 		<S i="28b4" t="40f" on="1" s="192" frq="11053" n="NDR Info Spezial"/>
 		<S i="28ad" t="40f" on="1" s="192" frq="11053" n="NDR Kultur"/>
-		<S i="28b6" t="40f" on="1" s="192" frq="11053" n="NDR Plus"/>
+		<S i="28b6" t="40f" on="1" s="192" frq="11053" n="NDR Schlager"/>
 		<S i="28b1" t="40f" on="1" s="192" frq="11053" n="NDR1 Welle Nord KI"/>
 		<S i="28ba" t="40f" on="1" s="192" frq="11053" n="Bremen Eins"/>
 		<S i="28bd" t="40f" on="1" s="192" frq="11053" n="Bremen NEXT"/>
@@ -300,6 +299,7 @@
 	<Bouquet name="Mix">
 		<S i="a1" t="7" on="85" s="192" frq="12148" n="ERF Plus"/>
 		<S i="a2" t="7" on="85" s="192" frq="12148" n="ERF Pop"/>
+		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
 		<S i="6d6d" t="437" on="1" s="192" frq="11954" n="Dlf"/>
 		<S i="6d6c" t="437" on="1" s="192" frq="11954" n="Dlf Kultur"/>
 		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
@@ -338,7 +338,6 @@
 		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>
 		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
 		<S i="a9" t="7" on="85" s="192" frq="12148" n="sunshine live"/>
-		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
 		<S i="aa" t="7" on="85" s="192" frq="12148" n="ANTENNE BAYERN"/>
 	</Bouquet>
 	<Bouquet name="Favorites">

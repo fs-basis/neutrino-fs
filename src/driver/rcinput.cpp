@@ -1145,10 +1145,6 @@ void CRCInput::getMsg_us(neutrino_msg_t *msg, neutrino_msg_data_t *data, uint64_
 						else if (emsg.initiatorID == CEventServer::INITID_TIMERD)
 						{
 							/*
-							   if (emsg.eventID==CTimerdClient::EVT_ANNOUNCE_NEXTPROGRAM)
-							   {
-							   }
-
 							   if (emsg.eventID==CTimerdClient::EVT_NEXTPROGRAM)
 							   {
 							 *msg = NeutrinoMessages::EVT_NEXTPROGRAM;

@@ -43,7 +43,6 @@ int timerd_debug = 0;
 
 bool timerd_parse_command(CBasicMessage::Header &rmsg, int connfd)
 {
-//	CTimerEvent_NextProgram::EventMap::iterator it = NULL;
 	CTimerEventMap events;
 	CTimerdMsg::commandModifyTimer msgModifyTimer;
 	CTimerdMsg::responseGetSleeptimer rspGetSleeptimer;
@@ -213,7 +212,6 @@ bool timerd_parse_command(CBasicMessage::Header &rmsg, int connfd)
 				switch (*type)
 				{
 					case CTimerd::TIMER_SHUTDOWN:
-					//case CTimerd::TIMER_NEXTPROGRAM:
 					case CTimerd::TIMER_ZAPTO:
 					case CTimerd::TIMER_STANDBY:
 					case CTimerd::TIMER_REMIND:

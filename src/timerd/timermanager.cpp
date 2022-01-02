@@ -298,11 +298,6 @@ int CTimerManager::unlockEvents()
 
 bool CTimerManager::listEvents(CTimerEventMap &Events)
 {
-	/* events is passed as reference and thus its address is never NULL
-		if(!&Events)
-			return false;
-	 */
-
 	Events.clear();
 	for (CTimerEventMap::iterator pos = events.begin(); pos != events.end(); ++pos)
 	{
@@ -348,7 +343,6 @@ int CTimerManager::modifyEvent(int peventID, time_t announceTime, time_t alarmTi
 		switch (event->eventType)
 		{
 			case CTimerd::TIMER_SHUTDOWN:
-			//case CTimerd::TIMER_NEXTPROGRAM:
 			case CTimerd::TIMER_STANDBY:
 			case CTimerd::TIMER_REMIND:
 			case CTimerd::TIMER_SLEEPTIMER:
@@ -674,7 +668,6 @@ void CTimerManager::loadRecordingSafety()
 void CTimerManager::setWakeupTime()
 {
 	time_t nextAnnounceTime = 0;
-	//bool status=false;
 	timer_is_rec = false;
 
 	if (pthread_mutex_trylock(&tm_eventsMutex) == EBUSY)

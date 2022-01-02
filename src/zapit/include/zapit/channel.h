@@ -145,7 +145,6 @@ class CZapitChannel
 		unsigned short			teletextPid;
 		unsigned short			videoPid;
 		unsigned short			audioPid;
-		/*unsigned short			privatePid;*/
 
 		/* set true when pids are set up */
 		bool				pidsFlag;
@@ -166,7 +165,6 @@ class CZapitChannel
 		unsigned char			serviceType;
 
 		/* the conditional access program map table of this channel */
-		//CCaPmt * 			caPmt;
 		unsigned char			* rawPmt;
 		int				pmtLen;
 		uint8_t				pmt_version;
@@ -244,10 +242,8 @@ class CZapitChannel
 		unsigned short		getTeletextPid(void)		{ return teletextPid; }
 		const char *		getTeletextLang(void)		{ return ttx_language_code.c_str(); }
 		unsigned short		getVideoPid(void)		{ return videoPid; }
-		/*unsigned short		getPrivatePid(void)		{ return privatePid; }*/
 		unsigned short		getPreAudioPid(void)		{ return audioPid; }
 		bool			getPidsFlag(void)		{ return pidsFlag; }
-		//CCaPmt *		getCaPmt(void)			{ return caPmt; }
 		unsigned char *		getRawPmt(int &len)		{ len = pmtLen; return rawPmt; };
 		uint8_t			getPmtVersion(void)		{ return pmt_version; };
 
@@ -268,9 +264,7 @@ class CZapitChannel
 		void setTeletextLang(std::string lang)			{ ttx_language_code = lang; };
 		void setVideoPid(unsigned short pVideoPid)		{ videoPid = pVideoPid; }
 		void setAudioPid(unsigned short pAudioPid)		{ audioPid = pAudioPid; }
-		/*void setPrivatePid(unsigned short pPrivatePid)		{ privatePid = pPrivatePid; }*/
 		void setPidsFlag(void)					{ pidsFlag = true; }
-		//void setCaPmt(CCaPmt *pCaPmt);
 		void setPmtVersion(uint8_t version)			{ pmt_version = version; }
 		void setRawPmt(unsigned char * pmt, int len = 0);
 		/* cleanup methods */
@@ -358,6 +352,4 @@ struct CmpChannelByChNum: public std::binary_function <const CZapitChannel * con
 		;
 	};
 };
-
-
 #endif /* __zapit_channel_h__ */

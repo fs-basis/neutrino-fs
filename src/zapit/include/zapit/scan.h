@@ -129,5 +129,4 @@ class CServiceScan : public OpenThreads::Thread
 		int GetFlags() { return flags; }
 		bool SatHaveChannels() { return satHaveChannels; }
 };
-
 #endif /* __scan_h__ */

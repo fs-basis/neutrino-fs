@@ -118,10 +118,7 @@ class CZapit : public OpenThreads::Thread
 		int def_audio_mode;
 		int aspectratio;
 		int mode43;
-#if 0
-		unsigned int volume_left;
-		unsigned int volume_right;
-#endif
+
 		int current_volume;
 		int volume_percent;
 
@@ -130,11 +127,7 @@ class CZapit : public OpenThreads::Thread
 
 		int currentMode;
 		bool playbackStopForced;
-		//diseqc_t diseqcType;
 
-		//int video_mode;
-		//Zapit_config config;
-		//CConfigFile configfile;
 		CEventServer *eventServer;
 		CBasicServer zapit_server;
 
@@ -154,20 +147,16 @@ class CZapit : public OpenThreads::Thread
 		OpenThreads::Mutex vol_map_mutex;
 		int volume_percent_ac3;
 		int volume_percent_pcm;
-		//bool current_is_nvod;
-		//bool standby;
+
 		t_channel_id  lastChannelRadio;
 		t_channel_id  lastChannelTV;
 		int abort_zapit;
 		int pmt_update_fd;
 
-		//void LoadAudioMap();
 		void SaveAudioMap();
 		void SaveVolumeMap();
 		void SaveSettings(bool write_conf);
-		//void SaveChannelPids(CZapitChannel* channel);
 		void RestoreChannelPids(CZapitChannel* channel);
-		//void ConfigFrontend();
 
 		bool TuneChannel(CFrontend *frontend, CZapitChannel * channel, bool &transponder_change, bool send_event = true);
 		bool ParsePatPmt(CZapitChannel * channel);
@@ -182,18 +171,14 @@ class CZapit : public OpenThreads::Thread
 		void SendCmdReady(int connfd);
 
 		bool StartPlayBack(CZapitChannel *thisChannel);
-		//bool StopPlayBack(bool send_pmt);
 		void SendPMT(bool forupdate = false);
 		void SetAudioStreamType(CZapitAudioChannel::ZapitAudioChannelType audioChannelType);
 
 		void enterStandby();
-		//void leaveStandby();
 		unsigned int ZapTo(const unsigned int bouquet, const unsigned int pchannel);
 		unsigned int ZapTo(t_channel_id channel_id, bool isSubService = false);
 		unsigned int ZapTo(const unsigned int pchannel);
 		void PrepareScan();
-
-		//CZapitSdtMonitor SdtMonitor;
 
 		void run();
 	protected:

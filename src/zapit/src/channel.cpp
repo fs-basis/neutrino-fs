@@ -91,7 +91,6 @@ CZapitChannel::CZapitChannel(const char *p_name, t_channel_id p_channel_id, cons
 void CZapitChannel::Init()
 {
 	uname = DEFAULT_CH_UNAME;
-	//caPmt = NULL;
 	rawPmt = NULL;
 	pmtLen = 0;
 	type = 0;
@@ -119,7 +118,6 @@ CZapitChannel::~CZapitChannel(void)
 {
 //printf("DEL CHANNEL %s %x subs %d\n", name.c_str(), (int) this, getSubtitleCount());
 	resetPids();
-	//setCaPmt(NULL);
 	setRawPmt(NULL);
 	camap.clear();
 }
@@ -180,12 +178,10 @@ void CZapitChannel::resetPids(void)
 	currentAudioChannel = 0;
 
 	pcrPid = 0;
-	//pmtPid = 0;
 	teletextPid = 0;
 	videoPid = 0;
 	audioPid = 0;
 
-	/*privatePid = 0;*/
 	pidsFlag = false;
         std::vector<CZapitAbsSub *>::iterator subI;
         for (subI = channelSubs.begin(); subI != channelSubs.end(); ++subI){
@@ -298,7 +294,6 @@ printf("[subtitles] DVBSub: PID=0x%04x, lang=%3.3s, cpageid=%04x, apageid=%04x\n
 		if ((*subI)->thisSubType==CZapitAbsSub::DVB){
 			tmpSub=reinterpret_cast<CZapitDVBSub*>(*subI);
 			if (tmpSub->ISO639_language_code==langCode) {
-				//oldSub = tmpSub;
 				if (tmpSub->pId==pid &&
 						tmpSub->subtitling_type==subtitling_type &&
 						tmpSub->composition_page_id==composition_page_id &&
@@ -339,15 +334,6 @@ CZapitAbsSub* CZapitChannel::getChannelSub(int index)
     }
     return retval;
 }
-
-#if 0
-void CZapitChannel::setCaPmt(CCaPmt *pCaPmt)
-{
-	if(caPmt)
-		delete caPmt;
-	caPmt = pCaPmt;
-}
-#endif
 
 void CZapitChannel::setRawPmt(unsigned char * pmt, int len)
 {

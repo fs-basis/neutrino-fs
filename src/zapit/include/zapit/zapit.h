@@ -64,7 +64,6 @@ typedef struct Zapit_config {
 	int rezapTimeout;
 	int scanPids;
 	int scanSDT;
-	int useGotoXX;
 	/* FE common */
 	int feTimeout;
 	int feRetries;

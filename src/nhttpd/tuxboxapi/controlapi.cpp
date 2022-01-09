@@ -1898,13 +1898,10 @@ void CControlAPI::SendFoundEvents(CyhookHandler *hh, bool xml_format)
 				{
 					item += hh->outPair("fsk", string_printf("%u", longepg.fsk), true);
 					genre = "";
-#ifdef FULL_CONTENT_CLASSIFICATION
-					if (!longepg.contentClassification.empty())
-						genre = GetGenre(longepg.contentClassification[0]);
-#else
+
 					if (longepg.contentClassification)
 						genre = GetGenre(longepg.contentClassification);
-#endif
+
 					item += hh->outPair("genre", ZapitTools::UTF8_to_UTF8XML(genre.c_str()), true);
 				}
 				strftime(tmpstr, sizeof(tmpstr), "%Y-%m-%d", tmStartZeit);
@@ -1944,13 +1941,10 @@ void CControlAPI::SendFoundEvents(CyhookHandler *hh, bool xml_format)
 				{
 					result += hh->outSingle(string_printf("fsk:%u", longepg.fsk));
 					genre = "";
-#ifdef FULL_CONTENT_CLASSIFICATION
-					if (!longepg.contentClassification.empty())
-						genre = GetGenre(longepg.contentClassification[0]);
-#else
+
 					if (longepg.contentClassification)
 						genre = GetGenre(longepg.contentClassification);
-#endif
+
 					if (!genre.empty())
 						result += hh->outSingle(ZapitTools::UTF8_to_UTF8XML(genre.c_str()));
 				}

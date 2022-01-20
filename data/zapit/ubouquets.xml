@@ -193,7 +193,7 @@
 		<S i="14a" t="3" on="85" s="192" frq="11720" n="Eurosport360HD 7"/>
 		<S i="154" t="10" on="85" s="192" frq="11798" n="Eurosport360HD 8"/>
 		<S i="104" t="b" on="85" s="192" frq="12382" n="Eurosport360HD 9"/>
-		<S i="81" t="6" on="85" s="192" frq="11914" n="Sky Sport Premier League HD"/>
+		<S i="81" t="6" on="85" s="192" frq="11914" n="Sky Sport 1 HD"/>
 		<S i="72" t="d" on="85" s="192" frq="11992" n="Sky Sport 2 HD"/>
 		<S i="10c" t="6" on="85" s="192" frq="11914" n="Sky Sport 3 HD"/>
 		<S i="116" t="2" on="85" s="192" frq="11758" n="Sky Sport 4 HD"/>
@@ -333,7 +333,7 @@
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
 		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
-		<S i="7598" t="422" on="1" s="192" frq="10847" n="RADIOS ESP"/>
+		<S i="7598" t="422" on="1" s="192" frq="10847" n="TEST RA ESP"/>
 		<S i="a0" t="7" on="85" s="192" frq="12148" n="ROCK ANTENNE"/>
 		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>
 		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>

@@ -2499,6 +2499,7 @@ TIMER_START();
 
 	if(loadSettingsErg) {
 //		hintBox->hide();
+		frameBuffer->showFrame("start.jpg");
 		dprintf(DEBUG_INFO, "config file or options missing\n");
 		ShowHint(LOCALE_MESSAGEBOX_INFO, loadSettingsErg ==  1 ? g_Locale->getText(LOCALE_SETTINGS_NOCONFFILE)
 				: g_Locale->getText(LOCALE_SETTINGS_MISSINGOPTIONSCONFFILE));

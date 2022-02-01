@@ -145,6 +145,7 @@ int CSettingsManager::exec(CMenuTarget* parent, const std::string &actionKey)
 			dprintf(DEBUG_NORMAL, "[CSettingsManager]\t[%s - %d] executing [%s %s]\n", __func__, __LINE__, backup_sh, g_settings.backup_dir.c_str());
 			my_system(2, backup_sh, g_settings.backup_dir.c_str());
 
+			usleep(300000);
 			hintBox->hide();
 			delete hintBox;
 		}

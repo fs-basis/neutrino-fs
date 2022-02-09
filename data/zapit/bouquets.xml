@@ -1285,7 +1285,6 @@
 		<S i="7005" t="436" on="1" s="192" frq="11973" n="Nick_Jr.."/>
 	</Bouquet>
 	<Bouquet name="[E019.2] MTV Networks">
-		<S i="3c" t="7" on="85" s="192" frq="12148" n="Comedy Central Austria"/>
 		<S i="3d" t="7" on="85" s="192" frq="12148" n="Nick/Comedy Central Austria"/>
 	</Bouquet>
 	<Bouquet name="[E019.2] SES Astra">

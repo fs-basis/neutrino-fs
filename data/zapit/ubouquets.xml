@@ -233,7 +233,7 @@
 	<Bouquet name="ARD-Radio">
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>
 		<S i="28f9" t="425" on="1" s="192" frq="10891" n="Fritz"/>
-		<S i="28f4" t="425" on="1" s="192" frq="10891" n="Inforadio"/>
+		<S i="28f4" t="425" on="1" s="192" frq="10891" n="rbb24 Inforadio"/>
 		<S i="28f8" t="425" on="1" s="192" frq="10891" n="radioeins"/>
 		<S i="28f7" t="425" on="1" s="192" frq="10891" n="rbb 88.8"/>
 		<S i="28f5" t="425" on="1" s="192" frq="10891" n="rbbKultur"/>

@@ -707,7 +707,6 @@
 			<S i="000f" n="Sky Nature HD" t="19" s="1" num="119" f="4"/>
 			<S i="0013" n="Junior" t="16" s="1" num="113" f="4"/>
 			<S i="0016" n="Heimatkanal" t="16" s="1" num="109" f="4"/>
-			<S i="0018" n="Classica" t="16" s="1" num="100" f="4"/>
 			<S i="008b" n="Sky Cinema Family HD" t="19" s="1" num="131" f="4"/>
 			<S i="0093" n="Sky One HD" t="19" s="1" num="120" f="4"/>
 			<S i="00de" n="Sky Sport 2" t="16" s="1" num="1080" f="4"/>
@@ -1211,7 +1210,6 @@
 			<S i="0191" n="Jukebox" t="16" s="1" num="112" f="4"/>
 			<S i="0192" n="Crime + Investigation" t="16" s="1" num="101" f="4"/>
 			<S i="0194" n="Cartoon Network" t="16" s="1" num="99" f="4"/>
-			<S i="0196" n="Kinowelt TV" t="16" s="1" num="114" f="4"/>
 		</TS>
 		<TS id="044c" on="0001" frq="12402000" inv="2" sr="29700000" fec="2" pol="1" mod="9" sys="1">
 			<S i="21fd" n="FRANCE 4" t="19" s="1" num="556" f="4"/>

@@ -153,11 +153,6 @@ libneutrino_gui_a_SOURCES += \
 	glcdsetup.cpp
 endif
 
-if ENABLE_TESTING
-libneutrino_gui_a_SOURCES += \
-	test_menu.cpp
-endif
-
 libneutrino_gui2_a_SOURCES = \
 	color.cpp \
 	hdd_menu.cpp \

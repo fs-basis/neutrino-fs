@@ -124,7 +124,6 @@
 #include <hardware/audio.h>
 #include <hardware/ca.h>
 #include <hardware/video.h>
-#include <cs_api.h>
 #include <pwrmngr.h>
 
 #include <system/debug.h>

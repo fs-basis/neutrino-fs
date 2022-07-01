@@ -97,6 +97,37 @@
 		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
 		<S i="1013" t="451" on="35" s="192" frq="12515" n="Bergblick"/>
 	</Bouquet>
+	<Bouquet name="HD +">
+		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
+		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
+		<S i="ef78" t="3f9" on="1" s="192" frq="11464" n="Pro7 MAXX HD"/>
+		<S i="ef74" t="3f9" on="1" s="192" frq="11464" n="SAT.1 HD"/>
+		<S i="ef76" t="3f9" on="1" s="192" frq="11464" n="kabel eins HD"/>
+		<S i="ef79" t="3f9" on="1" s="192" frq="11464" n="Kabel Eins Doku HD"/>
+		<S i="151a" t="455" on="1" s="192" frq="12574" n="DMAX HD"/>
+		<S i="157c" t="41f" on="1" s="192" frq="10803" n="Disney Channel HD"/>
+		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>
+		<S i="6fec" t="436" on="1" s="192" frq="11973" n="Comedy Central HD"/>
+		<S i="ef10" t="421" on="1" s="192" frq="10832" n="RTL HD"/>
+		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
+		<S i="ef16" t="421" on="1" s="192" frq="10832" n="RTLup HD"/>
+		<S i="ef15" t="421" on="1" s="192" frq="10832" n="RTLZWEI HD"/>
+		<S i="2eaf" t="411" on="1" s="192" frq="11082" n="NITRO HD"/>
+		<S i="2e9b" t="411" on="1" s="192" frq="11082" n="SUPER RTL HD"/>
+		<S i="ef11" t="421" on="1" s="192" frq="10832" n="VOX HD"/>
+		<S i="ef17" t="421" on="1" s="192" frq="10832" n="VOXup HD"/>
+		<S i="5274" t="41d" on="1" s="192" frq="10773" n="WELT HD"/>
+		<S i="2774" t="409" on="1" s="192" frq="10964" n="TLC HD"/>
+		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>
+		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
+		<S i="ef14" t="421" on="1" s="192" frq="10832" n="ntv HD"/>
+		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
+		<S i="2777" t="409" on="1" s="192" frq="10964" n="MTV HD"/>
+		<S i="14b7" t="407" on="1" s="192" frq="11671" n="PULS 4 HD Austria"/>
+		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
+		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
+		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
+	</Bouquet>
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
 		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate Uhse HD"/>
@@ -146,87 +177,6 @@
 		<S i="8c" t="4" on="85" s="192" frq="12032" n="Warner TV Film HD"/>
 		<S i="7b" t="9" on="85" s="192" frq="11171" n="Warner TV Serie HD"/>
 		<S i="65" t="9" on="85" s="192" frq="11171" n="Universal TV HD"/>
-	</Bouquet>
-	<Bouquet name="HD +">
-		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
-		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
-		<S i="ef78" t="3f9" on="1" s="192" frq="11464" n="Pro7 MAXX HD"/>
-		<S i="ef74" t="3f9" on="1" s="192" frq="11464" n="SAT.1 HD"/>
-		<S i="ef76" t="3f9" on="1" s="192" frq="11464" n="kabel eins HD"/>
-		<S i="ef79" t="3f9" on="1" s="192" frq="11464" n="Kabel Eins Doku HD"/>
-		<S i="151a" t="455" on="1" s="192" frq="12574" n="DMAX HD"/>
-		<S i="157c" t="41f" on="1" s="192" frq="10803" n="Disney Channel HD"/>
-		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>
-		<S i="6fec" t="436" on="1" s="192" frq="11973" n="Comedy Central HD"/>
-		<S i="ef10" t="421" on="1" s="192" frq="10832" n="RTL HD"/>
-		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
-		<S i="ef16" t="421" on="1" s="192" frq="10832" n="RTLup HD"/>
-		<S i="ef15" t="421" on="1" s="192" frq="10832" n="RTLZWEI HD"/>
-		<S i="2eaf" t="411" on="1" s="192" frq="11082" n="NITRO HD"/>
-		<S i="2e9b" t="411" on="1" s="192" frq="11082" n="SUPER RTL HD"/>
-		<S i="ef11" t="421" on="1" s="192" frq="10832" n="VOX HD"/>
-		<S i="ef17" t="421" on="1" s="192" frq="10832" n="VOXup HD"/>
-		<S i="5274" t="41d" on="1" s="192" frq="10773" n="WELT HD"/>
-		<S i="2774" t="409" on="1" s="192" frq="10964" n="TLC HD"/>
-		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>
-		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
-		<S i="ef14" t="421" on="1" s="192" frq="10832" n="ntv HD"/>
-		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
-		<S i="2777" t="409" on="1" s="192" frq="10964" n="MTV HD"/>
-		<S i="14b7" t="407" on="1" s="192" frq="11671" n="PULS 4 HD Austria"/>
-		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
-		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
-		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
-	</Bouquet>
-	<Bouquet name="Sport">
-		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
-		<S i="6d" t="b" on="85" s="192" frq="12382" n="Eurosport 2 HD"/>
-		<S i="30d7" t="413" on="1" s="192" frq="11112" n="Eurosport 2 HD Xtra"/>
-		<S i="10e" t="6" on="85" s="192" frq="11914" n="Eurosport360HD 1"/>
-		<S i="118" t="2" on="85" s="192" frq="11758" n="Eurosport360HD 2"/>
-		<S i="122" t="c" on="85" s="192" frq="12304" n="Eurosport360HD 3"/>
-		<S i="12c" t="9" on="85" s="192" frq="11171" n="Eurosport360HD 4"/>
-		<S i="136" t="4" on="85" s="192" frq="12032" n="Eurosport360HD 5"/>
-		<S i="140" t="3" on="85" s="192" frq="11720" n="Eurosport360HD 6"/>
-		<S i="14a" t="3" on="85" s="192" frq="11720" n="Eurosport360HD 7"/>
-		<S i="154" t="10" on="85" s="192" frq="11798" n="Eurosport360HD 8"/>
-		<S i="104" t="b" on="85" s="192" frq="12382" n="Eurosport360HD 9"/>
-		<S i="81" t="6" on="85" s="192" frq="11914" n="Sky Sport 1 HD"/>
-		<S i="72" t="d" on="85" s="192" frq="11992" n="Sky Sport 2 HD"/>
-		<S i="10c" t="6" on="85" s="192" frq="11914" n="Sky Sport 3 HD"/>
-		<S i="116" t="2" on="85" s="192" frq="11758" n="Sky Sport 4 HD"/>
-		<S i="120" t="c" on="85" s="192" frq="12304" n="Sky Sport 5 HD"/>
-		<S i="12a" t="9" on="85" s="192" frq="11171" n="Sky Sport 6 HD"/>
-		<S i="134" t="4" on="85" s="192" frq="12032" n="Sky Sport 7 HD"/>
-		<S i="13e" t="3" on="85" s="192" frq="11720" n="Sky Sport 8 HD"/>
-		<S i="148" t="3" on="85" s="192" frq="11720" n="Sky Sport 9 HD"/>
-		<S i="152" t="10" on="85" s="192" frq="11798" n="Sky Sport 10 HD"/>
-		<S i="102" t="b" on="85" s="192" frq="12382" n="Sky Sport 11 HD"/>
-		<S i="8f" t="9" on="85" s="192" frq="11171" n="Sky Sport Austria 1 HD"/>
-		<S i="149" t="d" on="85" s="192" frq="11992" n="Sky Sport Austria 2 HD"/>
-		<S i="153" t="9" on="85" s="192" frq="11171" n="Sky Sport Austria 3 HD"/>
-		<S i="103" t="b" on="85" s="192" frq="12382" n="Sky Sport Austria 4 HD"/>
-		<S i="146" t="3" on="85" s="192" frq="11720" n="Sky Sport Austria 5 HD"/>
-		<S i="156" t="10" on="85" s="192" frq="11798" n="Sky Sport Austria 6 HD"/>
-		<S i="105" t="b" on="85" s="192" frq="12382" n="Sky Sport Austria 7 HD"/>
-		<S i="69" t="c" on="85" s="192" frq="12304" n="Sky Sport Bundesliga 1 HD"/>
-		<S i="10b" t="6" on="85" s="192" frq="11914" n="Sky Sport Bundesliga 2 HD"/>
-		<S i="115" t="2" on="85" s="192" frq="11758" n="Sky Sport Bundesliga 3 HD"/>
-		<S i="11f" t="c" on="85" s="192" frq="12304" n="Sky Sport Bundesliga 4 HD"/>
-		<S i="129" t="9" on="85" s="192" frq="11171" n="Sky Sport Bundesliga 5 HD"/>
-		<S i="133" t="4" on="85" s="192" frq="12032" n="Sky Sport Bundesliga 6 HD"/>
-		<S i="13d" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 7 HD"/>
-		<S i="147" t="3" on="85" s="192" frq="11720" n="Sky Sport Bundesliga 8 HD"/>
-		<S i="151" t="10" on="85" s="192" frq="11798" n="Sky Sport Bundesliga 9 HD"/>
-		<S i="101" t="b" on="85" s="192" frq="12382" n="Sky Sport Bundesliga 10 HD"/>
-		<S i="228" t="10" on="85" s="192" frq="11798" n="Sky Sport Bundesliga UHD"/>
-		<S i="229" t="10" on="85" s="192" frq="11798" n="Sky Sport UHD"/>
-		<S i="6c" t="c" on="85" s="192" frq="12304" n="Sky Sport News HD"/>
-		<S i="1194" t="406" on="1" s="192" frq="11656" n="SPORTDIGITAL FUSSBALL HD"/>
-		<S i="1197" t="406" on="1" s="192" frq="11656" n="EDGEsport"/>
-		<S i="1196" t="406" on="1" s="192" frq="11656" n="eSPORTS1"/>
-		<S i="1195" t="406" on="1" s="192" frq="11656" n="SPORT1+"/>
-		<S i="11" t="3" on="85" s="192" frq="11720" n="Sky Sport F1 HD"/>
 	</Bouquet>
 	<Bouquet name="ARD-Radio">
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>

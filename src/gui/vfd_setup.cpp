@@ -56,8 +56,6 @@
 
 #include <system/debug.h>
 #include <system/helpers.h>
-#include <cs_api.h>
-
 
 CVfdSetup::CVfdSetup()
 {

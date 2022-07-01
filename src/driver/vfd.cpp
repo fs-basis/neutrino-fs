@@ -44,7 +44,6 @@
 #include <system/helpers.h>
 #include <zapit/debug.h>
 
-#include <cs_api.h>
 extern CRemoteControl *g_RemoteControl;  /* neutrino.cpp */
 
 #ifdef HAVE_DUCKBOX_HARDWARE

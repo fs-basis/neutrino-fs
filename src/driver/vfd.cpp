@@ -516,7 +516,6 @@ void CVFD::showServicename(const std::string &name, int number)  // UTF-8
 
 void CVFD::showTime(bool force)
 {
-	//unsigned int system_rev = cs_get_revision();
 	static int recstatus = 0;
 #if 0
 	if (!has_lcd)

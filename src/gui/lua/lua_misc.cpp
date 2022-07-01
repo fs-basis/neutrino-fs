@@ -292,7 +292,7 @@ int CLuaInstMisc::GetRevision(lua_State *L)
 	if (!D) return 0; */
 	unsigned int rev = 0;
 	std::string hw   = "";
-	rev = cs_get_revision();
+	rev = 1;
 	lua_pushinteger(L, rev);
 	lua_pushstring(L, hw.c_str());
 	return 2;

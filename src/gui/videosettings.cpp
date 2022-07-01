@@ -61,7 +61,6 @@
 #include <system/helpers.h>
 #include <system/debug.h>
 
-#include <cs_api.h>
 #include <hardware/video.h>
 #if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 #include "3dsetup.h"

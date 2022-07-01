@@ -235,11 +235,6 @@ AC_ARG_ENABLE(pip,
 	AC_DEFINE(ENABLE_PIP, 1, [enable picture in picture support]))
 AM_CONDITIONAL(ENABLE_PIP, test "$enable_pip" = "yes")
 
-AC_ARG_ENABLE(testing,
-	AS_HELP_STRING([--enable-testing], [enable development code @<:@default=no@:>@]),
-	AC_DEFINE(ENABLE_TESTING, 1, [enable development code]))
-AM_CONDITIONAL(ENABLE_TESTING, test "$enable_testing" = "yes")
-
 AC_ARG_ENABLE(fribidi,
 	AS_HELP_STRING([--enable-fribidi], [enable fribidi support @<:@default=no@:>@]),
 	AC_DEFINE(ENABLE_FRIBIDI, 1, [enable fribidi support]))

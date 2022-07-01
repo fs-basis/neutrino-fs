@@ -62,7 +62,6 @@
 CVfdSetup::CVfdSetup()
 {
 	width = 40;
-	vfd_enabled = 1;
 }
 
 CVfdSetup::~CVfdSetup()
@@ -131,7 +130,7 @@ int CVfdSetup::showSetup()
 	if (g_info.hw_caps->display_can_set_brightness)
 	{
 		//vfd brightness menu
-		mf = new CMenuForwarder(LOCALE_LCDMENU_LCDCONTROLER, vfd_enabled, NULL, this, "brightness", CRCInput::RC_red);
+		mf = new CMenuForwarder(LOCALE_LCDMENU_LCDCONTROLER, true, NULL, this, "brightness", CRCInput::RC_red);
 		mf->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESS_SETUP);
 		vfds->addItem(mf);
 	}
@@ -143,13 +142,13 @@ int CVfdSetup::showSetup()
 		if (g_info.hw_caps->display_has_statusline)
 		{
 			//status line options
-			oj = new CMenuOptionChooser(LOCALE_LCDMENU_STATUSLINE, &g_settings.lcd_setting[SNeutrinoSettings::LCD_SHOW_VOLUME], LCDMENU_STATUSLINE_OPTIONS, LCDMENU_STATUSLINE_OPTION_COUNT, vfd_enabled);
+			oj = new CMenuOptionChooser(LOCALE_LCDMENU_STATUSLINE, &g_settings.lcd_setting[SNeutrinoSettings::LCD_SHOW_VOLUME], LCDMENU_STATUSLINE_OPTIONS, LCDMENU_STATUSLINE_OPTION_COUNT, true);
 			oj->setHint("", LOCALE_MENU_HINT_VFD_STATUSLINE);
 			vfds->addItem(oj);
 		}
 
 		//info line options
-		oj = new CMenuOptionChooser(LOCALE_LCD_INFO_LINE, &g_settings.lcd_info_line, LCD_INFO_OPTIONS, LCD_INFO_OPTION_COUNT, vfd_enabled);
+		oj = new CMenuOptionChooser(LOCALE_LCD_INFO_LINE, &g_settings.lcd_info_line, LCD_INFO_OPTIONS, LCD_INFO_OPTION_COUNT, true);
 		oj->setHint("", LOCALE_MENU_HINT_VFD_INFOLINE);
 		vfds->addItem(oj);
 
@@ -162,7 +161,7 @@ int CVfdSetup::showSetup()
 		if (file_exists("/proc/stb/lcd/scroll_repeats"))
 		{
 			// allow to set scroll_repeats
-			CMenuOptionNumberChooser * nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_SCROLL_REPEATS, &g_settings.lcd_scroll, vfd_enabled, 0, 999, this);
+			CMenuOptionNumberChooser * nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_SCROLL_REPEATS, &g_settings.lcd_scroll, true, 0, 999, this);
 			nc->setLocalizedValue(0, LOCALE_OPTIONS_OFF);
 			nc->setHint("", LOCALE_MENU_HINT_VFD_SCROLL);
 			vfds->addItem(nc);
@@ -170,23 +169,23 @@ int CVfdSetup::showSetup()
 		else
 		{
 			// simple on/off chooser
-			oj = new CMenuOptionChooser(LOCALE_LCDMENU_SCROLL, &g_settings.lcd_scroll, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, vfd_enabled, this);
+			oj = new CMenuOptionChooser(LOCALE_LCDMENU_SCROLL, &g_settings.lcd_scroll, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this);
 			oj->setHint("", LOCALE_MENU_HINT_VFD_SCROLL);
 			vfds->addItem(oj);
 		}
 #endif
 
 		//notify rc-lock
-		oj = new CMenuOptionChooser(LOCALE_LCDMENU_NOTIFY_RCLOCK, &g_settings.lcd_notify_rclock, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, vfd_enabled);
+		oj = new CMenuOptionChooser(LOCALE_LCDMENU_NOTIFY_RCLOCK, &g_settings.lcd_notify_rclock, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 		oj->setHint("", LOCALE_MENU_HINT_VFD_NOTIFY_RCLOCK);
-		vfds->addItem(oj);
+		vfds->addItem(oj);e6c834333
 	}
 
 	if (g_info.hw_caps->display_type == HW_DISPLAY_LED_NUM)
 	{
 		//LED NUM info line options
 		CMenuOptionChooser* led_num;
-		led_num = new CMenuOptionChooser(LOCALE_LCD_INFO_LINE, &g_settings.lcd_info_line, LCD_INFO_OPTIONS, LCD_INFO_OPTION_COUNT, vfd_enabled);
+		led_num = new CMenuOptionChooser(LOCALE_LCD_INFO_LINE, &g_settings.lcd_info_line, LCD_INFO_OPTIONS, LCD_INFO_OPTION_COUNT, true);
 		led_num->setHint("", LOCALE_MENU_HINT_VFD_INFOLINE);
 		vfds->addItem(led_num);
 	}
@@ -231,7 +230,7 @@ int CVfdSetup::showSetup()
 
 int CVfdSetup::showBrightnessSetup()
 {
-	CMenuOptionNumberChooser * nc;
+	CMenuOptionNumberChooser * nc;e6c834333
 	CMenuForwarder * mf;
 
 	CMenuWidget *mn_widget = new CMenuWidget(LOCALE_LCDMENU_HEAD, NEUTRINO_ICON_LCD,width, MN_WIDGET_ID_VFDSETUP_LCD_SLIDERS);
@@ -273,9 +272,9 @@ int CVfdSetup::showBrightnessSetup()
 	}
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
-	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, vfd_enabled, 0, 15, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, 0, 15, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
-	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, vfd_enabled, 0, 7, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, 0, 7, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #endif
 	nc->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESSDIM);
 	nc->setActivateObserver(this);
@@ -284,7 +283,7 @@ int CVfdSetup::showBrightnessSetup()
 	mn_widget->addItem(GenericMenuSeparatorLine);
 	CStringInput *dim_time = new CStringInput(LOCALE_LCDMENU_DIM_TIME, &g_settings.lcd_setting_dim_time, 3, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE,"0123456789 ");
 
-	mf = new CMenuForwarder(LOCALE_LCDMENU_DIM_TIME, vfd_enabled, g_settings.lcd_setting_dim_time, dim_time);
+	mf = new CMenuForwarder(LOCALE_LCDMENU_DIM_TIME, true, g_settings.lcd_setting_dim_time, dim_time);
 	mf->setHint("", LOCALE_MENU_HINT_VFD_DIMTIME);
 	mf->setActivateObserver(this);
 	mn_widget->addItem(mf);

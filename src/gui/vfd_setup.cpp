@@ -212,7 +212,7 @@ int CVfdSetup::showBrightnessSetup()
 #if HAVE_ARM_HARDWARE
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
-	nc = new Cvfd_enabledMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #endif
 	nc->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESSSTANDBY);
 	nc->setActivateObserver(this);

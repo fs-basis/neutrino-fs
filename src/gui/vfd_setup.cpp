@@ -176,7 +176,7 @@ int CVfdSetup::showSetup()
 		//notify rc-lock
 		oj = new CMenuOptionChooser(LOCALE_LCDMENU_NOTIFY_RCLOCK, &g_settings.lcd_notify_rclock, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 		oj->setHint("", LOCALE_MENU_HINT_VFD_NOTIFY_RCLOCK);
-		vfds->addItem(oj);e6c834333
+		vfds->addItem(oj);
 	}
 
 	if (g_info.hw_caps->display_type == HW_DISPLAY_LED_NUM)
@@ -228,7 +228,7 @@ int CVfdSetup::showSetup()
 
 int CVfdSetup::showBrightnessSetup()
 {
-	CMenuOptionNumberChooser * nc;e6c834333
+	CMenuOptionNumberChooser * nc;
 	CMenuForwarder * mf;
 
 	CMenuWidget *mn_widget = new CMenuWidget(LOCALE_LCDMENU_HEAD, NEUTRINO_ICON_LCD,width, MN_WIDGET_ID_VFDSETUP_LCD_SLIDERS);

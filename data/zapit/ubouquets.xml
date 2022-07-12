@@ -133,7 +133,7 @@
 		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate Uhse HD"/>
 		<S i="1c" t="3" on="85" s="192" frq="11720" n="Boomerang"/>
 		<S i="194" t="b" on="85" s="192" frq="12382" n="Cartoon Network"/>
-		<S i="192" t="b" on="85" s="192" frq="12382" n="Crime + Investigation"/>
+		<S i="192" t="2" on="85" s="192" frq="11758" n="Crime + Investigation"/>
 		<S i="84" t="9" on="85" s="192" frq="11171" n="DAZN 1 HD"/>
 		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>
@@ -171,7 +171,7 @@
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
 		<S i="d" t="6" on="85" s="192" frq="11914" n="Sky Crime HD"/>
 		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
-		<S i="31" t="d" on="85" s="192" frq="11992" n="Spiegel TV Wissen"/>
+		<S i="31" t="d" on="85" s="192" frq="11992" n="Curiosity Channel powered by Spiegel"/>
 		<S i="7e" t="c" on="85" s="192" frq="12304" n="SYFY HD"/>
 		<S i="88" t="b" on="85" s="192" frq="12382" n="Warner TV Comedy HD"/>
 		<S i="8c" t="4" on="85" s="192" frq="12032" n="Warner TV Film HD"/>
@@ -248,6 +248,8 @@
 		<S i="a1" t="7" on="85" s="192" frq="12148" n="ERF Plus"/>
 		<S i="a2" t="7" on="85" s="192" frq="12148" n="ERF Pop"/>
 		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
+		<S i="fde" t="451" on="35" s="192" frq="12515" n="Radio Freundes-Dienst"/>
+		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
 		<S i="6d6d" t="437" on="1" s="192" frq="11954" n="Dlf"/>
 		<S i="6d6c" t="437" on="1" s="192" frq="11954" n="Dlf Kultur"/>
 		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
@@ -272,12 +274,10 @@
 		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W"/>
 		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3"/>
 		<S i="3175" t="459" on="1" s="192" frq="12633" n="planet radio"/>
-		<S i="fde" t="451" on="35" s="192" frq="12515" n="Radio Freundes-Dienst"/>
 		<S i="3173" t="459" on="1" s="192" frq="12633" n="Radio Gloria"/>
 		<S i="3170" t="459" on="1" s="192" frq="12633" n="Radio HBR"/>
 		<S i="3171" t="459" on="1" s="192" frq="12633" n="Radio HCJB"/>
 		<S i="1c79" t="457" on="1" s="192" frq="12604" n="Radio Horeb"/>
-		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
 		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
 		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
 		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>

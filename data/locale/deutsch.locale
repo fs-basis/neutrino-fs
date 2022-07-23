@@ -2176,10 +2176,8 @@ scants.acthybrid Hybrid:
 scants.actsatellite Satellit:
 scants.actterrestrial Terrestrisch:
 scants.bouquet Bouquets
-scants.bouquet_create neu erstellen
 scants.bouquet_erase löschen
 scants.bouquet_leave nicht ändern
-scants.bouquet_satellite Satelliten-Bouquet
 scants.bouquet_update erneuern
 scants.bouquet_writenames Originalnamen in Bouquets schreiben
 scants.bouquet_writenames_bouquets nur Anbieter

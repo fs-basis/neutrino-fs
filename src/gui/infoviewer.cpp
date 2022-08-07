@@ -179,11 +179,7 @@ void CInfoViewer::Init()
 	// Hardcoded some Settings in neutrino.cpp
 	/*
 	// these has to be
-	g_settings.infobar_sat_display=false;
-	g_settings.infobar_show_channeldesc=false;
-	g_settings.infobar_show_channellogo=2;
-	g_settings.infobar_progressbar=3;
-	g_settings.infobar_show_sysfs_hdd=false;
+	g_settings.infobar_show_channellogo=2; // todo remove
 	*/
 
 }
@@ -679,14 +675,10 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 	is_visible = true;
 	infoViewerBB->is_visible = true;
 
-	fb_pixel_t col_NumBoxText = COL_INFOBAR_TEXT;
 	ChannelName = Channel;
 	bool new_chan = false;
 
 	if (zap_mode & IV_MODE_VIRTUAL_ZAP) {
-		if (g_RemoteControl->current_channel_id != new_channel_id) {
-			col_NumBoxText = COL_MENUHEAD_TEXT;
-		}
 		if ((current_channel_id != new_channel_id) || (evtlist.empty())) {
 			CEitManager::getInstance()->getEventsServiceKey(current_epg_id, evtlist);
 			if (!evtlist.empty())
@@ -749,7 +741,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 			ChanNumWidth = OFFSET_INNER_SMALL + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth (strChanNum);
 			g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(
 				ChanNameX + OFFSET_INNER_SMALL, ChanNameY + header_height,
-				ChanNumWidth, strChanNum, col_NumBoxText, 0, renderFlag);
+				ChanNumWidth, strChanNum, 0, renderFlag);
 		}
 	}
 
@@ -1567,15 +1559,12 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 		int pb_w = 112;
 		int pb_startx = BoxEndX - pb_w;
 		int pb_starty = ChanNameY - (pb_h + OFFSET_INNER_MID);
-		if (g_settings.infobar_progressbar)
-		{
-			pb_startx = xStart;
-			pb_w = BoxEndX - OFFSET_INNER_MID - xStart;
-			pb_w -= analogclock_size + analogclock_offset;
-		}
 
-				pb_starty = CurrInfoY + ((pb_h / 3)-(pb_h/5)) ;
-				pb_h = (pb_h/5);
+		pb_startx = xStart;
+		pb_w = BoxEndX - OFFSET_INNER_MID - xStart;
+		pb_w -= analogclock_size + analogclock_offset;
+		pb_starty = CurrInfoY + ((pb_h / 3)-(pb_h/5)) ;
+		pb_h = (pb_h/5);
 
 		int pb_p = pb_pos * pb_w / 100;
 		if (pb_p > pb_w)
@@ -1583,12 +1572,9 @@ void CInfoViewer::display_Info(const char *current, const char *next,
 
 		timescale->setDimensionsAll(pb_startx, pb_starty, pb_w, pb_h);
 		timescale->setActiveColor(COL_PROGRESSBAR_ACTIVE_PLUS_0);
-		timescale->setPassiveColor(g_settings.infobar_progressbar ? COL_PROGRESSBAR_PASSIVE_PLUS_0 : COL_INFOBAR_PLUS_0);
-		timescale->enableShadow(!g_settings.infobar_progressbar ? CC_SHADOW_ON : CC_SHADOW_OFF, OFFSET_SHADOW/2);
+		timescale->setPassiveColor(COL_INFOBAR_PLUS_0);
+		timescale->enableShadow(CC_SHADOW_OFF, OFFSET_SHADOW/2);
 		timescale->setValues(pb_p, pb_w);
-	}else{
-		if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
-			timescale->kill();
 	}
 
 	if (showButtonBar) {
@@ -1863,11 +1849,6 @@ void CInfoViewer::showInfoFile()
 
 	//get width of progressbar timescale
 	int pb_w = 0;
-/*
-	if ( (timescale != NULL) && (g_settings.infobar_progressbar == 0) ) {
-		pb_w = timescale->getWidth();
-	}
-*/
 
 	//set position of info area
 	const int xStart	= ChanInfoX;
@@ -1943,9 +1924,6 @@ void CInfoViewer::killTitle()
 
 		body->kill();
 
-		if (timescale)
-			if (g_settings.infobar_progressbar == SNeutrinoSettings::INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT)
-				timescale->kill();
 		if (g_settings.radiotext_enable && g_Radiotext) {
 			g_Radiotext->S_RtOsd = g_Radiotext->haveRadiotext() ? 1 : 0;
 			killRadiotext();

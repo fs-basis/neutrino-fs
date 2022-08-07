@@ -51,7 +51,7 @@ class CInfoViewer
 	CFrameBuffer * frameBuffer;
 	CInfoViewerBB* infoViewerBB;
 	CComponentsFrmClock *clock;
-	CComponentsShapeSquare *header , *numbox, *body, *rec;
+	CComponentsShapeSquare *header , *body, *rec;
 	CComponentsTextTransp *txt_curr_start, *txt_curr_event, *txt_curr_rest, *txt_next_start, *txt_next_event, *txt_next_in;
 
 	bool           gotTime;

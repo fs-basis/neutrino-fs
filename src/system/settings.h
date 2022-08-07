@@ -230,8 +230,6 @@ struct SNeutrinoSettings
 	int zappingmode;
 	int hdmi_colorimetry;
 #endif
-	int infobar_sat_display;
-	int infobar_show_channeldesc;
 	int infobar_subchan_disp_pos;
 	int infobar_buttons_usertitle;
 	int infobar_analogclock;
@@ -241,7 +239,6 @@ struct SNeutrinoSettings
 	int infobar_show;
 	int infobar_show_channellogo;
 	int infobar_show_numbers;
-	int infobar_progressbar;
 	int infobar_casystem_display;
 	int infobar_casystem_frame;
 	int volume_pos;
@@ -927,15 +924,6 @@ struct SNeutrinoSettings
 		std::string name;
 	} usermenu_t;
 	std::vector<usermenu_t *> usermenu;
-
-	//progressbar arrangement for infobar
-	typedef enum
-	{
-		INFOBAR_PROGRESSBAR_ARRANGEMENT_DEFAULT = 0,
-		INFOBAR_PROGRESSBAR_ARRANGEMENT_BELOW_CH_NAME = 1,
-		INFOBAR_PROGRESSBAR_ARRANGEMENT_BELOW_CH_NAME_SMALL = 2,
-		INFOBAR_PROGRESSBAR_ARRANGEMENT_BETWEEN_EVENTS = 3
-	} INFOBAR_PROGRESSBAR_ARRANGEMENT_TYPES;
 };
 
 extern const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SETTINGS_MAX];

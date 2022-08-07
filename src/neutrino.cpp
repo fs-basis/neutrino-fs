@@ -558,15 +558,12 @@ if (g_info.hw_caps->can_shutdown)
 	}
 	g_settings.timer_followscreenings = configfile.getInt32( "timer_followscreenings", CFollowScreenings::FOLLOWSCREENINGS_ON );
 
-	g_settings.infobar_sat_display = configfile.getBool("infobar_sat_display" , false );
-	g_settings.infobar_show_channeldesc = configfile.getBool("infobar_show_channeldesc" , false );
 	g_settings.infobar_show_numbers = configfile.getInt32("infobar_show_numbers" , 0 );
 	g_settings.infobar_subchan_disp_pos = configfile.getInt32("infobar_subchan_disp_pos" , 0 );
 	g_settings.infobar_buttons_usertitle = configfile.getBool("infobar_buttons_usertitle", false );
 	g_settings.infobar_analogclock = configfile.getInt32("infobar_analogclock", 0);
 	g_settings.infobar_show = configfile.getInt32("infobar_show", 0);
 	g_settings.infobar_show_channellogo = configfile.getInt32("infobar_show_channellogo"  , 2 );
-	g_settings.infobar_progressbar = configfile.getInt32("infobar_progressbar" , 3 );
 	g_settings.infobar_casystem_display = configfile.getInt32("infobar_casystem_display", 1 );
 	g_settings.infobar_casystem_frame = configfile.getInt32("infobar_casystem_frame", 1 );
 	g_settings.volume_pos = configfile.getInt32("volume_pos", CVolumeBar::VOLUMEBAR_POS_TOP_LEFT );
@@ -1382,15 +1379,12 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32 ("timer_remotebox_ip_count", g_settings.timer_remotebox_ip.size());
 	configfile.setInt32 ("timer_followscreenings", g_settings.timer_followscreenings);
 
-	configfile.setBool("infobar_sat_display"  , g_settings.infobar_sat_display  );
-	configfile.setBool("infobar_show_channeldesc"  , g_settings.infobar_show_channeldesc  );
 	configfile.setInt32("infobar_show_numbers", g_settings.infobar_show_numbers );
 	configfile.setInt32("infobar_subchan_disp_pos"  , g_settings.infobar_subchan_disp_pos  );
 	configfile.setBool("infobar_buttons_usertitle", g_settings.infobar_buttons_usertitle);
 	configfile.setInt32("infobar_analogclock", g_settings.infobar_analogclock);
 	configfile.setInt32("infobar_show", g_settings.infobar_show);
 	configfile.setInt32("infobar_show_channellogo"  , g_settings.infobar_show_channellogo  );
-	configfile.setInt32("infobar_progressbar"  , g_settings.infobar_progressbar  );
 	configfile.setInt32("infobar_casystem_display"  , g_settings.infobar_casystem_display  );
 	configfile.setInt32("infobar_casystem_frame"  , g_settings.infobar_casystem_frame  );
 	configfile.setInt32("volume_pos"  , g_settings.volume_pos  );

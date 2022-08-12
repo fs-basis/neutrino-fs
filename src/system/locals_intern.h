@@ -1181,7 +1181,6 @@ const char *locale_real_names[] =
 	"menu.hint_infobar_dd",
 	"menu.hint_infobar_filesys",
 	"menu.hint_infobar_fonts",
-	"menu.hint_infobar_logo",
 	"menu.hint_infobar_logo_dir",
 	"menu.hint_infobar_default_logo",
 	"menu.hint_infobar_on_epg",

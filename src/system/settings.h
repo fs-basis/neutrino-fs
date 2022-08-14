@@ -599,12 +599,6 @@ struct SNeutrinoSettings
 
 	int key_current_transponder;
 
-#if ENABLE_PIP
-	int key_pip_close;
-	int key_pip_setup;
-	int key_pip_swap;
-#endif
-
 	int cacheTXT;
 	int minimode;
 	int mode_clock;
@@ -619,6 +613,11 @@ struct SNeutrinoSettings
 	int mode_left_right_key_tv;
 
 #if ENABLE_PIP
+	int key_pip_close;
+	int key_pip_close_avinput;
+	int key_pip_setup;
+	int key_pip_swap;
+
 	int pip_width;
 	int pip_height;
 	int pip_x;

@@ -923,13 +923,6 @@ bool CServiceManager::LoadServices(bool only_current)
 	/* reset flag after loading services.xml */
 	services_changed = false;
 do_current:
-	if(!only_current) {
-		parser = parseXmlFile(MYSERVICES_XML);
-		if (parser != NULL) {
-			FindTransponder(xmlChildrenNode(xmlDocGetRootElement(parser)));
-			xmlFreeDoc(parser);
-		}
-	}
 	/* if no numbers, zapit will save after loading bouquets, with numbers */
 	if(service_count && keep_numbers && (!have_numbers || dup_numbers))
 		services_changed = true;

@@ -138,6 +138,9 @@ fi
 TUXBOX_APPS_DIRECTORY_ONE(configdir, CONFIGDIR, localstatedir, /var, /tuxbox/config,
 	[--with-configdir=PATH], [where to find config files])
 
+TUXBOX_APPS_DIRECTORY_ONE(zapitdir, ZAPITDIR, localstatedir, /var, /tuxbox/config/zapit,
+	[--with-zapitdir=PATH], [where to find zapit files])
+
 TUXBOX_APPS_DIRECTORY_ONE(controldir, CONTROLDIR, localstatedir, /var, /tuxbox/control,
 	[--with-controldir=PATH], [where to find control scripts ])
 
@@ -189,6 +192,7 @@ TUXBOX_APPS_DIRECTORY_ONE(flagdir, FLAGDIR, localstatedir, /var, /etc,
 
 dnl automake <= 1.6 needs this specifications
 AC_SUBST(CONFIGDIR)
+AC_SUBST(ZAPITDIR)
 AC_SUBST(CONTROLDIR)
 AC_SUBST(DATADIR)
 AC_SUBST(FONTDIR)

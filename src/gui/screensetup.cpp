@@ -55,10 +55,8 @@
 #if HAVE_SH4_HARDWARE
 struct borderFrame { int sx, sy, ex, ey; };
 static std::map<t_channel_id, borderFrame> borderMap;
-#define BORDER_CONFIG_FILE CONFIGDIR "/zapit/borders.conf"
+#define BORDER_CONFIG_FILE	CONFIGDIR "/borders.conf"
 #else
-//int x_box = 15 * 5;
-
 inline unsigned int make16color(__u32 rgb)
 {
 	return 0xFF000000 | rgb;

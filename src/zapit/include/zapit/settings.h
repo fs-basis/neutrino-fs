@@ -31,25 +31,25 @@
 #define CONFIGDIR       "/var/tuxbox/config"
 #endif
 
-#define ZAPITCONFIGFILE      CONFIGDIR "/zapit/zapit.conf"
-#define SERVICES_XML    CONFIGDIR "/zapit/services.xml"
-#define SERVICES_TMP    "/tmp/services.tmp"
-#define BOUQUETS_XML    CONFIGDIR "/zapit/bouquets.xml"
-#define UBOUQUETS_XML    CONFIGDIR "/zapit/ubouquets.xml"
-#define BOUQUETS_TMP    "/tmp/bouquets.tmp"
+#define BOUQUETS_TMP	"/tmp/bouquets.tmp"
+#define BOUQUETS_XML	ZAPITDIR "/bouquets.xml"
+#define SERVICES_TMP	"/tmp/services.tmp"
+#define SERVICES_XML	ZAPITDIR "/services.xml"
+#define UBOUQUETS_XML	ZAPITDIR "/ubouquets.xml"
+#define ZAPITCONFIGFILE	ZAPITDIR "/zapit.conf"
 
-#define CURRENTSERVICES_XML     "/tmp/currentservices.xml"
-#define CURRENTSERVICES_TMP     "/tmp/currentservices.tmp"
+#define CURRENTSERVICES_TMP	"/tmp/currentservices.tmp"
+#define CURRENTSERVICES_XML	"/tmp/currentservices.xml"
 
-#define MYSERVICES_XML	CONFIGDIR "/zapit/myservices.xml"
+#define MYSERVICES_XML	ZAPITDIR "/myservices.xml"
 
-#define CABLES_XML      CONFIGDIR "/cables.xml"
-#define SATELLITES_XML  CONFIGDIR "/satellites.xml"
-#define TERRESTRIAL_XML CONFIGDIR "/terrestrial.xml"
-#define WEBTV_XML	CONFIGDIR "/webtv_usr.xml"
+#define CABLES_XML	CONFIGDIR "/cables.xml"
+#define SATELLITES_XML	CONFIGDIR "/satellites.xml"
+#define TERRESTRIAL_XML	CONFIGDIR "/terrestrial.xml"
 #define WEBRADIO_XML	CONFIGDIR "/webradio_usr.xml"
+#define WEBTV_XML	CONFIGDIR "/webtv_usr.xml"
 
-#define CAMD_UDS_NAME  "/tmp/camd.socket"
+#define CAMD_UDS_NAME	"/tmp/camd.socket"
 
 
 #endif /* __zapit__settings_h__ */

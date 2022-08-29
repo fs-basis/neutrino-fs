@@ -1,4 +1,4 @@
-installdir = $(CONFIGDIR)/zapit
+installdir = $(ZAPITDIR)
 
 install_DATA = \
 	bouquets.xml \

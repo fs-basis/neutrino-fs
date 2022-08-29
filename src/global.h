@@ -26,38 +26,37 @@
 #include <system/settings.h>
 
 #ifndef NEUTRINO_CPP
-  #define NEUTRINO_CPP extern
+#define NEUTRINO_CPP extern
 #endif
 
-#define NEUTRINO_SETTINGS_FILE          CONFIGDIR "/neutrino.conf"
-#define NEUTRINO_SCAN_SETTINGS_FILE     CONFIGDIR "/scan.conf"
-#define NEUTRINO_PARENTALLOCKED_FILE    DATADIR   "/neutrino/.plocked"
+#define NEUTRINO_SETTINGS_FILE		CONFIGDIR "/neutrino.conf"
+#define NEUTRINO_PARENTALLOCKED_FILE	DATADIR "/neutrino/.plocked"
+#define NEUTRINO_SCAN_SETTINGS_FILE	ZAPITDIR "/scan.conf"
 
 #define COVERDIR_TMP	"/tmp/.cover"
-
 #define LOGODIR		ICONSDIR "/logo"
-#define LOGODIR_VAR	ICONSDIR_VAR "/logo"
 #define LOGODIR_TMP	"/tmp/.logo"
+#define LOGODIR_VAR	ICONSDIR_VAR "/logo"
 
 // control scripts
-#define AUDIOPLAYER_END_SCRIPT "audioplayer.end"
-#define AUDIOPLAYER_START_SCRIPT "audioplayer.start"
-#define MOVIEPLAYER_END_SCRIPT           "movieplayer.end"
-#define MOVIEPLAYER_START_SCRIPT         "movieplayer.start"
-#define NEUTRINO_APP_START_SCRIPT "neutrino.start"
-#define NEUTRINO_ENTER_DEEPSTANDBY_SCRIPT "deepstandby.on"
-#define NEUTRINO_ENTER_FLASH_SCRIPT "flash.start"
-#define NEUTRINO_ENTER_INACTIVITY_SCRIPT "inactivity.on"
-#define NEUTRINO_ENTER_STANDBY_SCRIPT   "standby.on"
-#define NEUTRINO_LEAVE_DEEPSTANDBY_SCRIPT "deepstandby.off"
-#define NEUTRINO_LEAVE_STANDBY_SCRIPT   "standby.off"
-#define NEUTRINO_RECORDING_ENDED_SCRIPT "recording.end"
-#define NEUTRINO_RECORDING_START_SCRIPT "recording.start"
-#define NEUTRINO_RECORDING_TIMER_SCRIPT "recording.timer"
-#define NEUTRINO_SCAN_START_SCRIPT "scan.start"
-#define NEUTRINO_SCAN_STOP_SCRIPT "scan.stop"
-#define PICTUREVIEWER_END_SCRIPT "pictureviewer.end"
-#define PICTUREVIEWER_START_SCRIPT "pictureviewer.start"
+#define AUDIOPLAYER_END_SCRIPT			"audioplayer.end"
+#define AUDIOPLAYER_START_SCRIPT		"audioplayer.start"
+#define MOVIEPLAYER_END_SCRIPT			"movieplayer.end"
+#define MOVIEPLAYER_START_SCRIPT		"movieplayer.start"
+#define NEUTRINO_APP_START_SCRIPT		"neutrino.start"
+#define NEUTRINO_ENTER_DEEPSTANDBY_SCRIPT	"deepstandby.on"
+#define NEUTRINO_ENTER_FLASH_SCRIPT		"flash.start"
+#define NEUTRINO_ENTER_INACTIVITY_SCRIPT	"inactivity.on"
+#define NEUTRINO_ENTER_STANDBY_SCRIPT		"standby.on"
+#define NEUTRINO_LEAVE_DEEPSTANDBY_SCRIPT	"deepstandby.off"
+#define NEUTRINO_LEAVE_STANDBY_SCRIPT		"standby.off"
+#define NEUTRINO_RECORDING_ENDED_SCRIPT		"recording.end"
+#define NEUTRINO_RECORDING_START_SCRIPT		"recording.start"
+#define NEUTRINO_RECORDING_TIMER_SCRIPT		"recording.timer"
+#define NEUTRINO_SCAN_START_SCRIPT		"scan.start"
+#define NEUTRINO_SCAN_STOP_SCRIPT		"scan.stop"
+#define PICTUREVIEWER_END_SCRIPT		"pictureviewer.end"
+#define PICTUREVIEWER_START_SCRIPT		"pictureviewer.start"
 
 NEUTRINO_CPP  SNeutrinoSettings	g_settings;
 NEUTRINO_CPP  SglobalInfo	g_info;
@@ -79,9 +78,9 @@ NEUTRINO_CPP  FBFontRenderClass	*g_fixedFontRenderer;
 NEUTRINO_CPP  FBFontRenderClass	*g_dynFontRenderer;
 
 class Font;
-NEUTRINO_CPP  Font * g_Font[SNeutrinoSettings::FONT_TYPE_COUNT];
-NEUTRINO_CPP  Font * g_FixedFont[SNeutrinoSettings::FONT_TYPE_FIXED_COUNT];
-NEUTRINO_CPP  Font * g_SignalFont;
+NEUTRINO_CPP  Font *g_Font[SNeutrinoSettings::FONT_TYPE_COUNT];
+NEUTRINO_CPP  Font *g_FixedFont[SNeutrinoSettings::FONT_TYPE_FIXED_COUNT];
+NEUTRINO_CPP  Font *g_SignalFont;
 
 class CRCInput;
 NEUTRINO_CPP  CRCInput		*g_RCInput;

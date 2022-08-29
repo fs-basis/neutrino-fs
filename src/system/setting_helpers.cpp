@@ -606,7 +606,7 @@ int CDataResetNotifier::exec(CMenuTarget * /*parent*/, const std::string &action
 
 	if (delete_all)
 	{
-		my_system(3, "/bin/sh", "-c", "rm -f " CONFIGDIR "/zapit/*.conf");
+		my_system(3, "/bin/sh", "-c", "rm -f " ZAPITDIR "/*.conf");
 		CServiceManager::getInstance()->SatelliteList().clear();
 		CZapit::getInstance()->LoadSettings();
 		CZapit::getInstance()->GetConfig(zapitCfg);
@@ -628,7 +628,7 @@ int CDataResetNotifier::exec(CMenuTarget * /*parent*/, const std::string &action
 	}
 	if (delete_chan)
 	{
-		my_system(3, "/bin/sh", "-c", "rm -f " CONFIGDIR "/zapit/*.xml");
+		my_system(3, "/bin/sh", "-c", "rm -f " ZAPITDIR "/*.xml");
 		g_Zapit->reinitChannels();
 	}
 	if (delete_removed)

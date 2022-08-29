@@ -1242,7 +1242,7 @@ void CBouquetManager::readEPGMapping()
 	if(!EpgXMLMapping.empty())
 		EpgXMLMapping.clear();
 
-	const std::string epg_map_dir = CONFIGDIR "/zapit/epgmap.xml";
+	const std::string epg_map_dir = ZAPITDIR "/epgmap.xml";
 	xmlDocPtr epgmap_parser = parseXmlFile(epg_map_dir.c_str());
 
 	if (epgmap_parser != NULL)

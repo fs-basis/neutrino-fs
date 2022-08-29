@@ -41,8 +41,6 @@
 #define CURRENTSERVICES_TMP	"/tmp/currentservices.tmp"
 #define CURRENTSERVICES_XML	"/tmp/currentservices.xml"
 
-#define MYSERVICES_XML	ZAPITDIR "/myservices.xml"
-
 #define CABLES_XML	CONFIGDIR "/cables.xml"
 #define SATELLITES_XML	CONFIGDIR "/satellites.xml"
 #define TERRESTRIAL_XML	CONFIGDIR "/terrestrial.xml"

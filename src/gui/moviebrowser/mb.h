@@ -335,8 +335,6 @@ class CMovieBrowser : public CMenuTarget
 		void updateSerienames(void);
 		void autoFindSerie(void);
 
-		void info_hdd_level(bool paint_hdd = false);
-
 		neutrino_locale_t getFeedLocale(void);
 		void clearListLines();
 		void clearSelection();

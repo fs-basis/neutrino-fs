@@ -1267,7 +1267,6 @@ void CMovieBrowser::refreshChannelLogo(void)
 
 	int w_logo_max = m_cBoxFrameTitleRel.iWidth / 4;
 	int h_logo_max = m_cBoxFrameTitleRel.iHeight - 2 * OFFSET_INNER_MIN;
-	short pb_hdd_offset = g_settings.infobar_show_sysfs_hdd ? 100 + OFFSET_INNER_MID : OFFSET_INNER_MID;
 
 	if (m_channelLogo && (old_EpgId != m_movieSelectionHandler->epgId >> 16 || old_ChannelName != m_movieSelectionHandler->channelName))
 	{
@@ -1296,7 +1295,7 @@ void CMovieBrowser::refreshChannelLogo(void)
 
 		int x = m_cBoxFrame.iX + m_cBoxFrameTitleRel.iX + m_cBoxFrameTitleRel.iWidth - m_channelLogo->getWidth() - OFFSET_INNER_MID;
 		int y = m_cBoxFrame.iY + m_cBoxFrameTitleRel.iY + (m_cBoxFrameTitleRel.iHeight - m_channelLogo->getHeight()) / 2;
-		m_channelLogo->setXPos(x - pb_hdd_offset - m_header->getContextBtnObject()->getWidth());
+		m_channelLogo->setXPos(x - OFFSET_INNER_MID - m_header->getContextBtnObject()->getWidth());
 		m_channelLogo->setYPos(y);
 		m_channelLogo->hide();
 		m_channelLogo->paint();
@@ -1498,20 +1497,6 @@ void CMovieBrowser::refreshDetailsLine(int pos)
 
 		m_detailsLine->setDimensionsAll(xpos, ypos1, ypos2, fheight / 2, m_cBoxFrameInfo1.iHeight - 2 * RADIUS_LARGE);
 		m_detailsLine->paint(true);
-	}
-}
-
-void CMovieBrowser::info_hdd_level(bool paint_hdd)
-{
-
-	if (g_settings.infobar_show_sysfs_hdd && paint_hdd)
-	{
-		const short pbw = 100;
-		const short border = m_cBoxFrameTitleRel.iHeight / 4;
-		CProgressBar pb(m_cBoxFrame.iX + m_cBoxFrameFootRel.iWidth - m_header->getContextBtnObject()->getWidth() - pbw - border, m_cBoxFrame.iY + m_cBoxFrameTitleRel.iY + border, pbw, m_cBoxFrameTitleRel.iHeight / 2);
-		pb.setType(CProgressBar::PB_REDRIGHT);
-		pb.setValues(cHddStat::getInstance()->getPercent(), 100);
-		pb.paint(false);
 	}
 }
 
@@ -1794,8 +1779,6 @@ void CMovieBrowser::refreshTitle(void)
 	}
 	m_header->paint(CC_SAVE_SCREEN_NO);
 	newHeader = m_header->isPainted();
-
-	info_hdd_level(true);
 }
 
 int CMovieBrowser::refreshFoot(bool show)
@@ -2994,7 +2977,6 @@ void CMovieBrowser::updateMovieSelection(void)
 	if (new_selection == true)
 	{
 		//TRACE("new\n");
-		info_hdd_level();
 		refreshMovieInfo();
 		refreshLCD();
 	}

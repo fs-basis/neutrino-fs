@@ -327,13 +327,7 @@ tools.mounts=Mounts
 tools.wake_on_lan=Wake on LAN
 tools.check_install=Installation pr&uuml;fen
 tools.expert=Expert
-tools.command_shell=Shell
 tools.not_installed=nicht installiert
-tools.cmd_shell.output_desc=fortlaufende Ausgabe (nur IE - wg. scrollen)
-tools.path=Verzeichnis
-tools.command=Kommando
-tools.cmd.enter_command=Auszuf&uuml;hrendes Kommando eingeben
-tools.cmd.execute_command=Kommando ausf&uuml;hren
 tools.filemgr_desc=Dateien und Verzeichnisse organisieren
 tools.filemgr=Dateimanager
 

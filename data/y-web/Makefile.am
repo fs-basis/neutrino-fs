@@ -46,7 +46,6 @@ install_DATA =	favicon.ico \
 		Y_Timer_List.yhtm \
 		Y_Tools_Boxcontrol.yhtm \
 		Y_Tools_Check_Install.yhtm \
-		Y_Tools_Cmd.yhtm \
 		Y_Tools_Glcd_Screenshot.yhtm \
 		Y_Tools_Info_Menue.yhtm \
 		Y_Tools_m3uConvert.yhtm \

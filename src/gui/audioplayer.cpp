@@ -656,15 +656,15 @@ int CAudioPlayerGui::show()
 					sprintf(cnt, "%d", count);
 					InputSelector.addItem(new CMenuForwarder(
 								LOCALE_AUDIOPLAYER_ADD_LOC, true, NULL, InetRadioInputChanger,
-								cnt, CRCInput::convertDigitToKey(count + 1)), old_select == count);
+								cnt, CRCInput::convertDigitToKey(count)), old_select == count);
 					sprintf(cnt, "%d", ++count);
 					InputSelector.addItem(new CMenuForwarder(
 								LOCALE_AUDIOPLAYER_ADD_IC, true, NULL, InetRadioInputChanger,
-								cnt, CRCInput::convertDigitToKey(count + 1)), old_select == count);
+								cnt, CRCInput::convertDigitToKey(count)), old_select == count);
 					sprintf(cnt, "%d", ++count);
 					InputSelector.addItem(new CMenuForwarder(
 								LOCALE_AUDIOPLAYER_ADD_SC, g_settings.shoutcast_enabled, NULL, InetRadioInputChanger,
-								cnt, CRCInput::convertDigitToKey(count + 1)), old_select == count);
+								cnt, CRCInput::convertDigitToKey(count)), old_select == count);
 
 					//InputSelector.addItem(GenericMenuSeparator);
 					hide();

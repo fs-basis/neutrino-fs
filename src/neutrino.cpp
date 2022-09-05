@@ -1046,7 +1046,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.infoClockSeconds = configfile.getInt32("infoClockSeconds", 1);
 
 	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 1920);
-	g_settings.livestreamScriptPath = configfile.getString("livestreamScriptPath", WEBTVDIR);
+	g_settings.livestreamScriptPath = configfile.getString("livestreamScriptPath", WEBSCRIPTS);
 
 	if (!erg)
 	{

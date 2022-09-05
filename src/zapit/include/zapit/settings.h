@@ -44,8 +44,8 @@
 #define CABLES_XML	CONFIGDIR "/cables.xml"
 #define SATELLITES_XML	CONFIGDIR "/satellites.xml"
 #define TERRESTRIAL_XML	CONFIGDIR "/terrestrial.xml"
-#define WEBRADIO_XML	CONFIGDIR "/webradio_usr.xml"
-#define WEBTV_XML	CONFIGDIR "/webtv_usr.xml"
+#define WEBRADIO_XML	WEBCHANNELS "/webradio.xml"
+#define WEBTV_XML	WEBCHANNELS "/webtv.xml"
 
 #define CAMD_UDS_NAME	"/tmp/camd.socket"
 

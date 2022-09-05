@@ -93,7 +93,7 @@ extern cVideo * videoDecoder;
 
 // check if files to be added are already in the playlist
 #define AUDIOPLAYER_CHECK_FOR_DUPLICATES
-#define DEFAULT_RADIOSTATIONS_XMLFILE CONFIGDIR "/radio-stations.xml"
+#define DEFAULT_RADIOSTATIONS_XMLFILE WEBCHANNELS "/radio-stations.xml"
 
 const char RADIO_STATION_XML_FILE[] = {DEFAULT_RADIOSTATIONS_XMLFILE};
 

@@ -2,13 +2,13 @@ SUBDIRS = \
 	config \
 	fonts \
 	icons \
-	inetradio \
 	iso-codes \
 	license \
 	locale \
 	pictures \
 	scripts \
 	themes \
+	webchannels \
 	zapit
 
 if BOXTYPE_ARMBOX

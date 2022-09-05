@@ -368,7 +368,6 @@ data/icons/status/channel/Makefile
 data/icons/status/markers/Makefile
 data/icons/status/various/Makefile
 data/icons/various/Makefile
-data/inetradio/Makefile
 data/iso-codes/Makefile
 data/license/Makefile
 data/locale/Makefile
@@ -376,8 +375,7 @@ data/pictures/Makefile
 data/pictures/backgrounds/Makefile
 data/pictures/screensaver/Makefile
 data/scripts/Makefile
-data/webradio/Makefile
-data/webtv/Makefile
+data/webchannels/Makefile
 data/themes/Makefile
 data/zapit/Makefile
 data/y-web/Makefile

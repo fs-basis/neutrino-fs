@@ -1020,6 +1020,7 @@ void CBouquetManager::loadWebchannels(int mode)
 				std::string url;
 				std::string desc;
 				std::string group;
+				t_channel_id epg_id = 0;
 				CZapitBouquet* pbouquet = NULL;
 
 				if(f != NULL)

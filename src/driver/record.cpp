@@ -181,7 +181,6 @@ void CRecordInstance::WaitRecMsg(time_t StartTime, time_t WaitTime)
 		usleep(100000);
 }
 
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 void recordingFailureHelper(void *data)
 {
 	CRecordInstance *inst = (CRecordInstance *) data;
@@ -191,7 +190,6 @@ void recordingFailureHelper(void *data)
 	sleep(3);
 	hintBox.hide();
 }
-#endif
 
 int CRecordInstance::GetStatus()
 {
@@ -283,12 +281,8 @@ record_error_msg_t CRecordInstance::Start(CZapitChannel *channel)
 
 	if (record == NULL)
 	{
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 		record = new cRecord(channel->getRecordDemux(), g_settings.recording_bufsize_dmx * 1024 * 1024, g_settings.recording_bufsize * 1024 * 1024);
 		record->setFailureCallback(&recordingFailureHelper, this);
-#else
-		record = new cRecord(channel->getRecordDemux() /*RECORD_DEMUX*/);
-#endif
 	}
 
 	record->Open();

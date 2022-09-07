@@ -1366,9 +1366,7 @@ int CHDDDestExec::exec(CMenuTarget* /*parent*/, const std::string&)
 
 		if (removable) {
 			// show USB icon, no need for hdparm/hd-idle
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 			CVFD::getInstance()->ShowIcon(FP_ICON_USB, true);
-#endif
 			printf("CHDDDestExec: /dev/%s is not a hdd, no sleep needed\n", namelist[i]->d_name);
 		} else {
 			//show HDD icon and set hdparm for all hdd's

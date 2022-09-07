@@ -208,7 +208,6 @@ void CRCInput::open(bool recheck)
 		return;
 	}
 
-#if !HAVE_GENERIC_HARDWARE
 	unsigned long evbit;
 	struct dirent *dentry;
 	while ((dentry = readdir(dir)) != NULL)
@@ -244,14 +243,13 @@ void CRCInput::open(bool recheck)
 		indev.push_back(id);
 	}
 	closedir(dir);
-#endif
+
 	id.path = "/tmp/neutrino.input";
 	if (! checkpath(id))
 	{
 		id.fd = ::open(id.path.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
 		if (id.fd == -1)
 		{
-			/* debug, because it only matters for HAVE_GENERIC_HARDWARE */
 			d_printf("[rcinput:%s] open %s failed: %m\n", __func__, id.path.c_str());
 		}
 		else

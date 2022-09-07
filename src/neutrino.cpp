@@ -63,13 +63,8 @@
 #include <driver/display.h>
 #include <driver/radiotext.h>
 #include <driver/scanepg.h>
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 #include "gui/3dsetup.h"
-#endif
-
-#if !HAVE_GENERIC_HARDWARE
 #include "gui/psisetup.h"
-#endif
 
 #include "gui/adzap.h"
 #include "gui/audiomute.h"
@@ -577,11 +572,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 24);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 90000);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 1);
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.epg_dir              = configfile.getString("epg_dir", "/mnt/nfs/epg");
-#else
-	g_settings.epg_dir              = configfile.getString("epg_dir", "/media/sda1/epg");
-#endif
 #endif
 	// NTP-Server for sectionsd
 	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "time.fu-berlin.de");
@@ -626,7 +617,6 @@ if (g_info.hw_caps->can_shutdown)
 		g_settings.network_nfs[i].type = configfile.getInt32("network_nfs_type_" + i_str, 0);
 		g_settings.network_nfs[i].username = configfile.getString("network_nfs_username_" + i_str, "" );
 		g_settings.network_nfs[i].password = configfile.getString("network_nfs_password_" + i_str, "" );
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 		g_settings.network_nfs[i].mount_options1 = configfile.getString("network_nfs_mount_options1_" + i_str, "rw,soft,tcp" );
 		g_settings.network_nfs[i].mount_options2 = configfile.getString("network_nfs_mount_options2_" + i_str, "nolock,rsize=16384,wsize=16384" );
 		g_settings.network_nfs[i].mac = configfile.getString("network_nfs_mac_" + i_str, "11:22:33:44:55:66");
@@ -636,17 +626,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/mnt/nfs/movie" );
 	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/mnt/nfs/record" );
 	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/mnt/nfs/timeshift" );
-#else
-		g_settings.network_nfs[i].mount_options1 = configfile.getString("network_nfs_mount_options1_" + i_str, "ro,soft,udp" );
-		g_settings.network_nfs[i].mount_options2 = configfile.getString("network_nfs_mount_options2_" + i_str, "nolock,rsize=8192,wsize=8192" );
-		g_settings.network_nfs[i].mac = configfile.getString("network_nfs_mac_" + i_str, "11:22:33:44:55:66");
-	}
-	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/media/sda1/audio" );
-	g_settings.network_nfs_picturedir = configfile.getString( "network_nfs_picturedir", "/media/sda1/pictures" );
-	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/media/sda1/movie" );
-	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/media/sda1/record" );
-	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/media/sda1/timeshift" );
-#endif
+
 	g_settings.downloadcache_dir = configfile.getString( "downloadcache_dir", g_settings.network_nfs_recordingdir.c_str());
 	g_settings.last_webtv_dir = configfile.getString( "last_webtv_dir", WEBCHANNELS);
 	g_settings.last_webradio_dir = configfile.getString( "last_webradio_dir", WEBCHANNELS);
@@ -702,10 +682,8 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.recording_stream_subtitle_pids  = configfile.getBool("recordingmenu.stream_subtitle_pids", false);
 	g_settings.recording_stream_pmt_pid        = configfile.getBool("recordingmenu.stream_pmt_pid"      , false);
 	g_settings.recording_filename_template     = configfile.getString("recordingmenu.filename_template" , "%C_%T_%d_%t");
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.recording_bufsize               = configfile.getInt32("recording_bufsize", 4);
 	g_settings.recording_bufsize_dmx           = configfile.getInt32("recording_bufsize_dmx", 2);
-#endif
 	g_settings.recording_epg_for_filename      = configfile.getBool("recording_epg_for_filename"         , true);
 	g_settings.recording_epg_for_end           = configfile.getBool("recording_epg_for_end"              , true);
 	g_settings.recording_save_in_channeldir    = configfile.getBool("recording_save_in_channeldir"         , true);
@@ -718,14 +696,9 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.plugins_tool = configfile.getString( "plugins_tool", "" );
 	g_settings.plugins_script = configfile.getString( "plugins_script", "" );
 	g_settings.plugins_lua = configfile.getString( "plugins_lua", "" );
-
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/mnt/nfs/plugins" );
+
 	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", LOGODIR );
-#else
-	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/media/sda1/plugins" );
-	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", "/media/sda1/logos" );
-#endif
 	g_settings.default_logo = configfile.getInt32( "default_logo", 0);
 
 	g_settings.webtv_xml.clear();
@@ -792,11 +765,8 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.screenshot_plans = configfile.getInt32( "screenshot_plans",  1);
 	g_settings.auto_cover = configfile.getInt32( "auto_cover",  0);
 
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/mnt/nfs/screenshot" );
-#else
-	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/media/sda1/screenshot" );
-#endif
+
 	g_settings.cacheTXT = configfile.getInt32( "cacheTXT",  0);
 	g_settings.minimode = configfile.getInt32( "minimode",  0);
 	g_settings.mode_clock = configfile.getInt32( "mode_clock",  0);
@@ -1392,10 +1362,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setBool  ("recordingmenu.stream_subtitle_pids" , g_settings.recording_stream_subtitle_pids );
 	configfile.setBool  ("recordingmenu.stream_pmt_pid"       , g_settings.recording_stream_pmt_pid       );
 	configfile.setString("recordingmenu.filename_template"    , g_settings.recording_filename_template    );
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	configfile.setInt32 ("recording_bufsize"                  , g_settings.recording_bufsize);
 	configfile.setInt32 ("recording_bufsize_dmx"              , g_settings.recording_bufsize_dmx);
-#endif
 	configfile.setBool  ("recording_epg_for_filename"         , g_settings.recording_epg_for_filename     );
 	configfile.setBool  ("recording_epg_for_end"              , g_settings.recording_epg_for_end          );
 	configfile.setBool  ("recording_save_in_channeldir"       , g_settings.recording_save_in_channeldir   );
@@ -2512,10 +2480,9 @@ TIMER_START();
 	cCA::GetInstance()->setCheckLiveSlot(g_settings.ci_check_live);
 	//InitZapper();
 
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	C3DSetup::getInstance()->exec(NULL, "zapped");
 	CPSISetup::getInstance()->blankScreen(false);
-#endif
+
 	SHTDCNT::getInstance()->init();
 
 	CZapit::getInstance()->SetScanSDT(g_settings.enable_sdt);
@@ -2782,23 +2749,21 @@ void CNeutrinoApp::RealRun()
 #ifdef SCREENSHOT
 			else if (msg == (neutrino_msg_t) g_settings.key_screenshot) {
 				for(int i = 0; i < g_settings.screenshot_count; i++) {
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 					CVFD::getInstance()->ShowText("SCREENSHOT");
 					CHintBox *hintbox = NULL;
 					if (g_settings.screenshot_plans == 1)
 						hintbox = new CHintBox(LOCALE_SCREENSHOT_MENU, g_Locale->getText(LOCALE_SCREENSHOT_PLEASE_WAIT), 450, NEUTRINO_ICON_MOVIEPLAYER);
 					if (hintbox)
 						hintbox->paint();
-#endif
+
 					CScreenShot * sc = new CScreenShot("", (CScreenShot::screenshot_format_t)g_settings.screenshot_format);
 					sc->MakeFileName(CZapit::getInstance()->GetCurrentChannelID());
 					sc->Start();
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
+
 					if (hintbox) {
 						hintbox->hide();
 						delete hintbox;
 					}
-#endif
 				}
 			}
 #endif
@@ -3262,9 +3227,9 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 			g_settings.audio_AnalogMode = 0;
 
 		CVFD::getInstance()->UpdateIcons();
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
+
 		C3DSetup::getInstance()->exec(NULL, "zapped");
-#endif
+
 #if HAVE_SH4_HARDWARE
 		{
 			CScreenSetup cSS;
@@ -4547,12 +4512,10 @@ int CNeutrinoApp::exec(CMenuTarget* parent, const std::string & actionKey)
 			exit(CNeutrinoApp::EXIT_REBOOT); // should never be reached
 		}
 	}
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	else if(actionKey == "3dmode") {
 		C3DSetup::getInstance()->exec(parent, "");
 		return menu_return::RETURN_EXIT_ALL;
 	}
-#endif
 	else if (actionKey == "moviedir") {
 		parent->hide();
 

@@ -44,11 +44,6 @@
 
 #include <stdlib.h>
 
-#if HAVE_GENERIC_HARDWARE
-#include <glfb.h>
-extern GLFramebuffer *glfb;
-#endif
-
 #include <driver/abstime.h>
 
 /* note that it is *not* enough to just change those values */
@@ -166,12 +161,10 @@ CFbAccel::~CFbAccel()
 		close(bpafd);
 	}
 #endif
-#if !HAVE_GENERIC_HARDWARE
 	if (fb->lfb)
 		munmap(fb->lfb, fb->available);
 	if (fb->fd > -1)
 		close(fb->fd);
-#endif
 }
 
 void CFbAccel::update()
@@ -765,10 +758,6 @@ void CFbAccel::blit()
 
 void CFbAccel::blit()
 {
-#if HAVE_GENERIC_HARDWARE
-	if (glfb)
-		glfb->blit();
-#endif
 }
 #endif
 
@@ -943,20 +932,8 @@ bool CFbAccel::init(void)
 	fb_pixel_t *lfb;
 	fb->lfb = NULL;
 	fb->fd = -1;
-#if HAVE_GENERIC_HARDWARE
-	if (!glfb)
-	{
-		fprintf(stderr, "CFbAccel::init: GL Framebuffer is not set up? we are doomed...\n");
-		return false;
-	}
-	fb->screeninfo = glfb->getScreenInfo();
-	fb->stride = 4 * fb->screeninfo.xres;
-	fb->available = glfb->getOSDBuffer()->size(); /* allocated in glfb constructor */
-	lfb = reinterpret_cast<fb_pixel_t *>(glfb->getOSDBuffer()->data());
-#else
 	int fd;
 	fd = open("/dev/fb0", O_RDWR | O_CLOEXEC);
-#endif
 	if (fd < 0)
 	{
 		perror("open /dev/fb0");
@@ -1004,7 +981,6 @@ int CFbAccel::setMode(void)
 	si->bits_per_pixel = DEFAULT_BPP;
 	fb->stride = si->xres * si->bits_per_pixel / 8;
 #else
-#if ! HAVE_GENERIC_HARDWARE
 	fb_fix_screeninfo _fix;
 
 	if (ioctl(fd, FBIOGET_FSCREENINFO, &_fix) < 0)
@@ -1013,7 +989,6 @@ int CFbAccel::setMode(void)
 		return -1;
 	}
 	fb->stride = _fix.line_length;
-#endif
 #endif
 	/* avoid compiler warnings on various platforms */
 	(void) fd;

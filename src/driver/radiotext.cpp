@@ -828,13 +828,10 @@ void CRadioText::run()
 	uint current_pid = 0;
 
 	printf("CRadioText::run: ###################### Starting thread ######################\n");
-#if HAVE_SH4_HARDWARE || HAVE_GENERIC_HARDWARE || HAVE_ARM_HARDWARE
+
 	int buflen = 0;
 	unsigned char *buf = NULL;
 	audioDemux = new cDemux(0); // live demux
-#else
-	audioDemux = new cDemux(1);
-#endif
 	audioDemux->Open(DMX_PES_CHANNEL, 0, 128 * 1024);
 
 	while (running)
@@ -864,7 +861,6 @@ void CRadioText::run()
 		mutex.unlock();
 		if (pid)
 		{
-#if HAVE_SH4_HARDWARE || HAVE_GENERIC_HARDWARE || HAVE_ARM_HARDWARE
 			int n;
 			unsigned char tmp[6];
 
@@ -896,12 +892,6 @@ void CRadioText::run()
 					break;
 				n += len;
 			}
-#else
-			int n;
-			unsigned char buf[0x1FFFF];
-
-			n = audioDemux->Read(buf, sizeof(buf), 500 /*5000*/);
-#endif
 			if (n > 0)
 			{
 				//printf("."); fflush(stdout);
@@ -911,10 +901,9 @@ void CRadioText::run()
 			}
 		}
 	}
-#if HAVE_SH4_HARDWARE || HAVE_GENERIC_HARDWARE || HAVE_ARM_HARDWARE
 	if (buf)
 		free(buf);
-#endif
+
 	delete audioDemux;
 	audioDemux = NULL;
 	printf("CRadioText::run: ###################### exit ######################\n");

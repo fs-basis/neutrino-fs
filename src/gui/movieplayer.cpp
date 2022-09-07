@@ -2503,7 +2503,6 @@ void CMoviePlayerGui::UpdatePosition()
 
 void CMoviePlayerGui::StopSubtitles()
 {
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	printf("[CMoviePlayerGui] %s\n", __FUNCTION__);
 	int ttx, ttxpid, ttxpage;
 
@@ -2515,7 +2514,6 @@ void CMoviePlayerGui::StopSubtitles()
 		tuxtx_pause_subtitle(true);
 		frameBuffer->paintBackground();
 	}
-#endif
 }
 
 void CMoviePlayerGui::showHelp()
@@ -2550,7 +2548,6 @@ void CMoviePlayerGui::showHelp()
 
 void CMoviePlayerGui::StartSubtitles(bool show __attribute__((unused)))
 {
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 	printf("[CMoviePlayerGui] %s: %s\n", __FUNCTION__, show ? "Show" : "Not show");
 
 	if(!show)
@@ -2559,7 +2556,6 @@ void CMoviePlayerGui::StartSubtitles(bool show __attribute__((unused)))
 	if (current_sub > -1)
 		dvbsub_start(current_sub, true);
 	tuxtx_pause_subtitle(false);
-#endif
 }
 
 #if HAVE_ARM_HARDWARE

@@ -62,13 +62,9 @@
 #include <system/debug.h>
 
 #include <hardware/video.h>
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE
 #include "3dsetup.h"
-#endif
-#if HAVE_SH4_HARDWARE
 #include <zapit/zapit.h>
 #include "screensetup.h"
-#endif
 
 extern cVideo *videoDecoder;
 #ifdef ENABLE_PIP
@@ -291,7 +287,6 @@ int CVideoSettings::showVideoSetup()
 	videosetup->addItem(md);
 #endif
 
-#if !HAVE_GENERIC_HARDWARE
 	CMenuForwarder *mf;
 	CMenuOptionNumberChooser *mc;
 
@@ -335,8 +330,6 @@ int CVideoSettings::showVideoSetup()
 	mf = new CMenuForwarder(LOCALE_VIDEOMENU_MASKSETUP, true, NULL, &channelScreenSetup, NULL, CRCInput::convertDigitToKey(shortcut++));
 	mf->setHint("", LOCALE_MENU_HINT_VIDEO_MASK);
 	videosetup->addItem(mf);
-#endif
-
 #endif
 
 #ifdef ENABLE_PIP

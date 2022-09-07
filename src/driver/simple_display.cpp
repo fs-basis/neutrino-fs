@@ -46,12 +46,6 @@ static bool usb_icon = false;
 static bool timer_icon = false;
 #endif
 
-#if HAVE_GENERIC_HARDWARE
-#define DISPLAY_DEV "/dev/null"
-static bool usb_icon = false;
-static bool timer_icon = false;
-#endif
-
 #if HAVE_ARM_HARDWARE
 #define DISPLAY_DEV "/dev/dbox/oled0"
 #include <zapit/zapit.h>
@@ -790,7 +784,7 @@ void CLCD::SetIcons(int, bool)
 
 void CLCD::ShowDiskLevel()
 {
-#if !HAVE_GENERIC_HARDWARE && !HAVE_ARM_HARDWARE
+#if !HAVE_ARM_HARDWARE
 	int hdd_icons[9] = {24, 23, 21, 20, 19, 18, 17, 16, 22};
 	int percent, digits, i, j;
 	uint64_t t, u;

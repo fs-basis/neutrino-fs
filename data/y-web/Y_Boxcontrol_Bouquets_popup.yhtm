@@ -9,7 +9,7 @@
 		scrolling="auto" marginheight="1" marginwidth="1" frameborder="0" name="bouquets"
 		style="height: 900px; width: 13%;">
 	</iframe>
-	<iframe src="Y_Boxcontrol_Channellist.yhtm?bouquet={=func:get_actual_bouquet_number=}" 
+	<iframe src="Y_Boxcontrol_Channellist.yhtm?bouquet={=func:get_actual_bouquet_number=}"
 		scrolling="auto" marginheight="1" marginwidth="1" frameborder="0" name="content"
 		style="height: 900px; width: 85%;">
 	</iframe>

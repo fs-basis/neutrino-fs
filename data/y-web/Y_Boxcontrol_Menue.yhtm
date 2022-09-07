@@ -130,7 +130,7 @@ function epg_plus_popup() {
 	window.open("Y_EPG_Plus.yhtm","_blank","resizable=yes,scrollbars=yes");
 }
 function bou_bouquets_popup() {
-	window.open("Y_Boxcontrol_Bouquets.yhtm","_blank","resizable=yes,scrollbars=yes");
+	window.open("Y_Boxcontrol_Bouquets_popup.yhtm","_blank","resizable=yes,scrollbars=yes");
 }
 //]]>
 </script>

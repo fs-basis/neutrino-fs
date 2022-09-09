@@ -139,6 +139,15 @@ static CTimeThread threadTIME;
 static CEitThread threadEIT;
 static CCNThread threadCN;
 
+#ifdef ENABLE_VIASATEPG
+// ViaSAT uses pid 0x39 instead of 0x12
+static CEitThread threadVSEIT("viasatThread", 0x39);
+#endif
+
+#ifdef ENABLE_FREESATEPG
+static CFreeSatThread threadFSEIT;
+#endif
+
 #ifdef ENABLE_SDT
 #define TIME_SDT_NONEWDATA      15
 //#define RESTART_DMX_AFTER_TIMEOUTS 5
@@ -881,6 +890,13 @@ static void wakeupAll()
 {
 	threadCN.change(0);
 	threadEIT.change(0);
+#ifdef ENABLE_VIASATEPG
+	threadVSEIT.change(0);
+#endif
+
+#ifdef ENABLE_FREESATEPG
+	threadFSEIT.change(0);
+#endif
 #ifdef ENABLE_SDT
 	threadSDT.change(0);
 #endif
@@ -983,6 +999,12 @@ static void commandserviceChanged(int connfd, char *data, const unsigned dataLen
 		threadCN.setCurrentService(messaging_current_servicekey);
 		threadEIT.setDemux(cmd->dnum);
 		threadEIT.setCurrentService(uniqueServiceKey /*messaging_current_servicekey*/);
+#ifdef ENABLE_VIASATEPG
+		threadVSEIT.setCurrentService(messaging_current_servicekey);
+#endif
+#ifdef ENABLE_FREESATEPG
+		threadFSEIT.setCurrentService(messaging_current_servicekey);
+#endif
 #ifdef ENABLE_SDT
 		threadSDT.setCurrentService(messaging_current_servicekey);
 #endif
@@ -1066,8 +1088,11 @@ static void commandDumpStatusInformation(int /*connfd*/, char * /*data*/, const 
 		"Number of cached nvod-events: %u\n"
 		"Number of cached meta-services: %u\n"
 		//    "Resource-usage: maxrss: %ld ixrss: %ld idrss: %ld isrss: %ld\n"
+#ifdef ENABLE_FREESATEPG
+		"FreeSat enabled\n"
+#else
 		""
-
+#endif
 		, ctime(&zeit),
 		secondsToCache / (60 * 60L), secondsExtendedTextCache / (60 * 60L), max_events, oldEventsAre / 60, anzServices, anzNVODservices, anzEvents, anzNVODevents, anzMetaServices
 		//    resourceUsage.ru_maxrss, resourceUsage.ru_ixrss, resourceUsage.ru_idrss, resourceUsage.ru_isrss,
@@ -2006,6 +2031,24 @@ void CCNThread::sendCNEvent()
 		sizeof(messaging_current_servicekey));
 }
 
+#ifdef ENABLE_FREESATEPG
+/********************************************************************************/
+/* Freesat EIT thread 								*/
+/********************************************************************************/
+CFreeSatThread::CFreeSatThread()
+	: CEventsThread("freeSatThread", 3842)
+{
+	skipTime = TIME_FSEIT_SKIPPING;
+};
+
+/* Freesat hooks */
+void CFreeSatThread::addFilters()
+{
+	//other TS, scheduled, freesat epg is only broadcast using table_ids 0x60 (scheduled) and 0x61 (scheduled later)
+	addfilter(0x60, 0xfe);
+}
+#endif
+
 #ifdef ENABLE_SDT
 static bool addService(const SIservice &s, const int is_actual)
 {
@@ -2338,6 +2381,13 @@ void CEitManager::run()
 	threadTIME.Start();
 	threadEIT.Start();
 	threadCN.Start();
+#ifdef ENABLE_VIASATEPG
+	threadVSEIT.Start();
+#endif
+
+#ifdef ENABLE_FREESATEPG
+	threadFSEIT.Start();
+#endif
 #ifdef ENABLE_SDT
 	threadSDT.Start();
 #endif
@@ -2375,8 +2425,14 @@ void CEitManager::run()
 	threadEIT.StopRun();
 	threadCN.StopRun();
 	threadTIME.StopRun();
+#ifdef ENABLE_VIASATEPG
+	threadVSEIT.StopRun();
+#endif
 #ifdef ENABLE_SDT
 	threadSDT.StopRun();
+#endif
+#ifdef ENABLE_FREESATEPG
+	threadFSEIT.StopRun();
 #endif
 
 	debug(DEBUG_ERROR, "broadcasting...");
@@ -2400,12 +2456,19 @@ void CEitManager::run()
 
 	debug(DEBUG_ERROR, "join CN");
 	threadCN.Stop();
+#ifdef ENABLE_VIASATEPG
+	debug(DEBUG_ERROR, "join VSEIT");
+	threadVSEIT.Stop();
+#endif
 
 #ifdef ENABLE_SDT
 	debug(DEBUG_ERROR, "join SDT");
 	threadSDT.Stop();
 #endif
-
+#ifdef ENABLE_FREESATEPG
+	debug(DEBUG_ERROR, "join FSEIT");
+	threadFSEIT.Stop();
+#endif
 #ifdef EXIT_CLEANUP
 	debug(DEBUG_ERROR, "cleanup...");
 	delete myNextEvent;

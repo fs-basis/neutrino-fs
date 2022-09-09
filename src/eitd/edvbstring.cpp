@@ -690,14 +690,8 @@ std::string convertDVBUTF8(const char *data, int len, int table, int tsidonid)
 		case 0x15: // UTF-8 encoding of ISO/IEC 10646-1
 			return std::string((char *)data + 1, len - 1);
 		case 0x1F:
-		{
-#ifdef ENABLE_FREESATEPG
-			std::string decoded_string = freesatHuffmanDecode(std::string(data, len));
-			if (!decoded_string.empty()) return decoded_string;
-#endif
-		}
-		++i;
-		break;
+			++i;
+			break;
 		case 0x0:
 		case 0xC ... 0xF:
 		case 0x16 ... 0x1E:

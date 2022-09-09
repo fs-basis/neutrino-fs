@@ -171,10 +171,6 @@ AC_ARG_ENABLE(mdev,
 	AS_HELP_STRING([--enable-mdev], [use mdev instead of broken neutrino mount hack @<:@default=no@:>@]),
 	AC_DEFINE(ASSUME_MDEV, 1, [use mdev instead of broken neutrino mount hack]))
 
-AC_ARG_ENABLE(freesatepg,
-	AS_HELP_STRING([--enable-freesatepg], [enable Freesat EPG code @<:@default=no@:>@]),
-	AC_DEFINE(ENABLE_FREESATEPG, 1, [enable Freesat EPG code]))
-
 AC_ARG_ENABLE(giflib,
 	AS_HELP_STRING([--enable-giflib], [use giflib instead of libungif @<:@default=no@:>@]),
 	AC_DEFINE(ENABLE_GIFLIB, 1, [use giflib instead of libungif]))

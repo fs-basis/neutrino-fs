@@ -272,6 +272,10 @@ int DMX::getSection(uint8_t *buf, const unsigned timeoutInMSeconds, int &timeout
 	eit_extended_section_header *eit_extended_header;
 
 	bool use_viasat_epg_pid = false;
+#ifdef ENABLE_VIASATEPG
+	if (pID == 0x39)
+		use_viasat_epg_pid = true;
+#endif
 
 	/* filter == 0 && maks == 0 => EIT dummy filter to slow down EIT thread startup */
 	if ((pID == 0x12 || use_viasat_epg_pid) && filters[filter_index].filter == 0 && filters[filter_index].mask == 0)
@@ -629,7 +633,10 @@ int DMX::change(const int new_filter_index, const t_channel_id new_current_servi
 	if (sections_debug >= DEBUG_INFO)   // friendly debug output...
 	{
 		bool use_viasat_epg_pid = false;
-
+#ifdef ENABLE_VIASATEPG
+		if (pID == 0x39)
+			use_viasat_epg_pid = true;
+#endif
 		if ((pID == 0x12 || use_viasat_epg_pid) && filters[0].filter != 0x4e) // Only EIT
 		{
 			debug(DEBUG_ERROR, "changeDMX [EIT]-> %d (0x%x/0x%x) %s (%ld seconds)",

@@ -136,7 +136,8 @@ TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-2.0)
 TUXBOX_APPS_LIB_PKGCONFIG(SWRESAMPLE,libswresample)
 TUXBOX_APPS_LIB_PKGCONFIG(SWSCALE,libswscale)
 
-if test "$BOXTYPE" = "duckbox" ||
+if test "$BOXTYPE" = "generic" ||
+   test "$BOXTYPE" = "duckbox" ||
    test "$BOXTYPE" = "armbox" ||
    test "$BOXTYPE" = "spark7162" ||
    test "$BOXTYPE" = "spark"; then
@@ -150,6 +151,14 @@ AC_ARG_ENABLE(keyboard-no-rc,
 AC_ARG_ENABLE(mdev,
 	AS_HELP_STRING([--enable-mdev], [use mdev instead of broken neutrino mount hack @<:@default=no@:>@]),
 	AC_DEFINE(ASSUME_MDEV, 1, [use mdev instead of broken neutrino mount hack]))
+
+AC_ARG_ENABLE(freesatepg,
+	AS_HELP_STRING([--enable-freesatepg], [enable Freesat EPG code @<:@default=no@:>@]),
+	AC_DEFINE(ENABLE_FREESATEPG, 1, [enable Freesat EPG code]))
+
+AC_ARG_ENABLE(viasatepg,
+	AS_HELP_STRING([--enable-viasatepg], [enable ViaSat EPG code @<:@default=no@:>@]),
+	AC_DEFINE(ENABLE_VIASATEPG, 1, [enable ViaSat EPG code]))
 
 AC_ARG_ENABLE(giflib,
 	AS_HELP_STRING([--enable-giflib], [use giflib instead of libungif @<:@default=no@:>@]),
@@ -248,6 +257,7 @@ AC_ARG_WITH(stb-hal-build,
 	HWLIB_CFLAGS="-I$STB_HAL_INC"
 
 AM_CONDITIONAL(USE_STB_HAL,
+	test "$BOXTYPE" = "generic"   ||
 	test "$BOXTYPE" = "duckbox"   ||
 	test "$BOXTYPE" = "armbox"    ||
 	test "$BOXTYPE" = "spark7162" ||

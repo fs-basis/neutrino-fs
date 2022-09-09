@@ -271,14 +271,8 @@ int DMX::getSection(uint8_t *buf, const unsigned timeoutInMSeconds, int &timeout
 
 	eit_extended_section_header *eit_extended_header;
 
-	bool use_viasat_epg_pid = false;
-#ifdef ENABLE_VIASATEPG
-	if (pID == 0x39)
-		use_viasat_epg_pid = true;
-#endif
-
 	/* filter == 0 && maks == 0 => EIT dummy filter to slow down EIT thread startup */
-	if ((pID == 0x12 || use_viasat_epg_pid) && filters[filter_index].filter == 0 && filters[filter_index].mask == 0)
+	if ((pID == 0x12) && filters[filter_index].filter == 0 && filters[filter_index].mask == 0)
 	{
 		//debug(DEBUG_INFO, "dmx: dummy filter, sleeping for %d ms", timeoutInMSeconds);
 		usleep(timeoutInMSeconds * 1000);
@@ -388,7 +382,7 @@ int DMX::getSection(uint8_t *buf, const unsigned timeoutInMSeconds, int &timeout
 	unsigned short current_tsid = 0;
 	uint8_t segment_last_section_number = last_section_number;
 
-	if (pID == 0x12 || use_viasat_epg_pid)
+	if (pID == 0x12)
 	{
 		eit_extended_header = (eit_extended_section_header *)(buf + 8);
 		current_onid = 	eit_extended_header->original_network_id_hi * 256 +
@@ -401,7 +395,7 @@ int DMX::getSection(uint8_t *buf, const unsigned timeoutInMSeconds, int &timeout
 	sections_id_t s_id = create_sections_id(table_id, eh_tbl_extension_id, current_onid, current_tsid, section_number);
 
 	bool complete = false;
-	if (pID == 0x12 || use_viasat_epg_pid)
+	if (pID == 0x12)
 		complete = check_complete(s_id, section_number, last_section_number, segment_last_section_number);
 
 	/* if we are not caching the already read sections (CN-thread), check EIT version and get out */
@@ -632,12 +626,7 @@ int DMX::change(const int new_filter_index, const t_channel_id new_current_servi
 
 	if (sections_debug >= DEBUG_INFO)   // friendly debug output...
 	{
-		bool use_viasat_epg_pid = false;
-#ifdef ENABLE_VIASATEPG
-		if (pID == 0x39)
-			use_viasat_epg_pid = true;
-#endif
-		if ((pID == 0x12 || use_viasat_epg_pid) && filters[0].filter != 0x4e) // Only EIT
+		if ((pID == 0x12) && filters[0].filter != 0x4e) // Only EIT
 		{
 			debug(DEBUG_ERROR, "changeDMX [EIT]-> %d (0x%x/0x%x) %s (%ld seconds)",
 				new_filter_index, filters[new_filter_index].filter,

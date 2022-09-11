@@ -54,7 +54,6 @@ extern bool dvb_time_update;
 extern CBouquetManager *g_bouquetManager;
 
 std::string epg_filter_dir = ZAPITDIR "/epgfilter.xml";
-std::string dvbtime_filter_dir = ZAPITDIR "/dvbtimefilter.xml";
 bool epg_filter_is_whitelist = false;
 bool epg_filter_except_current_next = false;
 
@@ -176,25 +175,6 @@ static void addBlacklist(t_original_network_id onid, t_transport_stream_id tsid,
 	}
 }
 
-static void addNoDVBTimelist(t_original_network_id onid, t_transport_stream_id tsid, t_service_id sid)
-{
-	t_channel_id channel_id =
-		CREATE_CHANNEL_ID(sid, onid, tsid);
-	t_channel_id mask =
-		CREATE_CHANNEL_ID(
-			(sid ? 0xFFFF : 0), (onid ? 0xFFFF : 0), (tsid ? 0xFFFF : 0)
-		);
-	if (!checkNoDVBTimelist(channel_id))
-	{
-		debug(DEBUG_ERROR, "Add channel 0x%012" PRIx64 ", mask 0x%012" PRIx64 " to NoDVBTimelist", channel_id, mask);
-		ChannelNoDVBTimelist *node = new ChannelNoDVBTimelist;
-		node->chan = channel_id;
-		node->mask = mask;
-		node->next = CurrentNoDVBTime;
-		CurrentNoDVBTime = node;
-	}
-}
-
 bool readEPGFilter(void)
 {
 	xmlDocPtr filter_parser = parseXmlFile(epg_filter_dir.c_str());
@@ -230,39 +210,6 @@ bool readEPGFilter(void)
 	}
 	xmlFreeDoc(filter_parser);
 	return (CurrentEPGFilter != NULL);
-}
-
-void readDVBTimeFilter(void)
-{
-	xmlDocPtr filter_parser = parseXmlFile(dvbtime_filter_dir.c_str());
-
-	t_original_network_id onid = 0;
-	t_transport_stream_id tsid = 0;
-	t_service_id sid = 0;
-
-	if (filter_parser != NULL)
-	{
-		debug(DEBUG_INFO, "Reading DVBTimeFilters");
-
-		xmlNodePtr filter = xmlDocGetRootElement(filter_parser);
-		filter = xmlChildrenNode(filter);
-
-		while (filter)
-		{
-
-			onid = xmlGetNumericAttribute(filter, "onid", 16);
-			tsid = xmlGetNumericAttribute(filter, "tsid", 16);
-			sid  = xmlGetNumericAttribute(filter, "serviceID", 16);
-			addNoDVBTimelist(onid, tsid, sid);
-
-			filter = xmlNextNode(filter);
-		}
-		xmlFreeDoc(filter_parser);
-	}
-	else
-	{
-		dvb_time_update = true;
-	}
 }
 
 void deleteOldfileEvents(const char *epgdir)

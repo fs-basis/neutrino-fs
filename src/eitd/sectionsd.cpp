@@ -2331,7 +2331,6 @@ void CEitManager::run()
 
 	tzset(); // TZ auswerten
 
-	readDVBTimeFilter();
 	readEncodingFile();
 
 	/* threads start left here for now, if any problems found, will be moved to Start() */

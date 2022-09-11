@@ -96,10 +96,6 @@ long int secondsExtendedTextCache = 0;
 static long oldEventsAre;
 static int scanning = 1;
 
-extern bool epg_filter_is_whitelist;
-extern bool epg_filter_except_current_next;
-static bool xml_epg_filter;
-
 static bool messaging_zap_detected = false;
 /*static*/ bool dvb_time_update = false;
 
@@ -119,7 +115,6 @@ std::string		epg_dir("");
    changed from one place */
 static t_channel_id    messaging_current_servicekey = 0;
 static t_channel_id    current_channel_id = 0;
-static bool channel_is_blacklisted = false;
 
 bool timeset = false;
 
@@ -267,32 +262,6 @@ static bool deleteEvent(const t_event_id uniqueKey)
 /* if cn == true (if called by cnThread), then myCurrentEvent and myNextEvent is updated, too */
 /*static*/ void addEvent(const SIevent &evt, const time_t zeit, bool cn = false)
 {
-	filter_mutex.lock();
-	bool EPG_filtered = checkEPGFilter(evt.original_network_id, evt.transport_stream_id, evt.service_id);
-	filter_mutex.unlock();
-
-	/* more readable in "plain english":
-	   if current/next are not to be filtered and table_id is current/next -> continue
-	   else {
-		if epg filter is blacklist and filter matched -> stop. (return)
-		if epg filter is whitelist and filter did not match -> stop also.
-	   }
-	 */
-	if (!(epg_filter_except_current_next && (evt.table_id == 0x4e || evt.table_id == 0x4f)) &&
-		(evt.table_id != 0xFF))
-	{
-		if (!epg_filter_is_whitelist && EPG_filtered)
-		{
-			//debug(DEBUG_INFO, "addEvent: blacklist and filter did match");
-			return;
-		}
-		if (epg_filter_is_whitelist && !EPG_filtered)
-		{
-			//debug(DEBUG_INFO, "addEvent: whitelist and filter did not match");
-			return;
-		}
-	}
-
 	if (cn)   // current-next => fill current or next event...
 	{
 //debug(DEBUG_ERROR, "addEvent: current %012" PRIx64 " event %012" PRIx64 " messaging_got_CN %d", messaging_current_servicekey, evt.get_channel_id(), messaging_got_CN);
@@ -963,9 +932,6 @@ static void commandserviceChanged(int connfd, char *data, const unsigned dataLen
 		dvb_time_update = !checkNoDVBTimelist(uniqueServiceKey);
 		debug(DEBUG_INFO, "commandserviceChanged: DVB time update is %s", dvb_time_update ? "allowed" : "blocked!");
 
-		channel_is_blacklisted = checkBlacklist(uniqueServiceKey);
-		debug(DEBUG_INFO, "commandserviceChanged: service is %s", channel_is_blacklisted ? "filtered!" : "not filtered");
-
 		writeLockEvents();
 		delete myCurrentEvent;
 		myCurrentEvent = NULL;
@@ -1634,8 +1600,8 @@ void CSectionThread::run()
 		if (shouldSleep())
 		{
 #ifdef DEBUG_SECTION_THREADS
-			debug(DEBUG_ERROR, "%s: going to sleep %d seconds, running %d scanning %d blacklisted %d events %d",
-				name.c_str(), sleep_time, running, scanning, channel_is_blacklisted, event_count);
+			debug(DEBUG_ERROR, "%s: going to sleep %d seconds, running %d scanning %d events %d",
+				name.c_str(), sleep_time, running, scanning, event_count);
 #endif
 			event_count = 0;
 
@@ -1646,8 +1612,8 @@ void CSectionThread::run()
 				real_pause();
 				rs = Sleep();
 #ifdef DEBUG_SECTION_THREADS
-				debug(DEBUG_ERROR, "%s: wakeup, running %d scanning %d blacklisted %d reason %d",
-					name.c_str(), running, scanning, channel_is_blacklisted, rs);
+				debug(DEBUG_ERROR, "%s: wakeup, running %d scanning %d reason %d",
+					name.c_str(), running, scanning, rs);
 #endif
 			}
 			while (checkSleep());
@@ -1752,7 +1718,7 @@ bool CEventsThread::addEvents()
 
 bool CCNThread::shouldSleep()
 {
-	if (!scanning || channel_is_blacklisted)
+	if (!scanning)
 		return true;
 	if (!sendToSleepNow)
 		return false;
@@ -1783,13 +1749,13 @@ bool CCNThread::shouldSleep()
 /* default check if thread should go to sleep */
 bool CEventsThread::shouldSleep()
 {
-	return (sendToSleepNow || !scanning || channel_is_blacklisted);
+	return (sendToSleepNow || !scanning);
 }
 
 /* default check if thread should continue to sleep */
 bool CEventsThread::checkSleep()
 {
-	return (running && (!scanning || channel_is_blacklisted));
+	return (running && !scanning);
 }
 
 /* default section process */
@@ -2281,8 +2247,6 @@ bool CEitManager::Start()
 	debug(DEBUG_NORMAL, "Caching: %d days, %d hours Extended Text, max %d events, Events are old %d hours after end time",
 		config.epg_cache, config.epg_extendedcache, config.epg_max_events, config.epg_old_events);
 	debug(DEBUG_NORMAL, "NTP: %s, command %s", ntpenable ? "enabled" : "disabled", ntp_system_cmd.c_str());
-
-	xml_epg_filter = readEPGFilter();
 
 	if (!sectionsd_server.prepare(SECTIONSD_UDS_NAME))
 	{
@@ -3058,18 +3022,9 @@ unsigned CEitManager::getEventsCount()
 void CEitManager::addChannelFilter(t_original_network_id onid, t_transport_stream_id tsid, t_service_id sid)
 {
 	OpenThreads::ScopedLock<OpenThreads::Mutex> slock(filter_mutex);
-	if (xml_epg_filter)
-		return;
-	epg_filter_except_current_next = true;
-	epg_filter_is_whitelist = true;
-	addEPGFilter(onid, tsid, sid);
 }
 
 void CEitManager::clearChannelFilters()
 {
 	OpenThreads::ScopedLock<OpenThreads::Mutex> slock(filter_mutex);
-	if (xml_epg_filter)
-		return;
-	clearEPGFilter();
-	epg_filter_is_whitelist = false;
 }

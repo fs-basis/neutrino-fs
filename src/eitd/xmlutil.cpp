@@ -53,10 +53,6 @@ extern pthread_rwlock_t eventsLock;
 extern bool dvb_time_update;
 extern CBouquetManager *g_bouquetManager;
 
-std::string epg_filter_dir = ZAPITDIR "/epgfilter.xml";
-bool epg_filter_is_whitelist = false;
-bool epg_filter_except_current_next = false;
-
 inline void readLockEvents(void)
 {
 	pthread_rwlock_rdlock(&eventsLock);
@@ -66,21 +62,6 @@ inline void unlockEvents(void)
 	pthread_rwlock_unlock(&eventsLock);
 }
 
-struct EPGFilter
-{
-	t_original_network_id onid;
-	t_transport_stream_id tsid;
-	t_service_id sid;
-	EPGFilter *next;
-};
-
-struct ChannelBlacklist
-{
-	t_channel_id chan;
-	t_channel_id mask;
-	ChannelBlacklist *next;
-};
-
 struct ChannelNoDVBTimelist
 {
 	t_channel_id chan;
@@ -88,35 +69,7 @@ struct ChannelNoDVBTimelist
 	ChannelNoDVBTimelist *next;
 };
 
-static EPGFilter *CurrentEPGFilter = NULL;
-static ChannelBlacklist *CurrentBlacklist = NULL;
 static ChannelNoDVBTimelist *CurrentNoDVBTime = NULL;
-
-bool checkEPGFilter(t_original_network_id onid, t_transport_stream_id tsid, t_service_id sid)
-{
-	EPGFilter *filterptr = CurrentEPGFilter;
-	while (filterptr)
-	{
-		if (((filterptr->onid == onid) || (filterptr->onid == 0)) &&
-			((filterptr->tsid == tsid) || (filterptr->tsid == 0)) &&
-			((filterptr->sid == sid) || (filterptr->sid == 0)))
-			return true;
-		filterptr = filterptr->next;
-	}
-	return false;
-}
-
-bool checkBlacklist(t_channel_id channel_id)
-{
-	ChannelBlacklist *blptr = CurrentBlacklist;
-	while (blptr)
-	{
-		if (blptr->chan == (channel_id & blptr->mask))
-			return true;
-		blptr = blptr->next;
-	}
-	return false;
-}
 
 bool checkNoDVBTimelist(t_channel_id channel_id)
 {
@@ -128,88 +81,6 @@ bool checkNoDVBTimelist(t_channel_id channel_id)
 		blptr = blptr->next;
 	}
 	return false;
-}
-
-void addEPGFilter(t_original_network_id onid, t_transport_stream_id tsid, t_service_id sid)
-{
-	if (!checkEPGFilter(onid, tsid, sid))
-	{
-		debug(DEBUG_INFO, "Add EPGFilter for onid=\"%04x\" tsid=\"%04x\" service_id=\"%04x\"", onid, tsid, sid);
-		EPGFilter *node = new EPGFilter;
-		node->onid = onid;
-		node->tsid = tsid;
-		node->sid = sid;
-		node->next = CurrentEPGFilter;
-		CurrentEPGFilter = node;
-	}
-}
-
-void clearEPGFilter()
-{
-	EPGFilter *filterptr = CurrentEPGFilter;
-	while (filterptr)
-	{
-		EPGFilter *filternext = filterptr->next;
-		delete filterptr;
-		filterptr = filternext;
-	}
-	CurrentEPGFilter = NULL;
-}
-
-static void addBlacklist(t_original_network_id onid, t_transport_stream_id tsid, t_service_id sid)
-{
-	t_channel_id channel_id =
-		CREATE_CHANNEL_ID(sid, onid, tsid);
-	t_channel_id mask =
-		CREATE_CHANNEL_ID(
-			(sid ? 0xFFFF : 0), (onid ? 0xFFFF : 0), (tsid ? 0xFFFF : 0)
-		);
-	if (!checkBlacklist(channel_id))
-	{
-		debug(DEBUG_ERROR, "Add Channel Blacklist for channel 0x%012" PRIx64 ", mask 0x%012" PRIx64, channel_id, mask);
-		ChannelBlacklist *node = new ChannelBlacklist;
-		node->chan = channel_id;
-		node->mask = mask;
-		node->next = CurrentBlacklist;
-		CurrentBlacklist = node;
-	}
-}
-
-bool readEPGFilter(void)
-{
-	xmlDocPtr filter_parser = parseXmlFile(epg_filter_dir.c_str());
-
-	t_original_network_id onid = 0;
-	t_transport_stream_id tsid = 0;
-	t_service_id sid = 0;
-
-	if (filter_parser != NULL)
-	{
-		debug(DEBUG_INFO, "Reading EPGFilters");
-
-		xmlNodePtr filter = xmlDocGetRootElement(filter_parser);
-		if (xmlGetNumericAttribute(filter, "is_whitelist", 10) == 1)
-			epg_filter_is_whitelist = true;
-		if (xmlGetNumericAttribute(filter, "except_current_next", 10) == 1)
-			epg_filter_except_current_next = true;
-		filter = xmlChildrenNode(filter);
-
-		while (filter)
-		{
-
-			onid = xmlGetNumericAttribute(filter, "onid", 16);
-			tsid = xmlGetNumericAttribute(filter, "tsid", 16);
-			sid  = xmlGetNumericAttribute(filter, "serviceID", 16);
-			if (xmlGetNumericAttribute(filter, "blacklist", 10) == 1)
-				addBlacklist(onid, tsid, sid);
-			else
-				addEPGFilter(onid, tsid, sid);
-
-			filter = xmlNextNode(filter);
-		}
-	}
-	xmlFreeDoc(filter_parser);
-	return (CurrentEPGFilter != NULL);
 }
 
 void deleteOldfileEvents(const char *epgdir)

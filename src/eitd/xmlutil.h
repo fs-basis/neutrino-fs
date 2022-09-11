@@ -42,12 +42,7 @@ bool readEventsFromDir(std::string &epgdir, int &ev_count);
 void writeEventsToFile(const char *epgdir);
 t_channel_id getepgid(std::string epg_name);
 
-bool readEPGFilter(void);
-bool checkEPGFilter(t_original_network_id onid, t_transport_stream_id tsid, t_service_id sid);
-bool checkBlacklist(t_channel_id channel_id);
 bool checkNoDVBTimelist(t_channel_id channel_id);
-void addEPGFilter(t_original_network_id onid, t_transport_stream_id tsid, t_service_id sid);
-void clearEPGFilter();
 
 #endif /* __sectionsd__debug_h__ */
 

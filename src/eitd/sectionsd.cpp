@@ -248,9 +248,8 @@ static bool deleteEvent(const t_event_id uniqueKey)
 			mySIeventsOrderServiceUniqueKeyFirstStartTimeEventUniqueKey.erase(e->second);
 		}
 
-#ifndef USE_BOOST_SHARED_PTR
 		delete e->second;
-#endif
+
 		mySIeventsOrderUniqueKey.erase(uniqueKey);
 		mySIeventsNVODorderUniqueKey.erase(uniqueKey);
 		ret = true;
@@ -1149,7 +1148,6 @@ static void FreeMemory()
 
 	writeLockEvents();
 
-#ifndef USE_BOOST_SHARED_PTR
 	std::set<SIeventPtr> allevents;
 
 	allevents.insert(mySIeventsOrderFirstEndTimeServiceIDEventUniqueKey.begin(), mySIeventsOrderFirstEndTimeServiceIDEventUniqueKey.end());
@@ -1164,7 +1162,7 @@ static void FreeMemory()
 
 	for (std::set<SIeventPtr>::iterator ait = allevents.begin(); ait != allevents.end(); ++ait)
 		delete (*ait);
-#endif
+
 	mySIeventsOrderFirstEndTimeServiceIDEventUniqueKey.clear();
 	mySIeventsOrderServiceUniqueKeyFirstStartTimeEventUniqueKey.clear();
 	mySIeventsOrderUniqueKey.clear();

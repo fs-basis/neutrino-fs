@@ -429,7 +429,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 #if HAVE_ARM_HARDWARE
 	g_settings.zappingmode = configfile.getInt32( "zappingmode", 0);
-	g_settings.hdmi_colorimetry = configfile.getInt32("hdmi_colorimetry", 0);
+	g_settings.hdmi_colorimetry = configfile.getInt32("hdmi_colorimetry", HDMI_COLORIMETRY_BT709);
 #endif
 
 	// ci settings

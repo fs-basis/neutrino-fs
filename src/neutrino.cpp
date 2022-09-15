@@ -67,9 +67,7 @@
 #include "gui/3dsetup.h"
 #endif
 
-#if !HAVE_GENERIC_HARDWARE
 #include "gui/psisetup.h"
-#endif
 
 #include "gui/adzap.h"
 #include "gui/audiomute.h"

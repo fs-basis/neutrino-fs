@@ -304,7 +304,6 @@ int CVideoSettings::showVideoSetup()
 	videosetup->addItem(md);
 #endif
 
-#if !HAVE_GENERIC_HARDWARE
 	CMenuForwarder *mf;
 	CMenuOptionNumberChooser *mc;
 
@@ -348,8 +347,6 @@ int CVideoSettings::showVideoSetup()
 	mf = new CMenuForwarder(LOCALE_VIDEOMENU_MASKSETUP, true, NULL, &channelScreenSetup, NULL, CRCInput::convertDigitToKey(shortcut++));
 	mf->setHint("", LOCALE_MENU_HINT_VIDEO_MASK);
 	videosetup->addItem(mf);
-#endif
-
 #endif
 
 #ifdef ENABLE_PIP

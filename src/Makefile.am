@@ -164,11 +164,6 @@ if BOXTYPE_MIPSBOX
 neutrino_LDADD += -lass
 endif
 
-if BOXMODEL_RASPI
-neutrino_LDADD += \
-	-L/opt/vc/lib/ -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt
-endif
-
 if USE_STB_HAL
 neutrino_LDADD += \
 	-lstb-hal

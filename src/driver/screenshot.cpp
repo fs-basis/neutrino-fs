@@ -94,10 +94,8 @@ bool CScreenShot::GetData()
 	if (videoDecoder->getBlank())
 		get_video = false;
 
-#if !HAVE_GENERIC_HARDWARE
 	// to enable after libcs/drivers update
 	res = videoDecoder->GetScreenImage(pixel_data, xres, yres /*, get_video, get_osd*/);
-#endif
 
 	pthread_mutex_unlock(&getData_mutex);
 	if (!res)

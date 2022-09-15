@@ -71,9 +71,6 @@ typedef struct gradientData_t
 #define WINDOW_SIZE_SMALL	80 // %
 #define ConnectLineBox_Width	16 // px
 
-#if HAVE_GENERIC_HARDWARE
-#define USE_OPENGL 1
-#endif
 #if HAVE_SH4_HARDWARE
 #include <linux/stmfb.h>
 #endif

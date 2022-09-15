@@ -116,12 +116,12 @@ int dvbsub_pause()
 
 		printf("[dvb-sub] paused\n");
 	}
+
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(ass_mutex);
 	ass_track = NULL;
 
 	return 0;
 }
-
 
 int dvbsub_start(int pid, bool _isEplayer)
 {
@@ -813,7 +813,6 @@ static void *dvbsub_thread(void * /*arg*/)
 		dvbSubtitleConverter = new cDvbSubtitleConverter;
 
 	int timeout = 1000000;
-
 	CFrameBuffer *fb = CFrameBuffer::getInstance();
 #if HAVE_SH4_HARDWARE
 	int xres = fb->getScreenWidth(true);

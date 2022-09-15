@@ -59,7 +59,6 @@ libneutrino_driver_a_SOURCES += \
 	simple_display.cpp
 endif
 
-
 if BOXTYPE_ARMBOX
 libneutrino_driver_a_SOURCES += \
 	fb_generic.cpp \

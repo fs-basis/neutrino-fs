@@ -195,6 +195,7 @@ int CRecordInstance::GetStatus()
 {
 	if (record)
 		return record->GetStatus();
+
 	return 0;
 }
 

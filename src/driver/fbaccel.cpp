@@ -932,8 +932,10 @@ bool CFbAccel::init(void)
 	fb_pixel_t *lfb;
 	fb->lfb = NULL;
 	fb->fd = -1;
+
 	int fd;
 	fd = open("/dev/fb0", O_RDWR | O_CLOEXEC);
+
 	if (fd < 0)
 	{
 		perror("open /dev/fb0");

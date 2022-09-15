@@ -59,12 +59,6 @@
 #include <driver/display.h>
 extern cAudio *audioDecoder;
 
-/* libid3tag extension: This is neccessary in order to call fclose
-   on the file. Normally libid3tag closes the file implicit.
-   For the netfile extension to work properly netfiles fclose must be called.
-   To close an id3 file (usually by calling id3_file_close) without fclosing it,
-   call following i3_finish_file function. It's just a copy of libid3tags
-   finish_file function. */
 extern "C"
 {
 //void id3_tag_addref(struct id3_tag *);

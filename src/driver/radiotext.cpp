@@ -828,7 +828,6 @@ void CRadioText::run()
 	uint current_pid = 0;
 
 	printf("CRadioText::run: ###################### Starting thread ######################\n");
-
 	int buflen = 0;
 	unsigned char *buf = NULL;
 	audioDemux = new cDemux(0); // live demux

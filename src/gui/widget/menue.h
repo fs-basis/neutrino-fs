@@ -788,6 +788,8 @@ class CPINProtection
 		CPINProtection(std::string &validpin): title(LOCALE_PINPROTECTION_HEAD), hint(NONEXISTANT_LOCALE)
 		{
 			validPIN = &validpin;
+			hint = NONEXISTANT_LOCALE;
+			title = LOCALE_PINPROTECTION_HEAD;
 		};
 		virtual ~CPINProtection() {}
 		virtual void setTitle(neutrino_locale_t Title)

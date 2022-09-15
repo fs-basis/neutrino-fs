@@ -63,8 +63,10 @@
 
 #include <hardware/video.h>
 #include "3dsetup.h"
+#if HAVE_SH4_HARDWARE
 #include <zapit/zapit.h>
 #include "screensetup.h"
+#endif
 
 extern cVideo *videoDecoder;
 #ifdef ENABLE_PIP

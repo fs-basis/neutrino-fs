@@ -230,5 +230,3 @@ public:
 			g_Sectionsd->readSIfromXMLTV((*it).c_str()); }
 };
 #endif
-
-

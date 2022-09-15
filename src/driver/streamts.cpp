@@ -215,7 +215,6 @@ void CStreamInstance::run()
 		if (r > 0)
 			Send(r);
 	}
-
 	if (!send_raw)
 		CCamManager::getInstance()->Stop(channel_id, CCamManager::STREAM);
 

@@ -249,7 +249,6 @@ AC_ARG_WITH(stb-hal-build,
 	HWLIB_CFLAGS="-I$STB_HAL_INC"
 
 AM_CONDITIONAL(USE_STB_HAL,
-	test "$BOXTYPE" = "generic"   ||
 	test "$BOXTYPE" = "duckbox"   ||
 	test "$BOXTYPE" = "armbox"    ||
 	test "$BOXTYPE" = "spark7162" ||

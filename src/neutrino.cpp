@@ -63,9 +63,9 @@
 #include <driver/display.h>
 #include <driver/radiotext.h>
 #include <driver/scanepg.h>
+
 #include "gui/3dsetup.h"
 #include "gui/psisetup.h"
-
 #include "gui/adzap.h"
 #include "gui/audiomute.h"
 #include "gui/audioplayer.h"
@@ -562,6 +562,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.language = configfile.getString("language", "");
 	g_settings.timezone = configfile.getString("timezone", "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna");
 	//epg dir
+	g_settings.epg_dir              = configfile.getString("epg_dir", "/mnt/nfs/epg");
 #if BOXMODEL_UFS910
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 1);
@@ -572,7 +573,6 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 24);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 90000);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 1);
-	g_settings.epg_dir              = configfile.getString("epg_dir", "/mnt/nfs/epg");
 #endif
 	// NTP-Server for sectionsd
 	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "time.fu-berlin.de");
@@ -5033,7 +5033,7 @@ bool CNeutrinoApp::StartPip(const t_channel_id channel_id, int pip)
 
 	int recmode = CRecordManager::getInstance()->GetRecordMode(channel_id);
 	if ((recmode == CRecordManager::RECMODE_OFF) || (channel->getRecordDemux() != channel->getPipDemux())) {
-		if (!g_Zapit->zapTo_pip(channel_id), pip)
+		if (!g_Zapit->zapTo_pip(channel_id, pip))
 			DisplayErrorMessage(g_Locale->getText(LOCALE_VIDEOMENU_PIP_ERROR));
 		else
 			ret = true;

@@ -62,9 +62,7 @@
 #include <system/debug.h>
 
 #include <hardware/video.h>
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 #include "3dsetup.h"
-#endif
 #if HAVE_SH4_HARDWARE
 #include <zapit/zapit.h>
 #include "screensetup.h"

@@ -165,7 +165,6 @@ void CScreenShot::cleanupThread(void *arg)
 /* start ::run in new thread to save file in selected format */
 bool CScreenShot::Start(const std::string __attribute__((unused)) custom_cmd)
 {
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 	std::string cmd = "/bin/grab ";
 
 	if (g_settings.screenshot_plans == 0)
@@ -174,7 +173,6 @@ bool CScreenShot::Start(const std::string __attribute__((unused)) custom_cmd)
 		cmd += "-v ";
 	if (g_settings.screenshot_plans == 2)
 		cmd += "";
-
 
 	switch (format)
 	{
@@ -198,15 +196,6 @@ bool CScreenShot::Start(const std::string __attribute__((unused)) custom_cmd)
 	fprintf(stderr, "running: %s\n", cmd.c_str());
 	system(cmd.c_str());
 	return true;
-#else
-	set_threadname("n:screenshot");
-	bool ret = false;
-	if (GetData())
-		ret = startThread();
-	else
-		delete this;
-	return ret;
-#endif
 }
 
 #if !HAVE_SH4_HARDWARE

@@ -217,7 +217,6 @@ int CRecordSetup::showRecordSetup()
 	cover->setHint("", LOCALE_MENU_HINT_RECORD_AUTO_COVER);
 	recordingSettings->addItem(cover);
 
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 	CMenuOptionNumberChooser *ch;
 
 	ch = new CMenuOptionNumberChooser(LOCALE_EXTRA_RECORD_BUFSIZE, &g_settings.recording_bufsize, true, 1, 25, NULL);
@@ -229,7 +228,6 @@ int CRecordSetup::showRecordSetup()
 	ch->setNumberFormat("%d MB");
 	//TODO: ch->setHint("", LOCALE_MENU_HINT_RECORD_BUFSIZE_DMX);
 	recordingSettings->addItem(ch);
-#endif
 
 	recordingSettings->addItem(GenericMenuSeparatorLine);
 

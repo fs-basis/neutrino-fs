@@ -204,7 +204,6 @@ if test "$enable_dynamicdemux" = "yes"; then
 	AC_DEFINE(DYNAMIC_DEMUX,1,[use dynamic demux])
 fi
 
-
 AC_ARG_ENABLE(arm-acc,
 	AS_HELP_STRING(--disable-arm-acc,disable arm hardware acceleration),
 	,[enable_arm_acc=yes])
@@ -299,7 +298,6 @@ AC_ARG_WITH(stb-hal-build,
 	HWLIB_CFLAGS="-I$STB_HAL_INC"
 
 AM_CONDITIONAL(USE_STB_HAL,
-	test "$BOXTYPE" = "generic"   ||
 	test "$BOXTYPE" = "duckbox"   ||
 	test "$BOXTYPE" = "armbox"    ||
 	test "$BOXTYPE" = "mipsbox"   ||

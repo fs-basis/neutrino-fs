@@ -765,6 +765,7 @@ void CFbAccel::blit()
 void CFbAccel::blit()
 {
 }
+#endif
 
 /* not really used yet */
 #ifdef PARTIAL_BLIT

@@ -581,7 +581,7 @@ int CScanSetup::showScanMenu()
 	CMenuWidget * settings = new CMenuWidget(LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_SETTINGS, width, MN_WIDGET_ID_SCAN_MAIN);
 
 	//back
-	settings->addIntroItems(LOCALE_SERVICEMENU_SCANTS, NONEXISTANT_LOCALE, 0, 0, false);
+	settings->addIntroItems(LOCALE_SERVICEMENU_SCANTS, NONEXISTANT_LOCALE, 0, false, false);
 	//----------------------------------------------------------------------
 #if 0
 	//save scan settings

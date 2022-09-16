@@ -5071,7 +5071,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 
 #ifdef ENABLE_PIP
 	g_settings.key_pip_close = tconfig->getInt32( "key_pip_close", CRCInput::RC_next );
-g_settings.key_pip_close_avinput = tconfig->getInt32( "key_pip_close_avinput", 1436 ); // prev (long)
+	g_settings.key_pip_close_avinput = tconfig->getInt32( "key_pip_close_avinput", 1436 ); // prev (long)
 	g_settings.key_pip_setup = tconfig->getInt32( "key_pip_setup", 1035 ); // 0 long
 	g_settings.key_pip_swap = tconfig->getInt32( "key_pip_swap", CRCInput::RC_prev );
 #endif

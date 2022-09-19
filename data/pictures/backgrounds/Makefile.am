@@ -3,7 +3,8 @@ installdir = $(ICONSDIR)
 resolution = 1280x720
 
 install_DATA = \
-	$(resolution)/scan.jpg
+	$(resolution)/scan.jpg \
+	$(resolution)/bootlogo.mvi
 
 
 

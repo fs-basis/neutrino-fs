@@ -1,3 +1,3 @@
 SUBDIRS = \
-	backgrounds \
-	screensaver
+	backgrounds
+#	screensaver

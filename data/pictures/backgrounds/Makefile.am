@@ -1,4 +1,4 @@
-installdir = $(ICONSDIR)
+installdir = $(BACKGROUNDS)
 
 resolution = 1280x720
 
@@ -6,11 +6,9 @@ install_DATA = \
 	$(resolution)/scan.jpg \
 	$(resolution)/bootlogo.mvi
 
-
-
-#install_DATA = \
-#	$(resolution)/mp3.jpg \
-#	$(resolution)/radiomode.jpg \
-#	$(resolution)/scan.jpg \
-#	$(resolution)/shutdown.jpg \
-#	$(resolution)/start.jpg
+install-data-hook:
+	ln -sf $(BACKGROUNDS)/scan.jpg $(DESTDIR)$(ICONSDIR)/scan.jpg
+	ln -sf $(BACKGROUNDS)/scan.jpg $(DESTDIR)$(ICONSDIR)/mp3.jpg
+	ln -sf $(BACKGROUNDS)/scan.jpg $(DESTDIR)$(ICONSDIR)/radiomode.jpg
+	ln -sf $(BACKGROUNDS)/scan.jpg $(DESTDIR)$(ICONSDIR)/shutdown.jpg
+	ln -sf $(BACKGROUNDS)/scan.jpg $(DESTDIR)$(ICONSDIR)/start.jpg

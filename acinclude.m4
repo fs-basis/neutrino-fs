@@ -135,6 +135,9 @@ else
 	mntdir="/mnt" # hack
 fi
 
+TUXBOX_APPS_DIRECTORY_ONE(backgrounds, BACKGROUNDS, localstatedir, /var, /boot,
+	[--with-backgrounds=PATH], [where to find backgrounds files])
+
 TUXBOX_APPS_DIRECTORY_ONE(configdir, CONFIGDIR, localstatedir, /var, /tuxbox/config,
 	[--with-configdir=PATH], [where to find config files])
 
@@ -188,6 +191,7 @@ TUXBOX_APPS_DIRECTORY_ONE(flagdir, FLAGDIR, localstatedir, /var, /etc,
 ])
 
 dnl automake <= 1.6 needs this specifications
+AC_SUBST(BACKGROUNDS)
 AC_SUBST(CONFIGDIR)
 AC_SUBST(ZAPITDIR)
 AC_SUBST(CONTROLDIR)

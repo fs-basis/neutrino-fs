@@ -174,10 +174,6 @@ bool CScanSettings::loadSettings(const char *const fileName)
 	if (sat_TP_fec == 4) sat_TP_fec = 5;
 #endif
 
-	fast_type = configfile.getInt32("fast_type", 2);
-	fast_op = configfile.getInt32("fast_op", 0);
-	fst_version = configfile.getInt32("fst_version", 0);
-	fst_update = configfile.getInt32("fst_update", 0);
 	cable_nid = configfile.getInt32("cable_nid", 0);
 
 	return ret;
@@ -195,10 +191,7 @@ bool CScanSettings::saveSettings(const char *const fileName)
 	configfile.setInt32("scan_reset_numbers", scan_reset_numbers);
 	configfile.setInt32("scan_logical_numbers", scan_logical_numbers);
 	configfile.setInt32("scan_logical_hd", scan_logical_hd);
-	configfile.setInt32("fast_type", fast_type);
-	configfile.setInt32("fast_op", fast_op);
-	configfile.setInt32("fst_version", fst_version);
-	configfile.setInt32("fst_update", fst_update);
+
 	configfile.setInt32("cable_nid", cable_nid);
 
 	configfile.setString("satName", satName);

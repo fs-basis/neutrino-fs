@@ -1073,10 +1073,6 @@ class CScanSettings
 		int		scan_reset_numbers;
 		int		scan_logical_numbers;
 		int		scan_logical_hd;
-		int		fast_type;
-		int		fast_op;
-		int		fst_version;
-		int		fst_update;
 		int		cable_nid;
 
 		std::string	satName;

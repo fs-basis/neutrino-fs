@@ -191,7 +191,6 @@ bool CScanSettings::saveSettings(const char *const fileName)
 	configfile.setInt32("scan_reset_numbers", scan_reset_numbers);
 	configfile.setInt32("scan_logical_numbers", scan_logical_numbers);
 	configfile.setInt32("scan_logical_hd", scan_logical_hd);
-
 	configfile.setInt32("cable_nid", cable_nid);
 
 	configfile.setString("satName", satName);

@@ -3248,9 +3248,6 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 			CScanSetup::getInstance()->updateManualSettings();
 		}
 	}
-	if ((msg == NeutrinoMessages::EVT_TIMER)) {
-
-	}
 
 	if (msg == NeutrinoMessages::SHOW_MAINMENU) {
 		showMainMenu();

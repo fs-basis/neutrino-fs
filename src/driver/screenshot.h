@@ -61,9 +61,7 @@ class CScreenShot
 		bool SaveJpg();
 
 		bool startThread();
-		static void *initThread(void *arg);
-		void runThread();
-		static void cleanupThread(void *arg);
+		static void *initThread(void *);
 #endif
 
 	public:

@@ -59,15 +59,6 @@ CScreenShot::CScreenShot(const std::string &fname, screenshot_format_t fmt)
 	format = fmt;
 	filename = fname;
 	pixel_data = NULL;
-#if !HAVE_SH4_HARDWARE && !HAVE_ARM_HARDWWARE
-	fd = NULL;
-	xres = 0;
-	yres = 0;
-	extra_osd = false;
-	scs_thread = 0;
-	pthread_mutex_init(&thread_mutex, NULL);
-	pthread_mutex_init(&getData_mutex, NULL);
-#endif
 	xres = 0;
 	yres = 0;
 //	get_osd = g_settings.screenshot_plans == 0;
@@ -76,10 +67,6 @@ CScreenShot::CScreenShot(const std::string &fname, screenshot_format_t fmt)
 
 CScreenShot::~CScreenShot()
 {
-#if !HAVE_SH4_HARDWARE && !HAVE_ARM_HARDWARE
-	pthread_mutex_destroy(&thread_mutex);
-	pthread_mutex_destroy(&getData_mutex);
-#endif
 //	printf("[CScreenShot::%s:%d] thread: %p\n", __func__, __LINE__, this);
 }
 
@@ -124,41 +111,6 @@ bool CScreenShot::startThread()
 		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, 0);
 	}
 	return true;
-}
-#endif
-
-#if !HAVE_SH4_HARDWARE && !HAVE_ARM_HARDWARE
-void *CScreenShot::initThread(void *arg)
-{
-	CScreenShot *scs = static_cast<CScreenShot *>(arg);
-	pthread_cleanup_push(cleanupThread, scs);
-//	printf("[CScreenShot::%s:%d] thread: %p\n", __func__, __LINE__, scs);
-
-	scs->runThread();
-	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, 0);
-	pthread_exit(0);
-
-	pthread_cleanup_pop(0);
-	return 0;
-}
-
-/* thread function to save data asynchroniosly. delete itself after saving */
-void CScreenShot::runThread()
-{
-	pthread_mutex_lock(&thread_mutex);
-	printf("[CScreenShot::%s:%d] save to %s format %d\n", __func__, __LINE__, filename.c_str(), format);
-
-	bool ret = SaveFile();
-
-	printf("[CScreenShot::%s:%d] %s finished: %d\n", __func__, __LINE__, filename.c_str(), ret);
-	pthread_mutex_unlock(&thread_mutex);
-}
-
-void CScreenShot::cleanupThread(void *arg)
-{
-	CScreenShot *scs = static_cast<CScreenShot *>(arg);
-//	printf("[CScreenShot::%s:%d] thread: %p\n", __func__, __LINE__, scs);
-	delete scs;
 }
 #endif
 

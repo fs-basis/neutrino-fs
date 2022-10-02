@@ -40,7 +40,7 @@ using namespace std;
 CBuildInfo::CBuildInfo(bool show) : CComponentsWindow(0, 0, CCW_PERCENT 85, CCW_PERCENT 85, LOCALE_BUILDINFO_MENU, NEUTRINO_ICON_INFO)
 {
 	initVarBuildInfo();
-// 	setBodyBGImage(DATADIR "/neutrino/icons/start.jpg");
+
 	if (show)
 		exec(NULL, "");
 	else

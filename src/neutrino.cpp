@@ -3908,10 +3908,10 @@ void CNeutrinoApp::ExitRun(int exit_code)
 
 	StopSubtitles();
 	stopPlayBack();
-#if 0
+
 	frameBuffer->paintBackground();
 	frameBuffer->showFrame("shutdown.jpg");
-#endif
+
 	delete cHddStat::getInstance();
 	delete CRecordManager::getInstance();
 

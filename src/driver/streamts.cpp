@@ -335,7 +335,8 @@ CFrontend *CStreamManager::FindFrontend(CZapitChannel *channel)
 	if (!IS_WEBCHAN(live_channel_id))
 	{
 		unlock = true;
-		CFEManager::getInstance()->lockFrontend(live_fe);
+		if (live_fe)
+			CFEManager::getInstance()->lockFrontend(live_fe);
 	}
 
 	OpenThreads::ScopedLock<OpenThreads::Mutex> m_lock(mutex);
@@ -350,15 +351,15 @@ CFrontend *CStreamManager::FindFrontend(CZapitChannel *channel)
 	if (unlock && frontend == NULL)
 	{
 		unlock = false;
-		CFEManager::getInstance()->unlockFrontend(live_fe);
+		if (live_fe)
+			CFEManager::getInstance()->unlockFrontend(live_fe);
 		frontend = CFEManager::getInstance()->allocateFE(channel, true);
 	}
 
 	CFEManager::getInstance()->Unlock();
 
-	if (frontend)
-	{
-		bool found = (live_fe != frontend) || IS_WEBCHAN(live_channel_id) || SAME_TRANSPONDER(live_channel_id, chid);
+	if (frontend) {
+		bool found = (live_fe != NULL && live_fe != frontend) || IS_WEBCHAN(live_channel_id) || SAME_TRANSPONDER(live_channel_id, chid);
 		bool ret = false;
 		if (found)
 			ret = zapit.zapTo_record(chid) > 0;
@@ -384,7 +385,8 @@ CFrontend *CStreamManager::FindFrontend(CZapitChannel *channel)
 	for (std::set<CFrontend *>::iterator ft = frontends.begin(); ft != frontends.end(); ++ft)
 		CFEManager::getInstance()->unlockFrontend(*ft);
 
-	if (unlock && !frontend)
+
+	if (unlock && !frontend && live_fe)
 		CFEManager::getInstance()->unlockFrontend(live_fe);
 
 	CFEManager::getInstance()->Unlock();

@@ -296,7 +296,7 @@ AC_ARG_WITH(boxtype,
 			BOXTYPE="spark"
 			BOXMODEL="$withval"
 		;;
-		hd51|bre2ze4k|h7)
+		bre2ze4k|h7|hd51)
 			BOXTYPE="armbox"
 			BOXMODEL="$withval"
 		;;
@@ -309,7 +309,7 @@ AC_ARG_WITH(boxtype,
 AC_ARG_WITH(boxmodel,
 	AS_HELP_STRING([--with-boxmodel], [valid for duckbox: ufs910, ufs912, ufs913, ufs922])
 AS_HELP_STRING([], [valid for spark: spark, spark7162])
-AS_HELP_STRING([], [valid for armbox: bre2ze4k, hd51, h7])
+AS_HELP_STRING([], [valid for armbox: bre2ze4k, h7, hd51])
 	[case "${withval}" in
 		ufs910|ufs912|ufs913|ufs922)
 			if test "$BOXTYPE" = "duckbox"; then
@@ -325,7 +325,7 @@ AS_HELP_STRING([], [valid for armbox: bre2ze4k, hd51, h7])
 				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
 			fi
 		;;
-		hd51|bre2ze4k|h7)
+		bre2ze4k|h7|hd51)
 			if test "$BOXTYPE" = "armbox"; then
 				BOXMODEL="$withval"
 			else
@@ -340,9 +340,8 @@ AS_HELP_STRING([], [valid for armbox: bre2ze4k, hd51, h7])
 AC_SUBST(BOXTYPE)
 AC_SUBST(BOXMODEL)
 
-
-AM_CONDITIONAL(BOXTYPE_ARMBOX, test "$BOXTYPE" = "armbox")
 AM_CONDITIONAL(BOXTYPE_DUCKBOX, test "$BOXTYPE" = "duckbox")
+AM_CONDITIONAL(BOXTYPE_ARMBOX, test "$BOXTYPE" = "armbox")
 AM_CONDITIONAL(BOXTYPE_SPARK, test "$BOXTYPE" = "spark")
 
 AM_CONDITIONAL(BOXMODEL_UFS910, test "$BOXMODEL" = "ufs910")
@@ -353,20 +352,18 @@ AM_CONDITIONAL(BOXMODEL_UFS922, test "$BOXMODEL" = "ufs922")
 AM_CONDITIONAL(BOXMODEL_SPARK, test "$BOXMODEL" = "spark")
 AM_CONDITIONAL(BOXMODEL_SPARK7162, test "$BOXMODEL" = "spark7162")
 
-AM_CONDITIONAL(BOXMODEL_HD51, test "$BOXMODEL" = "hd51")
 AM_CONDITIONAL(BOXMODEL_BRE2ZE4K, test "$BOXMODEL" = "bre2ze4k")
 AM_CONDITIONAL(BOXMODEL_H7, test "$BOXMODEL" = "h7")
+AM_CONDITIONAL(BOXMODEL_HD51, test "$BOXMODEL" = "hd51")
 
-
-if test "$BOXTYPE" = "armbox"; then
-	AC_DEFINE(HAVE_ARM_HARDWARE, 1, [building for an armbox])
-elif test "$BOXTYPE" = "duckbox"; then
+if test "$BOXTYPE" = "duckbox"; then
 	AC_DEFINE(HAVE_DUCKBOX_HARDWARE, 1, [building for a duckbox])
 	AC_DEFINE(HAVE_SH4_HARDWARE, 1, [building for a sh4 box])
 elif test "$BOXTYPE" = "spark"; then
 	AC_DEFINE(HAVE_SPARK_HARDWARE, 1, [building for a goldenmedia 990 or edision pingulux])
 	AC_DEFINE(HAVE_SH4_HARDWARE, 1, [building for a sh4 box])
-
+elif test "$BOXTYPE" = "armbox"; then
+	AC_DEFINE(HAVE_ARM_HARDWARE, 1, [building for an armbox])
 fi
 
 # TODO: do we need more defines?
@@ -384,15 +381,15 @@ elif test "$BOXMODEL" = "spark7162"; then
 	AC_DEFINE(BOXMODEL_SPARK7162, 1, [spark7162])
 elif test "$BOXMODEL" = "bre2ze4k"; then
 	AC_DEFINE(BOXMODEL_BRE2ZE4K, 1, [bre2ze4k])
-elif test "$BOXMODEL" = "hd51"; then
-	AC_DEFINE(BOXMODEL_HD51, 1, [hd51])
 elif test "$BOXMODEL" = "h7"; then
 	AC_DEFINE(BOXMODEL_H7, 1, [h7])
+elif test "$BOXMODEL" = "hd51"; then
+	AC_DEFINE(BOXMODEL_HD51, 1, [hd51])
 fi
 
 # Support Boxmodel with OSD-Resolution
 case "$BOXMODEL" in
-	bre2ze4k|hd51|h7)
+	bre2ze4k|h7|hd51)
 		AC_DEFINE(ENABLE_CHANGE_OSD_RESOLUTION, 1, [enable to change osd resolution])
 	;;
 esac

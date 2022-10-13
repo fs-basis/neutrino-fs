@@ -76,7 +76,7 @@ typedef enum
 	FP_ICON_DOWNLOAD,
 	FP_ICON_TIMESHIFT,
 #endif
-#if !defined(BOXMODEL_UFS910) && !defined(BOXMODEL_UFS922) && !defined(BOXMODEL_UFS912) && !defined(BOXMODEL_UFS913)
+#if !defined(BOXMODEL_UFS910) && !defined(BOXMODEL_UFS912) && !defined(BOXMODEL_UFS913) && !defined(BOXMODEL_UFS922)
 	FP_ICON_MAX
 #endif
 } fp_icon;

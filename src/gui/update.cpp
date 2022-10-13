@@ -92,15 +92,9 @@ extern int allow_flash;
 #if HAVE_DUCKBOX_HARDWARE
 #define UPDATE_LOCAL_FILENAME          "update.img"
 #define FILEBROWSER_UPDATE_FILTER      "img"
-#if BOXMODEL_UFS910 || BOXMODEL_FORTIS_HDBOX || BOXMODEL_OCTAGON1008
+#if BOXMODEL_UFS910
 #define MTD_OF_WHOLE_IMAGE              5
 #define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd5"
-#elif BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI || BOXMODEL_CUBEREVO_MINI2
-#define MTD_OF_WHOLE_IMAGE              6
-#define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd6"
-#elif BOXMODEL_CUBEREVO_3000HD
-#define MTD_OF_WHOLE_IMAGE              6
-#define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd6"
 #elif BOXMODEL_UFS922
 #define MTD_OF_WHOLE_IMAGE              4
 #define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd4"

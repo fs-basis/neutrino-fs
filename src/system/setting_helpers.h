@@ -147,7 +147,7 @@ class CDataResetNotifier : public CMenuTarget
 	public:
 		int exec(CMenuTarget *parent, const std::string &actionKey);
 };
-#if BOXMODEL_UFS922 || BOXMODEL_CUBEREVO || BOXMODEL_CUBEREVO_MINI2 || BOXMODEL_CUBEREVO_250HD || BOXMODEL_CUBEREVO_3000HD || BOXMODEL_IPBOX9900 || BOXMODEL_IPBOX99
+#if BOXMODEL_UFS922
 class CFanControlNotifier : public CChangeObserver
 {
 	public:

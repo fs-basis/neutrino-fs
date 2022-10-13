@@ -51,17 +51,7 @@ extern CRemoteControl *g_RemoteControl;  /* neutrino.cpp */
 #include <stropts.h>
 #define VFD_DEVICE "/dev/vfd"
 
-#if defined (BOXMODEL_OCTAGON1008) || defined (BOXMODEL_TF7700)
-#define VFDLENGTH 8
-#elif defined (BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_ATEVIO7500)
-#define VFDLENGTH 12
-#elif  defined (BOXMODEL_CUBEREVO_250HD) || defined (BOXMODEL_IPBOX55)
-#define VFDLENGTH 4
-#elif defined (BOXMODEL_IPBOX9900) || defined (BOXMODEL_IPBOX99)
-#define VFDLENGTH 14
-#else
 #define VFDLENGTH 16
-#endif
 
 #define SCROLL_TIME 350000
 
@@ -372,10 +362,6 @@ void CVFD::wake_up()
 	{
 		switch_name_time_cnt = g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] + 10;
 	}
-#if defined (BOXMODEL_OCTAGON1008)
-	ShowIcon(ICON_COLON2, false);
-#endif
-
 }
 
 void *CVFD::TimeThread(void *)
@@ -439,40 +425,8 @@ void CVFD::setlcdparameter(int dimm, const int power)
 	data.length = 0;
 	write_to_vfd(VFDBRIGHTNESS, &data);
 #endif
-#if defined (BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_ATEVIO7500)
-	usleep(100000);
-	memset(&data, 0, sizeof(struct vfd_ioctl_data));
-	data.start = 0;
-	data.length = 5;
-	if (power)
-	{
-		data.data[0] = 0x01; // red led
-	}
-	else
-	{
-		data.data[0] = 0xf2; // cross plus blue led
-	}
-	data.start = 0;
-	data.data[4] = 0; // off
-	data.length = 5;
-	write_to_vfd(VFDPWRLED, &data);
-	usleep(100000);
-	memset(&data, 0, sizeof(struct vfd_ioctl_data));
-	data.start = 0;
-	data.length = 5;
-	if (power)
-	{
-		data.data[0] = 0xf2; // cross plus blue led
-	}
-	else
-	{
-		data.data[0] = 0x01; // red led
-	}
-	data.start = 0;
-	data.data[4] = brightness * 2;
-	data.length = 5;
-	write_to_vfd(VFDPWRLED, &data);
-#elif !defined (BOXMODEL_UFS912) && !defined (BOXMODEL_UFS913) && !defined (BOXMODEL_OCTAGON1008)
+
+#if !defined (BOXMODEL_UFS912) && !defined (BOXMODEL_UFS913)
 // Power on/off
 	if (power)
 	{
@@ -537,13 +491,9 @@ void CVFD::showTime(bool force)
 			{
 				hour = t->tm_hour;
 				minute = t->tm_min;
-#if defined (BOXMODEL_OCTAGON1008)
-				ShowIcon(ICON_COLON2, true);
-#elif defined (BOXMODEL_OCTAGON1008) || defined (BOXMODEL_CUBEREVO_250HD)
-				strftime(timestr, 5, "%H%M", t);
-#else
+
 				strftime(timestr, 6, "%H:%M", t);
-#endif
+
 				ShowText(timestr);
 				if (support_text)
 				{
@@ -678,19 +628,7 @@ void CVFD::showVolume(const char vol, const bool force_update)
 					strncat(VolumeBar, c0, 1);
 			}
 			ShowText(VolumeBar);
-#elif defined (BOXMODEL_TF7700)
-			char vol_chr[64] = "";
-			snprintf(vol_chr, sizeof(vol_chr) - 1, "VOL: %d%%", (int)vol);
-			ShowText(vol_chr);
-#elif defined (BOXMODEL_OCTAGON1008)
-			char vol_chr[64] = "";
-			snprintf(vol_chr, sizeof(vol_chr) - 1, "VOL=%3d", (int)vol);
-			ShowText(vol_chr);
-#elif defined (BOXMODEL_CUBEREVO_250HD) || defined (BOXMODEL_IPBOX55)
-			char vol_chr[64] = "";
-			snprintf(vol_chr, sizeof(vol_chr) - 1, "v%3d", (int)vol);
-			ShowText(vol_chr);
-#elif defined (BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_ATEVIO7500) || defined (BOXMODEL_UFS912) || defined (BOXMODEL_UFS913) || defined (BOXMODEL_CUBEREVO) || defined (BOXMODEL_CUBEREVO_MINI) || defined (BOXMODEL_CUBEREVO_MINI2) || defined (BOXMODEL_CUBEREVO_2000HD) || defined (BOXMODEL_CUBEREVO_3000HD) || defined (BOXMODEL_IPBOX9900) || defined (BOXMODEL_IPBOX99)
+#elif defined (BOXMODEL_UFS912) || defined (BOXMODEL_UFS913)
 			char vol_chr[64] = "";
 			snprintf(vol_chr, sizeof(vol_chr) - 1, "Volume: %d%%", (int)vol);
 			ShowText(vol_chr);
@@ -947,13 +885,8 @@ void CVFD::setBrightness(int bright)
 int CVFD::getBrightness()
 {
 	//FIXME for old neutrino.conf
-#if defined (BOXMODEL_OCTAGON1008) || defined (BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_ATEVIO7500)
-	if (g_settings.lcd_setting[SNeutrinoSettings::LCD_BRIGHTNESS] > 7)
-		g_settings.lcd_setting[SNeutrinoSettings::LCD_BRIGHTNESS] = 7;
-#else
 	if (g_settings.lcd_setting[SNeutrinoSettings::LCD_BRIGHTNESS] > 15)
 		g_settings.lcd_setting[SNeutrinoSettings::LCD_BRIGHTNESS] = 15;
-#endif
 
 	return g_settings.lcd_setting[SNeutrinoSettings::LCD_BRIGHTNESS];
 }
@@ -969,13 +902,9 @@ void CVFD::setBrightnessStandby(int bright)
 int CVFD::getBrightnessStandby()
 {
 	//FIXME for old neutrino.conf
-#if defined (BOXMODEL_OCTAGON1008) || defined (BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_ATEVIO7500)
-	if (g_settings.lcd_setting[SNeutrinoSettings::LCD_STANDBY_BRIGHTNESS] > 7)
-		g_settings.lcd_setting[SNeutrinoSettings::LCD_STANDBY_BRIGHTNESS] = 7;
-#else
 	if (g_settings.lcd_setting[SNeutrinoSettings::LCD_STANDBY_BRIGHTNESS] > 15)
 		g_settings.lcd_setting[SNeutrinoSettings::LCD_STANDBY_BRIGHTNESS] = 15;
-#endif
+
 	return g_settings.lcd_setting[SNeutrinoSettings::LCD_STANDBY_BRIGHTNESS];
 }
 
@@ -990,13 +919,9 @@ void CVFD::setBrightnessDeepStandby(int bright)
 int CVFD::getBrightnessDeepStandby()
 {
 	//FIXME for old neutrino.conf
-#if defined (BOXMODEL_OCTAGON1008) || defined (BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_ATEVIO7500)
-	if (g_settings.lcd_setting[SNeutrinoSettings::LCD_DEEPSTANDBY_BRIGHTNESS] > 7)
-		g_settings.lcd_setting[SNeutrinoSettings::LCD_DEEPSTANDBY_BRIGHTNESS] = 7;
-#else
 	if (g_settings.lcd_setting[SNeutrinoSettings::LCD_DEEPSTANDBY_BRIGHTNESS] > 15)
 		g_settings.lcd_setting[SNeutrinoSettings::LCD_DEEPSTANDBY_BRIGHTNESS] = 15;
-#endif
+
 	return g_settings.lcd_setting[SNeutrinoSettings::LCD_DEEPSTANDBY_BRIGHTNESS];
 }
 
@@ -1060,16 +985,6 @@ void CVFD::Clear()
 		perror("IOC_FP_SET_TEXT");
 	else
 		text.clear();
-#else
-#if defined (BOXMODEL_CUBEREVO_250HD) || defined (BOXMODEL_IPBOX55)
-	ShowText("    ");
-#elif defined (BOXMODEL_OCTAGON1008) || defined (BOXMODEL_TF7700)
-	ShowText("        ");
-#elif defined (BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_ATEVIO7500)
-	ShowText("            ");
-#elif defined (BOXMODEL_IPBOX9900) || defined (BOXMODEL_IPBOX99)
-	ShowText("              ");
-#endif
 #endif
 }
 
@@ -1082,9 +997,6 @@ void CVFD::ShowIcon(fp_icon icon, bool show)
 	if (ret < 0)
 		perror(show ? "IOC_FP_SET_ICON" : "IOC_FP_CLEAR_ICON");
 #else
-#if defined (BOXMODEL_ATEVIO7500)
-	return;
-#endif
 	if (icon == 0)
 		return;
 
@@ -1114,18 +1026,9 @@ void CVFD::ShowIcon(fp_icon icon, bool show)
 #ifdef HAVE_DUCKBOX_HARDWARE
 void CVFD::ClearIcons()
 {
-#if defined (BOXMODEL_ATEVIO7500)
-	return;
-#endif
 	for (int id = 0x10; id < FP_ICON_MAX; id++)
 	{
-#if defined (BOXMODEL_OCTAGON1008)
-		if (id != FP_ICON_USB && id != FP_ICON_HDD)
-#elif defined(BOXMODEL_FORTIS_HDBOX) || defined (BOXMODEL_TF7700)
-		if (id != FP_ICON_USB)
-#else
 		if (id != 0x10 && id != 0x12)
-#endif
 			ShowIcon((fp_icon)id, false);
 	}
 	return;

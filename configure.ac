@@ -136,8 +136,7 @@ TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-2.0)
 TUXBOX_APPS_LIB_PKGCONFIG(SWRESAMPLE,libswresample)
 TUXBOX_APPS_LIB_PKGCONFIG(SWSCALE,libswscale)
 
-if test "$BOXTYPE" = "generic" ||
-   test "$BOXTYPE" = "duckbox" ||
+if test "$BOXTYPE" = "duckbox" ||
    test "$BOXTYPE" = "armbox" ||
    test "$BOXTYPE" = "spark7162" ||
    test "$BOXTYPE" = "spark"; then

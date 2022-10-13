@@ -3222,9 +3222,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 			g_settings.audio_AnalogMode = 0;
 
 		CVFD::getInstance()->UpdateIcons();
-
 		C3DSetup::getInstance()->exec(NULL, "zapped");
-
 #if HAVE_SH4_HARDWARE
 		{
 			CScreenSetup cSS;

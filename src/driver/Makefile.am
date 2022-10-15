@@ -62,13 +62,6 @@ libneutrino_driver_a_SOURCES += \
 	vfd.cpp
 endif
 
-if BOXTYPE_SPARK
-libneutrino_driver_a_SOURCES += \
-	fb_generic_sti_ddt.cpp \
-	fb_accel_sti_ddt.cpp \
-	simple_display.cpp
-endif
-
 if BOXTYPE_ARMBOX
 libneutrino_driver_a_SOURCES += \
 	fb_generic.cpp \

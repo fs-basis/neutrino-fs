@@ -148,10 +148,6 @@ if ENABLE_LUA
 neutrino_LDADD += @LUA_LIBS@
 endif
 
-if BOXTYPE_SPARK
-neutrino_LDADD += -lass
-endif
-
 if BOXTYPE_DUCKBOX
 neutrino_LDADD += -lass
 endif

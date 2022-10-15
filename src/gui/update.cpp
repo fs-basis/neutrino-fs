@@ -103,11 +103,6 @@ extern int allow_flash;
 #define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd999"
 #endif
 #else
-#if HAVE_SPARK_HARDWARE
-#define FILEBROWSER_UPDATE_FILTER      "zip"
-#define MTD_OF_WHOLE_IMAGE              999
-#define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd999"
-#else
 // TODO: move this mess below to libstb-hal
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 #define FILEBROWSER_UPDATE_FILTER      "tgz"
@@ -118,7 +113,6 @@ extern int allow_flash;
 #define RELEASE_CYCLE                  "2.0"
 #define MTD_OF_WHOLE_IMAGE             0
 #define MTD_DEVICE_OF_UPDATE_PART      "/dev/mtd3"
-#endif
 #endif
 #endif
 

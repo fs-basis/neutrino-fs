@@ -74,11 +74,6 @@ if BOXMODEL_E4HDULTRA
 install_DATA += rc_axas_e4hd.png
 endif
 
-if BOXTYPE_SPARK
-install_DATA += rc_spark_old.jpg \
-		rc_spark_new.jpg
-endif
-
 if BOXTYPE_DUCKBOX
 install_DATA += rc_910.jpg \
 		rc_913.jpg

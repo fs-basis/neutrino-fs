@@ -827,10 +827,6 @@ struct SNeutrinoSettings
 #if USE_STB_HAL
 		LCD_EPGMODE,
 #endif
-#if HAVE_SPARK_HARDWARE
-		LCD_DISPLAYMODE,
-		LCD_STANDBY_DISPLAYMODE,
-#endif
 		LCD_SETTING_COUNT
 	};
 	int lcd_setting[LCD_SETTING_COUNT];
@@ -1009,13 +1005,6 @@ const time_settings_struct_t timing_setting[SNeutrinoSettings::TIMING_SETTING_CO
 #define DEFAULT_LCD_INVERSE			0x00
 #define DEFAULT_LCD_AUTODIMM			0x00
 #define DEFAULT_LCD_SHOW_VOLUME			0x01
-#if HAVE_SPARK_HARDWARE
-#define LCD_DISPLAYMODE_OFF			0
-#define LCD_DISPLAYMODE_ON			1
-#define LCD_DISPLAYMODE_TIMEONLY		2
-#define LCD_DISPLAYMODE_TIMEOFF			3
-#define DEFAULT_LCD_DISPLAYMODE			LCD_DISPLAYMODE_ON
-#endif
 
 #define CORNER_RADIUS_LARGE	CFrameBuffer::getInstance()->scale2Res(11)
 #define CORNER_RADIUS_MID	CFrameBuffer::getInstance()->scale2Res(7)

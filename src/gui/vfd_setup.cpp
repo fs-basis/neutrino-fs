@@ -152,8 +152,6 @@ int CVfdSetup::showSetup()
 
 #if HAVE_DUCKBOX_HARDWARE
 		vfds->addItem(new CMenuOptionNumberChooser(LOCALE_LCDMENU_VFD_SCROLL, &g_settings.lcd_vfd_scroll, true, 0, 999, this, 0, 0, NONEXISTANT_LOCALE, true));
-#elif HAVE_SPARK_HARDWARE
-		vfds->addItem(new CMenuOptionNumberChooser(LOCALE_LCDMENU_VFD_SCROLL, &g_settings.lcd_vfd_scroll, (g_info.hw_caps->display_type == HW_DISPLAY_LINE_TEXT), 0, 999, this, 0, 0, NONEXISTANT_LOCALE, true));
 #else
 		//scroll options
 		if (file_exists("/proc/stb/lcd/scroll_repeats"))

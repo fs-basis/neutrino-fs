@@ -126,10 +126,6 @@ CFrameBuffer *CFrameBuffer::getInstance()
 
 	if (!frameBuffer)
 	{
-#if HAVE_SPARK_HARDWARE
-		frameBuffer = new CFbAccelSTi();
-#endif
-
 #if HAVE_ARM_HARDWARE
 		frameBuffer = new CFbAccelARM();
 #endif

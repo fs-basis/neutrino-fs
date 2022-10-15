@@ -29,10 +29,8 @@ function do_init(){
 	val = "{=ini-get:%(CONFIGDIR)/Y-Web.conf;fb;0~open=}";
 	var sel=4;
 	switch(val){
-		case "-4":	// ufs913
-		case "-3":	// ufs910
-		case "-2":	// spark old
-		case "-1":	// spark new
+		case "-2":	// ufs913
+		case "-1":	// ufs910
 		case "0":	// auto
 		case "1":	// ax hd51
 		case "2":	// mutant hd51
@@ -123,10 +121,8 @@ select {
 				<td>{=L:set.yweb.remote=}</td>
 				<td colspan="3">
 					<select name="fb" title="{=L:remote=}">
-						<option value="-4">KATHREIN | 913</option>
-						<option value="-3">KATHREIN | 910</option>
-						<option value="-2">SPARK | (alt)</option>
-						<option value="-1">SPARK | (neu)</option>
+						<option value="-2">KATHREIN | 913</option>
+						<option value="-1">KATHREIN | 910</option>
 						<option value="0" selected="selected">{=L:automatic=}</option>
 						<option value="1">AX | HD51</option>
 						<option value="2">Mutant | HD51</option>

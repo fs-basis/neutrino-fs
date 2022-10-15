@@ -138,9 +138,7 @@ TUXBOX_APPS_LIB_PKGCONFIG(SWSCALE,libswscale)
 
 if test "$BOXTYPE" = "duckbox" ||
    test "$BOXTYPE" = "armbox" ||
-   test "$BOXTYPE" = "mipsbox" ||
-   test "$BOXTYPE" = "spark7162" ||
-   test "$BOXTYPE" = "spark"; then
+   test "$BOXTYPE" = "mipsbox"; then
 	AC_DEFINE(SCREENSHOT, 1, [Define to 1 if the platform supports screenshots])
 fi
 
@@ -299,9 +297,7 @@ AC_ARG_WITH(stb-hal-build,
 AM_CONDITIONAL(USE_STB_HAL,
 	test "$BOXTYPE" = "duckbox"   ||
 	test "$BOXTYPE" = "armbox"    ||
-	test "$BOXTYPE" = "mipsbox"   ||
-	test "$BOXTYPE" = "spark7162" ||
-	test "$BOXTYPE" = "spark")
+	test "$BOXTYPE" = "mipsbox")
 
 # hack, so that framebuffer.h does not need to be included everywhere...
 AC_DEFINE(fb_pixel_t, uint32_t, [hack, so that framebuffer.h does not need to be included everywhere...])

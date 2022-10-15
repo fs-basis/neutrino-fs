@@ -443,7 +443,6 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 
 void CMoviePlayerGui::updateLcd(bool display_playtime)
 {
-#if !HAVE_SPARK_HARDWARE
 	char tmp[20];
 	std::string lcd;
 	std::string name;
@@ -526,7 +525,6 @@ void CMoviePlayerGui::updateLcd(bool display_playtime)
 	lcd += name;
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8);
 	CVFD::getInstance()->showMenuText(0, lcd.c_str(), -1, true);
-#endif
 }
 
 void CMoviePlayerGui::fillPids()

@@ -115,12 +115,6 @@ libneutrino_gui_a_SOURCES += \
 	pipsetup.cpp
 endif
 
-if BOXTYPE_SPARK
-libneutrino_gui_a_SOURCES += \
-	3dsetup.cpp \
-	psisetup.cpp
-endif
-
 if BOXTYPE_DUCKBOX
 libneutrino_gui_a_SOURCES += \
 	3dsetup.cpp \
@@ -140,10 +134,8 @@ libneutrino_gui2_a_SOURCES = \
 	kerneloptions.cpp \
 	motorcontrol.cpp
 
-if !BOXTYPE_SPARK
 libneutrino_gui2_a_SOURCES += \
 	cam_menu.cpp
-endif
 
 libtimerlist_a_SOURCES = \
 	timerlist.cpp

@@ -54,11 +54,8 @@
 
 static bool usermenu_show = true;
 //static bool usermenu_show_not = false;
-#if HAVE_SPARK_HARDWARE
-static bool usermenu_show_cam = false; // FIXME -- use hwcaps?
-#else
 static bool usermenu_show_cam = true; // FIXME -- use hwcaps?
-#endif
+
 struct keyvals
 {
 	const int key;

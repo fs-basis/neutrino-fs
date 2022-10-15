@@ -66,11 +66,6 @@ install_DATA += rc_ax_hd51.png \
 		rc_zgemma_h7.png
 endif
 
-if BOXTYPE_SPARK
-install_DATA += rc_spark_old.jpg \
-		rc_spark_new.jpg
-endif
-
 if BOXTYPE_DUCKBOX
 install_DATA += rc_910.jpg \
 		rc_913.jpg

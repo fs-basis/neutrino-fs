@@ -38,19 +38,7 @@
 //#include <math.h>
 #include <sys/stat.h>
 
-<<<<<<< HEAD
-#if HAVE_SPARK_HARDWARE
-#include <aotom_main.h>
-#define DISPLAY_DEV "/dev/vfd"
-#include <zapit/zapit.h>
-static bool usb_icon = false;
-static bool timer_icon = false;
-#endif
-
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
-=======
-#if HAVE_ARM_HARDWARE
->>>>>>> 8d78b840e... unused boxmodel, boxtype remove part 2
 #define DISPLAY_DEV "/dev/dbox/oled0"
 #include <zapit/zapit.h>
 static bool usb_icon = false;

@@ -257,7 +257,8 @@ std::string  CNeutrinoYParser::func_get_bouquets_as_templatelist(CyhookHandler *
 		else
 			g_bouquetManager->Bouquets[i]->getTvChannels(channels);
 
-		if (!channels.empty() && (!g_bouquetManager->Bouquets[i]->bHidden || do_show_hidden == "true"))
+		if(!channels.empty() && (!g_bouquetManager->Bouquets[i]->bHidden || do_show_hidden == "true") && g_bouquetManager->Bouquets[i]->bUser)
+		//if (!channels.empty() && (!g_bouquetManager->Bouquets[i]->bHidden || do_show_hidden == "true")) // show all bouquets, slower page
 		{
 			yresult += string_printf(ytemplate.c_str(), i + 1, g_bouquetManager->Bouquets[i]->bName.c_str());
 			yresult += "\r\n";

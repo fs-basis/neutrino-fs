@@ -64,12 +64,6 @@
 #include "gui/timerlist.h"
 #include "gui/update_menue.h"
 #include "gui/streaminfo.h"
-#if ENABLE_PIP && ENABLE_QUADPIP
-#include <gui/quadpip_setup.h>
-#endif
-#ifdef ENABLE_TESTING
-#include "gui/test_menu.h"
-#endif
 #include "gui/update.h"
 #include "gui/vfd_setup.h"
 #include "gui/videosettings.h"
@@ -172,13 +166,6 @@ void CNeutrinoApp::InitMenuMain()
 		personalize.addItem(MENU_MAIN, avinputmode_pip, &g_settings.personalize[SNeutrinoSettings::P_MAIN_AVINPUT_PIP]);
 #endif
 	}
-
-#if ENABLE_PIP && ENABLE_QUADPIP
-	// quadpip
-	CMenuForwarder *quadpip = new CMenuForwarder(LOCALE_QUADPIP, g_info.hw_caps->pip_devs >= 1, NULL, new CQuadPiPSetup(), NULL, false /*CRCInput::RC_nokey*/);
-	quadpip->setHint(NEUTRINO_ICON_HINT_QUADPIP, LOCALE_MENU_HINT_QUADPIP);
-	personalize.addItem(MENU_MAIN, quadpip, &g_settings.personalize[SNeutrinoSettings::P_MAIN_QUADPIP]);
-#endif
 
 	//timer
 	CMenuForwarder *timerlist = new CMenuForwarder(LOCALE_TIMERLIST_NAME, true, NULL, new CTimerList(), NULL, CRCInput::RC_yellow);

@@ -51,9 +51,6 @@ const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SE
 	{"personalize_avinput"			, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 #if ENABLE_PIP
 	{"personalize_avinput_pip"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
-#if ENABLE_QUADPIP
-	{"personalize_quadpip"			, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
-#endif
 #endif
 	{"personalize_scripts"			, CPersonalizeGui::PERSONALIZE_MODE_NOTVISIBLE},
 	{"personalize_lua"			, CPersonalizeGui::PERSONALIZE_MODE_NOTVISIBLE},

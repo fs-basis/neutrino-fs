@@ -3,6 +3,10 @@
 #include <driver/vfd.h>
 #endif
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if BOXMODEL_E4HDULTRA
+#include <driver/lcdd.h>
+#define CVFD CLCD
+#else
 #include <driver/simple_display.h>
 #endif
 #ifdef ENABLE_GRAPHLCD

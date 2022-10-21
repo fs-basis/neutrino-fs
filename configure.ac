@@ -142,6 +142,23 @@ if test "$BOXTYPE" = "duckbox" ||
 	AC_DEFINE(SCREENSHOT, 1, [Define to 1 if the platform supports screenshots])
 fi
 
+# lcd
+AC_ARG_ENABLE(lcd,
+	AS_HELP_STRING(--enable-lcd,include lcd support),
+	,[enable_lcd=no])
+AM_CONDITIONAL(ENABLE_LCD,test "$enable_lcd" = "yes")
+
+if test "$enable_lcd" = "yes"; then
+AC_DEFINE(ENABLE_LCD,1,[include lcd support])
+fi
+
+# lcd update
+AM_CONDITIONAL(LCD_UPDATE,test "$enable_lcd_update" = "yes")
+
+if test "$enable_lcd" = "yes"; then
+AC_DEFINE(LCD_UPDATE,1,[include lcd update support])
+fi
+
 AC_ARG_ENABLE(graphlcd,
 	AS_HELP_STRING([--enable-graphlcd], [enable GraphLCD support]),
 	,[enable_graphlcd=no])
@@ -253,7 +270,7 @@ AC_ARG_ENABLE(pip,
 AM_CONDITIONAL(ENABLE_PIP, test "$enable_pip" = "yes")
 
 case "$BOXMODEL" in
-	hd51|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuuno4kse|vuuno4k)
+	vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuuno4kse|vuuno4k|e4hdultra)
 		AC_ARG_ENABLE(quadpip,
 			AS_HELP_STRING([--enable-quadpip], [enable quad picture in picture support @<:@default=no@:>@]),
 			AC_DEFINE(ENABLE_QUADPIP, 1, [enable quad picture in picture support]))
@@ -309,6 +326,15 @@ if test `dirname $0` = `pwd` || test "$0" = ./configure; then
 else
 	HWLIB_CFLAGS="$HWLIB_CFLAGS "'-D__file__="\"$(subst $(srcdir)/,,$(abspath $<))\""'
 	HWLIB_CFLAGS="$HWLIB_CFLAGS "'-D__path_file__="\"$(subst $(top_srcdir)/,,$(abspath $<))\""'
+fi
+
+AC_ARG_WITH(lcddev,
+	AC_HELP_STRING([--with-lcddev=devicename], [use devicename for lcd framebuffer device, e.g. /dev/fb1 ]),
+	[[with_lcddev=$withval]],
+	[[with_lcddev=no]]
+)
+if test x"$with_lcddev" != xno ; then
+	AC_DEFINE_UNQUOTED(LCD_DEV, "$withval", [Defines which device to use for lcd (e.g. /dev/fb1)])
 fi
 
 AC_CHECK_PROG(AR, ar, , ar)
@@ -372,6 +398,7 @@ lib/Makefile
 lib/connection/Makefile
 lib/jsoncpp/Makefile
 lib/libconfigfile/Makefile
+lib/liblcddisplay/Makefile
 lib/libdvbsub/Makefile
 lib/libeventserver/Makefile
 lib/libmd5sum/Makefile

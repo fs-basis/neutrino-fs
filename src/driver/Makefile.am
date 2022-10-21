@@ -67,7 +67,7 @@ libneutrino_driver_a_SOURCES += \
 endif
 
 if BOXTYPE_ARMBOX
-if BOXMODEL_E4HDULTRA
+if BOXMODEL_E4HD
 libneutrino_driver_a_SOURCES += \
 	fb_generic.cpp \
 	fb_accel.cpp \

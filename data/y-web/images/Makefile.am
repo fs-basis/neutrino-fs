@@ -70,7 +70,7 @@ if BOXMODEL_VUPLUS_ALL
 install_DATA += rc_vu_solo4k.png
 endif
 
-if BOXMODEL_E4HDULTRA
+if BOXMODEL_E4HD
 install_DATA += rc_axas_e4hd.png
 endif
 

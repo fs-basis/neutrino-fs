@@ -632,7 +632,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.widget_fade           = configfile.getBool("widget_fade"          , false );
 
 #ifdef ENABLE_GRAPHLCD
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_E4HDULTRA
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_E4HD
 	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 1);
 #else
 	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 0);
@@ -955,7 +955,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.lcd_vfd_scroll = configfile.getInt32("lcd_vfd_scroll", 0);
 #endif
 
-#if BOXMODEL_E4HDULTRA // fixme, needs menu
+#if BOXMODEL_E4HD // fixme, needs menu
 	g_settings.lcd_setting[0] = 200;	// brightness
 	g_settings.lcd_setting[1] = 125;	// standby brightness
 	g_settings.lcd_setting[7] = 50;		// deep standby brightness (maybe unused)

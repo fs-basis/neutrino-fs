@@ -133,7 +133,7 @@ int CVfdSetup::showSetup()
 		vfds->addItem(mf);
 	}
 
-#ifndef BOXMODEL_E4HDULTRA
+#ifndef BOXMODEL_E4HD
 	if (CVFD::getInstance()->has_lcd)
 	{
 
@@ -200,7 +200,7 @@ int CVfdSetup::showSetup()
 	}
 #endif
 
-#if !defined BOXMODEL_VUSOLO4K && !defined BOXMODEL_VUDUO4K && !defined BOXMODEL_VUDUO4KSE && !defined BOXMODEL_VUULTIMO4K && !defined BOXMODEL_VUUNO4KSE && !defined BOXMODEL_E4HDULTRA
+#if !defined BOXMODEL_VUSOLO4K && !defined BOXMODEL_VUDUO4K && !defined BOXMODEL_VUDUO4KSE && !defined BOXMODEL_VUULTIMO4K && !defined BOXMODEL_VUUNO4KSE && !defined BOXMODEL_E4HD
 #if ENABLE_LCD4LINUX && ENABLE_GRAPHLCD
 	if (g_settings.glcd_enable != 0 && g_settings.lcd4l_support != 0) {
 		g_settings.glcd_enable = 0;
@@ -210,11 +210,11 @@ int CVfdSetup::showSetup()
 #endif
 
 #ifdef ENABLE_LCD4LINUX
-#if !defined (BOXMODEL_VUSOLO4K) && !defined BOXMODEL_VUDUO4K && !defined BOXMODEL_VUDUO4KSE && !defined BOXMODEL_VUULTIMO4K && !defined BOXMODEL_VUUNO4KSE && !defined BOXMODEL_E4HDULTRA && defined (ENABLE_GRAPHLCD)
+#if !defined (BOXMODEL_VUSOLO4K) && !defined BOXMODEL_VUDUO4K && !defined BOXMODEL_VUDUO4KSE && !defined BOXMODEL_VUULTIMO4K && !defined BOXMODEL_VUUNO4KSE && !defined BOXMODEL_E4HD && defined (ENABLE_GRAPHLCD)
 	if (g_settings.glcd_enable == 0)
 #endif
 	{
-#ifndef BOXMODEL_E4HDULTRA
+#ifndef BOXMODEL_E4HD
 		vfds->addItem(GenericMenuSeparatorLine);
 #endif
 		vfds->addItem(new CMenuForwarder(LOCALE_LCD4L_SUPPORT, ((access("/usr/bin/lcd4linux", F_OK) == 0) || (access("/var/bin/lcd4linux", F_OK) == 0)), NULL, new CLCD4lSetup(), NULL, CRCInput::RC_green));
@@ -224,7 +224,7 @@ int CVfdSetup::showSetup()
 #ifdef ENABLE_GRAPHLCD
 	GLCD_Menu glcdMenu;
 #ifdef ENABLE_LCD4LINUX
-#if !defined BOXMODEL_VUSOLO4K && !defined BOXMODEL_VUDUO4K && !defined BOXMODEL_VUDUO4KSE && !defined BOXMODEL_VUULTIMO4K && !defined BOXMODEL_VUUNO4KSE && !defined BOXMODEL_E4HDULTRA
+#if !defined BOXMODEL_VUSOLO4K && !defined BOXMODEL_VUDUO4K && !defined BOXMODEL_VUDUO4KSE && !defined BOXMODEL_VUULTIMO4K && !defined BOXMODEL_VUUNO4KSE && !defined BOXMODEL_E4HD
 	if (g_settings.lcd4l_support == 0)
 #endif
 #endif

@@ -9,6 +9,7 @@
 #else
 #include <driver/simple_display.h>
 #endif
+#endif
 #ifdef ENABLE_GRAPHLCD
 #include <driver/nglcd.h>
 #endif

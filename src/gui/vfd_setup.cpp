@@ -138,6 +138,18 @@ int CVfdSetup::showSetup()
 	{
 
 		CMenuOptionChooser* oj;
+
+#if ENABLE_LCD
+#if 0
+		//option power
+		oj = new CMenuOptionChooser("Power LCD"/*LOCALE_LCDMENU_POWER*/, &g_settings.lcd_setting[SNeutrinoSettings::LCD_POWER], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, new CLCDNotifier(), CRCInput::RC_nokey);
+		vfds->addItem(oj);
+#endif
+		//option invert
+		oj = new CMenuOptionChooser("Invert LCD"/*LOCALE_LCDMENU_INVERSE*/, &g_settings.lcd_setting[SNeutrinoSettings::LCD_INVERSE], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, new CLCDNotifier(), CRCInput::RC_nokey);
+		vfds->addItem(oj);
+#endif
+
 		if (g_info.hw_caps->display_has_statusline)
 		{
 			//status line options
@@ -241,7 +253,9 @@ int CVfdSetup::showBrightnessSetup()
 	brightnessstandby = CVFD::getInstance()->getBrightnessStandby();
 	brightnessdeepstandby = CVFD::getInstance()->getBrightnessDeepStandby();
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if defined (ENABLE_LCD)
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESS, &brightness, true, 0, 255, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+#elif defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESS, &brightness, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESS, &brightness, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
@@ -250,7 +264,9 @@ int CVfdSetup::showBrightnessSetup()
 	nc->setActivateObserver(this);
 	mn_widget->addItem(nc);
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if defined (ENABLE_LCD)
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 255, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+#elif defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
@@ -261,7 +277,9 @@ int CVfdSetup::showBrightnessSetup()
 
 	if (g_info.hw_caps->display_can_deepstandby)
 	{
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if defined (ENABLE_LCD)
+		nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSDEEPSTANDBY, &brightnessdeepstandby, true, 0, 255, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+#elif defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
 		nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSDEEPSTANDBY, &brightnessdeepstandby, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
 		nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSDEEPSTANDBY, &brightnessdeepstandby, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
@@ -271,10 +289,12 @@ int CVfdSetup::showBrightnessSetup()
 		mn_widget->addItem(nc);
 	}
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
-	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, 0, 15, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+#if defined (ENABLE_LCD)
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 255, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);
+#elif defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 15, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);
 #else
-	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, 0, 7, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 7, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);
 #endif
 	nc->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESSDIM);
 	nc->setActivateObserver(this);
@@ -341,3 +361,21 @@ void CVfdSetup::activateNotify(const neutrino_locale_t OptionName)
 		CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8);
 	}
 }
+
+#if ENABLE_LCD
+// lcd notifier
+bool CLCDNotifier::changeNotify(const neutrino_locale_t, void * Data)
+{
+	int state = *(int *)Data;
+
+	dprintf(DEBUG_NORMAL, "CLCDNotifier: state: %d\n", state);
+#if 0
+	CVFD::getInstance()->setPower(state);
+#else
+	CVFD::getInstance()->setPower(1);
+#endif
+	CVFD::getInstance()->setlcdparameter();
+
+	return true;
+}
+#endif

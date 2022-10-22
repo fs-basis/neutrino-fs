@@ -1190,10 +1190,6 @@ void CAudioPlayerGui::scanXmlData(xmlDocPtr answer_parser, const char *urltag, c
 				// show status
 				int global = 100*listPos / maxProgress;
 				progress.showStatus(global);
-#ifdef LCD_UPDATE
-				CVFD::getInstance()->showProgressBar(global, "read xmldata...");
-				CVFD::getInstance()->setMode(CVFD::MODE_PROGRESSBAR);
-#endif // LCD_UPDATE
 
 				if (usechild)
 				{
@@ -1297,10 +1293,6 @@ bool CAudioPlayerGui::openFilebrowser(void)
 				int global = 100*currentProgress/maxProgress;
 				progress.showStatus(global);
 				progress.showStatusMessageUTF(files->Name);
-#ifdef LCD_UPDATE
-				CVFD::getInstance()->showProgressBar(global, "read metadata...");
-				CVFD::getInstance()->setMode(CVFD::MODE_PROGRESSBAR);
-#endif // LCD_UPDATE
 			}
 			if (
 				   (files->getType() == CFile::FILE_CDR)
@@ -1501,10 +1493,6 @@ bool CAudioPlayerGui::openSCbrowser(void)
 				int global = 100*currentProgress/maxProgress;
 				progress.showStatus(global);
 				progress.showStatusMessageUTF(files->Name);
-#ifdef LCD_UPDATE
-				CVFD::getInstance()->showProgressBar(global, "read metadata...");
-				CVFD::getInstance()->setMode(CVFD::MODE_PROGRESSBAR);
-#endif // LCD_UPDATE
 			}
 			//printf("processPlaylistUrl(%s, %s)\n", files->Url.c_str(), files->Name.c_str());
 			processPlaylistUrl(files->Url.c_str(), files->Name.c_str(), files->Time);

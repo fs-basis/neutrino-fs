@@ -11,8 +11,3 @@ SUBDIRS = \
 	sectionsdclient \
 	timerdclient \
 	xmltree
-
-if ENABLE_LCD
-SUBDIRS += \
-	liblcddisplay
-endif

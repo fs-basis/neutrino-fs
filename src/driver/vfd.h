@@ -179,30 +179,6 @@ class CVFD
 		{
 			return servicename;
 		}
-#ifdef LCD_UPDATE
-	private:
-		CFileList *m_fileList;
-		int m_fileListPos;
-		std::string m_fileListHeader;
-
-		std::string m_infoBoxText;
-		std::string m_infoBoxTitle;
-		int m_infoBoxTimer;   // for later use
-		bool m_infoBoxAutoNewline;
-
-		bool m_progressShowEscape;
-		std::string  m_progressHeaderGlobal;
-		std::string  m_progressHeaderLocal;
-		int m_progressGlobal;
-		int m_progressLocal;
-	public:
-
-		void showFilelist(int flist_pos = -1, CFileList *flist = NULL, const char *const mainDir = NULL);
-		void showInfoBox(const char *const title = NULL, const char *const text = NULL, int autoNewline = -1, int timer = -1);
-		void showProgressBar(int global = -1, const char *const text = NULL, int show_escape = -1, int timer = -1);
-		void showProgressBar2(int local = -1, const char *const text_local = NULL, int global = -1, const char *const text_global = NULL, int show_escape = -1);
-#endif // LCD_UPDATE
-
 };
 
 

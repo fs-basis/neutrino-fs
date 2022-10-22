@@ -512,7 +512,6 @@ struct SNeutrinoSettings
 	int recording_stream_pmt_pid;
 	int recording_bufsize;
 	int recording_bufsize_dmx;
-	int recording_choose_direct_rec_dir;
 	int recording_epg_for_filename;
 	int recording_epg_for_end;
 	int recording_save_in_channeldir;

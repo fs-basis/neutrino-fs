@@ -39,12 +39,7 @@
 #include <sys/stat.h>
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
-#ifndef LCD_DEV
 #define DISPLAY_DEV "/dev/dbox/oled0"
-#else
-#define DISPLAY_DEV LCD_DEV
-#endif
-
 #include <zapit/zapit.h>
 static bool usb_icon = false;
 static bool timer_icon = false;

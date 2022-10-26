@@ -327,7 +327,7 @@ static SNeutrinoSettings::usermenu_t usermenu_default[] = {
 	{ CRCInput::RC_yellow,		"22",			"",	"yellow"	},
 	{ CRCInput::RC_blue,		"11,15,19,14,31",	"",	"blue"		},
 #if 0 // off
-#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
+#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7 || BOXMODEL_E4HD
 	{ CRCInput::RC_playpause,	"9",			"",	"5"		},
 #else
 	{ CRCInput::RC_play,		"9",			"",	"5"		},
@@ -5071,7 +5071,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_zaphistory = tconfig->getInt32( "key_zaphistory",  CRCInput::RC_home );
 	g_settings.key_lastchannel = tconfig->getInt32( "key_lastchannel",  CRCInput::RC_0 );
 
-#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
+#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7 || BOXMODEL_E4HD
 	g_settings.key_bouquet_up = tconfig->getInt32( "key_bouquet_up",  CRCInput::RC_next);
 	g_settings.key_bouquet_down = tconfig->getInt32( "key_bouquet_down",  CRCInput::RC_prev);
 #elif HAVE_SH4_HARDWARE

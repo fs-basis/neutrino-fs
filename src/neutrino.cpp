@@ -347,10 +347,13 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.show_menu_hints_line = configfile.getBool("show_menu_hints_line", false);
 
 	// video
-	int vid_Mode_default = VIDEO_STD_720P50;
-	if (getenv("NEUTRINO_DEFAULT_SCART") != NULL)
-		vid_Mode_default = VIDEO_STD_PAL;
-	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
+//	int vid_Mode_default = VIDEO_STD_720P50;
+//	if (getenv("NEUTRINO_DEFAULT_SCART") != NULL)
+//		vid_Mode_default = VIDEO_STD_PAL;
+//	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
+
+	g_settings.video_Mode = configfile.getInt32("video_Mode", VIDEO_STD_1080P50);
+
 
 #if HAVE_SH4_HARDWARE
 	g_settings.analog_mode1 = configfile.getInt32("analog_mode1", (int)COLORFORMAT_RGB); // default RGB

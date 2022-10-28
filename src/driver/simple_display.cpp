@@ -39,7 +39,11 @@
 #include <sys/stat.h>
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if BOXMODEL_E4HD
+#define DISPLAY_DEV "/dev/null"
+#else
 #define DISPLAY_DEV "/dev/dbox/oled0"
+#endif // BOXMODEL_E4HD
 #include <zapit/zapit.h>
 static bool usb_icon = false;
 static bool timer_icon = false;

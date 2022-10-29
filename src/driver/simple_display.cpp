@@ -39,11 +39,11 @@
 #include <sys/stat.h>
 
 #if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
-#if BOXMODEL_E4HD
+#if BOXMODEL_E4HDULTRA
 #define DISPLAY_DEV "/dev/null"
 #else
 #define DISPLAY_DEV "/dev/dbox/oled0"
-#endif // BOXMODEL_E4HD
+#endif // BOXMODEL_E4HDULTRA
 #include <zapit/zapit.h>
 static bool usb_icon = false;
 static bool timer_icon = false;
@@ -71,7 +71,7 @@ static inline int dev_open()
 
 static void replace_umlauts(std::string __attribute__((unused)) &s)
 {
-#if BOXMODEL_HD51 || BOXMODEL_BRE2ZE4K || BOXMODEL_H7 || BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_E4HD
+#if BOXMODEL_HD51 || BOXMODEL_BRE2ZE4K || BOXMODEL_H7 || BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_E4HDULTRA
 	return;
 #else
 	/* this is crude, it just replaces ÄÖÜ with AOU since the display can't show them anyway */

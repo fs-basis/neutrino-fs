@@ -1679,6 +1679,8 @@ const char *CRCInput::getSpecialKeyName(const unsigned int key)
 		case RC_switchvideomode:
 			return "videomode";
 #endif
+		case RC_pvr:
+			return "pvr";
 		default:
 			printf("unknown key: %d (0x%x) \n", key, key);
 			return "unknown";

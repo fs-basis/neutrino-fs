@@ -5061,8 +5061,10 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_current_transponder = tconfig->getInt32( "key_current_transponder", CRCInput::RC_bookmarks );
 #elif BOXMODEL_UFS913 || BOXMODEL_UFS912
 	g_settings.key_current_transponder = tconfig->getInt32( "key_current_transponder", CRCInput::RC_archive ); // 913 Portal sonst archive
+#elif BOXMODEL_E4HDULTRA
+	g_settings.key_current_transponder = tconfig->getInt32( "key_current_transponder", CRCInput::RC_pvr );
 #else
-	g_settings.key_current_transponder = tconfig->getInt32( "key_current_transponder", CRCInput::RC_games );
+	g_settings.key_current_transponder = tconfig->getInt32( "key_current_transponder", CRCInput::RC_nokey );
 #endif
 
 	g_settings.key_quickzap_up = tconfig->getInt32( "key_quickzap_up",  CRCInput::RC_up );

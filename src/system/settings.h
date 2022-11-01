@@ -220,7 +220,7 @@ struct SNeutrinoSettings
 	int record_safety_time_before;
 	int record_safety_time_after;
 	int zapto_pre_time;
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	int zappingmode;
 	int hdmi_colorimetry;
 #endif
@@ -259,13 +259,13 @@ struct SNeutrinoSettings
 	int srs_algo;
 	int srs_ref_volume;
 	int srs_nmgr_enable;
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	int ac3_pass;
 	int dts_pass;
 #else
 	int hdmi_dd;
 	int spdif_dd;
-#endif // HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#endif // HAVE_ARM_HARDWARE
 	int analog_out;
 	int audio_volume_percent_ac3;
 	int audio_volume_percent_pcm;
@@ -288,10 +288,6 @@ struct SNeutrinoSettings
 	int avsync;
 	int ci_standby_reset;
 	int ci_clock[4];
-#if BOXMODEL_VUPLUS_ALL
-	int ci_delay;
-	int ci_rpr[4];
-#endif
 	int ci_ignore_messages[4];
 	int ci_save_pincode[4];
 	std::string ci_pincode[4];
@@ -305,9 +301,6 @@ struct SNeutrinoSettings
 	int screensaver_timeout;
 	int screensaver_random;
 	int screensaver_mode;
-
-	//vcr
-	int vcr_AutoSwitch;
 
 	//language
 	std::string language;
@@ -369,10 +362,6 @@ struct SNeutrinoSettings
 
 		P_MAIN_GAMES,
 		P_MAIN_TOOLS,
-		P_MAIN_AVINPUT,
-#if ENABLE_PIP
-		P_MAIN_AVINPUT_PIP,
-#endif
 		P_MAIN_SCRIPTS,
 		P_MAIN_LUA,
 		P_MAIN_SETTINGS,
@@ -616,7 +605,6 @@ struct SNeutrinoSettings
 
 #if ENABLE_PIP
 	int key_pip_close;
-	int key_pip_close_avinput;
 	int key_pip_setup;
 	int key_pip_swap;
 
@@ -628,12 +616,7 @@ struct SNeutrinoSettings
 	int pip_radio_height;
 	int pip_radio_x;
 	int pip_radio_y;
-#if ENABLE_QUADPIP
-	std::string quadpip_channel_window[4];
-	t_channel_id quadpip_channel_id_window[4];
 #endif
-#endif
-
 	int bigFonts;
 	int window_size;
 	int window_width;

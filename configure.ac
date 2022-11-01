@@ -137,8 +137,7 @@ TUXBOX_APPS_LIB_PKGCONFIG(SWRESAMPLE,libswresample)
 TUXBOX_APPS_LIB_PKGCONFIG(SWSCALE,libswscale)
 
 if test "$BOXTYPE" = "duckbox" ||
-   test "$BOXTYPE" = "armbox" ||
-   test "$BOXTYPE" = "mipsbox"; then
+   test "$BOXTYPE" = "armbox" ; then
 	AC_DEFINE(SCREENSHOT, 1, [Define to 1 if the platform supports screenshots])
 fi
 
@@ -210,15 +209,6 @@ if test "$enable_arm_acc" = "yes"; then
 	AC_DEFINE(ENABLE_ARM_ACC,1,[enable arm hardware acceleration])
 fi
 
-AC_ARG_ENABLE(mips-acc,
-	AS_HELP_STRING(--disable-mips-acc,disable mips hardware acceleration),
-	,[enable_mips_acc=yes])
-
-AM_CONDITIONAL(ENABLE_MIPS_ACC,test "$enable_mips_acc" = "yes")
-if test "$enable_mips_acc" = "yes"; then
-	AC_DEFINE(ENABLE_MIPS_ACC,1,[enable mips hardware acceleration])
-fi
-
 AC_ARG_ENABLE(lua,
 	AS_HELP_STRING([--enable-lua], [enable Lua support @<:@default=yes@:>@]),
 	[enable_lua="$enableval"],
@@ -252,27 +242,6 @@ AC_ARG_ENABLE(pip,
 	AC_DEFINE(ENABLE_PIP, 1, [enable picture in picture support]))
 AM_CONDITIONAL(ENABLE_PIP, test "$enable_pip" = "yes")
 
-case "$BOXMODEL" in
-	vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuuno4kse|vuuno4k|e4hdultra)
-		AC_ARG_ENABLE(quadpip,
-			AS_HELP_STRING([--enable-quadpip], [enable quad picture in picture support @<:@default=no@:>@]),
-			AC_DEFINE(ENABLE_QUADPIP, 1, [enable quad picture in picture support]))
-		AM_CONDITIONAL(ENABLE_QUADPIP, test "$enable_quadpip" = "yes")
-
-		if test "$enable_quadpip" = "yes" -a "$enable_pip" != "yes"; then
-			[enable_pip="yes"]
-			AC_DEFINE(ENABLE_PIP, 1, [enable picture in picture support])
-			AC_MSG_WARN([--enable-quadpip depends on --enable-pip -> now enabled])
-			AM_CONDITIONAL(ENABLE_PIP, test "$enable_pip" = "yes")
-		fi
-	;;
-	*)
-		[enable_quadpip="no"]
-		AC_MSG_WARN([--enable-quadpip not supported for $BOXMODEL -> now disabled])
-	;;
-esac
-AM_CONDITIONAL(ENABLE_QUADPIP, test "$enable_quadpip" = "yes")
-
 AC_ARG_ENABLE(fribidi,
 	AS_HELP_STRING([--enable-fribidi], [enable fribidi support @<:@default=no@:>@]),
 	AC_DEFINE(ENABLE_FRIBIDI, 1, [enable fribidi support]))
@@ -296,8 +265,7 @@ AC_ARG_WITH(stb-hal-build,
 
 AM_CONDITIONAL(USE_STB_HAL,
 	test "$BOXTYPE" = "duckbox"   ||
-	test "$BOXTYPE" = "armbox"    ||
-	test "$BOXTYPE" = "mipsbox")
+	test "$BOXTYPE" = "armbox")
 
 # hack, so that framebuffer.h does not need to be included everywhere...
 AC_DEFINE(fb_pixel_t, uint32_t, [hack, so that framebuffer.h does not need to be included everywhere...])
@@ -309,15 +277,6 @@ if test `dirname $0` = `pwd` || test "$0" = ./configure; then
 else
 	HWLIB_CFLAGS="$HWLIB_CFLAGS "'-D__file__="\"$(subst $(srcdir)/,,$(abspath $<))\""'
 	HWLIB_CFLAGS="$HWLIB_CFLAGS "'-D__path_file__="\"$(subst $(top_srcdir)/,,$(abspath $<))\""'
-fi
-
-AC_ARG_WITH(lcddev,
-	AC_HELP_STRING([--with-lcddev=devicename], [use devicename for lcd framebuffer device, e.g. /dev/fb1 ]),
-	[[with_lcddev=$withval]],
-	[[with_lcddev=no]]
-)
-if test x"$with_lcddev" != xno ; then
-	AC_DEFINE_UNQUOTED(LCD_DEV, "$withval", [Defines which device to use for lcd (e.g. /dev/fb1)])
 fi
 
 AC_CHECK_PROG(AR, ar, , ar)

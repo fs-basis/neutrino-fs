@@ -57,13 +57,3 @@ install_DATA = \
 	hint_tvradio_switch.png \
 	hint_vfd.png \
 	hint_video.png
-
-if ENABLE_PIP
-install_DATA += \
-	hint_avinputmode.png \
-	hint_avinputmode_pip.png
-if ENABLE_QUADPIP
-install_DATA += \
-	hint_quadpip.png
-endif
-endif

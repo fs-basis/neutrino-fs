@@ -66,10 +66,6 @@ install_DATA += rc_ax_hd51.png \
 		rc_zgemma_h7.png
 endif
 
-if BOXMODEL_VUPLUS_ALL
-install_DATA += rc_vu_solo4k.png
-endif
-
 if BOXMODEL_E4HDULTRA
 install_DATA += rc_axas_e4hd.png
 endif

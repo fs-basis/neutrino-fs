@@ -289,10 +289,8 @@ channellist.since Since
 channellist.start Starts
 ci.check_live_slot Check CI-slot for live-tv use
 ci.clock CI clock (Mhz)
-ci.clock_extra_high extra high
 ci.clock_high high
 ci.clock_normal normal
-ci.delay DVB-CI delay
 ci.empty No CAM in slot
 ci.ignore_msg Ignore CA messages
 ci.init_failed CAM init failed
@@ -301,7 +299,6 @@ ci.inserted CAM inserted in slot
 ci.removed CAM removed from slot
 ci.reset Reset
 ci.reset_standby Reset after standby
-ci.rpr Relevant PIDs routing
 ci.save_pincode Save pincode
 ci.settings Conditional access
 ci.timeout Timeout waiting CI menu ready
@@ -472,7 +469,6 @@ extra.key_help Help key
 extra.key_list_end end
 extra.key_list_start home
 extra.key_pip_close Stop/Start PiP
-extra.key_pip_close_avinput Stop/Start PiP (HDMI)
 extra.key_pip_setup Configure PiP
 extra.key_pip_swap Swap PiP/live
 extra.key_record Record key
@@ -982,8 +978,6 @@ mainmenu.radiomode Radio-Mode
 mainmenu.reboot Reboot
 mainmenu.recording Recording
 mainmenu.recording_stop stop
-mainmenu.avinputmode HDMI Input (Mode)
-mainmenu.avinputmode_pip HDMI Input (PiP)
 mainmenu.scripts Scripts
 mainmenu.service Service
 mainmenu.settings Settings
@@ -1044,8 +1038,6 @@ menu.hint_audioplayer_sc_metadata Enable streaming audio metadata parsing
 menu.hint_audioplayer_title Enable SMS-style title search in playlist
 menu.hint_auto_lang Auto-switch audio to preferred language
 menu.hint_auto_subs Auto-start subtitles for preferred language
-menu.hint_avinputmode Use AV input of your receiver
-menu.hint_avinputmode_pip Use AV input of your receiver in PiP mode
 menu.hint_back Return to previous menu\nPress menu key to close all menus
 menu.hint_back_brief Return to previous menu
 menu.hint_backup Backup configs and channels to selected dir
@@ -1321,7 +1313,6 @@ menu.hint_progressbar_timescale_invert Select your preferred color gradient
 menu.hint_progressbar_timescale_red Choose the red portion of colored progressbars
 menu.hint_progressbar_timescale_yellow Choose the yellow portion of colored progressbars
 menu.hint_protection Protect content by PIN code\nDefault PIN 0000
-menu.hint_quadpip Activate QuadPiP
 menu.hint_radiomode Switch box to radio mode
 menu.hint_reboot Reboot box\nNo confirmation
 menu.hint_record_already_found_check Checks before setting a new record timer if an eponymous title already exists
@@ -2031,11 +2022,6 @@ plugintype.game Game
 plugintype.lua Lua plugin
 plugintype.script Script
 plugintype.tool Tool
-quadpip QuadPiP
-quadpip_1 Channel 1
-quadpip_2 Channel 2
-quadpip_3 Channel 3
-quadpip_4 Channel 4
 rclock.locked Locked
 rclock.lockmsg Remote control will be locked.\nTo unlock, press\n[red] followed by [%s]\non your remote control.
 rclock.title Lock remote control
@@ -2437,7 +2423,6 @@ videomenu.hdmi_colorimetry_auto auto
 videomenu.hdmi_colorimetry_bt2020ncl BT 2020 ncl
 videomenu.hdmi_colorimetry_bt2020cl BT 2020 cl
 videomenu.hdmi_colorimetry_bt709 BT 709
-videomenu.hdmi_colorimetry_bt470 BT 470
 videomenu.letterbox Letterbox
 videomenu.masksetup Mask Setup
 videomenu.mixer_color Background color

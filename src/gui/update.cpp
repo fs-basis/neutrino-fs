@@ -74,7 +74,7 @@
 
 #include <fstream>
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 #include <hardware/video.h>
 extern cVideo * videoDecoder;
 #endif
@@ -104,7 +104,7 @@ extern int allow_flash;
 #endif
 #else
 // TODO: move this mess below to libstb-hal
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 #define FILEBROWSER_UPDATE_FILTER      "tgz"
 #define MTD_OF_WHOLE_IMAGE              999
 #define MTD_DEVICE_OF_UPDATE_PART       "/dev/mtd999"
@@ -328,7 +328,7 @@ bool CFlashUpdate::selectHttpImage(void)
 	fileType = fileTypes[selected];
 	gotImage = (fileType <= '9');
 
-#if HAVE_ARM_HARDWARE|| HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	if (gotImage && (filename.substr(filename.find_last_of(".") + 1) == "tgz" || filename.substr(filename.find_last_of(".") + 1) == "zip"))
 	{
 		// manipulate fileType for tgz- or zip-packages
@@ -414,7 +414,7 @@ bool CFlashUpdate::checkVersion4Update()
 		if (allow_flash)
 		{
 			UpdatesFilter.addFilter(FILEBROWSER_UPDATE_FILTER);
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 			UpdatesFilter.addFilter("zip");
 #endif
 		}
@@ -449,7 +449,7 @@ bool CFlashUpdate::checkVersion4Update()
 		}
 		hide();
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 		//tgz or zip package install:
 		if (file_selected->getType() == CFile::FILE_TGZ_PACKAGE || file_selected->getType() == CFile::FILE_ZIP_PACKAGE) {
 			fileType = 'Z';
@@ -581,7 +581,7 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 		sleep(2);
 		ft.reboot();
 	}
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	else if (fileType == 'Z') // flashing image with ofgwrite
 	{
 		bool flashing = false;
@@ -605,87 +605,6 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 		// get active partition
 		char c[2] = {0};
 		FILE *f;
-#if BOXMODEL_VUPLUS_ARM
-		f = fopen("/proc/cmdline", "r");
-		if (f) {
-#if BOXMODEL_VUUNO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_VUSOLO4K || BOXMODEL_VUULTIMO4K
-			char buf[256] = "";
-			while(fgets(buf, sizeof(buf), f) != NULL) {
-				if (strstr(buf, "mmcblk0p5") != NULL) {
-					c[0] = '1';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p7") != NULL) {
-					c[0] = '2';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p9") != NULL) {
-					c[0] = '3';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p11") != NULL) {
-					c[0] = '4';
-					c[1] = '\0';
-					break;
-				}
-			}
-#elif BOXMODEL_VUZERO4K
-			char buf[256] = "";
-			while(fgets(buf, sizeof(buf), f) != NULL) {
-				if (strstr(buf, "mmcblk0p8") != NULL) {
-					c[0] = '1';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p10") != NULL) {
-					c[0] = '2';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p12") != NULL) {
-					c[0] = '3';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p14") != NULL) {
-					c[0] = '4';
-					c[1] = '\0';
-					break;
-				}
-			}
-#elif BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE
-			char buf[256] = "";
-			while(fgets(buf, sizeof(buf), f) != NULL) {
-				if (strstr(buf, "mmcblk0p10") != NULL) {
-					c[0] = '1';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p12") != NULL) {
-					c[0] = '2';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p14") != NULL) {
-					c[0] = '3';
-					c[1] = '\0';
-					break;
-				}
-				if (strstr(buf, "mmcblk0p16") != NULL) {
-					c[0] = '4';
-					c[1] = '\0';
-					break;
-				}
-			}
-#else
-			printf("VU+ not found.\n");
-#endif
-			fclose(f);
-		}
-#else
 		char line[1024];
 		char *pch;
 		// first check for hd51 new layout
@@ -723,7 +642,6 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 				fclose(f);
 			}
 		}
-#endif
 
 		// select partition
 		int selected = 0;
@@ -737,12 +655,7 @@ int CFlashUpdate::exec(CMenuTarget* parent, const std::string &actionKey)
 		{
 			bool active = !strcmp(c, to_string(i).c_str());
 			std::string m_title = "Partition " + to_string(i);
-#if BOXMODEL_VUPLUS_ARM
-			// own partition blocked, because fix needed for flashing own partition
-			mf = new CMenuForwarder(m_title, !active, NULL, selector, to_string(i).c_str(), CRCInput::convertDigitToKey(i));
-#else
 			mf = new CMenuForwarder(m_title, true, NULL, selector, to_string(i).c_str(), CRCInput::convertDigitToKey(i));
-#endif
 			mf->iconName_Info_right = active ? NEUTRINO_ICON_CHECKMARK : NULL;
 			m.addItem(mf, active);
 		}

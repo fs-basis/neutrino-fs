@@ -318,7 +318,7 @@ static void clear_queue()
 	pthread_mutex_unlock(&packetMutex);
 }
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 extern "C" void dvbsub_ass_clear(void);
 extern "C" void dvbsub_ass_write(AVCodecContext *c, AVSubtitle *sub, int pid);
 extern "C" void dvbsub_write(AVSubtitle *sub, int64_t pts);
@@ -447,7 +447,7 @@ static std::string ass_subtitle_header_custom(void)
 // Copyright (c) 2010 Aurelien Jacobs <aurel@gnuage.org>
 #endif
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 // Thes functions below are based on ffmpeg-3.0.7/libavcodec/ass.c,
 // Copyright (c) 2010 Aurelien Jacobs <aurel@gnuage.org>
 

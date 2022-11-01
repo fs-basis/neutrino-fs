@@ -72,9 +72,6 @@ extern cVideo *videoDecoder;
 #ifdef ENABLE_PIP
 extern cVideo *pipVideoDecoder[3];
 #include <gui/pipsetup.h>
-#if ENABLE_QUADPIP
-#include <gui/quadpip_setup.h>
-#endif
 #endif
 extern int prev_video_mode;
 extern CRemoteControl *g_RemoteControl;  /* neutrino.cpp */
@@ -144,7 +141,7 @@ const CMenuOptionChooser::keyval VIDEOMENU_COLORFORMAT_TDT_HDMI_OPTIONS[VIDEOMEN
  * key value of -1 means the mode is not available
  * TODO: instead of #ifdef select at run time
  */
-#if HAVE_SH4_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_SH4_HARDWARE
 #define VIDEOMENU_VIDEOMODE_OPTION_COUNT 9
 CMenuOptionChooser::keyval_ext VIDEOMENU_VIDEOMODE_OPTIONS[VIDEOMENU_VIDEOMODE_OPTION_COUNT] =
 {
@@ -186,7 +183,7 @@ const CMenuOptionChooser::keyval VIDEOMENU_VIDEOFORMAT_OPTIONS[VIDEOMENU_VIDEOFO
 	{ DISPLAY_AR_16_9,	LOCALE_VIDEOMENU_VIDEOFORMAT_169	}
 };
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 #define VIDEOMENU_ZAPPINGMODE_OPTION_COUNT 2
 CMenuOptionChooser::keyval VIDEOMENU_ZAPPINGMODE_OPTIONS[VIDEOMENU_ZAPPINGMODE_OPTION_COUNT] =
 {
@@ -194,15 +191,6 @@ CMenuOptionChooser::keyval VIDEOMENU_ZAPPINGMODE_OPTIONS[VIDEOMENU_ZAPPINGMODE_O
 	{ 1,	LOCALE_VIDEOMENU_ZAPPINGMODE_HOLD	}
 };
 
-#if BOXMODEL_VUPLUS_ARM
-#define VIDEOMENU_HDMI_COLORIMETRY_OPTION_COUNT 3
-const CMenuOptionChooser::keyval VIDEOMENU_HDMI_COLORIMETRY_OPTIONS[VIDEOMENU_HDMI_COLORIMETRY_OPTION_COUNT] =
-{
-	{ HDMI_COLORIMETRY_AUTO,	LOCALE_VIDEOMENU_HDMI_COLORIMETRY_AUTO	},
-	{ HDMI_COLORIMETRY_BT709,	LOCALE_VIDEOMENU_HDMI_COLORIMETRY_BT709	},
-	{ HDMI_COLORIMETRY_BT470,	LOCALE_VIDEOMENU_HDMI_COLORIMETRY_BT470	}
-};
-#else
 #define VIDEOMENU_HDMI_COLORIMETRY_OPTION_COUNT 4
 const CMenuOptionChooser::keyval VIDEOMENU_HDMI_COLORIMETRY_OPTIONS[VIDEOMENU_HDMI_COLORIMETRY_OPTION_COUNT] =
 {
@@ -211,7 +199,6 @@ const CMenuOptionChooser::keyval VIDEOMENU_HDMI_COLORIMETRY_OPTIONS[VIDEOMENU_HD
 	{ HDMI_COLORIMETRY_BT2020CL,	LOCALE_VIDEOMENU_HDMI_COLORIMETRY_BT2020CL	},
 	{ HDMI_COLORIMETRY_BT709,	LOCALE_VIDEOMENU_HDMI_COLORIMETRY_BT709		}
 };
-#endif
 #endif
 
 int CVideoSettings::showVideoSetup()
@@ -339,14 +326,9 @@ int CVideoSettings::showVideoSetup()
 	CMenuForwarder *pipsetup = new CMenuForwarder(LOCALE_VIDEOMENU_PIP, g_info.hw_caps->can_pip, NULL, &pip, NULL, CRCInput::convertDigitToKey(shortcut++));
 	pipsetup->setHint("", LOCALE_MENU_HINT_VIDEO_PIP);
 	videosetup->addItem(pipsetup);
-#if ENABLE_QUADPIP
-	CMenuForwarder *quadpip = new CMenuForwarder(LOCALE_QUADPIP, g_info.hw_caps->pip_devs >= 1, NULL, new CQuadPiPSetup(), NULL, CRCInput::convertDigitToKey(shortcut++));
-	quadpip->setHint(NEUTRINO_ICON_HINT_QUADPIP, LOCALE_MENU_HINT_QUADPIP);
-	videosetup->addItem(quadpip);
-#endif
 #endif
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	if (file_exists("/proc/stb/video/zapmode_choices"))
 	{
 		CMenuOptionChooser *zm = new CMenuOptionChooser(LOCALE_VIDEOMENU_ZAPPINGMODE, &g_settings.zappingmode, VIDEOMENU_ZAPPINGMODE_OPTIONS, VIDEOMENU_ZAPPINGMODE_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcut++));
@@ -354,11 +336,7 @@ int CVideoSettings::showVideoSetup()
 		videosetup->addItem(zm);
 	}
 
-#if BOXMODEL_VUPLUS_ARM
-	if (file_exists("/proc/stb/video/hdmi_colorspace"))
-#else
 	if (file_exists("/proc/stb/video/hdmi_colorimetry_choices"))
-#endif
 	{
 		CMenuOptionChooser *hm = new CMenuOptionChooser(LOCALE_VIDEOMENU_HDMI_COLORIMETRY, &g_settings.hdmi_colorimetry, VIDEOMENU_HDMI_COLORIMETRY_OPTIONS, VIDEOMENU_HDMI_COLORIMETRY_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcut++));
 		hm->setHint("", LOCALE_MENU_HINT_VIDEO_HDMI_COLORIMETRY);
@@ -466,7 +444,7 @@ bool CVideoSettings::changeNotify(const neutrino_locale_t OptionName, void *)
 		videoDecoder->SetColorFormat((COLOR_FORMAT) g_settings.hdmi_mode);
 	}
 #endif
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_ZAPPINGMODE))
 	{
 		videoDecoder->SetControl(VIDEO_CONTROL_ZAPPING_MODE, g_settings.zappingmode);

@@ -140,7 +140,7 @@ class CFileHelpers
 		};
 };
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 #if __cplusplus < 201103L
 std::string to_string(int);
 std::string to_string(unsigned int);

@@ -286,18 +286,14 @@ _TUXBOX_APPS_LIB_PKGCONFIG($1,$2)
 
 AC_DEFUN([TUXBOX_BOXTYPE], [
 AC_ARG_WITH(boxtype,
-	AS_HELP_STRING([--with-boxtype], [valid values: armbox, duckbox, mipsbox]),
+	AS_HELP_STRING([--with-boxtype], [valid values: armbox, duckbox]),
 	[case "${withval}" in
 		ufs*)
 			BOXTYPE="duckbox"
 			BOXMODEL="$withval"
 		;;
-		bre2ze4k|h7|hd51|e4hdultra|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuzero4k|vuuno4kse|vuuno4k)
+		bre2ze4k|h7|hd51|e4hdultra)
 			BOXTYPE="armbox"
-			BOXMODEL="$withval"
-		;;
-		vuduo)
-			BOXTYPE="mipsbox"
 			BOXMODEL="$withval"
 		;;
 		*)
@@ -307,8 +303,7 @@ AC_ARG_WITH(boxtype,
 
 AC_ARG_WITH(boxmodel,
 	AS_HELP_STRING([--with-boxmodel], [valid for duckbox: ufs910, ufs912, ufs913, ufs922])
-AS_HELP_STRING([], [valid for armbox: bre2ze4k, h7, hd51, e4hdultra, vusolo4k, vuduo4k, vuduo4kse, vuultimo4k, vuzero4k, vuuno4kse, vuuno4k])
-AS_HELP_STRING([], [valid for mipsbox: vuduo])
+AS_HELP_STRING([], [valid for armbox: bre2ze4k, h7, hd51, e4hdultra])
 	[case "${withval}" in
 		ufs910|ufs912|ufs913|ufs922)
 			if test "$BOXTYPE" = "duckbox"; then
@@ -317,15 +312,8 @@ AS_HELP_STRING([], [valid for mipsbox: vuduo])
 				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
 			fi
 		;;
-		bre2ze4k|h7|hd51|e4hdultra|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuzero4k|vuuno4kse|vuuno4k)
+		bre2ze4k|h7|hd51|e4hdultra)
 			if test "$BOXTYPE" = "armbox"; then
-				BOXMODEL="$withval"
-			else
-				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
-			fi
-		;;
-		vuduo)
-			if test "$BOXTYPE" = "mipsbox"; then
 				BOXMODEL="$withval"
 			else
 				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
@@ -341,7 +329,6 @@ AC_SUBST(BOXMODEL)
 
 AM_CONDITIONAL(BOXTYPE_DUCKBOX, test "$BOXTYPE" = "duckbox")
 AM_CONDITIONAL(BOXTYPE_ARMBOX, test "$BOXTYPE" = "armbox")
-AM_CONDITIONAL(BOXTYPE_MIPSBOX, test "$BOXTYPE" = "mipsbox")
 
 AM_CONDITIONAL(BOXMODEL_UFS910, test "$BOXMODEL" = "ufs910")
 AM_CONDITIONAL(BOXMODEL_UFS912, test "$BOXMODEL" = "ufs912")
@@ -353,27 +340,12 @@ AM_CONDITIONAL(BOXMODEL_H7, test "$BOXMODEL" = "h7")
 AM_CONDITIONAL(BOXMODEL_HD51, test "$BOXMODEL" = "hd51")
 AM_CONDITIONAL(BOXMODEL_E4HDULTRA, test "$BOXMODEL" = "e4hdultra")
 
-AM_CONDITIONAL(BOXMODEL_VUSOLO4K, test "$BOXMODEL" = "vusolo4k")
-AM_CONDITIONAL(BOXMODEL_VUDUO4K, test "$BOXMODEL" = "vuduo4k")
-AM_CONDITIONAL(BOXMODEL_VUDUO4KSE, test "$BOXMODEL" = "vuduo4kse")
-AM_CONDITIONAL(BOXMODEL_VUULTIMO4K, test "$BOXMODEL" = "vuultimo4k")
-AM_CONDITIONAL(BOXMODEL_VUZERO4K, test "$BOXMODEL" = "vuzero4k")
-AM_CONDITIONAL(BOXMODEL_VUUNO4KSE, test "$BOXMODEL" = "vuuno4kse")
-AM_CONDITIONAL(BOXMODEL_VUUNO4K, test "$BOXMODEL" = "vuuno4k")
-AM_CONDITIONAL(BOXMODEL_VUDUO, test "$BOXMODEL" = "vuduo")
-
-
-AM_CONDITIONAL(BOXMODEL_VUPLUS_ALL, test "$BOXMODEL" = "vusolo4k" -o "$BOXMODEL" = "vuduo4k" -o "$BOXMODEL" = "vuduo4kse" -o "$BOXMODEL" = "vuultimo4k" -o "$BOXMODEL" = "vuzero4k" -o "$BOXMODEL" = "vuuno4kse" -o "$BOXMODEL" = "vuuno4k" -o "$BOXMODEL" = "vuduo")
-AM_CONDITIONAL(BOXMODEL_VUPLUS_ARM, test "$BOXMODEL" = "vusolo4k" -o "$BOXMODEL" = "vuduo4k" -o "$BOXMODEL" = "vuduo4kse" -o "$BOXMODEL" = "vuultimo4k" -o "$BOXMODEL" = "vuzero4k" -o "$BOXMODEL" = "vuuno4kse" -o "$BOXMODEL" = "vuuno4k")
-AM_CONDITIONAL(BOXMODEL_VUPLUS_MIPS, test "$BOXMODEL" = "vuduo")
 
 if test "$BOXTYPE" = "duckbox"; then
 	AC_DEFINE(HAVE_DUCKBOX_HARDWARE, 1, [building for a duckbox])
 	AC_DEFINE(HAVE_SH4_HARDWARE, 1, [building for a sh4 box])
 elif test "$BOXTYPE" = "armbox"; then
 	AC_DEFINE(HAVE_ARM_HARDWARE, 1, [building for an armbox])
-elif test "$BOXTYPE" = "mipsbox"; then
-	AC_DEFINE(HAVE_MIPS_HARDWARE, 1, [building for an mipsbox])
 fi
 
 # TODO: do we need more defines?
@@ -393,49 +365,12 @@ elif test "$BOXMODEL" = "hd51"; then
 	AC_DEFINE(BOXMODEL_HD51, 1, [hd51])
 elif test "$BOXMODEL" = "e4hdultra"; then
 	AC_DEFINE(BOXMODEL_E4HDULTRA, 1, [e4hdultra])
-elif test "$BOXMODEL" = "vusolo4k"; then
-	AC_DEFINE(BOXMODEL_VUSOLO4K, 1, [vusolo4k])
-elif test "$BOXMODEL" = "vuduo4k"; then
-	AC_DEFINE(BOXMODEL_VUDUO4K, 1, [vuduo4k])
-elif test "$BOXMODEL" = "vuduo4kse"; then
-	AC_DEFINE(BOXMODEL_VUDUO4KSE, 1, [vuduo4kse])
-elif test "$BOXMODEL" = "vuultimo4k"; then
-	AC_DEFINE(BOXMODEL_VUULTIMO4K, 1, [vuultimo4k])
-elif test "$BOXMODEL" = "vuzero4k"; then
-	AC_DEFINE(BOXMODEL_VUZERO4K, 1, [vuzero4k])
-elif test "$BOXMODEL" = "vuuno4kse"; then
-	AC_DEFINE(BOXMODEL_VUUNO4KSE, 1, [vuuno4kse])
-elif test "$BOXMODEL" = "vuuno4k"; then
-	AC_DEFINE(BOXMODEL_VUUNO4K, 1, [vuuno4k])
-elif test "$BOXMODEL" = "vuduo"; then
-	AC_DEFINE(BOXMODEL_VUDUO, 1, [vuduo])
 fi
 
 # Support Boxmodel with OSD-Resolution
 case "$BOXMODEL" in
-	bre2ze4k|h7|hd51|e4hdultra|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuzero4k|vuuno4kse|vuuno4k)
+	bre2ze4k|h7|hd51|e4hdultra)
 		AC_DEFINE(ENABLE_CHANGE_OSD_RESOLUTION, 1, [enable to change osd resolution])
-	;;
-esac
-
-# all vuplus BOXMODELs
-case "$BOXMODEL" in
-	vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuuno4k|vuuno4kse|vuzero4k|vuduo)
-		AC_DEFINE(BOXMODEL_VUPLUS_ALL, 1, [vuplus_all])
-	;;
-esac
-
-# all vuplus arm BOXMODELs
-case "$BOXMODEL" in
-	vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuuno4k|vuuno4kse|vuzero4k)
-		AC_DEFINE(BOXMODEL_VUPLUS_ARM, 1, [vuplus_arm])
-	;;
-esac
-
-# all vuplus mips BOXMODELs
-case "$BOXMODEL" in
-	vuduo)
-		AC_DEFINE(BOXMODEL_VUPLUS_MIPS, 1, [vuplus_mips])
 	;;
 esac
 ])

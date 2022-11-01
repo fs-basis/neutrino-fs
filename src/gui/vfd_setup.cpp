@@ -238,7 +238,7 @@ int CVfdSetup::showBrightnessSetup()
 	brightnessstandby = CVFD::getInstance()->getBrightnessStandby();
 	brightnessdeepstandby = CVFD::getInstance()->getBrightnessDeepStandby();
 
-#if defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
+#if defined (HAVE_ARM_HARDWARE)
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESS, &brightness, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESS, &brightness, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
@@ -247,7 +247,7 @@ int CVfdSetup::showBrightnessSetup()
 	nc->setActivateObserver(this);
 	mn_widget->addItem(nc);
 
-#if defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
+#if defined (HAVE_ARM_HARDWARE)
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSSTANDBY, &brightnessstandby, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
@@ -258,7 +258,7 @@ int CVfdSetup::showBrightnessSetup()
 
 	if (g_info.hw_caps->display_can_deepstandby)
 	{
-#if defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
+#if defined (HAVE_ARM_HARDWARE)
 		nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSDEEPSTANDBY, &brightnessdeepstandby, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
 #else
 		nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSDEEPSTANDBY, &brightnessdeepstandby, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
@@ -268,7 +268,7 @@ int CVfdSetup::showBrightnessSetup()
 		mn_widget->addItem(nc);
 	}
 
-#if defined (HAVE_ARM_HARDWARE) || defined (HAVE_MIPS_HARDWARE)
+#if defined (HAVE_ARM_HARDWARE)
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 15, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);
 #else
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 7, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);

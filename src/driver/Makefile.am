@@ -70,12 +70,4 @@ libneutrino_driver_a_SOURCES += \
 	simple_display.cpp
 endif
 
-if BOXTYPE_MIPSBOX
-libneutrino_driver_a_SOURCES += \
-	fb_generic.cpp \
-	fb_accel.cpp \
-	fb_accel_mips.cpp \
-	simple_display.cpp
-endif
-
 libneutrino_driver_netfile_a_SOURCES = netfile.cpp

@@ -55,8 +55,6 @@
 #include <iostream>
 #include <fstream>
 
-CComponentsInfoBox * cc_fe;
-
 CDBoxInfoWidget::CDBoxInfoWidget()
 {
 	fm = g_Font[SNeutrinoSettings::FONT_TYPE_MENU];
@@ -70,7 +68,6 @@ CDBoxInfoWidget::CDBoxInfoWidget()
 	x = 0;
 	y = 0;
 	header = NULL;
-	cc_fe = NULL;
 	fontWidth = fm->getWidth();
 	sizeWidth = 6 * fm->getMaxDigitWidth()
 		    + fm->getRenderWidth(std::string(" MiB") + g_Locale->getText(LOCALE_UNIT_DECIMAL)); //9999.99 MiB
@@ -84,8 +81,6 @@ CDBoxInfoWidget::~CDBoxInfoWidget()
 {
 	delete header;
 	header = NULL;
-	delete cc_fe;
-	cc_fe = NULL;
 }
 
 int CDBoxInfoWidget::exec(CMenuTarget* parent, const std::string &)
@@ -112,18 +107,8 @@ int CDBoxInfoWidget::exec(CMenuTarget* parent, const std::string &)
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout);
 	uint32_t updateTimer = g_RCInput->addTimer(5*1000*1000, false);
 
-	int curr_page = 0;
-	bool curr_page_refresh = false;
-
 	while (doLoop)
 	{
-
-		if (curr_page_refresh && curr_page > 0 && cc_fe && (cc_fe->cctext)) {
-			if (cc_fe->cctext->getCTextBoxObject())
-				cc_fe->cctext->getCTextBoxObject()->scrollPageDown(curr_page);
-		}
-		curr_page_refresh = true;
-
 		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
 
 		if((msg == NeutrinoMessages::EVT_TIMER) && (data == fader.GetFadeTimer())) {
@@ -150,26 +135,6 @@ int CDBoxInfoWidget::exec(CMenuTarget* parent, const std::string &)
 			g_RCInput->postMsg (msg, 0);
 			res = menu_return::RETURN_EXIT_ALL;
 			doLoop = false;
-		}
-		else if ((msg == CRCInput::RC_up) || (msg == CRCInput::RC_page_up)) {
-			if (cc_fe && (cc_fe->cctext)) {
-				if (cc_fe->cctext->getCTextBoxObject()) {
-					cc_fe->cctext->getCTextBoxObject()->scrollPageUp(1);
-					if (curr_page > 0)
-						curr_page--;
-					curr_page_refresh = false;
-				}
-			}
-		}
-		else if ((msg == CRCInput::RC_down) || (msg == CRCInput::RC_page_down)) {
-			if (cc_fe && (cc_fe->cctext)) {
-				if (cc_fe->cctext->getCTextBoxObject()) {
-					cc_fe->cctext->getCTextBoxObject()->scrollPageDown(1);
-					if (curr_page < cc_fe->cctext->getCTextBoxObject()->getPages() - 1)
-						curr_page++;
-					curr_page_refresh = false;
-				}
-			}
 		}
 		else if (msg == CRCInput::RC_info || msg == CRCInput::RC_help) {
 			upmode = !upmode;
@@ -257,13 +222,8 @@ void CDBoxInfoWidget::paint()
 	height += mheight/2;	// space
 
 	int frontend_count = CFEManager::getInstance()->getFrontendCount();
-	if (frontend_count > 6)
-		height += mheight * 2;
-	else
 	if (frontend_count > 2)
-		height += mheight * (frontend_count - 2) - mheight * 2;
-//	else
-//		height -= mheight;
+		height += mheight * (frontend_count - 2);
 
 	int icon_w = 0, icon_h = 0;
 	frameBuffer->getIconSize(NEUTRINO_ICON_REC, &icon_w, &icon_h);
@@ -487,31 +447,14 @@ void CDBoxInfoWidget::paint()
 
 	fm->RenderString(x + 10, ypos + mheight, width - 10, g_Locale->getText(LOCALE_EXTRA_DBOXINFO_FRONTEND), COL_MENUCONTENTINACTIVE_TEXT);
 	ypos += mheight;
-
-	std::string txt;
-//	CComponentsExtTextForm *item = new CComponentsExtTextForm(x + 10, ypos, satWidth + 10, mheight, "", "");
-//	item->setLabelWidthPercent(15);
-
-	int fecount = frontend_count;
-	if (fecount > 6)
-		fecount = 6;
-	if (cc_fe == NULL)
-		cc_fe = new CComponentsInfoBox(x + 10, ypos, satWidth + 10, mheight * fecount);
-	cc_fe->setSpaceOffset(1);
-
 	for (int i = 0; i < frontend_count; i++) {
 		CFrontend *fe = CFEManager::getInstance()->getFE(i);
 		if (fe) {
 			std::string s = to_string(i) + ": " + fe->getName();
-			txt += s + '\n';
-			if (i < 6)
-				ypos += mheight;
+			fm->RenderString(x+ 10, ypos+ mheight, width - 10, s, COL_MENUCONTENT_TEXT);
+			ypos += mheight;
 		}
 	}
-
-	cc_fe->setText(txt, CTextBox::TOP | CTextBox::AUTO_WIDTH | CTextBox::SCROLL);
-	cc_fe->doPaintTextBoxBg(true);
-	cc_fe->paint(true);
 
 	ypos = std::max(ypos, ypos_mem);
 	ypos += mheight/2;

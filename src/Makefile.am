@@ -156,10 +156,6 @@ if BOXTYPE_ARMBOX
 neutrino_LDADD += -lass
 endif
 
-if BOXTYPE_MIPSBOX
-neutrino_LDADD += -lass
-endif
-
 if USE_STB_HAL
 neutrino_LDADD += \
 	-lstb-hal

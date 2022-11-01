@@ -96,7 +96,7 @@ typedef enum dvb_fec {
 	f4_5,
 	f9_10,
 	fNone = 15
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 	,
 	f13_45,
 	f9_20,
@@ -228,7 +228,7 @@ void CFrontend::getFEInfo(void)
 	deliverySystemMask = UNKNOWN_DS;
 	forcedSystemMask = ALL_CABLE|ALL_TERR|ALL_SAT;
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	std::ifstream in;
 	if (adapter == 0)
 		in.open("/proc/bus/nim_sockets");
@@ -244,18 +244,14 @@ void CFrontend::getFEInfo(void)
 			if ((line.find("Name:") != std::string::npos) && found)
 			{
 				//printf("NIM SOCKET: %s\n",line.substr(line.find_first_of(":")+2).c_str());
-#if BOXMODEL_VUPLUS_ALL
-				sprintf(info.name,"%s", line.substr(line.find_first_of(":") + 9).c_str());
-#else
 				std::string tmp = info.name;
 				sprintf(info.name,"%s (%s)", tmp.c_str(), line.substr(line.find_first_of(":") + 2).c_str());
-#endif
 				break;
 			}
 		}
 	in.close();
 	}
-#endif // HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#endif // HAVE_ARM_HARDWARE
 
 #if (DVB_API_VERSION >= 5) && (DVB_API_VERSION_MINOR >= 5)
 	dtv_property prop[1];
@@ -295,13 +291,13 @@ void CFrontend::getFEInfo(void)
 				printf("[fe%d/%d] add delivery system DVB-S (delivery_system: %d)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i]);
 				break;
 			case SYS_DVBS2:
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 			case SYS_DVBS2X:
 #endif
 				deliverySystemMask |= DVB_S2;
 				fe_can_multistream = info.caps & FE_CAN_MULTISTREAM;
 				printf("[fe%d/%d] add delivery system DVB-S2 (delivery_system: %d / Multistream: %s)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i], fe_can_multistream ? "yes" :"no");
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 				if (fe_can_multistream)
 				{
 					deliverySystemMask |= DVB_S2X;
@@ -493,7 +489,7 @@ fe_code_rate_t CFrontend::getCodeRate(const uint8_t fec_inner, delivery_system_t
 		case f9_10:
 			fec = FEC_9_10;
 			break;
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 		case f13_45:
 			fec = FEC_13_45;
 			break;
@@ -1004,7 +1000,7 @@ void CFrontend::getDelSys(delivery_system_t delsys, int f, int m, const char *&f
 		case PSK_8:
 			mod = "8PSK";
 			break;
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 		case APSK_8:
 			mod = "8APSK";
 			break;
@@ -1122,7 +1118,7 @@ void CFrontend::getDelSys(delivery_system_t delsys, int f, int m, const char *&f
 		fec = "0";
 		break;
 #endif
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 	case FEC_13_45:
 		fec = "13/45";
 		break;
@@ -1361,20 +1357,12 @@ int CFrontend::setFrontend(const FrontendParameters *feparams, bool nowait)
 	case FEC_2_3:
 		fec = FEC_2_3;
 		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-#if BOXMODEL_VUPLUS_ARM
-			pilot = PILOT_AUTO;
-#else
 			pilot = PILOT_ON;
-#endif
 		break;
 	case FEC_3_4:
 		fec = FEC_3_4;
 		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-#if BOXMODEL_VUPLUS_ARM
-			pilot = PILOT_AUTO;
-#else
 			pilot = PILOT_ON;
-#endif
 		break;
 	case FEC_4_5:
 		fec = FEC_4_5;
@@ -1382,11 +1370,7 @@ int CFrontend::setFrontend(const FrontendParameters *feparams, bool nowait)
 	case FEC_5_6:
 		fec = FEC_5_6;
 		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-#if BOXMODEL_VUPLUS_ARM
-			pilot = PILOT_AUTO;
-#else
 			pilot = PILOT_ON;
-#endif
 		break;
 	case FEC_6_7:
 		fec = FEC_6_7;
@@ -1400,11 +1384,7 @@ int CFrontend::setFrontend(const FrontendParameters *feparams, bool nowait)
 	case FEC_3_5:
 		fec = FEC_3_5;
 		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-#if BOXMODEL_VUPLUS_ARM
-			pilot = PILOT_AUTO;
-#else
 			pilot = PILOT_ON;
-#endif
 		break;
 	case FEC_9_10:
 		fec = FEC_9_10;
@@ -1417,7 +1397,7 @@ int CFrontend::setFrontend(const FrontendParameters *feparams, bool nowait)
 		fec = FEC_NONE;
 		break;
 #endif
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 	case FEC_13_45:
 		fec = FEC_13_45;
 		break;

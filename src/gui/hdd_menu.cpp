@@ -212,7 +212,7 @@ void CHDDMenuHandler::getBlkIds()
 		{
 			if (strncmp(mnt->mnt_fsname, "/dev/sd", 7) && strncmp(mnt->mnt_fsname, "/dev/hd", 7))
 				continue;
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 			if (strncmp(mnt->mnt_fsname, "mmcblk", 6) == 0)
 				continue;
 #endif
@@ -1370,7 +1370,7 @@ int CHDDDestExec::exec(CMenuTarget* /*parent*/, const std::string&)
 			printf("CHDDDestExec: /dev/%s is not a hdd, no sleep needed\n", namelist[i]->d_name);
 		} else {
 			//show HDD icon and set hdparm for all hdd's
-#if HAVE_DUCKBOX_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_DUCKBOX_HARDWARE || HAVE_ARM_HARDWARE
 			CVFD::getInstance()->ShowIcon(FP_ICON_HDD, true);
 #endif
 			if (!have_hdidle && have_hdparm) {

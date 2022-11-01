@@ -639,10 +639,6 @@ bool CZapit::StopPip(int pip)
 	if (!g_info.hw_caps->can_pip)
 		return false;
 
-	if (CNeutrinoApp::getInstance()->avinput_pip) {
-		CNeutrinoApp::getInstance()->StopAVInputPiP();
-	}
-
 	if (pip_channel_id[pip]) {
 		INFO("[pip %d] stop %llx", pip, pip_channel_id[pip]);
 		pipVideoDecoder[pip]->ShowPig(0);
@@ -2285,16 +2281,6 @@ bool CZapit::Start(Z_start_arg *ZapStart_arg)
 	for (unsigned int i = 0; i < ca->GetNumberCISlots(); i++) {
 		ca->SetTSClock(ZapStart_arg->ci_clock[i] * 1000000, i);
 	}
-
-#if BOXMODEL_VUPLUS_ALL
-	// dvb wait delay for ci response
-	ca->SetCIDelay(ZapStart_arg->ci_delay);
-
-	// relevant pids routing
-	for (unsigned int i = 0; i < ca->GetNumberCISlots(); i++) {
-		ca->SetCIRelevantPidsRouting(ZapStart_arg->ci_rpr[i], i);
-	}
-#endif
 
 	ca->Start();
 

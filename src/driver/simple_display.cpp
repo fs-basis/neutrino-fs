@@ -38,7 +38,7 @@
 //#include <math.h>
 #include <sys/stat.h>
 
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 #if BOXMODEL_E4HDULTRA
 #define DISPLAY_DEV "/dev/null"
 #else
@@ -71,7 +71,7 @@ static inline int dev_open()
 
 static void replace_umlauts(std::string __attribute__((unused)) &s)
 {
-#if BOXMODEL_HD51 || BOXMODEL_BRE2ZE4K || BOXMODEL_H7 || BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_E4HDULTRA
+#if BOXMODEL_HD51 || BOXMODEL_BRE2ZE4K || BOXMODEL_H7 || BOXMODEL_E4HDULTRA
 	return;
 #else
 	/* this is crude, it just replaces ÄÖÜ with AOU since the display can't show them anyway */
@@ -235,7 +235,7 @@ void CLCD::showServicename(std::string name, const int num, bool)
 		display_text[sizeof(display_text) - 1] = '\0';
 	}
 	upd_display = true;
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	wake_up();
 #endif
 }
@@ -279,7 +279,7 @@ void CLCD::showTime(bool force)
 //			printf("#### vor display !!!!!  \n");
 			if ((g_info.hw_caps->display_type == HW_DISPLAY_LINE_TEXT) || (g_info.hw_caps->display_type == HW_DISPLAY_LED_NUM))
 			{
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 //				printf("+++ Mode = %i  lcd_info_line %i\n", mode, g_settings.lcd_info_line);
 				if (mode == MODE_STANDBY || (g_settings.lcd_info_line && mode == MODE_TVRADIO))
 #else
@@ -369,12 +369,12 @@ void CLCD::showVolume(const char vol, const bool update)
 			SetIcons(SPARK_MUTE, 0);
 		sprintf(s, vol_fmt[type], volume);
 	}
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	if (g_info.hw_caps->display_type == HW_DISPLAY_LINE_TEXT)
 		sprintf(s, "%.*s", volume * g_info.hw_caps->display_xres / 100, "****************");
 #endif
 	ShowText(s);
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	wake_up();
 #endif
 	vol_active = true;
@@ -391,7 +391,7 @@ void CLCD::showMenuText(const int, const char *text, const int, const bool)
 	std::string tmp = text;
 	replace_umlauts(tmp);
 	ShowText(tmp.c_str());
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	wake_up();
 #endif
 }
@@ -403,7 +403,7 @@ void CLCD::showAudioTrack(const std::string &, const std::string &title, const s
 	std::string tmp = title;
 	replace_umlauts(tmp);
 	ShowText(tmp.c_str());
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	wake_up();
 #endif
 }
@@ -463,14 +463,14 @@ void CLCD::setMode(const MODES m, const char *const title)
 			showclock = true;
 			showTime();
 	}
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	wake_up();
 #endif
 }
 
 void CLCD::setBrightness(int dimm)
 {
-#if HAVE_ARM_HARDWARE|| HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	std::string value = to_string(255 / 15 * dimm);
 	if (access("/proc/stb/lcd/oled_brightness", F_OK) == 0)
 		proc_put("/proc/stb/lcd/oled_brightness", value.c_str(), value.length());
@@ -653,7 +653,7 @@ void CLCD::SetIcons(int, bool)
 
 void CLCD::ShowDiskLevel()
 {
-#if !HAVE_ARM_HARDWARE && !HAVE_MIPS_HARDWARE
+#if !HAVE_ARM_HARDWARE
 	int hdd_icons[9] = {24, 23, 21, 20, 19, 18, 17, 16, 22};
 	int percent, digits, i, j;
 	uint64_t t, u;
@@ -683,7 +683,7 @@ void CLCD::ShowDiskLevel()
 }
 void CLCD::UpdateIcons()
 {
-#if HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+#if HAVE_ARM_HARDWARE
 	CZapitChannel *chan = CZapit::getInstance()->GetCurrentChannel();
 	if (chan)
 	{

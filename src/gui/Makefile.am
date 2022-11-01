@@ -113,10 +113,6 @@ libneutrino_gui_a_SOURCES = \
 if ENABLE_PIP
 libneutrino_gui_a_SOURCES += \
 	pipsetup.cpp
-if ENABLE_QUADPIP
-libneutrino_gui_a_SOURCES += \
-	quadpip_setup.cpp
-endif
 endif
 
 if BOXTYPE_DUCKBOX
@@ -126,12 +122,6 @@ libneutrino_gui_a_SOURCES += \
 endif
 
 if BOXTYPE_ARMBOX
-libneutrino_gui_a_SOURCES += \
-	3dsetup.cpp \
-	psisetup.cpp
-endif
-
-if BOXTYPE_MIPSBOX
 libneutrino_gui_a_SOURCES += \
 	3dsetup.cpp \
 	psisetup.cpp

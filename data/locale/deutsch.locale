@@ -289,10 +289,8 @@ channellist.since seit
 channellist.start Start
 ci.check_live_slot CI-Slot auf Live-TV Nutzung prüfen
 ci.clock CI Takt (Mhz)
-ci.clock_extra_high extra hoch
 ci.clock_high hoch
 ci.clock_normal normal
-ci.delay DVB-CI-Verzögerung
 ci.empty Kein CAM im Slot
 ci.ignore_msg CA Meldungen ignorieren
 ci.init_failed CAM-Init fehlgeschlagen
@@ -301,7 +299,6 @@ ci.inserted CAM im Slot
 ci.removed CAM entfernt -> Slot
 ci.reset Reset
 ci.reset_standby Reset nach Standby
-ci.rpr Relevant PIDs Routing
 ci.save_pincode Jugendschutz-PIN speichern
 ci.settings CI-Module
 ci.timeout CAM antwortet nicht
@@ -472,7 +469,6 @@ extra.key_help Hilfe-Taste
 extra.key_list_end Listenende
 extra.key_list_start Listenanfang
 extra.key_pip_close Stop/Start PiP
-extra.key_pip_close_avinput Stop/Start PiP (HDMI)
 extra.key_pip_setup PiP Konfiguration
 extra.key_pip_swap Umschalten PiP/live
 extra.key_record Aufnahme-Taste
@@ -982,8 +978,6 @@ mainmenu.radiomode Radio-Modus
 mainmenu.reboot Neustart
 mainmenu.recording Aufnehmen
 mainmenu.recording_stop Stopp
-mainmenu.avinputmode HDMI-Eingang (Modus)
-mainmenu.avinputmode_pip HDMI-Eingang (PiP)
 mainmenu.scripts Skripte
 mainmenu.service Service
 mainmenu.settings Einstellungen
@@ -1044,8 +1038,6 @@ menu.hint_audioplayer_sc_metadata Aktiviert das Anzeigen der Audio-Metadaten
 menu.hint_audioplayer_title Aktivieren Sie die Titelsuche (SMS-Stil) in der Playliste
 menu.hint_auto_lang Wählen Sie, ob automatisch ihre bevorzugte Tonspur ausgewählt wird, wenn sie vorhanden ist
 menu.hint_auto_subs Automatische Anzeige der Untertitel in Ihrer bevorzugten Sprache
-menu.hint_avinputmode AV-Eingang des Receivers verwenden
-menu.hint_avinputmode_pip AV-Eingang des Receivers im PiP verwenden
 menu.hint_back Zurück zum vorherigen Menü.\nDie Taste 'Menü' schließt alle Menüs
 menu.hint_back_brief Zurück zum vorherigen Menü.
 menu.hint_backup Sichern von Konfigurationen und Kanallisten
@@ -1321,7 +1313,6 @@ menu.hint_progressbar_timescale_invert Wählen Sie den Farbverlauf
 menu.hint_progressbar_timescale_red Hier können Sie den roten Farbanteil bunter Fortschrittsbalken anpassen
 menu.hint_progressbar_timescale_yellow Hier können Sie den gelben Farbanteil bunter Fortschrittsbalken anpassen
 menu.hint_protection Schützen Sie Inhalte per PIN-Code\nStandard-PIN ist 0000
-menu.hint_quadpip QuadPiP aktivieren
 menu.hint_radiomode Schaltet zum Radio-Modus
 menu.hint_reboot Startet die Box neu\nDer Neustart erfolgt ohne Bestätigung!
 menu.hint_record_already_found_check Prüft vor dem Setzen eines neues Aufnahmetimers, ob ein gleichnamiger Titel bereits vorhanden ist
@@ -2031,11 +2022,6 @@ plugintype.game Spiel
 plugintype.lua Lua-Plugin
 plugintype.script Skript
 plugintype.tool Werkzeug
-quadpip QuadPiP
-quadpip_1 Programm 1
-quadpip_2 Programm 2
-quadpip_3 Programm 3
-quadpip_4 Programm 4
 rclock.locked Gesperrt
 rclock.lockmsg Die Fernbedienung wird gesperrt.\nUm die Sperre aufzuheben, bitte\n[rot] gefolgt von [%s]\nauf der Fernbedienung drücken.
 rclock.title Fernbedienung sperren
@@ -2437,7 +2423,6 @@ videomenu.hdmi_colorimetry_auto auto
 videomenu.hdmi_colorimetry_bt2020ncl BT 2020 ncl
 videomenu.hdmi_colorimetry_bt2020cl BT 2020 cl
 videomenu.hdmi_colorimetry_bt709 BT 709
-videomenu.hdmi_colorimetry_bt470 BT 470
 videomenu.letterbox Letterbox
 videomenu.masksetup Bildmaske
 videomenu.mixer_color Hintergrund-Farbe

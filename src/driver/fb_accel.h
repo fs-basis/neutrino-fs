@@ -121,40 +121,4 @@ class CFbAccelARM
 		void paintRect(const int x, const int y, const int dx, const int dy, const fb_pixel_t col);
 #endif
 };
-
-class CFbAccelMIPS
-#if ENABLE_MIPS_ACC
-	: public OpenThreads::Thread, public CFbAccel
-#else
-	: public CFbAccel
-#endif
-{
-	private:
-#if ENABLE_MIPS_ACC
-		void run(void);
-		void blit(void);
-		void _blit(void);
-		bool blit_thread;
-		bool blit_pending;
-		OpenThreads::Condition blit_cond;
-		OpenThreads::Mutex blit_mutex;
-#endif
-		fb_pixel_t *backbuffer;
-	public:
-		CFbAccelMIPS();
-		~CFbAccelMIPS();
-		fb_pixel_t *getBackBufferPointer() const;
-		int setMode(unsigned int xRes, unsigned int yRes, unsigned int bpp);
-		int scale2Res(int size);
-		bool fullHdAvailable();
-		void setOsdResolutions();
-		void set3DMode(Mode3D);
-		Mode3D get3DMode(void);
-		void setBlendMode(uint8_t mode);
-		void setBlendLevel(int level);
-#if ENABLE_MIPS_ACC
-		void paintRect(const int x, const int y, const int dx, const int dy, const fb_pixel_t col);
-#endif
-};
-
 #endif

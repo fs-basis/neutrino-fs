@@ -51,8 +51,6 @@ struct NeutrinoMessages {
 	{
 		SHOW_EPG		=	CRCInput::RC_Messages + 1,
 		SHOW_INFOBAR		=	CRCInput::RC_Messages + 2,
-		AVINPUT_ON		=	CRCInput::RC_Messages + 3,
-		AVINPUT_OFF		=	CRCInput::RC_Messages + 4,
 		STANDBY_ON		=	CRCInput::RC_Messages + 5,
 		STANDBY_OFF		=	CRCInput::RC_Messages + 6,
 		STANDBY_TOGGLE		=	CRCInput::RC_Messages + 7,
@@ -79,7 +77,6 @@ struct NeutrinoMessages {
 
 		EVT_VOLCHANGED                           = CRCInput::RC_Events + 1,
 		EVT_MUTECHANGED                          = CRCInput::RC_Events + 2,
-		EVT_VCRCHANGED                           = CRCInput::RC_Events + 3,
 		EVT_MODECHANGED                          = CRCInput::RC_Events + 4,
 		EVT_BOUQUETSCHANGED                      = CRCInput::RC_Events + 6,
 		EVT_SERVICESCHANGED                      = CRCInput::RC_Events + 7,
@@ -180,7 +177,6 @@ struct NeutrinoModes
 		mode_unknown = -1,
 		mode_tv = 1,
 		mode_radio = 2,
-		mode_avinput = 3,
 		mode_standby = 4,
 		mode_audio = 5,
 		mode_pic = 6,

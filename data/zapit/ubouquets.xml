@@ -5,32 +5,11 @@
 		<S i="4461" t="453" on="1" s="192" frq="12545" n="Pro7 MAXX"/>
 		<S i="445c" t="453" on="1" s="192" frq="12545" n="SAT.1"/>
 		<S i="445e" t="453" on="1" s="192" frq="12545" n="kabel eins"/>
-		<S i="445f" t="453" on="1" s="192" frq="12545" n="WELT"/>
-		<S i="308" t="5" on="85" s="192" frq="12460" n="SIXX"/>
 		<S i="4460" t="453" on="1" s="192" frq="12545" n="SAT.1 Gold"/>
 		<S i="4464" t="453" on="1" s="192" frq="12545" n="SAT.1 NRW"/>
-		<S i="132f" t="3ef" on="1" s="192" frq="11303" n="ORF1 HD"/>
-		<S i="1330" t="3ef" on="1" s="192" frq="11303" n="ORF2W HD"/>
-		<S i="33fc" t="3ed" on="1" s="192" frq="11273" n="ORF III HD"/>
-		<S i="32c9" t="45d" on="1" s="192" frq="12692" n="ORF1"/>
-		<S i="32ca" t="45d" on="1" s="192" frq="12692" n="ORF2"/>
-		<S i="332d" t="45b" on="1" s="192" frq="12663" n="ORF III"/>
-		<S i="33a5" t="3eb" on="1" s="192" frq="11244" n="ORF SPORT+"/>
-		<S i="32d5" t="45d" on="1" s="192" frq="12692" n="HITRADIO OE3"/>
-		<S i="4465" t="453" on="1" s="192" frq="12545" n="kabel eins Doku"/>
-		<S i="4e27" t="43a" on="1" s="192" frq="12051" n="PULS 4 Austria"/>
-		<S i="32d4" t="45d" on="1" s="192" frq="12692" n="ATV"/>
-		<S i="33ac" t="3eb" on="1" s="192" frq="11244" n="ATV HD"/>
-		<S i="33a7" t="3eb" on="1" s="192" frq="11244" n="ATV2"/>
-		<S i="14bd" t="407" on="1" s="192" frq="11671" n="sixx AUSTRIA"/>
-		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV"/>
-		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
-		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
 		<S i="7008" t="436" on="1" s="192" frq="11973" n="Nick/Comedy Central+1"/>
 		<S i="7004" t="436" on="1" s="192" frq="11973" n="Comedy Central"/>
-		<S i="3d" t="7" on="85" s="192" frq="12148" n="Nick/Comedy Central Austria"/>
 		<S i="1332" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Deutschland"/>
-		<S i="1331" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Oesterreich"/>
 		<S i="2856" t="401" on="1" s="192" frq="11582" n="BR Fernsehen Nord HD"/>
 		<S i="2855" t="401" on="1" s="192" frq="11582" n="BR Fernsehen Süd HD"/>
 		<S i="2889" t="40f" on="1" s="192" frq="11053" n="ARD alpha HD"/>
@@ -72,29 +51,26 @@
 		<S i="7a4c" t="410" on="1" s="192" frq="11068" n="SACHSEN EINS"/>
 		<S i="2ee3" t="441" on="1" s="192" frq="12188" n="RTL Television"/>
 		<S i="2f30" t="441" on="1" s="192" frq="12188" n="RTLup"/>
-		<S i="2f3a" t="441" on="1" s="192" frq="12188" n="ntv"/>
 		<S i="2ef4" t="441" on="1" s="192" frq="12188" n="RTLZWEI"/>
 		<S i="2f08" t="441" on="1" s="192" frq="12188" n="SUPER RTL"/>
 		<S i="2efe" t="441" on="1" s="192" frq="12188" n="TOGGO plus"/>
 		<S i="2f1c" t="441" on="1" s="192" frq="12188" n="VOX"/>
 		<S i="7094" t="443" on="1" s="192" frq="12226" n="VOXup"/>
 		<S i="2f1d" t="441" on="1" s="192" frq="12188" n="NITRO"/>
-		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
+		<S i="4465" t="453" on="1" s="192" frq="12545" n="kabel eins Doku"/>
 		<S i="3f" t="21" on="85" s="192" frq="12480" n="DMAX"/>
+		<S i="445f" t="453" on="1" s="192" frq="12545" n="WELT"/>
+		<S i="2f3a" t="441" on="1" s="192" frq="12188" n="ntv"/>
 		<S i="304" t="5" on="85" s="192" frq="12460" n="TLC"/>
-		<S i="32db" t="45d" on="1" s="192" frq="12692" n="RiC"/>
-		<S i="33" t="21" on="85" s="192" frq="12480" n="TELE 5"/>
-		<S i="701" t="5" on="85" s="192" frq="12460" n="Disney Channel"/>
-		<S i="332f" t="45b" on="1" s="192" frq="12663" n="Welt der Wunder"/>
-		<S i="32dd" t="45d" on="1" s="192" frq="12692" n="ntv Austria"/>
 		<S i="30" t="5" on="85" s="192" frq="12460" n="N24 DOKU"/>
 		<S i="2775" t="409" on="1" s="192" frq="10964" n="BILD HD"/>
+		<S i="332f" t="45b" on="1" s="192" frq="12663" n="Welt der Wunder"/>
+		<S i="32db" t="45d" on="1" s="192" frq="12692" n="RiC"/>
+		<S i="308" t="5" on="85" s="192" frq="12460" n="SIXX"/>
+		<S i="33" t="21" on="85" s="192" frq="12480" n="TELE 5"/>
+		<S i="701" t="5" on="85" s="192" frq="12460" n="Disney Channel"/>
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
-		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
-		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
-		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
-		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
-		<S i="1013" t="451" on="35" s="192" frq="12515" n="Bergblick"/>
+		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
@@ -102,8 +78,6 @@
 		<S i="ef78" t="3f9" on="1" s="192" frq="11464" n="Pro7 MAXX HD"/>
 		<S i="ef74" t="3f9" on="1" s="192" frq="11464" n="SAT.1 HD"/>
 		<S i="ef76" t="3f9" on="1" s="192" frq="11464" n="kabel eins HD"/>
-		<S i="ef79" t="3f9" on="1" s="192" frq="11464" n="Kabel Eins Doku HD"/>
-		<S i="151a" t="455" on="1" s="192" frq="12574" n="DMAX HD"/>
 		<S i="157c" t="41f" on="1" s="192" frq="10803" n="Disney Channel HD"/>
 		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>
 		<S i="6fec" t="436" on="1" s="192" frq="11973" n="Comedy Central HD"/>
@@ -115,17 +89,48 @@
 		<S i="2e9b" t="411" on="1" s="192" frq="11082" n="SUPER RTL HD"/>
 		<S i="ef11" t="421" on="1" s="192" frq="10832" n="VOX HD"/>
 		<S i="ef17" t="421" on="1" s="192" frq="10832" n="VOXup HD"/>
+		<S i="ef79" t="3f9" on="1" s="192" frq="11464" n="Kabel Eins Doku HD"/>
+		<S i="151a" t="455" on="1" s="192" frq="12574" n="DMAX HD"/>
 		<S i="5274" t="41d" on="1" s="192" frq="10773" n="WELT HD"/>
+		<S i="ef14" t="421" on="1" s="192" frq="10832" n="ntv HD"/>
 		<S i="2774" t="409" on="1" s="192" frq="10964" n="TLC HD"/>
 		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>
 		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
-		<S i="ef14" t="421" on="1" s="192" frq="10832" n="ntv HD"/>
-		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
 		<S i="2777" t="409" on="1" s="192" frq="10964" n="MTV HD"/>
-		<S i="14b7" t="407" on="1" s="192" frq="11671" n="PULS 4 HD Austria"/>
 		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
-		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
+		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
+		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
+	</Bouquet>
+	<Bouquet name="Östereich">
+		<S i="132f" t="3ef" on="1" s="192" frq="11303" n="ORF1 HD"/>
+		<S i="1330" t="3ef" on="1" s="192" frq="11303" n="ORF2W HD"/>
+		<S i="33fc" t="3ed" on="1" s="192" frq="11273" n="ORF III HD"/>
+		<S i="32c9" t="45d" on="1" s="192" frq="12692" n="ORF1"/>
+		<S i="32ca" t="45d" on="1" s="192" frq="12692" n="ORF2"/>
+		<S i="332d" t="45b" on="1" s="192" frq="12663" n="ORF III"/>
+		<S i="33a5" t="3eb" on="1" s="192" frq="11244" n="ORF SPORT+"/>
+		<S i="32d5" t="45d" on="1" s="192" frq="12692" n="HITRADIO OE3"/>
+		<S i="3d" t="7" on="85" s="192" frq="12148" n="Nick/Comedy Central Austria"/>
+		<S i="32d4" t="45d" on="1" s="192" frq="12692" n="ATV"/>
+		<S i="33ac" t="3eb" on="1" s="192" frq="11244" n="ATV HD"/>
+		<S i="33a7" t="3eb" on="1" s="192" frq="11244" n="ATV2"/>
+		<S i="14bd" t="407" on="1" s="192" frq="11671" n="sixx AUSTRIA"/>
+		<S i="1331" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Oesterreich"/>
+		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
+		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
+		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
+		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
+		<S i="1013" t="451" on="35" s="192" frq="12515" n="Bergblick"/>
+		<S i="4e27" t="43a" on="1" s="192" frq="12051" n="PULS 4 Austria"/>
+		<S i="14b7" t="407" on="1" s="192" frq="11671" n="PULS 4 HD Austria"/>
+		<S i="32dd" t="45d" on="1" s="192" frq="12692" n="ntv Austria"/>
+	</Bouquet>
+	<Bouquet name="Musik">
+		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV"/>
+		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
+		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
+		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
 	</Bouquet>
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>

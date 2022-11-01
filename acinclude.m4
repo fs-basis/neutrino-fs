@@ -301,7 +301,6 @@ AC_ARG_WITH(boxtype,
 		;;
 	esac])
 
-
 AC_ARG_WITH(boxmodel,
 	AS_HELP_STRING([--with-boxmodel], [valid for duckbox: ufs910, ufs912, ufs913, ufs922])
 AS_HELP_STRING([], [valid for armbox: bre2ze4k, h7, hd51])

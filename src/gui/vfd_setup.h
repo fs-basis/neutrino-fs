@@ -54,6 +54,4 @@
 		~CVfdSetup();
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };
-
-
 #endif

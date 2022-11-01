@@ -228,10 +228,10 @@ int CVfdSetup::showBrightnessSetup()
 		mn_widget->addItem(nc);
 	}
 
-#if HAVE_ARM_HARDWARE
-	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, 0, 15, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+#if defined (HAVE_ARM_HARDWARE)
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 15, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);
 #else
-	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, 0, 7, NULL, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
+	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 7, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);
 #endif
 	nc->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESSDIM);
 	nc->setActivateObserver(this);

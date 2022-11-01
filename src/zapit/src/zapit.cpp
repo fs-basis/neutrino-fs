@@ -639,7 +639,6 @@ bool CZapit::StopPip(int pip)
 	if (!g_info.hw_caps->can_pip)
 		return false;
 
-
 	if (pip_channel_id[pip]) {
 		INFO("[pip %d] stop %llx", pip, pip_channel_id[pip]);
 		pipVideoDecoder[pip]->ShowPig(0);

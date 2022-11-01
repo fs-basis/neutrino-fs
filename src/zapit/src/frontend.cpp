@@ -291,7 +291,7 @@ void CFrontend::getFEInfo(void)
 				printf("[fe%d/%d] add delivery system DVB-S (delivery_system: %d)\n", adapter, fenumber, (fe_delivery_system_t)prop[0].u.buffer.data[i]);
 				break;
 			case SYS_DVBS2:
-#if !defined (HAVE_SH4_HARDWARE) && !defined (HAVE_MIPS_HARDWARE)
+#if !defined (HAVE_SH4_HARDWARE)
 			case SYS_DVBS2X:
 #endif
 				deliverySystemMask |= DVB_S2;

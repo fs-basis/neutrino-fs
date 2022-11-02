@@ -167,12 +167,6 @@ int CLCD4lSetup::show()
 			enable_brightness = false;
 			max_brightness = 0;
 			break;
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE
-		case 2: // VUPLUS4K
-			enable_brightness = true;
-			max_brightness = 10;
-			break;
-#endif
 		case 1: // Samsung
 			enable_brightness = false;
 			max_brightness = 0;

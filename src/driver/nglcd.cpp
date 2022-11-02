@@ -141,9 +141,6 @@ void nGLCD::LcdAnalogClock(int posx, int posy, int dia)
 #if BOXMODEL_E4HDULTRA
 	mx_ = int((dia * 0.30 * cos(mAngleInRad)));
 	my_ = int((dia * 0.30 * sin(mAngleInRad)));
-#elif BOXMODEL_VUUNO4KSE
-	mx_ = int((dia * 0.55 * cos(mAngleInRad)));
-	my_ = int((dia * 0.55 * sin(mAngleInRad)));
 #else
 	mx_ = int((dia * 0.7 * cos(mAngleInRad)));
 	my_ = int((dia * 0.7 * sin(mAngleInRad)));
@@ -155,9 +152,6 @@ void nGLCD::LcdAnalogClock(int posx, int posy, int dia)
 #if BOXMODEL_E4HDULTRA
 	hx_ = int((dia * 0.20 * cos(hAngleInRad)));
 	hy_ = int((dia * 0.20 * sin(hAngleInRad)));
-#elif BOXMODEL_VUUNO4KSE
-	hx_ = int((dia * 0.25 * cos(hAngleInRad)));
-	hy_ = int((dia * 0.25 * sin(hAngleInRad)));
 #else
 	hx_ = int((dia * 0.4 * cos(hAngleInRad)));
 	hy_ = int((dia * 0.4 * sin(hAngleInRad)));
@@ -280,31 +274,15 @@ void nGLCD::Exec()
 
 	if (CNeutrinoApp::getInstance()->recordingstatus)
 	{
-#if BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K
-		for (int bx = 0; bx < 25; bx++)
-		{
-#elif BOXMODEL_VUSOLO4K || BOXMODEL_VUUNO4KSE
-		for (int bx = 0; bx < 9; bx++)
-		{
-#else
 		for (int bx = 0; bx < 3; bx++)
 		{
-#endif
 			bitmap->DrawRectangle(bx, bx, bitmap->Width() - bx + 1, bitmap->Height() - bx + 1, GLCD::cColor::Red, false);
 		}
 	}
 	else if (CNeutrinoApp::getInstance()->isMuted())
 	{
-#if BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K
-		for (int bx = 0; bx < 25; bx++)
-		{
-#elif BOXMODEL_VUSOLO4K || BOXMODEL_VUUNO4KSE
-		for (int bx = 0; bx < 9; bx++)
-		{
-#else
 		for (int bx = 0; bx < 3; bx++)
 		{
-#endif
 			bitmap->DrawRectangle(bx, bx, bitmap->Width() - bx + 1, bitmap->Height() - bx + 1, GLCD::cColor::Blue, false);
 		}
 	}
@@ -687,21 +665,13 @@ void nGLCD::Run(void)
 					bitmap->Clear(GLCD::cColor::Black);
 					ts.tv_sec = 0; // don't wait
 					static CFrameBuffer *fb = CFrameBuffer::getInstance();
-#if !defined BOXMODEL_VUSOLO4K && !defined BOXMODEL_VUDUO4K && !defined BOXMODEL_VUDUO4KSE && !defined BOXMODEL_VUULTIMO4K && !defined BOXMODEL_VUUNO4KSE
 					static int fb_width = fb->getScreenWidth(true);
-#endif
 					static int fb_height = fb->getScreenHeight(true);
 					static uint32_t *fbp = fb->getFrameBufferPointer();
 					int lcd_width = bitmap->Width();
 					int lcd_height = bitmap->Height();
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUDUO4KSE || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE
-					unsigned int fb_stride = fb->getStride() / 4;
-					if (!showImage(fbp, fb_stride, fb_height, 0, 0, lcd_width, lcd_height, false))
-					{
-#else
 					if (!showImage(fbp, fb_width, fb_height, 0, 0, lcd_width, lcd_height, false))
 					{
-#endif
 						usleep(500000);
 					}
 					else

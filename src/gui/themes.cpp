@@ -417,17 +417,17 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.menu_Foot_green = configfile.getInt32( "menu_Foot_green", int(t.infobar_green*0.4)+14 );
 	t.menu_Foot_blue = configfile.getInt32( "menu_Foot_blue", int(t.infobar_blue*0.4)+14 );
 
-	t.infobar_gradient_top = configfile.getInt32( "infobar_gradient_top", CC_COLGRAD_OFF );
-	t.infobar_gradient_top_direction = configfile.getInt32( "infobar_gradient_top_direction", CFrameBuffer::gradientVertical );
-	t.infobar_gradient_body = configfile.getInt32( "infobar_gradient_body", CC_COLGRAD_OFF);
-	t.infobar_gradient_body_direction = configfile.getInt32( "infobar_gradient_body_direction", CFrameBuffer::gradientVertical );
-	t.infobar_gradient_bottom = configfile.getInt32( "infobar_gradient_bottom", CC_COLGRAD_OFF );
-	t.infobar_gradient_bottom_direction = configfile.getInt32( "infobar_gradient_bottom_direction", CFrameBuffer::gradientVertical );
+	t.infobar_gradient_top = configfile.getInt32( "infobar_gradient_top", CC_COLGRAD_LIGHT_2_DARK );
+	t.infobar_gradient_top_direction = configfile.getInt32( "infobar_gradient_top_direction", CFrameBuffer::gradientHorizontal );
+	t.infobar_gradient_body = configfile.getInt32( "infobar_gradient_body", CC_COLGRAD_LIGHT_2_DARK);
+	t.infobar_gradient_body_direction = configfile.getInt32( "infobar_gradient_body_direction", CFrameBuffer::gradientHorizontal );
+	t.infobar_gradient_bottom = configfile.getInt32( "infobar_gradient_bottom", CC_COLGRAD_LIGHT_2_DARK );
+	t.infobar_gradient_bottom_direction = configfile.getInt32( "infobar_gradient_bottom_direction", CFrameBuffer::gradientHorizontal );
 
 	t.infobar_casystem_alpha = configfile.getInt32( "infobar_casystem_alpha", 0x08 );
 	t.infobar_casystem_red = configfile.getInt32( "infobar_casystem_red", 0x00 );
-	t.infobar_casystem_green = configfile.getInt32( "infobar_casystem_green", 0x00 );
-	t.infobar_casystem_blue = configfile.getInt32( "infobar_casystem_blue", 0x00 );
+	t.infobar_casystem_green = configfile.getInt32( "infobar_casystem_green", 0x0e );
+	t.infobar_casystem_blue = configfile.getInt32( "infobar_casystem_blue", 0x23 );
 	t.infobar_Text_alpha = configfile.getInt32( "infobar_Text_alpha", 0x00 );
 	t.infobar_Text_red = configfile.getInt32( "infobar_Text_red", 0x64 );
 	t.infobar_Text_green = configfile.getInt32( "infobar_Text_green", 0x64 );
@@ -443,8 +443,8 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.colored_events_red = configfile.getInt32( "colored_events_red", 95 );
 	t.colored_events_green = configfile.getInt32( "colored_events_green", 70 );
 	t.colored_events_blue = configfile.getInt32( "colored_events_blue", 0 );
-	t.colored_events_channellist = configfile.getInt32( "colored_events_channellist", 0 );
-	t.colored_events_infobar = configfile.getInt32("colored_events_infobar", 0); /* no bling bling */
+	t.colored_events_channellist = configfile.getInt32( "colored_events_channellist", 2 );
+	t.colored_events_infobar = configfile.getInt32("colored_events_infobar", 2); /* no bling bling */
 
 	t.channellist_Description_Text_alpha = configfile.getInt32("channellist_Description_Text_alpha", 0);
 	t.channellist_Description_Text_red = configfile.getInt32("channellist_Description_Text_red", 98);

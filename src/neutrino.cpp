@@ -493,8 +493,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.lcd_notify_rclock = configfile.getInt32("lcd_notify_rclock", 1);
 
 	g_settings.hdd_fs = configfile.getInt32( "hdd_fs", 0);
-	g_settings.hdd_sleep = configfile.getInt32( "hdd_sleep", 0);
 	g_settings.hdd_noise = configfile.getInt32( "hdd_noise", 254);
+	g_settings.hdd_sleep = configfile.getInt32( "hdd_sleep", 0);
 	g_settings.hdd_statfs_mode = configfile.getInt32( "hdd_statfs_mode", SNeutrinoSettings::HDD_STATFS_RECORDING);
 
 	g_settings.shutdown_real = true;
@@ -1062,8 +1062,8 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.pip_radio_height = configfile.getInt32("pip_radio_height", g_settings.pip_height);
 #endif
 
+	g_settings.infoClockBackground = configfile.getInt32("infoClockBackground", 1);
 	g_settings.infoClockFontSize = configfile.getInt32("infoClockFontSize", 30);
-	g_settings.infoClockBackground = configfile.getInt32("infoClockBackground", 0);
 	g_settings.infoClockSeconds = configfile.getInt32("infoClockSeconds", 1);
 #ifdef ENABLE_FS
 #if BOXMODEL_E4HDULTRA

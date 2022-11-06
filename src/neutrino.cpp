@@ -319,7 +319,7 @@ static SNeutrinoSettings::usermenu_t usermenu_default[] = {
 	{ CRCInput::RC_red,		"5,2,3,4,13",		"",	"red"		},
 	{ CRCInput::RC_green,		"6",			"",	"green"		},
 	{ CRCInput::RC_yellow,		"22",			"",	"yellow"	},
-	{ CRCInput::RC_blue,		"11,15,19,14,31",	"",	"blue"		},
+	{ CRCInput::RC_blue,		"11,15,19,14,30,31",	"",	"blue"		},
 #if 0 // off
 #if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
 	{ CRCInput::RC_playpause,	"9",			"",	"5"		},

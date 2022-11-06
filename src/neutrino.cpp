@@ -366,12 +366,21 @@ int CNeutrinoApp::loadSetup(const char * fname)
 #endif
 	g_settings.show_menu_hints_line = configfile.getBool("show_menu_hints_line", false);
 
-//	// video
-//	int vid_Mode_default = VIDEO_STD_720P50;
-//	if (getenv("NEUTRINO_DEFAULT_SCART") != NULL)
-//		vid_Mode_default = VIDEO_STD_PAL;
-//	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
+	// video
+#if 0
+	int vid_Mode_default = VIDEO_STD_720P50;
+	if (getenv("NEUTRINO_DEFAULT_SCART") != NULL)
+		vid_Mode_default = VIDEO_STD_PAL;
+	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
+#endif
+#if ENABLE_FS
+#if BOXMODEL_E4HDULTRA
+	g_settings.video_Mode = configfile.getInt32("video_Mode", VIDEO_STD_2160P50);
+#endif // e4hdultra
+#else
 	g_settings.video_Mode = configfile.getInt32("video_Mode", VIDEO_STD_1080P50);
+#endif // enable fs
+
 
 #if HAVE_SH4_HARDWARE
 	g_settings.analog_mode1 = configfile.getInt32("analog_mode1", (int)COLORFORMAT_RGB); // default RGB
@@ -1052,8 +1061,13 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.infoClockFontSize = configfile.getInt32("infoClockFontSize", 30);
 	g_settings.infoClockBackground = configfile.getInt32("infoClockBackground", 0);
 	g_settings.infoClockSeconds = configfile.getInt32("infoClockSeconds", 1);
-
+#if ENABLE_FS
+#if BOXMODEL_E4HDULTRA
+	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 3840);
+#endif // E4HDULTRA
+#else
 	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 1920);
+#endif // enable fs
 	g_settings.livestreamScriptPath = configfile.getString("livestreamScriptPath", WEBSCRIPTS);
 
 	if (!erg)

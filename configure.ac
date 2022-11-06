@@ -209,6 +209,15 @@ if test "$enable_arm_acc" = "yes"; then
 	AC_DEFINE(ENABLE_ARM_ACC,1,[enable arm hardware acceleration])
 fi
 
+AC_ARG_ENABLE(fs,
+	AS_HELP_STRING(--disable-fs,disable fs),
+	,[enable_fs=yes])
+
+AM_CONDITIONAL(ENABLE_FS,test "$enable_fs" = "yes")
+if test "$enable_fs" = "yes"; then
+	AC_DEFINE(ENABLE_FS,1,[include fs])
+fi
+
 AC_ARG_ENABLE(lua,
 	AS_HELP_STRING([--enable-lua], [enable Lua support @<:@default=yes@:>@]),
 	[enable_lua="$enableval"],

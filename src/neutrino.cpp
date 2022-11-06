@@ -377,10 +377,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		vid_Mode_default = VIDEO_STD_PAL;
 	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
 #endif
-#ifdef ENABLE_FS
-#if BOXMODEL_E4HDULTRA
+#if ENABLE_FS && BOXMODEL_E4HDULTRA
 	g_settings.video_Mode = configfile.getInt32("video_Mode", VIDEO_STD_2160P50);
-#endif // e4hdultra
 #else
 	g_settings.video_Mode = configfile.getInt32("video_Mode", VIDEO_STD_1080P50);
 #endif // enable fs
@@ -1065,10 +1063,9 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.infoClockBackground = configfile.getInt32("infoClockBackground", 1);
 	g_settings.infoClockFontSize = configfile.getInt32("infoClockFontSize", 30);
 	g_settings.infoClockSeconds = configfile.getInt32("infoClockSeconds", 1);
-#ifdef ENABLE_FS
-#if BOXMODEL_E4HDULTRA
+
+#if ENABLE_FS && BOXMODEL_E4HDULTRA
 	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 3840);
-#endif // E4HDULTRA
 #else
 	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 1920);
 #endif // enable fs

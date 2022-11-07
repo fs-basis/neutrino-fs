@@ -964,12 +964,9 @@ const time_settings_struct_t timing_setting[SNeutrinoSettings::TIMING_SETTING_CO
 	{ 60,	LOCALE_TIMING_STATIC_MESSAGES,		LOCALE_MENU_HINT_TIMEOUTS_STATIC_MESSAGES}
 };
 
-// lcdd
+// vfd , simple display
 #define DEFAULT_VFD_BRIGHTNESS			4
 #define DEFAULT_VFD_STANDBYBRIGHTNESS		4
-
-#define DEFAULT_LCD_BRIGHTNESS			0xff
-#define DEFAULT_LCD_STANDBYBRIGHTNESS		0xaa
 #define DEFAULT_LCD_POWER			0x01
 #define DEFAULT_LCD_SHOW_VOLUME			0x01
 

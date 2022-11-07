@@ -144,9 +144,6 @@ class CVFD
 
 		void togglePower(void);
 
-		void setInverse(int);
-		int getInverse();
-
 		void setMuted(bool);
 
 		void resume();

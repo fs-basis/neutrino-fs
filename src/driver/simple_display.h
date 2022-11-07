@@ -206,19 +206,11 @@ class CLCD
 
 		void setScrollMode(int scroll_repeats);
 
-		void setContrast(int);
-		int getContrast();
-
 		void setPower(int);
 		int getPower();
 
 		void togglePower(void);
 
-		void setInverse(int);
-		int getInverse();
-
-		void setAutoDimm(int);
-		int getAutoDimm();
 		void repaintIcons()
 		{
 			return;

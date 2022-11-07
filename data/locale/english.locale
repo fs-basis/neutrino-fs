@@ -890,10 +890,6 @@ lcdmenu.lcdcontroler Brightness
 lcdmenu.notify_rclock Notify when RC is locked
 lcdmenu.scroll Enable text scroll
 lcdmenu.scroll_repeats Enable text scroll and repeats
-lcdmenu.statusline status line
-lcdmenu.statusline.both volume and playtime
-lcdmenu.statusline.playtime playtime
-lcdmenu.statusline.volume volume
 lcdmenu.vfd_scroll Scrolling
 livestream.head Live streams
 livestream.read_data Read data ...
@@ -1415,7 +1411,6 @@ menu.hint_uni_setup Configuration of unicable frequency, user band and pin
 menu.hint_vfd Frontpanel LEDs, VFD options
 menu.hint_vfd_brightness Working brightness
 menu.hint_vfd_brightness_setup Configure frontpanel display brightness\nfor different modes
-menu.hint_vfd_brightnessdeepstandby Brightness in deep-standby mode
 menu.hint_vfd_brightnessdim Auto-dim brightness
 menu.hint_vfd_brightnessstandby Brightness in soft-standby mode
 menu.hint_vfd_defaults Restore default brightness values
@@ -1423,7 +1418,6 @@ menu.hint_vfd_dimtime Auto-dim time in seconds for normal mode
 menu.hint_vfd_infoline Choose what to display in main VFD/LCD line
 menu.hint_vfd_notify_rclock Displays a notification when a key is pressed while remote control is locked
 menu.hint_vfd_scroll Enable or disable text scrolling on VFD
-menu.hint_vfd_statusline Choose what to display in short\nVFD/LCD status line
 menu.hint_video Video output, resolution, format\nAspect ratio, fast mode switch options
 menu.hint_video_43mode Display mode for 4:3 content\non 16:9 TV
 menu.hint_video_brightness Change picture brightness

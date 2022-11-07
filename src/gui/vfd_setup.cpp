@@ -84,14 +84,6 @@ int CVfdSetup::exec(CMenuTarget* parent, const std::string &actionKey)
 	return res;
 }
 
-#define LCDMENU_STATUSLINE_OPTION_COUNT 2
-const CMenuOptionChooser::keyval LCDMENU_STATUSLINE_OPTIONS[LCDMENU_STATUSLINE_OPTION_COUNT] =
-{
-	{ 0, LOCALE_LCDMENU_STATUSLINE_PLAYTIME },
-	{ 1, LOCALE_LCDMENU_STATUSLINE_VOLUME   }
-	//,{ 2, LOCALE_LCDMENU_STATUSLINE_BOTH     }
-};
-
 #define LCD_INFO_OPTION_COUNT 2
 const CMenuOptionChooser::keyval LCD_INFO_OPTIONS[LCD_INFO_OPTION_COUNT] =
 {
@@ -130,13 +122,6 @@ int CVfdSetup::showSetup()
 	{
 
 		CMenuOptionChooser* oj;
-		if (g_info.hw_caps->display_has_statusline)
-		{
-			//status line options
-			oj = new CMenuOptionChooser(LOCALE_LCDMENU_STATUSLINE, &g_settings.lcd_setting[SNeutrinoSettings::LCD_SHOW_VOLUME], LCDMENU_STATUSLINE_OPTIONS, LCDMENU_STATUSLINE_OPTION_COUNT, true);
-			oj->setHint("", LOCALE_MENU_HINT_VFD_STATUSLINE);
-			vfds->addItem(oj);
-		}
 
 		//info line options
 		oj = new CMenuOptionChooser(LOCALE_LCD_INFO_LINE, &g_settings.lcd_info_line, LCD_INFO_OPTIONS, LCD_INFO_OPTION_COUNT, true);
@@ -215,18 +200,6 @@ int CVfdSetup::showBrightnessSetup()
 	nc->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESSSTANDBY);
 	nc->setActivateObserver(this);
 	mn_widget->addItem(nc);
-
-	if (g_info.hw_caps->display_can_deepstandby)
-	{
-#if HAVE_ARM_HARDWARE
-		nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSDEEPSTANDBY, &brightnessdeepstandby, true, 0, 15, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
-#else
-		nc = new CMenuOptionNumberChooser(LOCALE_LCDCONTROLER_BRIGHTNESSDEEPSTANDBY, &brightnessdeepstandby, true, 0, 7, this, CRCInput::RC_nokey, NULL, 0, 0, NONEXISTANT_LOCALE, true);
-#endif
-		nc->setHint("", LOCALE_MENU_HINT_VFD_BRIGHTNESSDEEPSTANDBY);
-		nc->setActivateObserver(this);
-		mn_widget->addItem(nc);
-	}
 
 #if defined (HAVE_ARM_HARDWARE)
 	nc = new CMenuOptionNumberChooser(LOCALE_LCDMENU_DIM_BRIGHTNESS, &g_settings.lcd_setting_dim_brightness, true, -1, 15, NULL, CRCInput::RC_nokey, NULL, 0, -1, LOCALE_OPTIONS_OFF, true);

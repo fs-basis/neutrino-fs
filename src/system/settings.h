@@ -794,15 +794,9 @@ struct SNeutrinoSettings
 	{
 		LCD_BRIGHTNESS         = 0,
 		LCD_STANDBY_BRIGHTNESS,
-		LCD_CONTRAST,
 		LCD_POWER,
-		LCD_INVERSE,
 		LCD_SHOW_VOLUME,
-		LCD_AUTODIMM,
 		LCD_DEEPSTANDBY_BRIGHTNESS,
-#if USE_STB_HAL
-		LCD_EPGMODE,
-#endif
 		LCD_SETTING_COUNT
 	};
 	int lcd_setting[LCD_SETTING_COUNT];
@@ -976,10 +970,7 @@ const time_settings_struct_t timing_setting[SNeutrinoSettings::TIMING_SETTING_CO
 
 #define DEFAULT_LCD_BRIGHTNESS			0xff
 #define DEFAULT_LCD_STANDBYBRIGHTNESS		0xaa
-#define DEFAULT_LCD_CONTRAST			0x0F
 #define DEFAULT_LCD_POWER			0x01
-#define DEFAULT_LCD_INVERSE			0x00
-#define DEFAULT_LCD_AUTODIMM			0x00
 #define DEFAULT_LCD_SHOW_VOLUME			0x01
 
 #define CORNER_RADIUS_LARGE	CFrameBuffer::getInstance()->scale2Res(11)

@@ -304,15 +304,9 @@ const lcd_setting_struct_t lcd_setting[SNeutrinoSettings::LCD_SETTING_COUNT] =
 {
 	{"lcd_brightness"       , DEFAULT_VFD_BRIGHTNESS       },
 	{"lcd_standbybrightness", DEFAULT_VFD_STANDBYBRIGHTNESS},
-	{"lcd_contrast"         , DEFAULT_LCD_CONTRAST         },
 	{"lcd_power"            , DEFAULT_LCD_POWER            },
-	{"lcd_inverse"          , DEFAULT_LCD_INVERSE          },
 	{"lcd_show_volume"      , DEFAULT_LCD_SHOW_VOLUME      },
-	{"lcd_autodimm"         , DEFAULT_LCD_AUTODIMM         },
 	{"lcd_deepbrightness"   , DEFAULT_VFD_STANDBYBRIGHTNESS }
-#if USE_STB_HAL
-	,{ "lcd_epgmode"        , 0 /*DEFAULT_LCD_EPGMODE*/ }
-#endif
 };
 
 static SNeutrinoSettings::usermenu_t usermenu_default[] = {
@@ -486,8 +480,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	//misc
 	g_settings.power_standby = configfile.getInt32( "power_standby", 0);
 
-	//led
-	g_settings.lcd_scroll = configfile.getInt32( "lcd_scroll", 1);
+	//vfd , simple display
+	g_settings.lcd_scroll = configfile.getInt32( "lcd_scroll", 0);
 	g_settings.lcd_notify_rclock = configfile.getInt32("lcd_notify_rclock", 1);
 
 	g_settings.hdd_fs = configfile.getInt32( "hdd_fs", 0);

@@ -274,15 +274,25 @@ void nGLCD::Exec()
 
 	if (CNeutrinoApp::getInstance()->recordingstatus)
 	{
+#if BOXMODEL_E4HDULTRA
+		for (int bx = 0; bx < 6; bx++)
+		{
+#else
 		for (int bx = 0; bx < 3; bx++)
 		{
+#endif
 			bitmap->DrawRectangle(bx, bx, bitmap->Width() - bx + 1, bitmap->Height() - bx + 1, GLCD::cColor::Red, false);
 		}
 	}
 	else if (CNeutrinoApp::getInstance()->isMuted())
 	{
+#if BOXMODEL_E4HDULTRA
+		for (int bx = 0; bx < 6; bx++)
+		{
+#else
 		for (int bx = 0; bx < 3; bx++)
 		{
+#endif
 			bitmap->DrawRectangle(bx, bx, bitmap->Width() - bx + 1, bitmap->Height() - bx + 1, GLCD::cColor::Blue, false);
 		}
 	}

@@ -603,8 +603,8 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.epg_save_frequently = configfile.getInt32("epg_save_frequently", 0);
 	g_settings.epg_read = configfile.getBool("epg_read", true);
 	g_settings.epg_read_frequently = configfile.getInt32("epg_read_frequently", 1);
-	g_settings.epg_scan = configfile.getInt32("epg_scan", CEpgScan::SCAN_CURRENT);
-	g_settings.epg_scan_mode = configfile.getInt32("epg_scan_mode", CEpgScan::MODE_OFF);
+	g_settings.epg_scan = configfile.getInt32("epg_scan", CEpgScan::SCAN_FAV);
+	g_settings.epg_scan_mode = configfile.getInt32("epg_scan_mode", CEpgScan::MODE_STANDBY);
 	// backward-compatible check
 	if (g_settings.epg_scan == 0) {
 		g_settings.epg_scan = CEpgScan::SCAN_CURRENT;

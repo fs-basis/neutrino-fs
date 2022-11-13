@@ -60,10 +60,10 @@ const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SE
 	{"personalize_cisettings_main"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 
 	//main menu->settings menu
-	{"personalize_settingsmager"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
+	{"personalize_settingsmager"		, CPersonalizeGui::PERSONALIZE_MODE_NOTVISIBLE},
 	{"personalize_video"			, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 	{"personalize_audio"			, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
-	{"personalize_parentallock"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
+	{"personalize_parentallock"		, CPersonalizeGui::PERSONALIZE_MODE_NOTVISIBLE},
 	{"personalize_network"			, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 	{"personalize_recording"		, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},
 	{"personalize_osdlang"			, CPersonalizeGui::PERSONALIZE_MODE_VISIBLE},

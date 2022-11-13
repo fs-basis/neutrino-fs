@@ -459,10 +459,10 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.progressbar_design = configfile.getInt32("progressbar_design", CProgressBar::PB_COLOR);
 	t.progressbar_design_channellist = configfile.getInt32("progressbar_design_channellist", t.progressbar_design);
 	t.progressbar_gradient = configfile.getInt32("progressbar_gradient", 1);
-	t.progressbar_timescale_red = configfile.getInt32("progressbar_timescale_red", 0);
+	t.progressbar_timescale_red = configfile.getInt32("progressbar_timescale_red", 100);
 	t.progressbar_timescale_green = configfile.getInt32("progressbar_timescale_green", 100);
-	t.progressbar_timescale_yellow = configfile.getInt32("progressbar_timescale_yellow", 70);
-	t.progressbar_timescale_invert = configfile.getInt32("progressbar_timescale_invert", 0);
+	t.progressbar_timescale_yellow = configfile.getInt32("progressbar_timescale_yellow", 100);
+	t.progressbar_timescale_invert = configfile.getInt32("progressbar_timescale_invert", 1);
 
 	t.shadow_alpha = configfile.getInt32( "shadow_alpha", 0x0A );
 	t.shadow_red = configfile.getInt32( "shadow_red", 0x1e );

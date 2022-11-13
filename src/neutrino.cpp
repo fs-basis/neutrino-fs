@@ -550,7 +550,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.infobar_show_dd_available = configfile.getInt32("infobar_show_dd_available", 1 );
 
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
-	g_settings.radiotext_enable = configfile.getBool("radiotext_enable", true);
+	g_settings.radiotext_enable = configfile.getBool("radiotext_enable", false);
 	//audio
 	g_settings.audio_AnalogMode = configfile.getInt32( "audio_AnalogMode", 0 );
 	g_settings.audio_DolbyDigital    = configfile.getBool("audio_DolbyDigital", false);
@@ -707,7 +707,7 @@ if (g_info.hw_caps->can_shutdown)
 		}
 	}
 	g_settings.record_hours = configfile.getInt32( "record_hours", 2 );
-	g_settings.timeshift_hours = configfile.getInt32( "timeshift_hours", 4 );
+	g_settings.timeshift_hours = configfile.getInt32( "timeshift_hours", 2 );
 	g_settings.filesystem_is_utf8              = configfile.getBool("filesystem_is_utf8"                 , true );
 
 	//recording (server + vcr)

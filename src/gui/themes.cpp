@@ -368,13 +368,13 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.menu_Head_Text_green = configfile.getInt32( "menu_Head_Text_green", 0x46 );
 	t.menu_Head_Text_blue = configfile.getInt32( "menu_Head_Text_blue", 0x00 );
 
-	t.menu_Head_gradient = configfile.getInt32("menu_Head_gradient", CC_COLGRAD_OFF);
-	t.menu_Head_gradient_direction = configfile.getInt32( "menu_Head_gradient_direction", CFrameBuffer::gradientVertical);
+	t.menu_Head_gradient = configfile.getInt32("menu_Head_gradient", CC_COLGRAD_LIGHT_2_DARK);
+	t.menu_Head_gradient_direction = configfile.getInt32( "menu_Head_gradient_direction", CFrameBuffer::gradientHorizontal);
 
-	t.menu_SubHead_gradient = configfile.getInt32("menu_SubHead_gradient", CC_COLGRAD_OFF);
-	t.menu_SubHead_gradient_direction = configfile.getInt32( "menu_SubHead_gradient_direction", CFrameBuffer::gradientVertical);
+	t.menu_SubHead_gradient = configfile.getInt32("menu_SubHead_gradient", CC_COLGRAD_DARK_2_LIGHT);
+	t.menu_SubHead_gradient_direction = configfile.getInt32( "menu_SubHead_gradient_direction", CFrameBuffer::gradientHorizontal);
 
-	t.menu_Separator_gradient_enable = configfile.getInt32( "menu_Separator_gradient_enable", 0);
+	t.menu_Separator_gradient_enable = configfile.getInt32( "menu_Separator_gradient_enable", 1);
 
 	t.menu_Content_alpha = configfile.getInt32( "menu_Content_alpha", 0x14 );
 	t.menu_Content_red = configfile.getInt32( "menu_Content_red", 0x00 );
@@ -401,8 +401,8 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.menu_Content_inactive_Text_green = configfile.getInt32( "menu_Content_inactive_Text_green", 70 );
 	t.menu_Content_inactive_Text_blue = configfile.getInt32( "menu_Content_inactive_Text_blue", 85 );
 
-	t.menu_Hint_gradient = configfile.getInt32( "menu_Hint_gradient", CC_COLGRAD_OFF);
-	t.menu_Hint_gradient_direction = configfile.getInt32( "menu_Hint_gradient_direction", CFrameBuffer::gradientVertical);
+	t.menu_Hint_gradient = configfile.getInt32( "menu_Hint_gradient", CC_COLGRAD_LIGHT_2_DARK);
+	t.menu_Hint_gradient_direction = configfile.getInt32( "menu_Hint_gradient_direction", CFrameBuffer::gradientHorizontal);
 	t.menu_ButtonBar_gradient = configfile.getInt32( "menu_ButtonBar_gradient", CC_COLGRAD_OFF);
 	t.menu_ButtonBar_gradient_direction = configfile.getInt32( "menu_ButtonBar_gradient_direction", CFrameBuffer::gradientVertical);
 
@@ -412,10 +412,10 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.infobar_blue = configfile.getInt32( "infobar_blue", 0x23 );
 
 	//t.menu_Foot default historically depends on t.infobar
-	t.menu_Foot_alpha = configfile.getInt32( "menu_Foot_alpha", t.infobar_alpha );
-	t.menu_Foot_red = configfile.getInt32( "menu_Foot_red", int(t.infobar_red*0.4)+14 );
-	t.menu_Foot_green = configfile.getInt32( "menu_Foot_green", int(t.infobar_green*0.4)+14 );
-	t.menu_Foot_blue = configfile.getInt32( "menu_Foot_blue", int(t.infobar_blue*0.4)+14 );
+	t.menu_Foot_alpha = configfile.getInt32( "menu_Foot_alpha", 0x14 );
+	t.menu_Foot_red = configfile.getInt32( "menu_Foot_red", 0x0e );
+	t.menu_Foot_green = configfile.getInt32( "menu_Foot_green", 0x13 );
+	t.menu_Foot_blue = configfile.getInt32( "menu_Foot_blue", 0x1c );
 
 	t.infobar_gradient_top = configfile.getInt32( "infobar_gradient_top", CC_COLGRAD_LIGHT_2_DARK );
 	t.infobar_gradient_top_direction = configfile.getInt32( "infobar_gradient_top_direction", CFrameBuffer::gradientHorizontal );
@@ -459,10 +459,10 @@ void CThemes::getTheme(CConfigFile &configfile)
 	t.progressbar_design = configfile.getInt32("progressbar_design", CProgressBar::PB_COLOR);
 	t.progressbar_design_channellist = configfile.getInt32("progressbar_design_channellist", t.progressbar_design);
 	t.progressbar_gradient = configfile.getInt32("progressbar_gradient", 1);
-	t.progressbar_timescale_red = configfile.getInt32("progressbar_timescale_red", 0);
+	t.progressbar_timescale_red = configfile.getInt32("progressbar_timescale_red", 100);
 	t.progressbar_timescale_green = configfile.getInt32("progressbar_timescale_green", 100);
-	t.progressbar_timescale_yellow = configfile.getInt32("progressbar_timescale_yellow", 70);
-	t.progressbar_timescale_invert = configfile.getInt32("progressbar_timescale_invert", 0);
+	t.progressbar_timescale_yellow = configfile.getInt32("progressbar_timescale_yellow", 100);
+	t.progressbar_timescale_invert = configfile.getInt32("progressbar_timescale_invert", 1);
 
 	t.shadow_alpha = configfile.getInt32( "shadow_alpha", 0x0A );
 	t.shadow_red = configfile.getInt32( "shadow_red", 0x1e );

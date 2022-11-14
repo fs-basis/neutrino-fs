@@ -85,7 +85,7 @@ int CAudioSetup::exec(CMenuTarget *parent, const std::string &actionKey)
 	return res;
 }
 
-#if !BOXMODEL_E4HDULTRA
+#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
 #define AUDIOMENU_ANALOGOUT_OPTION_COUNT 3
 const CMenuOptionChooser::keyval AUDIOMENU_ANALOGOUT_OPTIONS[AUDIOMENU_ANALOGOUT_OPTION_COUNT] =
 {
@@ -119,7 +119,7 @@ int CAudioSetup::showAudioSetup()
 	//menue init
 	CMenuWidget *audioSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS, width);
 	audioSettings->setSelected(selected);
-#if !BOXMODEL_E4HDULTRA
+#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
 	//analog modes (stereo, mono l/r...)
 	CMenuOptionChooser *as_oj_analogmode 	= new CMenuOptionChooser(LOCALE_AUDIOMENU_ANALOG_MODE, &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier);
 	as_oj_analogmode->setHint("", LOCALE_MENU_HINT_AUDIO_ANALOG_MODE);
@@ -184,7 +184,7 @@ int CAudioSetup::showAudioSetup()
 	//paint items
 	audioSettings->addIntroItems(LOCALE_MAINSETTINGS_AUDIO);
 	//---------------------------------------------------------
-#if !BOXMODEL_E4HDULTRA
+#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
 	audioSettings->addItem(as_oj_analogmode);
 	audioSettings->addItem(GenericMenuSeparatorLine);
 	//---------------------------------------------------------

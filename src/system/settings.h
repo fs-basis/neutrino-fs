@@ -246,7 +246,9 @@ struct SNeutrinoSettings
 	int infobar_show_tuner;
 	int infobar_show_dd_available;
 	//audio
+#if !BOXMODEL_E4HDULTRA
 	int audio_AnalogMode;
+#endif
 	int audio_DolbyDigital;
 #if HAVE_SH4_HARDWARE
 	int audio_mixer_volume_analog;
@@ -266,7 +268,9 @@ struct SNeutrinoSettings
 	int hdmi_dd;
 	int spdif_dd;
 #endif // HAVE_ARM_HARDWARE
+#if !BOXMODEL_E4HDULTRA
 	int analog_out;
+#endif
 	int audio_volume_percent_ac3;
 	int audio_volume_percent_pcm;
 

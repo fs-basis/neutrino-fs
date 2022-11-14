@@ -70,7 +70,7 @@ CAudioSelectMenuHandler::~CAudioSelectMenuHandler()
 
 }
 
-#if !HAVE_SH4_HARDWARE
+#if !HAVE_SH4_HARDWARE && !BOXMODEL_E4HDULTRA
 // -- this is a copy from neutrino.cpp!!
 #define AUDIOMENU_ANALOGOUT_OPTION_COUNT 3
 const CMenuOptionChooser::keyval AUDIOMENU_ANALOGOUT_OPTIONS[AUDIOMENU_ANALOGOUT_OPTION_COUNT] =
@@ -190,7 +190,7 @@ int CAudioSelectMenuHandler::doMenu ()
 		AudioSelector->addItem(fw, sel_apid == i);
 	}
 	unsigned int shortcut_num = p_count;
-#if !HAVE_SH4_HARDWARE
+#if !HAVE_SH4_HARDWARE && !BOXMODEL_E4HDULTRA
 	if (p_count)
 		AudioSelector->addItem(GenericMenuSeparatorLine);
 

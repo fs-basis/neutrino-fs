@@ -411,7 +411,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.hdmi_dd = configfile.getInt32( "hdmi_dd", 2);
 	g_settings.spdif_dd = configfile.getInt32( "spdif_dd", 1);
 #endif // HAVE_ARM_HARDWARE
+#if !BOXMODEL_BRE2ZE4K
 	g_settings.analog_out = configfile.getInt32( "analog_out", 0);
+#endif
 	g_settings.avsync = configfile.getInt32( "avsync", 1);
 
 #if HAVE_ARM_HARDWARE
@@ -523,7 +525,9 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
 	g_settings.radiotext_enable = configfile.getBool("radiotext_enable", false);
 	//audio
+#if !BOXMODEL_BRE2ZE4K
 	g_settings.audio_AnalogMode = configfile.getInt32( "audio_AnalogMode", 0 );
+#endif
 	g_settings.audio_DolbyDigital    = configfile.getBool("audio_DolbyDigital", false);
 
 	g_settings.auto_lang = configfile.getInt32( "auto_lang", 1 );
@@ -1161,7 +1165,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "hdmi_dd", g_settings.hdmi_dd);
 	configfile.setInt32( "spdif_dd", g_settings.spdif_dd);
 #endif
+#if !BOXMODEL_BRE2ZE4K
 	configfile.setInt32( "analog_out", g_settings.analog_out);
+#endif
 	configfile.setInt32( "avsync", g_settings.avsync);
 
 #if HAVE_ARM_HARDWARE
@@ -1247,7 +1253,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_show_tuner"  , g_settings.infobar_show_tuner  );
 	configfile.setBool("radiotext_enable"          , g_settings.radiotext_enable);
 	//audio
+#if !BOXMODEL_BRE2ZE4K
 	configfile.setInt32( "audio_AnalogMode", g_settings.audio_AnalogMode );
+#endif
 	configfile.setBool("audio_DolbyDigital"   , g_settings.audio_DolbyDigital   );
 	configfile.setInt32( "auto_lang", g_settings.auto_lang );
 	configfile.setInt32( "auto_subs", g_settings.auto_subs );
@@ -2314,7 +2322,9 @@ TIMER_START();
 	audioDecoder->SetHdmiDD((HDMI_ENCODED_MODE)g_settings.hdmi_dd);
 	audioDecoder->SetSpdifDD(g_settings.spdif_dd ? true : false);
 #endif
+#if !BOXMODEL_BRE2ZE4K
 	audioDecoder->EnableAnalogOut(g_settings.analog_out ? true : false);
+#endif
 	audioSetupNotifier        = new CAudioSetupNotifier;
 	// trigger a change
 	if(g_settings.avsync != (AVSYNC_TYPE) AVSYNC_ENABLED)
@@ -3197,10 +3207,11 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		return messages_return::handled;
 	}
 	if(msg == NeutrinoMessages::EVT_ZAP_COMPLETE) {
+#if !BOXMODEL_BRE2ZE4K
 		CZapit::getInstance()->GetAudioMode(g_settings.audio_AnalogMode);
 		if(g_settings.audio_AnalogMode < 0 || g_settings.audio_AnalogMode > 2)
 			g_settings.audio_AnalogMode = 0;
-
+#endif
 		CVFD::getInstance()->UpdateIcons();
 		C3DSetup::getInstance()->exec(NULL, "zapped");
 #if HAVE_SH4_HARDWARE
@@ -3390,6 +3401,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		g_audioMute->AudioMute(false, true);
 		return messages_return::handled;
 	}
+#if !BOXMODEL_BRE2ZE4K
 	else if( msg == CRCInput::RC_analog_on ) {
 		g_settings.analog_out = 1;
 		audioDecoder->EnableAnalogOut(true);
@@ -3400,6 +3412,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		audioDecoder->EnableAnalogOut(false);
 		return messages_return::handled;
 	}
+#endif
 	else if( msg == CRCInput::RC_sleep ) {
 		CSleepTimerWidget *sleepTimer = new CSleepTimerWidget;
 		sleepTimer->exec(NULL, "");

@@ -609,7 +609,6 @@ struct SNeutrinoSettings
 
 #if ENABLE_PIP
 	int key_pip_close;
-	int key_pip_close_avinput;
 	int key_pip_setup;
 	int key_pip_swap;
 

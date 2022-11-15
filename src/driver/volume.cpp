@@ -43,10 +43,11 @@
 #include <gui/audiomute.h>
 #include <gui/mediaplayer.h>
 #include <zapit/zapit.h>
+#if !ENABLE_FS
 #ifdef ENABLE_GRAPHLCD
 #include <driver/nglcd.h>
 #endif
-
+#endif
 
 #define VOLUME_SCRIPT	CONFIGDIR "/volume.sh"
 
@@ -186,8 +187,10 @@ void CVolume::setVolume(const neutrino_msg_t key)
 						}
 					}
 					g_settings.current_volume = v;
+#if !ENABLE_FS
 #ifdef ENABLE_GRAPHLCD
 					nGLCD::ShowVolume(true);
+#endif
 #endif
 				}
 			}
@@ -229,9 +232,10 @@ void CVolume::setVolume(const neutrino_msg_t key)
 		}
 	}
 	while (msg != CRCInput::RC_timeout);
-
+#if !ENABLE_FS
 #ifdef ENABLE_GRAPHLCD
 	nGLCD::ShowVolume(false);
+#endif
 #endif
 	hideVolscale();
 }

@@ -417,7 +417,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.avsync = configfile.getInt32( "avsync", 1);
 
 #if HAVE_ARM_HARDWARE
-	g_settings.zappingmode = configfile.getInt32( "zappingmode", 0);
+	g_settings.zappingmode = configfile.getInt32( "zappingmode", 2);
 	g_settings.hdmi_colorimetry = configfile.getInt32("hdmi_colorimetry", HDMI_COLORIMETRY_AUTO);
 #endif
 

@@ -2373,6 +2373,8 @@ videomenu.videomode Videosystem
 videomenu.zappingmode Umschaltmodus
 videomenu.zappingmode_mute Schwarzes Bild
 videomenu.zappingmode_hold Standbild
+videomenu.zappingmode_mutetilllock Schwarzes Bild bis lock
+videomenu.zappingmode_holdtilllock Standbild bis lock
 webradio.head WebRadio
 webradio.xml WebRadio-Dateien
 webradio.xml.add Hinzufügen

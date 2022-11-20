@@ -2400,6 +2400,8 @@ const char *locale_real_names[] =
 	"videomenu.zappingmode",
 	"videomenu.zappingmode_mute",
 	"videomenu.zappingmode_hold",
+	"videomenu.zappingmode_mutetilllock",
+	"videomenu.zappingmode_holdtilllock",
 	"webradio.head",
 	"webradio.xml",
 	"webradio.xml.add",

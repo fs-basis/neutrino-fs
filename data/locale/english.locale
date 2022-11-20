@@ -2438,6 +2438,8 @@ videomenu.videomode Digital video mode
 videomenu.zappingmode Zap mode
 videomenu.zappingmode_mute Black screen
 videomenu.zappingmode_hold Hold screen
+videomenu.zappingmode_mutetilllock Black screen till locked
+videomenu.zappingmode_holdtilllock Hold screen till locked
 webradio.head WebRadio
 webradio.xml WebRadio Files
 webradio.xml.add Add

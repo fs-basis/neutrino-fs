@@ -113,7 +113,12 @@ const CMenuOptionChooser::keyval OPTIONS_OFF_ON_OPTIONS[OPTIONS_OFF_ON_OPTION_CO
 int CVfdSetup::showSetup()
 {
 	CMenuWidget *vfds = new CMenuWidget(LOCALE_MAINMENU_SETTINGS, NEUTRINO_ICON_LCD, width, MN_WIDGET_ID_VFDSETUP);
+
+#if BOXMODEL_E4HDULTRA
+	vfds->addIntroItems(LOCALE_LCDMENU_HEAD, NONEXISTANT_LOCALE, 0, false, false);
+#else
 	vfds->addIntroItems(LOCALE_LCDMENU_HEAD);
+#endif
 
 	CMenuForwarder * mf;
 

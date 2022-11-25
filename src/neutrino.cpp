@@ -622,8 +622,8 @@ if (g_info.hw_caps->can_shutdown)
 #else
 	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 0);
 #endif
-	g_settings.glcd_brightness = configfile.getInt32("glcd_brightness", 50);
-	g_settings.glcd_brightness_standby = configfile.getInt32("glcd_brightness_standby", 30);
+	g_settings.glcd_brightness = configfile.getInt32("glcd_brightness", 20);
+	g_settings.glcd_brightness_standby = configfile.getInt32("glcd_brightness_standby", 15);
 	g_settings.glcd_color_bar = configfile.getInt32("glcd_color_bar", GLCD::cColor::White);
 	g_settings.glcd_color_bg = configfile.getInt32("glcd_color_bg", GLCD::cColor::Black);
 	g_settings.glcd_color_fg = configfile.getInt32("glcd_color_fg", GLCD::cColor::White);

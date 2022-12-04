@@ -59,7 +59,6 @@ public:
 	enum // Neutrino's exit codes to be handled in it's start script
 	{
 		EXIT_ERROR = -1,
-//		EXIT_NORMAL = 0,	// g_info.hw_caps->can_shutdown == 0
 		EXIT_SHUTDOWN = 0,	// g_info.hw_caps->can_shutdown == 1
 		EXIT_REBOOT = 1
 	};
@@ -78,7 +77,6 @@ private:
 	int				mode;
 	int				lastMode;
 	bool				softupdate;
-//	bool				fromflash;
 	bool 				init_cec_setting;
 	int				lastChannelMode;
 	struct timeval                  standby_pressed_at;

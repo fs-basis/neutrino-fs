@@ -2007,7 +2007,6 @@ void CNeutrinoApp::CmdParser(int argc, char **argv)
 
 	sections_debug = 1;
 	softupdate = false;
-	//fromflash = false;
 
 	for(int x=1; x<argc; x++) {
 		if ((!strcmp(argv[x], "-u")) || (!strcmp(argv[x], "--enable-update"))) {
@@ -2015,10 +2014,6 @@ void CNeutrinoApp::CmdParser(int argc, char **argv)
 			softupdate = true;
 			allow_flash = 1;
 		}
-		/*else if ((!strcmp(argv[x], "-f")) || (!strcmp(argv[x], "--enable-flash"))) {
-			dprintf(DEBUG_NORMAL, "enable flash\n");
-			fromflash = true;
-		}*/
 		else if (((!strcmp(argv[x], "-v")) || (!strcmp(argv[x], "--verbose"))) && (x+1 < argc)) {
 			int dl = atoi(argv[x+ 1]);
 			dprintf(DEBUG_NORMAL, "set debuglevel: %d\n", dl);
@@ -3971,22 +3966,6 @@ void CNeutrinoApp::ExitRun(int exit_code)
 	}
 	if (!do_exiting)
 		return;
-
-#if 0
-	/*
-	   For compatibility: /tmp/.reboot is not really needed anymore
-	   if we use the defined exit code 2 instead of this flagfile.
-	   Next block is just to avoid force changes in start scripts.
-	*/
-	if (exit_code == CNeutrinoApp::EXIT_REBOOT)
-	{
-		exit_code = CNeutrinoApp::EXIT_NORMAL;
-		FILE *f = fopen("/tmp/.reboot", "w");
-		fclose(f);
-	}
-	else
-		unlink("/tmp/.reboot");
-#endif
 
 	printf("[neutrino] %s(int %d)\n", __func__, exit_code);
 	printf("[neutrino] hw_caps->can_shutdown: %d\n", g_info.hw_caps->can_shutdown);

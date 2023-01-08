@@ -64,7 +64,6 @@
 		<S i="304" t="5" on="85" s="192" frq="12460" n="TLC"/>
 		<S i="30" t="5" on="85" s="192" frq="12460" n="N24 DOKU"/>
 		<S i="2775" t="409" on="1" s="192" frq="10964" n="BILD HD"/>
-		<S i="332f" t="45b" on="1" s="192" frq="12663" n="Welt der Wunder"/>
 		<S i="32db" t="45d" on="1" s="192" frq="12692" n="RiC"/>
 		<S i="308" t="5" on="85" s="192" frq="12460" n="SIXX"/>
 		<S i="33" t="21" on="85" s="192" frq="12480" n="TELE 5"/>
@@ -251,15 +250,16 @@
 		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
 		<S i="fde" t="451" on="35" s="192" frq="12515" n="Radio Freundes-Dienst"/>
 		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
+		<S i="3174" t="459" on="1" s="192" frq="12633" n="HIT RADIO FFH"/>
+		<S i="3176" t="459" on="1" s="192" frq="12633" n="harmony.fm"/>
+		<S i="3175" t="459" on="1" s="192" frq="12633" n="planet radio"/>
 		<S i="6d6d" t="437" on="1" s="192" frq="11954" n="Dlf"/>
 		<S i="6d6c" t="437" on="1" s="192" frq="11954" n="Dlf Kultur"/>
 		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
 		<S i="6d6f" t="437" on="1" s="192" frq="11954" n="DRadio DokDeb"/>
 		<S i="ac" t="5" on="85" s="192" frq="12460" n="egoFM"/>
-		<S i="3174" t="459" on="1" s="192" frq="12633" n="HIT RADIO FFH"/>
 		<S i="316e" t="459" on="1" s="192" frq="12633" n="ffn"/>
 		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4"/>
-		<S i="3176" t="459" on="1" s="192" frq="12633" n="harmony.fm"/>
 		<S i="b1" t="5" on="85" s="192" frq="12460" n="JAM FM"/>
 		<S i="ad" t="5" on="85" s="192" frq="12460" n="Klassik Radio"/>
 		<S i="3341" t="45b" on="1" s="192" frq="12663" n="OE1"/>
@@ -274,7 +274,6 @@
 		<S i="3349" t="45b" on="1" s="192" frq="12663" n="OE2 V"/>
 		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W"/>
 		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3"/>
-		<S i="3175" t="459" on="1" s="192" frq="12633" n="planet radio"/>
 		<S i="3173" t="459" on="1" s="192" frq="12633" n="Radio Gloria"/>
 		<S i="3170" t="459" on="1" s="192" frq="12633" n="Radio HBR"/>
 		<S i="3171" t="459" on="1" s="192" frq="12633" n="Radio HCJB"/>

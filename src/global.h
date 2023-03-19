@@ -34,8 +34,8 @@
 #define NEUTRINO_SCAN_SETTINGS_FILE	ZAPITDIR "/scan.conf"
 
 #define COVERDIR_TMP	"/tmp/.cover"
+
 #define LOGODIR		ICONSDIR "/logo"
-#define LOGODIR_TMP	"/tmp/.logo"
 #define LOGODIR_VAR	ICONSDIR_VAR "/logo"
 
 // control scripts

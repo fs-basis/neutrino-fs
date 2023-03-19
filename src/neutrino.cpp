@@ -686,7 +686,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/mnt/nfs/plugins" );
 
 	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", LOGODIR );
-	g_settings.default_logo = configfile.getInt32( "default_logo", 0);
+	g_settings.default_logo = configfile.getInt32( "default_logo", 1);
 
 	g_settings.webtv_xml.clear();
 	int webtv_count = configfile.getInt32("webtv_xml_count", 0);

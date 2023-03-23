@@ -134,49 +134,45 @@
 	<Bouquet name="Sky">
 		<S i="7f" t="d" on="85" s="192" frq="11992" n="13th Street HD"/>
 		<S i="85" t="3" on="85" s="192" frq="11720" n="Beate Uhse HD"/>
-		<S i="1c" t="c" on="85" s="192" frq="12304" n="Boomerang"/>
 		<S i="194" t="b" on="85" s="192" frq="12382" n="Cartoon Network"/>
+		<S i="1c" t="c" on="85" s="192" frq="12304" n="Cartoonito"/>
+		<S i="7d" t="b" on="85" s="192" frq="12382" n="CNBC HD"/>
 		<S i="192" t="2" on="85" s="192" frq="11758" n="Crime + Investigation"/>
-		<S i="84" t="9" on="85" s="192" frq="11171" n="DAZN 1 HD"/>
+		<S i="31" t="d" on="85" s="192" frq="11992" n="Curiosity Channel powered by Spiegel"/>
+		<S i="84" t="8" on="85" s="192" frq="12070" n="DAZN 1 HD"/>
 		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>
-		<S i="6ffb" t="436" on="1" s="192" frq="11973" n="Nick.Jr."/>
-		<S i="1b" t="d" on="85" s="192" frq="11992" n="Nicktoons"/>
-		<S i="7c" t="c" on="85" s="192" frq="12304" n="Sky Replay HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
-		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV"/>
 		<S i="71" t="b" on="85" s="192" frq="12382" n="HISTORY Channel HD"/>
 		<S i="191" t="b" on="85" s="192" frq="12382" n="Jukebox"/>
 		<S i="a8" t="b" on="85" s="192" frq="12382" n="Motorvision TV"/>
-		<S i="10" t="3" on="85" s="192" frq="11720" n="Sky Documentaries HD"/>
-		<S i="f" t="2" on="85" s="192" frq="11758" n="Sky Nature HD"/>
-		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky One HD"/>
+		<S i="1b" t="d" on="85" s="192" frq="11992" n="Nicktoons"/>
+		<S i="155" t="3" on="85" s="192" frq="11720" n="Prime Video Sportsbar"/>
+		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV HD"/>
 		<S i="6e" t="d" on="85" s="192" frq="11992" n="Sky Atlantic HD"/>
-		<S i="a" t="4" on="85" s="192" frq="12032" n="Sky Cinema Premieren"/>
-		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren HD"/>
-		<S i="2b" t="d" on="85" s="192" frq="11992" n="Sky Cinema Premieren +24"/>
-		<S i="87" t="b" on="85" s="192" frq="12382" n="Sky Cinema Premieren +24 HD"/>
-		<S i="9" t="2" on="85" s="192" frq="11758" n="Sky Cinema Action"/>
-		<S i="74" t="9" on="85" s="192" frq="11171" n="Sky Cinema Action HD"/>
-		<S i="8" t="3" on="85" s="192" frq="11720" n="Sky Cinema Fun HD"/>
-		<S i="e" t="2" on="85" s="192" frq="11758" n="Sky Comedy HD"/>
-		<S i="197" t="4" on="85" s="192" frq="12032" n="Sky Cinema Family"/>
-		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
-		<S i="29" t="4" on="85" s="192" frq="12032" n="Sky Cinema Best Of"/>
+		<S i="74" t="3" on="85" s="192" frq="11720" n="Sky Cinema Action HD"/>
 		<S i="6b" t="c" on="85" s="192" frq="12304" n="Sky Cinema Best Of HD"/>
 		<S i="204" t="6" on="85" s="192" frq="11914" n="Sky Cinema Classics HD"/>
+		<S i="8b" t="2" on="85" s="192" frq="11758" n="Sky Cinema Family HD"/>
+		<S i="8" t="3" on="85" s="192" frq="11720" n="Sky Cinema Fun HD"/>
+		<S i="87" t="b" on="85" s="192" frq="12382" n="Sky Cinema Premieren +24 HD"/>
+		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren HD"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
-		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
+		<S i="e" t="2" on="85" s="192" frq="11758" n="Sky Comedy HD"/>
 		<S i="d" t="6" on="85" s="192" frq="11914" n="Sky Crime HD"/>
+		<S i="70" t="d" on="85" s="192" frq="11992" n="Sky Documentaries HD"/>
+		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>
+		<S i="76" t="6" on="85" s="192" frq="11914" n="Sky Nature HD"/>
+		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky One HD"/>
+		<S i="7c" t="c" on="85" s="192" frq="12304" n="Sky Replay HD"/>
 		<S i="8e" t="b" on="85" s="192" frq="12382" n="Sky Showcase HD"/>
 		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
-		<S i="31" t="d" on="85" s="192" frq="11992" n="Curiosity Channel powered by Spiegel"/>
 		<S i="7e" t="c" on="85" s="192" frq="12304" n="SYFY HD"/>
+		<S i="65" t="8" on="85" s="192" frq="12070" n="Universal TV HD"/>
 		<S i="88" t="b" on="85" s="192" frq="12382" n="Warner TV Comedy HD"/>
 		<S i="8c" t="4" on="85" s="192" frq="12032" n="Warner TV Film HD"/>
-		<S i="7b" t="9" on="85" s="192" frq="11171" n="Warner TV Serie HD"/>
-		<S i="65" t="9" on="85" s="192" frq="11171" n="Universal TV HD"/>
+		<S i="7b" t="8" on="85" s="192" frq="12070" n="Warner TV Serie HD"/>
 	</Bouquet>
 	<Bouquet name="ARD-Radio">
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>

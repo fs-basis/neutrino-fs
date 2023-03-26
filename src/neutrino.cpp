@@ -686,7 +686,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/mnt/nfs/plugins" );
 
 	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", LOGODIR );
-	g_settings.default_logo = configfile.getInt32( "default_logo", 1);
+	g_settings.default_logo = configfile.getInt32( "default_logo", 0);
 
 	g_settings.m3u_logo_hdd_dir = configfile.getString( "m3u_logo_hdd_dir", "/mnt/nfs/logos" );
 	g_settings.load_m3u_logos = configfile.getInt32( "load_m3u_logos", 0);

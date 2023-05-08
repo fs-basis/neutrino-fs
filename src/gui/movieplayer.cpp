@@ -1469,16 +1469,15 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 	if ((msg == CRCInput::RC_right) || msg == (neutrino_msg_t) g_settings.key_quickzap_up)
 	{
 		//printf("CMoviePlayerGui::%s: CRCInput::RC_right or g_settings.key_quickzap_up\n", __func__);
-		if (
 #ifdef ENABLE_LUA
-		isLuaPlay)
-#endif
+		if (isLuaPlay)
 		{
 			playstate = CMoviePlayerGui::STOPPED;
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_NEXT;
 			ClearQueue();
 		}
-		else if (!filelist.empty())
+#endif
+		if (!filelist.empty())
 		{
 			if (filelist_it < (filelist.end() - 1))
 			{
@@ -1499,16 +1498,16 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 	else if ((msg == CRCInput::RC_left) || msg == (neutrino_msg_t) g_settings.key_quickzap_down)
 	{
 		//printf("CMoviePlayerGui::%s: CRCInput::RC_left or g_settings.key_quickzap_down\n", __func__);
-		if (
+
 #ifdef ENABLE_LUA
-		isLuaPlay)
-#endif
+		if (isLuaPlay)
 		{
 			playstate = CMoviePlayerGui::STOPPED;
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_PREV;
 			ClearQueue();
 		}
-		else if (filelist.size() > 1)
+#endif
+		if (filelist.size() > 1)
 		{
 			if (filelist_it != filelist.begin())
 			{

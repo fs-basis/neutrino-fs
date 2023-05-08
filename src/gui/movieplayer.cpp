@@ -49,8 +49,10 @@
 #include <gui/plugins.h>
 #include <gui/videosettings.h>
 #include <gui/streaminfo.h>
+#ifdef ENABLE_LUA
 #include <gui/lua/luainstance.h>
 #include <gui/lua/lua_video.h>
+#endif
 #include <gui/screensaver.h>
 #include <driver/screenshot.h>
 #include <driver/volume.h>
@@ -259,8 +261,10 @@ void CMoviePlayerGui::Init(void)
 	vzap_it = filelist_it;
 	fromInfoviewer = false;
 	keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_NORMAL;
+#ifdef ENABLE_LUA
 	isLuaPlay = false;
 	haveLuaInfoFunc = false;
+#endif
 	blockedFromPlugin = false;
 
 	CScreenSaver::getInstance()->resetIdleTime();
@@ -407,6 +411,7 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 		is_file_player = true;
 		PlayFile();
 	}
+#ifdef ENABLE_LUA
 	else if (actionKey == "http_lua") {
 		isHTTP = true;
 		isLuaPlay = true;
@@ -414,6 +419,7 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 		PlayFile();
 		haveLuaInfoFunc = false;
 	}
+#endif
 	else {
 		return menu_return::RETURN_REPAINT;
 	}
@@ -603,7 +609,9 @@ void CMoviePlayerGui::ClearFlags()
 	isMovieBrowser = false;
 	isBookmark = false;
 	isHTTP = false;
+#ifdef ENABLE_LUA
 	isLuaPlay = false;
+#endif
 	isWebChannel = false;
 	is_file_player = false;
 	is_audio_player = false;
@@ -894,6 +902,7 @@ bool CMoviePlayerGui::sortStreamList(livestream_info_t info1, livestream_info_t 
 	return (info1.res1 < info2.res1);
 }
 
+#ifdef ENABLE_LUA
 bool CMoviePlayerGui::luaGetUrl(const std::string &script, const std::string &file, std::vector<livestream_info_t> &streamList)
 {
 	CHintBox* box = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_LIVESTREAM_READ_DATA));
@@ -1018,6 +1027,7 @@ bool CMoviePlayerGui::luaGetUrl(const std::string &script, const std::string &fi
 
 	return true;
 }
+#endif
 
 bool CMoviePlayerGui::selectLivestream(std::vector<livestream_info_t> &streamList, int res, livestream_info_t* info)
 {
@@ -1086,6 +1096,7 @@ bool CMoviePlayerGui::getLiveUrl(const std::string &url, const std::string &scri
 		}
 		_script = _s;
 	}
+#ifdef ENABLE_LUA
 	size_t pos = _script.find(".lua");
 	if (!file_exists(_script.c_str()) || (pos == std::string::npos) || (_script.length()-pos != 4)) {
 		printf(">>>>> [%s:%s:%d] script error\n", __file__, __func__, __LINE__);
@@ -1095,6 +1106,7 @@ bool CMoviePlayerGui::getLiveUrl(const std::string &url, const std::string &scri
 		printf(">>>>> [%s:%s:%d] lua script error\n", __file__, __func__, __LINE__);
 		return false;
 	}
+#endif
 
 	if (!selectLivestream(liveStreamList, g_settings.livestreamResolution, &info)) {
 		printf(">>>>> [%s:%s:%d] error selectLivestream\n", __file__, __func__, __LINE__);
@@ -1247,8 +1259,10 @@ void CMoviePlayerGui::PlayFile(void)
 	PlayFileStart();
 	PlayFileLoop();
 	bool repeat = (repeat_mode == REPEAT_OFF);
+#ifdef ENABLE_LUA
 	if (isLuaPlay)
 		repeat = (!blockedFromPlugin);
+#endif
 	PlayFileEnd(repeat);
 }
 
@@ -1455,7 +1469,10 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 	if ((msg == CRCInput::RC_right) || msg == (neutrino_msg_t) g_settings.key_quickzap_up)
 	{
 		//printf("CMoviePlayerGui::%s: CRCInput::RC_right or g_settings.key_quickzap_up\n", __func__);
-		if (isLuaPlay)
+		if (
+#ifdef ENABLE_LUA
+		isLuaPlay)
+#endif
 		{
 			playstate = CMoviePlayerGui::STOPPED;
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_NEXT;
@@ -1482,7 +1499,10 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 	else if ((msg == CRCInput::RC_left) || msg == (neutrino_msg_t) g_settings.key_quickzap_down)
 	{
 		//printf("CMoviePlayerGui::%s: CRCInput::RC_left or g_settings.key_quickzap_down\n", __func__);
-		if (isLuaPlay)
+		if (
+#ifdef ENABLE_LUA
+		isLuaPlay)
+#endif
 		{
 			playstate = CMoviePlayerGui::STOPPED;
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_PREV;

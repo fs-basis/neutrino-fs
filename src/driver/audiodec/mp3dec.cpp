@@ -2,7 +2,7 @@
 	Neutrino-GUI  -   DBoxII-Project
 
 	Copyright (C) 2002 Bjoern Kalkbrenner <terminar@cyberphoria.org>
-   (C) 2002,2003,2004 Zwen <Zwen@tuxbox.org>
+	(C) 2002,2003,2004 Zwen <Zwen@tuxbox.org>
 	Copyright (C) 2010-2011 Stefan Seyfried
 
 	libmad MP3 low-level core

@@ -1463,6 +1463,7 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_NEXT;
 			ClearQueue();
 		}
+		else
 #endif
 		if (!filelist.empty())
 		{
@@ -1493,6 +1494,7 @@ void CMoviePlayerGui::quickZap(neutrino_msg_t msg)
 			keyPressed = CMoviePlayerGui::PLUGIN_PLAYSTATE_PREV;
 			ClearQueue();
 		}
+		else
 #endif
 		if (filelist.size() > 1)
 		{

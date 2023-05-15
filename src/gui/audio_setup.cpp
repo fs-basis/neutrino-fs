@@ -85,7 +85,7 @@ int CAudioSetup::exec(CMenuTarget *parent, const std::string &actionKey)
 	return res;
 }
 
-#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
+#if HAVE_SH4_HARDWARE || BOXMODEL_HD51
 #define AUDIOMENU_ANALOGOUT_OPTION_COUNT 3
 const CMenuOptionChooser::keyval AUDIOMENU_ANALOGOUT_OPTIONS[AUDIOMENU_ANALOGOUT_OPTION_COUNT] =
 {
@@ -119,7 +119,7 @@ int CAudioSetup::showAudioSetup()
 	//menue init
 	CMenuWidget *audioSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS, width);
 	audioSettings->setSelected(selected);
-#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
+#if HAVE_SH4_HARDWARE || BOXMODEL_HD51
 	//analog modes (stereo, mono l/r...)
 	CMenuOptionChooser *as_oj_analogmode 	= new CMenuOptionChooser(LOCALE_AUDIOMENU_ANALOG_MODE, &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier);
 	as_oj_analogmode->setHint("", LOCALE_MENU_HINT_AUDIO_ANALOG_MODE);
@@ -134,7 +134,7 @@ int CAudioSetup::showAudioSetup()
 
 	CMenuOptionChooser *as_oj_dts = new CMenuOptionChooser(LOCALE_AUDIOMENU_DTS, &g_settings.dts_pass, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, audioSetupNotifier);
 	as_oj_dts->setHint("", LOCALE_MENU_HINT_AUDIO_DTS);
-#else
+#elif HAVE_SH4_HARDWARE
 	//dd via hdmi
 	CMenuOptionChooser *as_oj_dd_hdmi = NULL;
 	if (g_info.hw_caps->has_HDMI)
@@ -184,7 +184,7 @@ int CAudioSetup::showAudioSetup()
 	//paint items
 	audioSettings->addIntroItems(LOCALE_MAINSETTINGS_AUDIO);
 	//---------------------------------------------------------
-#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
+#if HAVE_SH4_HARDWARE || BOXMODEL_HD51
 	audioSettings->addItem(as_oj_analogmode);
 	audioSettings->addItem(GenericMenuSeparatorLine);
 	//---------------------------------------------------------
@@ -192,7 +192,7 @@ int CAudioSetup::showAudioSetup()
 #if HAVE_ARM_HARDWARE
 	audioSettings->addItem(as_oj_ac3);
 	audioSettings->addItem(as_oj_dts);
-#else
+#elif HAVE_SH4_HARDWARE
 	if (g_info.hw_caps->has_HDMI)
 		audioSettings->addItem(as_oj_dd_hdmi);
 	audioSettings->addItem(as_oj_dd_spdif);

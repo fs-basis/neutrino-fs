@@ -309,7 +309,7 @@ bool CAudioSetupNotifier::changeNotify(const neutrino_locale_t OptionName, void 
 #endif
 {
 	//printf("notify: %d\n", OptionName);
-#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
+#if HAVE_SH4_HARDWARE || BOXMODEL_HD51
 	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_AUDIOMENU_ANALOG_MODE))
 	{
 		g_Zapit->setAudioMode(g_settings.audio_AnalogMode);

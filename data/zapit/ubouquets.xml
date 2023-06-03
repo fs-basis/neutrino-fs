@@ -70,6 +70,7 @@
 		<S i="701" t="5" on="85" s="192" frq="12460" n="Disney Channel"/>
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
 		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
+		<S i="290f" t="45e" on="1" s="192" frq="12699" n="Crime Time"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
@@ -143,7 +144,7 @@
 		<S i="1c" t="c" on="85" s="192" frq="12304" n="Cartoonito"/>
 		<S i="7d" t="b" on="85" s="192" frq="12382" n="CNBC HD"/>
 		<S i="192" t="2" on="85" s="192" frq="11758" n="Crime + Investigation"/>
-		<S i="31" t="d" on="85" s="192" frq="11992" n="Curiosity Channel powered by Spiegel"/>
+		<S i="31" t="d" on="85" s="192" frq="11992" n="Curiosity Channel"/>
 		<S i="84" t="8" on="85" s="192" frq="12070" n="DAZN 1 HD"/>
 		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>

@@ -24,7 +24,7 @@ nicht gespeichert werden.
 
 CLastChannel::CLastChannel(void)
 	: secs_diff_before_store(3)
-	, maxSize(11)
+	, maxSize(22)
 	, shallRemoveEqualChannel(true)
 {
 }

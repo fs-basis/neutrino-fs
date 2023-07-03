@@ -259,6 +259,10 @@ CNeutrinoApp::CNeutrinoApp()
 	channels_init		= false;
 	channelList_allowed	= true;
 	channelList_painted	= false;
+
+	// remove standby flag
+	if (access("/tmp/.standby", F_OK) == 0)
+		unlink("/tmp/.standby");
 }
 
 /*-------------------------------------------------------------------------------------

@@ -144,7 +144,6 @@
 		<S i="1c" t="c" on="85" s="192" frq="12304" n="Cartoonito"/>
 		<S i="7d" t="b" on="85" s="192" frq="12382" n="CNBC HD"/>
 		<S i="192" t="2" on="85" s="192" frq="11758" n="Crime + Investigation"/>
-		<S i="31" t="d" on="85" s="192" frq="11992" n="Curiosity Channel"/>
 		<S i="84" t="8" on="85" s="192" frq="12070" n="DAZN 1 HD"/>
 		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>
@@ -173,7 +172,6 @@
 		<S i="93" t="2" on="85" s="192" frq="11758" n="Sky One HD"/>
 		<S i="7c" t="c" on="85" s="192" frq="12304" n="Sky Replay HD"/>
 		<S i="8e" t="b" on="85" s="192" frq="12382" n="Sky Showcase HD"/>
-		<S i="89" t="10" on="85" s="192" frq="11798" n="Spiegel Geschichte HD"/>
 		<S i="7e" t="c" on="85" s="192" frq="12304" n="SYFY HD"/>
 		<S i="65" t="8" on="85" s="192" frq="12070" n="Universal TV HD"/>
 		<S i="88" t="b" on="85" s="192" frq="12382" n="Warner TV Comedy HD"/>

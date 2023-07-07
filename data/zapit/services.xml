@@ -686,7 +686,6 @@
 		</TS>
 		<TS id="0010" on="0085" frq="11798000" inv="2" sr="27500000" fec="11" pol="0" mod="0" sys="1">
 			<S i="007a" n="DAZN 2 HD" t="19" s="1" num="136" f="4"/>
-			<S i="0089" n="Spiegel Geschichte HD" t="19" s="1" num="163" f="4"/>
 			<S i="0151" n="Sky Sport Bundesliga 8 HD" t="19" s="1" num="1036" f="4"/>
 			<S i="0152" n="Sky Sport 8 HD" t="19" s="1" num="1019" f="4"/>
 			<S i="0156" n="Sky Sport Austria 6 HD" t="19" s="1" num="1026" f="4"/>
@@ -814,7 +813,6 @@
 		</TS>
 		<TS id="000d" on="0085" frq="11992000" inv="2" sr="27500000" fec="11" pol="0" mod="0" sys="1">
 			<S i="001b" n="Nicktoons" t="16" s="1" num="142" f="4"/>
-			<S i="0031" n="Curiosity Channel" t="16" s="1" num="134" f="4"/>
 			<S i="006e" n="Sky Atlantic HD" t="19" s="1" num="145" f="4"/>
 			<S i="006f" n="Sky Cinema Special HD" t="19" s="1" num="153" f="4"/>
 			<S i="0070" n="Sky Documentaries HD" t="19" s="1" num="157" f="4"/>

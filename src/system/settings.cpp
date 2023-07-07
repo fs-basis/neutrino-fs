@@ -112,7 +112,7 @@ const struct personalize_settings_t personalize_settings[SNeutrinoSettings::P_SE
 	{"personalize_usermenu_plugin_type_games"	, true},
 	{"personalize_usermenu_plugin_type_tools"	, true},
 	{"personalize_usermenu_plugin_type_scripts"	, true},
-	{"personalize_usermenu_plugin_type_lua"		, true},
+	{"personalize_usermenu_plugin_type_lua"		, true}
 };
 
 CScanSettings::CScanSettings(void)

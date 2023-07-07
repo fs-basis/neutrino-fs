@@ -74,7 +74,6 @@ struct NeutrinoMessages {
 		SHOW_MAINMENU           =       CRCInput::RC_Messages + 25,
 		LEAVE_ALL               =       CRCInput::RC_Messages + 26,
 
-
 		EVT_VOLCHANGED                           = CRCInput::RC_Events + 1,
 		EVT_MUTECHANGED                          = CRCInput::RC_Events + 2,
 		EVT_MODECHANGED                          = CRCInput::RC_Events + 4,

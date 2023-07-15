@@ -866,12 +866,21 @@ void* CMoviePlayerGui::bgPlayThread(void *arg)
 	mutex.unlock();
 
 	while(webtv_started) {
-		if (mp->playback->GetPosition(mp->position, mp->duration)) {
+		if (mp->playback->GetPosition(mp->position, mp->duration, mp->isWebChannel)) {
 			if (pos == mp->position)
-				eof++;
+				if (mp->isWebChannel)
+				{
+					if (eof == 5)
+						eof = 6;
+					else
+						eof = 5;
+				}
+				else
+					eof++;
 			else
 				eof = 0;
-			if (eof > 2) {
+
+			if (eof > 5) {
 				printf("CMoviePlayerGui::bgPlayThread: playback stopped, try to rezap...\n");
 				g_RCInput->postMsg(NeutrinoMessages::EVT_WEBTV_ZAP_COMPLETE, (neutrino_msg_data_t) chid);
 				chidused = true;
@@ -1378,7 +1387,7 @@ bool CMoviePlayerGui::PlayFileStart(void)
 				towait = 20;
 			}
 			for(i = 0; i < cnt; i++) {
-				playback->GetPosition(position, duration);
+				playback->GetPosition(position, duration, isWebChannel);
 				startposition = (duration - position);
 
 				//printf("CMoviePlayerGui::PlayFile: waiting for data, position %d duration %d (%d), start %d\n", position, duration, towait, startposition);
@@ -1543,7 +1552,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 		}
 
 		if ((playstate >= CMoviePlayerGui::PLAY) && (timeshift != TSHIFT_MODE_OFF || (playstate != CMoviePlayerGui::PAUSE))) {
-			if (playback->GetPosition(position, duration)) {
+			if (playback->GetPosition(position, duration, isWebChannel)) {
 				FileTimeOSD->update(position, duration);
 				if (duration > 100)
 					file_prozent = (unsigned char) (position / (duration / 100));
@@ -1844,7 +1853,7 @@ void CMoviePlayerGui::PlayFileLoop(void)
 			handleMovieBrowser(CRCInput::RC_0, position);
 		} else if (msg == (neutrino_msg_t) g_settings.mpkey_goto) {
 			bool cancel = true;
-			playback->GetPosition(position, duration);
+			playback->GetPosition(position, duration, isWebChannel);
 			int ss = position/1000;
 			int hh = ss/3600;
 			ss -= hh * 3600;
@@ -2496,7 +2505,7 @@ void CMoviePlayerGui::UpdatePosition()
 		if (cnt > 5)
 			break;
 	}
-	while (!playback->GetPosition(position, duration));
+	while (!playback->GetPosition(position, duration, isWebChannel));
 
 	if (duration > 100)
 		file_prozent = (unsigned char) (position / (duration / 100));

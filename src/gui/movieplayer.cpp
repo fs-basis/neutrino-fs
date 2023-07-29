@@ -865,12 +865,15 @@ void* CMoviePlayerGui::bgPlayThread(void *arg)
 	mutex.unlock();
 
 	int eof = 0, pos = 0;
-	int eof_max = mp->isWebChannel ? 1 : 5;
+	int eof_max = mp->isWebChannel ? g_settings.eof_cnt : 5;
 
 	while(webtv_started) {
 		if (mp->playback->GetPosition(mp->position, mp->duration, mp->isWebChannel)) {
 			if (pos == mp->position)
+			{
 				eof++;
+				printf("CMoviePlayerGui::bgPlayThread: eof counter: %d\n", eof);
+			}
 			else
 				eof = 0;
 

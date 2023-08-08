@@ -837,7 +837,7 @@ void CLCD::ShowText(const char *str, bool update_timestamp)
 			last_display += (len - g_info.hw_caps->display_xres) / 5;
 	}
 }
-
+#endif
 void CLCD::setEPGTitle(const std::string)
 {
 }

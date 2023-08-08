@@ -818,6 +818,9 @@ void CLCD::ShowIcon(fp_icon i, bool on)
 
 void CLCD::ShowText(const char *str, bool update_timestamp)
 {
+#if BOXMODEL_E4HDULTRA
+	return;
+#else
 	int fd = dev_open();
 	int len = strlen(str);
 	if (fd < 0)

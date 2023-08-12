@@ -871,6 +871,7 @@ void nGLCD::Run(void)
 					else
 						Epg = g_InfoViewer->get_livestreamInfo1();
 					EpgWidth = font_epg.Width(Epg);
+#if 0 // FIXME: scroll problem, high load
 					doScrollEpg = EpgWidth > bitmap->Width() - 4;
 					scrollEpgForward = true;
 					scrollEpgSkip = 0;
@@ -880,6 +881,7 @@ void nGLCD::Run(void)
 						EpgWidth += scrollEpgOffset;
 					}
 					else
+#endif
 						scrollEpgOffset = 0;
 				}
 

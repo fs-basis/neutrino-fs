@@ -614,11 +614,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.widget_fade           = configfile.getBool("widget_fade"          , false );
 
 #ifdef ENABLE_GRAPHLCD
-#if BOXMODEL_E4HDULTRA
-	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 1);
-#else
 	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 0);
-#endif
 	g_settings.glcd_brightness = configfile.getInt32("glcd_brightness", 20);
 	g_settings.glcd_brightness_standby = configfile.getInt32("glcd_brightness_standby", 15);
 	g_settings.glcd_color_bar = configfile.getInt32("glcd_color_bar", GLCD::cColor::White);
@@ -633,7 +629,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.glcd_percent_logo = configfile.getInt32("glcd_percent_logo", 50);
 	g_settings.glcd_percent_time = configfile.getInt32("glcd_percent_time", 40);
 	g_settings.glcd_percent_time_standby = configfile.getInt32("glcd_percent_time_standby", 50);
-	g_settings.glcd_scroll_speed = configfile.getInt32("glcd_scroll_speed", 2);
+	g_settings.glcd_scroll_speed = configfile.getInt32("glcd_scroll_speed", 1);
 	g_settings.glcd_selected_config = configfile.getInt32("glcd_selected_config", 0);
 	g_settings.glcd_show_logo = configfile.getInt32("glcd_show_logo", 0);
 	g_settings.glcd_time_in_standby = configfile.getInt32("glcd_time_in_standby", 1);

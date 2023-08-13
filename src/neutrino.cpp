@@ -353,11 +353,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	CThemes::getTheme(configfile);
 
 #ifdef ENABLE_LCD4LINUX
-#ifdef ENABLE_FS
-	g_settings.lcd4l_support = configfile.getInt32("lcd4l_support" , 2);
-#else
 	g_settings.lcd4l_support = configfile.getInt32("lcd4l_support" , 0);
-#endif // enable fs
+#endif
 	g_settings.lcd4l_logodir = configfile.getString("lcd4l_logodir", "/swap/lcd_logos");
 	g_settings.lcd4l_dpf_type = configfile.getInt32("lcd4l_dpf_type", 1);
 	g_settings.lcd4l_skin = configfile.getInt32("lcd4l_skin" , 1);
@@ -375,11 +372,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		vid_Mode_default = VIDEO_STD_PAL;
 	g_settings.video_Mode = configfile.getInt32("video_Mode", vid_Mode_default);
 #endif
-#if ENABLE_FS && BOXMODEL_E4HDULTRA
-	g_settings.video_Mode = configfile.getInt32("video_Mode", VIDEO_STD_2160P50);
-#else
 	g_settings.video_Mode = configfile.getInt32("video_Mode", VIDEO_STD_1080P50);
-#endif // enable fs
 
 
 #if HAVE_SH4_HARDWARE
@@ -1064,12 +1057,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.infoClockBackground = configfile.getInt32("infoClockBackground", 1);
 	g_settings.infoClockFontSize = configfile.getInt32("infoClockFontSize", 30);
 	g_settings.infoClockSeconds = configfile.getInt32("infoClockSeconds", 1);
-
-#if ENABLE_FS && BOXMODEL_E4HDULTRA
-	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 3840);
-#else
 	g_settings.livestreamResolution = configfile.getInt32("livestreamResolution", 1920);
-#endif // enable fs
 	g_settings.livestreamScriptPath = configfile.getString("livestreamScriptPath", WEBSCRIPTS);
 
 	if (!erg)

@@ -628,6 +628,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.glcd_percent_logo = configfile.getInt32("glcd_percent_logo", 50);
 	g_settings.glcd_percent_time = configfile.getInt32("glcd_percent_time", 40);
 	g_settings.glcd_percent_time_standby = configfile.getInt32("glcd_percent_time_standby", 50);
+	g_settings.glcd_scroll = configfile.getInt32("glcd_scroll", 0);
 	g_settings.glcd_scroll_speed = configfile.getInt32("glcd_scroll_speed", 1);
 	g_settings.glcd_selected_config = configfile.getInt32("glcd_selected_config", 0);
 	g_settings.glcd_show_logo = configfile.getInt32("glcd_show_logo", 0);
@@ -1382,6 +1383,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setString("glcd_font", g_settings.glcd_font);
 	configfile.setInt32("glcd_brightness", g_settings.glcd_brightness);
 	configfile.setInt32("glcd_brightness_standby", g_settings.glcd_brightness_standby);
+	configfile.setInt32("glcd_scroll", g_settings.glcd_scroll);
 	configfile.setInt32("glcd_scroll_speed", g_settings.glcd_scroll_speed);
 	configfile.setInt32("glcd_selected_config", g_settings.glcd_selected_config);
 #endif

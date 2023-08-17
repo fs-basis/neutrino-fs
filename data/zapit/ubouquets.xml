@@ -145,7 +145,7 @@
 		<S i="7d" t="b" on="85" s="192" frq="12382" n="CNBC HD"/>
 		<S i="192" t="2" on="85" s="192" frq="11758" n="Crime + Investigation"/>
 		<S i="84" t="8" on="85" s="192" frq="12070" n="DAZN 1 HD"/>
-		<S i="7a" t="10" on="85" s="192" frq="11798" n="DAZN 2 HD"/>
+		<S i="7a" t="8" on="85" s="192" frq="12070" n="DAZN 2 HD"/>
 		<S i="82" t="6" on="85" s="192" frq="11914" n="Discovery HD"/>
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
 		<S i="71" t="b" on="85" s="192" frq="12382" n="HISTORY Channel HD"/>

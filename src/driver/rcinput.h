@@ -341,5 +341,4 @@ class CRCInput
 		void setKeyRepeatDelay(unsigned int start_ms, unsigned int repeat_ms);
 };
 
-
 #endif

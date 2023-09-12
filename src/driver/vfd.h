@@ -177,5 +177,4 @@ class CVFD
 		}
 };
 
-
 #endif

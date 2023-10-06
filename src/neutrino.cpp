@@ -4804,7 +4804,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	}
 
 	//rc-key configuration
-	g_settings.key_tvradio_mode = tconfig->getInt32( "key_tvradio_mode", (unsigned int)CRCInput::RC_nokey );
+	g_settings.key_tvradio_mode = tconfig->getInt32( "key_tvradio_mode", CRCInput::RC_nokey );
 	g_settings.key_power_off = tconfig->getInt32( "key_power_off", CRCInput::RC_standby );
 
 	g_settings.key_pageup = tconfig->getInt32( "key_channelList_pageup",  CRCInput::RC_page_up );
@@ -4813,8 +4813,8 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_channelList_addrecord = tconfig->getInt32( "key_channelList_addrecord",  CRCInput::RC_red );
 	g_settings.key_channelList_addremind = tconfig->getInt32( "key_channelList_addremind",  CRCInput::RC_yellow );
 
-	g_settings.key_list_start = tconfig->getInt32( "key_list_start", (unsigned int)CRCInput::RC_nokey );
-	g_settings.key_list_end = tconfig->getInt32( "key_list_end", (unsigned int)CRCInput::RC_nokey );
+	g_settings.key_list_start = tconfig->getInt32( "key_list_start", CRCInput::RC_nokey );
+	g_settings.key_list_end = tconfig->getInt32( "key_list_end", CRCInput::RC_nokey );
 #if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
 	g_settings.key_timeshift = tconfig->getInt32( "key_timeshift", CRCInput::RC_playpause_long ); // FIXME
 #else
@@ -4826,7 +4826,7 @@ void CNeutrinoApp::loadKeys(const char * fname)
 #if defined (BOXMODEL_UFS912) || defined (BOXMODEL_UFS913)
 	g_settings.key_screenshot = tconfig->getInt32( "key_screenshot", CRCInput::RC_media);
 #else
-	g_settings.key_screenshot = tconfig->getInt32( "key_screenshot", (unsigned int)CRCInput::RC_nokey );
+	g_settings.key_screenshot = tconfig->getInt32( "key_screenshot", CRCInput::RC_nokey );
 #endif
 
 #ifdef ENABLE_PIP

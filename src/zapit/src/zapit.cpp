@@ -136,6 +136,7 @@ CZapit::CZapit()
 		pip_fe[i] = NULL;
 	}
 #endif
+}
 
 CZapit::~CZapit()
 {

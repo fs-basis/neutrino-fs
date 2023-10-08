@@ -118,7 +118,7 @@
 		<S i="14bd" t="407" on="1" s="192" frq="11671" n="sixx AUSTRIA"/>
 		<S i="1331" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Oesterreich"/>
 		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
-		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Deutschland"/>
+		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Black"/>
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
 		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
 		<S i="1013" t="451" on="35" s="192" frq="12515" n="Bergblick"/>
@@ -229,7 +229,7 @@
 		<S i="28d9" t="40f" on="1" s="192" frq="11053" n="1LIVE diGGi"/>
 		<S i="28d8" t="40f" on="1" s="192" frq="11053" n="COSMO"/>
 		<S i="28da" t="40f" on="1" s="192" frq="11053" n="Die Maus"/>
-		<S i="28d4" t="40f" on="1" s="192" frq="11053" n="WDR 2 Rheinland"/>
+		<S i="28d4" t="40f" on="1" s="192" frq="11053" n="WDR 2"/>
 		<S i="28d5" t="40f" on="1" s="192" frq="11053" n="WDR 3"/>
 		<S i="28d6" t="40f" on="1" s="192" frq="11053" n="WDR 4"/>
 		<S i="28d7" t="40f" on="1" s="192" frq="11053" n="WDR 5"/>

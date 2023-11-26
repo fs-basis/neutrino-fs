@@ -99,6 +99,17 @@
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
 		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
+		<S i="296b" t="45a" on="1" s="192" frq="12640" n="Deluxe Dance by Kontor HD"/>
+		<S i="296c" t="45a" on="1" s="192" frq="12640" n="Deluxe Flashback HD"/>
+		<S i="29d2" t="45c" on="1" s="192" frq="12670" n="Deluxe Lounge HD"/>
+		<S i="296f" t="45a" on="1" s="192" frq="12640" n="Deluxe Rap HD"/>
+		<S i="296e" t="45a" on="1" s="192" frq="12640" n="Deluxe Rock HD"/>
+		<S i="296a" t="45a" on="1" s="192" frq="12640" n="Hip Trips HD"/>
+		<S i="296d" t="45a" on="1" s="192" frq="12640" n="Just Cooking HD"/>
+		<S i="29cc" t="45c" on="1" s="192" frq="12670" n="Just Fishing HD"/>
+		<S i="2968" t="45a" on="1" s="192" frq="12640" n="One Terra HD"/>
+		<S i="29d3" t="45c" on="1" s="192" frq="12670" n="Red Adventure HD"/>
+		<S i="29d1" t="45c" on="1" s="192" frq="12670" n="SERIEN + HD"/>
 	</Bouquet>
 	<Bouquet name="Östereich">
 		<S i="132f" t="3ef" on="1" s="192" frq="11303" n="ORF1 HD"/>
@@ -116,7 +127,6 @@
 		<S i="14bd" t="407" on="1" s="192" frq="11671" n="sixx AUSTRIA"/>
 		<S i="1331" t="3ef" on="1" s="192" frq="11303" n="ServusTV HD Oesterreich"/>
 		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
-		<S i="101d" t="451" on="35" s="192" frq="12515" n="AXN Black"/>
 		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
 		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
 		<S i="1013" t="451" on="35" s="192" frq="12515" n="Bergblick"/>
@@ -148,7 +158,7 @@
 		<S i="16" t="2" on="85" s="192" frq="11758" n="Heimatkanal"/>
 		<S i="71" t="b" on="85" s="192" frq="12382" n="HISTORY Channel HD"/>
 		<S i="191" t="b" on="85" s="192" frq="12382" n="Jukebox"/>
-		<S i="a8" t="b" on="85" s="192" frq="12382" n="Motorvision TV"/>
+		<S i="a8" t="b" on="85" s="192" frq="12382" n="Motorvision+"/>
 		<S i="1b" t="d" on="85" s="192" frq="11992" n="Nicktoons"/>
 		<S i="155" t="3" on="85" s="192" frq="11720" n="Prime Video Sportsbar"/>
 		<S i="206" t="2" on="85" s="192" frq="11758" n="Romance TV HD"/>
@@ -162,7 +172,6 @@
 		<S i="83" t="6" on="85" s="192" frq="11914" n="Sky Cinema Premieren HD"/>
 		<S i="6f" t="d" on="85" s="192" frq="11992" n="Sky Cinema Special HD"/>
 		<S i="b" t="4" on="85" s="192" frq="12032" n="Sky Cinema Thriller HD"/>
-		<S i="e" t="2" on="85" s="192" frq="11758" n="Sky Comedy HD"/>
 		<S i="d" t="6" on="85" s="192" frq="11914" n="Sky Crime HD"/>
 		<S i="70" t="d" on="85" s="192" frq="11992" n="Sky Documentaries HD"/>
 		<S i="17" t="4" on="85" s="192" frq="12032" n="Sky Krimi HD"/>

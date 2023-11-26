@@ -15,15 +15,16 @@ checkNextTimer() {
 		[ $T -lt $TIMER ] && TIMER=$T
 	done
 
-	if [ $(( $TIMER - `date +%s` )) -gt $(( $VSTART * 3)) ]; then
-		[ -e /var/etc/.timer_wake_up ] && rm -f /var/etc/.timer_wake_up
-		echo ">>> Fertig <<<" > $CVFD
-		msgbox title="Herunterfahren" msg="Timer beendet, Box herunterfahren?" select="Ja,Nein" timeout=30
-		[ $? == 0 -o $? == 1 ] && killall neutrino
+#	if [ $(( $TIMER - `date +%s` )) -gt $(( $VSTART * 3)) ]; then
+#		[ -e /var/etc/.timer_wake_up ] && rm -f /var/etc/.timer_wake_up
+#		echo ">>> Fertig <<<" > $CVFD
+#		msgbox title="Herunterfahren" msg="Timer beendet, Box herunterfahren?" select="Ja,Nein" timeout=30
+#		[ $? == 0 -o $? == 1 ] && killall neutrino
 #	else
 #		echo "Wait for next Timer" > $CVFD
 #		/usr/bin/pzapit -rz
-	fi
+#	fi
+
 }
 [ -e /tmp/.timer_record ] && rm -f /tmp/.timer_record
 if [ -e /var/etc/.timer_wake_up ]; then

@@ -68,12 +68,20 @@
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
 		<S i="290f" t="45e" on="1" s="192" frq="12699" n="Crime Time"/>
 		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV"/>
+		<S i="290f" t="45e" on="1" s="192" frq="12699" n="Crime Time"/>
 		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
 		<S i="2909" t="45e" on="1" s="192" frq="12699" n="Deluxe Dance by Kontor"/>
 		<S i="290a" t="45e" on="1" s="192" frq="12699" n="Deluxe Flashback"/>
 		<S i="290d" t="45e" on="1" s="192" frq="12699" n="Deluxe Lounge"/>
 		<S i="2908" t="45e" on="1" s="192" frq="12699" n="Deluxe Rap"/>
 		<S i="2907" t="45e" on="1" s="192" frq="12699" n="Deluxe Rock"/>
+		<S i="2905" t="45e" on="1" s="192" frq="12699" n="Hip Trips"/>
+		<S i="290b" t="45e" on="1" s="192" frq="12699" n="Just Cooking"/>
+		<S i="290c" t="45e" on="1" s="192" frq="12699" n="Just Fishing"/>
+		<S i="2906" t="45e" on="1" s="192" frq="12699" n="One Terra"/>
+		<S i="290e" t="45e" on="1" s="192" frq="12699" n="Red Adventure"/>
+		<S i="2910" t="45e" on="1" s="192" frq="12699" n="SERIEN+"/>
+		<S i="2904" t="45e" on="1" s="192" frq="12699" n="Xplore"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
 	</Bouquet>
@@ -102,8 +110,8 @@
 		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
 		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
 		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
-		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
 		<S i="2777" t="409" on="1" s="192" frq="10964" n="MTV HD"/>
+		<S i="29d0" t="45c" on="1" s="192" frq="12670" n="Crime Time HD"/>
 		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>
 		<S i="296b" t="45a" on="1" s="192" frq="12640" n="Deluxe Dance by Kontor HD"/>
 		<S i="296c" t="45a" on="1" s="192" frq="12640" n="Deluxe Flashback HD"/>
@@ -115,10 +123,11 @@
 		<S i="29cc" t="45c" on="1" s="192" frq="12670" n="Just Fishing HD"/>
 		<S i="2968" t="45a" on="1" s="192" frq="12640" n="One Terra HD"/>
 		<S i="29d3" t="45c" on="1" s="192" frq="12670" n="Red Adventure HD"/>
-		<S i="2969" t="45a" on="1" s="192" frq="12640" n="Xplore HD"/>
 		<S i="29d1" t="45c" on="1" s="192" frq="12670" n="SERIEN + HD"/>
+		<S i="2969" t="45a" on="1" s="192" frq="12640" n="Xplore HD"/>
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
 		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
+		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
 	</Bouquet>
 	<Bouquet name="Östereich">
 		<S i="132f" t="3ef" on="1" s="192" frq="11303" n="ORF1 HD"/>

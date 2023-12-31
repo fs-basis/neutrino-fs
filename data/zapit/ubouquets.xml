@@ -66,22 +66,8 @@
 		<S i="33" t="21" on="85" s="192" frq="12480" n="TELE 5"/>
 		<S i="701" t="5" on="85" s="192" frq="12460" n="Disney Channel"/>
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
-		<S i="290f" t="45e" on="1" s="192" frq="12699" n="Crime Time"/>
 		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV"/>
-		<S i="290f" t="45e" on="1" s="192" frq="12699" n="Crime Time"/>
 		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
-		<S i="2909" t="45e" on="1" s="192" frq="12699" n="Deluxe Dance by Kontor"/>
-		<S i="290a" t="45e" on="1" s="192" frq="12699" n="Deluxe Flashback"/>
-		<S i="290d" t="45e" on="1" s="192" frq="12699" n="Deluxe Lounge"/>
-		<S i="2908" t="45e" on="1" s="192" frq="12699" n="Deluxe Rap"/>
-		<S i="2907" t="45e" on="1" s="192" frq="12699" n="Deluxe Rock"/>
-		<S i="2905" t="45e" on="1" s="192" frq="12699" n="Hip Trips"/>
-		<S i="290b" t="45e" on="1" s="192" frq="12699" n="Just Cooking"/>
-		<S i="290c" t="45e" on="1" s="192" frq="12699" n="Just Fishing"/>
-		<S i="2906" t="45e" on="1" s="192" frq="12699" n="One Terra"/>
-		<S i="290e" t="45e" on="1" s="192" frq="12699" n="Red Adventure"/>
-		<S i="2910" t="45e" on="1" s="192" frq="12699" n="SERIEN+"/>
-		<S i="2904" t="45e" on="1" s="192" frq="12699" n="Xplore"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
 	</Bouquet>

@@ -95,7 +95,6 @@
 		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>
 		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
 		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
-		<S i="1392" t="3ea" on="1" s="192" frq="11229" n="INSIGHT TV HD"/>
 		<S i="2777" t="409" on="1" s="192" frq="10964" n="MTV HD"/>
 		<S i="29d0" t="45c" on="1" s="192" frq="12670" n="Crime Time HD"/>
 		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>
@@ -290,6 +289,7 @@
 		<S i="3174" t="459" on="1" s="192" frq="12633" n="HIT RADIO FFH"/>
 		<S i="3176" t="459" on="1" s="192" frq="12633" n="harmony.fm"/>
 		<S i="3175" t="459" on="1" s="192" frq="12633" n="planet radio"/>
+		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
 		<S i="6d6d" t="437" on="1" s="192" frq="11954" n="Dlf"/>
 		<S i="6d6c" t="437" on="1" s="192" frq="11954" n="Dlf Kultur"/>
 		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
@@ -321,7 +321,6 @@
 		<S i="7598" t="422" on="1" s="192" frq="10847" n="TEST RA ESP"/>
 		<S i="a0" t="7" on="85" s="192" frq="12148" n="ROCK ANTENNE"/>
 		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>
-		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
 		<S i="a9" t="7" on="85" s="192" frq="12148" n="sunshine live"/>
 		<S i="aa" t="7" on="85" s="192" frq="12148" n="ANTENNE BAYERN"/>
 	</Bouquet>

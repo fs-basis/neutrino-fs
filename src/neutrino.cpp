@@ -2508,8 +2508,8 @@ TIMER_STOP("################################## after all #######################
 
 	xmltv_xml_readepg();
 	xmltv_xml_auto_readepg();
-#if 0 // Box nicht definiert
-#if ENABLE_PIP && BOXMODEL_E4HDULTRA
+
+#if ENABLE_PIP
 	if (g_info.hw_caps->can_pip)
 	{
 		CZapit::getInstance()->OpenPip(0);
@@ -2518,7 +2518,7 @@ TIMER_STOP("################################## after all #######################
 		CZapit::getInstance()->StopPip(0);
 	}
 #endif
-#endif //if 0
+
 	RealRun();
 	ExitRun(CNeutrinoApp::EXIT_REBOOT);
 

@@ -205,9 +205,18 @@ void dvbsub_setpid(int pid)
 	pid_change_req = 1;
 	dvbsub_stopped = 0;
 
+#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+	if (isEplayer == false)
+	{
+		pthread_mutex_lock(&readerMutex);
+		pthread_cond_broadcast(&readerCond);
+		pthread_mutex_unlock(&readerMutex);
+	}
+#else
 	pthread_mutex_lock(&readerMutex);
 	pthread_cond_broadcast(&readerCond);
 	pthread_mutex_unlock(&readerMutex);
+#endif
 }
 
 int dvbsub_close()
@@ -691,8 +700,11 @@ static void *reader_thread(void * /*arg*/)
 
 		if (isEplayer)
 		{
+			usleep(1000000);
+/*			// ?? thread freezes with this...
 			poll(pfds, 1, -1);
 			while (0 > read(pfds[0].fd, _tmp, sizeof(tmp)));
+*/
 			continue;
 		}
 		pfds[1].fd = dmx->getFD();
@@ -954,6 +966,7 @@ static void *dvbsub_thread(void * /*arg*/)
 		}
 		if (packet_queue.size())
 		{
+			sub_debug.print(Debug::INFO, "*DVB packet*\n");
 			packet = packet_queue.pop();
 			pthread_mutex_unlock(&packetMutex);
 
@@ -998,6 +1011,7 @@ next_round:
 		}
 		else
 		{
+			sub_debug.print(Debug::INFO, "*eplayer write*\n");
 			cDvbSubtitleBitmaps *Bitmaps = (cDvbSubtitleBitmaps *) bitmap_queue.pop();
 			pthread_mutex_unlock(&packetMutex);
 			dvbSubtitleConverter->Convert(Bitmaps->GetSub(), Bitmaps->Pts());

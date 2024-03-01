@@ -205,18 +205,12 @@ void dvbsub_setpid(int pid)
 	pid_change_req = 1;
 	dvbsub_stopped = 0;
 
-#if HAVE_SH4_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
 	if (isEplayer == false)
 	{
 		pthread_mutex_lock(&readerMutex);
 		pthread_cond_broadcast(&readerCond);
 		pthread_mutex_unlock(&readerMutex);
 	}
-#else
-	pthread_mutex_lock(&readerMutex);
-	pthread_cond_broadcast(&readerCond);
-	pthread_mutex_unlock(&readerMutex);
-#endif
 }
 
 int dvbsub_close()

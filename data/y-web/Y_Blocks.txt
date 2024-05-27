@@ -636,7 +636,7 @@ start-block~rc_zgemma_h7
 <area shape="rect" coords="67,394,28,355" alt="KEY_VOLUMEUP" href="javascript:rcsim('KEY_VOLUMEUP')" />
 <area shape="rect" coords="67,439,28,400" alt="KEY_VOLUMEDOWN" href="javascript:rcsim('KEY_VOLUMEDOWN')" />
 <area shape="rect" coords="119,439,77,415" alt="KEY_PORTAL" href="javascript:rcsim('KEY_BOOKMARKS')" />
-<area shape="rect" coords="169,394,130,355" alt="KEY_PAGEUP" href="javascript:rcsim('KEY_PAGEUP)" />
+<area shape="rect" coords="169,394,130,355" alt="KEY_PAGEUP" href="javascript:rcsim('KEY_PAGEUP')" />
 <area shape="recr" coords="169,439,130,400" alt="KEY_PAGEDOWN" href="javascript:rcsim('KEY_PAGEDOWN')" />
 <area shape="rect" coords="78,356,119,377" alt="KEY_MENU" href="javascript:rcsim('KEY_MENU')" />
 <area shape="rect" coords="27,317,55,344" alt="KEY_HOME" href="javascript:rcsim('KEY_HOME')" />
@@ -694,7 +694,7 @@ start-block~rc_wwio_bre2ze4k
 <area shape="rect" coords="26,247,54,283" alt="KEY_VOLUMEUP" href="javascript:rcsim('KEY_VOLUMEUP')" />
 <area shape="rect" coords="26,292,54,328" alt="KEY_VOLUMEDOWN" href="javascript:rcsim('KEY_VOLUMEDOWN')" />
 <area shape="rect" coords="68,275,91,296" alt="KEY_PORTAL" href="javascript:rcsim('KEY_BOOKMARKS')" />
-<area shape="rect" coords="103,247,131,283" alt="KEY_PAGEUP" href="javascript:rcsim('KEY_PAGEUP)" />
+<area shape="rect" coords="103,247,131,283" alt="KEY_PAGEUP" href="javascript:rcsim('KEY_PAGEUP')" />
 <area shape="recr" coords="104,291,132,327" alt="KEY_PAGEDOWN" href="javascript:rcsim('KEY_PAGEDOWN')" />
 <area shape="rect" coords="14,342,38,366" alt="KEY_MENU" href="javascript:rcsim('KEY_MENU')" />
 <area shape="rect" coords="120,342,144,366" alt="KEY_HOME" href="javascript:rcsim('KEY_HOME')" />

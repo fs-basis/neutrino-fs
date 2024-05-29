@@ -379,9 +379,15 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.hdmi_mode = configfile.getInt32("hdmi_mode", (int)COLORFORMAT_HDMI_RGB);
 #endif
 
+#if BOXMODEL_E4HDULTRA
+	g_settings.hdmi_cec_mode = configfile.getInt32("hdmi_cec_mode", VIDEO_HDMI_CEC_MODE_TUNER);
+	g_settings.hdmi_cec_view_on = configfile.getInt32("hdmi_cec_view_on", 1);
+	g_settings.hdmi_cec_standby = configfile.getInt32("hdmi_cec_standby", 1);
+#else
 	g_settings.hdmi_cec_mode = configfile.getInt32("hdmi_cec_mode", 0); // default off
 	g_settings.hdmi_cec_view_on = configfile.getInt32("hdmi_cec_view_on", 0); // default off
 	g_settings.hdmi_cec_standby = configfile.getInt32("hdmi_cec_standby", 0); // default off
+#endif
 	g_settings.hdmi_cec_volume = configfile.getInt32("hdmi_cec_volume", 0);
 
 #if HAVE_SH4_HARDWARE

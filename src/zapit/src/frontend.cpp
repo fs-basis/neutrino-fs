@@ -743,7 +743,31 @@ uint32_t CFrontend::getBitErrorRate(void) const
 uint16_t CFrontend::getSignalStrength(void) const
 {
 	uint16_t strength = 0;
-	fop(ioctl, FE_READ_SIGNAL_STRENGTH, &strength);
+
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
+	dtv_property prop[1];
+	memset(prop, 0, sizeof(prop));
+	prop[0].cmd = DTV_STAT_SIGNAL_STRENGTH;
+	dtv_properties props;
+	props.props = prop;
+	props.num = 1;
+
+	if (fop(ioctl, FE_GET_PROPERTY, &props) < 0 && errno != ERANGE)
+	{
+		printf("%s: DTV_STAT_SIGNAL_STRENGTH failed: %m\n", __FUNCTION__);
+	}
+	else
+	{
+		for(unsigned int i = 0; i < prop[0].u.st.len; i++)
+		{
+			if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
+				strength = prop[0].u.st.stat[i].uvalue;
+		}
+	}
+#endif
+	// fallback to old DVB API
+	if (!strength && fop(ioctl, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
+		printf("%s: FE_READ_SIGNAL_STRENGTH failed: %m\n", __FUNCTION__);
 
 	return strength;
 }
@@ -751,7 +775,37 @@ uint16_t CFrontend::getSignalStrength(void) const
 uint16_t CFrontend::getSignalNoiseRatio(void) const
 {
 	uint16_t snr = 0;
-	fop(ioctl, FE_READ_SNR, &snr);
+
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
+	dtv_property prop[1];
+	prop[0].cmd = DTV_STAT_CNR;
+	dtv_properties props;
+	props.props = prop;
+	props.num = 1;
+
+	if (fop(ioctl, FE_GET_PROPERTY, &props) < 0 && errno != ERANGE)
+	{
+		printf("%s DTV_STAT_CNR failed: %m\n", __FUNCTION__);
+	}
+	else
+	{
+		for(unsigned int i = 0; i < prop[0].u.st.len; i++)
+		{
+			if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL)
+			{
+				snr = prop[0].u.st.stat[i].svalue / 10;
+			}
+			else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
+			{
+				snr = prop[0].u.st.stat[i].svalue;
+			}
+		}
+	}
+#endif
+	// fallback to old DVB API
+	if (!snr && fop(ioctl, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
+		printf("%s: FE_READ_SNR failed: %m\n", __FUNCTION__);
+
 	return snr;
 }
 

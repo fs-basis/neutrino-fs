@@ -745,7 +745,7 @@ uint16_t CFrontend::getSignalStrength(void) const
 
 	if (fop(ioctl, FE_GET_PROPERTY, &props) < 0 && errno != ERANGE)
 	{
-		printf("%s: DTV_STAT_SIGNAL_STRENGTH failed: %m\n", __FUNCTION__);
+		printf("%s: DTV_STAT_SIGNAL_STRENGTH failed\n", __FUNCTION__);
 	}
 	else
 	{
@@ -758,7 +758,7 @@ uint16_t CFrontend::getSignalStrength(void) const
 #endif
 	// fallback to old DVB API
 	if (!strength && fop(ioctl, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
-		printf("%s: FE_READ_SIGNAL_STRENGTH failed: %m\n", __FUNCTION__);
+		printf("%s: FE_READ_SIGNAL_STRENGTH failed\n", __FUNCTION__);
 
 	return strength;
 }
@@ -776,7 +776,7 @@ uint16_t CFrontend::getSignalNoiseRatio(void) const
 
 	if (fop(ioctl, FE_GET_PROPERTY, &props) < 0 && errno != ERANGE)
 	{
-		printf("%s DTV_STAT_CNR failed: %m\n", __FUNCTION__);
+		printf("%s: DTV_STAT_CNR failed\n", __FUNCTION__);
 	}
 	else
 	{
@@ -795,7 +795,7 @@ uint16_t CFrontend::getSignalNoiseRatio(void) const
 #endif
 	// fallback to old DVB API
 	if (!snr && fop(ioctl, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
-		printf("%s: FE_READ_SNR failed: %m\n", __FUNCTION__);
+		printf("%s: FE_READ_SNR failed\n", __FUNCTION__);
 
 	return snr;
 }

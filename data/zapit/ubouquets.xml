@@ -62,7 +62,7 @@
 		<S i="2f3a" t="441" on="1" s="192" frq="12188" n="ntv"/>
 		<S i="304" t="5" on="85" s="192" frq="12460" n="TLC"/>
 		<S i="30" t="5" on="85" s="192" frq="12460" n="N24 DOKU"/>
-		<S i="308" t="5" on="85" s="192" frq="12460" n="SIXX"/>
+		<S i="308" t="5" on="85" s="192" frq="12460" n="DMF"/>
 		<S i="33" t="21" on="85" s="192" frq="12480" n="TELE 5"/>
 		<S i="701" t="5" on="85" s="192" frq="12460" n="Disney Channel"/>
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
@@ -70,7 +70,7 @@
 		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
-		<S i="2942" t="458" on="1" s="192" frq="12611" n="SERIEN+"/>
+		<S i="2942" t="458" on="1" s="192" frq="12610" n="SERIEN+"/>
 	</Bouquet>
 	<Bouquet name="HD +">
 		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
@@ -119,10 +119,10 @@
 		<S i="132f" t="3ef" on="1" s="192" frq="11303" n="ORF1 HD"/>
 		<S i="1330" t="3ef" on="1" s="192" frq="11303" n="ORF2W HD"/>
 		<S i="33fc" t="3ed" on="1" s="192" frq="11273" n="ORF III HD"/>
+		<S i="33fd" t="3ed" on="1" s="192" frq="11273" n="ORF SPORT+ HD"/>
 		<S i="32c9" t="45d" on="1" s="192" frq="12692" n="ORF1"/>
 		<S i="32ca" t="45d" on="1" s="192" frq="12692" n="ORF2"/>
 		<S i="332d" t="45b" on="1" s="192" frq="12663" n="ORF III"/>
-		<S i="33a5" t="3eb" on="1" s="192" frq="11244" n="ORF SPORT+"/>
 		<S i="32d5" t="45d" on="1" s="192" frq="12692" n="HITRADIO OE3"/>
 		<S i="3d" t="7" on="85" s="192" frq="12148" n="Nick/Comedy Central Austria"/>
 		<S i="33ac" t="3eb" on="1" s="192" frq="11244" n="ATV HD"/>

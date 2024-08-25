@@ -497,6 +497,7 @@ struct SNeutrinoSettings
 	int recording_stream_vtxt_pid;
 	int recording_stream_subtitle_pids;
 	int recording_stream_pmt_pid;
+	int record_dirsize;
 	int recording_bufsize;
 	int recording_bufsize_dmx;
 	int recording_epg_for_filename;

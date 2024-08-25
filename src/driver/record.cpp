@@ -49,7 +49,6 @@
 #include <system/fsmounter.h>
 #include <system/helpers.h>
 
-
 #include <driver/record.h>
 #ifdef ENABLE_GRAPHLCD
 #include <driver/nglcd.h>
@@ -1132,6 +1131,9 @@ int CRecordManager::GetRecordMode(const t_channel_id channel_id)
 
 bool CRecordManager::Record(const t_channel_id channel_id, const char *dir, bool timeshift)
 {
+	if (!check_recdir(g_settings.network_nfs_recordingdir, g_settings.record_dirsize))
+		return false;
+
 	CTimerd::RecordingInfo	eventinfo;
 	CEPGData		epgData;
 
@@ -1162,6 +1164,9 @@ bool CRecordManager::Record(const t_channel_id channel_id, const char *dir, bool
 
 bool CRecordManager::Record(const CTimerd::RecordingInfo *const eventinfo, const char *dir, bool timeshift)
 {
+	if (!check_recdir(g_settings.network_nfs_recordingdir, g_settings.record_dirsize))
+		return false;
+
 	CRecordInstance *inst = NULL;
 	record_error_msg_t error_msg = RECORD_OK;
 	/* for now, empty eventinfo.recordingDir means this is direct record, FIXME better way ?

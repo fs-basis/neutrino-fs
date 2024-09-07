@@ -582,10 +582,10 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.epg_save_frequently = configfile.getInt32("epg_save_frequently", 0);
 	g_settings.epg_read = configfile.getBool("epg_read", true);
 	g_settings.epg_read_frequently = configfile.getInt32("epg_read_frequently", 1);
-	g_settings.epg_scan = configfile.getInt32("epg_scan", CEpgScan::SCAN_FAV); // 2
-	g_settings.epg_scan_mode = configfile.getInt32("epg_scan_mode", CEpgScan::MODE_STANDBY); // 2
+	g_settings.epg_scan = configfile.getInt32("epg_scan", CEpgScan::SCAN_FAV);
+	g_settings.epg_scan_mode = configfile.getInt32("epg_scan_mode", CEpgScan::MODE_LIVE);
 	g_settings.epg_scan_rescan = configfile.getInt32("epg_scan_rescan", 24);
-	g_settings.epg_save_mode = configfile.getInt32("epg_save_mode", 0);
+	g_settings.epg_save_mode = configfile.getInt32("epg_save_mode", 1);
 	g_settings.enable_sdt = configfile.getInt32("enable_sdt",0);
 	//widget settings
 	g_settings.widget_fade = false;

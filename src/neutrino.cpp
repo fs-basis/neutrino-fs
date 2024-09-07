@@ -622,7 +622,7 @@ if (g_info.hw_caps->can_shutdown)
 #if BOXMODEL_E4HDULTRA
 	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 1);
 #else
-	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 0)
+	g_settings.glcd_enable = configfile.getInt32("glcd_enable", 0);
 #endif
 	g_settings.glcd_brightness = configfile.getInt32("glcd_brightness", 20);
 	g_settings.glcd_brightness_standby = configfile.getInt32("glcd_brightness_standby", 15);

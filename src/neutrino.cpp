@@ -586,16 +586,16 @@ if (g_info.hw_caps->can_shutdown)
 
 	//epg dir
 	g_settings.epg_dir              = configfile.getString("epg_dir", "/mnt/nfs/epg");
-#if BOXMODEL_UFS910 || BOXMODEL_UFS912 || BOXMODEL_UFS913
+#if HAVE_SH4_HARDWARE
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 1);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 7500);
 #else
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 14);
-	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 24);
+	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 12);
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 75000);
 #endif
-	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 8);
+	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 4);
 
 	// NTP-Server for sectionsd
 	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "time.fu-berlin.de");

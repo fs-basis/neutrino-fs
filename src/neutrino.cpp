@@ -565,10 +565,10 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 7500);
 #else
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 14);
-	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 12);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 75000);
+	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 24);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 80000);
 #endif
-	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 4);
+	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 8);
 
 	// NTP-Server for sectionsd
 	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "time.fu-berlin.de");

@@ -97,14 +97,11 @@
 		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>
 		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
 		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
-		<S i="2777" t="409" on="1" s="192" frq="10964" n="MTV HD"/>
+		<S i="6fee" t="436" on="1" s="192" frq="11973" n="MTV HD"/>
 		<S i="29d0" t="45c" on="1" s="192" frq="12670" n="Crime Time HD"/>
 		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>
 		<S i="296b" t="45a" on="1" s="192" frq="12640" n="Deluxe Dance by Kontor HD"/>
-		<S i="296c" t="45a" on="1" s="192" frq="12640" n="Deluxe Flashback HD"/>
-		<S i="29d2" t="45c" on="1" s="192" frq="12670" n="Deluxe Lounge HD"/>
 		<S i="296f" t="45a" on="1" s="192" frq="12640" n="Deluxe Rap HD"/>
-		<S i="296e" t="45a" on="1" s="192" frq="12640" n="Deluxe Rock HD"/>
 		<S i="296a" t="45a" on="1" s="192" frq="12640" n="Hip Trips HD"/>
 		<S i="296d" t="45a" on="1" s="192" frq="12640" n="Just Cooking HD"/>
 		<S i="29cc" t="45c" on="1" s="192" frq="12670" n="Just Fishing HD"/>

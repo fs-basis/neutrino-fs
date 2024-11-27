@@ -157,9 +157,7 @@ int CLuaInstCurl::CurlDownload(lua_State *L)
 		useProxy	bool		true (default)
 		followRedir	bool		true
 		maxRedirs	number		20
-		data				string		empty
-		httpheader,
-		custom-header		string		empty
+		httpheader	table		empty
 	*/
 
 	/*
@@ -288,9 +286,6 @@ int CLuaInstCurl::CurlDownload(lua_State *L)
 	lua_Integer maxRedirs = 20;
 	tableLookup(L, "maxRedirs", maxRedirs);
 
-	std::string customheader = "";
-	tableLookup(L, "httpheader", customheader) || tableLookup(L, "custom-header", customheader);
-
 	curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
 	if (toFile)
 	{
@@ -312,13 +307,6 @@ int CLuaInstCurl::CurlDownload(lua_State *L)
 	curl_easy_setopt(curl_handle, CURLOPT_COOKIE, "");
 	if (!userAgent.empty())
 		curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, userAgent.c_str());
-
-	if (!customheader.empty())
-	{
-		struct curl_slist *chunk = NULL;
-		chunk = curl_slist_append(chunk, customheader.c_str());
-		curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, chunk);
-	}
 
 	if (!postfields.empty())
 	{

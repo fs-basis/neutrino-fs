@@ -372,9 +372,9 @@ void CNetworkSetup::showNetworkNTPSetup(CMenuWidget *menu_ntp)
 	ntp3->setHint("", LOCALE_MENU_HINT_NET_NTPREFRESH);
 
 	menu_ntp->addIntroItems(LOCALE_NETWORKMENU_NTPTITLE);
-	menu_ntp->addItem( ntp1);
-	menu_ntp->addItem( ntp2);
-	menu_ntp->addItem( ntp3);
+	menu_ntp->addItem(ntp1);
+	menu_ntp->addItem(ntp2);
+	menu_ntp->addItem(ntp3);
 }
 
 #ifdef ENABLE_GUI_MOUNT
@@ -719,9 +719,9 @@ void CNetworkSetup::testNetworkSettings()
 		//Nameserver
 		text += (std::string)g_Locale->getText(LOCALE_NETWORKMENU_NAMESERVER) + ":\n";
 		text += offset + our_nameserver + " " + mypinghost(our_nameserver) + "\n";
-#if 0
+#if 0 // deactivated, NTP most no ping possible
 		//NTPserver
-		if ( (pinghost(our_nameserver) == 1) && g_settings.network_ntpenable && (!g_settings.network_ntpserver.empty()) )
+		if ((pinghost(our_nameserver) == 1) && g_settings.network_ntpenable && (!g_settings.network_ntpserver.empty()))
 		{
 			text += std::string(g_Locale->getText(LOCALE_NETWORKMENU_NTPSERVER)) + ":\n";
 			text += offset + g_settings.network_ntpserver + " " + mypinghost(g_settings.network_ntpserver) + "\n";

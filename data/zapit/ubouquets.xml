@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zapit api="4">
-	<Bouquet name="TV">
+	<Bouquet name="TV" epg="1">
 		<S i="445d" t="453" on="1" s="192" frq="12545" n="ProSieben"/>
 		<S i="4461" t="453" on="1" s="192" frq="12545" n="Pro7 MAXX"/>
 		<S i="445c" t="453" on="1" s="192" frq="12545" n="SAT.1"/>
@@ -73,7 +73,7 @@
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
 		<S i="2942" t="458" on="1" s="192" frq="12610" n="SERIEN+"/>
 	</Bouquet>
-	<Bouquet name="HD +">
+	<Bouquet name="HD +" epg="1">
 		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
 		<S i="ef75" t="3f9" on="1" s="192" frq="11464" n="ProSieben HD"/>
 		<S i="ef78" t="3f9" on="1" s="192" frq="11464" n="Pro7 MAXX HD"/>
@@ -106,33 +106,12 @@
 		<S i="296d" t="45a" on="1" s="192" frq="12640" n="Just Cooking HD"/>
 		<S i="29cc" t="45c" on="1" s="192" frq="12670" n="Just Fishing HD"/>
 		<S i="2968" t="45a" on="1" s="192" frq="12640" n="One Terra HD"/>
-		<S i="29d3" t="45c" on="1" s="192" frq="12670" n="Red Adventure HD"/>
+		<S i="29d3" t="45c" on="1" s="192" frq="12670" n="Höhenrausch HD"/>
 		<S i="29d1" t="45c" on="1" s="192" frq="12670" n="SERIEN + HD"/>
 		<S i="2969" t="45a" on="1" s="192" frq="12640" n="Xplore HD"/>
 		<S i="30d6" t="413" on="1" s="192" frq="11112" n="Eurosport 1 HD"/>
 		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
-	</Bouquet>
-	<Bouquet name="Östereich">
-		<S i="132f" t="3ef" on="1" s="192" frq="11303" n="ORF1 HD"/>
-		<S i="1330" t="3ef" on="1" s="192" frq="11303" n="ORF2W HD"/>
-		<S i="33fc" t="3ed" on="1" s="192" frq="11273" n="ORF III HD"/>
-		<S i="33fd" t="3ed" on="1" s="192" frq="11273" n="ORF SPORT+ HD"/>
-		<S i="32c9" t="45d" on="1" s="192" frq="12692" n="ORF1"/>
-		<S i="32ca" t="45d" on="1" s="192" frq="12692" n="ORF2"/>
-		<S i="332d" t="45b" on="1" s="192" frq="12663" n="ORF III"/>
-		<S i="32d5" t="45d" on="1" s="192" frq="12692" n="HITRADIO OE3"/>
-		<S i="3d" t="7" on="85" s="192" frq="12148" n="Nick/Comedy Central Austria"/>
-		<S i="33ac" t="3eb" on="1" s="192" frq="11244" n="ATV HD"/>
-		<S i="33a7" t="3eb" on="1" s="192" frq="11244" n="ATV2 HD"/>
-		<S i="14bd" t="407" on="1" s="192" frq="11671" n="sixx AUSTRIA"/>
-		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
-		<S i="14c2" t="407" on="1" s="192" frq="11671" n="kabel eins classics"/>
-		<S i="14c1" t="407" on="1" s="192" frq="11671" n="SAT.1 emotions"/>
-		<S i="1013" t="451" on="35" s="192" frq="12515" n="Bergblick"/>
-		<S i="4e27" t="43a" on="1" s="192" frq="12051" n="PULS 4 Austria"/>
-		<S i="14b7" t="407" on="1" s="192" frq="11671" n="PULS 4 HD Austria"/>
-		<S i="32dd" t="45d" on="1" s="192" frq="12692" n="ntv Austria"/>
 	</Bouquet>
 	<Bouquet name="ARD-Radio">
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>
@@ -141,7 +120,7 @@
 		<S i="28f8" t="425" on="1" s="192" frq="10891" n="radioeins"/>
 		<S i="28f7" t="425" on="1" s="192" frq="10891" n="rbb 88.8"/>
 		<S i="28f5" t="425" on="1" s="192" frq="10891" n="radio3"/>
-		<S i="28e6" t="425" on="1" s="192" frq="10891" n="hr-iNFO"/>
+		<S i="28e6" t="425" on="1" s="192" frq="10891" n="hr INFO"/>
 		<S i="28e1" t="425" on="1" s="192" frq="10891" n="hr1"/>
 		<S i="28e2" t="425" on="1" s="192" frq="10891" n="hr2"/>
 		<S i="28e3" t="425" on="1" s="192" frq="10891" n="hr3"/>
@@ -171,7 +150,7 @@
 		<S i="28bc" t="40f" on="1" s="192" frq="11053" n="Bremen Vier"/>
 		<S i="28bb" t="40f" on="1" s="192" frq="11053" n="Bremen Zwei"/>
 		<S i="28c0" t="40f" on="1" s="192" frq="11053" n="SR 1 Europawelle"/>
-		<S i="28c1" t="40f" on="1" s="192" frq="11053" n="SR 2 KulturRadio"/>
+		<S i="28c1" t="40f" on="1" s="192" frq="11053" n="SR kultur"/>
 		<S i="28c2" t="40f" on="1" s="192" frq="11053" n="SR 3 Saarlandwelle"/>
 		<S i="28ce" t="40f" on="1" s="192" frq="11053" n="DASDING"/>
 		<S i="28cf" t="40f" on="1" s="192" frq="11053" n="SWR Aktuell"/>
@@ -216,21 +195,21 @@
 		<S i="6d6f" t="437" on="1" s="192" frq="11954" n="DRadio DokDeb"/>
 		<S i="ac" t="5" on="85" s="192" frq="12460" n="egoFM"/>
 		<S i="316e" t="459" on="1" s="192" frq="12633" n="ffn"/>
-		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4"/>
+		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4_alt"/>
 		<S i="b1" t="5" on="85" s="192" frq="12460" n="JAM FM"/>
 		<S i="ad" t="5" on="85" s="192" frq="12460" n="Klassik Radio"/>
 		<S i="3341" t="45b" on="1" s="192" frq="12663" n="OE1"/>
 		<S i="3342" t="45b" on="1" s="192" frq="12663" n="OE1 DD"/>
-		<S i="3345" t="45b" on="1" s="192" frq="12663" n="OE2 B"/>
-		<S i="334b" t="45b" on="1" s="192" frq="12663" n="OE2 K"/>
-		<S i="3344" t="45b" on="1" s="192" frq="12663" n="OE2 N"/>
-		<S i="3346" t="45b" on="1" s="192" frq="12663" n="OE2 O"/>
-		<S i="3347" t="45b" on="1" s="192" frq="12663" n="OE2 S"/>
-		<S i="334a" t="45b" on="1" s="192" frq="12663" n="OE2 St"/>
-		<S i="3348" t="45b" on="1" s="192" frq="12663" n="OE2 T"/>
-		<S i="3349" t="45b" on="1" s="192" frq="12663" n="OE2 V"/>
-		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W"/>
-		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3"/>
+		<S i="3345" t="45b" on="1" s="192" frq="12663" n="OE2 B_alt"/>
+		<S i="334b" t="45b" on="1" s="192" frq="12663" n="OE2 K_alt"/>
+		<S i="3344" t="45b" on="1" s="192" frq="12663" n="OE2 N_alt"/>
+		<S i="3346" t="45b" on="1" s="192" frq="12663" n="OE2 O_alt"/>
+		<S i="3347" t="45b" on="1" s="192" frq="12663" n="OE2 S_alt"/>
+		<S i="334a" t="45b" on="1" s="192" frq="12663" n="OE2 St_alt"/>
+		<S i="3348" t="45b" on="1" s="192" frq="12663" n="OE2 T_alt"/>
+		<S i="3349" t="45b" on="1" s="192" frq="12663" n="OE2 V_alt"/>
+		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W_alt"/>
+		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3_alt"/>
 		<S i="3173" t="459" on="1" s="192" frq="12633" n="Radio Gloria"/>
 		<S i="3170" t="459" on="1" s="192" frq="12633" n="Radio HBR"/>
 		<S i="3171" t="459" on="1" s="192" frq="12633" n="Radio HCJB"/>

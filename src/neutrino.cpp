@@ -585,7 +585,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.timezone = configfile.getString("timezone", "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna");
 
 	//epg dir
-	g_settings.epg_dir              = configfile.getString("epg_dir", "/media/sda1/epg");
+	g_settings.epg_dir              = configfile.getString("epg_dir", "/hdd/epg");
 #if HAVE_SH4_HARDWARE
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 1);
@@ -666,11 +666,11 @@ if (g_info.hw_caps->can_shutdown)
 		g_settings.network_nfs[i].mount_options2 = configfile.getString("network_nfs_mount_options2_" + i_str, "nolock,rsize=16384,wsize=16384" );
 		g_settings.network_nfs[i].mac = configfile.getString("network_nfs_mac_" + i_str, "11:22:33:44:55:66");
 	}
-	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/media/sda1/audio" );
-	g_settings.network_nfs_picturedir = configfile.getString( "network_nfs_picturedir", "/media/sda1/pictures" );
-	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/media/sda1/movie" );
-	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/media/sda1/record" );
-	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/media/sda1/timeshift" );
+	g_settings.network_nfs_audioplayerdir = configfile.getString( "network_nfs_audioplayerdir", "/hdd/audio" );
+	g_settings.network_nfs_picturedir = configfile.getString( "network_nfs_picturedir", "/hdd/pictures" );
+	g_settings.network_nfs_moviedir = configfile.getString( "network_nfs_moviedir", "/hdd/movie" );
+	g_settings.network_nfs_recordingdir = configfile.getString( "network_nfs_recordingdir", "/hdd/record" );
+	g_settings.timeshiftdir = configfile.getString( "timeshiftdir", "/hdd/timeshift" );
 
 	g_settings.downloadcache_dir = configfile.getString( "downloadcache_dir", g_settings.network_nfs_recordingdir.c_str());
 	g_settings.last_webtv_dir = configfile.getString( "last_webtv_dir", WEBCHANNELS);
@@ -742,12 +742,12 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.plugins_tool = configfile.getString( "plugins_tool", "" );
 	g_settings.plugins_script = configfile.getString( "plugins_script", "" );
 	g_settings.plugins_lua = configfile.getString( "plugins_lua", "" );
-	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/media/sda1/plugins" );
+	g_settings.plugin_hdd_dir = configfile.getString( "plugin_hdd_dir", "/hdd/plugins" );
 
 	g_settings.logo_hdd_dir = configfile.getString( "logo_hdd_dir", LOGODIR );
 	g_settings.default_logo = configfile.getInt32( "default_logo", 0);
 
-	g_settings.m3u_logo_hdd_dir = configfile.getString( "m3u_logo_hdd_dir", "/media/sda1/logos" );
+	g_settings.m3u_logo_hdd_dir = configfile.getString( "m3u_logo_hdd_dir", "/hdd/logos" );
 	g_settings.load_m3u_logos = configfile.getInt32( "load_m3u_logos", 0);
 
 	g_settings.webtv_xml.clear();
@@ -814,7 +814,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.screenshot_plans = configfile.getInt32( "screenshot_plans",  1);
 	g_settings.auto_cover = configfile.getInt32( "auto_cover",  0);
 
-	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/media/sda1/screenshot" );
+	g_settings.screenshot_dir = configfile.getString( "screenshot_dir", "/hdd/screenshot" );
 
 	g_settings.cacheTXT = configfile.getInt32( "cacheTXT",  0);
 	g_settings.minimode = configfile.getInt32( "minimode",  0);

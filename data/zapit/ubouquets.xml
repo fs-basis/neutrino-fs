@@ -113,6 +113,51 @@
 		<S i="1581" t="41f" on="1" s="192" frq="10803" n="SPORT1 HD"/>
 		<S i="2" t="40b" on="1" s="192" frq="10994" n="UHD1 by ASTRA / HD+"/>
 	</Bouquet>
+	<Bouquet name="ORF">
+		<S i="132f" t="3ef" on="1" s="192" frq="11303" n="ORF1 HD"/>
+		<S i="33fe" t="3ed" on="1" s="192" frq="11273" n="ORF 2 EUROPE HD"/>
+		<S i="33f7" t="3ed" on="1" s="192" frq="11273" n="ORF2B HD"/>
+		<S i="33f6" t="3ed" on="1" s="192" frq="11273" n="ORF2K HD"/>
+		<S i="1334" t="3ef" on="1" s="192" frq="11303" n="ORF2N HD"/>
+		<S i="33f8" t="3ed" on="1" s="192" frq="11273" n="ORF2O HD"/>
+		<S i="33f9" t="3ed" on="1" s="192" frq="11273" n="ORF2S HD"/>
+		<S i="33f5" t="3ed" on="1" s="192" frq="11273" n="ORF2St HD"/>
+		<S i="33fa" t="3ed" on="1" s="192" frq="11273" n="ORF2T HD"/>
+		<S i="33fb" t="3ed" on="1" s="192" frq="11273" n="ORF2V HD"/>
+		<S i="1330" t="3ef" on="1" s="192" frq="11303" n="ORF2W HD"/>
+		<S i="33fc" t="3ed" on="1" s="192" frq="11273" n="ORF III HD"/>
+		<S i="33fd" t="3ed" on="1" s="192" frq="11273" n="ORF SPORT+ HD"/>
+		<S i="3400" t="3ed" on="1" s="192" frq="11273" n="R9 Oesterreich HD"/>
+		<S i="1344" t="3ef" on="1" s="192" frq="11303" n="TV Berlin"/>
+		<S i="1335" t="3ef" on="1" s="192" frq="11303" n="ORF HITRADIO OE3 VISUAL"/>
+		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
+		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4_alt"/>
+		<S i="3341" t="45b" on="1" s="192" frq="12663" n="OE1"/>
+		<S i="3342" t="45b" on="1" s="192" frq="12663" n="OE1 DD"/>
+		<S i="3345" t="45b" on="1" s="192" frq="12663" n="OE2 B_alt"/>
+		<S i="334b" t="45b" on="1" s="192" frq="12663" n="OE2 K_alt"/>
+		<S i="3344" t="45b" on="1" s="192" frq="12663" n="OE2 N_alt"/>
+		<S i="3346" t="45b" on="1" s="192" frq="12663" n="OE2 O_alt"/>
+		<S i="3347" t="45b" on="1" s="192" frq="12663" n="OE2 S_alt"/>
+		<S i="334a" t="45b" on="1" s="192" frq="12663" n="OE2 St_alt"/>
+		<S i="3348" t="45b" on="1" s="192" frq="12663" n="OE2 T_alt"/>
+		<S i="3349" t="45b" on="1" s="192" frq="12663" n="OE2 V_alt"/>
+		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W_alt"/>
+		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3_alt"/>
+		<S i="1338" t="3ef" on="1" s="192" frq="11303" n="ORF HITRADIO OE3"/>
+		<S i="1350" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO B"/>
+		<S i="134d" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO FM4"/>
+		<S i="1356" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO K"/>
+		<S i="134f" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO NOE"/>
+		<S i="134c" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO OE1"/>
+		<S i="1357" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO OE1 DOLBY"/>
+		<S i="1351" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO OOE"/>
+		<S i="1352" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO S"/>
+		<S i="1355" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO STMK"/>
+		<S i="1353" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO T"/>
+		<S i="1354" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO V"/>
+		<S i="134e" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO WIEN"/>
+	</Bouquet>
 	<Bouquet name="ARD-Radio">
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>
 		<S i="28f9" t="425" on="1" s="192" frq="10891" n="Fritz"/>
@@ -178,50 +223,6 @@
 		<S i="28a4" t="40f" on="1" s="192" frq="11053" n="BR24"/>
 		<S i="28a5" t="40f" on="1" s="192" frq="11053" n="BR24live"/>
 		<S i="28a7" t="40f" on="1" s="192" frq="11053" n="PULS"/>
-	</Bouquet>
-	<Bouquet name="Mix">
-		<S i="a1" t="7" on="85" s="192" frq="12148" n="ERF Plus"/>
-		<S i="a2" t="7" on="85" s="192" frq="12148" n="ERF Pop"/>
-		<S i="3350" t="45b" on="1" s="192" frq="12663" n="U1 Tirol"/>
-		<S i="fde" t="451" on="35" s="192" frq="12515" n="Radio Freundes-Dienst"/>
-		<S i="fdc" t="451" on="35" s="192" frq="12515" n="Radio Lebensquelle"/>
-		<S i="3174" t="459" on="1" s="192" frq="12633" n="HIT RADIO FFH"/>
-		<S i="3176" t="459" on="1" s="192" frq="12633" n="harmony.fm"/>
-		<S i="3175" t="459" on="1" s="192" frq="12633" n="planet radio"/>
-		<S i="3172" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
-		<S i="6d6d" t="437" on="1" s="192" frq="11954" n="Dlf"/>
-		<S i="6d6c" t="437" on="1" s="192" frq="11954" n="Dlf Kultur"/>
-		<S i="6d71" t="437" on="1" s="192" frq="11954" n="Dlf Nova"/>
-		<S i="6d6f" t="437" on="1" s="192" frq="11954" n="DRadio DokDeb"/>
-		<S i="ac" t="5" on="85" s="192" frq="12460" n="egoFM"/>
-		<S i="316e" t="459" on="1" s="192" frq="12633" n="ffn"/>
-		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4_alt"/>
-		<S i="b1" t="5" on="85" s="192" frq="12460" n="JAM FM"/>
-		<S i="ad" t="5" on="85" s="192" frq="12460" n="Klassik Radio"/>
-		<S i="3341" t="45b" on="1" s="192" frq="12663" n="OE1"/>
-		<S i="3342" t="45b" on="1" s="192" frq="12663" n="OE1 DD"/>
-		<S i="3345" t="45b" on="1" s="192" frq="12663" n="OE2 B_alt"/>
-		<S i="334b" t="45b" on="1" s="192" frq="12663" n="OE2 K_alt"/>
-		<S i="3344" t="45b" on="1" s="192" frq="12663" n="OE2 N_alt"/>
-		<S i="3346" t="45b" on="1" s="192" frq="12663" n="OE2 O_alt"/>
-		<S i="3347" t="45b" on="1" s="192" frq="12663" n="OE2 S_alt"/>
-		<S i="334a" t="45b" on="1" s="192" frq="12663" n="OE2 St_alt"/>
-		<S i="3348" t="45b" on="1" s="192" frq="12663" n="OE2 T_alt"/>
-		<S i="3349" t="45b" on="1" s="192" frq="12663" n="OE2 V_alt"/>
-		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W_alt"/>
-		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3_alt"/>
-		<S i="3173" t="459" on="1" s="192" frq="12633" n="Radio Gloria"/>
-		<S i="3170" t="459" on="1" s="192" frq="12633" n="Radio HBR"/>
-		<S i="3171" t="459" on="1" s="192" frq="12633" n="Radio HCJB"/>
-		<S i="1c79" t="457" on="1" s="192" frq="12604" n="Radio Horeb"/>
-		<S i="3354" t="45b" on="1" s="192" frq="12663" n="RADIO MARIA"/>
-		<S i="316f" t="459" on="1" s="192" frq="12633" n="Radio Paloma"/>
-		<S i="3178" t="459" on="1" s="192" frq="12633" n="Schlager Radio"/>
-		<S i="7598" t="422" on="1" s="192" frq="10847" n="TEST RA ESP"/>
-		<S i="a0" t="7" on="85" s="192" frq="12148" n="ROCK ANTENNE"/>
-		<S i="1efb" t="457" on="1" s="192" frq="12604" n="RTL RADIO"/>
-		<S i="a9" t="7" on="85" s="192" frq="12148" n="sunshine live"/>
-		<S i="aa" t="7" on="85" s="192" frq="12148" n="ANTENNE BAYERN"/>
 	</Bouquet>
 	<Bouquet name="Favorites">
 	</Bouquet>

@@ -111,8 +111,10 @@ CInfoViewer::CInfoViewer ()
 	infoViewerBB = CInfoViewerBB::getInstance();
 	InfoHeightY = 0;
 	ButtonWidth = 0;
+#if ENABLE_RADIOTEXT
 	rt_dx = 0;
 	rt_dy = 0;
+#endif
 	ChanNameX = 0;
 	ChanNameY = 0;
 	ChanWidth = 0;

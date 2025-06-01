@@ -2313,6 +2313,11 @@ bool CZapit::Start(Z_start_arg *ZapStart_arg)
 		ca->SetTSClock(ZapStart_arg->ci_clock[i] * 1000000, i);
 	}
 
+	// ci operator mode
+	for (unsigned int i = 0; i < ca->GetNumberCISlots(); i++) {
+		ca->SetCIOperator(ZapStart_arg->ci_op[i], i);
+	}
+
 	ca->Start();
 
 	eventServer = new CEventServer;

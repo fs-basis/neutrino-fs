@@ -292,6 +292,7 @@ struct SNeutrinoSettings
 	int avsync;
 	int ci_standby_reset;
 	int ci_clock[4];
+	int ci_op[4];
 	int ci_ignore_messages[4];
 	int ci_save_pincode[4];
 	std::string ci_pincode[4];

@@ -141,6 +141,11 @@ if test "$BOXTYPE" = "duckbox" ||
 	AC_DEFINE(SCREENSHOT, 1, [Define to 1 if the platform supports screenshots])
 fi
 
+AC_ARG_ENABLE(radiotext,
+	AS_HELP_STRING([--enable-radiotext], [enable RadioText support @<:@default=no@:>@]),
+	AC_DEFINE(ENABLE_RADIOTEXT, 1, [enable RadioText support]))
+AM_CONDITIONAL(ENABLE_RADIOTEXT, test "$enable_radiotext" = "yes")
+
 AC_ARG_ENABLE(keyboard-no-rc,
 	AS_HELP_STRING([--enable-keyboard-no-rc], [enable keyboard control, disable rc control @<:@default=no@:>@]),
 	AC_DEFINE(KEYBOARD_INSTEAD_OF_REMOTE_CONTROL, 1, [enable keyboard control, disable rc control]))

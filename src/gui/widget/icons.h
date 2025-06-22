@@ -233,9 +233,11 @@
 #define NEUTRINO_ICON_DD_AVAIL		"dd_avail"
 #define NEUTRINO_ICON_DD		"dd"
 #define NEUTRINO_ICON_DD_GREY		"dd_gray"
+#if ENABLE_RADIOTEXT
 #define NEUTRINO_ICON_RADIOTEXTGET	"radiotextget"
 #define NEUTRINO_ICON_RADIOTEXTOFF	"radiotextoff"
 #define NEUTRINO_ICON_RADIOTEXTWAIT	"radiotextwait"
+#endif
 #define NEUTRINO_ICON_RESOLUTION_000	"res_000"
 #define NEUTRINO_ICON_RESOLUTION_288	"res_288"
 #define NEUTRINO_ICON_RESOLUTION_352	"res_352"

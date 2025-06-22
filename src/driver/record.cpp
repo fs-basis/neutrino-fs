@@ -51,7 +51,9 @@
 
 #include <driver/record.h>
 #include <driver/display.h>
+#if ENABLE_RADIOTEXT
 #include <driver/radiotext.h>
+#endif
 #include <driver/streamts.h>
 #include <driver/abstime.h>
 #include <zapit/capmt.h>
@@ -1917,8 +1919,10 @@ bool CRecordManager::CutBackNeutrino(const t_channel_id channel_id, CFrontend *&
 		g_Zapit->setRecordMode(true);
 		if (last_mode == NeutrinoModes::mode_standby)
 			g_Zapit->stopPlayBack();
+#if ENABLE_RADIOTEXT
 		if ((live_channel_id == channel_id) && g_Radiotext)
 			g_Radiotext->radiotext_stop();
+#endif
 		/* in case channel_id == live_channel_id */
 		CStreamManager::getInstance()->StopStream(channel_id);
 	}

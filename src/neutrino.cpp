@@ -61,7 +61,9 @@
 #include <driver/volume.h>
 #include <driver/streamts.h>
 #include <driver/display.h>
+#if ENABLE_RADIOTEXT
 #include <driver/radiotext.h>
+#endif
 #include <driver/scanepg.h>
 
 #include "gui/3dsetup.h"
@@ -527,9 +529,10 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.show_mute_icon = configfile.getInt32("show_mute_icon" ,0);
 	g_settings.infobar_show_res = configfile.getInt32("infobar_show_res", 0 );
 	g_settings.infobar_show_dd_available = configfile.getInt32("infobar_show_dd_available", 1 );
-
 	g_settings.infobar_show_tuner = configfile.getInt32("infobar_show_tuner", 1 );
+#if ENABLE_RADIOTEXT
 	g_settings.radiotext_enable = configfile.getBool("radiotext_enable", false);
+#endif
 	//audio
 #if !BOXMODEL_BRE2ZE4K
 	g_settings.audio_AnalogMode = configfile.getInt32( "audio_AnalogMode", 0 );
@@ -1264,7 +1267,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_show_res"  , g_settings.infobar_show_res  );
 	configfile.setInt32("infobar_show_dd_available"  , g_settings.infobar_show_dd_available  );
 	configfile.setInt32("infobar_show_tuner"  , g_settings.infobar_show_tuner  );
+#if ENABLE_RADIOTEXT
 	configfile.setBool("radiotext_enable"          , g_settings.radiotext_enable);
+#endif
 	//audio
 #if !BOXMODEL_BRE2ZE4K
 	configfile.setInt32( "audio_AnalogMode", g_settings.audio_AnalogMode );
@@ -3551,9 +3556,10 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t _msg, neutrino_msg_data_t data)
 		int fd = (int) data;
 		printf("NeutrinoMessages::EVT_STREAM_START: fd %d\n", fd);
 		wakeupFromStandby();
+#if ENABLE_RADIOTEXT
 		if (g_Radiotext)
 			g_Radiotext->setPid(0);
-
+#endif
 		if (!CStreamManager::getInstance()->AddClient(fd)) {
 			close(fd);
 			g_RCInput->postMsg(NeutrinoMessages::EVT_STREAM_STOP, 0);
@@ -4052,11 +4058,12 @@ void CNeutrinoApp::tvMode(bool rezap)
 	}
 	INFO("rezap %d current mode %d", rezap, mode);
 	if (mode == NeutrinoModes::mode_radio || mode == NeutrinoModes::mode_webradio) {
+#if ENABLE_RADIOTEXT
 		if (g_settings.radiotext_enable && g_Radiotext) {
 			delete g_Radiotext;
 			g_Radiotext = NULL;
 		}
-
+#endif
 		frameBuffer->stopFrame();
 		CVFD::getInstance()->ShowIcon(FP_ICON_RADIO, false);
 		StartSubtitles(!rezap);
@@ -4124,8 +4131,10 @@ void CNeutrinoApp::standbyMode( bool bOnOff, bool fromDeepStandby )
 
 		/* wasshift = */ CRecordManager::getInstance()->StopAutoRecord();
 
+#if ENABLE_RADIOTEXT
 		if(mode == NeutrinoModes::mode_radio && g_Radiotext)
 			g_Radiotext->radiotext_stop();
+#endif
 
 #ifdef ENABLE_PIP
 		g_Zapit->stopPip();
@@ -4303,8 +4312,10 @@ void CNeutrinoApp::radioMode(bool rezap)
 	g_RemoteControl->radioMode();
 	SetChannelMode(g_settings.channel_mode_radio);
 
+#if ENABLE_RADIOTEXT
 	if (g_settings.radiotext_enable && !g_Radiotext)
 		g_Radiotext = new CRadioText;
+#endif
 
 	if( rezap )
 		channelRezap();
@@ -4559,10 +4570,12 @@ void stop_daemons(bool stopall, bool for_flash)
 	tuxtxt_stop();
 	tuxtxt_close();
 
-	if (g_Radiotext) {
-		delete g_Radiotext;
-		g_Radiotext = NULL;
-	}
+#if ENABLE_RADIOTEXT
+ 	if (g_Radiotext) {
+ 		delete g_Radiotext;
+ 		g_Radiotext = NULL;
+ 	}
+#endif
 	printf("streaming shutdown\n");
 	CStreamManager::getInstance()->Stop();
 	printf("streaming shutdown done\n");
@@ -4650,7 +4663,9 @@ int main(int argc, char **argv)
 	/* build date */
 	printf(">>> Neutrino (compiled %s %s) <<<\n", __DATE__, __TIME__);
 	g_Timerd = NULL;
+#if ENABLE_RADIOTEXT
 	g_Radiotext = NULL;
+#endif
 	g_Zapit = NULL;
 	setDebugLevel(DEBUG_NORMAL);
 	signal(SIGTERM, sighandler);	// TODO: consider the following
@@ -5066,8 +5081,9 @@ void CNeutrinoApp::Cleanup()
 	printf("cleanup 12\n");fflush(stdout);
 	delete g_Locale; g_Locale = NULL;
 	delete g_videoSettings; g_videoSettings = NULL;
+#if ENABLE_RADIOTEXT
 	delete g_Radiotext; g_Radiotext = NULL;
-
+#endif
 	printf("cleanup 13\n");fflush(stdout);
 	delete audioSetupNotifier; audioSetupNotifier = NULL;
 	printf("cleanup 14\n");fflush(stdout);

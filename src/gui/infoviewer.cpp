@@ -69,7 +69,9 @@
 #include <driver/record.h>
 #include <driver/display.h>
 #include <driver/volume.h>
+#if ENABLE_RADIOTEXT
 #include <driver/radiotext.h>
+#endif
 #include <driver/fontrenderer.h>
 
 #include <zapit/satconfig.h>
@@ -109,8 +111,10 @@ CInfoViewer::CInfoViewer ()
 	infoViewerBB = CInfoViewerBB::getInstance();
 	InfoHeightY = 0;
 	ButtonWidth = 0;
+#if ENABLE_RADIOTEXT
 	rt_dx = 0;
 	rt_dy = 0;
+#endif
 	ChanNameX = 0;
 	ChanNameY = 0;
 	ChanWidth = 0;
@@ -163,7 +167,9 @@ void CInfoViewer::Init()
 	current_channel_id = CZapit::getInstance()->GetCurrentChannelID();;
 	current_epg_id = 0;
 	lcdUpdateTimer = 0;
+#if ENABLE_RADIOTEXT
 	rt_x = rt_y = rt_h = rt_w = 0;
+#endif
 
 	infobar_txt = NULL;
 
@@ -486,9 +492,11 @@ void CInfoViewer::showMovieTitle(const int playState, const t_channel_id &Channe
 	zap_mode = _zap_mode;
 	reset_allScala();
 
+#if ENABLE_RADIOTEXT
 	if (g_settings.radiotext_enable && g_Radiotext) {
 		g_Radiotext->RT_MsgShow = true;
 	}
+#endif
 
 	if(!is_visible)
 		fader.StartFadeIn();
@@ -766,6 +774,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 	showLcdPercentOver ();
 	showInfoFile();
 
+#if ENABLE_RADIOTEXT
 	// Radiotext
 	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_radio || CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_webradio)
 	{
@@ -774,6 +783,7 @@ void CInfoViewer::showTitle(CZapitChannel * channel, const bool calledFromNumZap
 		else
 			infoViewerBB->showIcon_RadioText(false);
 	}
+#endif
 
 	if (!calledFromNumZap) {
 		//loop(fadeValue, show_dot , fadeIn);
@@ -1065,9 +1075,10 @@ void CInfoViewer::loop(bool show_dot)
 				showRecordIcon (show_dot);
 				show_dot = !show_dot;
 				showInfoFile();
+#if ENABLE_RADIOTEXT
 				if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoModes::mode_radio))
 					showRadiotext();
-
+#endif
 				infoViewerBB->showIcon_16_9();
 				//infoViewerBB->paint_ca_icons(0);
 				infoViewerBB->showIcon_Resolution();
@@ -1079,9 +1090,10 @@ void CInfoViewer::loop(bool show_dot)
 			CNeutrinoApp *neutrino = CNeutrinoApp::getInstance ();
 			if ((msg == (neutrino_msg_t) g_settings.key_quickzap_up) || (msg == (neutrino_msg_t) g_settings.key_quickzap_down) || (msg == CRCInput::RC_0) || (msg == NeutrinoMessages::SHOW_INFOBAR)) {
 				hideIt = false; // default
+#if ENABLE_RADIOTEXT
 				if ((g_settings.radiotext_enable) && (neutrino->getMode() == NeutrinoModes::mode_radio))
 					hideIt =  true;
-
+#endif
 				int rec_mode = CRecordManager::getInstance()->GetRecordMode();
 
 				/* hide, if record (not timeshift only) is running -> neutrino will show channel list */
@@ -1263,6 +1275,7 @@ void CInfoViewer::showMotorMoving (int duration)
 	ShowHint (LOCALE_MESSAGEBOX_INFO, text, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth (text) + OFFSET_INNER_MID, duration);	// UTF-8
 }
 
+#if ENABLE_RADIOTEXT
 void CInfoViewer::killRadiotext()
 {
 	if (g_Radiotext->S_RtOsd)
@@ -1349,6 +1362,7 @@ void CInfoViewer::showRadiotext()
 		frameBuffer->blit();
 
 }
+#endif
 
 int CInfoViewer::handleMsg (const neutrino_msg_t msg, neutrino_msg_data_t data)
 {
@@ -1418,8 +1432,10 @@ int CInfoViewer::handleMsg (const neutrino_msg_t msg, neutrino_msg_data_t data)
 				showLivestreamInfo();
 				infoViewerBB->showBBButtons(true /*paintFooter*/); // in case button text has changed
 			}
+#if ENABLE_RADIOTEXT
 			if (g_settings.radiotext_enable && g_Radiotext && !g_RemoteControl->current_PIDs.APIDs.empty() && ((CNeutrinoApp::getInstance()->getMode()) == NeutrinoModes::mode_radio))
 				g_Radiotext->setPid(g_RemoteControl->current_PIDs.APIDs[g_RemoteControl->current_PIDs.PIDs.selected_apid].pid);
+#endif
 		}
 		return messages_return::handled;
 	} else if (msg == NeutrinoMessages::EVT_ZAP_GOT_SUBSERVICES) {
@@ -1924,10 +1940,13 @@ void CInfoViewer::killTitle()
 
 		body->kill();
 
-		if (g_settings.radiotext_enable && g_Radiotext) {
+#if ENABLE_RADIOTEXT
+		if (g_settings.radiotext_enable && g_Radiotext)
+		{
 			g_Radiotext->S_RtOsd = g_Radiotext->haveRadiotext() ? 1 : 0;
 			killRadiotext();
 		}
+#endif
 		if (infobar_txt) spacer += infobar_txt->getHeight();
 		killInfobarText();
 		//frameBuffer->paintBackgroundBox(BoxStartX, BoxStartY - spacer - OFFSET_INNER_SMALL, BoxEndX + OFFSET_SHADOW, bottom);

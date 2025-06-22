@@ -136,7 +136,9 @@ class CInfoViewerBB
 		void showSysfsHdd(void);
 		void paint_ca_icons(int);
 		void showIcon_16_9();
+#if ENABLE_RADIOTEXT
 		void showIcon_RadioText(bool rt_available);
+#endif
 		void showIcon_VTXT();
 		void showIcon_SubT();
 		void showIcon_Resolution();

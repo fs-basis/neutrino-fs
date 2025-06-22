@@ -62,11 +62,12 @@ class CInfoViewer
 #endif
 
 	int            InfoHeightY;
-	bool	       fileplay;
+	bool           fileplay;
 
 	int            ButtonWidth;
 	int            spacer;
 
+#if ENABLE_RADIOTEXT
         // dimensions of radiotext window
         int             rt_dx;
         int             rt_dy;
@@ -74,6 +75,7 @@ class CInfoViewer
         int             rt_y;
         int             rt_h;
         int             rt_w;
+#endif
 
 	std::string ChannelName;
 
@@ -132,10 +134,12 @@ class CInfoViewer
 
 	void showFailure();
 	void showMotorMoving(int duration);
-   	void showLcdPercentOver();
+	void showLcdPercentOver();
 	int showChannelLogo(const t_channel_id logo_channel_id, const int channel_number_width);
+#if ENABLE_RADIOTEXT
 	void showRadiotext();
 	void killRadiotext();
+#endif
 
 	//small infobox, shows a small textbox with a short message text,
 	//text must be located in a file named /tmp/infobar.txt

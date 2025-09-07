@@ -71,7 +71,7 @@
 		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
-		<S i="2942" t="458" on="1" s="192" frq="12610" n="SERIEN+"/>
+		<S i="2942" t="458" on="1" s="192" frq="12610" n="ALT_SERIEN+"/>
 	</Bouquet>
 	<Bouquet name="HD +" epg="1">
 		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
@@ -131,32 +131,19 @@
 		<S i="1344" t="3ef" on="1" s="192" frq="11303" n="TV Berlin"/>
 		<S i="1335" t="3ef" on="1" s="192" frq="11303" n="ORF HITRADIO OE3 VISUAL"/>
 		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
-		<S i="334e" t="45b" on="1" s="192" frq="12663" n="FM4_alt"/>
-		<S i="3341" t="45b" on="1" s="192" frq="12663" n="OE1"/>
-		<S i="3342" t="45b" on="1" s="192" frq="12663" n="OE1 DD"/>
-		<S i="3345" t="45b" on="1" s="192" frq="12663" n="OE2 B_alt"/>
-		<S i="334b" t="45b" on="1" s="192" frq="12663" n="OE2 K_alt"/>
-		<S i="3344" t="45b" on="1" s="192" frq="12663" n="OE2 N_alt"/>
-		<S i="3346" t="45b" on="1" s="192" frq="12663" n="OE2 O_alt"/>
-		<S i="3347" t="45b" on="1" s="192" frq="12663" n="OE2 S_alt"/>
-		<S i="334a" t="45b" on="1" s="192" frq="12663" n="OE2 St_alt"/>
-		<S i="3348" t="45b" on="1" s="192" frq="12663" n="OE2 T_alt"/>
-		<S i="3349" t="45b" on="1" s="192" frq="12663" n="OE2 V_alt"/>
-		<S i="3343" t="45b" on="1" s="192" frq="12663" n="OE2 W_alt"/>
-		<S i="334d" t="45b" on="1" s="192" frq="12663" n="OE3_alt"/>
 		<S i="1338" t="3ef" on="1" s="192" frq="11303" n="ORF HITRADIO OE3"/>
-		<S i="1350" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO B"/>
-		<S i="134d" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO FM4"/>
-		<S i="1356" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO K"/>
-		<S i="134f" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO NOE"/>
-		<S i="134c" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO OE1"/>
+		<S i="1350" t="3ef" on="1" s="192" frq="11303" n="ORF B"/>
+		<S i="134d" t="3ef" on="1" s="192" frq="11303" n="ORF FM4"/>
+		<S i="1356" t="3ef" on="1" s="192" frq="11303" n="ORF K"/>
+		<S i="134f" t="3ef" on="1" s="192" frq="11303" n="ORF NOE"/>
+		<S i="134c" t="3ef" on="1" s="192" frq="11303" n="ORF OE1"/>
 		<S i="1357" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO OE1 DOLBY"/>
-		<S i="1351" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO OOE"/>
-		<S i="1352" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO S"/>
-		<S i="1355" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO STMK"/>
-		<S i="1353" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO T"/>
-		<S i="1354" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO V"/>
-		<S i="134e" t="3ef" on="1" s="192" frq="11303" n="ORF RADIO WIEN"/>
+		<S i="1351" t="3ef" on="1" s="192" frq="11303" n="ORF OOE"/>
+		<S i="1352" t="3ef" on="1" s="192" frq="11303" n="ORF S"/>
+		<S i="1355" t="3ef" on="1" s="192" frq="11303" n="ORF STMK"/>
+		<S i="1353" t="3ef" on="1" s="192" frq="11303" n="ORF T"/>
+		<S i="1354" t="3ef" on="1" s="192" frq="11303" n="ORF V"/>
+		<S i="134e" t="3ef" on="1" s="192" frq="11303" n="ORF WIEN"/>
 	</Bouquet>
 	<Bouquet name="ARD-Radio">
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>

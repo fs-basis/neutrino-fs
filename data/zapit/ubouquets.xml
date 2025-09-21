@@ -71,7 +71,6 @@
 		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
 		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
 		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
-		<S i="2942" t="458" on="1" s="192" frq="12610" n="ALT_SERIEN+"/>
 	</Bouquet>
 	<Bouquet name="HD +" epg="1">
 		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
@@ -96,7 +95,7 @@
 		<S i="2774" t="409" on="1" s="192" frq="10964" n="TLC HD"/>
 		<S i="1519" t="455" on="1" s="192" frq="12574" n="TELE 5 HD"/>
 		<S i="ef77" t="3f9" on="1" s="192" frq="11464" n="SIXX HD"/>
-		<S i="30d4" t="413" on="1" s="192" frq="11112" n="SAT.1 Gold HD"/>
+		<S i="ef7a" t="3f9" on="1" s="192" frq="11464" n="SAT.1 GOLD HD"/>
 		<S i="6fee" t="436" on="1" s="192" frq="11973" n="MTV HD"/>
 		<S i="29d0" t="45c" on="1" s="192" frq="12670" n="Crime Time HD"/>
 		<S i="157f" t="41f" on="1" s="192" frq="10803" n="Deluxe Music HD"/>

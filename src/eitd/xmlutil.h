@@ -45,4 +45,3 @@ t_channel_id getepgid(std::string epg_name);
 bool checkNoDVBTimelist(t_channel_id channel_id);
 
 #endif /* __sectionsd__debug_h__ */
-

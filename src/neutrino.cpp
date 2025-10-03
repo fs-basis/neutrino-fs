@@ -4700,8 +4700,8 @@ void CNeutrinoApp::loadKeys(const char * fname)
 	g_settings.key_tvradio_mode = tconfig->getInt32( "key_tvradio_mode", CRCInput::RC_nokey );
 	g_settings.key_power_off = tconfig->getInt32( "key_power_off", CRCInput::RC_standby );
 
-	g_settings.key_pageup = tconfig->getInt32( "key_channelList_pageup",  CRCInput::RC_page_up );
-	g_settings.key_pagedown = tconfig->getInt32( "key_channelList_pagedown", CRCInput::RC_page_down );
+	g_settings.key_pageup = tconfig->getInt32( "key_channelList_pageup",  CRCInput::RC_left );
+	g_settings.key_pagedown = tconfig->getInt32( "key_channelList_pagedown", CRCInput::RC_right );
 	g_settings.key_channelList_sort = tconfig->getInt32( "key_channelList_sort",  CRCInput::RC_blue );
 	g_settings.key_channelList_addrecord = tconfig->getInt32( "key_channelList_addrecord",  CRCInput::RC_red );
 	g_settings.key_channelList_addremind = tconfig->getInt32( "key_channelList_addremind",  CRCInput::RC_yellow );

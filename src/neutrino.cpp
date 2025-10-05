@@ -611,7 +611,7 @@ if (g_info.hw_caps->can_shutdown)
 	g_settings.ifname = configfile.getString("ifname", "eth0");
 
 	g_settings.epg_save = configfile.getBool("epg_save", false);
-	g_settings.epg_save_standby = configfile.getBool("epg_save_standby", false);
+	g_settings.epg_save_standby = configfile.getBool("epg_save_standby", true);
 	g_settings.epg_save_frequently = configfile.getInt32("epg_save_frequently", 1);
 	g_settings.epg_read = configfile.getBool("epg_read", true);
 	g_settings.epg_read_frequently = configfile.getInt32("epg_read_frequently", 1);

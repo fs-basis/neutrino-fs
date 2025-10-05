@@ -594,13 +594,14 @@ if (g_info.hw_caps->can_shutdown)
 #if HAVE_SH4_HARDWARE
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 1);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 7500);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 2500;
+	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 1);
 #else
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 21);
-	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 24);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 100000);
-#endif
+	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 4);
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 80000);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 4);
+#endif
 
 	// NTP-Server for sectionsd
 	g_settings.network_ntpserver    = configfile.getString("network_ntpserver", "time.fu-berlin.de");
@@ -611,17 +612,17 @@ if (g_info.hw_caps->can_shutdown)
 
 	g_settings.epg_save = configfile.getBool("epg_save", false);
 	g_settings.epg_save_standby = configfile.getBool("epg_save_standby", false);
-	g_settings.epg_save_frequently = configfile.getInt32("epg_save_frequently", 0);
+	g_settings.epg_save_frequently = configfile.getInt32("epg_save_frequently", 1);
 	g_settings.epg_read = configfile.getBool("epg_read", true);
 	g_settings.epg_read_frequently = configfile.getInt32("epg_read_frequently", 1);
-	g_settings.epg_scan = configfile.getInt32("epg_scan", CEpgScan::SCAN_FAV);
-	g_settings.epg_scan_mode = configfile.getInt32("epg_scan_mode", CEpgScan::MODE_STANDBY);
+	g_settings.epg_scan = configfile.getInt32("epg_scan", CEpgScan::SCAN_SEL);
+	g_settings.epg_scan_mode = configfile.getInt32("epg_scan_mode", CEpgScan::MODE_ALWAYS);
 	g_settings.epg_scan_rescan = configfile.getInt32("epg_scan_rescan", 24);
-	g_settings.epg_save_mode = configfile.getInt32("epg_save_mode", 1);
+	g_settings.epg_save_mode = configfile.getInt32("epg_save_mode", 0);
 	g_settings.enable_sdt = configfile.getInt32("enable_sdt",0);
 	//widget settings
 	g_settings.widget_fade = false;
-	g_settings.widget_fade           = configfile.getBool("widget_fade"          , false );
+	g_settings.widget_fade = configfile.getBool("widget_fade", false );
 
 #ifdef ENABLE_GRAPHLCD
 #if BOXMODEL_E4HDULTRA

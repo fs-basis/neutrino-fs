@@ -567,7 +567,7 @@ if (g_info.hw_caps->can_shutdown)
 #if HAVE_SH4_HARDWARE
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 7);
 	g_settings.epg_extendedcache    = configfile.getInt32("epg_extendedcache_time", 1);
-	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 2500;
+	g_settings.epg_max_events       = configfile.getInt32("epg_max_events", 2500);
 	g_settings.epg_old_events       = configfile.getInt32("epg_old_events", 1);
 #else
 	g_settings.epg_cache            = configfile.getInt32("epg_cache_time", 21);

@@ -95,6 +95,7 @@ typedef enum dvb_fec {
 	f3_5,
 	f4_5,
 	f9_10,
+	f6_7,
 	fNone = 15
 #if !defined (HAVE_SH4_HARDWARE)
 	,
@@ -485,6 +486,9 @@ fe_code_rate_t CFrontend::getCodeRate(const uint8_t fec_inner, delivery_system_t
 			break;
 		case f9_10:
 			fec = FEC_9_10;
+			break;
+		case f6_7:
+			fec = FEC_6_7;
 			break;
 #if !defined (HAVE_SH4_HARDWARE)
 		case f13_45:

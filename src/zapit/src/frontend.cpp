@@ -456,6 +456,9 @@ fe_code_rate_t CFrontend::getCodeRate(const uint8_t fec_inner, delivery_system_t
 		case f5_6:
 			fec = FEC_5_6;
 			break;
+		case f6_7:
+			fec = FEC_6_7;
+			break;
 		case f7_8:
 			fec = FEC_7_8;
 			break;
@@ -495,9 +498,6 @@ fe_code_rate_t CFrontend::getCodeRate(const uint8_t fec_inner, delivery_system_t
 			break;
 		case f9_10:
 			fec = FEC_9_10;
-			break;
-		case f6_7:
-			fec = FEC_6_7;
 			break;
 #if !defined (HAVE_SH4_HARDWARE)
 		case f13_45:

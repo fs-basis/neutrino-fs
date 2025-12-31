@@ -209,6 +209,4 @@
 		<S i="28a5" t="40f" on="1" s="192" frq="11053" n="BR24live"/>
 		<S i="28a7" t="40f" on="1" s="192" frq="11053" n="PULS"/>
 	</Bouquet>
-	<Bouquet name="Favorites">
-	</Bouquet>
 </zapit>

@@ -28,7 +28,7 @@
 		<S i="286f" t="425" on="1" s="192" frq="10891" n="rbb Berlin HD"/>
 		<S i="288a" t="40f" on="1" s="192" frq="11053" n="SR Fernsehen HD"/>
 		<S i="283f" t="3fb" on="1" s="192" frq="11494" n="SWR BW HD"/>
-		<S i="2840" t="3fb" on="1" s="192" frq="11494" n="SWR RP HD"/>
+		<S i="2840" t="3fb" on="1" s="192" frq="11494" n="SWR RLP HD"/>
 		<S i="6ead" t="3fd" on="1" s="192" frq="11523" n="WDR HD Aachen"/>
 		<S i="6eae" t="3fd" on="1" s="192" frq="11523" n="WDR HD Bielefeld"/>
 		<S i="6eaf" t="3fd" on="1" s="192" frq="11523" n="WDR HD Bonn"/>
@@ -69,8 +69,6 @@
 		<S i="26" t="f" on="85" s="192" frq="10921" n="HGTV"/>
 		<S i="6fff" t="436" on="1" s="192" frq="11973" n="MTV"/>
 		<S i="41" t="7" on="85" s="192" frq="12148" n="DELUXE MUSIC"/>
-		<S i="6ff0" t="436" on="1" s="192" frq="11973" n="MTV 00s"/>
-		<S i="6ff1" t="436" on="1" s="192" frq="11973" n="MTV 80s"/>
 	</Bouquet>
 	<Bouquet name="HD +" epg="1">
 		<S i="183d" t="40b" on="1" s="192" frq="10994" n="Pro7Sat.1 UHD"/>
@@ -144,6 +142,7 @@
 		<S i="134e" t="3ef" on="1" s="192" frq="11303" n="ORF WIEN"/>
 	</Bouquet>
 	<Bouquet name="ARD-Radio">
+		<S i="28a7" t="40f" on="1" s="192" frq="11053" n="PULS"/>
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>
 		<S i="28f9" t="425" on="1" s="192" frq="10891" n="Fritz"/>
 		<S i="28f4" t="425" on="1" s="192" frq="10891" n="rbb24 Inforadio"/>
@@ -185,11 +184,11 @@
 		<S i="28ce" t="40f" on="1" s="192" frq="11053" n="DASDING"/>
 		<S i="28cf" t="40f" on="1" s="192" frq="11053" n="SWR Aktuell"/>
 		<S i="28c8" t="40f" on="1" s="192" frq="11053" n="SWR1 BW"/>
-		<S i="28c9" t="40f" on="1" s="192" frq="11053" n="SWR1 RP"/>
+		<S i="28c9" t="40f" on="1" s="192" frq="11053" n="SWR1 RLP"/>
 		<S i="28ca" t="40f" on="1" s="192" frq="11053" n="SWR Kultur"/>
 		<S i="28cb" t="40f" on="1" s="192" frq="11053" n="SWR3"/>
 		<S i="28cc" t="40f" on="1" s="192" frq="11053" n="SWR4 BW"/>
-		<S i="28cd" t="40f" on="1" s="192" frq="11053" n="SWR4 RP"/>
+		<S i="28cd" t="40f" on="1" s="192" frq="11053" n="SWR4 RLP"/>
 		<S i="28d3" t="40f" on="1" s="192" frq="11053" n="1LIVE"/>
 		<S i="28d9" t="40f" on="1" s="192" frq="11053" n="1LIVE diGGi"/>
 		<S i="28d8" t="40f" on="1" s="192" frq="11053" n="COSMO"/>
@@ -207,6 +206,7 @@
 		<S i="28a3" t="40f" on="1" s="192" frq="11053" n="BR-KLASSIK"/>
 		<S i="28a4" t="40f" on="1" s="192" frq="11053" n="BR24"/>
 		<S i="28a5" t="40f" on="1" s="192" frq="11053" n="BR24live"/>
-		<S i="28a7" t="40f" on="1" s="192" frq="11053" n="PULS"/>
+	</Bouquet>
+	<Bouquet name="Favorites">
 	</Bouquet>
 </zapit>

@@ -36,6 +36,7 @@
 
 #include <system/setting_helpers.h>
 #include <system/settings.h>
+#include <zapit/femanager.h>
 #include <zapit/satconfig.h>
 
 #include <string>
@@ -66,7 +67,7 @@ class CScanSetup : public CMenuTarget, public CChangeObserver
 		CGenericMenuActivate msettings;
 
 		CMenuOptionChooser * linkfe;
-		std::string modestr[4];
+		std::string modestr[MAX_FE];
 
 		/* variables for selected frontend */
 		/* diseqc mode */

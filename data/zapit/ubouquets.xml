@@ -124,7 +124,6 @@
 		<S i="33fc" t="3ed" on="1" s="192" frq="11273" n="ORF III HD"/>
 		<S i="33fd" t="3ed" on="1" s="192" frq="11273" n="ORF SPORT+ HD"/>
 		<S i="3400" t="3ed" on="1" s="192" frq="11273" n="R9 Oesterreich HD"/>
-		<S i="1344" t="3ef" on="1" s="192" frq="11303" n="TV Berlin"/>
 		<S i="1335" t="3ef" on="1" s="192" frq="11303" n="ORF HITRADIO OE3 VISUAL"/>
 		<S i="3401" t="3ed" on="1" s="192" frq="11273" n="krone.tv"/>
 		<S i="1338" t="3ef" on="1" s="192" frq="11303" n="ORF HITRADIO OE3"/>
@@ -187,8 +186,8 @@
 		<S i="28c9" t="40f" on="1" s="192" frq="11053" n="SWR1 RLP"/>
 		<S i="28ca" t="40f" on="1" s="192" frq="11053" n="SWR Kultur"/>
 		<S i="28cb" t="40f" on="1" s="192" frq="11053" n="SWR3"/>
-		<S i="28cc" t="40f" on="1" s="192" frq="11053" n="SWR4 BW"/>
-		<S i="28cd" t="40f" on="1" s="192" frq="11053" n="SWR4 RLP"/>
+		<S i="28cc" t="40f" on="1" s="192" frq="11053" n="SWR4 S"/>
+		<S i="28cd" t="40f" on="1" s="192" frq="11053" n="SWR4 MZ"/>
 		<S i="28d3" t="40f" on="1" s="192" frq="11053" n="1LIVE"/>
 		<S i="28d9" t="40f" on="1" s="192" frq="11053" n="1LIVE diGGi"/>
 		<S i="28d8" t="40f" on="1" s="192" frq="11053" n="COSMO"/>

@@ -71,10 +71,11 @@ extern char zapit_long[21];
 //static int all_usals = 1;
 //sat_iterator_t sit;
 
-#define SCANTS_BOUQUET_OPTION_COUNT 2
+#define SCANTS_BOUQUET_OPTION_COUNT 3
 const CMenuOptionChooser::keyval SCANTS_BOUQUET_OPTIONS[SCANTS_BOUQUET_OPTION_COUNT] =
 {
 	{ CZapitClient::BM_DELETEBOUQUETS        , LOCALE_SCANTS_BOUQUET_ERASE     },
+	{ CZapitClient::BM_DONTTOUCHBOUQUETS     , LOCALE_SCANTS_BOUQUET_LEAVE     },
 	{ CZapitClient::BM_UPDATEBOUQUETS        , LOCALE_SCANTS_BOUQUET_UPDATE    }
 };
 

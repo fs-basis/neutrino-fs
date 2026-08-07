@@ -43,6 +43,10 @@
 #include <linux/dvb/frontend.h>
 #include <linux/dvb/version.h>
 
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
+#include <errno.h>
+#endif
+
 #include <hardware_caps.h>
 
 extern transponder_list_t transponders;
@@ -1434,21 +1438,15 @@ int CFrontend::setFrontend(const FrontendParameters *feparams, bool nowait)
 		break;
 	case FEC_2_3:
 		fec = FEC_2_3;
-		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-			pilot = PILOT_ON;
 		break;
 	case FEC_3_4:
 		fec = FEC_3_4;
-		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-			pilot = PILOT_ON;
 		break;
 	case FEC_4_5:
 		fec = FEC_4_5;
 		break;
 	case FEC_5_6:
 		fec = FEC_5_6;
-		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-			pilot = PILOT_ON;
 		break;
 	case FEC_6_7:
 		fec = FEC_6_7;
@@ -1461,8 +1459,6 @@ int CFrontend::setFrontend(const FrontendParameters *feparams, bool nowait)
 		break;
 	case FEC_3_5:
 		fec = FEC_3_5;
-		if ((getFEDeliverySystem(feparams->delsys) == SYS_DVBS2) && feparams->modulation == PSK_8)
-			pilot = PILOT_ON;
 		break;
 	case FEC_9_10:
 		fec = FEC_9_10;

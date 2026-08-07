@@ -153,7 +153,7 @@
 		<S i="28e2" t="425" on="1" s="192" frq="10891" n="hr2"/>
 		<S i="28e3" t="425" on="1" s="192" frq="10891" n="hr3"/>
 		<S i="28e4" t="425" on="1" s="192" frq="10891" n="hr4"/>
-		<S i="28e5" t="425" on="1" s="192" frq="10891" n="YOU FM"/>
+		<S i="28e5" t="425" on="1" s="192" frq="10891" n="DASDING vom hr"/>
 		<S i="28f0" t="425" on="1" s="192" frq="10891" n="MDR AKTUELL"/>
 		<S i="28ee" t="425" on="1" s="192" frq="10891" n="MDR JUMP"/>
 		<S i="28f1" t="425" on="1" s="192" frq="10891" n="MDR KLASSIK"/>
@@ -180,7 +180,7 @@
 		<S i="28c0" t="40f" on="1" s="192" frq="11053" n="SR 1 Europawelle"/>
 		<S i="28c1" t="40f" on="1" s="192" frq="11053" n="SR kultur"/>
 		<S i="28c2" t="40f" on="1" s="192" frq="11053" n="SR 3 Saarlandwelle"/>
-		<S i="28ce" t="40f" on="1" s="192" frq="11053" n="DASDING"/>
+		<S i="28ce" t="40f" on="1" s="192" frq="11053" n="DASDING vom SWR"/>
 		<S i="28cf" t="40f" on="1" s="192" frq="11053" n="SWR Aktuell"/>
 		<S i="28c8" t="40f" on="1" s="192" frq="11053" n="SWR1 BW"/>
 		<S i="28c9" t="40f" on="1" s="192" frq="11053" n="SWR1 RLP"/>

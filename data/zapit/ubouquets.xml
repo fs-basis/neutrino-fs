@@ -79,7 +79,7 @@
 		<S i="157c" t="41f" on="1" s="192" frq="10803" n="Disney Channel HD"/>
 		<S i="6fec" t="436" on="1" s="192" frq="11973" n="Comedy Central HD"/>
 		<S i="ef10" t="421" on="1" s="192" frq="10832" n="RTL HD"/>
-		<S i="307a" t="3f5" on="1" s="192" frq="11391" n="RTL UHD"/>
+		<S i="a" t="40b" on="1" s="192" frq="10994" n="RTL UHD"/>
 		<S i="ef16" t="421" on="1" s="192" frq="10832" n="RTLup HD"/>
 		<S i="ef15" t="421" on="1" s="192" frq="10832" n="RTLZWEI HD"/>
 		<S i="2eaf" t="411" on="1" s="192" frq="11082" n="NITRO HD"/>
@@ -142,6 +142,7 @@
 	</Bouquet>
 	<Bouquet name="ARD-Radio">
 		<S i="28a7" t="40f" on="1" s="192" frq="11053" n="PULS"/>
+		<S i="28a5" t="40f" on="1" s="192" frq="11053" n="BR24live"/>
 		<S i="28f6" t="425" on="1" s="192" frq="10891" n="Antenne Brbg."/>
 		<S i="28f9" t="425" on="1" s="192" frq="10891" n="Fritz"/>
 		<S i="28f4" t="425" on="1" s="192" frq="10891" n="rbb24 Inforadio"/>
@@ -204,7 +205,6 @@
 		<S i="28a8" t="40f" on="1" s="192" frq="11053" n="BR-Heimat"/>
 		<S i="28a3" t="40f" on="1" s="192" frq="11053" n="BR-KLASSIK"/>
 		<S i="28a4" t="40f" on="1" s="192" frq="11053" n="BR24"/>
-		<S i="28a5" t="40f" on="1" s="192" frq="11053" n="BR24live"/>
 	</Bouquet>
 	<Bouquet name="Favorites">
 	</Bouquet>
